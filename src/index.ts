@@ -1,1 +1,5 @@
-console.log("To be implemented")
+import API from "./api"
+
+export default {
+  API
+}
