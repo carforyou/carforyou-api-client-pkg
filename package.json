@@ -1,0 +1,39 @@
+{
+  "name": "@carforyou/api-client",
+  "version": "0.0.0",
+  "description": "Api client to connect with our APIs",
+  "scripts": {
+    "build": "pack build",
+    "release": "pack publish && git push --tags",
+    "lint": "tslint --project tsconfig.json",
+    "format": "tslint --project tsconfig.json --fix",
+    "typecheck": "tsc --noEmit",
+    "test:unit": "jest",
+    "test:unit:debug": "node --inspect-brk --inspect=127.0.0.1:9229 ./node_modules/jest/bin/jest.js --runInBand"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/autoricardo/carforyou-api-client-pkg.git"
+  },
+  "author": "CAR FOR YOU",
+  "license": "MIT",
+  "homepage": "https://github.com/autoricardo/carforyou-api-client-pkg#readme",
+  "devDependencies": {
+    "@carforyou/tslint-rules": "^1.0.0",
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-standard-pkg": "^0.6.1",
+    "jest": "^24.9.0",
+    "jest-fetch-mock": "^2.1.2",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-standard-pkg"
+      ]
+    ]
+  }
+}
