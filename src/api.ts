@@ -3,15 +3,16 @@ export interface ApiClientConfig {
   searchServiceUrl?: string
   catalogueServiceUrl?: string
   dealerServiceUrl?: string
-  version?: string
   debug?: boolean
 }
 
 class API {
   static instance: API
   configuration: ApiClientConfig
+  version: string
 
   constructor() {
+    this.version = "v1"
     this.configuration = {}
     API.instance = this
   }

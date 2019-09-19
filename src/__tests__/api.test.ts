@@ -9,6 +9,10 @@ describe("API", () => {
     expect(API.configuration.carServiceUrl).toEqual("car.service.test")
   })
 
+  it("sets the version", () => {
+    expect(API.version).toEqual("v1")
+  })
+
   it("cannot be initialized twice", () => {
     expect(() => {
       API.initialize({ carServiceUrl: "car.service.test1" })
