@@ -1,6 +1,6 @@
 {
   "name": "@carforyou/api-client",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.1",
   "description": "Api client to connect with our APIs",
   "scripts": {
     "build": "pack build",
