@@ -1,5 +1,7 @@
 import apiClient from "./apiClient"
 
+export { fetchBodyTypes } from "./calls/car/inventoryData"
+
 export default {
   configure: apiClient.configure,
   getConfiguration: () => ({
