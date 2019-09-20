@@ -13,7 +13,7 @@ import ApiClient from "@carforyou/api-client"
 ApiClient.configure(<your_configuration_object>)
 ```
 
-Import the `fetchXYX` call you need and use in your code:
+Import the `fetchXYZ` call you need and use in your code:
 
 ```
 import { fetchBodyTypes } from "@carforyou/api-client"
