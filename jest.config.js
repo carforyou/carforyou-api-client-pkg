@@ -12,6 +12,9 @@ module.exports = {
   setupFiles: [
     "<rootDir>/__tests__/setup/fetchMock.ts",
   ],
+  setupFilesAfterEnv: [
+    "<rootDir>/__tests__/setup/cleanupConfiguration.ts"
+  ],
   moduleFileExtensions: ["ts", "js", "json", "node"],
   testMatch: ["**/__tests__/**/*.test.(t|j)s"],
   preset: "ts-jest"
