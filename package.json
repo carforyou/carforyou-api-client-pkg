@@ -3,8 +3,9 @@
   "version": "0.0.1-alpha.1",
   "description": "Api client to connect with our APIs",
   "scripts": {
+    "version": "npm run build",
     "build": "pika build",
-    "release": "pika publish && git push --tags",
+    "release": "np --any-branch --contents pkg/",
     "lint": "tslint --project tsconfig.lint.json",
     "format": "tslint --project tsconfig.lint.json --fix",
     "typecheck": "tsc --noEmit",
@@ -27,6 +28,7 @@
     "@types/jest": "^24.0.18",
     "jest": "^24.9.0",
     "jest-fetch-mock": "^2.1.2",
+    "np": "^5.1.0",
     "prettier": "^1.18.2",
     "ts-jest": "^24.1.0",
     "tslint": "^5.20.0",
