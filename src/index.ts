@@ -1,7 +1,7 @@
 import apiClient from "./apiClient"
 
 export { ResponseError } from "./responseError"
-export { fetchGBDScores } from "./calls/car/goodBadDealData"
+export { fetchGBDScores } from "./services/car/goodBadDealData"
 export {
   fetchBodyTypes,
   fetchColorGroups,
@@ -15,8 +15,8 @@ export {
   fetchOptions,
   fetchSeats,
   fetchTransmissionTypes
-} from "./calls/car/inventoryData"
-export { fetchMakes } from "./calls/catalogue"
+} from "./services/car/inventoryData"
+export { fetchMakes } from "./services/catalogue"
 
 export default {
   configure: configuration => apiClient.configure(configuration),

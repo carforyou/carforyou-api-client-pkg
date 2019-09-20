@@ -22,66 +22,70 @@ describe("CAR service", () => {
       const tests = [
         {
           name: "fetchBodyTypes",
-          fn: fetchBodyTypes,
+          fetchFunction: fetchBodyTypes,
           response: ["coupe", "cabrio", "suv"]
         },
         {
           name: "fetchColorGroups",
-          fn: fetchColorGroups,
+          fetchFunction: fetchColorGroups,
           response: ["black", "red"]
         },
         {
           name: "fetchColors",
-          fn: fetchColors,
+          fetchFunction: fetchColors,
           response: ["black", "orange", "red"]
         },
         {
           name: "fetchConditionTypes",
-          fn: fetchConditionTypes,
+          fetchFunction: fetchConditionTypes,
           response: ["new", "used"]
         },
-        { name: "fetchDoors", fn: fetchDoors, response: [1, 2, 3] },
+        { name: "fetchDoors", fetchFunction: fetchDoors, response: [1, 2, 3] },
         {
           name: "fetchDriveTypes",
-          fn: fetchDriveTypes,
+          fetchFunction: fetchDriveTypes,
           response: ["rear", "front"]
         },
         {
           name: "fetchFuelTypeGroups",
-          fn: fetchFuelTypeGroups,
+          fetchFunction: fetchFuelTypeGroups,
           response: ["petrol", "diesel", "hybrid"]
         },
         {
           name: "fetchFuelTypes",
-          fn: fetchFuelTypes,
+          fetchFunction: fetchFuelTypes,
           response: ["petrol", "diesel", "gas-petrol"]
         },
         {
           name: "fetchMinFirstRegistrationYear",
-          fn: fetchMinFirstRegistrationYear,
+          fetchFunction: fetchMinFirstRegistrationYear,
           response: 1939
         },
         {
           name: "fetchOptions",
-          fn: fetchOptions,
+          fetchFunction: fetchOptions,
           response: ["navigation", "air-condition", "leather", "sunroof"]
         },
-        { name: "fetchSeats", fn: fetchSeats, response: [2, 4, 5, 7] },
+        {
+          name: "fetchSeats",
+          fetchFunction: fetchSeats,
+          response: [2, 4, 5, 7]
+        },
         {
           name: "fetchTransmissionTypes",
-          fn: fetchTransmissionTypes,
+          fetchFunction: fetchTransmissionTypes,
           response: ["manual", "automatic"]
         }
       ]
 
-      tests.forEach(({ name, fn, response }) => {
+      tests.forEach(({ name, fetchFunction, response }) => {
         describe(name, () => {
           beforeEach(() => {
             fetchMock.mockResponse(JSON.stringify(response))
           })
 
           it("returns data", async () => {
-            const fetched = await fn()
+            const fetched = await fetchFunction()
 
             expect(fetched).toEqual(response)
             expect(fetch).toHaveBeenCalled()
