@@ -3,8 +3,8 @@
   "version": "0.0.1-alpha.1",
   "description": "Api client to connect with our APIs",
   "scripts": {
-    "build": "pack build",
-    "release": "pack publish && git push --tags",
+    "build": "pika build",
+    "release": "pika publish && git push --tags",
     "lint": "tslint --project tsconfig.json",
     "format": "tslint --project tsconfig.json --fix",
     "typecheck": "tsc --noEmit",
@@ -21,6 +21,8 @@
   "devDependencies": {
     "@carforyou/tslint-rules": "^1.0.0",
     "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.6.1",
+    "@pika/plugin-build-web": "^0.6.1",
     "@pika/plugin-standard-pkg": "^0.6.1",
     "@types/jest": "^24.0.18",
     "jest": "^24.9.0",
@@ -33,7 +35,16 @@
   "@pika/pack": {
     "pipeline": [
       [
-        "@pika/plugin-standard-pkg"
+        "@pika/plugin-standard-pkg",
+        {
+          "tsconfig": "tsconfig.pika.json"
+        }
+      ],
+      [
+        "@pika/plugin-build-web"
+      ],
+      [
+        "@pika/plugin-build-node"
       ]
     ]
   },
