@@ -6,18 +6,18 @@ export interface ApiClientConfig {
   debug?: boolean
 }
 
-class API {
-  static instance: API
+class ApiClient {
+  static instance: ApiClient
   configuration: ApiClientConfig
   version: string
 
   constructor() {
     this.version = "v1"
     this.configuration = {}
-    API.instance = this
+    ApiClient.instance = this
   }
 
-  public initialize(configuration: ApiClientConfig) {
+  public configure(configuration: ApiClientConfig) {
     if (Object.keys(this.configuration).length) {
       throw new Error("Owerwriting API client configuration")
     }
@@ -28,7 +28,7 @@ class API {
   }
 }
 
-const instance = new API()
+const instance = new ApiClient()
 Object.freeze(instance)
 
 export default instance
