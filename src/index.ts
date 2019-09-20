@@ -1,5 +1,9 @@
-import API from "./api"
+import apiClient from "./apiClient"
 
 export default {
-  API
+  configure: apiClient.configure,
+  getConfiguration: () => ({
+    ...apiClient.configuration,
+    version: apiClient.version
+  })
 }
