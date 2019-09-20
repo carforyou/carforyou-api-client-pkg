@@ -47,4 +47,3 @@ export const fetchSeats: () => Promise<number[]> = () => {
 export const fetchTransmissionTypes: () => Promise<string[]> = () => {
   return fetchPath(Service.CAR, "inventory/transmissiontypes")
 }
-

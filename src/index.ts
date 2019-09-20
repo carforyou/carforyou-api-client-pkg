@@ -16,6 +16,7 @@ export {
   fetchSeats,
   fetchTransmissionTypes
 } from "./calls/car/inventoryData"
+export { fetchMakes } from "./calls/catalogue"
 
 export default {
   configure: configuration => apiClient.configure(configuration),
