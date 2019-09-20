@@ -24,11 +24,11 @@
     "@pika/pack": "^0.5.0",
     "@pika/plugin-build-node": "^0.6.1",
     "@pika/plugin-build-web": "^0.6.1",
-    "@pika/plugin-standard-pkg": "^0.6.1",
+    "@pika/plugin-ts-standard-pkg": "^0.6.1",
     "@types/jest": "^24.0.18",
     "jest": "^24.9.0",
     "jest-fetch-mock": "^2.1.2",
-    "np": "^5.1.0",
+    "np": "5.0.3",
     "prettier": "^1.18.2",
     "ts-jest": "^24.1.0",
     "tslint": "^5.20.0",
@@ -37,7 +37,7 @@
   "@pika/pack": {
     "pipeline": [
       [
-        "@pika/plugin-standard-pkg",
+        "@pika/plugin-ts-standard-pkg",
         {
           "tsconfig": "tsconfig.pika.json"
         }
