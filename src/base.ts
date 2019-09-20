@@ -1,7 +1,7 @@
 import { Paginated } from "./types/pagination"
 
 import apiClient from "./apiClient"
-import ResponseError from "./responseError"
+import { ResponseError } from "./responseError"
 
 export enum Service {
   SEARCH = "SEARCH",

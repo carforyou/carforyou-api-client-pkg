@@ -1,6 +1,6 @@
 import unfetch from "isomorphic-unfetch"
 
-class ResponseError extends Error {
+export class ResponseError extends Error {
   code?: string
   status: string
   statusCode: string
@@ -16,5 +16,3 @@ class ResponseError extends Error {
     this.status = this.statusCode = response.status
   }
 }
-
-export default ResponseError

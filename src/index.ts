@@ -1,5 +1,6 @@
 import apiClient from "./apiClient"
 
+import { ResponseError } from "./responseError"
 export { fetchBodyTypes } from "./calls/car/inventoryData"
 
 export default {
