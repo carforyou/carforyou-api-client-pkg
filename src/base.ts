@@ -1,3 +1,5 @@
+import "isomorphic-unfetch"
+
 import { Paginated } from "./types/pagination"
 
 import apiClient from "./apiClient"
