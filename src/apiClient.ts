@@ -17,7 +17,7 @@ class ApiClient {
     ApiClient.instance = this
   }
 
-  public configure(configuration: ApiClientConfig) {
+  public configure(configuration: ApiClientConfig): void {
     if (Object.keys(this.configuration).length) {
       throw new Error("Owerwriting API client configuration")
     }
