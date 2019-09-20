@@ -1,6 +1,12 @@
 import ApiClient from "../apiClient"
 
 describe("ApiClient", () => {
+  beforeEach(() => {
+    Object.keys(ApiClient.configuration).forEach(key => {
+      delete ApiClient.configuration[key]
+    })
+  })
+
   it("sets the version", () => {
     expect(ApiClient.version).toEqual("v1")
   })
