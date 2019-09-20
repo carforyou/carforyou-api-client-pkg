@@ -5,8 +5,9 @@
     "lib": ["es5", "es6", "es7", "es2017", "dom"],
     "rootDirs": ["src"],
     "baseUrl": "src",
-    "allowJs": true
+    "allowJs": true,
+    "esModuleInterop": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "__tests__/setup/fetchMock.ts"],
   "exclude": ["node_modules", "build"]
 }
