@@ -1,6 +1,7 @@
 import apiClient from "./apiClient"
 
 export { ResponseError } from "./responseError"
+export { fetchGBDScores } from "./calls/car/goodBadDealData"
 export {
   fetchBodyTypes,
   fetchColorGroups,
