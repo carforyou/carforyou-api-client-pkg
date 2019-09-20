@@ -2,12 +2,18 @@ import apiClient from "../apiClient"
 import { resolveServiceUrl, Service, fetchPath } from "../base"
 
 describe("Base", () => {
-  beforeEach(() => {
-    fetchMock.resetMocks()
-  })
+  beforeEach(fetchMock.resetMocks)
 
   describe("#resolveServiceUrl", () => {
     describe("when service is not configured", () => {
+      beforeEach(() => {
+        delete apiClient.configuration.carServiceUrl
+      })
+
+      afterEach(() => {
+        apiClient.configuration.carServiceUrl = "car.service.test"
+      })
+
       it("raises an error", () => {
         expect(() => resolveServiceUrl(Service.CAR)).toThrowError(
           'Missing endpoint configuration for "CAR" service'
@@ -16,19 +22,10 @@ describe("Base", () => {
     })
 
     describe("when service is configured", () => {
-      beforeEach(() => {
-        apiClient.configure({
-          carServiceUrl: "car.test",
-          catalogueServiceUrl: "catalogue.test",
-          searchServiceUrl: "search.test",
-          dealerServiceUrl: "dealer.test"
-        })
-      })
-
       Object.keys(Service).forEach(service => {
         it(`returns url for service: ${service}`, () => {
           expect(resolveServiceUrl(Service[service])).toEqual(
-            `${service.toLowerCase()}.test`
+            `${service.toLowerCase()}.service.test`
           )
         })
       })
@@ -37,13 +34,6 @@ describe("Base", () => {
 
   describe("#fetchPath", () => {
     beforeEach(() => {
-      apiClient.configure({
-        carServiceUrl: "car.test",
-        catalogueServiceUrl: "catalogue.test",
-        searchServiceUrl: "search.test",
-        dealerServiceUrl: "dealer.test"
-      })
-
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
     })
 

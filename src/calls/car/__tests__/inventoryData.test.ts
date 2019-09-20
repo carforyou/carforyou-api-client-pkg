@@ -15,13 +15,7 @@ import {
 } from "../inventoryData"
 
 describe("CAR service", () => {
-  beforeEach(() => {
-    fetchMock.resetMocks()
-
-    apiClient.configure({
-      carServiceUrl: "car.test"
-    })
-  })
+  beforeEach(fetchMock.resetMocks)
 
   describe("Catalogue API", () => {
     describe("inventory data", () => {

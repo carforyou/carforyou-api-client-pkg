@@ -3,13 +3,7 @@ import apiClient from "../../../apiClient"
 import { fetchGBDScores } from "../goodBadDealData"
 
 describe("CAR service", () => {
-  beforeEach(() => {
-    fetchMock.resetMocks()
-
-    apiClient.configure({
-      carServiceUrl: "car.test"
-    })
-  })
+  beforeEach(fetchMock.resetMocks)
 
   describe("fetchGBDScores", () => {
     const scores = ["good-deal", "bad-deal"]

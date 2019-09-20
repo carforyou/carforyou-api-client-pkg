@@ -3,13 +3,7 @@ import apiClient from "../../apiClient"
 import { fetchMakes } from "../catalogue"
 
 describe("CATALOGUE service", () => {
-  beforeEach(() => {
-    fetchMock.resetMocks()
-
-    apiClient.configure({
-      catalogueServiceUrl: "catalogue.test"
-    })
-  })
+  beforeEach(fetchMock.resetMocks)
 
   describe("fetchMakes", () => {
     const makes = [
