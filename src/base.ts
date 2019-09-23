@@ -16,13 +16,22 @@ const stripLeadingSlash = (path: string): string => {
   return path.startsWith("/") ? path.slice(1) : path
 }
 
-const withPagination = <T>(json) => {
-  const { content, ...pagination }: Paginated<T> = json
+const withPagination = <T>(json: {
+  content: T[]
+  number: number
+  numberOfElements: number
+  size: number
+  totalPages: number
+  totalElements: number
+  first: boolean
+  last: boolean
+}): Paginated<T> => {
+  const { content, ...pagination } = json
 
   return { content, pagination }
 }
 
-export const resolveServiceUrl = (service: Service) => {
+export const resolveServiceUrl = (service: Service): string => {
   let url: string
   switch (service) {
     case Service.CAR:
