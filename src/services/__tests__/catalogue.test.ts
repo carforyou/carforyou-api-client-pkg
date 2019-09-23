@@ -1,5 +1,3 @@
-import apiClient from "../../apiClient"
-
 import { fetchMakes } from "../catalogue"
 
 describe("CATALOGUE service", () => {

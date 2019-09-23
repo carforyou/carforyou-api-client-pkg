@@ -1,5 +1,3 @@
-import apiClient from "../../../apiClient"
-
 import { fetchGBDScores } from "../goodBadDealData"
 
 describe("CAR service", () => {
