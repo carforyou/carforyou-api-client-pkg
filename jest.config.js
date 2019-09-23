@@ -8,7 +8,7 @@ module.exports = {
   },
   testPathIgnorePatterns: [
     "<rootDir>/__tests__/setup/",
-    "<rootDir>/pkg"
+    "<rootDir>/pkg/"
   ],
   setupFiles: [
     "<rootDir>/__tests__/setup/fetchMock.ts",

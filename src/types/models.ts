@@ -5,3 +5,10 @@ interface MappedValue {
 }
 
 export interface Make extends MappedValue {}
+
+export interface ZipCode {
+  zipCode: string
+  de: string
+  fr: string
+  it: string
+}

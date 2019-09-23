@@ -17,6 +17,7 @@ export {
   fetchTransmissionTypes
 } from "./services/car/inventoryData"
 export { fetchMakes } from "./services/catalogue"
+export { fetchZipCodes } from "./services/search/zipCodes"
 
 export default {
   configure: configuration => apiClient.configure(configuration),
