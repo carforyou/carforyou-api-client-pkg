@@ -1,5 +1,7 @@
 import apiClient from "./apiClient"
 
+export { Make, Model, Listing } from "./types/models"
+
 export { ResponseError } from "./responseError"
 export { fetchGBDScores } from "./services/car/goodBadDealData"
 export { fetchListing } from "./services/car/inventory"
