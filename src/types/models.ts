@@ -6,6 +6,8 @@ interface MappedValue {
 
 export interface Make extends MappedValue {}
 
+export interface Model extends MappedValue {}
+
 export interface ZipCode {
   zipCode: string
   de: string

@@ -16,7 +16,7 @@ export {
   fetchSeats,
   fetchTransmissionTypes
 } from "./services/car/inventoryData"
-export { fetchMakes } from "./services/catalogue"
+export { fetchMakes, fetchModels } from "./services/catalogue"
 export { fetchZipCodes } from "./services/search/zipCodes"
 
 export default {
