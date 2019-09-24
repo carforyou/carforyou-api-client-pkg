@@ -116,3 +116,14 @@ export interface ZipCode {
   fr: string
   it: string
 }
+
+interface TranslatedValue {
+  de: string
+  fr: string
+  it: string
+}
+
+export interface ListingOptions {
+  standardOptions: TranslatedValue[]
+  additionalOptions: TranslatedValue[]
+}

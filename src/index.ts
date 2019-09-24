@@ -1,6 +1,6 @@
 import apiClient from "./apiClient"
 
-export { Make, Model, Listing } from "./types/models"
+export { Make, Model, Listing, ListingOptions } from "./types/models"
 
 export { ResponseError } from "./responseError"
 export { fetchGBDScores } from "./services/car/goodBadDealData"
@@ -25,6 +25,7 @@ export {
   fetchCurrentMakes,
   fetchCurrentModels
 } from "./services/search/currentMakeModels"
+export { fetchListingOptions } from "./services/option/listing"
 
 export default {
   configure: configuration => apiClient.configure(configuration),
