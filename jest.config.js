@@ -8,6 +8,7 @@ module.exports = {
   },
   testPathIgnorePatterns: [
     "<rootDir>/__tests__/setup/",
+    "<rootDir>/__tests__/factories/",
     "<rootDir>/pkg/"
   ],
   setupFiles: [
