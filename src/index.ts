@@ -18,6 +18,10 @@ export {
 } from "./services/car/inventoryData"
 export { fetchMakes, fetchModels } from "./services/catalogue"
 export { fetchZipCodes } from "./services/search/zipCodes"
+export {
+  fetchCurrentMakes,
+  fetchCurrentModels
+} from "./services/search/currentMakeModels"
 
 export default {
   configure: configuration => apiClient.configure(configuration),

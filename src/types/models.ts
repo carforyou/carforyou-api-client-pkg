@@ -6,7 +6,9 @@ interface MappedValue {
 
 export interface Make extends MappedValue {}
 
-export interface Model extends MappedValue {}
+export interface Model extends MappedValue {
+  currentBodyTypes?: string[]
+}
 
 export interface ZipCode {
   zipCode: string
