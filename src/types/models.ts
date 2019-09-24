@@ -127,3 +127,8 @@ export interface ListingOptions {
   standardOptions: TranslatedValue[]
   additionalOptions: TranslatedValue[]
 }
+
+export interface ImageEnrichment {
+  imageId: number
+  enrichment: object
+}

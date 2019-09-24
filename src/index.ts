@@ -1,9 +1,16 @@
 import apiClient from "./apiClient"
 
-export { Make, Model, Listing, ListingOptions } from "./types/models"
+export {
+  Make,
+  Model,
+  Listing,
+  ListingOptions,
+  ImageEnrichment
+} from "./types/models"
 
 export { ResponseError } from "./responseError"
 export { fetchGBDScores } from "./services/car/goodBadDealData"
+export { fetchImageEnrichment } from "./services/car/image"
 export { fetchListing } from "./services/car/inventory"
 export {
   fetchBodyTypes,
