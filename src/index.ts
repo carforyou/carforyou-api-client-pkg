@@ -3,6 +3,7 @@ import apiClient from "./apiClient"
 export {
   Make,
   Model,
+  Dealer,
   Listing,
   ListingOptions,
   ImageEnrichment
@@ -27,6 +28,7 @@ export {
   fetchTransmissionTypes
 } from "./services/car/inventoryData"
 export { fetchMakes, fetchModels } from "./services/catalogue"
+export { fetchDealer } from "./services/dealer"
 export { fetchZipCodes } from "./services/search/zipCodes"
 export {
   fetchCurrentMakes,

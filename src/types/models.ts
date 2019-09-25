@@ -10,7 +10,7 @@ export interface Model extends MappedValue {
   currentBodyTypes?: string[]
 }
 
-export interface ListingDealer {
+export interface Dealer {
   id: number
   name: string
   phone: string
@@ -48,7 +48,7 @@ export interface Listing {
   createdDate: string
   cubicCapacity: number
   cylinders: number
-  dealer: ListingDealer
+  dealer: Dealer
   description: string
   doors: number
   driveType: string
