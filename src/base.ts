@@ -104,3 +104,16 @@ export const fetchPath = async (
     return json
   }
 }
+
+export const postData = async (
+  service: Service,
+  path: string,
+  body: object,
+  headers = {}
+) => {
+  return fetchPath(service, path, {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers
+  })
+}
