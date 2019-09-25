@@ -2,22 +2,29 @@ import { postData, Service } from "../../base"
 
 import { WithFacets, Facets } from "../../types/facets"
 import { Paginated } from "../../types/pagination"
-import { WithFieldStats } from "../../types/fieldStats"
+import { WithFieldStats, FieldsStats } from "../../types/fieldStats"
 import { SearchParams, QueryParams, LocationFilter } from "../../types/params"
 import { SortTypeParams, SortOrderParams } from "../../types/sort"
 import { SearchListing } from "../../types/models"
 
 export const fetchListingCount = async (
   query: SearchParams = {},
-  includeFacets = true
-): Promise<{ count: number; facets?: Facets }> => {
+  options = {}
+): Promise<{ count: number; facets?: Facets; fieldsStats?: FieldsStats }> => {
+  const { includeFacets, fieldsStats } = {
+    includeFacets: true,
+    fieldsStats: [],
+    ...options
+  }
   const json = await postData(Service.SEARCH, "listings/count", {
-    query
+    query,
+    ...(fieldsStats.length > 0 ? { includeFieldsStats: fieldsStats } : {})
   })
 
   return {
     count: json.count,
-    ...(includeFacets ? { facets: json.facets } : {})
+    ...(includeFacets ? { facets: json.facets } : {}),
+    ...(fieldsStats.length > 0 ? { fieldsStats: json.fieldsStats } : {})
   }
 }
 
