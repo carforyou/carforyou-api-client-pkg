@@ -5,3 +5,7 @@ export interface Facet {
 export interface Facets {
   [key: string]: Facet
 }
+
+export type WithFacets<T extends {}> = T & {
+  facets?: Facets
+}

@@ -1,4 +1,4 @@
-import { Listing } from "../../src/types/models"
+import { Listing, SearchListing } from "../../src/types/models"
 
 const defaults: Listing = {
   id: 12,
@@ -103,4 +103,8 @@ const defaults: Listing = {
 
 export function ListingDetails(attributes = {}): Listing {
   return { ...defaults, ...attributes }
+}
+
+export function ListingSummary(attributes = {}): SearchListing {
+  return ListingDetails(attributes)
 }

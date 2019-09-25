@@ -38,7 +38,10 @@ export {
   fetchCurrentMakes,
   fetchCurrentModels
 } from "./services/search/currentMakeModels"
-export { fetchListingCount } from "./services/search/listingSearch"
+export {
+  fetchListingCount,
+  fetchListings
+} from "./services/search/listingSearch"
 export { fetchListingOptions } from "./services/option/listing"
 
 export default {

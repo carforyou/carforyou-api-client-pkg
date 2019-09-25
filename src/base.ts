@@ -1,6 +1,8 @@
 import "isomorphic-unfetch"
 
 import { Paginated } from "./types/pagination"
+import { WithFieldStats, FieldsStats } from "./types/fieldStats"
+import { WithFacets, Facets } from "./types/facets"
 
 import apiClient from "./apiClient"
 import { ResponseError } from "./responseError"
@@ -26,10 +28,12 @@ const withPagination = <T>(json: {
   totalElements: number
   first: boolean
   last: boolean
-}): Paginated<T> => {
-  const { content, ...pagination } = json
+  facets: Facets
+  fieldsStats: FieldsStats
+}): WithFacets<WithFieldStats<Paginated<T>>> => {
+  const { content, fieldsStats, facets, ...pagination } = json
 
-  return { content, pagination }
+  return { content, fieldsStats, facets, pagination }
 }
 
 export const resolveServiceUrl = (service: Service): string => {

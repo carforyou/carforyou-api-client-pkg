@@ -23,7 +23,7 @@ export const fetchMbgListings = (
     page: number
   }
 ): Promise<Paginated<SearchListing>> => {
-  return this.fetchPath(
+  return fetchPath(
     Service.CAR,
     `dealers/${dealerId}/mbg-listings?${toQueryString(query)}`
   )
