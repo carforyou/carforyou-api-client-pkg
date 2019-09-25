@@ -28,7 +28,7 @@ export {
   fetchTransmissionTypes
 } from "./services/car/inventoryData"
 export { fetchMakes, fetchModels } from "./services/catalogue"
-export { fetchDealer } from "./services/dealer"
+export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
 export { fetchZipCodes } from "./services/search/zipCodes"
 export {
   fetchCurrentMakes,

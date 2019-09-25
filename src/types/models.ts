@@ -132,3 +132,8 @@ export interface ImageEnrichment {
   imageId: number
   enrichment: object
 }
+
+export interface DealerSuggestion {
+  id: number
+  name: string
+}
