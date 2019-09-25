@@ -137,3 +137,35 @@ export interface DealerSuggestion {
   id: number
   name: string
 }
+
+export interface SearchListing {
+  id: number
+  bodyType: string
+  make: string
+  model: string
+  makeId: number
+  makeKey: string
+  modelId: number
+  modelKey: string
+  price: number
+  type: string
+  hasMbg: boolean
+  spin360Code: string
+  horsePower: number
+  fuelType: string
+  fuelTypeGroup: string
+  mileage: number
+  firstRegistrationDate: string
+  transmissionType: string
+  consumption: number
+  doors: number
+  seats: number
+  dealer: {
+    name: string
+    city: string
+    address: string
+    zipCode: string
+  }
+  images: ListingImage[]
+  gbdScore: string
+}

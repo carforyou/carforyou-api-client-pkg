@@ -12,7 +12,11 @@ export {
 export { ResponseError } from "./responseError"
 export { fetchGBDScores } from "./services/car/goodBadDealData"
 export { fetchImageEnrichment } from "./services/car/image"
-export { fetchListing, fetchDealerMakes } from "./services/car/inventory"
+export {
+  fetchListing,
+  fetchDealerMakes,
+  fetchMbgListings
+} from "./services/car/inventory"
 export {
   fetchBodyTypes,
   fetchColorGroups,
