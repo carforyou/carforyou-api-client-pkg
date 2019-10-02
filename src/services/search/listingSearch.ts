@@ -18,6 +18,7 @@ export const fetchListingCount = async (
   }
   const json = await postData(Service.SEARCH, "listings/count", {
     query,
+    includeFacets,
     ...(fieldsStats.length > 0 ? { includeFieldsStats: fieldsStats } : {})
   })
 
