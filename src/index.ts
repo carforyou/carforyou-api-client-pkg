@@ -49,7 +49,8 @@ export {
 } from "./services/search/currentMakeModels"
 export {
   fetchListingCount,
-  fetchListings
+  fetchListings,
+  defaultSort
 } from "./services/search/listingSearch"
 export { fetchListingOptions } from "./services/option/listing"
 

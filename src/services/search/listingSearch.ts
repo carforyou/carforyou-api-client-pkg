@@ -28,7 +28,7 @@ export const fetchListingCount = async (
   }
 }
 
-const defaultSort = {
+export const defaultSort = {
   sortType: SortTypeParams.RELEVANCE,
   sortOrder: SortOrderParams.ASC
 }
