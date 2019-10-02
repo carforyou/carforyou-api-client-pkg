@@ -3,6 +3,7 @@ import "isomorphic-unfetch"
 import { Paginated } from "./types/pagination"
 import { WithFieldStats, FieldsStats } from "./types/fieldStats"
 import { WithFacets, Facets } from "./types/facets"
+import { ValidationError } from "./types/withValidationError"
 
 import apiClient from "./apiClient"
 import { ResponseError } from "./responseError"
@@ -124,4 +125,32 @@ export const postData = async (
     body: JSON.stringify(body),
     headers
   })
+}
+export const handleValidationError = async (
+  error,
+  options = {}
+): Promise<ValidationError> => {
+  if (
+    error.name !== "ResponseError" ||
+    ![400, 422].includes(error.response.status)
+  ) {
+    const { swallow } = { swallow: false, ...options }
+    if (swallow) {
+      return {
+        tag: "error",
+        message: "validation.other-error",
+        errors: []
+      }
+    }
+
+    throw error
+  }
+
+  const data = await error.response.json()
+
+  return {
+    tag: "error",
+    message: data.message.toString() as string,
+    errors: data.errors || []
+  }
 }
