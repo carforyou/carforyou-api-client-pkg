@@ -17,6 +17,7 @@ export {
   ValidationError
 } from "./types/withValidationError"
 export { ResponseError } from "./responseError"
+
 export { fetchGBDScores } from "./services/car/goodBadDealData"
 export { fetchImageEnrichment } from "./services/car/image"
 export {
@@ -38,11 +39,11 @@ export {
   fetchSeats,
   fetchTransmissionTypes
 } from "./services/car/inventoryData"
-export { fetchMakes, fetchModels } from "./services/catalogue"
-export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
-export { fetchZipCodes } from "./services/search/zipCodes"
 export { sendMoneybackApplication } from "./services/car/mbgApplication"
 export { sendMessageLead } from "./services/car/messageLead"
+
+export { fetchListingOptions } from "./services/option/listing"
+
 export {
   fetchCurrentMakes,
   fetchCurrentModels
@@ -52,7 +53,11 @@ export {
   fetchListings,
   defaultSort
 } from "./services/search/listingSearch"
-export { fetchListingOptions } from "./services/option/listing"
+export { fetchZipCodes } from "./services/search/zipCodes"
+
+export { fetchMakes, fetchModels } from "./services/catalogue"
+export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
+export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 
 export default {
   configure: configuration => apiClient.configure(configuration),
