@@ -1,3 +1,5 @@
+import { FilterParams } from "./params"
+
 interface MappedValue {
   id: number
   name: string
@@ -169,3 +171,12 @@ export interface SearchListing {
   images: ListingImage[]
   gbdScore: string
 }
+
+export interface SavedSearch {
+  email: string
+  language: string
+  searchQuery: FilterParams
+  searchPath: string
+  uiMetadata: object
+}
+

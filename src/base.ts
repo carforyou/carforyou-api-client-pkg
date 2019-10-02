@@ -126,6 +126,11 @@ export const postData = async (
     headers
   })
 }
+
+export const deletePath = async (service: Service, path: string) => {
+  return fetchPath(service, path, { method: "DELETE" })
+}
+
 export const handleValidationError = async (
   error,
   options = {}

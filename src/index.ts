@@ -6,7 +6,8 @@ export {
   Dealer,
   Listing,
   ListingOptions,
-  ImageEnrichment
+  ImageEnrichment,
+  SavedSearch,
 } from "./types/models"
 
 export { ResponseError } from "./responseError"
