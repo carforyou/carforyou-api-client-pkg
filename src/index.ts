@@ -61,8 +61,12 @@ export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 
 export default {
   configure: configuration => apiClient.configure(configuration),
-  getConfiguration: () => ({
-    ...apiClient.configuration,
-    version: apiClient.version
-  })
+  getConfiguration: () => {
+    const configuration = apiClient.configuration
+    return {
+      ...configuration,
+      configured: Object.keys(configuration).length > 0,
+      version: apiClient.version
+    }
+  }
 }
