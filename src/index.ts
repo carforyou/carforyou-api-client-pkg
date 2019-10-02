@@ -9,6 +9,7 @@ export {
   ImageEnrichment,
   SavedSearch,
   MessageLead,
+  MoneybackApplication
 } from "./types/models"
 
 export { ResponseError } from "./responseError"
@@ -36,6 +37,7 @@ export {
 export { fetchMakes, fetchModels } from "./services/catalogue"
 export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
 export { fetchZipCodes } from "./services/search/zipCodes"
+export { sendMoneybackApplication } from "./services/car/mbgApplication"
 export { sendMessageLead } from "./services/car/messageLead"
 export {
   fetchCurrentMakes,
