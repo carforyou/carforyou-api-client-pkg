@@ -180,3 +180,11 @@ export interface SavedSearch {
   uiMetadata: object
 }
 
+export interface MessageLead {
+  email?: string
+  language?: string
+  message?: string
+  name?: string
+  phone?: string
+}
+
