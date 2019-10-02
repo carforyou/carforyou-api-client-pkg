@@ -12,6 +12,10 @@ export {
   MoneybackApplication
 } from "./types/models"
 
+export {
+  WithValidationError,
+  ValidationError
+} from "./types/withValidationError"
 export { ResponseError } from "./responseError"
 export { fetchGBDScores } from "./services/car/goodBadDealData"
 export { fetchImageEnrichment } from "./services/car/image"
