@@ -37,7 +37,7 @@ describe("Car API", () => {
             validateOnly: true
           })
 
-          expect(result).toEqual({ tag: "success", result: {} })
+          expect(result).toEqual({ tag: "success", result: messageLead })
         })
       })
 
@@ -68,7 +68,7 @@ describe("Car API", () => {
         it("returns a success", async () => {
           const result = await sendMessageLead(12345, messageLead)
 
-          expect(result).toEqual({ tag: "success", result: {} })
+          expect(result).toEqual({ tag: "success", result: messageLead })
         })
       })
     })
