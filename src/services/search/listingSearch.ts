@@ -42,7 +42,7 @@ const defaultPagination = {
 const searchForListings = (
   path,
   query: QueryParams = {},
-  options: { includeFacets?: boolean; includeFieldsStats?: boolean } = {}
+  options: { includeFacets?: boolean; includeFieldsStats?: string[] } = {}
 ) => {
   const { page, size, sortOrder, sortType, zipCode, radius, ...rest } = query
   const sizeOrDefault =
@@ -65,7 +65,9 @@ const searchForListings = (
       }
     ],
     ...(options.includeFacets ? { includeFacets: true } : {}),
-    ...(options.includeFieldsStats ? { includeFieldsStats: true } : {}),
+    ...(options.includeFieldsStats && options.includeFieldsStats.length > 0
+      ? { includeFieldsStats: options.includeFieldsStats }
+      : {}),
     query: { ...rest, ...(location ? { location } : {}) }
   }
 
