@@ -35,6 +35,16 @@ export interface SearchParams extends QueryParams {
   bodyType?: string | string[]
 }
 
+export enum ConsumptionCategory {
+  A = "A",
+  B = "B",
+  C = "C",
+  D = "D",
+  E = "E",
+  F = "F",
+  G = "G"
+}
+
 export interface FilterParams {
   priceFrom?: number
   priceTo?: number
@@ -53,7 +63,7 @@ export interface FilterParams {
   firstRegistrationYearTo?: number
   gbdScore?: string[]
   hasMbgOnly?: string
-  consumptionCategory?: string[]
+  consumptionCategory?: ConsumptionCategory[]
   mileageFrom?: number
   mileageTo?: number
   bodyColorGroup?: string[]

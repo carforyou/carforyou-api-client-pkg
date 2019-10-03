@@ -4,8 +4,11 @@ export {
   Make,
   Model,
   Dealer,
+  LifecycleState,
+  SearchListing,
   Listing,
   ListingOptions,
+  ListingImage,
   ImageEnrichment,
   SavedSearch,
   MessageLead,
@@ -13,9 +16,22 @@ export {
 } from "./types/models"
 
 export {
+  MakeModelFilter,
+  LocationFilter,
+  ConsumptionCategory,
+  FilterParams,
+  PaginationParams,
+  QueryParams,
+  SearchParams
+} from "./types/params"
+
+export { SortOrderParams, SortTypeParams, SortParams } from "./types/sort"
+
+export {
   WithValidationError,
   ValidationError
 } from "./types/withValidationError"
+
 export { ResponseError } from "./responseError"
 
 export { fetchGBDScores } from "./services/car/goodBadDealData"
