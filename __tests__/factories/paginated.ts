@@ -3,16 +3,15 @@ import { WithFieldStats } from "../../src/types/fieldStats"
 import { WithFacets } from "../../src/types/facets"
 
 export default function<T>(
-  contentFactory: ({ id: number }) => T,
-  currentPage = 0,
-  totalPages = 1,
-  perPage = 5
+  content: T[],
+  options = {}
 ): WithFacets<WithFieldStats<Paginated<T>>> {
-  const content = []
-
-  for (let i = 0; i < perPage; ++i) {
-    content.push(contentFactory({ id: i + 1 }))
+  const { currentPage, totalPages } = {
+    currentPage: 0,
+    totalPages: 1,
+    ...options
   }
+  const perPage = content.length
 
   return {
     content,

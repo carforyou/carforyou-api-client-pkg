@@ -67,12 +67,9 @@ describe("SEARCH service", () => {
   })
 
   describe("#fetchListings", () => {
-    const { content, pagination, facets, fieldsStats } = PaginatedFactory(
-      ListingSummary,
-      0,
-      1,
-      1
-    )
+    const { content, pagination, facets, fieldsStats } = PaginatedFactory([
+      ListingSummary({ id: 1 })
+    ])
 
     beforeEach(() => {
       fetchMock.mockResponse(
