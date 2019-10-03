@@ -1,10 +1,10 @@
 import { fetchListing } from "../inventory"
 
-import { ListingDetails } from "../../../../__tests__/factories/listing"
+import { Listing } from "../../../../__tests__/factories/listing"
 
 describe("CAR service", () => {
   describe("fetchListing", () => {
-    const listing = ListingDetails({ id: 10 })
+    const listing = Listing({ id: 10 })
 
     beforeEach(() => {
       fetchMock.mockResponse(JSON.stringify(listing))

@@ -1,5 +1,5 @@
 import PaginatedFactory from "../../../../__tests__/factories/paginated"
-import { ListingSummary } from "../../../../__tests__/factories/listing"
+import { SearchListing } from "../../../../__tests__/factories/listing"
 
 import { fetchListingCount, fetchListings } from "../listingSearch"
 
@@ -68,7 +68,7 @@ describe("SEARCH service", () => {
 
   describe("#fetchListings", () => {
     const { content, pagination, facets, fieldsStats } = PaginatedFactory([
-      ListingSummary({ id: 1 })
+      SearchListing({ id: 1 })
     ])
 
     beforeEach(() => {

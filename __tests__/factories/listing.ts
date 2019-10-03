@@ -1,6 +1,9 @@
-import { Listing, SearchListing } from "../../src/types/models"
+import {
+  Listing as ListingType,
+  SearchListing as SearchListingType
+} from "../../src/types/models"
 
-const defaults: Listing = {
+const defaults: ListingType = {
   id: 12,
   active: true,
   make: "Audi",
@@ -101,10 +104,10 @@ const defaults: Listing = {
   spin360Code: null
 }
 
-export function ListingDetails(attributes = {}): Listing {
+export function Listing(attributes = {}): ListingType {
   return { ...defaults, ...attributes }
 }
 
-export function ListingSummary(attributes = {}): SearchListing {
-  return ListingDetails(attributes)
+export function SearchListing(attributes = {}): SearchListingType {
+  return Listing(attributes)
 }
