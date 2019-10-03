@@ -25,11 +25,105 @@ fetchBodyTypes()
 
 | Option Name | Meaning |
 | ----------- | ------- |
-| `carServiceUrl` | URL to [Car Service](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html) |
-| `searchServiceUrl` | URL to [Search Service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html) |
+| `carServiceUrl` | URL to [CarForYou Service](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html) |
+| `searchServiceUrl` | URL to [Inventory Search Service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html) |
 | `catalogueServiceUrl` | URL to [Catalogue Service](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product_Catalogue) |
 | `dealerServiceUrl` | URL to [Dealer Service](https://dealer-service.preprod.carforyou.ch/swagger-ui.html) |
+| `optionServiceUrl` | URL to [Options Service](https://option-service.preprod.carforyou.ch/swagger-ui.html) |
+| `userNotificationServiceUrl` | URL to [User Notification Service](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html)
 | `debug` | Set to `true` to `console.log` requests and API responses. |
+
+## Following API calls are handled
+
+Also accompanying modes and param types, as well as default values, are exported.
+
+### [CarForYou service](carforyou-service.preprod.carforyou.ch)
+- [Good-Bad Deal data](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Good-Bad_Deal_Data)
+  - [`featchDealScores`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Good-Bad%20Deal%20Data/getScoresUsingGET)
+- [Image](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Image)
+  - [`fetchImageEnrichment`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Image/getByImageIdUsingGET)
+- [Inventory](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory)
+  - [`fetchListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/getUsingGET_1)
+  - [`fetchDealerMakes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/getAllDealerMakesUsingGET)
+  - [`fetchMoneybackListings`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/getMbgListingsUsingGET)
+- [Inventory data](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory_Data)
+  - [`fetchBodyTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/getBodyTypesUsingGET)
+  - [`fetchColorGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/getColorGroupsUsingGET)
+  - [`fetchColors`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/getColorsUsingGET)
+  - [`fetchConditionTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/getConditionTypesUsingGET)
+  - [`fetchDoors`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/findDistinctDoorsUsingGET)
+  - [`fetchDriveTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/getDriveTypesUsingGET)
+  - [`fetchFuelTypeGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/getFuelTypeGroupsUsingGET)
+  - [`fetchFuelTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/getFuelTypesUsingGET)
+  - [`fetchMinFirstRegistrationYear`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/findMinRegistrationYearUsingGET)
+  - [`fetchOptions`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/getOptionsUsingGET)
+  - [`fetchSeats`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/findDistinctSeatsUsingGET)
+  - [`fetchTransmissionTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/getTransmissionTypesUsingGET)
+- [Lead](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Lead)
+  - [`sendMessageLead`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Lead/createMessageLeadUsingPOST)
+- [Money Back Guarantee](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Money_Back_Guarantee)
+  - [`sendMoneybackApplication`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Money%20Back%20Guarantee/createMbgApplicationUsingPOST)
+
+### [Options service](https://option-service.preprod.carforyou.ch/swagger-ui.html)
+- [Listing](https://option-service.preprod.carforyou.ch/swagger-ui.html#/Listing)
+  - [`fetchListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui.html#/Listing/getListingOptionsUsingGET_1)
+
+### [Inventory search service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html)
+- [Current Makes/Models](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current_Makes/Models)
+  - [`fetchCurrentMakes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current%20Makes/Models/getCurrentMakesUsingGET)
+  - [`fetchCurrentModels`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current%20Makes/Models/getCurrentModelsUsingGET)
+
+- [Listing Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing_Search)
+  - [`fetchListingCount`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/countUsingPOST)
+  - [`fetchListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/searchUsingPOST)
+
+- [Needs Assessment](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Needs_Assessment)
+  - [`fetchNeedsAssesmentListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Needs%20Assessment/searchUsingPOST_1)
+
+- [Zip Codes](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/ZipCodes)
+  - [`fetchZipCodes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/ZipCodes/getZipCodesUsingGET)
+
+### [Catalogue service](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html)
+- [Product Catalogue](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product_Catalogue)
+  - [`fetchMakes`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getAllMakesUsingGET)
+  - [`fetchModels`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getModelsUsingGET)
+
+### [Dealer service](https://dealer-service.preprod.carforyou.ch/swagger-ui.html)
+- [Dealer](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer)
+  - [`fetchDealer`](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer/getUsingGET)
+  - [`fetchDealerSuggestions`](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer/getSuggestionsUsingGET)
+
+### [User notification service](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html)
+- [Saved Search](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html#/Saved_Search)
+  - [`sendSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html#/Saved%20Search/createSavedSearchUsingPOST)
+  - [`deleteSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html#/Saved%20Search/deleteSavedSearchUsingDELETE)
+
+
+## Mocking in tests
+
+To be able to mock api calls in tests you need to:
+
+- require the API call to be mocked in your test file:
+  ```javascript
+    import { fetchListing } from "@carforyou/api-client"
+  ```
+- use jest mocking to mock the module:
+  ```javascript
+    jest.mock("@carforyou/api-client", () => {
+      // Add this if you want to have access to other exported methods
+      ...jest.requireActual("@carforyou/api-client"),
+      fetchListing: jest.fn()
+    })
+  ```
+- you can now set up the mock per test basis:
+  ```javascript
+    (fetchListing as jest.Mock).mockReturnValue(`<your mocked data>`)
+  ```
+  typecasting is only needed in TypeScript projects
+- and expect on the mocked function:
+  ```javascript
+    expect(fetchListing).toHaveBeenCalled()
+  ```
 
 ## Development
 ```
