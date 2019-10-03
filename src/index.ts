@@ -55,7 +55,7 @@ export {
   fetchSeats,
   fetchTransmissionTypes
 } from "./services/car/inventoryData"
-export { sendMoneybackApplication } from "./services/car/mbgApplication"
+export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export { sendMessageLead } from "./services/car/messageLead"
 
 export { fetchListingOptions } from "./services/option/listing"
