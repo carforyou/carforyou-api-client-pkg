@@ -30,6 +30,6 @@ export const sendMoneybackApplication = async (
       result: moneybackApplication
     }
   } catch (error) {
-    return handleValidationError(error, { swallow: true })
+    return handleValidationError(error, { swallowErrors: true })
   }
 }

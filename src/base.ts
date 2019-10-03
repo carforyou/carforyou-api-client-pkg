@@ -133,14 +133,13 @@ export const deletePath = async (service: Service, path: string) => {
 
 export const handleValidationError = async (
   error,
-  options = {}
+  options: { swallowErrors?: boolean } = {}
 ): Promise<ValidationError> => {
   if (
     error.name !== "ResponseError" ||
     ![400, 422].includes(error.response.status)
   ) {
-    const { swallow } = { swallow: false, ...options }
-    if (swallow) {
+    if (options.swallowErrors) {
       return {
         tag: "error",
         message: "validation.other-error",

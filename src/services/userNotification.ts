@@ -25,7 +25,7 @@ export const sendSavedSearch = async (
       result: data
     }
   } catch (error) {
-    return handleValidationError(error, { swallow: true })
+    return handleValidationError(error, { swallowErrors: true })
   }
 }
 
@@ -39,6 +39,6 @@ export const deleteSavedSearch = async (
       result: {}
     }
   } catch (error) {
-    return handleValidationError(error, { swallow: true })
+    return handleValidationError(error, { swallowErrors: true })
   }
 }

@@ -30,6 +30,6 @@ export const sendMessageLead = async (
       result: messageLead
     }
   } catch (error) {
-    return handleValidationError(error, { swallow: true })
+    return handleValidationError(error, { swallowErrors: true })
   }
 }
