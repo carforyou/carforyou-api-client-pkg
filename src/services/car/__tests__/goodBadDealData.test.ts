@@ -1,9 +1,9 @@
-import { fetchGBDScores } from "../goodBadDealData"
+import { featchDealScores } from "../goodBadDealData"
 
 describe("CAR service", () => {
   beforeEach(fetchMock.resetMocks)
 
-  describe("fetchGBDScores", () => {
+  describe("featchDealScores", () => {
     const scores = ["good-deal", "bad-deal"]
 
     beforeEach(() => {
@@ -11,7 +11,7 @@ describe("CAR service", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchGBDScores()
+      const fetched = await featchDealScores()
 
       expect(fetched).toEqual(scores)
       expect(fetch).toHaveBeenCalled()

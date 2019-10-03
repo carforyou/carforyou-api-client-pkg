@@ -3,6 +3,8 @@ export interface ApiClientConfig {
   searchServiceUrl?: string
   catalogueServiceUrl?: string
   dealerServiceUrl?: string
+  optionServiceUrl?: string
+  userNotificationServiceUrl?: string
   debug?: boolean
 }
 

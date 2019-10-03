@@ -1,6 +1,9 @@
 import "isomorphic-unfetch"
 
 import { Paginated } from "./types/pagination"
+import { WithFieldStats, FieldsStats } from "./types/fieldStats"
+import { WithFacets, Facets } from "./types/facets"
+import { ValidationError } from "./types/withValidationError"
 
 import apiClient from "./apiClient"
 import { ResponseError } from "./responseError"
@@ -9,7 +12,9 @@ export enum Service {
   SEARCH = "SEARCH",
   CATALOGUE = "CATALOGUE",
   CAR = "CAR",
-  DEALER = "DEALER"
+  DEALER = "DEALER",
+  OPTION = "OPTION",
+  USER_NOTIFICATION = "USER_NOTIFICATION"
 }
 
 const stripLeadingSlash = (path: string): string => {
@@ -25,10 +30,12 @@ const withPagination = <T>(json: {
   totalElements: number
   first: boolean
   last: boolean
-}): Paginated<T> => {
-  const { content, ...pagination } = json
+  facets: Facets
+  fieldsStats: FieldsStats
+}): WithFacets<WithFieldStats<Paginated<T>>> => {
+  const { content, fieldsStats, facets, ...pagination } = json
 
-  return { content, pagination }
+  return { content, fieldsStats, facets, pagination }
 }
 
 export const resolveServiceUrl = (service: Service): string => {
@@ -45,6 +52,12 @@ export const resolveServiceUrl = (service: Service): string => {
       break
     case Service.DEALER:
       url = apiClient.configuration.dealerServiceUrl
+      break
+    case Service.OPTION:
+      url = apiClient.configuration.optionServiceUrl
+      break
+    case Service.USER_NOTIFICATION:
+      url = apiClient.configuration.userNotificationServiceUrl
       break
     default:
       throw new Error(`Tried to resolve url of unknown service "${service}"`)
@@ -98,5 +111,50 @@ export const fetchPath = async (
     return withPagination(json)
   } else {
     return json
+  }
+}
+
+export const postData = async (
+  service: Service,
+  path: string,
+  body: object,
+  headers = {}
+) => {
+  return fetchPath(service, path, {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers
+  })
+}
+
+export const deletePath = async (service: Service, path: string) => {
+  return fetchPath(service, path, { method: "DELETE" })
+}
+
+export const handleValidationError = async (
+  error,
+  options: { swallowErrors?: boolean } = {}
+): Promise<ValidationError> => {
+  if (
+    error.name !== "ResponseError" ||
+    ![400, 422].includes(error.response.status)
+  ) {
+    if (options.swallowErrors) {
+      return {
+        tag: "error",
+        message: "validation.other-error",
+        errors: []
+      }
+    }
+
+    throw error
+  }
+
+  const data = await error.response.json()
+
+  return {
+    tag: "error",
+    message: data.message.toString() as string,
+    errors: data.errors || []
   }
 }

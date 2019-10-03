@@ -1,5 +1,11 @@
 import apiClient from "../apiClient"
-import { resolveServiceUrl, Service, fetchPath } from "../base"
+import {
+  resolveServiceUrl,
+  Service,
+  fetchPath,
+  postData,
+  deletePath
+} from "../base"
 
 describe("Base", () => {
   beforeEach(fetchMock.resetMocks)
@@ -96,6 +102,45 @@ describe("Base", () => {
         const json = await fetchPath(Service.CAR, "/api/path")
         expect(json.content).toEqual([])
       })
+    })
+  })
+
+  describe("#deletePath", () => {
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+    })
+
+    it("sets HTTP method for fetch", async () => {
+      const json = await deletePath(Service.CAR, "api/path")
+
+      expect(json).toEqual({ ok: true })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          method: "DELETE"
+        })
+      )
+    })
+  })
+
+  describe("#postData", () => {
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+    })
+
+    const data = { key: "value" }
+
+    it("sets body and HTTP method for fetch", async () => {
+      const json = await postData(Service.CAR, "api/path", data)
+
+      expect(json).toEqual({ ok: true })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          method: "POST",
+          body: JSON.stringify(data)
+        })
+      )
     })
   })
 })

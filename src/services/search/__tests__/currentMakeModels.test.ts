@@ -1,9 +1,9 @@
-import { fetchMakes, fetchModels } from "../catalogue"
+import { fetchCurrentMakes, fetchCurrentModels } from "../currentMakeModels"
 
-describe("CATALOGUE service", () => {
+describe("SEARCH service", () => {
   beforeEach(fetchMock.resetMocks)
 
-  describe("fetchMakes", () => {
+  describe("fetchCurrentMakes", () => {
     const makes = [
       { id: 1, name: "Audi", key: "audi" },
       { id: 2, name: "BMW", key: "bmw" },
@@ -15,14 +15,14 @@ describe("CATALOGUE service", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchMakes()
+      const fetched = await fetchCurrentMakes()
 
       expect(fetched).toEqual(makes)
       expect(fetch).toHaveBeenCalled()
     })
   })
 
-  describe("fetchModels", () => {
+  describe("fetchCurrentModels", () => {
     const models = [
       { id: 1, name: "A4", key: "a4" },
       { id: 2, name: "A5", key: "a5" },
@@ -34,7 +34,7 @@ describe("CATALOGUE service", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchModels("audi")
+      const fetched = await fetchCurrentModels("audi")
 
       expect(fetched).toEqual(models)
       expect(fetch).toHaveBeenCalled()
