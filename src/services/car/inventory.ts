@@ -15,7 +15,7 @@ export const fetchDealerMakes = async (
   return fetchPath(Service.CAR, `inventory/dealers/${dealerId}/makes`)
 }
 
-export const fetchMbgListings = (
+export const fetchMoneybackListings = (
   dealerId: number,
   query?: {
     makeKey: string

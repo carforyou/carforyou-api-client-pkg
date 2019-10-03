@@ -1,5 +1,5 @@
 import { fetchPath, Service } from "../../base"
 
-export const fetchGBDScores = (): Promise<string[]> => {
+export const featchDealScores = (): Promise<string[]> => {
   return fetchPath(Service.CAR, "gbd/scores")
 }
