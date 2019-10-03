@@ -39,7 +39,8 @@ describe("SEARCH service", () => {
           expect.stringContaining("/listings/count"),
           expect.objectContaining({
             body: JSON.stringify({
-              query: { bodyType, priceTo }
+              query: { bodyType, priceTo },
+              includeFacets: true
             })
           })
         )
@@ -56,7 +57,8 @@ describe("SEARCH service", () => {
                 makeKey,
                 modelKey,
                 priceTo
-              }
+              },
+              includeFacets: true
             })
           })
         )
