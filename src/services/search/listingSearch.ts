@@ -39,26 +39,12 @@ const defaultPagination = {
   size: 25
 }
 
-export const fetchListings = (
+const searchForListings = (
+  path,
   query: QueryParams = {},
-  options = {}
-): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> => {
-  const { includeFacets, needsAssessment } = {
-    includeFacets: false,
-    needsAssessment: false,
-    ...options
-  }
-
-  const {
-    page,
-    size,
-    sortOrder,
-    sortType,
-    zipCode,
-    radius,
-    includeFieldsStats,
-    ...rest
-  } = query
+  options: { includeFacets?: boolean; includeFieldsStats?: boolean } = {}
+) => {
+  const { page, size, sortOrder, sortType, zipCode, radius, ...rest } = query
   const sizeOrDefault =
     parseInt((size || "").toString(), 10) || defaultPagination.size
   const pageOrDefault =
@@ -78,14 +64,22 @@ export const fetchListings = (
         type: sortType || defaultSort.sortType
       }
     ],
-    includeFacets,
-    ...(includeFieldsStats ? { includeFieldsStats } : {}),
+    ...(options.includeFacets ? { includeFacets: true } : {}),
+    ...(options.includeFieldsStats ? { includeFieldsStats: true } : {}),
     query: { ...rest, ...(location ? { location } : {}) }
   }
 
-  const path = needsAssessment
-    ? "listings/needs-assessment/search"
-    : "listings/search"
-
   return postData(Service.SEARCH, path, body)
 }
+
+export const fetchListings = (
+  query: QueryParams = {},
+  options = {}
+): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> =>
+  searchForListings("listings/search", query, options)
+
+export const fetchNeedsAssesmentListings = (
+  query: QueryParams = {},
+  options = {}
+): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> =>
+  searchForListings("listings/needs-assessment/search", query, options)

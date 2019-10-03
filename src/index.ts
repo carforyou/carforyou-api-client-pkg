@@ -67,6 +67,7 @@ export {
 export {
   fetchListingCount,
   fetchListings,
+  fetchNeedsAssesmentListings,
   defaultSort
 } from "./services/search/listingSearch"
 export { fetchZipCodes } from "./services/search/zipCodes"
