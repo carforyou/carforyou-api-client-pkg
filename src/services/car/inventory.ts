@@ -3,6 +3,7 @@ import { withTokenRefresh } from "../../tokenRefresh"
 
 import { Paginated } from "../../types/pagination"
 import { Listing, SearchListing } from "../../types/models/listing"
+import { DealerListingQueryParams } from "../../types/params/listings"
 
 import toQueryString from "../../lib/toQueryString"
 
@@ -18,7 +19,7 @@ export const fetchDealerMakes = async (
 
 export const fetchDealerListingsCount = async (
   dealerId: number,
-  query: { isActive?: boolean; isManual?: boolean }
+  query: DealerListingQueryParams
 ): Promise<number> => {
   return withTokenRefresh(async () => {
     const { count } = await fetchPath(

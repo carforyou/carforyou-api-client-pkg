@@ -84,7 +84,14 @@ export interface Listing {
   lifecycleState: LifecycleState
   deactivationDate: string
   externalListingId: string
+  source: ListingSource
+  publishingStatus: ListingPublishingStatus
+  publishingDate: string
 }
+
+type ListingSource = "DEALER_PLATFORM" | "MANUAL"
+
+type ListingPublishingStatus = "published" | "draft" | "pending"
 
 export interface SearchListing {
   id: number
@@ -97,6 +104,7 @@ export interface SearchListing {
   modelKey: string
   price: number
   type: string
+  typeFull: string
   hasMbg: boolean
   spin360Code: string
   horsePower: number
@@ -116,4 +124,10 @@ export interface SearchListing {
   }
   images: ListingImage[]
   gbdScore: string
+  createdDate: string
+  source: ListingSource
+  publishingStatus: ListingPublishingStatus
+  active: boolean
+  publishingDate: string
+  externalListingId: string
 }

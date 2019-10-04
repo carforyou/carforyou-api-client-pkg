@@ -1,4 +1,4 @@
-export enum SortTypeParams {
+export enum ListingSortTypeParams {
   NEWEST = "NEWEST",
   PRICE = "PRICE",
   REGISTATION_DATE = "REGISTRATION_DATE",
@@ -8,12 +8,28 @@ export enum SortTypeParams {
   RELEVANCE = "RELEVANCE"
 }
 
-export enum SortOrderParams {
+export enum ListingSortOrderParams {
   ASC = "ASC",
   DESC = "DESC"
 }
 
-export interface SortParams {
-  sortOrder?: SortOrderParams
-  sortType?: SortTypeParams
+export interface ListingSortParams {
+  sortOrder?: ListingSortOrderParams
+  sortType?: ListingSortTypeParams
+}
+
+export enum DealerListingSortOrderParams {
+  ASC = "asc",
+  DESC = "desc"
+}
+
+export enum DealerListingSortTypeParams {
+  PRICE = "price",
+  CREATED_DATE = "createdDate",
+  STANDING_DAYS = "publishingDate"
+}
+
+export interface DealerListingSortParams {
+  sortOrder?: DealerListingSortOrderParams
+  sortType?: DealerListingSortTypeParams
 }

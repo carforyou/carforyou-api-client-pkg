@@ -46,7 +46,7 @@ describe("SEARCH service", () => {
       })
 
       it("defaults `page` to 0 when it's not a number", async () => {
-        await fetchListings({ page: "qwerty", size: 10 })
+        await fetchListings({ page: ("qwerty" as unknown) as number, size: 10 })
 
         expect(postData).toHaveBeenCalledWith(
           Service.SEARCH,
@@ -61,7 +61,7 @@ describe("SEARCH service", () => {
       })
 
       it("defaults `size` to 25 when it's not a number", async () => {
-        await fetchListings({ page: 5, size: "qwerty" })
+        await fetchListings({ page: 5, size: ("qwerty" as unknown) as number })
 
         expect(postData).toHaveBeenCalledWith(
           Service.SEARCH,

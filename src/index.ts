@@ -21,19 +21,27 @@ export {
 
 export { SearchType, Type } from "./types/models/type"
 
+export { PaginationParams } from "./types/params"
 export {
   MakeModelFilter,
   LocationFilter,
   ConsumptionCategory,
-  FilterParams,
-  PaginationParams,
-  QueryParams,
-  SearchParams
+  ListingFilterParams,
+  ListingQueryParams,
+  ListingSearchParams,
+  DealerListingQueryParams
 } from "./types/params/listings"
 
 export { SearchTypeQueryParams } from "./types/params/types"
 
-export { SortOrderParams, SortTypeParams, SortParams } from "./types/sort"
+export {
+  ListingSortOrderParams,
+  ListingSortTypeParams,
+  ListingSortParams,
+  DealerListingSortOrderParams,
+  DealerListingSortTypeParams,
+  DealerListingSortParams
+} from "./types/sort"
 
 export {
   WithValidationError,
@@ -50,6 +58,9 @@ export {
   fetchListing,
   fetchDealerMakes,
   fetchDealerListingsCount,
+  defaultSort as defaultDealerListingsSort,
+  defaultPagination as defaultDealerListingsPagination,
+  fetchDealerListings,
   fetchMoneybackListings
 } from "./services/car/inventory"
 export {
@@ -80,7 +91,7 @@ export {
   fetchListingCount,
   fetchListings,
   fetchNeedsAssesmentListings,
-  defaultSort
+  defaultSort as defaultListingsSort
 } from "./services/search/listingSearch"
 export { fetchZipCodes } from "./services/search/zipCodes"
 

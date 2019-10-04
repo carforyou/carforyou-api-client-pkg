@@ -101,7 +101,10 @@ const defaults: ListingType = {
   hasServiceHistory: true,
   lifecycleState: "active",
   deactivationDate: null,
-  spin360Code: null
+  spin360Code: null,
+  source: "MANUAL",
+  publishingStatus: "published",
+  publishingDate: "2015-10-10"
 }
 
 export function Listing(attributes = {}): ListingType {

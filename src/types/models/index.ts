@@ -1,4 +1,4 @@
-import { FilterParams } from "../params/listings"
+import { ListingFilterParams } from "../params/listings"
 
 interface MappedValue {
   id: number
@@ -62,7 +62,7 @@ export interface DealerSuggestion {
 export interface SavedSearch {
   email: string
   language: string
-  searchQuery: FilterParams
+  searchQuery: ListingFilterParams
   searchPath: string
   uiMetadata: object
 }
