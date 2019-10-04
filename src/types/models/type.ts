@@ -1,3 +1,9 @@
+import {
+  BasicListingTypeCommons,
+  EnergyListingTypeCommons,
+  DriveListingTypeCommons
+} from "./commons"
+
 export interface SearchType {
   id: number
   make: string
@@ -12,4 +18,12 @@ export interface SearchType {
   doors: number
   productionStartDate: string
   productionEndDate: string
+}
+
+export interface Type
+  extends BasicListingTypeCommons,
+    EnergyListingTypeCommons,
+    DriveListingTypeCommons {
+  id: number
+  fullName: string
 }

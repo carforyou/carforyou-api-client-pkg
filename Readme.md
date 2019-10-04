@@ -88,6 +88,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchMakes`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getAllMakesUsingGET)
   - [`fetchModels`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getModelsUsingGET)
   - [`fetchTypes`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getTypesUsingGET)
+  - [`fetchType`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getTypeUsingGET)
 
 ### [Dealer service](https://dealer-service.preprod.carforyou.ch/swagger-ui.html)
 - [Dealer](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer)

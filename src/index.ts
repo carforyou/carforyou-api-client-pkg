@@ -18,7 +18,7 @@ export {
   ListingImage
 } from "./types/models/listing"
 
-export { SearchType } from "./types/models/type"
+export { SearchType, Type } from "./types/models/type"
 
 export {
   MakeModelFilter,
@@ -81,7 +81,12 @@ export {
 } from "./services/search/listingSearch"
 export { fetchZipCodes } from "./services/search/zipCodes"
 
-export { fetchMakes, fetchModels, fetchTypes } from "./services/catalogue"
+export {
+  fetchMakes,
+  fetchModels,
+  fetchTypes,
+  fetchType
+} from "./services/catalogue"
 export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 

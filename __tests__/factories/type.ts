@@ -1,4 +1,7 @@
-import { SearchType as SearchTypeType } from "../../src/types/models/type"
+import {
+  SearchType as SearchTypeType,
+  Type as TypeType
+} from "../../src/types/models/type"
 
 const commonDefaults = {
   id: 123,
@@ -22,5 +25,35 @@ const overviewDefaults: SearchTypeType = {
 
 export const SearchType = (attributes = {}): SearchTypeType => ({
   ...overviewDefaults,
+  ...attributes
+})
+
+const detailsDefaults: TypeType = {
+  ...commonDefaults,
+  makeKey: "audi",
+  modelKey: "a3",
+  tsn: "1VE966",
+  fuelType: "petrol",
+  consumptionCategory: "A",
+  euroStandard: "1",
+  consumptionCombined: 8.4,
+  consumptionExtraUrban: 6.6,
+  consumptionUrban: 11.6,
+  systemPerformanceKiloWatts: 13.4,
+  transmissionType: "automatic",
+  horsePower: 200,
+  driveType: "front",
+  cubicCapacity: 1984,
+  cylinders: 4,
+  gears: 6,
+  weight: 1665,
+  payload: 1970,
+  towingCapacity: 1500,
+  productionStartDate: "2011-01-01",
+  productionEndDate: "2019-01-01"
+}
+
+export const Type = (attributes = {}): TypeType => ({
+  ...detailsDefaults,
   ...attributes
 })

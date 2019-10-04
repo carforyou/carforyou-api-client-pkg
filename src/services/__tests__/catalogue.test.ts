@@ -1,7 +1,7 @@
-import { fetchMakes, fetchModels, fetchTypes } from "../catalogue"
+import { fetchMakes, fetchModels, fetchTypes, fetchType } from "../catalogue"
 
 import Paginated from "../../../__tests__/factories/paginated"
-import { SearchType } from "../../../__tests__/factories/type"
+import { SearchType, Type } from "../../../__tests__/factories/type"
 
 describe("CATALOGUE service", () => {
   beforeEach(fetchMock.resetMocks)
@@ -145,6 +145,30 @@ describe("CATALOGUE service", () => {
           expect.any(Object)
         )
       })
+    })
+  })
+
+  describe("#fetchType", () => {
+    const type = Type({ id: 123 })
+
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify(type))
+    })
+
+    it("returns type", async () => {
+      const fetchedType = await fetchType(123)
+
+      expect(fetchedType).toEqual(type)
+      expect(fetch).toHaveBeenCalled()
+    })
+
+    it("fetches the correct type", async () => {
+      await fetchType(123)
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/types/123"),
+        expect.any(Object)
+      )
     })
   })
 })

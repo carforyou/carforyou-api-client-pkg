@@ -3,7 +3,7 @@ import { fetchPath, Service, handleValidationError } from "../base"
 import { Paginated } from "../types/pagination"
 import { WithValidationError } from "../types/withValidationError"
 import { Make, Model } from "../types/models"
-import { SearchType } from "../types/models/type"
+import { SearchType, Type } from "../types/models/type"
 import { SearchTypeQueryParams } from "../types/params/types"
 
 import toQueryString from "../lib/toQueryString"
@@ -58,4 +58,8 @@ export const fetchTypes = async ({
   } catch (error) {
     return handleValidationError(error)
   }
+}
+
+export const fetchType = (id: number): Promise<Type> => {
+  return fetchPath(Service.CATALOGUE, `types/${id}`)
 }
