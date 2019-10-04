@@ -2,6 +2,10 @@ import { fetchPath, Service } from "../../base"
 import { withTokenRefresh } from "../../tokenRefresh"
 
 import { Paginated } from "../../types/pagination"
+import {
+  DealerListingSortOrderParams,
+  DealerListingSortTypeParams
+} from "../../types/sort"
 import { Listing, SearchListing } from "../../types/models/listing"
 import { DealerListingQueryParams } from "../../types/params/listings"
 
@@ -30,6 +34,51 @@ export const fetchDealerListingsCount = async (
     )
     return count
   })
+}
+
+export const defaultPagination = {
+  page: 0,
+  size: 25
+}
+
+export const defaultSort = {
+  sortOrder: DealerListingSortOrderParams.DESC,
+  sortType: DealerListingSortTypeParams.CREATED_DATE
+}
+
+export const fetchDealerListings = async (
+  dealerId: number,
+  query: DealerListingQueryParams = {}
+): Promise<Paginated<SearchListing>> => {
+  const { page, size, sortOrder, sortType, ...rest } = query
+
+  const sizeOrDefault =
+    parseInt((size || "").toString(), 10) || defaultPagination.size
+  const pageOrDefault =
+    parseInt((page || "").toString(), 10) - 1 || defaultPagination.page
+
+  const sortOrDefault = {
+    sortType: sortType || defaultSort.sortType,
+    sortOrder: sortOrder || defaultSort.sortOrder
+  }
+
+  const queryParams = {
+    page: pageOrDefault,
+    size: sizeOrDefault,
+    sort: `${sortOrDefault.sortType},${sortOrDefault.sortOrder}`,
+    ...rest
+  }
+
+  return withTokenRefresh(() =>
+    fetchPath(
+      Service.CAR,
+      `dealers/${dealerId}/listings${
+        Object.keys(queryParams).length > 0
+          ? "?" + toQueryString(queryParams)
+          : null
+      }`
+    )
+  )
 }
 
 export const fetchMoneybackListings = (
