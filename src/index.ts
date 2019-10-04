@@ -94,6 +94,8 @@ export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 
 export default {
   configure: configuration => apiClient.configure(configuration),
+  setHandlers: handlers => apiClient.setHandlers(handlers),
+  setTokens: tokens => apiClient.setTokens(tokens),
   getConfiguration: () => {
     const configuration = apiClient.configuration
     return {

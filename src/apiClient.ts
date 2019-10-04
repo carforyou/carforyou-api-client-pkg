@@ -9,14 +9,25 @@ export interface ApiClientConfig {
   debug?: boolean
 }
 
+interface Tokens {
+  accessToken?: string
+  refreshToken?: string
+}
+
+interface Handlers {
+  onAccessTokenUpdate?: (token: string) => void
+  onFailedTokenRefresh?: () => void
+}
+
 class ApiClient {
   static instance: ApiClient
-  configuration: ApiClientConfig
-  version: string
+
+  configuration: ApiClientConfig = {}
+  tokens: Tokens = {}
+  handlers: Handlers = {}
+  version = "v1"
 
   constructor() {
-    this.version = "v1"
-    this.configuration = {}
     ApiClient.instance = this
   }
 
@@ -28,6 +39,16 @@ class ApiClient {
     Object.keys(configuration).forEach(key => {
       this.configuration[key] = configuration[key]
     })
+  }
+
+  public setTokens(tokens: Tokens): void {
+    this.tokens.accessToken = tokens.accessToken
+    this.tokens.refreshToken = tokens.refreshToken
+  }
+
+  public setHandlers(handlers: Handlers): void {
+    this.handlers.onAccessTokenUpdate = handlers.onAccessTokenUpdate
+    this.handlers.onFailedTokenRefresh = handlers.onFailedTokenRefresh
   }
 }
 

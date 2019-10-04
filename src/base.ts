@@ -74,6 +74,14 @@ export const resolveServiceUrl = (service: Service): string => {
   throw new Error(`Missing endpoint configuration for "${service}" service`)
 }
 
+const authorizationHeader = () => {
+  if (!apiClient.tokens.accessToken) {
+    return null
+  }
+
+  return `Bearer ${apiClient.tokens.accessToken}`
+}
+
 export const fetchPath = async (
   service: Service,
   path: string,
@@ -93,7 +101,7 @@ export const fetchPath = async (
     headers: {
       "Content-Type": "application/json",
       Accept: `application/vnd.carforyou.${apiClient.version}+json`,
-      Authorization: null,
+      Authorization: authorizationHeader(),
       ...headers
     },
     ...otherOptions
