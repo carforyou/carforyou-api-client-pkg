@@ -93,7 +93,7 @@ export {
 export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 
-export default {
+export const ApiClient = {
   configure: (configuration: ApiClientConfig) =>
     apiClient.configure(configuration),
   setHandlers: (handlers: Handlers) => apiClient.setHandlers(handlers),
