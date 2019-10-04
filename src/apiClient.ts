@@ -5,6 +5,7 @@ export interface ApiClientConfig {
   dealerServiceUrl?: string
   optionServiceUrl?: string
   userNotificationServiceUrl?: string
+  tokenRefreshServiceUrl?: string
   debug?: boolean
 }
 

@@ -14,7 +14,8 @@ export enum Service {
   CAR = "CAR",
   DEALER = "DEALER",
   OPTION = "OPTION",
-  USER_NOTIFICATION = "USER_NOTIFICATION"
+  USER_NOTIFICATION = "USER_NOTIFICATION",
+  TOKEN_REFRESH = "TOKEN_REFRESH"
 }
 
 const stripLeadingSlash = (path: string): string => {
@@ -58,6 +59,9 @@ export const resolveServiceUrl = (service: Service): string => {
       break
     case Service.USER_NOTIFICATION:
       url = apiClient.configuration.userNotificationServiceUrl
+      break
+    case Service.TOKEN_REFRESH:
+      url = apiClient.configuration.tokenRefreshServiceUrl
       break
     default:
       throw new Error(`Tried to resolve url of unknown service "${service}"`)

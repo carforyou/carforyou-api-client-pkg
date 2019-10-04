@@ -30,7 +30,8 @@ fetchBodyTypes()
 | `catalogueServiceUrl` | URL to [Catalogue Service](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product_Catalogue) |
 | `dealerServiceUrl` | URL to [Dealer Service](https://dealer-service.preprod.carforyou.ch/swagger-ui.html) |
 | `optionServiceUrl` | URL to [Options Service](https://option-service.preprod.carforyou.ch/swagger-ui.html) |
-| `userNotificationServiceUrl` | URL to [User Notification Service](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html)
+| `userNotificationServiceUrl` | URL to [User Notification Service](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html) |
+| `tokenRefreshServiceUrl` | URL to Auth Service used to refresh access tokens |
 | `debug` | Set to `true` to `console.log` requests and API responses. |
 
 ## Following API calls are handled
