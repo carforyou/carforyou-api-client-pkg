@@ -1,4 +1,4 @@
-import apiClient from "./apiClient"
+import apiClient, { Handlers, Tokens, ApiClientConfig } from "./apiClient"
 
 export {
   Make,
@@ -94,9 +94,10 @@ export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 
 export default {
-  configure: configuration => apiClient.configure(configuration),
-  setHandlers: handlers => apiClient.setHandlers(handlers),
-  setTokens: tokens => apiClient.setTokens(tokens),
+  configure: (configuration: ApiClientConfig) =>
+    apiClient.configure(configuration),
+  setHandlers: (handlers: Handlers) => apiClient.setHandlers(handlers),
+  setTokens: (tokens: Tokens) => apiClient.setTokens(tokens),
   getConfiguration: () => {
     const configuration = apiClient.configuration
     return {

@@ -9,12 +9,12 @@ export interface ApiClientConfig {
   debug?: boolean
 }
 
-interface Tokens {
+export interface Tokens {
   accessToken?: string
   refreshToken?: string
 }
 
-interface Handlers {
+export interface Handlers {
   onAccessTokenUpdate?: (token: string) => void
   onFailedTokenRefresh?: () => void
 }
