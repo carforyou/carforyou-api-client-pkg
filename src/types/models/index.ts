@@ -39,9 +39,14 @@ interface TranslatedValue {
   it: string
 }
 
-export interface ListingOptions {
-  standardOptions: TranslatedValue[]
-  additionalOptions: TranslatedValue[]
+export interface Option extends TranslatedValue {
+  id: number
+  name: string
+}
+
+export interface Options {
+  standardOptions: Option[]
+  additionalOptions: Option[]
 }
 
 export interface ImageEnrichment {

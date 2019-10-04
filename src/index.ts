@@ -4,7 +4,8 @@ export {
   Make,
   Model,
   Dealer,
-  ListingOptions,
+  Option,
+  Options,
   ImageEnrichment,
   SavedSearch,
   MessageLead,
@@ -68,6 +69,7 @@ export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export { sendMessageLead } from "./services/car/messageLead"
 
 export { fetchListingOptions } from "./services/option/listing"
+export { fetchTypeOptions } from "./services/option/type"
 
 export {
   fetchCurrentMakes,

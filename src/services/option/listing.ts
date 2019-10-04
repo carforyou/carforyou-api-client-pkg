@@ -1,9 +1,9 @@
 import { fetchPath, Service } from "../../base"
 
-import { ListingOptions } from "../../types/models"
+import { Options } from "../../types/models"
 
 export const fetchListingOptions = async (
   id: number
-): Promise<ListingOptions> => {
+): Promise<Options> => {
   return fetchPath(Service.OPTION, `listings/${id}/options`)
 }
