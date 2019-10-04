@@ -17,6 +17,9 @@ export {
   Listing,
   ListingImage
 } from "./types/models/listing"
+
+export { SearchType } from "./types/models/type"
+
 export {
   MakeModelFilter,
   LocationFilter,
@@ -27,12 +30,16 @@ export {
   SearchParams
 } from "./types/params/listings"
 
+export { SearchTypeQueryParams } from "./types/params/types"
+
 export { SortOrderParams, SortTypeParams, SortParams } from "./types/sort"
 
 export {
   WithValidationError,
   ValidationError
 } from "./types/withValidationError"
+
+export { Paginated } from "./types/pagination"
 
 export { ResponseError } from "./responseError"
 
@@ -74,7 +81,7 @@ export {
 } from "./services/search/listingSearch"
 export { fetchZipCodes } from "./services/search/zipCodes"
 
-export { fetchMakes, fetchModels } from "./services/catalogue"
+export { fetchMakes, fetchModels, fetchTypes } from "./services/catalogue"
 export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 

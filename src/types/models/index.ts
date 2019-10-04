@@ -85,3 +85,8 @@ export interface MoneybackApplication {
   phone: string
   contractStartDate: string
 }
+
+export interface Date {
+  month?: number
+  year?: number
+}
