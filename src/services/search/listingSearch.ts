@@ -3,9 +3,9 @@ import { postData, Service } from "../../base"
 import { WithFacets, Facets } from "../../types/facets"
 import { Paginated } from "../../types/pagination"
 import { WithFieldStats, FieldsStats } from "../../types/fieldStats"
-import { SearchParams, QueryParams, LocationFilter } from "../../types/params"
+import { SearchParams, QueryParams, LocationFilter } from "../../types/params/listings"
 import { SortTypeParams, SortOrderParams } from "../../types/sort"
-import { SearchListing } from "../../types/models"
+import { SearchListing } from "../../types/models/listing"
 
 export const fetchListingCount = async (
   query: SearchParams = {},

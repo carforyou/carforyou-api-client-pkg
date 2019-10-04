@@ -1,7 +1,7 @@
 import {
   Listing as ListingType,
   SearchListing as SearchListingType
-} from "../../src/types/models"
+} from "../../src/types/models/listing"
 
 const defaults: ListingType = {
   id: 12,

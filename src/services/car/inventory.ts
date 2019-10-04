@@ -1,7 +1,7 @@
 import { fetchPath, Service } from "../../base"
 
 import { Paginated } from "../../types/pagination"
-import { Listing, SearchListing } from "../../types/models"
+import { Listing, SearchListing } from "../../types/models/listing"
 
 import toQueryString from "../../lib/toQueryString"
 

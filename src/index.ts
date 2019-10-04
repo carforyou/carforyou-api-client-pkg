@@ -4,17 +4,19 @@ export {
   Make,
   Model,
   Dealer,
-  LifecycleState,
-  SearchListing,
-  Listing,
   ListingOptions,
-  ListingImage,
   ImageEnrichment,
   SavedSearch,
   MessageLead,
   MoneybackApplication
 } from "./types/models"
 
+export {
+  LifecycleState,
+  SearchListing,
+  Listing,
+  ListingImage
+} from "./types/models/listing"
 export {
   MakeModelFilter,
   LocationFilter,
@@ -23,7 +25,7 @@ export {
   PaginationParams,
   QueryParams,
   SearchParams
-} from "./types/params"
+} from "./types/params/listings"
 
 export { SortOrderParams, SortTypeParams, SortParams } from "./types/sort"
 
