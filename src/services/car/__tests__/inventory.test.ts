@@ -8,7 +8,6 @@ import {
 import Paginated from "../../../../__tests__/factories/paginated"
 import { Listing, SearchListing } from "../../../../__tests__/factories/listing"
 
-
 const dealerId = 123
 
 describe("CAR service", () => {
