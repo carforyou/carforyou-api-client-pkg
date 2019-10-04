@@ -1,4 +1,5 @@
 import { fetchPath, Service } from "../../base"
+import { withTokenRefresh } from "../../tokenRefresh"
 
 import { Paginated } from "../../types/pagination"
 import { Listing, SearchListing } from "../../types/models/listing"
@@ -13,6 +14,21 @@ export const fetchDealerMakes = async (
   dealerId: number
 ): Promise<Array<{ make: string; makeKey: string }>> => {
   return fetchPath(Service.CAR, `inventory/dealers/${dealerId}/makes`)
+}
+
+export const fetchDealerListingsCount = async (
+  dealerId: number,
+  query: { isActive?: boolean; isManual?: boolean }
+): Promise<number> => {
+  return withTokenRefresh(async () => {
+    const { count } = await fetchPath(
+      Service.CAR,
+      `dealers/${dealerId}/listings/count${
+        Object.keys(query).length > 0 ? "?" + toQueryString(query) : null
+      }`
+    )
+    return count
+  })
 }
 
 export const fetchMoneybackListings = (

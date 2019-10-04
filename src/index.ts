@@ -49,6 +49,7 @@ export { fetchImageEnrichment } from "./services/car/image"
 export {
   fetchListing,
   fetchDealerMakes,
+  fetchDealerListingsCount,
   fetchMoneybackListings
 } from "./services/car/inventory"
 export {
