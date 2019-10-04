@@ -115,11 +115,11 @@ To be able to mock api calls in tests you need to:
   ```
 - use jest mocking to mock the module:
   ```javascript
-    jest.mock("@carforyou/api-client", () => {
+    jest.mock("@carforyou/api-client", () => ({
       // Add this if you want to have access to other exported methods
       ...jest.requireActual("@carforyou/api-client"),
       fetchListing: jest.fn()
-    })
+    }))
   ```
 - you can now set up the mock per test basis:
   ```javascript
