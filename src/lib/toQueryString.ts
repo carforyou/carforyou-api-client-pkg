@@ -1,6 +1,11 @@
 const toQueryString = (params: object): string => {
   return Object.keys(params)
-    .filter(key => params[key])
+    .filter(
+      key =>
+        typeof params[key] !== undefined &&
+        typeof params[key] !== null &&
+        params[key] !== ""
+    )
     .reduce((query, key) => {
       const value = params[key]
       if (Array.isArray(value)) {
@@ -10,7 +15,7 @@ const toQueryString = (params: object): string => {
         return query
       }
 
-      query.push(value ? `${key}=${encodeURIComponent(value)}` : null)
+      query.push(`${key}=${encodeURIComponent(value)}`)
       return query
     }, [])
     .join("&")
