@@ -1,7 +1,8 @@
-import { fetchPath, Service } from "../../base"
+import { fetchPath, Service, postData, handleValidationError } from "../../base"
 import { withTokenRefresh } from "../../tokenRefresh"
 
 import { Paginated } from "../../types/pagination"
+import { WithValidationError } from "../../types/withValidationError"
 import {
   DealerListingSortOrderParams,
   DealerListingSortTypeParams
@@ -120,6 +121,33 @@ export const fetchDealerListing = async ({
   )
 
   return sanitizeListing(listing)
+}
+
+export const publishDealerListing = async ({
+  dealerId,
+  listing
+}: {
+  dealerId: number
+  listing: Listing
+}): Promise<WithValidationError<Listing>> => {
+  const { id } = listing
+
+  return withTokenRefresh(async () => {
+    try {
+      await postData(
+        Service.CAR,
+        `dealers/${dealerId}/listings/${id}/publish`,
+        {}
+      )
+    } catch (error) {
+      return handleValidationError(error)
+    }
+
+    return {
+      tag: "success",
+      result: listing
+    }
+  })
 }
 
 export const fetchMoneybackListings = (
