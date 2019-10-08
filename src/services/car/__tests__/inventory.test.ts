@@ -6,7 +6,7 @@ import {
 } from "../../../types/sort"
 
 import Paginated from "../../../../__tests__/factories/paginated"
-import { Listing, SearchListing } from "../../../../__tests__/factories/listing"
+import { Listing } from "../../../../__tests__/factories/listing"
 import { encodeDate } from "../../../lib/dateEncoding"
 
 const dealerId = 123
@@ -34,7 +34,7 @@ describe("CAR service", () => {
   })
 
   describe("#fetchDealerListings", () => {
-    const { content, pagination } = Paginated([SearchListing()])
+    const { content, pagination } = Paginated([Listing()])
 
     beforeEach(() => {
       fetchMock.mockResponse(

@@ -62,7 +62,8 @@ export { ResponseError } from "./responseError"
 export { featchDealScores } from "./services/car/goodBadDealData"
 export {
   fetchImageEnrichment,
-  generatePresignedImageUrl
+  generatePresignedImageUrl,
+  saveDealerListingImages
 } from "./services/car/image"
 export {
   fetchListing,
