@@ -175,6 +175,31 @@ export const archiveDealerListing = async ({
   })
 }
 
+export const unpublishDealerListing = async ({
+  id,
+  dealerId
+}: {
+  id: number
+  dealerId: number
+}): Promise<WithValidationError<{}>> => {
+  return withTokenRefresh(async () => {
+    try {
+      await postData(
+        Service.CAR,
+        `dealers/${dealerId}/listings/${id}/unpublish`,
+        {}
+      )
+    } catch (error) {
+      handleValidationError(error)
+    }
+
+    return {
+      tag: "success",
+      result: {}
+    }
+  })
+}
+
 export const fetchMoneybackListings = (
   dealerId: number,
   query?: {
