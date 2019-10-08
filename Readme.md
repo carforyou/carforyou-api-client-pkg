@@ -55,7 +55,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - `validateDealerListing`
     - [for saving as draft](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/validateCreateUsingPOST)
     - [for publication](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/validatePublishUsingPOST)
-  - [`saveDealerListing`]
+  - `saveDealerListing`
     - [new listing](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/createUsingPOST)
     - [existing listing](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/updateUsingPUT)
   - [`publishDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/operations/Inventory/publishUsingPOST)
@@ -145,6 +145,12 @@ To be able to mock api calls in tests you need to:
 - and expect on the mocked function:
   ```javascript
     expect(fetchListing).toHaveBeenCalled()
+  ```
+
+Be aware that this creates a global mock in your tests. You'd need to clear mock state in `beforeEach`:
+
+  ```javascript
+    (fetchListing as jest.Mock).mockClear()
   ```
 
 ## Development
