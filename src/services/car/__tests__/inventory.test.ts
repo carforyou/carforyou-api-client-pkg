@@ -37,7 +37,16 @@ describe("CAR service", () => {
     const { content, pagination } = Paginated([SearchListing()])
 
     beforeEach(() => {
-      fetchMock.mockResponse(JSON.stringify({ content, ...pagination }))
+      fetchMock.mockResponse(
+        JSON.stringify({
+          content: content.map(listing => ({
+            ...listing,
+            firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
+            lastInspectionDate: encodeDate(listing.lastInspectionDate)
+          })),
+          ...pagination
+        })
+      )
     })
 
     it("unwraps the content from json", async () => {

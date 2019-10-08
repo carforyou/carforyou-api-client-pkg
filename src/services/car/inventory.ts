@@ -72,7 +72,7 @@ export const defaultSort = {
 export const fetchDealerListings = async (
   dealerId: number,
   query: DealerListingQueryParams = {}
-): Promise<Paginated<SearchListing>> => {
+): Promise<Paginated<Listing>> => {
   const { page, size, sortOrder, sortType, ...rest } = query
 
   const sizeOrDefault =
