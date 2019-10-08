@@ -200,6 +200,19 @@ export const unpublishDealerListing = async ({
   })
 }
 
+export const listingMandatoryFields = async (
+  dealerId: number
+): Promise<Set<string>> => {
+  return withTokenRefresh(async () => {
+    const data = await fetchPath(
+      Service.CAR,
+      `dealers/${dealerId}/listings/publish/mandatory-fields`
+    )
+
+    return new Set(data.map(entry => entry.param))
+  })
+}
+
 export const fetchMoneybackListings = (
   dealerId: number,
   query?: {

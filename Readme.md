@@ -55,6 +55,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`publishDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/operations/Inventory/publishUsingPOST)
   - [`archiveDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/archiveUsingPOST)
   - [`unpublishDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/unpublishUsingPOST)
+  - [`listingMandatoryFields`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/getPublishingMandatoryFieldsUsingGET)
 - [Inventory data](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory_Data)
   - [`fetchBodyTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/getBodyTypesUsingGET)
   - [`fetchColorGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory%20Data/getColorGroupsUsingGET)
