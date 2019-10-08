@@ -11,6 +11,8 @@ import {
 import { ListingSortTypeParams, ListingSortOrderParams } from "../../types/sort"
 import { SearchListing } from "../../types/models/listing"
 
+import { decodeDate } from "../../lib/dateEncoding"
+
 export const fetchListingCount = async (
   query: ListingSearchParams = {},
   options = {}
@@ -78,11 +80,24 @@ const searchForListings = (
   return postData(Service.SEARCH, path, body)
 }
 
-export const fetchListings = (
+export const fetchListings = async (
   query: ListingQueryParams = {},
   options = {}
-): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> =>
-  searchForListings("listings/search", query, options)
+): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> => {
+  const { content, ...rest } = await searchForListings(
+    "listings/search",
+    query,
+    options
+  )
+
+  return {
+    ...rest,
+    content: content.map(listing => ({
+      ...listing,
+      firstRegistrationDate: decodeDate(listing.firstRegistrationDate)
+    }))
+  }
+}
 
 export const fetchNeedsAssesmentListings = (
   query: ListingQueryParams = {},

@@ -67,6 +67,7 @@ export {
   defaultSort as defaultDealerListingsSort,
   defaultPagination as defaultDealerListingsPagination,
   fetchDealerListings,
+  fetchDealerListing,
   fetchMoneybackListings,
   publishDealerListing
 } from "./services/car/inventory"

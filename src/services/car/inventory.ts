@@ -10,9 +10,31 @@ import { Listing, SearchListing } from "../../types/models/listing"
 import { DealerListingQueryParams } from "../../types/params/listings"
 
 import toQueryString from "../../lib/toQueryString"
+import { decodeDate } from "../../lib/dateEncoding"
 
-export const fetchListing = (id: number): Promise<Listing> => {
-  return fetchPath(Service.CAR, `listings/${id}`)
+const sanitizeListing = (json): Listing => {
+  const {
+    firstRegistrationDate,
+    lastInspectionDate,
+    consumption,
+    ...rest
+  } = json
+
+  return {
+    ...rest,
+    consumption,
+    firstRegistrationDate: decodeDate(firstRegistrationDate),
+    lastInspectionDate: decodeDate(lastInspectionDate),
+    consumptionCombined: consumption,
+    additionalOptions: [],
+    standardOptions: []
+  }
+}
+
+export const fetchListing = async (id: number): Promise<Listing> => {
+  const listing = await fetchPath(Service.CAR, `listings/${id}`)
+
+  return sanitizeListing(listing)
 }
 
 export const fetchDealerMakes = async (
@@ -69,7 +91,7 @@ export const fetchDealerListings = async (
     ...rest
   }
 
-  return withTokenRefresh(() =>
+  const { content, ...response } = await withTokenRefresh(() =>
     fetchPath(
       Service.CAR,
       `dealers/${dealerId}/listings${
@@ -79,6 +101,25 @@ export const fetchDealerListings = async (
       }`
     )
   )
+
+  return {
+    ...response,
+    content: content.map(sanitizeListing)
+  }
+}
+
+export const fetchDealerListing = async ({
+  dealerId,
+  listingId
+}: {
+  dealerId: number
+  listingId: number
+}): Promise<Listing> => {
+  const listing = await withTokenRefresh(() =>
+    fetchPath(Service.CAR, `dealers/${dealerId}/listings/${listingId}`)
+  )
+
+  return sanitizeListing(listing)
 }
 
 export const fetchMoneybackListings = (

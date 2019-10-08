@@ -7,6 +7,7 @@ import {
 
 import Paginated from "../../../../__tests__/factories/paginated"
 import { Listing, SearchListing } from "../../../../__tests__/factories/listing"
+import { encodeDate } from "../../../lib/dateEncoding"
 
 const dealerId = 123
 
@@ -15,7 +16,13 @@ describe("CAR service", () => {
     const listing = Listing({ id: 10 })
 
     beforeEach(() => {
-      fetchMock.mockResponse(JSON.stringify(listing))
+      fetchMock.mockResponse(
+        JSON.stringify({
+          ...listing,
+          firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
+          lastInspectionDate: encodeDate(listing.lastInspectionDate)
+        })
+      )
     })
 
     it("returns ListingAttributes", async () => {

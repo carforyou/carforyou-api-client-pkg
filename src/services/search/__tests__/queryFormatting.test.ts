@@ -4,7 +4,9 @@ import { postData, Service } from "../../../base"
 
 jest.mock("../../../base", () => ({
   ...jest.requireActual("../../../base"),
-  postData: jest.fn()
+  postData: jest.fn(() => ({
+    content: []
+  }))
 }))
 
 describe("SEARCH service", () => {
