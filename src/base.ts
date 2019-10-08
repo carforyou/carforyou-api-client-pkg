@@ -139,6 +139,19 @@ export const postData = async (
   })
 }
 
+export const putData = async (
+  service: Service,
+  path: string,
+  body: object,
+  headers = {}
+) => {
+  return fetchPath(service, path, {
+    method: "PUT",
+    body: JSON.stringify(body),
+    headers
+  })
+}
+
 export const deletePath = async (service: Service, path: string) => {
   return fetchPath(service, path, { method: "DELETE" })
 }

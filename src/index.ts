@@ -92,7 +92,8 @@ export { sendMessageLead } from "./services/car/messageLead"
 
 export {
   fetchListingOptions,
-  fetchDealerListingOptions
+  fetchDealerListingOptions,
+  saveDealerListingOptions
 } from "./services/option/listing"
 export { fetchTypeOptions } from "./services/option/type"
 
