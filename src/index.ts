@@ -9,7 +9,8 @@ export {
   ImageEnrichment,
   SavedSearch,
   MessageLead,
-  MoneybackApplication
+  MoneybackApplication,
+  PresignedUrl
 } from "./types/models"
 
 export {
@@ -59,7 +60,10 @@ export { Paginated } from "./types/pagination"
 export { ResponseError } from "./responseError"
 
 export { featchDealScores } from "./services/car/goodBadDealData"
-export { fetchImageEnrichment } from "./services/car/image"
+export {
+  fetchImageEnrichment,
+  generatePresignedImageUrl
+} from "./services/car/image"
 export {
   fetchListing,
   fetchDealerMakes,

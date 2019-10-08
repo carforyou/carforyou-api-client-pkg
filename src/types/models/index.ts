@@ -95,3 +95,8 @@ export interface Date {
   month?: number
   year?: number
 }
+
+export interface PresignedUrl {
+  presignedUrl: string
+  s3Key: string
+}
