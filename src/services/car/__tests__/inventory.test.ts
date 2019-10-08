@@ -1,4 +1,10 @@
-import { fetchListing, fetchDealerListings } from "../inventory"
+import {
+  fetchListing,
+  fetchDealerListings,
+  validateDealerListing,
+  ListingValidationEndpoint,
+  prepareListingData
+} from "../inventory"
 
 import {
   DealerListingSortTypeParams,
@@ -12,6 +18,10 @@ import { encodeDate } from "../../../lib/dateEncoding"
 const dealerId = 123
 
 describe("CAR service", () => {
+  beforeEach(() => {
+    fetchMock.mockClear()
+  })
+
   describe("#fetchListing", () => {
     const listing = Listing({ id: 10 })
 
@@ -133,6 +143,98 @@ describe("CAR service", () => {
             ),
             expect.any(Object)
           )
+        })
+      })
+    })
+  })
+
+  describe("#validateDealerListing", () => {
+    const listing = Listing({ id: 123 })
+
+    describe("uses correct endpoint", () => {
+      beforeEach(() => {
+        fetchMock.mockResponse(null, { status: 200 })
+      })
+
+      it("when validating draft", async () => {
+        await validateDealerListing({
+          dealerId,
+          listing,
+          validationEndpoint: ListingValidationEndpoint.draft
+        })
+
+        expect(fetchMock).toHaveBeenCalledWith(
+          expect.stringMatching(`dealers/${dealerId}/listings/validate`),
+          expect.objectContaining({
+            body: JSON.stringify(prepareListingData(listing)),
+            method: "POST"
+          })
+        )
+      })
+
+      it("when validating publication", async () => {
+        await validateDealerListing({
+          dealerId,
+          listing,
+          validationEndpoint: ListingValidationEndpoint.publish
+        })
+
+        expect(fetchMock).toHaveBeenCalledWith(
+          expect.stringMatching(
+            `dealers/${dealerId}/listings/123/publish/validate`
+          ),
+          expect.objectContaining({
+            body: JSON.stringify(prepareListingData(listing)),
+            method: "POST"
+          })
+        )
+      })
+    })
+
+    describe("and successful validation", () => {
+      beforeEach(() => {
+        fetchMock.mockResponse(null, { status: 200 })
+      })
+
+      it("returns the listing if validation is successful", async () => {
+        const result = await validateDealerListing({
+          dealerId,
+          listing,
+          validationEndpoint: ListingValidationEndpoint.publish
+        })
+
+        expect(result).toEqual({
+          tag: "success",
+          result: listing
+        })
+      })
+    })
+
+    describe("and failed validation", () => {
+      const message = "validation.listing-not-publishable"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+
+      beforeEach(() => {
+        fetchMock.mockResponses([
+          JSON.stringify({
+            message,
+            errors
+          }),
+          { status: 400 }
+        ])
+      })
+
+      it("returns the validation errors if validation fails", async () => {
+        const result = await validateDealerListing({
+          dealerId,
+          listing,
+          validationEndpoint: ListingValidationEndpoint.publish
+        })
+
+        expect(result).toEqual({
+          tag: "error",
+          message,
+          errors
         })
       })
     })

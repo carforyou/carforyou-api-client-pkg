@@ -11,7 +11,7 @@ import { Listing, SearchListing } from "../../types/models/listing"
 import { DealerListingQueryParams } from "../../types/params/listings"
 
 import toQueryString from "../../lib/toQueryString"
-import { decodeDate } from "../../lib/dateEncoding"
+import { decodeDate, encodeDate } from "../../lib/dateEncoding"
 
 const sanitizeListing = (json): Listing => {
   const {
@@ -121,6 +121,66 @@ export const fetchDealerListing = async ({
   )
 
   return sanitizeListing(listing)
+}
+
+export const prepareListingData = listing => {
+  const { id, firstRegistrationDate, lastInspectionDate, ...rest } = listing
+
+  return {
+    ...rest,
+    firstRegistrationDate: encodeDate(firstRegistrationDate),
+    lastInspectionDate: encodeDate(lastInspectionDate)
+  }
+}
+
+export enum ListingValidationEndpoint {
+  draft = "draft",
+  publish = "publish"
+}
+
+const validationPathForListing = (dealerId, listing, validationEndpoint) => {
+  switch (validationEndpoint) {
+    case ListingValidationEndpoint.draft:
+      return `dealers/${dealerId}/listings/validate`
+    case ListingValidationEndpoint.publish:
+      const { id } = listing
+      if (id) {
+        return `dealers/${dealerId}/listings/${id}/publish/validate`
+      } else {
+        throw new Error("Only saved listings can be validated for publishing")
+      }
+    default:
+      throw new Error(`Unknown validation endpoint: ${validationEndpoint}`)
+  }
+}
+
+export const validateDealerListing = async ({
+  dealerId,
+  listing,
+  validationEndpoint
+}: {
+  dealerId: number
+  listing: Listing
+  validationEndpoint: ListingValidationEndpoint
+}): Promise<WithValidationError<Listing>> => {
+  const data = prepareListingData(listing)
+
+  return withTokenRefresh(async () => {
+    try {
+      await postData(
+        Service.CAR,
+        validationPathForListing(dealerId, listing, validationEndpoint),
+        data
+      )
+    } catch (error) {
+      return handleValidationError(error)
+    }
+
+    return {
+      tag: "success",
+      result: listing
+    }
+  })
 }
 
 export const publishDealerListing = async ({

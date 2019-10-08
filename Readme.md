@@ -52,6 +52,9 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchDealerListingsCount`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/countUsingGET)
   - [`fetchDealerListings`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/getAllUsingGET)
   - [`fetchDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/getUsingGET)
+  - `validateDealerListing`
+    - [for saving as draft](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/validateCreateUsingPOST)
+    - [for publication](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/validatePublishUsingPOST)
   - [`publishDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/operations/Inventory/publishUsingPOST)
   - [`archiveDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/archiveUsingPOST)
   - [`unpublishDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/unpublishUsingPOST)
