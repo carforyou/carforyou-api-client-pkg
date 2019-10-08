@@ -3,7 +3,8 @@ import {
   fetchDealerListings,
   validateDealerListing,
   ListingValidationEndpoint,
-  prepareListingData
+  prepareListingData,
+  saveDealerListing
 } from "../inventory"
 
 import {
@@ -12,7 +13,7 @@ import {
 } from "../../../types/sort"
 
 import Paginated from "../../../../__tests__/factories/paginated"
-import { Listing } from "../../../../__tests__/factories/listing"
+import { Listing, EmptyListing } from "../../../../__tests__/factories/listing"
 import { encodeDate } from "../../../lib/dateEncoding"
 
 const dealerId = 123
@@ -235,6 +236,71 @@ describe("CAR service", () => {
           tag: "error",
           message,
           errors
+        })
+      })
+    })
+  })
+
+  describe("Car API", () => {
+    describe("#saveDealerListing", () => {
+      describe("for the new listing", () => {
+        const listing = EmptyListing()
+
+        beforeEach(() => {
+          fetchMock.mockResponse(JSON.stringify({ id: 123 }))
+        })
+
+        it("posts", async () => {
+          await saveDealerListing({
+            dealerId: 1234,
+            listing
+          })
+
+          expect(fetchMock).toHaveBeenCalledWith(
+            expect.any(String),
+            expect.objectContaining({ method: "POST" })
+          )
+        })
+
+        it("returns the listing", async () => {
+          const result = await saveDealerListing({
+            dealerId: 1234,
+            listing
+          })
+
+          expect(result).toEqual({
+            tag: "success",
+            result: { ...listing, id: 123 }
+          })
+        })
+      })
+
+      describe("for the existing listing", () => {
+        const listing = { ...EmptyListing(), id: 123 }
+
+        beforeEach(() => {
+          fetchMock.mockResponse(null)
+        })
+
+        it("puts", async () => {
+          await saveDealerListing({
+            dealerId: 1234,
+            listing
+          })
+
+          expect(fetchMock).toHaveBeenCalledWith(
+            expect.any(String),
+            expect.objectContaining({ method: "PUT" })
+          )
+        })
+
+        it("returns the listing", async () => {
+          const result = await saveDealerListing({
+            dealerId: 1234,
+            listing
+          })
+
+          expect(result).toEqual({ tag: "success", result: listing })
         })
       })
     })

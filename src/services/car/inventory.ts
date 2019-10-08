@@ -1,4 +1,10 @@
-import { fetchPath, Service, postData, handleValidationError } from "../../base"
+import {
+  fetchPath,
+  Service,
+  postData,
+  putData,
+  handleValidationError
+} from "../../base"
 import { withTokenRefresh } from "../../tokenRefresh"
 
 import { Paginated } from "../../types/pagination"
@@ -179,6 +185,41 @@ export const validateDealerListing = async ({
     return {
       tag: "success",
       result: listing
+    }
+  })
+}
+
+export const saveDealerListing = async ({
+  dealerId,
+  listing
+}: {
+  dealerId: number
+  listing: Listing
+}): Promise<WithValidationError<Listing>> => {
+  const { id } = listing
+  const data = prepareListingData(listing)
+
+  return withTokenRefresh(async () => {
+    try {
+      let result
+      if (id) {
+        await putData(Service.CAR, `dealers/${dealerId}/listings/${id}`, data)
+
+        result = { id }
+      } else {
+        result = await postData(
+          Service.CAR,
+          `dealers/${dealerId}/listings`,
+          data
+        )
+      }
+
+      return {
+        tag: "success",
+        result: { ...listing, ...result }
+      }
+    } catch (error) {
+      return handleValidationError(error)
     }
   })
 }

@@ -10,7 +10,8 @@ export {
   SavedSearch,
   MessageLead,
   MoneybackApplication,
-  PresignedUrl
+  PresignedUrl,
+  Date
 } from "./types/models"
 
 export {
@@ -79,7 +80,8 @@ export {
   unpublishDealerListing,
   listingMandatoryFields,
   ListingValidationEndpoint,
-  validateDealerListing
+  validateDealerListing,
+  saveDealerListing
 } from "./services/car/inventory"
 export {
   fetchBodyTypes,
