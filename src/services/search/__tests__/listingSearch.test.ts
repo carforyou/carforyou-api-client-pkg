@@ -78,7 +78,7 @@ describe("SEARCH service", () => {
         JSON.stringify({
           content: content.map(listing => ({
             ...listing,
-            firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
+            firstRegistrationDate: encodeDate(listing.firstRegistrationDate)
           })),
           facets,
           ...pagination,
