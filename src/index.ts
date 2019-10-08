@@ -69,7 +69,8 @@ export {
   fetchDealerListings,
   fetchDealerListing,
   fetchMoneybackListings,
-  publishDealerListing
+  publishDealerListing,
+  archiveDealerListing
 } from "./services/car/inventory"
 export {
   fetchBodyTypes,

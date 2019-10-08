@@ -150,6 +150,31 @@ export const publishDealerListing = async ({
   })
 }
 
+export const archiveDealerListing = async ({
+  dealerId,
+  id
+}: {
+  dealerId: number
+  id: number
+}): Promise<WithValidationError<{}>> => {
+  return withTokenRefresh(async () => {
+    try {
+      await postData(
+        Service.CAR,
+        `dealers/${dealerId}/listings/${id}/archive`,
+        {}
+      )
+    } catch (error) {
+      handleValidationError(error)
+    }
+
+    return {
+      tag: "success",
+      result: {}
+    }
+  })
+}
+
 export const fetchMoneybackListings = (
   dealerId: number,
   query?: {
