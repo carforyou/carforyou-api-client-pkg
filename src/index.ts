@@ -90,7 +90,10 @@ export {
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export { sendMessageLead } from "./services/car/messageLead"
 
-export { fetchListingOptions } from "./services/option/listing"
+export {
+  fetchListingOptions,
+  fetchDealerListingOptions
+} from "./services/option/listing"
 export { fetchTypeOptions } from "./services/option/type"
 
 export {
