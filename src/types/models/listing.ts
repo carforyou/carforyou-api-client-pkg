@@ -1,4 +1,9 @@
-import { Dealer } from "./index"
+import { Dealer, Date } from "./index"
+import {
+  BasicListingTypeCommons,
+  EnergyListingTypeCommons,
+  DriveListingTypeCommons
+} from "./commons"
 
 export interface ListingImage {
   id: number
@@ -8,85 +13,94 @@ export interface ListingImage {
 
 export type LifecycleState = "active" | "inactive" | "gone"
 
-export interface Listing {
-  active: boolean
-  additionalOptions: string[]
+export interface ListingBasicData extends BasicListingTypeCommons {
+  typeId: number
+  typeFull: string
+
   bodyColor: string
+  interiorColor: string
+  metallic: boolean
+
+  productionYear: number
+  firstRegistrationDate: Date
+
+  mileage: number
+  lastInspectionDate: Date
+  inspected: boolean
+  price: number
+
+  frameNumber: string
+  serialNumber: string
+  externalListingId: string
+}
+
+export interface ListingEnergyData extends EnergyListingTypeCommons {}
+
+export interface ListingDriveData extends DriveListingTypeCommons {}
+
+export interface ListingOptionsData {
+  additionalOptions: number[]
+  standardOptions: number[]
+}
+
+export interface ListingDescriptionData {
+  description: string
+  externalNote: string
+}
+
+export interface ListingExtrasData {
+  directImport: boolean
+  hasServiceHistory: boolean
+  hasAdditionalTyres: boolean
+  hasRoofRack: boolean
+  hasDogGrid: boolean
+  handicappedAccessible: boolean
+  hadAccident: boolean
+  tuned: boolean
+  racingCar: boolean
+}
+
+export interface Listing
+  extends ListingBasicData,
+    ListingEnergyData,
+    ListingDriveData,
+    ListingOptionsData,
+    ListingDescriptionData,
+    ListingExtrasData {
+  active: boolean
   bodyColorGroup: string
-  bodyType: string
   co2Emission: number
   conditionType: string
   consumption: number
-  consumptionCategory: string
-  consumptionUrban: number
-  consumptionExtraUrban: number
   consumptionStandard: string
   createdDate: string
-  cubicCapacity: number
-  cylinders: number
+  deactivationDate: string
   dealer: Dealer
-  description: string
-  doors: number
-  driveType: string
   equipmentPackage: string
-  euroStandard: string
-  externalNote: string
   factoryCode: string
-  firstRegistrationDate: string
   fuelTankCapacity: number
-  fuelType: string
   fuelTypeGroup: string
-  gears: number
-  hadAccident: boolean
+  gbdScore: string
   hasMbg: boolean
-  spin360Code: string
-  hasServiceHistory: boolean
   hasWarranty: boolean
-  horsePower: number
   id: number
   images: ListingImage[]
-  inspected: boolean
-  interiorColor: string
   interior: string
   kiloWatts: number
-  lastInspectionDate: string
-  make: string
-  makeId: number
-  makeKey: string
-  metallic: boolean
-  mileage: number
-  model: string
-  modelId: number
-  modelKey: string
-  payload: number
-  price: number
-  productionEndDate: string
-  productionStartDate: string
-  productionYear: number
+  lifecycleState: LifecycleState
+  publishingDate: string
+  publishingStatus: ListingPublishingStatus
   range: number
-  registrationDocumentNumber: string
-  standardOptions: string[]
-  seats: number
-  systemKw: number
-  towingCapacity: number
-  transmissionType: string
+  source: ListingSource
+  spin360Code: string
   type: string
-  typeFull: string
   vehicleClass: string
-  warrantyDate: string
   warrantyDuration: number
   warrantyName: string
+  warrantyStartDate: string
   warrantyType: string
-  weight: number
   weightTotal: number
   wheelbase: number
-  gbdScore: string
-  lifecycleState: LifecycleState
-  deactivationDate: string
-  externalListingId: string
-  source: ListingSource
-  publishingStatus: ListingPublishingStatus
-  publishingDate: string
 }
 
 type ListingSource = "DEALER_PLATFORM" | "MANUAL"
@@ -111,7 +125,7 @@ export interface SearchListing {
   fuelType: string
   fuelTypeGroup: string
   mileage: number
-  firstRegistrationDate: string
+  firstRegistrationDate: Date
   transmissionType: string
   consumption: number
   doors: number

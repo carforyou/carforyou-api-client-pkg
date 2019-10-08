@@ -15,6 +15,12 @@ export {
 export {
   LifecycleState,
   SearchListing,
+  ListingBasicData,
+  ListingEnergyData,
+  ListingDriveData,
+  ListingDescriptionData,
+  ListingOptionsData,
+  ListingExtrasData,
   Listing,
   ListingImage
 } from "./types/models/listing"
@@ -61,7 +67,8 @@ export {
   defaultSort as defaultDealerListingsSort,
   defaultPagination as defaultDealerListingsPagination,
   fetchDealerListings,
-  fetchMoneybackListings
+  fetchMoneybackListings,
+  publishDealerListing
 } from "./services/car/inventory"
 export {
   fetchBodyTypes,

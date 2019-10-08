@@ -7,15 +7,13 @@ const defaults: ListingType = {
   id: 12,
   active: true,
   make: "Audi",
-  makeId: 1028,
   makeKey: "audi",
   model: "A3",
-  modelId: 1049,
   modelKey: "a3",
   type: "sport",
   typeFull: "sport",
   price: 1234532,
-  firstRegistrationDate: "2010-06-20",
+  firstRegistrationDate: { month: 6, year: 2015 },
   createdDate: "2018-01-01",
   mileage: 1234098,
   horsePower: 150,
@@ -72,7 +70,6 @@ const defaults: ListingType = {
   wheelbase: 132,
   towingCapacity: 1000,
   factoryCode: "123ABC",
-  systemKw: 122,
   equipmentPackage: "COOL",
   fuelTankCapacity: 70,
   range: 153,
@@ -84,16 +81,15 @@ const defaults: ListingType = {
   interiorColor: "black",
   interior: "leder",
   externalNote: "This is external note",
-  standardOptions: ["abs", "red", "blue"],
-  additionalOptions: ["abs", "red", "blue"],
-  lastInspectionDate: "2015-01-01",
+  standardOptions: [],
+  additionalOptions: [],
+  lastInspectionDate: { month: 6, year: 2015 },
   inspected: true,
-  registrationDocumentNumber: "123ABC",
   hasWarranty: true,
   warrantyDuration: 12,
   warrantyName: "Warranty1",
   warrantyType: "from-date",
-  warrantyDate: "2015-01-01",
+  warrantyStartDate: "2015-01-01",
   metallic: true,
   description: "This is description...",
   hadAccident: false,
@@ -104,7 +100,20 @@ const defaults: ListingType = {
   spin360Code: null,
   source: "MANUAL",
   publishingStatus: "published",
-  publishingDate: "2015-10-10"
+  publishingDate: "2015-10-10",
+  typeId: 134,
+  frameNumber: "123456",
+  serialNumber: "123456",
+  tsn: "1234567890",
+  consumptionCombined: 8.5,
+  systemPerformanceKiloWatts: null,
+  directImport: false,
+  hasAdditionalTyres: true,
+  hasRoofRack: false,
+  hasDogGrid: false,
+  handicappedAccessible: false,
+  tuned: false,
+  racingCar: false
 }
 
 export function Listing(attributes = {}): ListingType {
@@ -112,5 +121,9 @@ export function Listing(attributes = {}): ListingType {
 }
 
 export function SearchListing(attributes = {}): SearchListingType {
-  return Listing(attributes)
+  return {
+    makeId: 1028,
+    modelId: 1049,
+    ...Listing(attributes)
+  }
 }
