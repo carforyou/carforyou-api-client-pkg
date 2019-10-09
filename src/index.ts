@@ -134,13 +134,12 @@ export {
   EmptyListing,
   ListingFromType
 } from "./lib/factories/listing"
-
 export {
   Type as TypeFactory,
   SearchType as SearchTypeFactory
 } from "./lib/factories/type"
-
 export { default as PaginatedFactory } from "./lib/factories/paginated"
+export { Options as OptionsFactory } from "./lib/factories/options"
 
 export const ApiClient = {
   configure: (configuration: ApiClientConfig) =>
