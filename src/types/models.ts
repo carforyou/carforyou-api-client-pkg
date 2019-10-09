@@ -140,6 +140,12 @@ export interface DealerSuggestion {
   name: string
 }
 
+export interface CitySuggestion {
+  id: number
+  zipCode: string
+  name: string
+}
+
 export interface SearchListing {
   id: number
   bodyType: string

@@ -71,6 +71,7 @@ export {
   defaultSort
 } from "./services/search/listingSearch"
 export { fetchZipCodes } from "./services/search/zipCodes"
+export { fetchCitySuggestions } from "./services/search/city"
 
 export { fetchMakes, fetchModels } from "./services/catalogue"
 export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
