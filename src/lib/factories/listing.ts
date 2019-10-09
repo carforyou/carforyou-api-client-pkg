@@ -251,7 +251,7 @@ export function ListingFromType({
   productionStartDate,
   id
 }: Type): ListingType {
-  return ({
+  return {
     ...EmptyListing(),
     bodyType,
     typeId: id,
@@ -281,5 +281,5 @@ export function ListingFromType({
     towingCapacity: towingCapacity || undefined,
     productionEndDate: productionEndDate || undefined,
     productionStartDate: productionStartDate || undefined
-  })
+  }
 }
