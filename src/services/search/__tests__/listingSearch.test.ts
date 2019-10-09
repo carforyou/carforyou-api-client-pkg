@@ -1,6 +1,8 @@
 import PaginatedFactory from "../../../../__tests__/factories/paginated"
 import { SearchListing } from "../../../../__tests__/factories/listing"
 
+import { encodeDate } from "../../../lib/dateEncoding"
+
 import { fetchListingCount, fetchListings } from "../listingSearch"
 
 describe("SEARCH service", () => {
@@ -73,7 +75,15 @@ describe("SEARCH service", () => {
 
     beforeEach(() => {
       fetchMock.mockResponse(
-        JSON.stringify({ content, facets, ...pagination, fieldsStats })
+        JSON.stringify({
+          content: content.map(listing => ({
+            ...listing,
+            firstRegistrationDate: encodeDate(listing.firstRegistrationDate)
+          })),
+          facets,
+          ...pagination,
+          fieldsStats
+        })
       )
     })
 

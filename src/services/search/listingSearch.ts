@@ -3,12 +3,18 @@ import { postData, Service } from "../../base"
 import { WithFacets, Facets } from "../../types/facets"
 import { Paginated } from "../../types/pagination"
 import { WithFieldStats, FieldsStats } from "../../types/fieldStats"
-import { SearchParams, QueryParams, LocationFilter } from "../../types/params"
-import { SortTypeParams, SortOrderParams } from "../../types/sort"
-import { SearchListing } from "../../types/models"
+import {
+  ListingSearchParams,
+  ListingQueryParams,
+  LocationFilter
+} from "../../types/params/listings"
+import { ListingSortTypeParams, ListingSortOrderParams } from "../../types/sort"
+import { SearchListing } from "../../types/models/listing"
+
+import { decodeDate } from "../../lib/dateEncoding"
 
 export const fetchListingCount = async (
-  query: SearchParams = {},
+  query: ListingSearchParams = {},
   options = {}
 ): Promise<{ count: number; facets?: Facets; fieldsStats?: FieldsStats }> => {
   const { includeFacets, fieldsStats } = {
@@ -30,8 +36,8 @@ export const fetchListingCount = async (
 }
 
 export const defaultSort = {
-  sortType: SortTypeParams.RELEVANCE,
-  sortOrder: SortOrderParams.ASC
+  sortType: ListingSortTypeParams.RELEVANCE,
+  sortOrder: ListingSortOrderParams.ASC
 }
 
 const defaultPagination = {
@@ -41,7 +47,7 @@ const defaultPagination = {
 
 const searchForListings = (
   path,
-  query: QueryParams = {},
+  query: ListingQueryParams = {},
   options: { includeFacets?: boolean; includeFieldsStats?: string[] } = {}
 ) => {
   const { page, size, sortOrder, sortType, zipCode, radius, ...rest } = query
@@ -74,14 +80,27 @@ const searchForListings = (
   return postData(Service.SEARCH, path, body)
 }
 
-export const fetchListings = (
-  query: QueryParams = {},
+export const fetchListings = async (
+  query: ListingQueryParams = {},
   options = {}
-): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> =>
-  searchForListings("listings/search", query, options)
+): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> => {
+  const { content, ...rest } = await searchForListings(
+    "listings/search",
+    query,
+    options
+  )
+
+  return {
+    ...rest,
+    content: content.map(listing => ({
+      ...listing,
+      firstRegistrationDate: decodeDate(listing.firstRegistrationDate)
+    }))
+  }
+}
 
 export const fetchNeedsAssesmentListings = (
-  query: QueryParams = {},
+  query: ListingQueryParams = {},
   options = {}
 ): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> =>
   searchForListings("listings/needs-assessment/search", query, options)

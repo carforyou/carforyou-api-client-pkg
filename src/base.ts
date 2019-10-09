@@ -14,7 +14,8 @@ export enum Service {
   CAR = "CAR",
   DEALER = "DEALER",
   OPTION = "OPTION",
-  USER_NOTIFICATION = "USER_NOTIFICATION"
+  USER_NOTIFICATION = "USER_NOTIFICATION",
+  TOKEN_REFRESH = "TOKEN_REFRESH"
 }
 
 const stripLeadingSlash = (path: string): string => {
@@ -59,6 +60,9 @@ export const resolveServiceUrl = (service: Service): string => {
     case Service.USER_NOTIFICATION:
       url = apiClient.configuration.userNotificationServiceUrl
       break
+    case Service.TOKEN_REFRESH:
+      url = apiClient.configuration.tokenRefreshServiceUrl
+      break
     default:
       throw new Error(`Tried to resolve url of unknown service "${service}"`)
   }
@@ -68,6 +72,14 @@ export const resolveServiceUrl = (service: Service): string => {
   }
 
   throw new Error(`Missing endpoint configuration for "${service}" service`)
+}
+
+const authorizationHeader = () => {
+  if (!apiClient.tokens.accessToken) {
+    return null
+  }
+
+  return `Bearer ${apiClient.tokens.accessToken}`
 }
 
 export const fetchPath = async (
@@ -89,7 +101,7 @@ export const fetchPath = async (
     headers: {
       "Content-Type": "application/json",
       Accept: `application/vnd.carforyou.${apiClient.version}+json`,
-      Authorization: null,
+      Authorization: authorizationHeader(),
       ...headers
     },
     ...otherOptions
@@ -122,6 +134,19 @@ export const postData = async (
 ) => {
   return fetchPath(service, path, {
     method: "POST",
+    body: JSON.stringify(body),
+    headers
+  })
+}
+
+export const putData = async (
+  service: Service,
+  path: string,
+  body: object,
+  headers = {}
+) => {
+  return fetchPath(service, path, {
+    method: "PUT",
     body: JSON.stringify(body),
     headers
   })
