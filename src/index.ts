@@ -128,6 +128,20 @@ export {
 export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 
+export {
+  Listing as ListingFactory,
+  SearchListing as SearchListingFactory,
+  EmptyListing,
+  ListingFromType
+} from "./lib/factories/listing"
+
+export {
+  Type as TypeFactory,
+  SearchType as SearchTypeFactory
+} from "./lib/factories/type"
+
+export { default as PaginatedFactory } from "./lib/factories/paginated"
+
 export const ApiClient = {
   configure: (configuration: ApiClientConfig) =>
     apiClient.configure(configuration),

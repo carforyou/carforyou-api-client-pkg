@@ -1,5 +1,5 @@
-import PaginatedFactory from "../../../../__tests__/factories/paginated"
-import { SearchListing } from "../../../../__tests__/factories/listing"
+import PaginatedFactory from "../../../lib/factories/paginated"
+import { SearchListing } from "../../../lib/factories/listing"
 
 import { encodeDate } from "../../../lib/dateEncoding"
 

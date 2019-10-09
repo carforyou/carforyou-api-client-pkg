@@ -1,7 +1,7 @@
 import { fetchMakes, fetchModels, fetchTypes, fetchType } from "../catalogue"
 
-import Paginated from "../../../__tests__/factories/paginated"
-import { SearchType, Type } from "../../../__tests__/factories/type"
+import Paginated from "../../lib/factories/paginated"
+import { SearchType, Type } from "../../lib/factories/type"
 
 describe("CATALOGUE service", () => {
   beforeEach(fetchMock.resetMocks)
