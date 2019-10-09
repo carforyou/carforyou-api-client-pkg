@@ -281,5 +281,5 @@ export function ListingFromType({
     towingCapacity: towingCapacity || undefined,
     productionEndDate: productionEndDate || undefined,
     productionStartDate: productionStartDate || undefined
-  }
+  })
 }
