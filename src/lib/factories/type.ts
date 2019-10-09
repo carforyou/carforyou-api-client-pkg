@@ -1,7 +1,7 @@
 import {
   SearchType as SearchTypeType,
   Type as TypeType
-} from "../../src/types/models/type"
+} from "../../types/models/type"
 
 const commonDefaults = {
   id: 123,

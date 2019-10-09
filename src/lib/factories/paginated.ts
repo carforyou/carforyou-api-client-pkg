@@ -1,6 +1,6 @@
-import { Paginated } from "../../src/types/pagination"
-import { WithFieldStats } from "../../src/types/fieldStats"
-import { WithFacets } from "../../src/types/facets"
+import { Paginated } from "../../types/pagination"
+import { WithFieldStats } from "../../types/fieldStats"
+import { WithFacets } from "../../types/facets"
 
 export default function<T>(
   content: T[],

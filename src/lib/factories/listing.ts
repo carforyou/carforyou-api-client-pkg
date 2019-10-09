@@ -1,7 +1,8 @@
 import {
   Listing as ListingType,
   SearchListing as SearchListingType
-} from "../../src/types/models/listing"
+} from "../../types/models/listing"
+import { Type } from "../../types/models/type"
 
 const defaults: ListingType = {
   id: 12,
@@ -217,5 +218,68 @@ export function EmptyListing(): ListingType {
     warrantyType: undefined,
     weightTotal: undefined,
     wheelbase: undefined
+  }
+}
+
+export function ListingFromType({
+  bodyType,
+  make,
+  makeKey,
+  model,
+  fullName,
+  modelKey,
+  doors,
+  seats,
+  tsn,
+  fuelType,
+  consumptionCategory,
+  euroStandard,
+  consumptionCombined,
+  consumptionExtraUrban,
+  consumptionUrban,
+  systemPerformanceKiloWatts,
+  transmissionType,
+  horsePower,
+  driveType,
+  cubicCapacity,
+  cylinders,
+  gears,
+  weight,
+  payload,
+  towingCapacity,
+  productionEndDate,
+  productionStartDate,
+  id
+}: Type): ListingType {
+  return {
+    ...EmptyListing(),
+    bodyType,
+    typeId: id,
+    make,
+    makeKey,
+    model,
+    modelKey,
+    typeFull: fullName,
+    doors,
+    seats,
+    tsn,
+    fuelType,
+    consumptionCategory,
+    euroStandard,
+    consumptionCombined: consumptionCombined || undefined,
+    consumptionExtraUrban: consumptionExtraUrban || undefined,
+    consumptionUrban: consumptionUrban || undefined,
+    systemPerformanceKiloWatts: systemPerformanceKiloWatts || undefined,
+    transmissionType,
+    horsePower: horsePower || undefined,
+    driveType,
+    cubicCapacity: cubicCapacity || undefined,
+    cylinders: cylinders || undefined,
+    gears: gears || undefined,
+    weight: weight || undefined,
+    payload: payload || undefined,
+    towingCapacity: towingCapacity || undefined,
+    productionEndDate: productionEndDate || undefined,
+    productionStartDate: productionStartDate || undefined
   }
 }

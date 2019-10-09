@@ -153,6 +153,18 @@ Be aware that this creates a global mock in your tests. You'd need to clear mock
     (fetchListing as jest.Mock).mockClear()
   ```
 
+## Factories
+
+Following factories are exported:
+
+- `TypeFactory`
+- `SearchTypeFactory`
+- `OptionsFactory`
+- `ListingFactory`
+- `SearchListingFactory`
+- `EmptyListing` - builds a listing without any values
+- `ListingFromType` - initializes an empty listing with values from a type
+
 ## Development
 ```
 npm run build

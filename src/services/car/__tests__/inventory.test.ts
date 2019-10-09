@@ -12,8 +12,8 @@ import {
   DealerListingSortOrderParams
 } from "../../../types/sort"
 
-import Paginated from "../../../../__tests__/factories/paginated"
-import { Listing, EmptyListing } from "../../../../__tests__/factories/listing"
+import Paginated from "../../../lib/factories/paginated"
+import { Listing, EmptyListing } from "../../../lib/factories/listing"
 import { encodeDate } from "../../../lib/dateEncoding"
 
 const dealerId = 123
