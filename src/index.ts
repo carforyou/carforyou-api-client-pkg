@@ -12,7 +12,8 @@ export {
   ImageEnrichment,
   SavedSearch,
   MessageLead,
-  MoneybackApplication
+  MoneybackApplication,
+  CitySuggestion
 } from "./types/models"
 
 export {
