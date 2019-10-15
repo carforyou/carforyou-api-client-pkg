@@ -23,7 +23,6 @@ const sanitizeListing = (json): Listing => {
   const {
     firstRegistrationDate,
     lastInspectionDate,
-    consumptionCombined,
     ...rest
   } = json
 
