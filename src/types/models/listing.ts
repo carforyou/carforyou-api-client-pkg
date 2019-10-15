@@ -71,7 +71,7 @@ export interface Listing
   bodyColorGroup: string
   co2Emission: number
   conditionType: string
-  consumption: number
+  consumptionCombined: number
   consumptionStandard: string
   createdDate: string
   deactivationDate: string
@@ -127,7 +127,7 @@ export interface SearchListing {
   mileage: number
   firstRegistrationDate: Date
   transmissionType: string
-  consumption: number
+  consumptionCombined: number
   doors: number
   seats: number
   dealer: {

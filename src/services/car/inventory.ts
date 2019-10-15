@@ -20,19 +20,12 @@ import toQueryString from "../../lib/toQueryString"
 import { decodeDate, encodeDate } from "../../lib/dateEncoding"
 
 const sanitizeListing = (json): Listing => {
-  const {
-    firstRegistrationDate,
-    lastInspectionDate,
-    consumption,
-    ...rest
-  } = json
+  const { firstRegistrationDate, lastInspectionDate, ...rest } = json
 
   return {
     ...rest,
-    consumption,
     firstRegistrationDate: decodeDate(firstRegistrationDate),
     lastInspectionDate: decodeDate(lastInspectionDate),
-    consumptionCombined: consumption,
     additionalOptions: [],
     standardOptions: []
   }
