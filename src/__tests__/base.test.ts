@@ -4,7 +4,8 @@ import {
   Service,
   fetchPath,
   postData,
-  deletePath
+  deletePath,
+  putData
 } from "../base"
 
 describe("Base", () => {
@@ -138,6 +139,27 @@ describe("Base", () => {
         expect.any(String),
         expect.objectContaining({
           method: "POST",
+          body: JSON.stringify(data)
+        })
+      )
+    })
+  })
+
+  describe("#putData", () => {
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+    })
+
+    const data = { key: "value" }
+
+    it("sets body and HTTP method for fetch", async () => {
+      const json = await putData(Service.CAR, "api/path", data)
+
+      expect(json).toEqual({ ok: true })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          method: "PUT",
           body: JSON.stringify(data)
         })
       )

@@ -1,3 +1,6 @@
+import { PaginationParams } from "./index"
+import { DealerListingSortParams } from "../sort"
+
 export interface MakeModelFilter {
   makeKey?: string
   modelKey?: string
@@ -9,7 +12,7 @@ export interface LocationFilter {
   radius?: string
 }
 
-export interface QueryParams {
+export interface ListingQueryParams extends PaginationParams {
   lng?: string
   radius?: string
   zipCode?: string
@@ -22,12 +25,7 @@ export interface QueryParams {
     | LocationFilter
 }
 
-export interface PaginationParams extends QueryParams {
-  page?: number
-  size?: number
-}
-
-export interface SearchParams extends QueryParams {
+export interface ListingSearchParams extends ListingQueryParams {
   priceTo?: number
   priceFrom?: number
   makeKey?: string[]
@@ -45,7 +43,7 @@ export enum ConsumptionCategory {
   G = "G"
 }
 
-export interface FilterParams {
+export interface ListingFilterParams {
   priceFrom?: number
   priceTo?: number
   bodyType?: string[]
@@ -77,4 +75,11 @@ export interface FilterParams {
   includeWithoutImages?: string
 
   [key: string]: number | string[] | string | MakeModelFilter[] | LocationFilter
+}
+
+export interface DealerListingQueryParams
+  extends PaginationParams,
+    DealerListingSortParams {
+  isActive?: boolean
+  isManual?: boolean
 }

@@ -7,6 +7,7 @@ beforeAll(() => {
     dealerServiceUrl: "dealer.service.test",
     searchServiceUrl: "search.service.test",
     optionServiceUrl: "option.service.test",
-    userNotificationServiceUrl: "user_notification.service.test"
+    userNotificationServiceUrl: "user_notification.service.test",
+    tokenRefreshServiceUrl: "token_refresh.service.test"
   })
 })
