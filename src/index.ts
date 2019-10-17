@@ -10,7 +10,7 @@ export {
   SavedSearch,
   MessageLead,
   MoneybackApplication,
-  CitySuggestion,
+  City,
   PresignedUrl,
   Date
 } from "./types/models"
@@ -119,7 +119,7 @@ export {
   defaultSort as defaultListingsSort
 } from "./services/search/listingSearch"
 export { fetchZipCodes } from "./services/search/zipCodes"
-export { fetchCitySuggestions } from "./services/search/city"
+export { fetchCity, fetchCitySuggestions } from "./services/search/city"
 
 export {
   fetchMakes,

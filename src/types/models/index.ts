@@ -59,7 +59,7 @@ export interface DealerSuggestion {
   name: string
 }
 
-export interface CitySuggestion {
+export interface City {
   id: number
   zipCode: string
   name: string
