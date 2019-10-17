@@ -13,6 +13,6 @@ export class ResponseError extends Error {
     this.response = response
 
     this.code = response.status === 404 ? "ENOENT" : null
-    this.status = this.statusCode = response.status
+    this.status = this.statusCode = response.status || 500
   }
 }
