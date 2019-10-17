@@ -8,14 +8,14 @@ export interface MakeModelFilter {
 }
 
 export interface LocationFilter {
-  zipCode?: string
+  cityId?: string
   radius?: string
 }
 
 export interface ListingQueryParams extends PaginationParams {
   lng?: string
   radius?: string
-  zipCode?: string
+  cityId?: string
   [key: string]:
     | string
     | number
@@ -67,7 +67,7 @@ export interface ListingFilterParams {
   bodyColorGroup?: string[]
   horsePowerFrom?: number
   horsePowerTo?: number
-  zipCode?: string
+  cityId?: string
   radius?: string
   dealerId?: string[]
   lifestyleType?: string[]

@@ -59,6 +59,12 @@ export interface DealerSuggestion {
   name: string
 }
 
+export interface City {
+  id: number
+  zipCode: string
+  name: string
+}
+
 export interface SavedSearch {
   email: string
   language: string

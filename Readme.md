@@ -23,16 +23,16 @@ fetchBodyTypes()
 
 ## Configuration
 
-| Option Name | Meaning |
-| ----------- | ------- |
-| `carServiceUrl` | URL to [CarForYou Service](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html) |
-| `searchServiceUrl` | URL to [Inventory Search Service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html) |
-| `catalogueServiceUrl` | URL to [Catalogue Service](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product_Catalogue) |
-| `dealerServiceUrl` | URL to [Dealer Service](https://dealer-service.preprod.carforyou.ch/swagger-ui.html) |
-| `optionServiceUrl` | URL to [Options Service](https://option-service.preprod.carforyou.ch/swagger-ui.html) |
-| `userNotificationServiceUrl` | URL to [User Notification Service](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html) |
-| `tokenRefreshServiceUrl` | URL to Auth Service used to refresh access tokens |
-| `debug` | Set to `true` to `console.log` requests and API responses. |
+| Option Name                  | Meaning                                                                                                       |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `carServiceUrl`              | URL to [CarForYou Service](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html)                    |
+| `searchServiceUrl`           | URL to [Inventory Search Service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html)      |
+| `catalogueServiceUrl`        | URL to [Catalogue Service](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product_Catalogue) |
+| `dealerServiceUrl`           | URL to [Dealer Service](https://dealer-service.preprod.carforyou.ch/swagger-ui.html)                          |
+| `optionServiceUrl`           | URL to [Options Service](https://option-service.preprod.carforyou.ch/swagger-ui.html)                         |
+| `userNotificationServiceUrl` | URL to [User Notification Service](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html)    |
+| `tokenRefreshServiceUrl`     | URL to Auth Service used to refresh access tokens                                                             |
+| `debug`                      | Set to `true` to `console.log` requests and API responses.                                                    |
 
 ## Following API calls are handled
 
@@ -89,8 +89,14 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchTypeOptions`](https://option-service.preprod.carforyou.ch/swagger-ui.html#/Type/getTypeOptionsUsingGET)
 
 ### [Inventory search service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html)
+- [Cities](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities)
+  - [`fetchCity`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current%20Makes/Models/getCurrentMakesUsingGET)
+  - [`fetchCitySuggestions`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities/getSuggestionsUsingGET)
+
+
+
 - [Current Makes/Models](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current_Makes/Models)
-  - [`fetchCurrentMakes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current%20Makes/Models/getCurrentMakesUsingGET)
+  - [`fetchCurrentMakes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities/getUsingGET)
   - [`fetchCurrentModels`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current%20Makes/Models/getCurrentModelsUsingGET)
 
 - [Listing Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing_Search)

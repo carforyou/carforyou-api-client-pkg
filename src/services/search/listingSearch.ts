@@ -50,14 +50,14 @@ const searchForListings = (
   query: ListingQueryParams = {},
   options: { includeFacets?: boolean; includeFieldsStats?: string[] } = {}
 ) => {
-  const { page, size, sortOrder, sortType, zipCode, radius, ...rest } = query
+  const { page, size, sortOrder, sortType, cityId, radius, ...rest } = query
   const sizeOrDefault =
     parseInt((size || "").toString(), 10) || defaultPagination.size
   const pageOrDefault =
     parseInt((page || "").toString(), 10) - 1 || defaultPagination.page
 
   const location: LocationFilter =
-    zipCode && radius ? { zipCode, radius } : zipCode ? { zipCode } : undefined
+    cityId && radius ? { cityId, radius } : cityId ? { cityId } : undefined
 
   const body = {
     pagination: {
