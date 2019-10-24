@@ -5,13 +5,13 @@ import { Paginated } from "../../types/pagination"
 import { WithFieldStats, FieldsStats } from "../../types/fieldStats"
 import {
   ListingSearchParams,
-  ListingQueryParams,
-  LocationFilter
+  ListingQueryParams
 } from "../../types/params/listings"
 import { ListingSortTypeParams, ListingSortOrderParams } from "../../types/sort"
 import { SearchListing } from "../../types/models/listing"
 
 import { decodeDate } from "../../lib/dateEncoding"
+import paramsToQuery from "../../lib/paramsToQuery"
 
 export const fetchListingCount = async (
   query: ListingSearchParams = {},
@@ -50,14 +50,11 @@ const searchForListings = (
   query: ListingQueryParams = {},
   options: { includeFacets?: boolean; includeFieldsStats?: string[] } = {}
 ) => {
-  const { page, size, sortOrder, sortType, cityId, radius, ...rest } = query
+  const { page, size, sortOrder, sortType, ...rest } = query
   const sizeOrDefault =
     parseInt((size || "").toString(), 10) || defaultPagination.size
   const pageOrDefault =
     parseInt((page || "").toString(), 10) - 1 || defaultPagination.page
-
-  const location: LocationFilter =
-    cityId && radius ? { cityId, radius } : cityId ? { cityId } : undefined
 
   const body = {
     pagination: {
@@ -74,7 +71,7 @@ const searchForListings = (
     ...(options.includeFieldsStats && options.includeFieldsStats.length > 0
       ? { includeFieldsStats: options.includeFieldsStats }
       : {}),
-    query: { ...rest, ...(location ? { location } : {}) }
+    query: paramsToQuery(rest)
   }
 
   return postData(Service.SEARCH, path, body)
