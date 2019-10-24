@@ -54,7 +54,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          command: npm run test:unit -- --maxWorkers=4
+          command: npm run test -- --maxWorkers=4
           no_output_timeout: 3m
       - notify_slack_failure
 
