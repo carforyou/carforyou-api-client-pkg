@@ -7,7 +7,7 @@ import {
 
 import { SavedSearch } from "../../types/models"
 import { WithValidationError } from "../../types/withValidationError"
-import paramsToQuery from "../../lib/paramsToQuery"
+import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
 
 export const sendSavedSearch = async (
   data: SavedSearch,
@@ -23,7 +23,7 @@ export const sendSavedSearch = async (
     await postData(
       Service.USER_NOTIFICATION,
       "saved-searches",
-      { ...rest, searchQuery: paramsToQuery(searchQuery) },
+      { ...rest, searchQuery: paramsToSearchRequest(searchQuery) },
       recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
     )
 

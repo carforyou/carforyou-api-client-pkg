@@ -11,7 +11,7 @@ import { ListingSortTypeParams, ListingSortOrderParams } from "../../types/sort"
 import { SearchListing } from "../../types/models/listing"
 
 import { decodeDate } from "../../lib/dateEncoding"
-import paramsToQuery from "../../lib/paramsToQuery"
+import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
 
 export const fetchListingCount = async (
   query: ListingSearchParams = {},
@@ -71,7 +71,7 @@ const searchForListings = (
     ...(options.includeFieldsStats && options.includeFieldsStats.length > 0
       ? { includeFieldsStats: options.includeFieldsStats }
       : {}),
-    query: paramsToQuery(rest)
+    query: paramsToSearchRequest(rest)
   }
 
   return postData(Service.SEARCH, path, body)

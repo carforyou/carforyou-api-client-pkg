@@ -1,6 +1,6 @@
 import { ListingFilterParams, LocationFilter } from "../types/params/listings"
 
-const paramsToQuery = (params: ListingFilterParams): object => {
+const paramsToSearchRequest = (params: ListingFilterParams): object => {
   const { cityId, radius, ...rest } = params
   const location: LocationFilter =
     cityId && radius ? { cityId, radius } : cityId ? { cityId } : undefined
@@ -8,4 +8,4 @@ const paramsToQuery = (params: ListingFilterParams): object => {
   return { ...rest, ...(location ? { location } : {}) }
 }
 
-export default paramsToQuery
+export default paramsToSearchRequest
