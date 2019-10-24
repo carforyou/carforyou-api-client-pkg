@@ -1,4 +1,4 @@
-import { sendSavedSearch } from "../index"
+import { sendSavedSearch } from "../userNotification"
 
 describe("USER_NOTIFICATION service", () => {
   beforeEach(fetchMock.resetMocks)
