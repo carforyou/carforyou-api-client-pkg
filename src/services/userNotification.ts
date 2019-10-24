@@ -1,13 +1,8 @@
-import {
-  postData,
-  deletePath,
-  Service,
-  handleValidationError
-} from "../../base"
+import { postData, deletePath, Service, handleValidationError } from "../base"
 
-import { SavedSearch } from "../../types/models"
-import { WithValidationError } from "../../types/withValidationError"
-import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
+import { SavedSearch } from "../types/models"
+import { WithValidationError } from "../types/withValidationError"
+import paramsToSearchRequest from "../lib/paramsToSearchRequest"
 
 export const sendSavedSearch = async (
   data: SavedSearch,
