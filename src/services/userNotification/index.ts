@@ -1,7 +1,13 @@
-import { postData, deletePath, Service, handleValidationError } from "../base"
+import {
+  postData,
+  deletePath,
+  Service,
+  handleValidationError
+} from "../../base"
 
-import { SavedSearch } from "../types/models"
-import { WithValidationError } from "../types/withValidationError"
+import { SavedSearch } from "../../types/models"
+import { WithValidationError } from "../../types/withValidationError"
+import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
 
 export const sendSavedSearch = async (
   data: SavedSearch,
@@ -11,12 +17,13 @@ export const sendSavedSearch = async (
     recaptchaToken: null,
     ...options
   }
+  const { searchQuery, ...rest } = data
 
   try {
     await postData(
       Service.USER_NOTIFICATION,
       "saved-searches",
-      data,
+      { ...rest, searchQuery: paramsToSearchRequest(searchQuery) },
       recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
     )
 
