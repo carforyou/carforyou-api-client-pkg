@@ -36,6 +36,17 @@ jobs:
             - project
       - notify_slack_failure
 
+  build:
+    <<: *DOCKER_NODE
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          command: npm run build
+          no_output_timeout: 2m
+      - notify_slack_failure
+
   unit:
     <<: *DOCKER_NODE
     resource_class: small
@@ -74,6 +85,10 @@ workflows:
   test:
     jobs:
       - install
+
+      - build:
+          requires:
+            - install
 
       - unit:
           requires:
