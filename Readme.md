@@ -90,13 +90,13 @@ Also accompanying modes and param types, as well as default values, are exported
 
 ### [Inventory search service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html)
 - [Cities](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities)
-  - [`fetchCity`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current%20Makes/Models/getCurrentMakesUsingGET)
+  - [`fetchCity`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities/getUsingGET)
   - [`fetchCitySuggestions`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities/getSuggestionsUsingGET)
 
 
 
 - [Current Makes/Models](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current_Makes/Models)
-  - [`fetchCurrentMakes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities/getUsingGET)
+  - [`fetchCurrentMakes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current%20Makes/Models/getCurrentMakesUsingGET)
   - [`fetchCurrentModels`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current%20Makes/Models/getCurrentModelsUsingGET)
 
 - [Listing Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing_Search)
