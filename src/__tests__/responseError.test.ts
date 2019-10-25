@@ -16,20 +16,20 @@ describe("ResponseError", () => {
   describe("defaults status codes to 500", () => {
     it("when status is 0", () => {
       const error = new ResponseError({ status: 0 })
-      expect(error.status).toEqual("500")
-      expect(error.statusCode).toEqual("500")
+      expect(error.status).toEqual(500)
+      expect(error.statusCode).toEqual(500)
     })
 
     it("when status is null", () => {
       const error = new ResponseError({ status: undefined })
-      expect(error.status).toEqual("500")
-      expect(error.statusCode).toEqual("500")
+      expect(error.status).toEqual(500)
+      expect(error.statusCode).toEqual(500)
     })
 
     it("when status is empty", () => {
       const error = new ResponseError({ status: "" })
-      expect(error.status).toEqual("500")
-      expect(error.statusCode).toEqual("500")
+      expect(error.status).toEqual(500)
+      expect(error.statusCode).toEqual(500)
     })
   })
 })
