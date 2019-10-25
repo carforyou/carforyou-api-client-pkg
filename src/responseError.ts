@@ -2,11 +2,11 @@ import unfetch from "isomorphic-unfetch"
 
 export class ResponseError extends Error {
   code?: string
-  status: string
-  statusCode: string
+  status: number
+  statusCode: number
   response: unfetch.IsomorphicResponse
 
-  constructor(response) {
+  constructor(response: unfetch.IsomorphicResponse) {
     super()
     this.name = "ResponseError"
     this.message = "API ResponseError: " + response.statusText
