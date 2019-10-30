@@ -21,6 +21,7 @@ export interface ListingBasicData extends BasicListingTypeCommons {
   interiorColor: string
   metallic: boolean
 
+  conditionType: string
   productionYear: number
   firstRegistrationDate: Date
 

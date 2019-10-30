@@ -6,4 +6,5 @@ export interface SearchTypeQueryParams extends PaginationParams {
   makeKey?: string
   modelKey?: string
   firstRegistrationDate: Date
+  conditionType?: string
 }
