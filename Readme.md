@@ -1,6 +1,7 @@
 # CAR FOR YOU API Client
 
 ## Usage
+
 ```
 npm install @carforyou/api-client
 ```
@@ -39,6 +40,7 @@ fetchBodyTypes()
 Also accompanying modes and param types, as well as default values, are exported.
 
 ### [CarForYou service](carforyou-service.preprod.carforyou.ch)
+
 - [Good-Bad Deal data](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Good-Bad_Deal_Data)
   - [`featchDealScores`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Good-Bad%20Deal%20Data/getScoresUsingGET)
 - [Image](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Image)
@@ -81,6 +83,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`sendMoneybackApplication`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Money%20Back%20Guarantee/createMbgApplicationUsingPOST)
 
 ### [Options service](https://option-service.preprod.carforyou.ch/swagger-ui.html)
+
 - [Listing](https://option-service.preprod.carforyou.ch/swagger-ui.html#/Listing)
   - [`fetchListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui.html#/Listing/getListingOptionsUsingGET_1)
   - [`fetchDealerListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui.html#/Listing/getListingOptionsUsingGET)
@@ -89,27 +92,26 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchTypeOptions`](https://option-service.preprod.carforyou.ch/swagger-ui.html#/Type/getTypeOptionsUsingGET)
 
 ### [Inventory search service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html)
+
 - [Cities](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities)
   - [`fetchCity`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities/getUsingGET)
   - [`fetchCitySuggestions`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities/getSuggestionsUsingGET)
 
+* [Current Makes/Models](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current_Makes/Models)
 
-
-- [Current Makes/Models](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current_Makes/Models)
   - [`fetchCurrentMakes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current%20Makes/Models/getCurrentMakesUsingGET)
   - [`fetchCurrentModels`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current%20Makes/Models/getCurrentModelsUsingGET)
 
-- [Listing Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing_Search)
+* [Listing Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing_Search)
+
   - [`fetchListingCount`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/countUsingPOST)
   - [`fetchListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/searchUsingPOST)
 
-- [Needs Assessment](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Needs_Assessment)
+* [Needs Assessment](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Needs_Assessment)
   - [`fetchNeedsAssesmentListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Needs%20Assessment/searchUsingPOST_1)
 
-- [Zip Codes](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/ZipCodes)
-  - [`fetchZipCodes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/ZipCodes/getZipCodesUsingGET)
-
 ### [Catalogue service](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html)
+
 - [Product Catalogue](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product_Catalogue)
   - [`fetchMakes`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getAllMakesUsingGET)
   - [`fetchModels`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getModelsUsingGET)
@@ -117,15 +119,16 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchType`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getTypeUsingGET)
 
 ### [Dealer service](https://dealer-service.preprod.carforyou.ch/swagger-ui.html)
+
 - [Dealer](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer)
   - [`fetchDealer`](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer/getUsingGET)
   - [`fetchDealerSuggestions`](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer/getSuggestionsUsingGET)
 
 ### [User notification service](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html)
+
 - [Saved Search](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html#/Saved_Search)
   - [`sendSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html#/Saved%20Search/createSavedSearchUsingPOST)
   - [`deleteSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html#/Saved%20Search/deleteSavedSearchUsingDELETE)
-
 
 ## Mocking in tests
 
@@ -133,15 +136,15 @@ To be able to mock api calls in tests you need to:
 
 - require the API call to be mocked in your test file:
   ```javascript
-    import { fetchListing } from "@carforyou/api-client"
+  import { fetchListing } from "@carforyou/api-client"
   ```
 - use jest mocking to mock the module:
   ```javascript
-    jest.mock("@carforyou/api-client", () => ({
-      // Add this if you want to have access to other exported methods
-      ...jest.requireActual("@carforyou/api-client"),
-      fetchListing: jest.fn()
-    }))
+  jest.mock("@carforyou/api-client", () => ({
+    // Add this if you want to have access to other exported methods
+    ...jest.requireActual("@carforyou/api-client"),
+    fetchListing: jest.fn()
+  }))
   ```
 - you can now set up the mock per test basis:
   ```javascript
@@ -150,14 +153,14 @@ To be able to mock api calls in tests you need to:
   typecasting is only needed in TypeScript projects
 - and expect on the mocked function:
   ```javascript
-    expect(fetchListing).toHaveBeenCalled()
+  expect(fetchListing).toHaveBeenCalled()
   ```
 
 Be aware that this creates a global mock in your tests. You'd need to clear mock state in `beforeEach`:
 
-  ```javascript
-    (fetchListing as jest.Mock).mockClear()
-  ```
+```javascript
+  (fetchListing as jest.Mock).mockClear()
+```
 
 ## Factories
 
@@ -172,11 +175,13 @@ Following factories are exported:
 - `ListingFromType` - initializes an empty listing with values from a type
 
 ## Development
+
 ```
 npm run build
 ```
 
 You can link your local npm package to integrate it with any local project:
+
 ```
 cd carforyou-api-client-pkg
 npm run build
@@ -186,6 +191,7 @@ npm link ../carforyou-api-client-pkg/pkg
 ```
 
 ## Release a new version
+
 ```
 npm run release
 ```

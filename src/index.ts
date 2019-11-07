@@ -118,7 +118,6 @@ export {
   fetchNeedsAssesmentListings,
   defaultSort as defaultListingsSort
 } from "./services/search/listingSearch"
-export { fetchZipCodes } from "./services/search/zipCodes"
 export { fetchCity, fetchCitySuggestions } from "./services/search/city"
 
 export {
