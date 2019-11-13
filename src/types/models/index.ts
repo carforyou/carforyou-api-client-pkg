@@ -57,6 +57,7 @@ export interface ImageEnrichment {
 export interface DealerSuggestion {
   id: number
   name: string
+  nameSlug: string
 }
 
 export interface City {
