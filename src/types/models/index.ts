@@ -15,6 +15,7 @@ export interface Model extends MappedValue {
 export interface Dealer {
   id: number
   name: string
+  nameSlug: string
   phone: string
   email: string
   address: string
