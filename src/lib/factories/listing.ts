@@ -122,7 +122,7 @@ export function Listing(attributes = {}): ListingType {
 }
 
 export function SearchListing(attributes = {}): SearchListingType {
-  const { typeSlug = "test-slug" } = attributes as any
+  const { typeSlug } = {  typeSlug: "test-slug", ... attributes }
   return {
     makeId: 1028,
     modelId: 1049,
