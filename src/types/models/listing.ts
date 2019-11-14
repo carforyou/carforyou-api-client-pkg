@@ -95,6 +95,7 @@ export interface Listing
   source: ListingSource
   spin360Code: string
   type: string
+  typeSlug?: string
   vehicleClass: string
   warrantyDuration: number
   warrantyName: string
@@ -120,6 +121,7 @@ export interface SearchListing {
   price: number
   type: string
   typeFull: string
+  typeSlug: string
   hasMbg: boolean
   spin360Code: string
   horsePower: number

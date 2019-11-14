@@ -27,6 +27,7 @@ const defaults: ListingType = {
   dealer: {
     id: 1,
     name: "emil frey",
+    nameSlug: "emil-frey",
     phone: "231-342-32",
     email: "dealera@autoricardo.ch",
     city: "Zurich",
@@ -121,9 +122,11 @@ export function Listing(attributes = {}): ListingType {
 }
 
 export function SearchListing(attributes = {}): SearchListingType {
+  const { typeSlug = "test-slug" } = attributes as any
   return {
     makeId: 1028,
     modelId: 1049,
+    typeSlug,
     ...Listing(attributes)
   }
 }
@@ -209,6 +212,7 @@ export function EmptyListing(): ListingType {
     source: undefined,
     spin360Code: undefined,
     type: undefined,
+    typeSlug: undefined,
     vehicleClass: undefined,
     warrantyDuration: undefined,
     warrantyName: undefined,
