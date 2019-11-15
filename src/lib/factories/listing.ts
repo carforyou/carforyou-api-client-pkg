@@ -27,6 +27,7 @@ const defaults: ListingType = {
   dealer: {
     id: 1,
     name: "emil frey",
+    nameSlug: "emil-frey",
     phone: "231-342-32",
     email: "dealera@autoricardo.ch",
     city: "Zurich",
@@ -121,9 +122,11 @@ export function Listing(attributes = {}): ListingType {
 }
 
 export function SearchListing(attributes = {}): SearchListingType {
+  const { typeSlug } = { typeSlug: "test-slug", ...attributes }
   return {
     makeId: 1028,
     modelId: 1049,
+    typeSlug,
     ...Listing(attributes)
   }
 }

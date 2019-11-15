@@ -120,6 +120,7 @@ export interface SearchListing {
   price: number
   type: string
   typeFull: string
+  typeSlug: string
   hasMbg: boolean
   spin360Code: string
   horsePower: number
