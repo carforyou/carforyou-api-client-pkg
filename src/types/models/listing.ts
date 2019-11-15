@@ -95,7 +95,6 @@ export interface Listing
   source: ListingSource
   spin360Code: string
   type: string
-  typeSlug?: string
   vehicleClass: string
   warrantyDuration: number
   warrantyName: string

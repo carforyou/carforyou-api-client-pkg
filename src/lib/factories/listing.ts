@@ -212,7 +212,6 @@ export function EmptyListing(): ListingType {
     source: undefined,
     spin360Code: undefined,
     type: undefined,
-    typeSlug: undefined,
     vehicleClass: undefined,
     warrantyDuration: undefined,
     warrantyName: undefined,
