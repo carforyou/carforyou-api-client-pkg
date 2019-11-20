@@ -16,7 +16,7 @@ interface OpeningHour {
   dayOfWeek: string
   time: string
 }
-interface OpeningHours {
+export interface OpeningHours {
   open: OpeningHour
   close: OpeningHour
 }
