@@ -12,6 +12,15 @@ export interface Model extends MappedValue {
   currentBodyTypes?: string[]
 }
 
+interface OpeningHour {
+  dayOfWeek: string
+  time: string
+}
+export interface OpeningHours {
+  open: OpeningHour
+  close: OpeningHour
+}
+
 export interface Dealer {
   id: number
   name: string
@@ -25,6 +34,8 @@ export interface Dealer {
     lat: number
     lon: number
   }
+  website?: string
+  openingHours?: OpeningHours[]
 }
 
 export interface ZipCode {
