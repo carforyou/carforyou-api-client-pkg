@@ -11,6 +11,13 @@ export interface ListingImage {
   s3Key: string
 }
 
+export interface DealerListingImages {
+  detectedCarImageId: number
+  images: ListingImage[]
+  listingId: number
+  spinCode: string
+}
+
 export type LifecycleState = "active" | "inactive" | "gone"
 
 export interface ListingBasicData extends BasicListingTypeCommons {

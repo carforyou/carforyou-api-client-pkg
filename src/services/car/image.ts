@@ -8,7 +8,7 @@ import {
 import { withTokenRefresh } from "../../tokenRefresh"
 
 import { ImageEnrichment, PresignedUrl } from "../../types/models"
-import { Listing, ListingImage } from "../../types/models/listing"
+import { Listing, DealerListingImages } from "../../types/models/listing"
 import { WithValidationError } from "../../types/withValidationError"
 
 export const fetchImageEnrichment = async (
@@ -30,7 +30,7 @@ export const generatePresignedImageUrl = (imageData: {
 export const fetchDealerListingImages = async (
   dealerId: number,
   listingId: number
-): Promise<ListingImage> => {
+): Promise<DealerListingImages> => {
   return fetchPath(
     Service.CAR,
     `dealers/${dealerId}/listings/${listingId}/images`
