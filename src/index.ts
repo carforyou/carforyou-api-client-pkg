@@ -12,7 +12,8 @@ export {
   MoneybackApplication,
   City,
   PresignedUrl,
-  Date
+  Date,
+  OpeningHours
 } from "./types/models"
 
 export {
