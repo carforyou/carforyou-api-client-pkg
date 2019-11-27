@@ -66,7 +66,8 @@ export { featchDealScores } from "./services/car/goodBadDealData"
 export {
   fetchImageEnrichment,
   generatePresignedImageUrl,
-  saveDealerListingImages
+  saveDealerListingImages,
+  fetchDealerListingImages
 } from "./services/car/image"
 export {
   fetchListing,
