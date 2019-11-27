@@ -13,6 +13,7 @@ const defaults: ListingType = {
   modelKey: "a3",
   type: "sport",
   typeFull: "sport",
+  typeSlug: "sport",
   price: 1234532,
   firstRegistrationDate: { month: 6, year: 2015 },
   createdDate: "2018-01-01",
