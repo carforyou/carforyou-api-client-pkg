@@ -72,7 +72,7 @@ export interface ListingFilterParams {
   dealerId?: string[]
   lifestyleType?: string[]
   vehicleClass?: string[]
-  includeWithoutImages?: string
+  hasImagesOnly?: string
 
   [key: string]: number | string[] | string | MakeModelFilter[] | LocationFilter
 }
