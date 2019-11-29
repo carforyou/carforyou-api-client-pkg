@@ -27,7 +27,10 @@ describe("Dealer listing images", () => {
       const fetched = await fetchDealerListingImages(dealerId, listingId)
 
       expect(fetched).toEqual(dealerListingImages)
-      expect(fetch).toHaveBeenCalled()
+      expect(fetch).toHaveBeenCalledWith(
+        `car.service.test/dealers/${dealerId}/listings/${listingId}/images`,
+        expect.any(Object)
+      )
     })
   })
 })
