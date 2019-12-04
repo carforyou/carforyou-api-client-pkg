@@ -26,7 +26,8 @@ export {
   ListingOptionsData,
   ListingExtrasData,
   Listing,
-  ListingImage
+  ListingImage,
+  DealerListingImages
 } from "./types/models/listing"
 
 export { SearchType, Type } from "./types/models/type"
@@ -66,7 +67,8 @@ export { featchDealScores } from "./services/car/goodBadDealData"
 export {
   fetchImageEnrichment,
   generatePresignedImageUrl,
-  saveDealerListingImages
+  saveDealerListingImages,
+  fetchDealerListingImages
 } from "./services/car/image"
 export {
   fetchListing,
