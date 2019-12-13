@@ -13,7 +13,8 @@ export {
   City,
   PresignedUrl,
   Date,
-  OpeningHours
+  OpeningHours,
+  Region
 } from "./types/models"
 
 export {
@@ -122,6 +123,7 @@ export {
   defaultSort as defaultListingsSort
 } from "./services/search/listingSearch"
 export { fetchCity, fetchCitySuggestions } from "./services/search/city"
+export { fetchRegions } from "./services/search/regions"
 
 export {
   fetchMakes,

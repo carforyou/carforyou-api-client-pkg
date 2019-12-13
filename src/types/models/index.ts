@@ -12,6 +12,11 @@ export interface Model extends MappedValue {
   currentBodyTypes?: string[]
 }
 
+export interface Region {
+  name: string
+  key: string
+}
+
 interface OpeningHour {
   dayOfWeek: string
   time: string
