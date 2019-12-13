@@ -97,6 +97,9 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchCity`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities/getUsingGET)
   - [`fetchCitySuggestions`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities/getSuggestionsUsingGET)
 
+- [Regions](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Regions)
+  - [`fetchRegions`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Regions/getAllUsingGET)
+
 * [Current Makes/Models](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current_Makes/Models)
 
   - [`fetchCurrentMakes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Current%20Makes/Models/getCurrentMakesUsingGET)
