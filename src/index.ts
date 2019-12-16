@@ -133,6 +133,7 @@ export {
 } from "./services/catalogue"
 export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
+export { fetchAnalyticsData } from "./services/analytics"
 
 export {
   Listing as ListingFactory,

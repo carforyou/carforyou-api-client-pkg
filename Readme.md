@@ -31,6 +31,7 @@ fetchBodyTypes()
 | `catalogueServiceUrl`        | URL to [Catalogue Service](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product_Catalogue) |
 | `dealerServiceUrl`           | URL to [Dealer Service](https://dealer-service.preprod.carforyou.ch/swagger-ui.html)                          |
 | `optionServiceUrl`           | URL to [Options Service](https://option-service.preprod.carforyou.ch/swagger-ui.html)                         |
+| `analyticsServiceUrl`        | URL to [Analytics Service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui.html)          |
 | `userNotificationServiceUrl` | URL to [User Notification Service](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html)    |
 | `tokenRefreshServiceUrl`     | URL to Auth Service used to refresh access tokens                                                             |
 | `debug`                      | Set to `true` to `console.log` requests and API responses.                                                    |
@@ -132,6 +133,10 @@ Also accompanying modes and param types, as well as default values, are exported
 - [Saved Search](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html#/Saved_Search)
   - [`sendSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html#/Saved%20Search/createSavedSearchUsingPOST)
   - [`deleteSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html#/Saved%20Search/deleteSavedSearchUsingDELETE)
+
+### [Analytics service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui.html)
+
+- [Metrics](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui.html#/Analytics/getListingsMetricsUsingPOST)
 
 ## Mocking in tests
 

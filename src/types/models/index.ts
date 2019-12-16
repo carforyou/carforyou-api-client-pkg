@@ -124,3 +124,16 @@ export interface PresignedUrl {
   presignedUrl: string
   s3Key: string
 }
+
+export interface DealerListingsAnalyticsData {
+  listings: [
+    {
+      id: number
+      stats: {
+        callLeads: number,
+        messageLeads: number,
+        pdpViews: number
+      }
+    }
+  ]
+}

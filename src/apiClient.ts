@@ -4,6 +4,7 @@ export interface ApiClientConfig {
   catalogueServiceUrl?: string
   dealerServiceUrl?: string
   optionServiceUrl?: string
+  analyticsServiceUrl?: string
   userNotificationServiceUrl?: string
   tokenRefreshServiceUrl?: string
   debug?: boolean
