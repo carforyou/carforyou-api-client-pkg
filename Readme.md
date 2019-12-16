@@ -136,7 +136,8 @@ Also accompanying modes and param types, as well as default values, are exported
 
 ### [Analytics service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui.html)
 
-- [Metrics](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui.html#/Analytics/getListingsMetricsUsingPOST)
+- [Analytics](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui.html#/Analytics)
+  - [fetchAnalyticsData](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui.html#/Analytics/getListingsMetricsUsingPOST)
 
 ## Mocking in tests
 
