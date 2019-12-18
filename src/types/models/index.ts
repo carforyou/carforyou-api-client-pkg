@@ -125,15 +125,16 @@ export interface PresignedUrl {
   s3Key: string
 }
 
+export interface ListingAnalyticsStats {
+  callLeads: number
+  messageLeads: number
+  pdpViews: number
+}
+export interface ListingAnalyticsData {
+  id: number
+  stats: ListingAnalyticsStats
+}
+
 export interface DealerListingsAnalyticsData {
-  listings: [
-    {
-      id: number
-      stats: {
-        callLeads: number
-        messageLeads: number
-        pdpViews: number
-      }
-    }
-  ]
+  listings: ListingAnalyticsData[]
 }
