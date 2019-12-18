@@ -130,8 +130,8 @@ export interface DealerListingsAnalyticsData {
     {
       id: number
       stats: {
-        callLeads: number,
-        messageLeads: number,
+        callLeads: number
+        messageLeads: number
         pdpViews: number
       }
     }
