@@ -14,6 +14,7 @@ export enum Service {
   CAR = "CAR",
   DEALER = "DEALER",
   OPTION = "OPTION",
+  ANALYTICS = "ANALYTICS",
   USER_NOTIFICATION = "USER_NOTIFICATION",
   TOKEN_REFRESH = "TOKEN_REFRESH"
 }
@@ -56,6 +57,9 @@ export const resolveServiceUrl = (service: Service): string => {
       break
     case Service.OPTION:
       url = apiClient.configuration.optionServiceUrl
+      break
+    case Service.ANALYTICS:
+      url = apiClient.configuration.analyticsServiceUrl
       break
     case Service.USER_NOTIFICATION:
       url = apiClient.configuration.userNotificationServiceUrl

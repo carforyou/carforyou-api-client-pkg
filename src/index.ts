@@ -31,6 +31,8 @@ export {
   DealerListingImages
 } from "./types/models/listing"
 
+export { DealerListingsAnalyticsData } from "./types/models/index"
+
 export { SearchType, Type } from "./types/models/type"
 
 export { PaginationParams } from "./types/params"
@@ -133,6 +135,7 @@ export {
 } from "./services/catalogue"
 export { fetchDealer, fetchDealerSuggestions } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
+export { fetchAnalyticsData } from "./services/analytics"
 
 export {
   Listing as ListingFactory,
