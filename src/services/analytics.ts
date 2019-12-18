@@ -8,7 +8,7 @@ export const fetchAnalyticsData = async (
 ): Promise<DealerListingsAnalyticsData> => {
   return postData(
     Service.ANALYTICS,
-    `api/analytics/dealers/${dealerId}/listings/metrics`,
+    `analytics/dealers/${dealerId}/listings/metrics`,
     {
       id: listingIds
     }
