@@ -31,7 +31,11 @@ export {
   DealerListingImages
 } from "./types/models/listing"
 
-export { DealerListingsAnalyticsData } from "./types/models/index"
+export {
+  ListingAnalyticsStats,
+  ListingAnalyticsData,
+  DealerListingsAnalyticsData
+} from "./types/models/index"
 
 export { SearchType, Type } from "./types/models/type"
 
