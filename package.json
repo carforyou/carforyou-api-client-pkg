@@ -1,6 +1,6 @@
 {
   "name": "@carforyou/api-client",
-  "version": "7.5.3",
+  "version": "7.5.4",
   "description": "Api client to connect with our APIs",
   "scripts": {
     "version": "npm run build",
@@ -27,7 +27,7 @@
     "@pika/plugin-ts-standard-pkg": "^0.8.1",
     "@types/jest": "^24.0.18",
     "jest": "^24.9.0",
-    "jest-fetch-mock": "^2.1.2",
+    "jest-fetch-mock": "^3.0.0",
     "np": "5.2.1",
     "prettier": "^1.18.2",
     "ts-jest": "^24.1.0",
