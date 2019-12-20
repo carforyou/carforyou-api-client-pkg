@@ -18,7 +18,7 @@ describe("OPTION service", () => {
     })
 
     it("returns ListingOptions", async () => {
-      const fetchedOptions = await fetchListingOptions(10)
+      const fetchedOptions = await fetchListingOptions(10, "de")
 
       expect(fetch).toHaveBeenCalled()
       expect(fetchedOptions).toEqual(options)
