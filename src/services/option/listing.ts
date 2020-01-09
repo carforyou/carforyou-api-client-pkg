@@ -5,8 +5,11 @@ import { Options } from "../../types/models"
 import { Listing } from "../../types/models/listing"
 import { WithValidationError } from "../../types/withValidationError"
 
-export const fetchListingOptions = async (id: number): Promise<Options> => {
-  return fetchPath(Service.OPTION, `listings/${id}/options`)
+export const fetchListingOptions = async (
+  id: number,
+  lng: string
+): Promise<Options> => {
+  return fetchPath(Service.OPTION, `listings/${id}/options?language=${lng}`)
 }
 
 export const fetchDealerListingOptions = async ({
