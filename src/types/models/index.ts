@@ -50,13 +50,7 @@ export interface ZipCode {
   it: string
 }
 
-interface TranslatedValue {
-  de: string
-  fr: string
-  it: string
-}
-
-export interface Option extends TranslatedValue {
+export interface Option {
   id: number
   name: string
 }
