@@ -31,6 +31,7 @@ export interface ListingBasicData extends BasicListingTypeCommons {
   conditionType: string
   productionYear: number
   firstRegistrationDate: Date
+  firstRegistrationYear: number
 
   mileage: number
   lastInspectionDate: Date
