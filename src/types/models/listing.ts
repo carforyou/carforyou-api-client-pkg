@@ -135,6 +135,7 @@ export interface SearchListing {
   fuelTypeGroup: string
   mileage: number
   firstRegistrationDate: Date
+  firstRegistrationYear: number
   transmissionType: string
   consumptionCombined: number
   doors: number
