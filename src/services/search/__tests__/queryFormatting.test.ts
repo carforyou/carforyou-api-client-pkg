@@ -62,7 +62,7 @@ describe("SEARCH service", () => {
         )
       })
 
-      it("defaults `size` to 25 when it's not a number", async () => {
+      it("defaults `size` to 24 when it's not a number", async () => {
         await fetchListings({ page: 5, size: ("qwerty" as unknown) as number })
 
         expect(postData).toHaveBeenCalledWith(
@@ -71,7 +71,7 @@ describe("SEARCH service", () => {
           expect.objectContaining({
             pagination: {
               page: 4,
-              size: 25
+              size: 24
             }
           })
         )
@@ -86,7 +86,7 @@ describe("SEARCH service", () => {
           expect.objectContaining({
             pagination: {
               page: 0,
-              size: 25
+              size: 24
             }
           })
         )

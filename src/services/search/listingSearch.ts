@@ -42,7 +42,7 @@ export const defaultSort = {
 
 const defaultPagination = {
   page: 0,
-  size: 25
+  size: 24
 }
 
 const searchForListings = (
