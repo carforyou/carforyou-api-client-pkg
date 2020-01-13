@@ -31,6 +31,7 @@ export interface ListingBasicData extends BasicListingTypeCommons {
   conditionType: string
   productionYear: number
   firstRegistrationDate: Date
+  firstRegistrationYear: number
 
   mileage: number
   lastInspectionDate: Date
@@ -135,6 +136,7 @@ export interface SearchListing {
   fuelTypeGroup: string
   mileage: number
   firstRegistrationDate: Date
+  firstRegistrationYear: number
   transmissionType: string
   consumptionCombined: number
   doors: number
