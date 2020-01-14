@@ -13,7 +13,6 @@ import { SearchListing } from "../../types/models/listing"
 import { decodeDate } from "../../lib/dateEncoding"
 import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
 import toQueryString from "../../lib/toQueryString"
-import { SearchListing } from "lib/factories/listing"
 
 export const fetchListingCount = async (
   query: ListingSearchParams = {},

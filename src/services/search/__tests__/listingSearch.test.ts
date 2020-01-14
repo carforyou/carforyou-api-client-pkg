@@ -3,7 +3,12 @@ import { SearchListing } from "../../../lib/factories/listing"
 
 import { encodeDate } from "../../../lib/dateEncoding"
 
-import { fetchListingCount, fetchListings, fetchNeedsAssesmentListings, fetchMoneybackListings } from "../listingSearch"
+import {
+  fetchListingCount,
+  fetchListings,
+  fetchNeedsAssesmentListings,
+  fetchMoneybackListings
+} from "../listingSearch"
 
 describe("SEARCH service", () => {
   beforeEach(() => {
@@ -147,34 +152,42 @@ describe("SEARCH service", () => {
       const paginatedListings = await fetchNeedsAssesmentListings()
       const listings = paginatedListings.content
 
-      expect(listings[0].firstRegistrationDate).toEqual(content[0].firstRegistrationDate)
+      expect(listings[0].firstRegistrationDate).toEqual(
+        content[0].firstRegistrationDate
+      )
     })
-})
-
-
-describe("#fetchMoneybackListings", () => {
-  const { content, pagination, facets, fieldsStats } = PaginatedFactory([
-    SearchListing({ id: 1 })
-  ])
-
-  beforeEach(() => {
-    fetchMock.mockResponse(
-      JSON.stringify({
-        content: content.map(listing => ({
-          ...listing,
-          firstRegistrationDate: encodeDate(listing.firstRegistrationDate)
-        })),
-        facets,
-        ...pagination,
-        fieldsStats
-      })
-    )
   })
 
-  it("encodes the date", async () => {
-    const paginatedListings = await fetchMoneybackListings(123, { makeKey: "audi", size: 24, page: 1 })
-    const listings = paginatedListings.content
+  describe("#fetchMoneybackListings", () => {
+    const { content, pagination, facets, fieldsStats } = PaginatedFactory([
+      SearchListing({ id: 1 })
+    ])
 
-    expect(listings[0].firstRegistrationDate).toEqual(content[0].firstRegistrationDate)
+    beforeEach(() => {
+      fetchMock.mockResponse(
+        JSON.stringify({
+          content: content.map(listing => ({
+            ...listing,
+            firstRegistrationDate: encodeDate(listing.firstRegistrationDate)
+          })),
+          facets,
+          ...pagination,
+          fieldsStats
+        })
+      )
+    })
+
+    it("encodes the date", async () => {
+      const paginatedListings = await fetchMoneybackListings(123, {
+        makeKey: "audi",
+        size: 24,
+        page: 1
+      })
+      const listings = paginatedListings.content
+
+      expect(listings[0].firstRegistrationDate).toEqual(
+        content[0].firstRegistrationDate
+      )
+    })
   })
 })
