@@ -1,4 +1,4 @@
-import { postData, Service } from "../../base"
+import { fetchPath, postData, Service } from "../../base"
 
 import { WithFacets, Facets } from "../../types/facets"
 import { Paginated } from "../../types/pagination"
@@ -101,3 +101,16 @@ export const fetchNeedsAssesmentListings = (
   options = {}
 ): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> =>
   searchForListings("listings/needs-assessment/search", query, options)
+export const fetchMoneybackListings = (
+  dealerId: number,
+  query?: {
+    makeKey: string
+    size: number
+    page: number
+  }
+): Promise<Paginated<SearchListing>> => {
+  return fetchPath(
+    Service.CAR,
+    `dealers/${dealerId}/mbg-listings?${toQueryString(query)}`
+  )
+}

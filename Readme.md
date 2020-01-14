@@ -50,7 +50,6 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`saveDealerListingImages`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Image/setListingImagesUsingPUT)
 - [Inventory](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory)
   - [`fetchListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/getUsingGET_1)
-  - [`fetchMoneybackListings`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/getMbgListingsUsingGET)
   - [`fetchDealerMakes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/getAllDealerMakesUsingGET)
   - [`fetchDealerListingsCount`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/countUsingGET)
   - [`fetchDealerListings`](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html#/Inventory/getAllUsingGET)
@@ -110,6 +109,7 @@ Also accompanying modes and param types, as well as default values, are exported
 
   - [`fetchListingCount`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/countUsingPOST)
   - [`fetchListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/searchUsingPOST)
+  - [`fetchMoneybackListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/findAllMbgListingsUsingGET)
 
 * [Needs Assessment](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Needs_Assessment)
   - [`fetchNeedsAssesmentListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Needs%20Assessment/searchUsingPOST_1)
