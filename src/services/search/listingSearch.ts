@@ -1,4 +1,4 @@
-import { postData, Service } from "../../base"
+import { fetchPath, postData, Service } from "../../base"
 
 import { WithFacets, Facets } from "../../types/facets"
 import { Paginated } from "../../types/pagination"
@@ -12,6 +12,7 @@ import { SearchListing } from "../../types/models/listing"
 
 import { decodeDate } from "../../lib/dateEncoding"
 import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
+import toQueryString from "../../lib/toQueryString"
 
 export const fetchListingCount = async (
   query: ListingSearchParams = {},
@@ -77,16 +78,10 @@ const searchForListings = (
   return postData(Service.SEARCH, path, body)
 }
 
-export const fetchListings = async (
-  query: ListingQueryParams = {},
-  options = {}
-): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> => {
-  const { content, ...rest } = await searchForListings(
-    "listings/search",
-    query,
-    options
-  )
-
+function sanitizeListingResponse<T extends Paginated<SearchListing>>({
+  content,
+  ...rest
+}: any): T {
   return {
     ...rest,
     content: content.map(listing => ({
@@ -96,8 +91,40 @@ export const fetchListings = async (
   }
 }
 
-export const fetchNeedsAssesmentListings = (
+export const fetchListings = async (
   query: ListingQueryParams = {},
   options = {}
-): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> =>
-  searchForListings("listings/needs-assessment/search", query, options)
+): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> => {
+  const response = await searchForListings("listings/search", query, options)
+
+  return sanitizeListingResponse(response)
+}
+
+export const fetchNeedsAssesmentListings = async (
+  query: ListingQueryParams = {},
+  options = {}
+): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> => {
+  const response = await searchForListings(
+    "listings/needs-assessment/search",
+    query,
+    options
+  )
+
+  return sanitizeListingResponse(response)
+}
+
+export const fetchMoneybackListings = async (
+  dealerId: number,
+  query?: {
+    makeKey: string
+    size: number
+    page: number
+  }
+): Promise<Paginated<SearchListing>> => {
+  const response = await fetchPath(
+    Service.CAR,
+    `dealers/${dealerId}/mbg-listings?${toQueryString(query)}`
+  )
+
+  return sanitizeListingResponse(response)
+}

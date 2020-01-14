@@ -85,7 +85,6 @@ export {
   defaultPagination as defaultDealerListingsPagination,
   fetchDealerListings,
   fetchDealerListing,
-  fetchMoneybackListings,
   publishDealerListing,
   archiveDealerListing,
   unpublishDealerListing,
@@ -126,7 +125,8 @@ export {
   fetchListingCount,
   fetchListings,
   fetchNeedsAssesmentListings,
-  defaultSort as defaultListingsSort
+  defaultSort as defaultListingsSort,
+  fetchMoneybackListings
 } from "./services/search/listingSearch"
 export { fetchCity, fetchCitySuggestions } from "./services/search/city"
 export { fetchRegions } from "./services/search/regions"

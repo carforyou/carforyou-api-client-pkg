@@ -241,67 +241,65 @@ describe("CAR service", () => {
     })
   })
 
-  describe("Car API", () => {
-    describe("#saveDealerListing", () => {
-      describe("for the new listing", () => {
-        const listing = EmptyListing()
+  describe("#saveDealerListing", () => {
+    describe("for the new listing", () => {
+      const listing = EmptyListing()
 
-        beforeEach(() => {
-          fetchMock.mockResponse(JSON.stringify({ id: 123 }))
-        })
-
-        it("posts", async () => {
-          await saveDealerListing({
-            dealerId: 1234,
-            listing
-          })
-
-          expect(fetchMock).toHaveBeenCalledWith(
-            expect.any(String),
-            expect.objectContaining({ method: "POST" })
-          )
-        })
-
-        it("returns the listing", async () => {
-          const result = await saveDealerListing({
-            dealerId: 1234,
-            listing
-          })
-
-          expect(result).toEqual({
-            tag: "success",
-            result: { ...listing, id: 123 }
-          })
-        })
+      beforeEach(() => {
+        fetchMock.mockResponse(JSON.stringify({ id: 123 }))
       })
 
-      describe("for the existing listing", () => {
-        const listing = { ...EmptyListing(), id: 123 }
-
-        beforeEach(() => {
-          fetchMock.mockResponse(null)
+      it("posts", async () => {
+        await saveDealerListing({
+          dealerId: 1234,
+          listing
         })
 
-        it("puts", async () => {
-          await saveDealerListing({
-            dealerId: 1234,
-            listing
-          })
+        expect(fetchMock).toHaveBeenCalledWith(
+          expect.any(String),
+          expect.objectContaining({ method: "POST" })
+        )
+      })
 
-          expect(fetchMock).toHaveBeenCalledWith(
-            expect.any(String),
-            expect.objectContaining({ method: "PUT" })
-          )
+      it("returns the listing", async () => {
+        const result = await saveDealerListing({
+          dealerId: 1234,
+          listing
         })
 
-        it("returns the listing", async () => {
-          const result = await saveDealerListing({
-            dealerId: 1234,
-            listing
-          })
-
-          expect(result).toEqual({ tag: "success", result: listing })
+        expect(result).toEqual({
+          tag: "success",
+          result: { ...listing, id: 123 }
         })
+      })
+    })
+
+    describe("for the existing listing", () => {
+      const listing = { ...EmptyListing(), id: 123 }
+
+      beforeEach(() => {
+        fetchMock.mockResponse(null)
+      })
+
+      it("puts", async () => {
+        await saveDealerListing({
+          dealerId: 1234,
+          listing
+        })
+
+        expect(fetchMock).toHaveBeenCalledWith(
+          expect.any(String),
+          expect.objectContaining({ method: "PUT" })
+        )
+      })
+
+      it("returns the listing", async () => {
+        const result = await saveDealerListing({
+          dealerId: 1234,
+          listing
+        })
+
+        expect(result).toEqual({ tag: "success", result: listing })
       })
     })
   })

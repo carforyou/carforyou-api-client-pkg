@@ -306,17 +306,3 @@ export const listingMandatoryFields = async (
     return new Set(data.map(entry => entry.param))
   })
 }
-
-export const fetchMoneybackListings = (
-  dealerId: number,
-  query?: {
-    makeKey: string
-    size: number
-    page: number
-  }
-): Promise<Paginated<SearchListing>> => {
-  return fetchPath(
-    Service.CAR,
-    `dealers/${dealerId}/mbg-listings?${toQueryString(query)}`
-  )
-}
