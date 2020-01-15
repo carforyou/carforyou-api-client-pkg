@@ -4,6 +4,7 @@ export {
   Make,
   Model,
   Dealer,
+  DealerSource,
   Option,
   Options,
   ImageEnrichment,
