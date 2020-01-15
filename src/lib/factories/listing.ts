@@ -3,6 +3,7 @@ import {
   SearchListing as SearchListingType
 } from "../../types/models/listing"
 import { Type } from "../../types/models/type"
+import { DealerSource } from "../../types/models/index"
 
 const defaults: ListingType = {
   id: 12,
@@ -26,6 +27,7 @@ const defaults: ListingType = {
   consumptionCombined: 8.5,
   gbdScore: "good-deal",
   dealer: {
+    active: true,
     id: 1,
     name: "emil frey",
     nameSlug: "emil-frey",
@@ -34,9 +36,13 @@ const defaults: ListingType = {
     city: "Zurich",
     address: "Bahnhof Strasse 123",
     zipCode: "8001",
+    dealerSource: DealerSource.SALESFORCE,
     location: {
+      country: "Switzerland",
       lat: 47.3742951,
-      lon: 8.5385763
+      lon: 8.5385763,
+      region: "ZH",
+      regionFull: "Zurich"
     }
   },
   images: [

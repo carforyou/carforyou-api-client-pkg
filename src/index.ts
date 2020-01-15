@@ -4,6 +4,7 @@ export {
   Make,
   Model,
   Dealer,
+  DealerSource,
   Option,
   Options,
   ImageEnrichment,
@@ -14,8 +15,11 @@ export {
   PresignedUrl,
   Date,
   OpeningHours,
-  Region
-} from "./types/models"
+  Region,
+  ListingAnalyticsStats,
+  ListingAnalyticsData,
+  DealerListingsAnalyticsData
+} from "./types/models/index"
 
 export {
   LifecycleState,
@@ -30,12 +34,6 @@ export {
   ListingImage,
   DealerListingImages
 } from "./types/models/listing"
-
-export {
-  ListingAnalyticsStats,
-  ListingAnalyticsData,
-  DealerListingsAnalyticsData
-} from "./types/models/index"
 
 export { SearchType, Type } from "./types/models/type"
 

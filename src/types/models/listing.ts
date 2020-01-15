@@ -143,8 +143,8 @@ export interface SearchListing {
   seats: number
   dealer: {
     name: string
-    city: string
-    address: string
+    city?: string
+    address?: string
     zipCode: string
   }
   images: ListingImage[]
