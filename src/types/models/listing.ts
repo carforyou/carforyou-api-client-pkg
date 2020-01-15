@@ -141,12 +141,7 @@ export interface SearchListing {
   consumptionCombined: number
   doors: number
   seats: number
-  dealer: {
-    name: string
-    city: string
-    address: string
-    zipCode: string
-  }
+  dealer: Dealer
   images: ListingImage[]
   gbdScore: string
   createdDate: string
