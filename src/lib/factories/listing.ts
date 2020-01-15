@@ -3,7 +3,7 @@ import {
   SearchListing as SearchListingType
 } from "../../types/models/listing"
 import { Type } from "../../types/models/type"
-import { DealerSource } from "../../types/models"
+import { DealerSource } from "../../types/models/index"
 
 const defaults: ListingType = {
   id: 12,
