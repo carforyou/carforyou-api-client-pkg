@@ -26,19 +26,31 @@ export interface OpeningHours {
   close: OpeningHour
 }
 
+export enum DealerSource {
+  SALESFORCE = "SALESFORCE",
+  TUTTI = "TUTTI"
+}
+
+export interface Location {
+  country: string
+  lat: number
+  lon: number
+  region: string
+  regionFull: string
+}
+
 export interface Dealer {
+  active: boolean
   id: number
   name: string
   nameSlug?: string
   phone: string
   email: string
-  address: string
   zipCode: string
-  city: string
-  location: {
-    lat: number
-    lon: number
-  }
+  dealerSource: DealerSource
+  address?: string
+  city?: string
+  location?: Location
   website?: string
   openingHours?: OpeningHours[]
 }
