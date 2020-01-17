@@ -27,9 +27,9 @@ export const fetchTypes = async ({
   page,
   size,
   ...query
-}: SearchTypeQueryParams): Promise<
-  WithValidationError<Paginated<SearchType>>
-> => {
+}: SearchTypeQueryParams): Promise<WithValidationError<
+  Paginated<SearchType>
+>> => {
   const sizeOrDefault =
     parseInt((size || "").toString(), 10) || defaultPagination.size
   const pageOrDefault =
