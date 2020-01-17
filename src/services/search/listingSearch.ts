@@ -9,6 +9,7 @@ import {
 } from "../../types/params/listings"
 import { ListingSortTypeParams, ListingSortOrderParams } from "../../types/sort"
 import { SearchListing } from "../../types/models/listing"
+import { WithTopListing } from "../../types/topListing"
 
 import { decodeDate } from "../../lib/dateEncoding"
 import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
@@ -49,7 +50,11 @@ const defaultPagination = {
 const searchForListings = (
   path,
   query: ListingQueryParams = {},
-  options: { includeFacets?: boolean; includeFieldsStats?: string[] } = {}
+  options: {
+    includeFacets?: boolean
+    includeFieldsStats?: string[]
+    includeTopListing?: boolean
+  } = {}
 ) => {
   const { page, size, sortOrder, sortType, ...rest } = query
   const sizeOrDefault =
@@ -72,16 +77,16 @@ const searchForListings = (
     ...(options.includeFieldsStats && options.includeFieldsStats.length > 0
       ? { includeFieldsStats: options.includeFieldsStats }
       : {}),
+    ...(options.includeTopListing ? { includeTopListing: true } : {}),
     query: paramsToSearchRequest(rest)
   }
 
   return postData(Service.SEARCH, path, body)
 }
 
-function sanitizeListingResponse<T extends Paginated<SearchListing>>({
-  content,
-  ...rest
-}: any): T {
+function sanitizeListingResponse<
+  T extends WithTopListing<Paginated<SearchListing>>
+>({ content, ...rest }: any): T {
   return {
     ...rest,
     content: content.map(listing => ({
@@ -94,7 +99,9 @@ function sanitizeListingResponse<T extends Paginated<SearchListing>>({
 export const fetchListings = async (
   query: ListingQueryParams = {},
   options = {}
-): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> => {
+): Promise<
+  WithFacets<WithFieldStats<WithTopListing<Paginated<SearchListing>>>>
+> => {
   const response = await searchForListings("listings/search", query, options)
 
   return sanitizeListingResponse(response)
