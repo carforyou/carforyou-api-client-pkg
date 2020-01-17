@@ -11,4 +11,5 @@ export interface Pagination {
 export interface Paginated<T> {
   content: T[]
   pagination: Pagination
+  includeTopListing: boolean
 }
