@@ -74,9 +74,13 @@ describe("SEARCH service", () => {
   })
 
   describe("#fetchListings", () => {
-    const { content, pagination, facets, fieldsStats } = PaginatedFactory([
-      SearchListing({ id: 1 })
-    ])
+    const {
+      content,
+      pagination,
+      facets,
+      fieldsStats,
+      topListing
+    } = PaginatedFactory([SearchListing({ id: 1 })])
 
     beforeEach(() => {
       fetchMock.mockResponse(
@@ -87,7 +91,8 @@ describe("SEARCH service", () => {
           })),
           facets,
           ...pagination,
-          fieldsStats
+          fieldsStats,
+          topListing
         })
       )
     })
@@ -124,6 +129,14 @@ describe("SEARCH service", () => {
         const paginatedListings = await fetchListings()
 
         expect(paginatedListings.facets).toEqual(facets)
+        expect(fetch).toHaveBeenCalled()
+      })
+    })
+
+    describe("TopListing", () => {
+      it("fetch", async () => {
+        const paginatedListings = await fetchListings()
+        expect(paginatedListings.topListing).toEqual(topListing)
         expect(fetch).toHaveBeenCalled()
       })
     })
