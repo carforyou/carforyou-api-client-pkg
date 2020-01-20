@@ -62,9 +62,15 @@ export interface ZipCode {
   it: string
 }
 
+export interface PackageItem {
+  id: number
+  name: string
+}
+
 export interface Option {
   id: number
   name: string
+  packageItems?: PackageItem[]
 }
 
 export interface Options {

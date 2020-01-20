@@ -5,13 +5,25 @@ export function Options(): OptionsType {
     standardOptions: [
       {
         id: 1,
-        name: "ABS (de)"
+        name: "ABS (de)",
+        packageItems: [
+          {
+            id: 2002,
+            name: "ABS package item (de)"
+          }
+        ]
       }
     ],
     additionalOptions: [
       {
         id: 2,
-        name: "Bluetooth (de)"
+        name: "Bluetooth (de)",
+        packageItems: [
+          {
+            id: 2102,
+            name: "Bluetooth package item (de)"
+          }
+        ]
       }
     ]
   }
