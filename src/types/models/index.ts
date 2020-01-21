@@ -70,7 +70,7 @@ export interface PackageItem {
 export interface Option {
   id: number
   name: string
-  packageItems?: PackageItem[]
+  packageItems: PackageItem[]
 }
 
 export interface Options {
