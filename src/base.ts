@@ -7,6 +7,8 @@ import { ValidationError } from "./types/withValidationError"
 
 import apiClient from "./apiClient"
 import { ResponseError } from "./responseError"
+import { SearchListing } from "./types/models/listing"
+import { WithTopListing } from "./types/topListing"
 
 export enum Service {
   SEARCH = "SEARCH",
@@ -34,10 +36,11 @@ const withPagination = <T>(json: {
   last: boolean
   facets: Facets
   fieldsStats: FieldsStats
-}): WithFacets<WithFieldStats<Paginated<T>>> => {
-  const { content, fieldsStats, facets, ...pagination } = json
+  topListing: SearchListing
+}): WithTopListing<WithFacets<WithFieldStats<Paginated<T>>>> => {
+  const { content, fieldsStats, facets, topListing, ...pagination } = json
 
-  return { content, fieldsStats, facets, pagination }
+  return { content, fieldsStats, facets, pagination, topListing }
 }
 
 export const resolveServiceUrl = (service: Service): string => {
