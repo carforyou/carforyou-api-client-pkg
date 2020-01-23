@@ -99,9 +99,9 @@ function sanitizeListingResponse<
 export const fetchListings = async (
   query: ListingQueryParams = {},
   options = {}
-): Promise<
-  WithFacets<WithFieldStats<WithTopListing<Paginated<SearchListing>>>>
-> => {
+): Promise<WithFacets<
+  WithFieldStats<WithTopListing<Paginated<SearchListing>>>
+>> => {
   const response = await searchForListings("listings/search", query, options)
 
   return sanitizeListingResponse(response)
