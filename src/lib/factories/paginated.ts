@@ -1,11 +1,13 @@
 import { Paginated } from "../../types/pagination"
 import { WithFieldStats } from "../../types/fieldStats"
 import { WithFacets } from "../../types/facets"
+import { WithTopListing } from "../../types/topListing"
+import { SearchListing } from "./listing"
 
 export default function<T>(
   content: T[],
   options = {}
-): WithFacets<WithFieldStats<Paginated<T>>> {
+): WithTopListing<WithFacets<WithFieldStats<Paginated<T>>>> {
   const { currentPage, totalPages } = {
     currentPage: 0,
     totalPages: 1,
@@ -25,6 +27,7 @@ export default function<T>(
       numberOfElements: perPage,
       first: currentPage === 0,
       last: currentPage === totalPages - 1
-    }
+    },
+    topListing: SearchListing({ id: 1 })
   }
 }

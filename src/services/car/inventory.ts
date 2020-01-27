@@ -13,7 +13,7 @@ import {
   DealerListingSortOrderParams,
   DealerListingSortTypeParams
 } from "../../types/sort"
-import { Listing, SearchListing } from "../../types/models/listing"
+import { Listing } from "../../types/models/listing"
 import { DealerListingQueryParams } from "../../types/params/listings"
 
 import toQueryString from "../../lib/toQueryString"
