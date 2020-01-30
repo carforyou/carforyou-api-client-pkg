@@ -84,7 +84,7 @@ export interface Listing
   consumptionStandard: string
   createdDate: string
   deactivationDate: string
-  dealer: Dealer
+  dealerId: number
   equipmentPackage: string
   factoryCode: string
   fuelTankCapacity: number
@@ -141,12 +141,7 @@ export interface SearchListing {
   consumptionCombined: number
   doors: number
   seats: number
-  dealer: {
-    name: string
-    city?: string
-    address?: string
-    zipCode: string
-  }
+  dealerId: number
   images: ListingImage[]
   gbdScore: string
   createdDate: string
