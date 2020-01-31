@@ -89,10 +89,12 @@ function sanitizeListingResponse<
 >({ content, topListing, ...rest }: any): T {
   return {
     ...rest,
-    topListing: {
-      ...topListing,
-      firstRegistrationDate: decodeDate(topListing.firstRegistrationDate)
-    },
+    ...(topListing && {
+      topListing: {
+        ...topListing,
+        firstRegistrationDate: decodeDate(topListing.firstRegistrationDate)
+      }
+    }),
     content: content.map(listing => ({
       ...listing,
       firstRegistrationDate: decodeDate(listing.firstRegistrationDate)
