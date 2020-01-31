@@ -92,7 +92,14 @@ describe("SEARCH service", () => {
           facets,
           ...pagination,
           fieldsStats,
-          topListing
+          ...(topListing && {
+            topListing: {
+              ...topListing,
+              firstRegistrationDate: encodeDate(
+                topListing.firstRegistrationDate
+              )
+            }
+          })
         })
       )
     })
