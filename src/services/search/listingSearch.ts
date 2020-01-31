@@ -86,9 +86,13 @@ const searchForListings = (
 
 function sanitizeListingResponse<
   T extends WithTopListing<Paginated<SearchListing>>
->({ content, ...rest }: any): T {
+>({ content, topListing, ...rest }: any): T {
   return {
     ...rest,
+    topListing: {
+      ...topListing,
+      firstRegistrationDate: decodeDate(topListing.firstRegistrationDate)
+    },
     content: content.map(listing => ({
       ...listing,
       firstRegistrationDate: decodeDate(listing.firstRegistrationDate)
