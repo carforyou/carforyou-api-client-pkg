@@ -26,25 +26,6 @@ const defaults: ListingType = {
   fuelTypeGroup: "petrol",
   consumptionCombined: 8.5,
   gbdScore: "good-deal",
-  dealer: {
-    active: true,
-    id: 1,
-    name: "emil frey",
-    nameSlug: "emil-frey",
-    phone: "231-342-32",
-    email: "dealera@autoricardo.ch",
-    city: "Zurich",
-    address: "Bahnhof Strasse 123",
-    zipCode: "8001",
-    dealerSource: DealerSource.SALESFORCE,
-    location: {
-      country: "Switzerland",
-      lat: 47.3742951,
-      lon: 8.5385763,
-      region: "ZH",
-      regionFull: "Zurich"
-    }
-  },
   dealerId: 1,
   images: [
     {
@@ -135,6 +116,12 @@ export function SearchListing(attributes = {}): SearchListingType {
     makeId: 1028,
     modelId: 1049,
     typeSlug,
+    dealer: {
+      name: "emil frey",
+      city: "Zurich",
+      address: "Bahnhof Strasse 123",
+      zipCode: "8001"
+    },
     ...Listing(attributes)
   }
 }
@@ -205,7 +192,6 @@ export function EmptyListing(): ListingType {
     consumptionStandard: undefined,
     createdDate: undefined,
     deactivationDate: undefined,
-    dealer: undefined,
     dealerId: undefined,
     equipmentPackage: undefined,
     factoryCode: undefined,

@@ -84,7 +84,6 @@ export interface Listing
   consumptionStandard: string
   createdDate: string
   deactivationDate: string
-  dealer: Dealer
   dealerId: number
   equipmentPackage: string
   factoryCode: string
