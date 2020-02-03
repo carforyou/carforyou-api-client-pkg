@@ -114,7 +114,12 @@ export interface Listing
 
 type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI"
 
-type ListingPublishingStatus = "published" | "draft" | "pending"
+type ListingPublishingStatus =
+  | "unpublished"
+  | "published"
+  | "draft"
+  | "pending"
+  | "invalid"
 
 export interface SearchListing {
   id: number
