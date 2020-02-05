@@ -1,4 +1,4 @@
-import { Dealer, Date } from "./index"
+import { Dealer, Location, Date } from "./index"
 import {
   BasicListingTypeCommons,
   EnergyListingTypeCommons,
@@ -146,7 +146,19 @@ export interface SearchListing {
   consumptionCombined: number
   doors: number
   seats: number
-  dealerId: number
+  dealer: {
+    id: number
+    name: string
+    phone: string
+    email: string
+    address: string
+    city: string
+    zipCode: string
+    location: Location
+    country: string
+    regionFull: string
+    region: string
+  }
   images: ListingImage[]
   gbdScore: string
   createdDate: string
@@ -155,4 +167,8 @@ export interface SearchListing {
   active: boolean
   publishingDate: string
   externalListingId: string
+}
+
+export interface DetailListing extends Listing {
+  dealer: Dealer
 }

@@ -32,7 +32,8 @@ export {
   ListingExtrasData,
   Listing,
   ListingImage,
-  DealerListingImages
+  DealerListingImages,
+  DetailListing
 } from "./types/models/listing"
 
 export { SearchType, Type } from "./types/models/type"
@@ -144,6 +145,7 @@ export { fetchAnalyticsData } from "./services/analytics"
 export {
   Listing as ListingFactory,
   SearchListing as SearchListingFactory,
+  DetailListing as DetailListingFactory,
   EmptyListing,
   ListingFromType
 } from "./lib/factories/listing"
