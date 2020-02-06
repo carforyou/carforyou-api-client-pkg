@@ -7,14 +7,13 @@ commands:
           name: Notify Slack of failure if on master
           command: |
             if [ "$CIRCLE_BRANCH" = "master" ]; then
-              curl -X POST -H 'Content-type: application/json' --data "{\"text\":\":boom: ${CIRCLE_JOB} failed: ${CIRCLE_BUILD_URL}\"}" https://hooks.slack.com/services/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
+              curl -X POST -H 'Content-type: application/json' --data "{\"text\":\":boom: ${CIRCLE_JOB} failed: ${CIRCLE_BUILD_URL}\"}" https://hooks.slack.com/services/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
             fi
           when: on_fail
 
 docker: &DOCKER_NODE
   docker:
     - image: circleci/node:10.18
-
 
 jobs:
   install:
