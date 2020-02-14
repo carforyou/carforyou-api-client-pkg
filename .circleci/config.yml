@@ -44,6 +44,10 @@ jobs:
       - run:
           command: npm run build
           no_output_timeout: 2m
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/pkg
       - notify_slack_failure
 
   unit:
