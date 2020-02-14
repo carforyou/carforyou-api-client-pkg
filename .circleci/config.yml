@@ -79,6 +79,24 @@ jobs:
           no_output_timeout: 1m
       - notify_slack_failure
 
+
+  release:
+    <<: *DOCKER_NODE
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: npx semantic-release
+      - notify_slack_failure
+
+  pre_release:
+    <<: *DOCKER_NODE
+    steps:
+      - attach_workspace:
+          at: ~/
+      # manually set PR shell variables to empty to build pull request
+      - run: CI_PULL_REQUEST= CIRCLE_PULL_REQUEST= npx semantic-release
+      - notify_slack_failure
+
 workflows:
   version: 2
   test:
@@ -100,3 +118,23 @@ workflows:
       - typecheck:
           requires:
             - install
+
+      - release:
+        requires:
+          - lint
+          - unit
+          - build
+          - typecheck
+        filters:
+          branches:
+            only: master
+
+    - pre_release:
+        requires:
+          - lint
+          - unit
+          - build
+          - typecheck
+        filters:
+          branches:
+            ignore: master
