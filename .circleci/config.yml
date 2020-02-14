@@ -129,12 +129,12 @@ workflows:
           branches:
             only: master
 
-    - pre_release:
-        requires:
-          - lint
-          - unit
-          - build
-          - typecheck
-        filters:
-          branches:
-            ignore: master
+      - pre_release:
+          requires:
+            - lint
+            - unit
+            - build
+            - typecheck
+          filters:
+            branches:
+              ignore: master
