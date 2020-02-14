@@ -5,7 +5,6 @@
   "scripts": {
     "version": "npm run build",
     "build": "pika build",
-    "release": "np --any-branch --contents pkg/",
     "lint": "tslint --project tsconfig.lint.json",
     "format": "tslint --project tsconfig.lint.json --fix",
     "typecheck": "tsc --noEmit",
@@ -28,7 +27,6 @@
     "@types/jest": "^25.0.0",
     "jest": "^25.1.0",
     "jest-fetch-mock": "^3.0.1",
-    "np": "6.0.0",
     "prettier": "^1.19.1",
     "semantic-release": "^17.0.3",
     "ts-jest": "^25.0.0",
