@@ -120,14 +120,14 @@ workflows:
             - install
 
       - release:
-        requires:
-          - lint
-          - unit
-          - build
-          - typecheck
-        filters:
-          branches:
-            only: master
+          requires:
+            - lint
+            - unit
+            - build
+            - typecheck
+          filters:
+            branches:
+              only: master
 
       - pre_release:
           requires:
