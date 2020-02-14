@@ -203,6 +203,5 @@ npm link ../carforyou-api-client-pkg/pkg
 
 ## Release a new version
 
-```
-npm run release
-```
+New versions are released on the ci using semantic-release as soon as you merge into master. Please
+make sure your merge commit message adheres to the corresponding conventions.
