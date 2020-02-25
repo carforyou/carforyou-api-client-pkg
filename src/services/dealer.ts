@@ -12,6 +12,6 @@ export const fetchDealerSuggestions = async (
 ): Promise<Paginated<DealerSuggestion>> => {
   return fetchPath(
     Service.DEALER,
-    `dealers/suggestions?q=${encodeURIComponent(query)}`
+    `dealers/suggestions?q=${query ? encodeURIComponent(query) : query}`
   )
 }
