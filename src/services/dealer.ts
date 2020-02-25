@@ -10,5 +10,8 @@ export const fetchDealer = async (id: number): Promise<Dealer> => {
 export const fetchDealerSuggestions = async (
   query: string
 ): Promise<Paginated<DealerSuggestion>> => {
-  return fetchPath(Service.DEALER, `dealers/suggestions?q=${query}`)
+  return fetchPath(
+    Service.DEALER,
+    `dealers/suggestions?q=${encodeURIComponent(query)}`
+  )
 }
