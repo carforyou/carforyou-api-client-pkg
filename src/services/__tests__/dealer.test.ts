@@ -3,6 +3,7 @@ import {
   fetchDealerProfile,
   putDealerProfile
 } from "../dealer"
+import { ResponseError } from "../../responseError"
 
 describe("Dealer", () => {
   describe("#fetchDealerSuggestions", () => {
@@ -19,7 +20,7 @@ describe("Dealer", () => {
     })
   })
 
-  describe("#fetchDealerProfile", () => {
+  describe("Dealer Profile", () => {
     const dealerIdMock = 12
     const profileMock = {
       address: "Heiterweit",
@@ -29,23 +30,45 @@ describe("Dealer", () => {
       phone: "12-13-65",
       zipCode: "345"
     }
-    beforeEach(() => {
-      fetchMock.mockResponse(JSON.stringify(profileMock))
-    })
-    it("fetch dealer data", async () => {
-      const profile = await fetchDealerProfile(dealerIdMock)
 
-      expect(profile).toEqual(profileMock)
-    })
-
-    it("put dealer data", async () => {
-      fetchMock.mockResponse(JSON.stringify(profileMock))
-      const profileRespone = await putDealerProfile({
-        dealerId: dealerIdMock,
-        profile: profileMock
+    describe("#fetchDealerProfile", () => {
+      beforeEach(() => {
+        fetchMock.mockResponse(JSON.stringify(profileMock))
       })
 
-      expect(profileRespone.tag).toBe("success")
+      it("returns the dealer data form the api", async () => {
+        const profile = await fetchDealerProfile(dealerIdMock)
+
+        expect(profile).toEqual(profileMock)
+      })
+    })
+
+    describe("#putDealerProfile", () => {
+      it("successfully puts data to the api", async () => {
+        fetchMock.mockResponse(JSON.stringify(profileMock))
+
+        const profileResponse = await putDealerProfile({
+          dealerId: dealerIdMock,
+          profile: profileMock
+        })
+
+        expect(profileResponse.tag).toBe("success")
+      })
+
+      it("fails to put data to the api", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500
+          })
+        })
+
+        const profileResponse = await putDealerProfile({
+          dealerId: dealerIdMock,
+          profile: profileMock
+        })
+
+        expect(profileResponse.tag).toBe("error")
+      })
     })
   })
 })

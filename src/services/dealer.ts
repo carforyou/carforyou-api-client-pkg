@@ -51,7 +51,7 @@ export const putDealerProfile = async ({
         result: { ...profile, ...result }
       }
     } catch (error) {
-      return handleValidationError(error)
+      return handleValidationError(error, { swallowErrors: true })
     }
   })
 }
