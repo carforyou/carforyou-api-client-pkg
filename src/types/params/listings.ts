@@ -23,6 +23,7 @@ export interface ListingQueryParams extends PaginationParams {
     | number[]
     | MakeModelFilter[]
     | LocationFilter
+    | boolean
 }
 
 export interface ListingSearchParams extends ListingQueryParams {
@@ -60,7 +61,7 @@ export interface ListingFilterParams {
   firstRegistrationYearFrom?: number
   firstRegistrationYearTo?: number
   gbdScore?: string[]
-  hasMbgOnly?: string
+  hasMbgOnly?: boolean
   consumptionCategory?: ConsumptionCategory[]
   mileageFrom?: number
   mileageTo?: number
@@ -72,9 +73,15 @@ export interface ListingFilterParams {
   dealerId?: string[]
   lifestyleType?: string[]
   vehicleClass?: string[]
-  hasImagesOnly?: string
+  hasImagesOnly?: boolean
 
-  [key: string]: number | string[] | string | MakeModelFilter[] | LocationFilter
+  [key: string]:
+    | number
+    | string[]
+    | string
+    | MakeModelFilter[]
+    | LocationFilter
+    | boolean
 }
 
 export interface DealerListingQueryParams
