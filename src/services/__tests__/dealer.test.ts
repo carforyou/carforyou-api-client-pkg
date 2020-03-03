@@ -1,4 +1,10 @@
-import { fetchDealerSuggestions } from "../dealer"
+import {
+  fetchDealerSuggestions,
+  fetchDealerProfile,
+  putDealerProfile
+} from "../dealer"
+import { ResponseError } from "../../responseError"
+import { DealerSource } from "../../types/models/index"
 
 describe("Dealer", () => {
   describe("#fetchDealerSuggestions", () => {
@@ -12,6 +18,58 @@ describe("Dealer", () => {
         )}`,
         expect.any(Object)
       )
+    })
+  })
+
+  describe("Dealer Profile", () => {
+    const dealerIdMock = 12
+    const profileMock = {
+      address: "Heiterweit",
+      city: "SW",
+      dealerSource: DealerSource.SALESFORCE,
+      id: dealerIdMock,
+      phone: "12-13-65",
+      zipCode: "345"
+    }
+
+    describe("#fetchDealerProfile", () => {
+      beforeEach(() => {
+        fetchMock.mockResponse(JSON.stringify(profileMock))
+      })
+
+      it("returns the dealer data form the api", async () => {
+        const profile = await fetchDealerProfile(dealerIdMock)
+
+        expect(profile).toEqual(profileMock)
+      })
+    })
+
+    describe("#putDealerProfile", () => {
+      it("successfully puts data to the api", async () => {
+        fetchMock.mockResponse(JSON.stringify(profileMock))
+
+        const profileResponse = await putDealerProfile({
+          dealerId: dealerIdMock,
+          profile: profileMock
+        })
+
+        expect(profileResponse.tag).toBe("success")
+      })
+
+      it("fails to put data to the api", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500
+          })
+        })
+
+        const profileResponse = await putDealerProfile({
+          dealerId: dealerIdMock,
+          profile: profileMock
+        })
+
+        expect(profileResponse.tag).toBe("error")
+      })
     })
   })
 })

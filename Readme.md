@@ -129,6 +129,8 @@ Also accompanying modes and param types, as well as default values, are exported
 - [Dealer](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer)
   - [`fetchDealer`](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer/getUsingGET)
   - [`fetchDealerSuggestions`](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer/getSuggestionsUsingGET)
+  - [`fetchDealerProfile`](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer/getProfileUsingGET)
+  - [`putDealerProfile`](https://dealer-service.preprod.carforyou.ch/swagger-ui.html#/Dealer/updateProfileUsingPUT)
 
 ### [User notification service](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html)
 
