@@ -4,6 +4,7 @@ import {
   putDealerProfile
 } from "../dealer"
 import { ResponseError } from "../../responseError"
+import { DealerSource } from "../../types/models/index"
 
 describe("Dealer", () => {
   describe("#fetchDealerSuggestions", () => {
@@ -25,7 +26,7 @@ describe("Dealer", () => {
     const profileMock = {
       address: "Heiterweit",
       city: "SW",
-      dealerSource: "dealer",
+      dealerSource: DealerSource.SALESFORCE,
       id: dealerIdMock,
       phone: "12-13-65",
       zipCode: "345"
