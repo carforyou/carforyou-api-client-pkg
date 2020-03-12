@@ -125,6 +125,7 @@ export interface MoneybackApplication {
   gender: string
   phone: string
   contractStartDate: string
+  sellingPrice: number
 }
 
 export interface Date {
