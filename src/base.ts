@@ -103,12 +103,13 @@ export const fetchPath = async (
   }
 
   const { headers, ...otherOptions } = { headers: {}, ...options }
+  const auth = authorizationHeader()
 
   const response = await fetch(url, {
     headers: {
       "Content-Type": "application/json",
       Accept: `application/vnd.carforyou.${apiClient.version}+json`,
-      Authorization: authorizationHeader(),
+      ...(auth ? { Authorization: auth } : {}),
       ...headers
     },
     ...otherOptions
