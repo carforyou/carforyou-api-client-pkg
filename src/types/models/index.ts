@@ -126,6 +126,8 @@ export interface MoneybackApplication {
   phone: string
   contractStartDate: string
   sellingPrice: number
+  vehicleConditionsConfirmation: boolean
+  termsAndConditionsConfirmation: boolean
 }
 
 export interface Date {
