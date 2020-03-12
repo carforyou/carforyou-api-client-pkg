@@ -100,7 +100,6 @@ export interface SavedSearch {
   email: string
   language: string
   searchQuery: ListingFilterParams
-  searchPath: string
   uiMetadata: object
 }
 

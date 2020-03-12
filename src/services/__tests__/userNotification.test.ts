@@ -12,8 +12,9 @@ describe("USER_NOTIFICATION service", () => {
       await sendSavedSearch({
         email: "save@thesear.ch",
         language: "de",
-        searchPath: "?makeKeys=bmw",
-        uiMetadata: {},
+        uiMetadata: {
+          searchPath: "?makeKeys=bmw",
+        },
         searchQuery: {
           makeKey: ["bmw"]
         }
@@ -31,8 +32,9 @@ describe("USER_NOTIFICATION service", () => {
       await sendSavedSearch({
         email: "save@thesear.ch",
         language: "de",
-        searchPath: "?cityId=1001&radius=20",
-        uiMetadata: {},
+        uiMetadata: {
+          searchPath: "?cityId=1001&radius=20",
+        },
         searchQuery: {
           cityId: "1001",
           radius: "20"
@@ -47,8 +49,9 @@ describe("USER_NOTIFICATION service", () => {
           body: JSON.stringify({
             email: "save@thesear.ch",
             language: "de",
-            searchPath: "?cityId=1001&radius=20",
-            uiMetadata: {},
+            uiMetadata: {
+              searchPath: "?cityId=1001&radius=20",
+            },
             searchQuery: {
               location: {
                 cityId: "1001",
