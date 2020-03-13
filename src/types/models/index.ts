@@ -100,7 +100,6 @@ export interface SavedSearch {
   email: string
   language: string
   searchQuery: ListingFilterParams
-  searchPath: string
   uiMetadata: object
 }
 
@@ -126,6 +125,9 @@ export interface MoneybackApplication {
   gender: string
   phone: string
   contractStartDate: string
+  sellingPrice: number
+  vehicleConditionsConfirmation: boolean
+  termsAndConditionsConfirmation: boolean
 }
 
 export interface Date {
