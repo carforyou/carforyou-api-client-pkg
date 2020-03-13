@@ -1,4 +1,4 @@
-export const wait = (ms): Promise<void> =>
+const wait = (ms): Promise<void> =>
   new Promise(resolve => setTimeout(resolve, ms))
 
 export const withRetries = (
