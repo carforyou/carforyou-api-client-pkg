@@ -61,6 +61,8 @@ export {
   DealerListingSortParams
 } from "./types/sort"
 
+export { Product, PurchaseAndUseProduct } from "./types/models/product"
+
 export {
   WithValidationError,
   ValidationError
@@ -147,6 +149,7 @@ export {
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export { fetchAnalyticsData } from "./services/analytics"
+export { fetchProducts, purchaseAndUseProduct } from "./services/product"
 
 export {
   Listing as ListingFactory,
