@@ -83,6 +83,7 @@ export interface Listing
   consumptionCombined: number
   consumptionStandard: string
   createdDate: string
+  topListedEndDate: string
   deactivationDate: string
   dealerId: number
   equipmentPackage: string
@@ -167,6 +168,7 @@ export interface SearchListing {
   active: boolean
   publishingDate: string
   externalListingId: string
+  topListedEndDate: string
 }
 
 export interface DetailListing extends Listing {
