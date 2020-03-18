@@ -104,6 +104,7 @@ export interface Listing
   source: ListingSource
   spin360Code: string
   type: string
+  topListed: boolean
   vehicleClass: string
   warrantyDuration: number
   warrantyName: string
@@ -169,6 +170,7 @@ export interface SearchListing {
   publishingDate: string
   externalListingId: string
   topListedEndDate: string
+  topListed: boolean
 }
 
 export interface DetailListing extends Listing {
