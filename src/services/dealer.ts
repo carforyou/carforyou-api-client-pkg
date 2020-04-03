@@ -61,7 +61,7 @@ export const fetchDealerActivity = async ({
   query
 }: {
   dealerId: number
-  query: string
+  query: number
 }): Promise<ActiveDealer> => {
   return fetchPath(
     Service.DEALER,
