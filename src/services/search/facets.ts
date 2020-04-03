@@ -5,7 +5,7 @@ import { Facets } from "../../types/facets"
 
 import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
 
-export const fetchFactets = async (
+export const fetchFacets = async (
   query: ListingSearchParams = {},
   fields: string[] = []
 ): Promise<Facets> => {

@@ -135,7 +135,7 @@ export {
 } from "./services/search/listingSearch"
 export { fetchCity, fetchCitySuggestions } from "./services/search/city"
 export { fetchRegions } from "./services/search/regions"
-export { fetchFactets } from "./services/search/facets"
+export { fetchFacets } from "./services/search/facets"
 
 export {
   fetchMakes,

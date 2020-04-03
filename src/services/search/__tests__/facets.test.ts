@@ -1,4 +1,4 @@
-import { fetchFactets } from "../facets"
+import { fetchFacets } from "../facets"
 
 describe("Facets", () => {
   beforeEach(() => {
@@ -9,7 +9,7 @@ describe("Facets", () => {
     const facets = { makeKey: 312 }
     fetchMock.mockResponse(JSON.stringify({ facets }))
 
-    const fetched = await fetchFactets()
+    const fetched = await fetchFacets()
 
     expect(fetched).toEqual(facets)
     expect(fetch).toHaveBeenCalled()
