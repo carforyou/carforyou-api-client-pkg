@@ -7,7 +7,7 @@ import {
 } from "../base"
 
 import { Paginated } from "../types/pagination"
-import { Dealer, DealerSuggestion } from "../types/models"
+import { Dealer, DealerSuggestion, ActiveDealer } from "../types/models"
 import { DealerProfile } from "../types/models/dealerProfile"
 import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
@@ -54,4 +54,19 @@ export const putDealerProfile = async ({
       return handleValidationError(error, { swallowErrors: true })
     }
   })
+}
+
+export const fetchDealerActivity = async ({
+  dealerId,
+  query
+}: {
+  dealerId: number
+  query: string
+}): Promise<ActiveDealer> => {
+  return fetchPath(
+    Service.DEALER,
+    `dealers/${dealerId}/call-leads/activity?period=${
+      query ? encodeURIComponent(query) : query
+    }`
+  )
 }

@@ -90,6 +90,10 @@ export interface DealerSuggestion {
   nameSlug: string
 }
 
+export interface ActiveDealer {
+  active: boolean
+}
+
 export interface City {
   id: number
   zipCode: string
