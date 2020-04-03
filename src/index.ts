@@ -37,6 +37,7 @@ export {
 } from "./types/models/listing"
 
 export { SearchType, Type } from "./types/models/type"
+export { Facets, Facet } from "./types/facets"
 export { DealerProfile } from "./types/models/dealerProfile"
 
 export { PaginationParams } from "./types/params"
@@ -134,6 +135,7 @@ export {
 } from "./services/search/listingSearch"
 export { fetchCity, fetchCitySuggestions } from "./services/search/city"
 export { fetchRegions } from "./services/search/regions"
+export { fetchFacets } from "./services/search/facets"
 
 export {
   fetchMakes,

@@ -112,6 +112,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchListingCount`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/countUsingPOST)
   - [`fetchListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/searchUsingPOST)
   - [`fetchMoneybackListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/findAllMbgListingsUsingGET)
+  - [`fetchFacets`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/getFacetsUsingPOST)
 
 * [Needs Assessment](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Needs_Assessment)
   - [`fetchNeedsAssesmentListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Needs%20Assessment/searchUsingPOST_1)

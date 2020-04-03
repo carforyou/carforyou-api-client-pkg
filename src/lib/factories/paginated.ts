@@ -1,13 +1,12 @@
 import { Paginated } from "../../types/pagination"
 import { WithFieldStats } from "../../types/fieldStats"
-import { WithFacets } from "../../types/facets"
 import { WithTopListing } from "../../types/topListing"
 import { SearchListing } from "./listing"
 
 export default function<T>(
   content: T[],
   options = {}
-): WithTopListing<WithFacets<WithFieldStats<Paginated<T>>>> {
+): WithTopListing<WithFieldStats<Paginated<T>>> {
   const { currentPage, totalPages } = {
     currentPage: 0,
     totalPages: 1,
@@ -17,7 +16,6 @@ export default function<T>(
 
   return {
     content,
-    facets: {},
     fieldsStats: { price: { min: 80, max: 1500000, p25: 14900, p75: 39943 } },
     pagination: {
       number: currentPage,
