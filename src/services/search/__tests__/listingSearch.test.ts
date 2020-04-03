@@ -46,8 +46,7 @@ describe("SEARCH service", () => {
           expect.stringContaining("/listings/count"),
           expect.objectContaining({
             body: JSON.stringify({
-              query: { bodyType, priceTo },
-              includeFacets: true
+              query: { bodyType, priceTo }
             })
           })
         )
@@ -64,8 +63,7 @@ describe("SEARCH service", () => {
                 makeKey,
                 modelKey,
                 priceTo
-              },
-              includeFacets: true
+              }
             })
           })
         )
@@ -74,13 +72,9 @@ describe("SEARCH service", () => {
   })
 
   describe("#fetchListings", () => {
-    const {
-      content,
-      pagination,
-      facets,
-      fieldsStats,
-      topListing
-    } = PaginatedFactory([SearchListing({ id: 1 })])
+    const { content, pagination, fieldsStats, topListing } = PaginatedFactory([
+      SearchListing({ id: 1 })
+    ])
 
     beforeEach(() => {
       fetchMock.mockResponse(
@@ -89,7 +83,6 @@ describe("SEARCH service", () => {
             ...listing,
             firstRegistrationDate: encodeDate(listing.firstRegistrationDate)
           })),
-          facets,
           ...pagination,
           fieldsStats,
           ...(topListing && {
@@ -131,15 +124,6 @@ describe("SEARCH service", () => {
       })
     })
 
-    describe("Facets", () => {
-      it("are unwraped from json", async () => {
-        const paginatedListings = await fetchListings()
-
-        expect(paginatedListings.facets).toEqual(facets)
-        expect(fetch).toHaveBeenCalled()
-      })
-    })
-
     describe("TopListing", () => {
       it("fetch", async () => {
         const paginatedListings = await fetchListings()
@@ -150,7 +134,7 @@ describe("SEARCH service", () => {
   })
 
   describe("#fetchNeedsAssesmentListings", () => {
-    const { content, pagination, facets, fieldsStats } = PaginatedFactory([
+    const { content, pagination, fieldsStats } = PaginatedFactory([
       SearchListing({ id: 1 })
     ])
 
@@ -161,7 +145,6 @@ describe("SEARCH service", () => {
             ...listing,
             firstRegistrationDate: encodeDate(listing.firstRegistrationDate)
           })),
-          facets,
           ...pagination,
           fieldsStats
         })
@@ -179,7 +162,7 @@ describe("SEARCH service", () => {
   })
 
   describe("#fetchMoneybackListings", () => {
-    const { content, pagination, facets, fieldsStats } = PaginatedFactory([
+    const { content, pagination, fieldsStats } = PaginatedFactory([
       SearchListing({ id: 1 })
     ])
 
@@ -190,7 +173,6 @@ describe("SEARCH service", () => {
             ...listing,
             firstRegistrationDate: encodeDate(listing.firstRegistrationDate)
           })),
-          facets,
           ...pagination,
           fieldsStats
         })
