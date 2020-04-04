@@ -24,6 +24,7 @@ export {
 export {
   LifecycleState,
   SearchListing,
+  SearchListingDealer,
   ListingBasicData,
   ListingEnergyData,
   ListingDriveData,

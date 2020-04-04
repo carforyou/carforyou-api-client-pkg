@@ -123,6 +123,19 @@ type ListingPublishingStatus =
   | "pending"
   | "invalid"
 
+export interface SearchListingDealer {
+  id: number
+  name: string
+  phone: string
+  email: string
+  address: string
+  city: string
+  zipCode: string
+  location: Location
+  country: string
+  regionFull: string
+  region: string
+}
 export interface SearchListing {
   id: number
   bodyType: string
@@ -148,19 +161,7 @@ export interface SearchListing {
   consumptionCombined: number
   doors: number
   seats: number
-  dealer: {
-    id: number
-    name: string
-    phone: string
-    email: string
-    address: string
-    city: string
-    zipCode: string
-    location: Location
-    country: string
-    regionFull: string
-    region: string
-  }
+  dealer: SearchListingDealer
   images: ListingImage[]
   gbdScore: string
   createdDate: string
