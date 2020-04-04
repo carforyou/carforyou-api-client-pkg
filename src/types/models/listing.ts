@@ -114,7 +114,7 @@ export interface Listing
   wheelbase: number
 }
 
-type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI"
+type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
 
 type ListingPublishingStatus =
   | "unpublished"

@@ -259,7 +259,7 @@ export const archiveDealerListing = async ({
         {}
       )
     } catch (error) {
-      handleValidationError(error)
+      return handleValidationError(error)
     }
 
     return {
@@ -284,7 +284,7 @@ export const unpublishDealerListing = async ({
         {}
       )
     } catch (error) {
-      handleValidationError(error)
+      return handleValidationError(error)
     }
 
     return {

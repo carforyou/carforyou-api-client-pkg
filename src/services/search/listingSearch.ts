@@ -1,6 +1,5 @@
 import { fetchPath, postData, Service } from "../../base"
 
-import { WithFacets, Facets } from "../../types/facets"
 import { Paginated } from "../../types/pagination"
 import { WithFieldStats, FieldsStats } from "../../types/fieldStats"
 import {
@@ -18,21 +17,18 @@ import toQueryString from "../../lib/toQueryString"
 export const fetchListingCount = async (
   query: ListingSearchParams = {},
   options = {}
-): Promise<{ count: number; facets?: Facets; fieldsStats?: FieldsStats }> => {
-  const { includeFacets, fieldsStats } = {
-    includeFacets: true,
+): Promise<{ count: number; fieldsStats?: FieldsStats }> => {
+  const { fieldsStats } = {
     fieldsStats: [],
     ...options
   }
   const json = await postData(Service.SEARCH, "listings/count", {
     query,
-    includeFacets,
     ...(fieldsStats.length > 0 ? { includeFieldsStats: fieldsStats } : {})
   })
 
   return {
     count: json.count,
-    ...(includeFacets ? { facets: json.facets } : {}),
     ...(fieldsStats.length > 0 ? { fieldsStats: json.fieldsStats } : {})
   }
 }
@@ -51,7 +47,6 @@ const searchForListings = (
   path,
   query: ListingQueryParams = {},
   options: {
-    includeFacets?: boolean
     includeFieldsStats?: string[]
     includeTopListing?: boolean
   } = {}
@@ -73,7 +68,6 @@ const searchForListings = (
         type: sortType || defaultSort.sortType
       }
     ],
-    ...(options.includeFacets ? { includeFacets: true } : {}),
     ...(options.includeFieldsStats && options.includeFieldsStats.length > 0
       ? { includeFieldsStats: options.includeFieldsStats }
       : {}),
@@ -105,9 +99,7 @@ function sanitizeListingResponse<
 export const fetchListings = async (
   query: ListingQueryParams = {},
   options = {}
-): Promise<WithFacets<
-  WithFieldStats<WithTopListing<Paginated<SearchListing>>>
->> => {
+): Promise<WithFieldStats<WithTopListing<Paginated<SearchListing>>>> => {
   const response = await searchForListings("listings/search", query, options)
 
   return sanitizeListingResponse(response)
@@ -116,7 +108,7 @@ export const fetchListings = async (
 export const fetchNeedsAssesmentListings = async (
   query: ListingQueryParams = {},
   options = {}
-): Promise<WithFacets<WithFieldStats<Paginated<SearchListing>>>> => {
+): Promise<WithFieldStats<Paginated<SearchListing>>> => {
   const response = await searchForListings(
     "listings/needs-assessment/search",
     query,
