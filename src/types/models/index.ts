@@ -53,6 +53,7 @@ export interface Dealer {
   city?: string
   location?: Location
   website?: string
+  whatsAppNumber?: string
   openingHours?: OpeningHours[]
 }
 
