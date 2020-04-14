@@ -16,7 +16,7 @@ commands:
 
 docker: &DOCKER_NODE
   docker:
-    - image: circleci/node:10.19
+    - image: circleci/node:10.20
 
 jobs:
   install:
