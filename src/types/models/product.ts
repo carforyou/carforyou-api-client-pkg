@@ -1,7 +1,9 @@
 export interface Product {
   id: number
   price: number
-  productKey: string
+  standardPrice: number
+  validity?: number
+  feature: string
 }
 
 export interface PurchaseAndUseProduct {
