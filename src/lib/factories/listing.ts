@@ -108,7 +108,8 @@ const defaults: ListingType = {
   enabledFeatures: [
     {
       feature: "premium-listing",
-      endDate: "2015-10-10"
+      endDate: "2015-10-10",
+      startDate: "2015-09-09"
     }
   ]
 }
