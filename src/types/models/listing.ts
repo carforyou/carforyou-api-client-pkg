@@ -135,6 +135,7 @@ export interface SearchListingDealer {
   country: string
   regionFull: string
   region: string
+  dealerSource: string
 }
 export interface SearchListing {
   id: number
