@@ -69,6 +69,12 @@ export interface ListingExtrasData {
   racingCar: boolean
 }
 
+interface Feature {
+  feature: string
+  endDate: string
+  startDate: string
+}
+
 export interface Listing
   extends ListingBasicData,
     ListingEnergyData,
@@ -83,7 +89,6 @@ export interface Listing
   consumptionCombined: number
   consumptionStandard: string
   createdDate: string
-  topListedEndDate: string
   deactivationDate: string
   dealerId: number
   equipmentPackage: string
@@ -104,7 +109,6 @@ export interface Listing
   source: ListingSource
   spin360Code: string
   type: string
-  topListed: boolean
   vehicleClass: string
   warrantyDuration: number
   warrantyName: string
@@ -112,6 +116,7 @@ export interface Listing
   warrantyType: string
   weightTotal: number
   wheelbase: number
+  enabledFeatures: Feature[]
 }
 
 type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
@@ -171,8 +176,7 @@ export interface SearchListing {
   active: boolean
   publishingDate: string
   externalListingId: string
-  topListedEndDate: string
-  topListed: boolean
+  enabledFeatures: Feature[]
 }
 
 export interface DetailListing extends Listing {

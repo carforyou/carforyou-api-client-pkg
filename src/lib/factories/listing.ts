@@ -93,8 +93,6 @@ const defaults: ListingType = {
   source: "MANUAL",
   publishingStatus: "published",
   publishingDate: "2015-10-10",
-  topListedEndDate: "2015-10-10",
-  topListed: true,
   typeId: 134,
   frameNumber: "123456",
   serialNumber: "123456",
@@ -106,7 +104,14 @@ const defaults: ListingType = {
   hasDogGrid: false,
   handicappedAccessible: false,
   tuned: false,
-  racingCar: false
+  racingCar: false,
+  enabledFeatures: [
+    {
+      feature: "premium-listing",
+      endDate: "2015-10-10",
+      startDate: "2015-09-09"
+    }
+  ]
 }
 
 export function Listing(attributes = {}): ListingType {
@@ -250,8 +255,6 @@ export function EmptyListing(): ListingType {
     range: undefined,
     source: undefined,
     spin360Code: undefined,
-    topListed: undefined,
-    topListedEndDate: undefined,
     type: undefined,
     vehicleClass: undefined,
     warrantyDuration: undefined,
@@ -259,7 +262,8 @@ export function EmptyListing(): ListingType {
     warrantyStartDate: undefined,
     warrantyType: undefined,
     weightTotal: undefined,
-    wheelbase: undefined
+    wheelbase: undefined,
+    enabledFeatures: []
   }
 }
 
