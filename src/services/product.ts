@@ -1,5 +1,6 @@
-import { fetchPath, Service, postData } from "../base"
+import { fetchPath, Service, postData, handleValidationError } from "../base"
 
+import { WithValidationError } from "../types/withValidationError"
 import { Product, PurchaseAndUseProduct } from "../types/models/product"
 
 import { withTokenRefresh } from "../tokenRefresh"
@@ -12,14 +13,22 @@ export const purchaseAndUseProduct = async (
   dealerId: number,
   listingId: number,
   productId: number
-): Promise<PurchaseAndUseProduct> => {
+): Promise<WithValidationError<PurchaseAndUseProduct>> => {
   return withTokenRefresh(async () => {
-    return postData(
-      Service.DEALER,
-      `dealers/${dealerId}/listings/${listingId}/products/purchase-and-use`,
-      {
-        productId
+    try {
+      const result = postData(
+        Service.DEALER,
+        `dealers/${dealerId}/listings/${listingId}/products/purchase-and-use`,
+        {
+          productId
+        }
+      )
+      return {
+        tag: "success",
+        result
       }
-    )
+    } catch (error) {
+      return handleValidationError(error)
+    }
   })
 }
