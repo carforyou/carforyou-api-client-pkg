@@ -72,6 +72,7 @@ export interface ListingExtrasData {
 interface Feature {
   feature: string
   endDate: string
+  startDate: string
 }
 
 export interface Listing
