@@ -153,7 +153,7 @@ export function SearchListing(attributes = {}): SearchListingType {
       city: "Zurich",
       address: "Bahnhof Strasse 123",
       zipCode: "8001",
-      dealerSource: "SELF_REGISTRATION",
+      dealerSource: "SALESFORCE",
       location: {
         country: "Switzerland",
         lat: 47.3742951,
