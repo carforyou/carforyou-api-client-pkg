@@ -9,7 +9,11 @@ export const sendMessageLead = async (
   options = {}
 ): Promise<WithValidationError<MessageLead>> => {
   const {
-    videoCallPreference: { available, services = [], otherService },
+    videoCallPreference: {
+      available = false,
+      services = [],
+      otherService = null
+    },
     ...messageLeadBase
   } = { ...{ videoCallPreference: {} }, ...messageLead }
   const { validateOnly, recaptchaToken } = {
