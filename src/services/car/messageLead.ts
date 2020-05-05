@@ -8,6 +8,10 @@ export const sendMessageLead = async (
   messageLead: MessageLead,
   options = {}
 ): Promise<WithValidationError<MessageLead>> => {
+  const {
+    videoCallPreference: { available, services = [], otherService },
+    ...messageLeadBase
+  } = messageLead
   const { validateOnly, recaptchaToken } = {
     validateOnly: false,
     recaptchaToken: null,
@@ -21,7 +25,13 @@ export const sendMessageLead = async (
     await postData(
       Service.CAR,
       path,
-      messageLead,
+      {
+        ...messageLeadBase,
+        videoCallPreference: {
+          available,
+          services: [...services, otherService].filter(Boolean)
+        }
+      },
       recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
     )
 

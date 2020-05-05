@@ -110,6 +110,11 @@ export interface MessageLead {
   message?: string
   name?: string
   phone?: string
+  videoCallPreference: {
+    available?: boolean
+    services?: string[]
+    otherService?: string
+  }
 }
 
 export interface MoneybackApplication {
