@@ -11,7 +11,7 @@ export const sendMessageLead = async (
   const {
     videoCallPreference: { available, services = [], otherService },
     ...messageLeadBase
-  } = messageLead
+  } = { ...{ videoCallPreference: {} }, ...messageLead }
   const { validateOnly, recaptchaToken } = {
     validateOnly: false,
     recaptchaToken: null,

@@ -110,7 +110,7 @@ export interface MessageLead {
   message?: string
   name?: string
   phone?: string
-  videoCallPreference: {
+  videoCallPreference?: {
     available?: boolean
     services?: string[]
     otherService?: string
