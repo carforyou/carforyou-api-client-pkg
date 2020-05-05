@@ -11,7 +11,12 @@ describe("Car API", () => {
         name: "Test",
         phone: "+41781234567",
         email: "test@test.com",
-        message: "This is a message of a interested customer"
+        message: "This is a message of a interested customer",
+        videoCallPreference: {
+          available: true,
+          services: [],
+          otherService: "some other cool video provider"
+        }
       }
 
       beforeEach(() => {
@@ -79,7 +84,12 @@ describe("Car API", () => {
         name: "Test",
         phone: "+41781234567",
         email: "test@test",
-        message: "This is a message of a interested customer"
+        message: "This is a message of a interested customer",
+        videoCallPreference: {
+          available: true,
+          services: [],
+          otherService: "some other cool video provider"
+        }
       }
 
       beforeEach(() => {
@@ -107,7 +117,12 @@ describe("Car API", () => {
         name: "Test",
         phone: "+41781234567",
         email: "test@test",
-        message: "This is a message of a interested customer"
+        message: "This is a message of a interested customer",
+        videoCallPreference: {
+          available: true,
+          services: [],
+          otherService: "some other cool video provider"
+        }
       }
 
       beforeEach(() => {
