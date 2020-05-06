@@ -177,6 +177,10 @@ export interface SearchListing {
   publishingDate: string
   externalListingId: string
   enabledFeatures: Feature[]
+  driveType: string
+  bodyColorGroup: string
+  conditionType: string
+  consumptionCategory: string
 }
 
 export interface DetailListing extends Listing {
