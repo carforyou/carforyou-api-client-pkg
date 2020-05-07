@@ -182,7 +182,3 @@ export interface SearchListing {
   conditionType: string
   consumptionCategory: string
 }
-
-export interface DetailListing extends Listing {
-  dealer: Dealer
-}

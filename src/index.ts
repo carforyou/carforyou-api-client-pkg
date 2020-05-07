@@ -33,8 +33,7 @@ export {
   ListingExtrasData,
   Listing,
   ListingImage,
-  DealerListingImages,
-  DetailListing
+  DealerListingImages
 } from "./types/models/listing"
 
 export { SearchType, Type } from "./types/models/type"
@@ -157,7 +156,6 @@ export { fetchProducts, purchaseAndUseProduct } from "./services/product"
 export {
   Listing as ListingFactory,
   SearchListing as SearchListingFactory,
-  DetailListing as DetailListingFactory,
   EmptyListing,
   ListingFromType
 } from "./lib/factories/listing"
