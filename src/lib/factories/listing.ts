@@ -1,10 +1,8 @@
 import {
   Listing as ListingType,
-  SearchListing as SearchListingType,
-  DetailListing as DetailListingType
+  SearchListing as SearchListingType
 } from "../../types/models/listing"
 import { Type } from "../../types/models/type"
-import { DealerSource } from "../../types/models/index"
 
 const defaults: ListingType = {
   id: 12,
@@ -116,32 +114,6 @@ const defaults: ListingType = {
 
 export function Listing(attributes = {}): ListingType {
   return { ...defaults, ...attributes }
-}
-
-export function DetailListing(attributes = {}): DetailListingType {
-  return {
-    ...defaults,
-    ...attributes,
-    dealer: {
-      active: true,
-      id: 1,
-      name: "emil frey",
-      nameSlug: "emil-frey",
-      phone: "231-342-32",
-      email: "dealera@autoricardo.ch",
-      city: "Zurich",
-      address: "Bahnhof Strasse 123",
-      zipCode: "8001",
-      dealerSource: DealerSource.SALESFORCE,
-      location: {
-        country: "Switzerland",
-        lat: 47.3742951,
-        lon: 8.5385763,
-        region: "ZH",
-        regionFull: "Zurich"
-      }
-    }
-  }
 }
 
 export function SearchListing(attributes = {}): SearchListingType {
