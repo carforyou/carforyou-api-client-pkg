@@ -5,22 +5,48 @@ describe("Car API", () => {
     fetchMock.resetMocks()
   })
 
-  describe("#messageLead", () => {
-    describe("valid parematers", () => {
-      const messageLead = {
-        name: "Test",
-        phone: "+41781234567",
-        email: "test@test.com",
-        message: "This is a message of a interested customer"
-      }
+  const messageLead = (attributes = {}) => ({
+    name: "Test",
+    phone: "+41781234567",
+    email: "test@test.com",
+    message: "This is a message of a interested customer",
+    videoCallPreference: {
+      available: true,
+      services: [],
+      otherService: "some other cool video provider"
+    },
+    ...attributes
+  })
 
+  describe("#messageLead", () => {
+    it("merges otherService into services in videoCallPreference", async () => {
+      await sendMessageLead(12345, messageLead())
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          body: JSON.stringify({
+            name: "Test",
+            phone: "+41781234567",
+            email: "test@test.com",
+            message: "This is a message of a interested customer",
+            videoCallPreference: {
+              available: true,
+              services: ["some other cool video provider"]
+            }
+          })
+        })
+      )
+    })
+
+    describe("valid parematers", () => {
       beforeEach(() => {
         fetchMock.mockResponse("")
       })
 
       describe("validate only", () => {
         it("calls validation endpoint", async () => {
-          await sendMessageLead(12345, messageLead, {
+          await sendMessageLead(12345, messageLead(), {
             validateOnly: true
           })
 
@@ -33,17 +59,17 @@ describe("Car API", () => {
         })
 
         it("returns a success", async () => {
-          const result = await sendMessageLead(12345, messageLead, {
+          const result = await sendMessageLead(12345, messageLead(), {
             validateOnly: true
           })
 
-          expect(result).toEqual({ tag: "success", result: messageLead })
+          expect(result).toEqual({ tag: "success", result: messageLead() })
         })
       })
 
       describe("submit", () => {
         it("calls submission endpoint", async () => {
-          await sendMessageLead(12345, messageLead)
+          await sendMessageLead(12345, messageLead())
 
           expect(fetch).toHaveBeenCalledWith(
             expect.stringMatching(/\/listings\/12345\/message-leads$/),
@@ -52,7 +78,7 @@ describe("Car API", () => {
         })
 
         it("sends recaptcha token in a header", async () => {
-          await sendMessageLead(12345, messageLead, {
+          await sendMessageLead(12345, messageLead(), {
             recaptchaToken: "token"
           })
 
@@ -66,21 +92,15 @@ describe("Car API", () => {
         })
 
         it("returns a success", async () => {
-          const result = await sendMessageLead(12345, messageLead)
+          const result = await sendMessageLead(12345, messageLead())
 
-          expect(result).toEqual({ tag: "success", result: messageLead })
+          expect(result).toEqual({ tag: "success", result: messageLead() })
         })
       })
     })
 
     describe("invalid parameters", () => {
       const errors = [{ param: "email", error: "validations.invalid-format" }]
-      const messageLead = {
-        name: "Test",
-        phone: "+41781234567",
-        email: "test@test",
-        message: "This is a message of a interested customer"
-      }
 
       beforeEach(() => {
         fetchMock.mockResponse(
@@ -92,7 +112,10 @@ describe("Car API", () => {
       })
 
       it("returns a failure", async () => {
-        const result = await sendMessageLead(12345, messageLead)
+        const result = await sendMessageLead(
+          12345,
+          messageLead({ email: "test@test" })
+        )
 
         expect(result.tag).toEqual("error")
         if (result.tag === "error") {
@@ -103,13 +126,6 @@ describe("Car API", () => {
     })
 
     describe("other error", () => {
-      const messageLead = {
-        name: "Test",
-        phone: "+41781234567",
-        email: "test@test",
-        message: "This is a message of a interested customer"
-      }
-
       beforeEach(() => {
         fetchMock.mockResponse("", {
           status: 500
@@ -117,7 +133,7 @@ describe("Car API", () => {
       })
 
       it("returns a failure", async () => {
-        const result = await sendMessageLead(12345, messageLead)
+        const result = await sendMessageLead(12345, messageLead())
 
         expect(result.tag).toEqual("error")
         if (result.tag === "error") {
