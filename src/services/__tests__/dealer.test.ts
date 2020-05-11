@@ -1,7 +1,7 @@
 import {
   fetchDealerSuggestions,
   fetchDealerProfile,
-  putDealerProfile
+  putDealerProfile,
 } from "../dealer"
 import { ResponseError } from "../../responseError"
 import { DealerSource } from "../../types/models/index"
@@ -29,7 +29,7 @@ describe("Dealer", () => {
       dealerSource: DealerSource.SALESFORCE,
       id: dealerIdMock,
       phone: "12-13-65",
-      zipCode: "345"
+      zipCode: "345",
     }
 
     describe("#fetchDealerProfile", () => {
@@ -50,7 +50,7 @@ describe("Dealer", () => {
 
         const profileResponse = await putDealerProfile({
           dealerId: dealerIdMock,
-          profile: profileMock
+          profile: profileMock,
         })
 
         expect(profileResponse.tag).toBe("success")
@@ -59,13 +59,13 @@ describe("Dealer", () => {
       it("fails to put data to the api", async () => {
         fetchMock.mockResponse(() => {
           throw new ResponseError({
-            status: 500
+            status: 500,
           })
         })
 
         const profileResponse = await putDealerProfile({
           dealerId: dealerIdMock,
-          profile: profileMock
+          profile: profileMock,
         })
 
         expect(profileResponse.tag).toBe("error")

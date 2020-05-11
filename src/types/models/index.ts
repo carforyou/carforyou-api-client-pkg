@@ -29,7 +29,7 @@ export interface OpeningHours {
 export enum DealerSource {
   SALESFORCE = "SALESFORCE",
   TUTTI = "TUTTI",
-  PRIVATE = "SELF_REGISTRATION"
+  PRIVATE = "SELF_REGISTRATION",
 }
 
 export interface Location {

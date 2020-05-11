@@ -18,7 +18,7 @@ describe("apiClient", () => {
       beforeEach(() => {
         apiClient.setHandlers({
           onFailedTokenRefresh: mockRefreshFailure,
-          onAccessTokenUpdate: mockRefresh
+          onAccessTokenUpdate: mockRefresh,
         })
 
         apiCall.mockImplementationOnce(() => {
@@ -31,7 +31,7 @@ describe("apiClient", () => {
           fetchMock.mockResponseOnce(
             JSON.stringify({
               refresh_token: "new refresh",
-              access_token: "new access"
+              access_token: "new access",
             })
           )
         })
@@ -60,7 +60,7 @@ describe("apiClient", () => {
       describe("and a failed refresh", () => {
         beforeEach(() => {
           fetchMock.mockResponseOnce(JSON.stringify({ ok: false }), {
-            status: 400
+            status: 400,
           })
         })
 

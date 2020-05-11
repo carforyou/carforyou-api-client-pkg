@@ -10,7 +10,7 @@ export const sendSavedSearch = async (
 ): Promise<WithValidationError<SavedSearch>> => {
   const { recaptchaToken } = {
     recaptchaToken: null,
-    ...options
+    ...options,
   }
   const { searchQuery, ...rest } = data
 
@@ -24,7 +24,7 @@ export const sendSavedSearch = async (
 
     return {
       tag: "success",
-      result: data
+      result: data,
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })
@@ -38,7 +38,7 @@ export const deleteSavedSearch = async (
     await deletePath(Service.USER_NOTIFICATION, `saved-searches/key/${key}`)
     return {
       tag: "success",
-      result: {}
+      result: {},
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })

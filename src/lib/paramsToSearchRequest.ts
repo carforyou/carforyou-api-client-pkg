@@ -1,7 +1,7 @@
 import {
   ListingQueryParams,
   ListingFilterParams,
-  LocationFilter
+  LocationFilter,
 } from "../types/params/listings"
 
 const paramsToSearchRequest = (

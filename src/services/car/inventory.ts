@@ -3,7 +3,7 @@ import {
   Service,
   postData,
   putData,
-  handleValidationError
+  handleValidationError,
 } from "../../base"
 import { withTokenRefresh } from "../../tokenRefresh"
 
@@ -11,7 +11,7 @@ import { Paginated } from "../../types/pagination"
 import { WithValidationError } from "../../types/withValidationError"
 import {
   DealerListingSortOrderParams,
-  DealerListingSortTypeParams
+  DealerListingSortTypeParams,
 } from "../../types/sort"
 import { Listing } from "../../types/models/listing"
 import { DealerListingQueryParams } from "../../types/params/listings"
@@ -27,7 +27,7 @@ const sanitizeListing = (json): Listing => {
     firstRegistrationDate: decodeDate(firstRegistrationDate),
     lastInspectionDate: decodeDate(lastInspectionDate),
     additionalOptions: [],
-    standardOptions: []
+    standardOptions: [],
   }
 }
 
@@ -60,12 +60,12 @@ export const fetchDealerListingsCount = async (
 
 export const defaultPagination = {
   page: 0,
-  size: 25
+  size: 25,
 }
 
 export const defaultSort = {
   sortOrder: DealerListingSortOrderParams.DESC,
-  sortType: DealerListingSortTypeParams.CREATED_DATE
+  sortType: DealerListingSortTypeParams.CREATED_DATE,
 }
 
 export const fetchDealerListings = async (
@@ -81,14 +81,14 @@ export const fetchDealerListings = async (
 
   const sortOrDefault = {
     sortType: sortType || defaultSort.sortType,
-    sortOrder: sortOrder || defaultSort.sortOrder
+    sortOrder: sortOrder || defaultSort.sortOrder,
   }
 
   const queryParams = {
     page: pageOrDefault,
     size: sizeOrDefault,
     sort: `${sortOrDefault.sortType},${sortOrDefault.sortOrder}`,
-    ...rest
+    ...rest,
   }
 
   const { content, ...response } = await withTokenRefresh(() =>
@@ -104,13 +104,13 @@ export const fetchDealerListings = async (
 
   return {
     ...response,
-    content: content.map(sanitizeListing)
+    content: content.map(sanitizeListing),
   }
 }
 
 export const fetchDealerListing = async ({
   dealerId,
-  listingId
+  listingId,
 }: {
   dealerId: number
   listingId: number
@@ -122,19 +122,19 @@ export const fetchDealerListing = async ({
   return sanitizeListing(listing)
 }
 
-export const prepareListingData = listing => {
+export const prepareListingData = (listing) => {
   const { id, firstRegistrationDate, lastInspectionDate, ...rest } = listing
 
   return {
     ...rest,
     firstRegistrationDate: encodeDate(firstRegistrationDate),
-    lastInspectionDate: encodeDate(lastInspectionDate)
+    lastInspectionDate: encodeDate(lastInspectionDate),
   }
 }
 
 export enum ListingValidationEndpoint {
   draft = "draft",
-  publish = "publish"
+  publish = "publish",
 }
 
 const validationPathForListing = (dealerId, listing, validationEndpoint) => {
@@ -156,7 +156,7 @@ const validationPathForListing = (dealerId, listing, validationEndpoint) => {
 export const validateDealerListing = async ({
   dealerId,
   listing,
-  validationEndpoint
+  validationEndpoint,
 }: {
   dealerId: number
   listing: Listing
@@ -177,14 +177,14 @@ export const validateDealerListing = async ({
 
     return {
       tag: "success",
-      result: listing
+      result: listing,
     }
   })
 }
 
 export const saveDealerListing = async ({
   dealerId,
-  listing
+  listing,
 }: {
   dealerId: number
   listing: Listing
@@ -209,7 +209,7 @@ export const saveDealerListing = async ({
 
       return {
         tag: "success",
-        result: { ...listing, ...result }
+        result: { ...listing, ...result },
       }
     } catch (error) {
       return handleValidationError(error)
@@ -219,7 +219,7 @@ export const saveDealerListing = async ({
 
 export const publishDealerListing = async ({
   dealerId,
-  listing
+  listing,
 }: {
   dealerId: number
   listing: Listing
@@ -239,14 +239,14 @@ export const publishDealerListing = async ({
 
     return {
       tag: "success",
-      result: listing
+      result: listing,
     }
   })
 }
 
 export const archiveDealerListing = async ({
   dealerId,
-  id
+  id,
 }: {
   dealerId: number
   id: number
@@ -264,14 +264,14 @@ export const archiveDealerListing = async ({
 
     return {
       tag: "success",
-      result: {}
+      result: {},
     }
   })
 }
 
 export const unpublishDealerListing = async ({
   id,
-  dealerId
+  dealerId,
 }: {
   id: number
   dealerId: number
@@ -289,7 +289,7 @@ export const unpublishDealerListing = async ({
 
     return {
       tag: "success",
-      result: {}
+      result: {},
     }
   })
 }
@@ -303,6 +303,6 @@ export const listingMandatoryFields = async (
       `dealers/${dealerId}/listings/publish/mandatory-fields`
     )
 
-    return new Set(data.map(entry => entry.param))
+    return new Set(data.map((entry) => entry.param))
   })
 }

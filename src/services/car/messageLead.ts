@@ -12,14 +12,14 @@ export const sendMessageLead = async (
     videoCallPreference: {
       available = false,
       services = [],
-      otherService = null
+      otherService = null,
     },
     ...messageLeadBase
   } = { ...{ videoCallPreference: {} }, ...messageLead }
   const { validateOnly, recaptchaToken } = {
     validateOnly: false,
     recaptchaToken: null,
-    ...options
+    ...options,
   }
   const path = `listings/${listingId}/message-leads${
     validateOnly ? "/validate" : ""
@@ -33,15 +33,15 @@ export const sendMessageLead = async (
         ...messageLeadBase,
         videoCallPreference: {
           available,
-          services: [...services, otherService].filter(Boolean)
-        }
+          services: [...services, otherService].filter(Boolean),
+        },
       },
       recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
     )
 
     return {
       tag: "success",
-      result: messageLead
+      result: messageLead,
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })

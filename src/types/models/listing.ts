@@ -2,7 +2,7 @@ import { Dealer, Location, Date } from "./index"
 import {
   BasicListingTypeCommons,
   EnergyListingTypeCommons,
-  DriveListingTypeCommons
+  DriveListingTypeCommons,
 } from "./commons"
 
 export interface ListingImage {

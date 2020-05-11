@@ -20,12 +20,12 @@ export const purchaseAndUseProduct = async (
         Service.DEALER,
         `dealers/${dealerId}/listings/${listingId}/products/purchase-and-use`,
         {
-          productId
+          productId,
         }
       )
       return {
         tag: "success",
-        result
+        result,
       }
     } catch (error) {
       return handleValidationError(error)

@@ -10,7 +10,7 @@ export const fetchAnalyticsData = async (
     Service.ANALYTICS,
     `analytics/dealers/${dealerId}/listings/metrics`,
     {
-      id: listingIds
+      id: listingIds,
     }
   )
 }

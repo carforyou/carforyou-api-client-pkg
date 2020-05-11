@@ -13,9 +13,9 @@ describe("Car API", () => {
     videoCallPreference: {
       available: true,
       services: [],
-      otherService: "some other cool video provider"
+      otherService: "some other cool video provider",
     },
-    ...attributes
+    ...attributes,
   })
 
   describe("#messageLead", () => {
@@ -32,9 +32,9 @@ describe("Car API", () => {
             message: "This is a message of a interested customer",
             videoCallPreference: {
               available: true,
-              services: ["some other cool video provider"]
-            }
-          })
+              services: ["some other cool video provider"],
+            },
+          }),
         })
       )
     })
@@ -47,7 +47,7 @@ describe("Car API", () => {
       describe("validate only", () => {
         it("calls validation endpoint", async () => {
           await sendMessageLead(12345, messageLead(), {
-            validateOnly: true
+            validateOnly: true,
           })
 
           expect(fetch).toHaveBeenCalledWith(
@@ -60,7 +60,7 @@ describe("Car API", () => {
 
         it("returns a success", async () => {
           const result = await sendMessageLead(12345, messageLead(), {
-            validateOnly: true
+            validateOnly: true,
           })
 
           expect(result).toEqual({ tag: "success", result: messageLead() })
@@ -79,15 +79,15 @@ describe("Car API", () => {
 
         it("sends recaptcha token in a header", async () => {
           await sendMessageLead(12345, messageLead(), {
-            recaptchaToken: "token"
+            recaptchaToken: "token",
           })
 
           expect(fetch).toHaveBeenCalledWith(expect.any(String), {
             headers: expect.objectContaining({
-              "Recaptcha-Token": "token"
+              "Recaptcha-Token": "token",
             }),
             body: expect.any(String),
-            method: "POST"
+            method: "POST",
           })
         })
 
@@ -106,7 +106,7 @@ describe("Car API", () => {
         fetchMock.mockResponse(
           JSON.stringify({ errors, message: "validations.not-valid" }),
           {
-            status: 400
+            status: 400,
           }
         )
       })
@@ -128,7 +128,7 @@ describe("Car API", () => {
     describe("other error", () => {
       beforeEach(() => {
         fetchMock.mockResponse("", {
-          status: 500
+          status: 500,
         })
       })
 

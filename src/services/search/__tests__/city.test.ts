@@ -22,7 +22,7 @@ describe("SEARCH service", () => {
     const cities = [
       { id: 1, name: "Zurich", zipCode: "8008" },
       { id: 2, name: "Basel", zipCode: "8009" },
-      { id: 4, name: "Luzern", zipCode: "8002" }
+      { id: 4, name: "Luzern", zipCode: "8002" },
     ]
 
     beforeEach(() => {

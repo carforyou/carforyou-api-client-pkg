@@ -4,12 +4,12 @@ import {
   validateDealerListing,
   ListingValidationEndpoint,
   prepareListingData,
-  saveDealerListing
+  saveDealerListing,
 } from "../inventory"
 
 import {
   DealerListingSortTypeParams,
-  DealerListingSortOrderParams
+  DealerListingSortOrderParams,
 } from "../../../types/sort"
 
 import Paginated from "../../../lib/factories/paginated"
@@ -31,7 +31,7 @@ describe("CAR service", () => {
         JSON.stringify({
           ...listing,
           firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
-          lastInspectionDate: encodeDate(listing.lastInspectionDate)
+          lastInspectionDate: encodeDate(listing.lastInspectionDate),
         })
       )
     })
@@ -50,12 +50,12 @@ describe("CAR service", () => {
     beforeEach(() => {
       fetchMock.mockResponse(
         JSON.stringify({
-          content: content.map(listing => ({
+          content: content.map((listing) => ({
             ...listing,
             firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
-            lastInspectionDate: encodeDate(listing.lastInspectionDate)
+            lastInspectionDate: encodeDate(listing.lastInspectionDate),
           })),
-          ...pagination
+          ...pagination,
         })
       )
     })
@@ -93,7 +93,7 @@ describe("CAR service", () => {
 
         it("defaults `page` to 0 when not provided", async () => {
           await fetchDealerListings(dealerId, {
-            size: 10
+            size: 10,
           })
 
           expect(fetchMock).toHaveBeenCalledWith(
@@ -120,7 +120,7 @@ describe("CAR service", () => {
         it("can sort by creation date", async () => {
           await fetchDealerListings(dealerId, {
             sortType: DealerListingSortTypeParams.CREATED_DATE,
-            sortOrder: DealerListingSortOrderParams.ASC
+            sortOrder: DealerListingSortOrderParams.ASC,
           })
 
           expect(fetchMock).toHaveBeenCalledWith(
@@ -161,14 +161,14 @@ describe("CAR service", () => {
         await validateDealerListing({
           dealerId,
           listing,
-          validationEndpoint: ListingValidationEndpoint.draft
+          validationEndpoint: ListingValidationEndpoint.draft,
         })
 
         expect(fetchMock).toHaveBeenCalledWith(
           expect.stringMatching(`dealers/${dealerId}/listings/validate`),
           expect.objectContaining({
             body: JSON.stringify(prepareListingData(listing)),
-            method: "POST"
+            method: "POST",
           })
         )
       })
@@ -177,7 +177,7 @@ describe("CAR service", () => {
         await validateDealerListing({
           dealerId,
           listing,
-          validationEndpoint: ListingValidationEndpoint.publish
+          validationEndpoint: ListingValidationEndpoint.publish,
         })
 
         expect(fetchMock).toHaveBeenCalledWith(
@@ -186,7 +186,7 @@ describe("CAR service", () => {
           ),
           expect.objectContaining({
             body: JSON.stringify(prepareListingData(listing)),
-            method: "POST"
+            method: "POST",
           })
         )
       })
@@ -201,12 +201,12 @@ describe("CAR service", () => {
         const result = await validateDealerListing({
           dealerId,
           listing,
-          validationEndpoint: ListingValidationEndpoint.publish
+          validationEndpoint: ListingValidationEndpoint.publish,
         })
 
         expect(result).toEqual({
           tag: "success",
-          result: listing
+          result: listing,
         })
       })
     })
@@ -219,9 +219,9 @@ describe("CAR service", () => {
         fetchMock.mockResponses([
           JSON.stringify({
             message,
-            errors
+            errors,
           }),
-          { status: 400 }
+          { status: 400 },
         ])
       })
 
@@ -229,13 +229,13 @@ describe("CAR service", () => {
         const result = await validateDealerListing({
           dealerId,
           listing,
-          validationEndpoint: ListingValidationEndpoint.publish
+          validationEndpoint: ListingValidationEndpoint.publish,
         })
 
         expect(result).toEqual({
           tag: "error",
           message,
-          errors
+          errors,
         })
       })
     })
@@ -252,7 +252,7 @@ describe("CAR service", () => {
       it("posts", async () => {
         await saveDealerListing({
           dealerId: 1234,
-          listing
+          listing,
         })
 
         expect(fetchMock).toHaveBeenCalledWith(
@@ -264,12 +264,12 @@ describe("CAR service", () => {
       it("returns the listing", async () => {
         const result = await saveDealerListing({
           dealerId: 1234,
-          listing
+          listing,
         })
 
         expect(result).toEqual({
           tag: "success",
-          result: { ...listing, id: 123 }
+          result: { ...listing, id: 123 },
         })
       })
     })
@@ -284,7 +284,7 @@ describe("CAR service", () => {
       it("puts", async () => {
         await saveDealerListing({
           dealerId: 1234,
-          listing
+          listing,
         })
 
         expect(fetchMock).toHaveBeenCalledWith(
@@ -296,7 +296,7 @@ describe("CAR service", () => {
       it("returns the listing", async () => {
         const result = await saveDealerListing({
           dealerId: 1234,
-          listing
+          listing,
         })
 
         expect(result).toEqual({ tag: "success", result: listing })

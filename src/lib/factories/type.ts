@@ -1,6 +1,6 @@
 import {
   SearchType as SearchTypeType,
-  Type as TypeType
+  Type as TypeType,
 } from "../../types/models/type"
 
 const commonDefaults = {
@@ -10,7 +10,7 @@ const commonDefaults = {
   make: "Audi",
   model: "A3",
   fullName: "A3 1.8 T FSI Ambiente",
-  bodyType: "saloon"
+  bodyType: "saloon",
 }
 
 const overviewDefaults: SearchTypeType = {
@@ -20,12 +20,12 @@ const overviewDefaults: SearchTypeType = {
   fuelType: "petrol",
   driveType: "front",
   productionStartDate: "2006-10-01",
-  productionEndDate: "2018-06-30"
+  productionEndDate: "2018-06-30",
 }
 
 export const SearchType = (attributes = {}): SearchTypeType => ({
   ...overviewDefaults,
-  ...attributes
+  ...attributes,
 })
 
 const detailsDefaults: TypeType = {
@@ -50,10 +50,10 @@ const detailsDefaults: TypeType = {
   payload: 1970,
   towingCapacity: 1500,
   productionStartDate: "2011-01-01",
-  productionEndDate: "2019-01-01"
+  productionEndDate: "2019-01-01",
 }
 
 export const Type = (attributes = {}): TypeType => ({
   ...detailsDefaults,
-  ...attributes
+  ...attributes,
 })

@@ -12,11 +12,11 @@ describe("Dealer listing images", () => {
         {
           id: 555,
           externalUrl: "http://carforyou.ch",
-          s3Key: "s3key"
-        }
+          s3Key: "s3key",
+        },
       ],
       listingId,
-      spinCode: "111"
+      spinCode: "111",
     }
 
     beforeEach(() => {

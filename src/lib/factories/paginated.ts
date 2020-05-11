@@ -3,14 +3,14 @@ import { WithFieldStats } from "../../types/fieldStats"
 import { WithTopListing } from "../../types/topListing"
 import { SearchListing } from "./listing"
 
-export default function<T>(
+export default function <T>(
   content: T[],
   options = {}
 ): WithTopListing<WithFieldStats<Paginated<T>>> {
   const { currentPage, totalPages } = {
     currentPage: 0,
     totalPages: 1,
-    ...options
+    ...options,
   }
   const perPage = content.length
 
@@ -24,8 +24,8 @@ export default function<T>(
       totalElements: totalPages * perPage,
       numberOfElements: perPage,
       first: currentPage === 0,
-      last: currentPage === totalPages - 1
+      last: currentPage === totalPages - 1,
     },
-    topListing: SearchListing({ id: 1 })
+    topListing: SearchListing({ id: 1 }),
   }
 }

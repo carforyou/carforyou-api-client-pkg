@@ -1,6 +1,6 @@
 import {
   Listing as ListingType,
-  SearchListing as SearchListingType
+  SearchListing as SearchListingType,
 } from "../../types/models/listing"
 import { Type } from "../../types/models/type"
 
@@ -30,13 +30,13 @@ const defaults: ListingType = {
     {
       id: 1000001,
       externalUrl: "../../static/images/placeholder.png",
-      s3Key: "2018/09/04/12/24/28/mercedes-benz-c-180-kompressor.jpg"
+      s3Key: "2018/09/04/12/24/28/mercedes-benz-c-180-kompressor.jpg",
     },
     {
       id: 1000002,
       externalUrl: "../../static/images/placeholder.png",
-      s3Key: "2018/09/04/12/24/28/mercedes-benz-c-180-kompressor-1.jpg"
-    }
+      s3Key: "2018/09/04/12/24/28/mercedes-benz-c-180-kompressor-1.jpg",
+    },
   ],
   productionStartDate: "2009-06-01",
   productionEndDate: "2016-06-01",
@@ -107,9 +107,9 @@ const defaults: ListingType = {
     {
       feature: "premium-listing",
       endDate: "2015-10-10",
-      startDate: "2015-09-09"
-    }
-  ]
+      startDate: "2015-09-09",
+    },
+  ],
 }
 
 export function Listing(attributes = {}): ListingType {
@@ -136,13 +136,13 @@ export function SearchListing(attributes = {}): SearchListingType {
         lat: 47.3742951,
         lon: 8.5385763,
         region: "ZH",
-        regionFull: "Zurich"
+        regionFull: "Zurich",
       },
       country: "Switzerland",
       region: "ZH",
-      regionFull: "Zurich"
+      regionFull: "Zurich",
     },
-    ...Listing(attributes)
+    ...Listing(attributes),
   }
 }
 
@@ -235,7 +235,7 @@ export function EmptyListing(): ListingType {
     warrantyType: undefined,
     weightTotal: undefined,
     wheelbase: undefined,
-    enabledFeatures: []
+    enabledFeatures: [],
   }
 }
 
@@ -267,7 +267,7 @@ export function ListingFromType({
   towingCapacity,
   productionEndDate,
   productionStartDate,
-  id
+  id,
 }: Type): ListingType {
   return {
     ...EmptyListing(),
@@ -298,6 +298,6 @@ export function ListingFromType({
     payload: payload || undefined,
     towingCapacity: towingCapacity || undefined,
     productionEndDate: productionEndDate || undefined,
-    productionStartDate: productionStartDate || undefined
+    productionStartDate: productionStartDate || undefined,
   }
 }

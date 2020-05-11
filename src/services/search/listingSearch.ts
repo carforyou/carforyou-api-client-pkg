@@ -4,7 +4,7 @@ import { Paginated } from "../../types/pagination"
 import { WithFieldStats, FieldsStats } from "../../types/fieldStats"
 import {
   ListingSearchParams,
-  ListingQueryParams
+  ListingQueryParams,
 } from "../../types/params/listings"
 import { ListingSortTypeParams, ListingSortOrderParams } from "../../types/sort"
 import { SearchListing } from "../../types/models/listing"
@@ -20,27 +20,27 @@ export const fetchListingCount = async (
 ): Promise<{ count: number; fieldsStats?: FieldsStats }> => {
   const { fieldsStats } = {
     fieldsStats: [],
-    ...options
+    ...options,
   }
   const json = await postData(Service.SEARCH, "listings/count", {
     query,
-    ...(fieldsStats.length > 0 ? { includeFieldsStats: fieldsStats } : {})
+    ...(fieldsStats.length > 0 ? { includeFieldsStats: fieldsStats } : {}),
   })
 
   return {
     count: json.count,
-    ...(fieldsStats.length > 0 ? { fieldsStats: json.fieldsStats } : {})
+    ...(fieldsStats.length > 0 ? { fieldsStats: json.fieldsStats } : {}),
   }
 }
 
 export const defaultSort = {
   sortType: ListingSortTypeParams.RELEVANCE,
-  sortOrder: ListingSortOrderParams.ASC
+  sortOrder: ListingSortOrderParams.ASC,
 }
 
 const defaultPagination = {
   page: 0,
-  size: 24
+  size: 24,
 }
 
 const searchForListings = (
@@ -60,19 +60,19 @@ const searchForListings = (
   const body = {
     pagination: {
       page: pageOrDefault,
-      size: sizeOrDefault
+      size: sizeOrDefault,
     },
     sort: [
       {
         order: sortOrder || defaultSort.sortOrder,
-        type: sortType || defaultSort.sortType
-      }
+        type: sortType || defaultSort.sortType,
+      },
     ],
     ...(options.includeFieldsStats && options.includeFieldsStats.length > 0
       ? { includeFieldsStats: options.includeFieldsStats }
       : {}),
     ...(options.includeTopListing ? { includeTopListing: true } : {}),
-    query: paramsToSearchRequest(rest)
+    query: paramsToSearchRequest(rest),
   }
 
   return postData(Service.SEARCH, path, body)
@@ -86,13 +86,13 @@ function sanitizeListingResponse<
     ...(topListing && {
       topListing: {
         ...topListing,
-        firstRegistrationDate: decodeDate(topListing.firstRegistrationDate)
-      }
+        firstRegistrationDate: decodeDate(topListing.firstRegistrationDate),
+      },
     }),
-    content: content.map(listing => ({
+    content: content.map((listing) => ({
       ...listing,
-      firstRegistrationDate: decodeDate(listing.firstRegistrationDate)
-    }))
+      firstRegistrationDate: decodeDate(listing.firstRegistrationDate),
+    })),
   }
 }
 

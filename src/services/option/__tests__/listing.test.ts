@@ -6,11 +6,11 @@ describe("OPTION service", () => {
   describe("fetchListingOptions", () => {
     const options = {
       standardOptions: [
-        { de: "option a DE", fr: "option a EN", it: "option a IT" }
+        { de: "option a DE", fr: "option a EN", it: "option a IT" },
       ],
       additionalOptions: [
-        { de: "option a DE", fr: "option a EN", it: "option a IT" }
-      ]
+        { de: "option a DE", fr: "option a EN", it: "option a IT" },
+      ],
     }
 
     beforeEach(() => {
