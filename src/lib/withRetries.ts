@@ -1,5 +1,5 @@
 const wait = (ms): Promise<void> =>
-  new Promise(resolve => setTimeout(resolve, ms))
+  new Promise((resolve) => setTimeout(resolve, ms))
 
 export const withRetries = (
   retryFunction: (...args: any) => Promise<any>,
@@ -17,7 +17,7 @@ export const withRetries = (
 
     return withRetries(retryFunction, callback, {
       retries: retries - 1,
-      delay
+      delay,
     })(...args)
   }
 }

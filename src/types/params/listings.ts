@@ -41,7 +41,7 @@ export enum ConsumptionCategory {
   D = "D",
   E = "E",
   F = "F",
-  G = "G"
+  G = "G",
 }
 
 export interface ListingFilterParams {

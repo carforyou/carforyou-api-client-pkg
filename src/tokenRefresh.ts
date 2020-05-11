@@ -10,14 +10,14 @@ const refreshToken = async () => {
 
   apiClient.setTokens({
     accessToken: access_token,
-    refreshToken: refresh_token
+    refreshToken: refresh_token,
   })
   if (apiClient.handlers.onAccessTokenUpdate) {
     apiClient.handlers.onAccessTokenUpdate(apiClient.tokens.accessToken)
   }
 }
 
-const refreshTokenAndRetry = async apiCall => {
+const refreshTokenAndRetry = async (apiCall) => {
   try {
     await refreshToken()
     return apiCall()
@@ -38,7 +38,7 @@ const refreshTokenAndRetry = async apiCall => {
   }
 }
 
-export const withTokenRefresh = async apiCall => {
+export const withTokenRefresh = async (apiCall) => {
   try {
     return await apiCall()
   } catch (error) {

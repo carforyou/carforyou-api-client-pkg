@@ -3,14 +3,14 @@ import paramsToSearchRequest from "../paramsToSearchRequest"
 describe("#paramsToSearchRequest", () => {
   it("includes regular params", () => {
     expect(paramsToSearchRequest({ makeKey: ["bmw"] })).toEqual({
-      makeKey: ["bmw"]
+      makeKey: ["bmw"],
     })
   })
 
   describe("location params", () => {
     it("wrap cityId", () => {
       expect(paramsToSearchRequest({ cityId: "1001" })).toEqual({
-        location: { cityId: "1001" }
+        location: { cityId: "1001" },
       })
     })
 
@@ -20,7 +20,7 @@ describe("#paramsToSearchRequest", () => {
 
     it("wrap both radius and cityId", () => {
       expect(paramsToSearchRequest({ radius: "20", cityId: "1001" })).toEqual({
-        location: { radius: "20", cityId: "1001" }
+        location: { radius: "20", cityId: "1001" },
       })
     })
 
@@ -29,11 +29,11 @@ describe("#paramsToSearchRequest", () => {
         paramsToSearchRequest({
           makeKey: ["bmw"],
           radius: "20",
-          cityId: "1001"
+          cityId: "1001",
         })
       ).toEqual({
         makeKey: ["bmw"],
-        location: { radius: "20", cityId: "1001" }
+        location: { radius: "20", cityId: "1001" },
       })
     })
   })

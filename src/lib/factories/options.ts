@@ -9,14 +9,14 @@ export function Options(): OptionsType {
         packageItems: [
           {
             id: 2002,
-            name: "ABS package item (de)"
-          }
-        ]
+            name: "ABS package item (de)",
+          },
+        ],
       },
       {
         id: 2,
         name: "Befestigungsösen im Laderaum",
-        packageItems: []
+        packageItems: [],
       },
       {
         id: 3,
@@ -24,28 +24,28 @@ export function Options(): OptionsType {
         packageItems: [
           {
             id: 4,
-            name: "Innenraumlicht-Paket Option One"
+            name: "Innenraumlicht-Paket Option One",
           },
           {
             id: 5,
-            name: "Innenraumlicht-Paket Option Two"
+            name: "Innenraumlicht-Paket Option Two",
           },
           {
             id: 6,
-            name: "Innenraumlicht-Paket Option Theree"
-          }
-        ]
+            name: "Innenraumlicht-Paket Option Theree",
+          },
+        ],
       },
       {
         id: 7,
         name: "Getönte Scheiben",
-        packageItems: []
+        packageItems: [],
       },
       {
         id: 8,
         name: "3 Kopfstützen hinten",
-        packageItems: []
-      }
+        packageItems: [],
+      },
     ],
     additionalOptions: [
       {
@@ -54,14 +54,14 @@ export function Options(): OptionsType {
         packageItems: [
           {
             id: 11,
-            name: "Bluetooth package item (de)"
-          }
-        ]
+            name: "Bluetooth package item (de)",
+          },
+        ],
       },
       {
         id: 12,
         name: "8 Lautsprecher",
-        packageItems: []
+        packageItems: [],
       },
       {
         id: 13,
@@ -69,36 +69,36 @@ export function Options(): OptionsType {
         packageItems: [
           {
             id: 14,
-            name: "8 Lautsprecher"
+            name: "8 Lautsprecher",
           },
           {
             id: 15,
-            name: "Audi hold assist"
+            name: "Audi hold assist",
           },
           {
             id: 16,
-            name: "Digitaler Radioempfang (DAB)"
+            name: "Digitaler Radioempfang (DAB)",
           },
           {
             id: 17,
-            name: "Innenspiegel automatisch abblendbar"
+            name: "Innenspiegel automatisch abblendbar",
           },
           {
             id: 18,
             name:
-              "Kindersitzvorrichtung ISOFIX mit Deaktivierungsschalter für Beifahrer- Airbag"
+              "Kindersitzvorrichtung ISOFIX mit Deaktivierungsschalter für Beifahrer- Airbag",
           },
           {
             id: 19,
-            name: "Licht- und Regensensor"
-          }
-        ]
+            name: "Licht- und Regensensor",
+          },
+        ],
       },
       {
         id: 20,
         name: "Tempomat",
-        packageItems: []
-      }
-    ]
+        packageItems: [],
+      },
+    ],
   }
 }

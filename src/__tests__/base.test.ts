@@ -5,7 +5,7 @@ import {
   fetchPath,
   postData,
   deletePath,
-  putData
+  putData,
 } from "../base"
 
 describe("Base", () => {
@@ -29,7 +29,7 @@ describe("Base", () => {
     })
 
     describe("when service is configured", () => {
-      Object.keys(Service).forEach(service => {
+      Object.keys(Service).forEach((service) => {
         it(`returns url for service: ${service}`, () => {
           expect(resolveServiceUrl(Service[service])).toEqual(
             `${service.toLowerCase()}.service.test`
@@ -60,21 +60,21 @@ describe("Base", () => {
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(expect.any(String), {
         headers: expect.objectContaining({
-          Accept: `application/vnd.carforyou.v1+json`
-        })
+          Accept: `application/vnd.carforyou.v1+json`,
+        }),
       })
     })
 
     it("allows setting custom headers", async () => {
       const json = await fetchPath(Service.CAR, "api/path", {
-        headers: { Foo: "bar" }
+        headers: { Foo: "bar" },
       })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(expect.any(String), {
         headers: expect.objectContaining({
-          Foo: "bar"
-        })
+          Foo: "bar",
+        }),
       })
     })
 
@@ -118,7 +118,7 @@ describe("Base", () => {
       expect(fetch).toHaveBeenCalledWith(
         expect.any(String),
         expect.objectContaining({
-          method: "DELETE"
+          method: "DELETE",
         })
       )
     })
@@ -139,7 +139,7 @@ describe("Base", () => {
         expect.any(String),
         expect.objectContaining({
           method: "POST",
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         })
       )
     })
@@ -160,7 +160,7 @@ describe("Base", () => {
         expect.any(String),
         expect.objectContaining({
           method: "PUT",
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         })
       )
     })

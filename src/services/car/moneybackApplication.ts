@@ -12,7 +12,7 @@ export const sendMoneybackApplication = async (
     validateOnly: false,
     recaptchaToken: null,
     validateFields: Object.keys(moneybackApplication),
-    ...options
+    ...options,
   }
   const path = `listings/${listingId}/mbg-applications${
     validateOnly ? "/validate" : ""
@@ -20,14 +20,14 @@ export const sendMoneybackApplication = async (
 
   const headers = {
     ...(recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}),
-    "Validate-Fields": validateFields.join(",")
+    "Validate-Fields": validateFields.join(","),
   }
 
   try {
     await postData(Service.CAR, path, moneybackApplication, headers)
     return {
       tag: "success",
-      result: moneybackApplication
+      result: moneybackApplication,
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })

@@ -1,7 +1,7 @@
 import {
   BasicListingTypeCommons,
   EnergyListingTypeCommons,
-  DriveListingTypeCommons
+  DriveListingTypeCommons,
 } from "./commons"
 
 export interface SearchType {

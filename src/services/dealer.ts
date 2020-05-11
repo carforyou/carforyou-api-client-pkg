@@ -3,7 +3,7 @@ import {
   Service,
   handleValidationError,
   postData,
-  putData
+  putData,
 } from "../base"
 
 import { Paginated } from "../types/pagination"
@@ -33,7 +33,7 @@ export const fetchDealerProfile = async (
 
 export const putDealerProfile = async ({
   dealerId,
-  profile
+  profile,
 }: {
   dealerId: number
   profile: DealerProfile
@@ -48,7 +48,7 @@ export const putDealerProfile = async ({
 
       return {
         tag: "success",
-        result: { ...profile, ...result }
+        result: { ...profile, ...result },
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })

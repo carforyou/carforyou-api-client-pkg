@@ -13,11 +13,11 @@ describe("USER_NOTIFICATION service", () => {
         email: "save@thesear.ch",
         language: "de",
         uiMetadata: {
-          searchPath: "?makeKeys=bmw"
+          searchPath: "?makeKeys=bmw",
         },
         searchQuery: {
-          makeKey: ["bmw"]
-        }
+          makeKey: ["bmw"],
+        },
       })
 
       expect(fetch).toHaveBeenCalledWith(
@@ -33,12 +33,12 @@ describe("USER_NOTIFICATION service", () => {
         email: "save@thesear.ch",
         language: "de",
         uiMetadata: {
-          searchPath: "?cityId=1001&radius=20"
+          searchPath: "?cityId=1001&radius=20",
         },
         searchQuery: {
           cityId: "1001",
-          radius: "20"
-        }
+          radius: "20",
+        },
       })
 
       expect(fetch).toHaveBeenCalledWith(
@@ -50,15 +50,15 @@ describe("USER_NOTIFICATION service", () => {
             email: "save@thesear.ch",
             language: "de",
             uiMetadata: {
-              searchPath: "?cityId=1001&radius=20"
+              searchPath: "?cityId=1001&radius=20",
             },
             searchQuery: {
               location: {
                 cityId: "1001",
-                radius: "20"
-              }
-            }
-          })
+                radius: "20",
+              },
+            },
+          }),
         })
       )
     })

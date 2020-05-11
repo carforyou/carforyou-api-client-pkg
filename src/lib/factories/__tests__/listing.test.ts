@@ -28,13 +28,13 @@ describe("listing", () => {
       gears: "gears",
       weight: "weight",
       payload: "payload",
-      towingCapacity: "towingCapacity"
+      towingCapacity: "towingCapacity",
     }
 
     const type = Type()
     const listing = ListingFromType(type)
 
-    Object.keys(mapping).forEach(typeKey => {
+    Object.keys(mapping).forEach((typeKey) => {
       const listingKey = mapping[typeKey]
 
       it(`maps ${typeKey} on type to ${listingKey} on listing`, () => {
@@ -53,10 +53,10 @@ describe("listing", () => {
       "gears",
       "weight",
       "payload",
-      "towingCapacity"
+      "towingCapacity",
     ]
 
-    numericValues.forEach(value => {
+    numericValues.forEach((value) => {
       it(`skips 0 for ${value}`, () => {
         expect(ListingFromType(Type({ [value]: 0 }))[value]).toEqual(undefined)
       })

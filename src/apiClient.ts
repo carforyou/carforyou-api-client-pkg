@@ -37,7 +37,7 @@ class ApiClient {
       throw new Error("Owerwriting API client configuration")
     }
 
-    Object.keys(configuration).forEach(key => {
+    Object.keys(configuration).forEach((key) => {
       this.configuration[key] = configuration[key]
     })
   }

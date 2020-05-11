@@ -18,7 +18,7 @@ export enum Service {
   OPTION = "OPTION",
   ANALYTICS = "ANALYTICS",
   USER_NOTIFICATION = "USER_NOTIFICATION",
-  TOKEN_REFRESH = "TOKEN_REFRESH"
+  TOKEN_REFRESH = "TOKEN_REFRESH",
 }
 
 const stripLeadingSlash = (path: string): string => {
@@ -110,9 +110,9 @@ export const fetchPath = async (
       "Content-Type": "application/json",
       Accept: `application/vnd.carforyou.${apiClient.version}+json`,
       ...(auth ? { Authorization: auth } : {}),
-      ...headers
+      ...headers,
     },
-    ...otherOptions
+    ...otherOptions,
   })
 
   if (!response.ok) {
@@ -143,7 +143,7 @@ export const postData = async (
   return fetchPath(service, path, {
     method: "POST",
     body: JSON.stringify(body),
-    headers
+    headers,
   })
 }
 
@@ -156,7 +156,7 @@ export const putData = async (
   return fetchPath(service, path, {
     method: "PUT",
     body: JSON.stringify(body),
-    headers
+    headers,
   })
 }
 
@@ -176,7 +176,7 @@ export const handleValidationError = async (
       return {
         tag: "error",
         message: "validation.other-error",
-        errors: []
+        errors: [],
       }
     }
 
@@ -188,6 +188,6 @@ export const handleValidationError = async (
   return {
     tag: "error",
     message: data.message.toString() as string,
-    errors: data.errors || []
+    errors: data.errors || [],
   }
 }

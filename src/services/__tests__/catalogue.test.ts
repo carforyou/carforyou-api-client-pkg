@@ -10,7 +10,7 @@ describe("CATALOGUE service", () => {
     const makes = [
       { id: 1, name: "Audi", key: "audi" },
       { id: 2, name: "BMW", key: "bmw" },
-      { id: 3, name: "Chevrolet", key: "chevrolet" }
+      { id: 3, name: "Chevrolet", key: "chevrolet" },
     ]
 
     beforeEach(() => {
@@ -29,7 +29,7 @@ describe("CATALOGUE service", () => {
     const models = [
       { id: 1, name: "A4", key: "a4" },
       { id: 2, name: "A5", key: "a5" },
-      { id: 4, name: "A6", key: "a6" }
+      { id: 4, name: "A6", key: "a6" },
     ]
 
     beforeEach(() => {
@@ -51,7 +51,7 @@ describe("CATALOGUE service", () => {
       fetchMock.mockResponse(
         JSON.stringify({
           content: types.content,
-          ...types.pagination
+          ...types.pagination,
         })
       )
     })
@@ -70,7 +70,7 @@ describe("CATALOGUE service", () => {
     describe("when successfull", () => {
       it("returns paginated types", async () => {
         const response = await fetchTypes({
-          firstRegistrationDate: {}
+          firstRegistrationDate: {},
         })
 
         expect(response.tag).toBe("success")
@@ -88,7 +88,7 @@ describe("CATALOGUE service", () => {
         fetchMock.mockResponse(
           JSON.stringify({
             message: "validation.not-valid",
-            errors: []
+            errors: [],
           }),
           { status: 400 }
         )
@@ -96,7 +96,7 @@ describe("CATALOGUE service", () => {
 
       it("returns error messages", async () => {
         const response = await fetchTypes({
-          firstRegistrationDate: {}
+          firstRegistrationDate: {},
         })
 
         expect(response.tag).toBe("error")
@@ -113,7 +113,7 @@ describe("CATALOGUE service", () => {
       it("indexes page from 0", async () => {
         await fetchTypes({
           firstRegistrationDate: {},
-          page: 5
+          page: 5,
         })
 
         expect(fetch).toHaveBeenCalledWith(
@@ -125,7 +125,7 @@ describe("CATALOGUE service", () => {
       it("defaults `page` to 0 when not provided", async () => {
         await fetchTypes({
           firstRegistrationDate: {},
-          size: 10
+          size: 10,
         })
 
         expect(fetch).toHaveBeenCalledWith(
@@ -137,7 +137,7 @@ describe("CATALOGUE service", () => {
       it("defaults `size` to 25 when it's not provided", async () => {
         await fetchTypes({
           firstRegistrationDate: {},
-          page: 5
+          page: 5,
         })
 
         expect(fetch).toHaveBeenCalledWith(

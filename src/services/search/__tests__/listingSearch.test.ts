@@ -7,7 +7,7 @@ import {
   fetchListingCount,
   fetchListings,
   fetchNeedsAssesmentListings,
-  fetchMoneybackListings
+  fetchMoneybackListings,
 } from "../listingSearch"
 
 describe("SEARCH service", () => {
@@ -46,8 +46,8 @@ describe("SEARCH service", () => {
           expect.stringContaining("/listings/count"),
           expect.objectContaining({
             body: JSON.stringify({
-              query: { bodyType, priceTo }
-            })
+              query: { bodyType, priceTo },
+            }),
           })
         )
       })
@@ -62,9 +62,9 @@ describe("SEARCH service", () => {
               query: {
                 makeKey,
                 modelKey,
-                priceTo
-              }
-            })
+                priceTo,
+              },
+            }),
           })
         )
       })
@@ -73,15 +73,15 @@ describe("SEARCH service", () => {
 
   describe("#fetchListings", () => {
     const { content, pagination, fieldsStats, topListing } = PaginatedFactory([
-      SearchListing({ id: 1 })
+      SearchListing({ id: 1 }),
     ])
 
     beforeEach(() => {
       fetchMock.mockResponse(
         JSON.stringify({
-          content: content.map(listing => ({
+          content: content.map((listing) => ({
             ...listing,
-            firstRegistrationDate: encodeDate(listing.firstRegistrationDate)
+            firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
           })),
           ...pagination,
           fieldsStats,
@@ -90,9 +90,9 @@ describe("SEARCH service", () => {
               ...topListing,
               firstRegistrationDate: encodeDate(
                 topListing.firstRegistrationDate
-              )
-            }
-          })
+              ),
+            },
+          }),
         })
       )
     })
@@ -135,18 +135,18 @@ describe("SEARCH service", () => {
 
   describe("#fetchNeedsAssesmentListings", () => {
     const { content, pagination, fieldsStats } = PaginatedFactory([
-      SearchListing({ id: 1 })
+      SearchListing({ id: 1 }),
     ])
 
     beforeEach(() => {
       fetchMock.mockResponse(
         JSON.stringify({
-          content: content.map(listing => ({
+          content: content.map((listing) => ({
             ...listing,
-            firstRegistrationDate: encodeDate(listing.firstRegistrationDate)
+            firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
           })),
           ...pagination,
-          fieldsStats
+          fieldsStats,
         })
       )
     })
@@ -163,18 +163,18 @@ describe("SEARCH service", () => {
 
   describe("#fetchMoneybackListings", () => {
     const { content, pagination, fieldsStats } = PaginatedFactory([
-      SearchListing({ id: 1 })
+      SearchListing({ id: 1 }),
     ])
 
     beforeEach(() => {
       fetchMock.mockResponse(
         JSON.stringify({
-          content: content.map(listing => ({
+          content: content.map((listing) => ({
             ...listing,
-            firstRegistrationDate: encodeDate(listing.firstRegistrationDate)
+            firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
           })),
           ...pagination,
-          fieldsStats
+          fieldsStats,
         })
       )
     })
@@ -183,7 +183,7 @@ describe("SEARCH service", () => {
       const paginatedListings = await fetchMoneybackListings(123, {
         makeKey: "audi",
         size: 24,
-        page: 1
+        page: 1,
       })
       const listings = paginatedListings.content
 

@@ -2,7 +2,7 @@ import ApiClient from "../apiClient"
 
 describe("ApiClient", () => {
   beforeEach(() => {
-    Object.keys(ApiClient.configuration).forEach(key => {
+    Object.keys(ApiClient.configuration).forEach((key) => {
       delete ApiClient.configuration[key]
     })
   })
@@ -14,7 +14,7 @@ describe("ApiClient", () => {
   describe("configuration", () => {
     it("can be set", () => {
       ApiClient.configure({
-        carServiceUrl: "car.service.test"
+        carServiceUrl: "car.service.test",
       })
 
       expect(ApiClient.configuration.carServiceUrl).toEqual("car.service.test")

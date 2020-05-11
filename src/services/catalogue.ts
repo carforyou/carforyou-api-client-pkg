@@ -19,7 +19,7 @@ export const fetchModels = (makeKey: string): Promise<Model[]> => {
 
 const defaultPagination = {
   page: 0,
-  size: 25
+  size: 25,
 }
 
 export const fetchTypes = async ({
@@ -27,9 +27,9 @@ export const fetchTypes = async ({
   page,
   size,
   ...query
-}: SearchTypeQueryParams): Promise<WithValidationError<
-  Paginated<SearchType>
->> => {
+}: SearchTypeQueryParams): Promise<
+  WithValidationError<Paginated<SearchType>>
+> => {
   const sizeOrDefault =
     parseInt((size || "").toString(), 10) || defaultPagination.size
   const pageOrDefault =
@@ -41,7 +41,7 @@ export const fetchTypes = async ({
     ...query,
     ...(encodedDate ? { firstRegistrationDate: encodedDate } : {}),
     page: pageOrDefault,
-    size: sizeOrDefault
+    size: sizeOrDefault,
   }
 
   const queryString = params ? toQueryString(params) : ""
@@ -53,7 +53,7 @@ export const fetchTypes = async ({
     )
     return {
       tag: "success",
-      result
+      result,
     }
   } catch (error) {
     return handleValidationError(error)

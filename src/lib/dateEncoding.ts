@@ -15,7 +15,7 @@ export const decodeDate = (date: string) => {
 
     return {
       month: parsedDate.getMonth() + 1,
-      year: parsedDate.getFullYear()
+      year: parsedDate.getFullYear(),
     }
   } catch {
     return

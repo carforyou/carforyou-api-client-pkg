@@ -5,8 +5,8 @@ import { postData, Service } from "../../../base"
 jest.mock("../../../base", () => ({
   ...jest.requireActual("../../../base"),
   postData: jest.fn(() => ({
-    content: []
-  }))
+    content: [],
+  })),
 }))
 
 describe("SEARCH service", () => {
@@ -16,7 +16,7 @@ describe("SEARCH service", () => {
         await fetchListings({
           bodyType: ["suv"],
           makeKey: ["bmw"],
-          modelKey: ["m3"]
+          modelKey: ["m3"],
         })
 
         expect(postData).toHaveBeenCalledWith(
@@ -26,8 +26,8 @@ describe("SEARCH service", () => {
             query: {
               bodyType: ["suv"],
               makeKey: ["bmw"],
-              modelKey: ["m3"]
-            }
+              modelKey: ["m3"],
+            },
           })
         )
       })
@@ -41,8 +41,8 @@ describe("SEARCH service", () => {
           expect.objectContaining({
             pagination: {
               page: 4,
-              size: 10
-            }
+              size: 10,
+            },
           })
         )
       })
@@ -56,8 +56,8 @@ describe("SEARCH service", () => {
           expect.objectContaining({
             pagination: {
               page: 0,
-              size: 10
-            }
+              size: 10,
+            },
           })
         )
       })
@@ -71,8 +71,8 @@ describe("SEARCH service", () => {
           expect.objectContaining({
             pagination: {
               page: 4,
-              size: 24
-            }
+              size: 24,
+            },
           })
         )
       })
@@ -86,8 +86,8 @@ describe("SEARCH service", () => {
           expect.objectContaining({
             pagination: {
               page: 0,
-              size: 24
-            }
+              size: 24,
+            },
           })
         )
       })
@@ -102,9 +102,9 @@ describe("SEARCH service", () => {
             sort: [
               {
                 type: "PRICE",
-                order: "ASC"
-              }
-            ]
+                order: "ASC",
+              },
+            ],
           })
         )
       })
@@ -119,9 +119,9 @@ describe("SEARCH service", () => {
             sort: [
               {
                 type: "RELEVANCE",
-                order: "ASC"
-              }
-            ]
+                order: "ASC",
+              },
+            ],
           })
         )
       })

@@ -3,7 +3,7 @@ import {
   Service,
   postData,
   putData,
-  handleValidationError
+  handleValidationError,
 } from "../../base"
 import { withTokenRefresh } from "../../tokenRefresh"
 
@@ -39,7 +39,7 @@ export const fetchDealerListingImages = async (
 
 export const saveDealerListingImages = ({
   dealerId,
-  listing
+  listing,
 }: {
   dealerId: number
   listing: Listing
@@ -57,7 +57,7 @@ export const saveDealerListingImages = ({
 
     return {
       tag: "success",
-      result: listing
+      result: listing,
     }
   })
 }

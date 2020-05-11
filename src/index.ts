@@ -18,7 +18,7 @@ export {
   Region,
   ListingAnalyticsStats,
   ListingAnalyticsData,
-  DealerListingsAnalyticsData
+  DealerListingsAnalyticsData,
 } from "./types/models/index"
 
 export {
@@ -33,7 +33,7 @@ export {
   ListingExtrasData,
   Listing,
   ListingImage,
-  DealerListingImages
+  DealerListingImages,
 } from "./types/models/listing"
 
 export { SearchType, Type } from "./types/models/type"
@@ -48,7 +48,7 @@ export {
   ListingFilterParams,
   ListingQueryParams,
   ListingSearchParams,
-  DealerListingQueryParams
+  DealerListingQueryParams,
 } from "./types/params/listings"
 
 export { SearchTypeQueryParams } from "./types/params/types"
@@ -59,14 +59,14 @@ export {
   ListingSortParams,
   DealerListingSortOrderParams,
   DealerListingSortTypeParams,
-  DealerListingSortParams
+  DealerListingSortParams,
 } from "./types/sort"
 
 export { Product, PurchaseAndUseProduct } from "./types/models/product"
 
 export {
   WithValidationError,
-  ValidationError
+  ValidationError,
 } from "./types/withValidationError"
 
 export { Paginated } from "./types/pagination"
@@ -80,7 +80,7 @@ export {
   fetchImageEnrichment,
   generatePresignedImageUrl,
   saveDealerListingImages,
-  fetchDealerListingImages
+  fetchDealerListingImages,
 } from "./services/car/image"
 export {
   fetchListing,
@@ -96,7 +96,7 @@ export {
   listingMandatoryFields,
   ListingValidationEndpoint,
   validateDealerListing,
-  saveDealerListing
+  saveDealerListing,
 } from "./services/car/inventory"
 export {
   fetchBodyTypes,
@@ -110,7 +110,7 @@ export {
   fetchMinFirstRegistrationYear,
   fetchOptions,
   fetchSeats,
-  fetchTransmissionTypes
+  fetchTransmissionTypes,
 } from "./services/car/inventoryData"
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export { sendMessageLead } from "./services/car/messageLead"
@@ -118,20 +118,20 @@ export { sendMessageLead } from "./services/car/messageLead"
 export {
   fetchListingOptions,
   fetchDealerListingOptions,
-  saveDealerListingOptions
+  saveDealerListingOptions,
 } from "./services/option/listing"
 export { fetchTypeOptions } from "./services/option/type"
 
 export {
   fetchCurrentMakes,
-  fetchCurrentModels
+  fetchCurrentModels,
 } from "./services/search/currentMakeModels"
 export {
   fetchListingCount,
   fetchListings,
   fetchNeedsAssesmentListings,
   defaultSort as defaultListingsSort,
-  fetchMoneybackListings
+  fetchMoneybackListings,
 } from "./services/search/listingSearch"
 export { fetchCity, fetchCitySuggestions } from "./services/search/city"
 export { fetchRegions } from "./services/search/regions"
@@ -141,13 +141,13 @@ export {
   fetchMakes,
   fetchModels,
   fetchTypes,
-  fetchType
+  fetchType,
 } from "./services/catalogue"
 export {
   fetchDealer,
   fetchDealerSuggestions,
   fetchDealerProfile,
-  putDealerProfile
+  putDealerProfile,
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export { fetchAnalyticsData } from "./services/analytics"
@@ -157,11 +157,11 @@ export {
   Listing as ListingFactory,
   SearchListing as SearchListingFactory,
   EmptyListing,
-  ListingFromType
+  ListingFromType,
 } from "./lib/factories/listing"
 export {
   Type as TypeFactory,
-  SearchType as SearchTypeFactory
+  SearchType as SearchTypeFactory,
 } from "./lib/factories/type"
 export { default as PaginatedFactory } from "./lib/factories/paginated"
 export { Options as OptionsFactory } from "./lib/factories/options"
@@ -177,7 +177,7 @@ export const ApiClient = {
     return {
       ...configuration,
       configured: Object.keys(configuration).length > 0,
-      version: apiClient.version
+      version: apiClient.version,
     }
-  }
+  },
 }

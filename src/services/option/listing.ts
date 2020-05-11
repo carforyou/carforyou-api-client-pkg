@@ -14,7 +14,7 @@ export const fetchListingOptions = async (
 
 export const fetchDealerListingOptions = async ({
   dealerId,
-  listingId
+  listingId,
 }: {
   dealerId: number
   listingId: number
@@ -29,7 +29,7 @@ export const fetchDealerListingOptions = async ({
 
 export const saveDealerListingOptions = async ({
   dealerId,
-  listing
+  listing,
 }: {
   dealerId: number
   listing: Listing
@@ -42,12 +42,12 @@ export const saveDealerListingOptions = async ({
         Service.OPTION,
         `dealers/${dealerId}/listings/${id}/options`,
         {
-          standardOptions: standardOptions.map(optionId => ({
-            id: optionId
+          standardOptions: standardOptions.map((optionId) => ({
+            id: optionId,
           })),
-          additionalOptions: additionalOptions.map(optionId => ({
-            id: optionId
-          }))
+          additionalOptions: additionalOptions.map((optionId) => ({
+            id: optionId,
+          })),
         }
       )
     } catch (error) {
@@ -56,7 +56,7 @@ export const saveDealerListingOptions = async ({
 
     return {
       tag: "success",
-      result: listing
+      result: listing,
     }
   })
 }

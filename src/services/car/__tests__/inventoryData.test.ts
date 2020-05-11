@@ -10,7 +10,7 @@ import {
   fetchMinFirstRegistrationYear,
   fetchOptions,
   fetchSeats,
-  fetchTransmissionTypes
+  fetchTransmissionTypes,
 } from "../inventoryData"
 
 describe("CAR service", () => {
@@ -22,59 +22,59 @@ describe("CAR service", () => {
         {
           name: "fetchBodyTypes",
           fetchFunction: fetchBodyTypes,
-          response: ["coupe", "cabrio", "suv"]
+          response: ["coupe", "cabrio", "suv"],
         },
         {
           name: "fetchColorGroups",
           fetchFunction: fetchColorGroups,
-          response: ["black", "red"]
+          response: ["black", "red"],
         },
         {
           name: "fetchColors",
           fetchFunction: fetchColors,
-          response: ["black", "orange", "red"]
+          response: ["black", "orange", "red"],
         },
         {
           name: "fetchConditionTypes",
           fetchFunction: fetchConditionTypes,
-          response: ["new", "used"]
+          response: ["new", "used"],
         },
         { name: "fetchDoors", fetchFunction: fetchDoors, response: [1, 2, 3] },
         {
           name: "fetchDriveTypes",
           fetchFunction: fetchDriveTypes,
-          response: ["rear", "front"]
+          response: ["rear", "front"],
         },
         {
           name: "fetchFuelTypeGroups",
           fetchFunction: fetchFuelTypeGroups,
-          response: ["petrol", "diesel", "hybrid"]
+          response: ["petrol", "diesel", "hybrid"],
         },
         {
           name: "fetchFuelTypes",
           fetchFunction: fetchFuelTypes,
-          response: ["petrol", "diesel", "gas-petrol"]
+          response: ["petrol", "diesel", "gas-petrol"],
         },
         {
           name: "fetchMinFirstRegistrationYear",
           fetchFunction: fetchMinFirstRegistrationYear,
-          response: 1939
+          response: 1939,
         },
         {
           name: "fetchOptions",
           fetchFunction: fetchOptions,
-          response: ["navigation", "air-condition", "leather", "sunroof"]
+          response: ["navigation", "air-condition", "leather", "sunroof"],
         },
         {
           name: "fetchSeats",
           fetchFunction: fetchSeats,
-          response: [2, 4, 5, 7]
+          response: [2, 4, 5, 7],
         },
         {
           name: "fetchTransmissionTypes",
           fetchFunction: fetchTransmissionTypes,
-          response: ["manual", "automatic"]
-        }
+          response: ["manual", "automatic"],
+        },
       ]
 
       tests.forEach(({ name, fetchFunction, response }) => {

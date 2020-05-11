@@ -7,7 +7,7 @@ describe("SEARCH service", () => {
     const makes = [
       { id: 1, name: "Audi", key: "audi" },
       { id: 2, name: "BMW", key: "bmw" },
-      { id: 3, name: "Chevrolet", key: "chevrolet" }
+      { id: 3, name: "Chevrolet", key: "chevrolet" },
     ]
 
     beforeEach(() => {
@@ -26,7 +26,7 @@ describe("SEARCH service", () => {
     const models = [
       { id: 1, name: "A4", key: "a4" },
       { id: 2, name: "A5", key: "a5" },
-      { id: 4, name: "A6", key: "a6" }
+      { id: 4, name: "A6", key: "a6" },
     ]
 
     beforeEach(() => {
