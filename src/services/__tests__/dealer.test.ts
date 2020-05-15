@@ -24,6 +24,7 @@ describe("Dealer", () => {
   describe("Dealer Profile", () => {
     const dealerIdMock = 12
     const profileMock = {
+      name: "Heiter Weit",
       address: "Heiterweit",
       city: "SW",
       dealerSource: DealerSource.SALESFORCE,

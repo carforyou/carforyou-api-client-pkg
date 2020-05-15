@@ -1,6 +1,7 @@
 import { DealerSource } from "./index"
 
 export interface DealerProfile {
+  name: string
   address: string
   city: string
   dealerSource: DealerSource
