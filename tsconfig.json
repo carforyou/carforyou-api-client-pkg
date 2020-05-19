@@ -8,6 +8,6 @@
     "allowJs": true,
     "esModuleInterop": true
   },
-  "include": ["src/**/*", "__tests__/setup/fetchMock.ts"],
-  "exclude": ["node_modules", "build"]
+  "include": ["src/**/*", "__tests__/**/*.ts"],
+  "exclude": ["node_modules", "pkg"]
 }
