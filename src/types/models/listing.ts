@@ -1,4 +1,4 @@
-import { Dealer, Location, Date } from "./index"
+import { Location, Date } from "./index"
 import {
   BasicListingTypeCommons,
   EnergyListingTypeCommons,
