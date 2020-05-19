@@ -1,11 +1,12 @@
 import { ListingFilterParams } from "../params/listings"
 
-interface MappedValue {
+export interface MappedValue {
   id: number
   name: string
   key: string
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export type Make = MappedValue
 
 export interface Model extends MappedValue {
