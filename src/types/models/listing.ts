@@ -43,9 +43,9 @@ export interface ListingBasicData extends BasicListingTypeCommons {
   externalListingId: string
 }
 
-export interface ListingEnergyData extends EnergyListingTypeCommons {}
+export type ListingEnergyData = EnergyListingTypeCommons
 
-export interface ListingDriveData extends DriveListingTypeCommons {}
+export type ListingDriveData = DriveListingTypeCommons
 
 export interface ListingOptionsData {
   additionalOptions: number[]

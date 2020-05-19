@@ -6,7 +6,7 @@ interface MappedValue {
   key: string
 }
 
-export interface Make extends MappedValue {}
+export type Make = MappedValue
 
 export interface Model extends MappedValue {
   currentBodyTypes?: string[]
