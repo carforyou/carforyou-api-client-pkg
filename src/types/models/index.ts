@@ -56,6 +56,7 @@ export interface Dealer {
   website?: string
   whatsAppNumber?: string
   openingHours?: OpeningHours[]
+  badges: string[]
 }
 
 export interface ZipCode {
