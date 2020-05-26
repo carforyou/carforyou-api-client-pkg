@@ -138,11 +138,12 @@ export enum ListingValidationEndpoint {
 }
 
 const validationPathForListing = (dealerId, listing, validationEndpoint) => {
+  const { id } = listing
+
   switch (validationEndpoint) {
     case ListingValidationEndpoint.draft:
       return `dealers/${dealerId}/listings/validate`
     case ListingValidationEndpoint.publish:
-      const { id } = listing
       if (id) {
         return `dealers/${dealerId}/listings/${id}/publish/validate`
       } else {

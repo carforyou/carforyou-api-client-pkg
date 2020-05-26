@@ -7,7 +7,7 @@ import {
   ListingQueryParams,
 } from "../../types/params/listings"
 import { ListingSortTypeParams, ListingSortOrderParams } from "../../types/sort"
-import { SearchListing } from "../../types/models/listing"
+import { SearchListing, ApiSearchListing } from "../../types/models/listing"
 import { WithTopListing } from "../../types/topListing"
 
 import { decodeDate } from "../../lib/dateEncoding"
@@ -79,8 +79,12 @@ const searchForListings = (
 }
 
 function sanitizeListingResponse<
-  T extends WithTopListing<Paginated<SearchListing>>
->({ content, topListing, ...rest }: any): T {
+  T extends Paginated<ApiSearchListing> & { topListing: ApiSearchListing }
+>({
+  content,
+  topListing,
+  ...rest
+}: T): WithTopListing<Paginated<SearchListing>> {
   return {
     ...rest,
     ...(topListing && {

@@ -1,10 +1,4 @@
-import {
-  fetchPath,
-  Service,
-  handleValidationError,
-  postData,
-  putData,
-} from "../base"
+import { fetchPath, Service, handleValidationError, putData } from "../base"
 
 import { Paginated } from "../types/pagination"
 import { Dealer, DealerSuggestion } from "../types/models"

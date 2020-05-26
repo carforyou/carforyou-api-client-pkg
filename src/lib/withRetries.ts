@@ -1,12 +1,12 @@
 const wait = (ms): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, ms))
 
-export const withRetries = (
-  retryFunction: (...args: any) => Promise<any>,
-  callback: (result: any, { ...args }) => boolean,
+export const withRetries = <T>(
+  retryFunction: (...args) => Promise<T>,
+  callback: (result, { ...args }) => boolean,
   { retries, delay }: { retries: number; delay: number }
-): ((...args: any) => Promise<any>) => {
-  return async (...args: any) => {
+): ((...args) => Promise<T>) => {
+  return async (...args) => {
     if (delay) {
       await wait(delay)
     }

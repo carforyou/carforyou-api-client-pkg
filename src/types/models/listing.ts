@@ -1,4 +1,4 @@
-import { Dealer, Location, Date } from "./index"
+import { Location, Date } from "./index"
 import {
   BasicListingTypeCommons,
   EnergyListingTypeCommons,
@@ -43,9 +43,9 @@ export interface ListingBasicData extends BasicListingTypeCommons {
   externalListingId: string
 }
 
-export interface ListingEnergyData extends EnergyListingTypeCommons {}
+export type ListingEnergyData = EnergyListingTypeCommons
 
-export interface ListingDriveData extends DriveListingTypeCommons {}
+export type ListingDriveData = DriveListingTypeCommons
 
 export interface ListingOptionsData {
   additionalOptions: number[]
@@ -142,7 +142,8 @@ export interface SearchListingDealer {
   region: string
   dealerSource: string
 }
-export interface SearchListing {
+
+interface BaseSearchListing {
   id: number
   bodyType: string
   make: string
@@ -161,7 +162,6 @@ export interface SearchListing {
   fuelType: string
   fuelTypeGroup: string
   mileage: number
-  firstRegistrationDate: Date
   firstRegistrationYear: number
   transmissionType: string
   consumptionCombined: number
@@ -181,4 +181,11 @@ export interface SearchListing {
   bodyColorGroup: string
   conditionType: string
   consumptionCategory: string
+}
+
+export interface ApiSearchListing extends BaseSearchListing {
+  firstRegistrationDate: string
+}
+export interface SearchListing extends BaseSearchListing {
+  firstRegistrationDate: Date
 }

@@ -98,8 +98,7 @@ export const fetchPath = async (
   const url = `${prefix}/${stripLeadingSlash(path)}`
 
   if (apiClient.configuration.debug) {
-    // tslint:disable-next-line:no-console
-    console.log(`    >> API #fetchPath: ${url}`, options)
+    console.info(`    >> API #fetchPath: ${url}`, options)
   }
 
   const { headers, ...otherOptions } = { headers: {}, ...options }
@@ -123,8 +122,7 @@ export const fetchPath = async (
   const json = text.length > 0 ? JSON.parse(text) : { success: true }
 
   if (apiClient.configuration.debug) {
-    // tslint:disable-next-line:no-console
-    console.log(`    >> API Response: ${JSON.stringify(json, null, 2)}`)
+    console.info(`    >> API Response: ${JSON.stringify(json, null, 2)}`)
   }
 
   if (json.content) {
