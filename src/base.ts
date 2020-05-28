@@ -1,5 +1,3 @@
-import "isomorphic-unfetch"
-
 import { Paginated } from "./types/pagination"
 import { WithFieldStats, FieldsStats } from "./types/fieldStats"
 import { Facets } from "./types/facets"

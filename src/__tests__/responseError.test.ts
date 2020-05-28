@@ -21,13 +21,13 @@ describe("ResponseError", () => {
     })
 
     it("when status is null", () => {
-      const error = new ResponseError({ status: undefined })
+      const error = new ResponseError({ status: undefined, statusText: "" })
       expect(error.status).toEqual(500)
       expect(error.statusCode).toEqual(500)
     })
 
     it("when status is empty", () => {
-      const error = new ResponseError({ status: "" })
+      const error = new ResponseError({ status: undefined, statusText: "" })
       expect(error.status).toEqual(500)
       expect(error.statusCode).toEqual(500)
     })
