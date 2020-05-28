@@ -3,4 +3,5 @@ export default interface CustomResponse {
   statusText?: string
   statusCode?: number
   message?: string
+  json?: JSON
 }
