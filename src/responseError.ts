@@ -1,10 +1,12 @@
+import CustomResponse from "./types/customResponse"
+
 export class ResponseError extends Error {
   code?: string
   status: number
   statusCode: number
-  response
+  response: CustomResponse
 
-  constructor(response) {
+  constructor(response: CustomResponse) {
     super()
     this.name = "ResponseError"
     this.message = "API ResponseError: " + response.statusText
