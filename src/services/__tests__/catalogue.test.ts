@@ -56,6 +56,15 @@ describe("CATALOGUE service", () => {
       )
     })
 
+    it("removes spaces from tsn", async () => {
+      await fetchTypes({ firstRegistrationDate: {}, tsn: "Q W E  R   TY" })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(/types\?tsn=QWERTY/),
+        expect.any(Object)
+      )
+    })
+
     describe("date conversion", () => {
       it("ignores the date when not provided", async () => {
         await fetchTypes({ firstRegistrationDate: {} })
