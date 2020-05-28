@@ -37,9 +37,11 @@ export const fetchTypes = async ({
 
   const encodedDate = encodeDate(firstRegistrationDate)
 
+  const { tsn, ...rest } = query
   const params = {
-    ...query,
+    ...rest,
     ...(encodedDate ? { firstRegistrationDate: encodedDate } : {}),
+    ...(tsn ? { tsn: tsn.replace(/\s/g, "") } : {}),
     page: pageOrDefault,
     size: sizeOrDefault,
   }
