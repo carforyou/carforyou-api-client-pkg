@@ -51,7 +51,7 @@ export {
   DealerListingQueryParams,
 } from "./types/params/listings"
 
-export { SearchTypeQueryParams } from "./types/params/types"
+export { SearchTypeQueryParams, TypeFiltersParams } from "./types/params/types"
 
 export {
   ListingSortOrderParams,
