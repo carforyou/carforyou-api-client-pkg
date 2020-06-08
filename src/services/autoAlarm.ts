@@ -1,4 +1,11 @@
-import { fetchPath, Service, handleValidationError, putData, deletePath, postData } from "../base"
+import {
+  fetchPath,
+  Service,
+  handleValidationError,
+  putData,
+  deletePath,
+  postData,
+} from "../base"
 
 import { Paginated } from "../types/pagination"
 import { Dealer, DealerSuggestion } from "../types/models"
@@ -21,13 +28,13 @@ export const fetchSavedSearch = async (
 }
 
 export const putDealerSavedSearch = async ({
-    dealerId,
-    savedSearchId,
-    savedSearch
+  dealerId,
+  savedSearchId,
+  savedSearch,
 }: {
-    dealerId: number,
-    savedSearchId: number,
-    savedSearch: object
+  dealerId: number
+  savedSearchId: number
+  savedSearch: object
 }): Promise<WithValidationError<DealerProfile>> => {
   return withTokenRefresh(async () => {
     try {
@@ -48,11 +55,11 @@ export const putDealerSavedSearch = async ({
 }
 
 export const postDealerSavedSearch = async ({
-    dealerId,
-    savedSearch
+  dealerId,
+  savedSearch,
 }: {
-    dealerId: number,
-    savedSearch: object
+  dealerId: number
+  savedSearch: object
 }): Promise<WithValidationError<DealerProfile>> => {
   return withTokenRefresh(async () => {
     try {
@@ -73,23 +80,22 @@ export const postDealerSavedSearch = async ({
 }
 
 export const deleteDealerSavedSearch = async (
-    dealerId: number,
-    savedSearchId: number
-  ): Promise<Paginated<DealerSuggestion>> => {
-    return withTokenRefresh(async () => {
-      try {
-        const result = deletePath(
-          Service.DEALER,
-          `dealers/${dealerId}/listing-saved-searches/${savedSearchId}`
-        )
+  dealerId: number,
+  savedSearchId: number
+): Promise<Paginated<DealerSuggestion>> => {
+  return withTokenRefresh(async () => {
+    try {
+      const result = deletePath(
+        Service.DEALER,
+        `dealers/${dealerId}/listing-saved-searches/${savedSearchId}`
+      )
 
-        return {
-          tag: "success",
-          result: { savedSearchId, result }
-        }
-      } catch (error) {
-        return handleValidationError(error, { swallowErrors: true })
+      return {
+        tag: "success",
+        result: { savedSearchId, result },
       }
-    })
-  }
-
+    } catch (error) {
+      return handleValidationError(error, { swallowErrors: true })
+    }
+  })
+}
