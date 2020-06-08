@@ -40,6 +40,8 @@ export { SearchType, Type } from "./types/models/type"
 export { Facets, Facet } from "./types/facets"
 export { DealerProfile } from "./types/models/dealerProfile"
 
+export { DealerSavedSearch } from "./types/models/autoAlarm"
+
 export { PaginationParams } from "./types/params"
 export {
   MakeModelFilter,
