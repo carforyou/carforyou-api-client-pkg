@@ -154,6 +154,14 @@ export { fetchAnalyticsData } from "./services/analytics"
 export { fetchProducts, purchaseAndUseProduct } from "./services/product"
 
 export {
+  fetchSavedSearches,
+  fetchSavedSearch,
+  putDealerSavedSearch,
+  postDealerSavedSearch,
+  deleteDealerSavedSearch,
+} from "./services/autoAlarm"
+
+export {
   Listing as ListingFactory,
   SearchListing as SearchListingFactory,
   EmptyListing,
