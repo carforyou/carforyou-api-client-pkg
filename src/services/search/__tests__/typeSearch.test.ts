@@ -137,7 +137,10 @@ describe("#fetchTypeFacets", () => {
 
     const fetched = await fetchTypeFacets()
 
-    expect(fetched).toEqual(facets)
     expect(fetch).toHaveBeenCalled()
+    expect(fetched.tag).toEqual("success")
+    if (fetched.tag === "success") {
+      expect(fetched.result).toEqual({ facets })
+    }
   })
 })
