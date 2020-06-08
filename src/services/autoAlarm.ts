@@ -8,19 +8,20 @@ import {
 } from "../base"
 
 import { Paginated } from "../types/pagination"
-import { Dealer, DealerSuggestion } from "../types/models"
-import { DealerProfile } from "../types/models/dealerProfile"
+import { DealerSavedSearch } from "../types/models/autoAlarm"
 import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
 
-export const fetchSavedSearches = async (id: number): Promise<Dealer> => {
+export const fetchSavedSearches = async (
+  id: number
+): Promise<Paginated<DealerSavedSearch[]>> => {
   return fetchPath(Service.DEALER, `dealers/${id}/listing-saved-searches`)
 }
 
 export const fetchSavedSearch = async (
   dealerId: number,
   savedSearchId: number
-): Promise<Paginated<DealerSuggestion>> => {
+): Promise<DealerSavedSearch> => {
   return fetchPath(
     Service.DEALER,
     `dealers/${dealerId}/listing-saved-searches/${savedSearchId}`
@@ -35,7 +36,7 @@ export const putDealerSavedSearch = async ({
   dealerId: number
   savedSearchId: number
   savedSearch: object
-}): Promise<WithValidationError<DealerProfile>> => {
+}): Promise<WithValidationError<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
       const result = await putData(
@@ -47,6 +48,7 @@ export const putDealerSavedSearch = async ({
       return {
         tag: "success",
         result,
+        savedSearch,
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
@@ -60,7 +62,7 @@ export const postDealerSavedSearch = async ({
 }: {
   dealerId: number
   savedSearch: object
-}): Promise<WithValidationError<DealerProfile>> => {
+}): Promise<WithValidationError<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
       const result = await postData(
@@ -72,6 +74,7 @@ export const postDealerSavedSearch = async ({
       return {
         tag: "success",
         result,
+        savedSearch,
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
@@ -82,7 +85,7 @@ export const postDealerSavedSearch = async ({
 export const deleteDealerSavedSearch = async (
   dealerId: number,
   savedSearchId: number
-): Promise<Paginated<DealerSuggestion>> => {
+): Promise<WithValidationError<number>> => {
   return withTokenRefresh(async () => {
     try {
       const result = deletePath(
@@ -92,7 +95,8 @@ export const deleteDealerSavedSearch = async (
 
       return {
         tag: "success",
-        result: { savedSearchId, result },
+        result,
+        savedSearchId,
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
