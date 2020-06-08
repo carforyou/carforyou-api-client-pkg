@@ -69,7 +69,7 @@ export const fetchTypeFacets = async (
 
     return {
       tag: "success",
-      result,
+      result: result.facets,
     }
   } catch (error) {
     return handleValidationError(error)

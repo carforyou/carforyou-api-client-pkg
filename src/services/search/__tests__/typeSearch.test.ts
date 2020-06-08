@@ -140,7 +140,7 @@ describe("#fetchTypeFacets", () => {
     expect(fetch).toHaveBeenCalled()
     expect(fetched.tag).toEqual("success")
     if (fetched.tag === "success") {
-      expect(fetched.result).toEqual({ facets })
+      expect(fetched.result).toEqual(facets)
     }
   })
 })
