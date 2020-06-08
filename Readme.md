@@ -96,6 +96,7 @@ Also accompanying modes and param types, as well as default values, are exported
 ### [Inventory search service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html)
 
 - [Cities](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities)
+
   - [`fetchCity`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities/getUsingGET)
   - [`fetchCitySuggestions`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Cities/getSuggestionsUsingGET)
 
@@ -114,6 +115,10 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchMoneybackListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/findAllMbgListingsUsingGET)
   - [`fetchFacets`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Listing%20Search/getFacetsUsingPOST)
 
+* [Type Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Type_Search)
+
+  - [`fetchTypes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Type%20Search/searchUsingPOST_2)
+
 * [Needs Assessment](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Needs_Assessment)
   - [`fetchNeedsAssesmentListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html#/Needs%20Assessment/searchUsingPOST_1)
 
@@ -122,7 +127,6 @@ Also accompanying modes and param types, as well as default values, are exported
 - [Product Catalogue](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product_Catalogue)
   - [`fetchMakes`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getAllMakesUsingGET)
   - [`fetchModels`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getModelsUsingGET)
-  - [`fetchTypes`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getTypesUsingGET)
   - [`fetchType`](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html#/Product%20Catalogue/getTypeUsingGET)
 
 ### [Dealer service](https://dealer-service.preprod.carforyou.ch/swagger-ui.html)
@@ -157,7 +161,7 @@ To be able to mock api calls in tests you need to:
   jest.mock("@carforyou/api-client", () => ({
     // Add this if you want to have access to other exported methods
     ...jest.requireActual("@carforyou/api-client"),
-    fetchListing: jest.fn()
+    fetchListing: jest.fn(),
   }))
   ```
 - you can now set up the mock per test basis:
