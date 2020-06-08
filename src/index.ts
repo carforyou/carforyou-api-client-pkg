@@ -133,7 +133,7 @@ export {
   defaultSort as defaultListingsSort,
   fetchMoneybackListings,
 } from "./services/search/listingSearch"
-export { fetchTypes } from "./services/search/typeSearch"
+export { fetchTypes, fetchTypeFacets } from "./services/search/typeSearch"
 export { fetchCity, fetchCitySuggestions } from "./services/search/city"
 export { fetchRegions } from "./services/search/regions"
 export { fetchFacets } from "./services/search/facets"

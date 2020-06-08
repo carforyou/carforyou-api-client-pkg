@@ -1,4 +1,4 @@
-import { fetchTypes } from "../typeSearch"
+import { fetchTypes, fetchTypeFacets } from "../typeSearch"
 
 import Paginated from "../../../lib/factories/paginated"
 import { SearchType } from "../../../lib/factories/type"
@@ -123,5 +123,21 @@ describe("#fetchTypes", () => {
         })
       )
     })
+  })
+})
+
+describe("#fetchTypeFacets", () => {
+  beforeEach(() => {
+    fetchMock.resetMocks()
+  })
+
+  it("unwraps facets from json", async () => {
+    const facets = { makeKey: 312 }
+    fetchMock.mockResponse(JSON.stringify({ facets }))
+
+    const fetched = await fetchTypeFacets()
+
+    expect(fetched).toEqual(facets)
+    expect(fetch).toHaveBeenCalled()
   })
 })

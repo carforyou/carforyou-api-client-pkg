@@ -57,3 +57,21 @@ export const fetchTypes = async ({
   }
 }
 
+export const fetchTypeFacets = async (
+  query: SearchTypeQueryParams = {},
+  fields: string[] = []
+): Promise<WithValidationError<Facets>> => {
+  try {
+    const result = await postData(Service.SEARCH, "types/facets", {
+      query: sanitizeQuery(query),
+      fields,
+    })
+
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error)
+  }
+}
