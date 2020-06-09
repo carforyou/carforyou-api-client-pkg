@@ -9,6 +9,7 @@ export interface TypeFiltersParams {
   transmissionType?: string[]
   gears?: string[]
   bodyType?: string[]
+  horsePower?: number
   firstRegistrationDate?: Date
   conditionType?: string
 }

@@ -26,6 +26,17 @@ describe("#fetchTypes", () => {
     )
   })
 
+  it("converts exact horsePower to range", async () => {
+    await fetchTypes({ horsePower: 75 })
+
+    expect(fetch).toHaveBeenCalledWith(
+      expect.stringMatching(/types\/search$/),
+      expect.objectContaining({
+        body: expect.stringContaining('"horsePowerFrom":75,"horsePowerTo":75'),
+      })
+    )
+  })
+
   describe("date conversion", () => {
     it("ignores the date when not provided", async () => {
       await fetchTypes({ firstRegistrationDate: {} })
