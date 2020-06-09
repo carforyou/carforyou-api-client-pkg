@@ -15,17 +15,42 @@ import { withTokenRefresh } from "../tokenRefresh"
 export const fetchSavedSearches = async (
   id: number
 ): Promise<Paginated<DealerSavedSearch[]>> => {
-  return fetchPath(Service.DEALER, `dealers/${id}/listing-saved-searches`)
+  return withTokenRefresh(async () => {
+    try {
+      const result = await fetchPath(
+        Service.DEALER,
+        `dealers/${id}/listing-saved-searches`
+      )
+
+      return {
+        tag: "success",
+        result,
+      }
+    } catch (error) {
+      return handleValidationError(error, { swallowErrors: true })
+    }
+  })
 }
 
 export const fetchSavedSearch = async (
   dealerId: number,
   savedSearchId: number
 ): Promise<DealerSavedSearch> => {
-  return fetchPath(
-    Service.DEALER,
-    `dealers/${dealerId}/listing-saved-searches/${savedSearchId}`
-  )
+  return withTokenRefresh(async () => {
+    try {
+      const result = await fetchPath(
+        Service.DEALER,
+        `dealers/${dealerId}/listing-saved-searches/${savedSearchId}`
+      )
+
+      return {
+        tag: "success",
+        result,
+      }
+    } catch (error) {
+      return handleValidationError(error, { swallowErrors: true })
+    }
+  })
 }
 
 export const putDealerSavedSearch = async ({
@@ -85,7 +110,7 @@ export const postDealerSavedSearch = async ({
 export const deleteDealerSavedSearch = async (
   dealerId: number,
   savedSearchId: number
-): Promise<WithValidationError<number>> => {
+): Promise<WithValidationError<{}>> => {
   return withTokenRefresh(async () => {
     try {
       const result = deletePath(
@@ -96,7 +121,6 @@ export const deleteDealerSavedSearch = async (
       return {
         tag: "success",
         result,
-        savedSearchId,
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
