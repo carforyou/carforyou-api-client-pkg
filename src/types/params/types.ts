@@ -7,7 +7,7 @@ export interface TypeFiltersParams {
   modelKey?: string
   fuelType?: string[]
   transmissionType?: string[]
-  gears?: string[]
+  gears?: number
   bodyType?: string[]
   horsePower?: number
   firstRegistrationDate?: Date

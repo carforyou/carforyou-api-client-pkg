@@ -37,6 +37,17 @@ describe("#fetchTypes", () => {
     )
   })
 
+  it("converts exact gears to range", async () => {
+    await fetchTypes({ gears: 5 })
+
+    expect(fetch).toHaveBeenCalledWith(
+      expect.stringMatching(/types\/search$/),
+      expect.objectContaining({
+        body: expect.stringContaining('"gearsFrom":5,"gearsTo":5'),
+      })
+    )
+  })
+
   describe("date conversion", () => {
     it("ignores the date when not provided", async () => {
       await fetchTypes({ firstRegistrationDate: {} })

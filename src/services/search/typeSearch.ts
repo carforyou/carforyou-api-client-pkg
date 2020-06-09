@@ -17,6 +17,7 @@ const defaultPagination = {
 const sanitizeQuery = ({
   firstRegistrationDate,
   horsePower,
+  gears,
   tsn,
   ...rest
 }: SearchTypeQueryParams) => {
@@ -28,6 +29,7 @@ const sanitizeQuery = ({
     ...(horsePower
       ? { horsePowerFrom: horsePower, horsePowerTo: horsePower }
       : {}),
+    ...(gears ? { gearsFrom: gears, gearsTo: gears } : {}),
     ...(tsn ? { tsn: tsn.replace(/\s/g, "") } : {}),
   }
 }
