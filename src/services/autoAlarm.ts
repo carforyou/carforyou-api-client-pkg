@@ -14,7 +14,7 @@ import { withTokenRefresh } from "../tokenRefresh"
 
 export const fetchSavedSearches = async (
   id: number
-): Promise<Paginated<DealerSavedSearch[]>> => {
+): Promise<Paginated<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
       const result = await fetchPath(
