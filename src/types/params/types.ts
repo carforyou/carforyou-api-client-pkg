@@ -5,6 +5,10 @@ export interface TypeFiltersParams {
   tsn?: string
   makeKey?: string
   modelKey?: string
+  fuelType?: string[]
+  transmissionType?: string[]
+  gears?: string[]
+  bodyType?: string[]
   firstRegistrationDate?: Date
   conditionType?: string
 }
