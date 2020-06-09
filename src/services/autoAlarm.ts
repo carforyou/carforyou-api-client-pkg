@@ -24,7 +24,7 @@ export const fetchSavedSearches = async (
 
       return {
         tag: "success",
-        result,
+        ...result,
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
@@ -45,7 +45,7 @@ export const fetchSavedSearch = async (
 
       return {
         tag: "success",
-        result,
+        ...result,
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
