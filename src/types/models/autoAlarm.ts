@@ -3,6 +3,8 @@ interface ModelType {
   type: string
 }
 
+export type Type = "auto-alarm"
+
 export interface DealerSavedSearch {
   createdDate: string
   emails: string[]
@@ -23,5 +25,5 @@ export interface DealerSavedSearch {
     fuelTypeGroup: string[]
     transmissionType: string[]
   }
-  type: string
+  type: Type
 }

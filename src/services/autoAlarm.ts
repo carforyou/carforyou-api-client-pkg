@@ -8,18 +8,21 @@ import {
 } from "../base"
 
 import { Paginated } from "../types/pagination"
-import { DealerSavedSearch } from "../types/models/autoAlarm"
+import { DealerSavedSearch, Type } from "../types/models/autoAlarm"
 import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
+import { PaginationParams } from "types/params"
 
 export const fetchSavedSearches = async (
-  id: number
+  id: number,
+  query: PaginationParams & { type: Type }
 ): Promise<Paginated<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
-      const result = await fetchPath(
+      const result = await postData(
         Service.DEALER,
-        `dealers/${id}/listing-saved-searches`
+        `dealers/${id}/listing-saved-searches`,
+        query
       )
 
       return {
