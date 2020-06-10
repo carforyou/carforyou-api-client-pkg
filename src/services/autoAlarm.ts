@@ -15,14 +15,15 @@ import { PaginationParams } from "../types/params"
 
 export const fetchSavedSearches = async (
   id: number,
-  query: PaginationParams & { type: AutoAlarmType }
+  type: AutoAlarmType,
+  page?: number,
+  size?: number
 ): Promise<Paginated<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
-      const result = await postData(
+      const result = await fetchPath(
         Service.DEALER,
-        `dealers/${id}/listing-saved-searches`,
-        { query }
+        `dealers/${id}/listing-saved-searches?type=${type}${page ? `&page=${page}` : ""}${size ? `&page=${size}` : ""}`
       )
 
       return {
