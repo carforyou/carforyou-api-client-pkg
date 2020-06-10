@@ -10,6 +10,7 @@ export interface TypeFiltersParams {
   gears?: number
   bodyType?: string[]
   horsePower?: number
+  fullName?: string
   firstRegistrationDate?: Date
   conditionType?: string
 }
