@@ -11,7 +11,7 @@ import { Paginated } from "../types/pagination"
 import { DealerSavedSearch, AutoAlarmType } from "../types/models/autoAlarm"
 import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
-import { PaginationParams } from "types/params"
+import { PaginationParams } from "../types/params"
 
 export const fetchSavedSearches = async (
   id: number,
