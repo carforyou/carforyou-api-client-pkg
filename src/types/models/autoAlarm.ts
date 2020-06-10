@@ -3,7 +3,7 @@ interface ModelType {
   type: string
 }
 
-export type Type = "auto-alarm"
+export type AutoAlarmType = "auto-alarm"
 
 export interface DealerSavedSearch {
   createdDate: string

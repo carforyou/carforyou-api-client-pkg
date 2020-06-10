@@ -8,14 +8,14 @@ import {
 } from "../base"
 
 import { Paginated } from "../types/pagination"
-import { DealerSavedSearch, Type } from "../types/models/autoAlarm"
+import { DealerSavedSearch, AutoAlarmType } from "../types/models/autoAlarm"
 import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
 import { PaginationParams } from "types/params"
 
 export const fetchSavedSearches = async (
   id: number,
-  query: PaginationParams & { type: Type }
+  query: PaginationParams & { type: AutoAlarmType }
 ): Promise<Paginated<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
