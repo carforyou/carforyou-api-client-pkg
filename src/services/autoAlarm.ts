@@ -22,7 +22,9 @@ export const fetchSavedSearches = async (
     try {
       const result = await fetchPath(
         Service.DEALER,
-        `dealers/${id}/listing-saved-searches?type=${type}${page ? `&page=${page}` : ""}${size ? `&page=${size}` : ""}`
+        `dealers/${id}/listing-saved-searches?type=${type}${
+          page ? `&page=${page}` : ""
+        }${size ? `&page=${size}` : ""}`
       )
 
       return {
