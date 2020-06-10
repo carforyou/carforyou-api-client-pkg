@@ -22,7 +22,7 @@ export const fetchSavedSearches = async (
       const result = await postData(
         Service.DEALER,
         `dealers/${id}/listing-saved-searches`,
-        { body: query }
+        query
       )
 
       return {
