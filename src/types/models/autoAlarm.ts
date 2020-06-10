@@ -25,5 +25,5 @@ export interface DealerSavedSearch {
     fuelTypeGroup: string[]
     transmissionType: string[]
   }
-  type: Type
+  type: AutoAlarmType
 }
