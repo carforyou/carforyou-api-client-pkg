@@ -1,5 +1,7 @@
 import { PaginationParams } from "./index"
 
+import { Date } from "types/models"
+
 export interface TypeFiltersParams {
   tsn?: string
   makeKey?: string
@@ -14,4 +16,7 @@ export interface TypeFiltersParams {
 }
 export interface SearchTypeQueryParams
   extends PaginationParams,
-    TypeFiltersParams {}
+    TypeFiltersParams {
+  conditionType?: string
+  firstRegistrationDate?: Date
+}
