@@ -1,6 +1,6 @@
 import { PaginationParams } from "./index"
 
-import { Date } from "types/models"
+import { Date } from "../../types/models"
 
 export interface TypeFiltersParams {
   tsn?: string
