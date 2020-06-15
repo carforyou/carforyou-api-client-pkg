@@ -12,7 +12,6 @@ export interface TypeFiltersParams {
   horsePower?: number
   fullName?: string
   firstRegistrationDate?: Date
-  conditionType?: string
 }
 export interface SearchTypeQueryParams
   extends PaginationParams,
