@@ -1,5 +1,4 @@
 import { PaginationParams } from "./index"
-import { Date } from "../models"
 
 export interface TypeFiltersParams {
   tsn?: string
@@ -11,7 +10,7 @@ export interface TypeFiltersParams {
   bodyType?: string[]
   horsePower?: number
   fullName?: string
-  firstRegistrationDate?: Date
+  productionYear?: number
 }
 export interface SearchTypeQueryParams
   extends PaginationParams,

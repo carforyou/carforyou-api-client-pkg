@@ -7,25 +7,19 @@ import { SearchType } from "../../types/models/type"
 import { SearchTypeQueryParams } from "../../types/params/types"
 import { Facets } from "../../types/facets"
 
-import { encodeDate } from "../../lib/dateEncoding"
-
 const defaultPagination = {
   page: 0,
   size: 25,
 }
 
 const sanitizeQuery = ({
-  firstRegistrationDate,
   horsePower,
   gears,
   tsn,
   ...rest
 }: SearchTypeQueryParams) => {
-  const encodedDate = encodeDate(firstRegistrationDate)
-
   return {
     ...rest,
-    ...(encodedDate ? { firstRegistrationDate: encodedDate } : {}),
     ...(horsePower
       ? { horsePowerFrom: horsePower, horsePowerTo: horsePower }
       : {}),

@@ -16,7 +16,7 @@ describe("#fetchTypes", () => {
   })
 
   it("removes spaces from tsn", async () => {
-    await fetchTypes({ firstRegistrationDate: {}, tsn: "Q W E  R   TY" })
+    await fetchTypes({ tsn: "Q W E  R   TY" })
 
     expect(fetch).toHaveBeenCalledWith(
       expect.stringMatching(/types\/search$/),
@@ -48,24 +48,9 @@ describe("#fetchTypes", () => {
     )
   })
 
-  describe("date conversion", () => {
-    it("ignores the date when not provided", async () => {
-      await fetchTypes({ firstRegistrationDate: {} })
-
-      expect(fetch).toHaveBeenCalledWith(
-        expect.stringMatching(/types\/search$/),
-        expect.objectContaining({
-          body: expect.stringContaining('"query":{}'),
-        })
-      )
-    })
-  })
-
   describe("when successful", () => {
     it("returns paginated types", async () => {
-      const response = await fetchTypes({
-        firstRegistrationDate: {},
-      })
+      const response = await fetchTypes({})
 
       expect(response.tag).toBe("success")
 
@@ -89,9 +74,7 @@ describe("#fetchTypes", () => {
     })
 
     it("returns error messages", async () => {
-      const response = await fetchTypes({
-        firstRegistrationDate: {},
-      })
+      const response = await fetchTypes({})
 
       expect(response.tag).toBe("error")
 
@@ -105,10 +88,7 @@ describe("#fetchTypes", () => {
 
   describe("pagination", () => {
     it("indexes page from 0", async () => {
-      await fetchTypes({
-        firstRegistrationDate: {},
-        page: 5,
-      })
+      await fetchTypes({ page: 5 })
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(/types\/search$/),
@@ -119,10 +99,7 @@ describe("#fetchTypes", () => {
     })
 
     it("defaults `page` to 0 when not provided", async () => {
-      await fetchTypes({
-        firstRegistrationDate: {},
-        size: 10,
-      })
+      await fetchTypes({ size: 10 })
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(/types\/search$/),
@@ -133,10 +110,7 @@ describe("#fetchTypes", () => {
     })
 
     it("defaults `size` to 25 when it's not provided", async () => {
-      await fetchTypes({
-        firstRegistrationDate: {},
-        page: 5,
-      })
+      await fetchTypes({ page: 5 })
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(/types\/search$/),
