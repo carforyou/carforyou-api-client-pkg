@@ -2,6 +2,11 @@ import { PaginationParams } from "./index"
 
 import { Date } from "../../types/models"
 
+export enum PowerUnit {
+  HorsePower = "horsePower",
+  KiloWatts = "kiloWatts",
+}
+
 export interface TypeFiltersParams {
   tsn?: string
   makeKey?: string
@@ -10,7 +15,7 @@ export interface TypeFiltersParams {
   transmissionType?: string[]
   gears?: number
   bodyType?: string[]
-  horsePower?: number
+  power?: { unit?: PowerUnit; value?: number }
   fullName?: string
   productionYear?: number
 }

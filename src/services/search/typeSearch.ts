@@ -12,17 +12,25 @@ const defaultPagination = {
   size: 25,
 }
 
+const getPowerFilters = (power) => {
+  const { unit, value } = power || {}
+
+  if (!unit || !value) {
+    return {}
+  }
+
+  return { [`${unit}From`]: value, [`${unit}To`]: value }
+}
+
 const sanitizeQuery = ({
-  horsePower,
+  power,
   gears,
   tsn,
   ...rest
 }: SearchTypeQueryParams) => {
   return {
     ...rest,
-    ...(horsePower
-      ? { horsePowerFrom: horsePower, horsePowerTo: horsePower }
-      : {}),
+    ...getPowerFilters(power),
     ...(gears ? { gearsFrom: gears, gearsTo: gears } : {}),
     ...(tsn ? { tsn: tsn.replace(/\s/g, "") } : {}),
   }

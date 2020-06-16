@@ -1,5 +1,6 @@
 import { fetchTypes, fetchTypeFacets } from "../typeSearch"
 
+import { PowerUnit } from "../../../types/params/types"
 import Paginated from "../../../lib/factories/paginated"
 import { SearchType } from "../../../lib/factories/type"
 
@@ -26,15 +27,52 @@ describe("#fetchTypes", () => {
     )
   })
 
-  it("converts exact horsePower to range", async () => {
-    await fetchTypes({ horsePower: 75 })
+  describe("filtering by power", () => {
+    it("converts exact horsePower to range", async () => {
+      await fetchTypes({ power: { unit: PowerUnit.HorsePower, value: 75 } })
 
-    expect(fetch).toHaveBeenCalledWith(
-      expect.stringMatching(/types\/search$/),
-      expect.objectContaining({
-        body: expect.stringContaining('"horsePowerFrom":75,"horsePowerTo":75'),
-      })
-    )
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(/types\/search$/),
+        expect.objectContaining({
+          body: expect.stringContaining(
+            '"horsePowerFrom":75,"horsePowerTo":75'
+          ),
+        })
+      )
+    })
+
+    it("converts exact kiloWatts to range", async () => {
+      await fetchTypes({ power: { unit: PowerUnit.KiloWatts, value: 75 } })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(/types\/search$/),
+        expect.objectContaining({
+          body: expect.stringContaining('"kiloWattsFrom":75,"kiloWattsTo":75'),
+        })
+      )
+    })
+
+    it("ignores power value without a unit", async () => {
+      await fetchTypes({ power: { value: 75 } })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(/types\/search$/),
+        expect.objectContaining({
+          body: expect.stringContaining('"query":{}'),
+        })
+      )
+    })
+
+    it("ignores power unit without a value", async () => {
+      await fetchTypes({ power: { unit: PowerUnit.HorsePower } })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(/types\/search$/),
+        expect.objectContaining({
+          body: expect.stringContaining('"query":{}'),
+        })
+      )
+    })
   })
 
   it("converts exact gears to range", async () => {
