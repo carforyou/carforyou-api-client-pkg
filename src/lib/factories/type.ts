@@ -17,6 +17,7 @@ const overviewDefaults: SearchTypeType = {
   ...commonDefaults,
   transmissionType: "automatic",
   horsePower: 160,
+  kiloWatts: 118,
   fuelType: "petrol",
   driveType: "front",
   productionStartDate: "2006-10-01",
