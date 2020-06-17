@@ -12,6 +12,7 @@ export interface SearchType {
   bodyType: string
   transmissionType: string
   horsePower: number
+  kiloWatts: number
   seats: number
   fuelType: string
   driveType: string
