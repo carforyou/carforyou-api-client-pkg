@@ -53,7 +53,7 @@ export const defaultDealerSavedSearch: DealerSavedSearchType = {
 export const DealerSavedSearchFactory = (
   preset?: DealerSavedSearchPreset
 ): DealerSavedSearchType => {
-  const presetQuery = preset ? preset.query || {} : {}
+  const presetQuery = (preset && preset.query) || {}
   const query = {
     ...defaultDealerSavedSearch.query,
     ...presetQuery,
