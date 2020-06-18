@@ -1,4 +1,4 @@
-interface ModelType {
+export interface ModelType {
   modelKey: string
   type: string
 }
@@ -6,22 +6,22 @@ interface ModelType {
 export type AutoAlarmType = "auto-alarm"
 
 export interface DealerSavedSearch {
-  createdDate: string
+  createdDate: string | Date
   emails: string[]
-  id: number
-  lastModifiedDate: string
+  id: number | null
+  lastModifiedDate: string | Date
   query: {
     makeKey: string
     modelType: ModelType[]
     bodyType: string[]
-    firstRegistrationYearFrom: number
-    firstRegistrationYearTo: number
-    mileageFrom: number
-    mileageTo: number
-    priceFrom: number
-    priceTo: number
-    horsePowerFrom: number
-    horsePowerTo: number
+    firstRegistrationYearFrom: number | null
+    firstRegistrationYearTo: number | null
+    mileageFrom: number | null
+    mileageTo: number | null
+    priceFrom: number | null
+    priceTo: number | null
+    horsePowerFrom: number | null
+    horsePowerTo: number | null
     fuelTypeGroup: string[]
     transmissionType: string[]
   }
