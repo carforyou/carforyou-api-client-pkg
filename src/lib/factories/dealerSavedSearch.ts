@@ -2,7 +2,7 @@ import {
   DealerSavedSearch as DealerSavedSearchType,
   AutoAlarmType,
   ModelType,
-} from "types/models/autoAlarm"
+} from "../../types/models/autoAlarm"
 
 export interface DealerSavedSearchPreset {
   createdDate?: string | Date

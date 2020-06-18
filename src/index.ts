@@ -42,8 +42,8 @@ export { DealerProfile } from "./types/models/dealerProfile"
 
 export {
   DealerSavedSearch,
-  AutoAlarmType,
   ModelType,
+  AutoAlarmType,
 } from "./types/models/autoAlarm"
 
 export { PaginationParams } from "./types/params"
