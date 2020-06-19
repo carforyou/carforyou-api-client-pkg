@@ -8,7 +8,7 @@ export type AutoAlarmType = "auto-alarm"
 export interface DealerSavedSearch {
   createdDate: string | Date
   emails: string[]
-  id: number | null
+  id: string | null
   lastModifiedDate: string | Date
   query: {
     makeKey: string

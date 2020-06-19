@@ -7,7 +7,7 @@ import {
 export interface DealerSavedSearchPreset {
   createdDate?: string | Date
   emails?: string[]
-  id?: number | null
+  id?: string | null
   lastModifiedDate?: string | Date
   query?: {
     makeKey?: string

@@ -43,7 +43,7 @@ describe("DealerSavedSearchBuilder", () => {
     const preset = {
       createdDate: new Date(),
       emails: ["test@test.com"],
-      id: 123,
+      id: "dummy",
       lastModifiedDate: new Date(),
       query: {
         makeKey: "Ford",
