@@ -34,7 +34,7 @@ export const defaultDealerSavedSearch: DealerSavedSearch = {
 export const DealerSavedSearchFactory = (
   preset: NestedPartial<DealerSavedSearch> = {}
 ): DealerSavedSearch => {
-  const presetQuery = (preset && preset.query) || {}
+  const presetQuery = preset.query || {}
   const { query: defaultQuery } = defaultDealerSavedSearch
   const query: DealerSavedSearchQuery = {
     ...defaultQuery,
