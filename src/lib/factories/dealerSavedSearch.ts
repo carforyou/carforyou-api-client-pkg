@@ -1,33 +1,14 @@
 import {
-  DealerSavedSearch as DealerSavedSearchType,
+  DealerSavedSearch,
+  DealerSavedSearchQuery,
   AutoAlarmType,
-  ModelType,
 } from "../../types/models/autoAlarm"
 
-export interface DealerSavedSearchPreset {
-  createdDate?: string | null
-  emails?: string[]
-  id?: string | null
-  lastModifiedDate?: string | null
-  query?: {
-    makeKey?: string
-    modelType?: ModelType[]
-    bodyType?: string[]
-    firstRegistrationYearFrom?: number | null
-    firstRegistrationYearTo?: number | null
-    mileageFrom?: number | null
-    mileageTo?: number | null
-    priceFrom?: number | null
-    priceTo?: number | null
-    horsePowerFrom?: number | null
-    horsePowerTo?: number | null
-    fuelTypeGroup?: string[]
-    transmissionType?: string[]
-  }
-  type?: AutoAlarmType
+type NestedPartial<T> = {
+  [P in keyof T]?: Partial<T[P]>
 }
 
-export const defaultDealerSavedSearch: DealerSavedSearchType = {
+export const defaultDealerSavedSearch: DealerSavedSearch = {
   createdDate: null,
   emails: [],
   id: null,
@@ -47,15 +28,16 @@ export const defaultDealerSavedSearch: DealerSavedSearchType = {
     fuelTypeGroup: [],
     transmissionType: [],
   },
-  type: "auto-alarm",
+  type: "auto-alarm" as AutoAlarmType,
 }
 
 export const DealerSavedSearchFactory = (
-  preset?: DealerSavedSearchPreset
-): DealerSavedSearchType => {
+  preset: NestedPartial<DealerSavedSearch> = {}
+): DealerSavedSearch => {
   const presetQuery = (preset && preset.query) || {}
-  const query = {
-    ...defaultDealerSavedSearch.query,
+  const { query: defaultQuery } = defaultDealerSavedSearch
+  const query: DealerSavedSearchQuery = {
+    ...defaultQuery,
     ...presetQuery,
   }
   return {
