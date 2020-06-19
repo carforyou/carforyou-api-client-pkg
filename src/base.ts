@@ -96,6 +96,7 @@ export const fetchPath = async (
   const url = `${prefix}/${stripLeadingSlash(path)}`
 
   if (apiClient.configuration.debug) {
+    // eslint-disable-next-line no-console
     console.info(`    >> API #fetchPath: ${url}`, options)
   }
 
@@ -120,6 +121,7 @@ export const fetchPath = async (
   const json = text.length > 0 ? JSON.parse(text) : { success: true }
 
   if (apiClient.configuration.debug) {
+    // eslint-disable-next-line no-console
     console.info(`    >> API Response: ${JSON.stringify(json, null, 2)}`)
   }
 
