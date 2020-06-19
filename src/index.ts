@@ -42,6 +42,7 @@ export { DealerProfile } from "./types/models/dealerProfile"
 
 export {
   DealerSavedSearch,
+  DealerSavedSearchQuery,
   ModelType,
   AutoAlarmType,
 } from "./types/models/autoAlarm"
