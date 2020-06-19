@@ -41,10 +41,10 @@ describe("DealerSavedSearchBuilder", () => {
 
   it("returns a DealerSavedSearch with every property of the preset", () => {
     const preset = {
-      createdDate: new Date(),
+      createdDate: "2020-06-15T11:23:08.668874Z",
       emails: ["test@test.com"],
       id: "dummy",
-      lastModifiedDate: new Date(),
+      lastModifiedDate: "2020-06-15T11:23:08.668874Z",
       query: {
         makeKey: "Ford",
         modelType: [
