@@ -23,6 +23,7 @@ export const purchaseAndUseProduct = async (
           productId,
         }
       )
+      console.log('result', result)
       return {
         tag: "success",
         result,
