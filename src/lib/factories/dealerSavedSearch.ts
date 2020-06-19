@@ -5,10 +5,10 @@ import {
 } from "../../types/models/autoAlarm"
 
 export interface DealerSavedSearchPreset {
-  createdDate?: string | Date
+  createdDate?: string | null
   emails?: string[]
   id?: string | null
-  lastModifiedDate?: string | Date
+  lastModifiedDate?: string | null
   query?: {
     makeKey?: string
     modelType?: ModelType[]
@@ -28,10 +28,10 @@ export interface DealerSavedSearchPreset {
 }
 
 export const defaultDealerSavedSearch: DealerSavedSearchType = {
-  createdDate: new Date(),
+  createdDate: null,
   emails: [],
   id: null,
-  lastModifiedDate: new Date(),
+  lastModifiedDate: null,
   query: {
     makeKey: "",
     modelType: [],
