@@ -23,8 +23,6 @@ export const purchaseAndUseProduct = async (
           productId,
         }
       )
-      // eslint-disable-next-line no-console
-      console.log("result", result)
       return {
         tag: "success",
         result,
