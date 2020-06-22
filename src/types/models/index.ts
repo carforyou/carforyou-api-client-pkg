@@ -33,6 +33,16 @@ export enum DealerSource {
   PRIVATE = "SELF_REGISTRATION",
 }
 
+export enum DealerType {
+  private = "private",
+  professional = "professional",
+}
+
+export enum DealerSourceGroup {
+  carforyou = "carforyou",
+  external = "external",
+}
+
 export interface Location {
   country: string
   lat: number
@@ -160,4 +170,10 @@ export interface ListingAnalyticsData {
 
 export interface DealerListingsAnalyticsData {
   listings: ListingAnalyticsData[]
+}
+
+export interface Entitlements {
+  [key: string]: {
+    limit: number
+  }
 }

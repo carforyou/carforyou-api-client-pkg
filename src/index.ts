@@ -5,6 +5,8 @@ export {
   Model,
   Dealer,
   DealerSource,
+  DealerSourceGroup,
+  DealerType,
   Option,
   Options,
   ImageEnrichment,
