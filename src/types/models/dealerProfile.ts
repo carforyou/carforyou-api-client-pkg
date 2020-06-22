@@ -5,8 +5,8 @@ export interface DealerProfile {
   address: string
   city: string
   dealerSource: DealerSource
-  dealerSourceGroup: string,
-  dealerType: string,
+  dealerSourceGroup: string
+  dealerType: string
   id: number
   phone: string
   zipCode: string

@@ -28,6 +28,8 @@ describe("Dealer", () => {
       address: "Heiterweit",
       city: "SW",
       dealerSource: DealerSource.SALESFORCE,
+      dealerType: "professional",
+      dealerSourceGroup: "carforyou",
       id: dealerIdMock,
       phone: "12-13-65",
       zipCode: "345",
