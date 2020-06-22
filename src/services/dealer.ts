@@ -55,14 +55,14 @@ export const fetchDealerEntitlements = (
 ): Promise<WithValidationError<Entitlements>> =>
   withTokenRefresh(async () => {
     try {
-      const result = await fetchPath(
+      const entitlements = await fetchPath(
         Service.DEALER,
         `dealers/${dealerId}/entitlements`
       )
 
       return {
         tag: "success",
-        result,
+        entitlements,
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
