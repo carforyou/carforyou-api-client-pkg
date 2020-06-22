@@ -40,7 +40,12 @@ export { SearchType, Type } from "./types/models/type"
 export { Facets, Facet } from "./types/facets"
 export { DealerProfile } from "./types/models/dealerProfile"
 
-export { DealerSavedSearch, AutoAlarmType } from "./types/models/autoAlarm"
+export {
+  DealerSavedSearch,
+  DealerSavedSearchQuery,
+  ModelType,
+  AutoAlarmType,
+} from "./types/models/autoAlarm"
 
 export { PaginationParams } from "./types/params"
 export {
@@ -169,6 +174,9 @@ export {
   EmptyListing,
   ListingFromType,
 } from "./lib/factories/listing"
+
+export { DealerSavedSearchFactory } from "./lib/factories/dealerSavedSearch"
+
 export {
   Type as TypeFactory,
   SearchType as SearchTypeFactory,
