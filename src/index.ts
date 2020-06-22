@@ -155,6 +155,7 @@ export {
   fetchDealerSuggestions,
   fetchDealerProfile,
   putDealerProfile,
+  fetchDealerEntitlements,
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export { fetchAnalyticsData } from "./services/analytics"

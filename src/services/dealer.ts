@@ -49,3 +49,20 @@ export const putDealerProfile = async ({
     }
   })
 }
+
+export const fetchDealerEntitlements = (dealerId) =>
+  withTokenRefresh(async () => {
+    try {
+      const result = await fetchPath(
+        Service.DEALER,
+        `dealers/${dealerId}/entitlements`
+      )
+
+      return {
+        tag: "success",
+        result,
+      }
+    } catch (error) {
+      return handleValidationError(error, { swallowErrors: true })
+    }
+  })
