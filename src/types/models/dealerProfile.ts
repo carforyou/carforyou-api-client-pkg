@@ -9,3 +9,11 @@ export interface DealerProfile {
   phone: string
   zipCode: string
 }
+
+export interface DealerNewProfile {
+  name: string
+  address: string
+  city: string
+  phone: string
+  zipCode: string
+}
