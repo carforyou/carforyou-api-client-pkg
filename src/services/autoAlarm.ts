@@ -13,7 +13,7 @@ import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
 
 export const fetchSavedSearches = async (
-  id: number,
+  id: string,
   type: AutoAlarmType,
   page?: number,
   size?: number
@@ -39,7 +39,7 @@ export const fetchSavedSearches = async (
 
 export const fetchSavedSearch = async (
   dealerId: number,
-  savedSearchId: number
+  savedSearchId: string
 ): Promise<DealerSavedSearch> => {
   return withTokenRefresh(async () => {
     try {
@@ -64,7 +64,7 @@ export const putDealerSavedSearch = async ({
   savedSearch,
 }: {
   dealerId: number
-  savedSearchId: number
+  savedSearchId: string
   savedSearch: object
 }): Promise<WithValidationError<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
@@ -114,7 +114,7 @@ export const postDealerSavedSearch = async ({
 
 export const deleteDealerSavedSearch = async (
   dealerId: number,
-  savedSearchId: number
+  savedSearchId: string
 ): Promise<WithValidationError<{}>> => {
   return withTokenRefresh(async () => {
     try {
