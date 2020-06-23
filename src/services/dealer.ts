@@ -34,7 +34,7 @@ export const fetchDealerProfile = async (
 export const postDealerProfile = async ({
   profile,
 }: {
-  profile: DealerProfile
+  profile: Omit<DealerProfile, "id" | "dealerSource">
 }): Promise<WithValidationError<{ id: number }>> => {
   return withTokenRefresh(async () => {
     try {
