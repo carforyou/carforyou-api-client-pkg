@@ -8,7 +8,7 @@ import {
 
 import { Paginated } from "../types/pagination"
 import { Dealer, DealerSuggestion } from "../types/models"
-import { DealerProfile, PrivateSellerProfile } from "../types/models/dealerProfile"
+import { DealerProfile } from "../types/models/dealerProfile"
 import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
 
@@ -34,7 +34,7 @@ export const fetchDealerProfile = async (
 export const postDealerProfile = async ({
   profile,
 }: {
-  profile: PrivateSellerProfile
+  profile: DealerProfile
 }): Promise<WithValidationError<{ id: number }>> => {
   return withTokenRefresh(async () => {
     try {
