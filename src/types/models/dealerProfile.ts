@@ -10,7 +10,7 @@ export interface DealerProfile {
   zipCode: string
 }
 
-export interface DealerNewProfile {
+export interface PrivateSellerProfile {
   name: string
   address: string
   city: string

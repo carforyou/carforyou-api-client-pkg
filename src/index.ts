@@ -38,7 +38,7 @@ export {
 
 export { SearchType, Type } from "./types/models/type"
 export { Facets, Facet } from "./types/facets"
-export { DealerProfile, DealerNewProfile } from "./types/models/dealerProfile"
+export { DealerProfile, PrivateSellerProfile } from "./types/models/dealerProfile"
 
 export {
   DealerSavedSearch,
