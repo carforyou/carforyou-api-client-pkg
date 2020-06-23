@@ -16,7 +16,7 @@ export const purchaseAndUseProduct = async (
 ): Promise<WithValidationError<PurchaseAndUseProduct>> => {
   return withTokenRefresh(async () => {
     try {
-      const result = postData(
+      const result = await postData(
         Service.DEALER,
         `dealers/${dealerId}/listings/${listingId}/products/purchase-and-use`,
         {
