@@ -39,10 +39,17 @@ export const DealerSavedSearchFactory = (
   const query: DealerSavedSearchQuery = {
     ...defaultQuery,
     ...presetQuery,
+    modelType: presetQuery.modelType || defaultQuery.modelType,
+    bodyType: presetQuery.bodyType || defaultQuery.bodyType,
+    fuelTypeGroup: presetQuery.fuelTypeGroup || defaultQuery.fuelTypeGroup,
+    transmissionType:
+      presetQuery.transmissionType || defaultQuery.transmissionType,
   }
+
   return {
     ...defaultDealerSavedSearch,
     ...preset,
+    emails: preset.emails || defaultDealerSavedSearch.emails,
     query: query,
   }
 }
