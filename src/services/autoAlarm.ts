@@ -13,7 +13,7 @@ import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
 
 export const fetchSavedSearches = async (
-  id: string,
+  dealerId: number,
   type: AutoAlarmType,
   page?: number,
   size?: number
@@ -22,14 +22,14 @@ export const fetchSavedSearches = async (
     try {
       const result = await fetchPath(
         Service.DEALER,
-        `dealers/${id}/listing-saved-searches?type=${type}${
+        `dealers/${dealerId}/listing-saved-searches?type=${type}${
           page ? `&page=${page}` : ""
         }${size ? `&page=${size}` : ""}`
       )
 
       return {
         tag: "success",
-        ...result,
+        result,
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
