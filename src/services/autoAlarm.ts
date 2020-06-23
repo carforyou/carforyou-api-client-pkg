@@ -29,7 +29,7 @@ export const fetchSavedSearches = async (
 
       return {
         tag: "success",
-        result,
+        ...result,
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
