@@ -71,4 +71,27 @@ describe("DealerSavedSearchBuilder", () => {
     const dealerSavedSearch = DealerSavedSearchFactory(preset)
     expect(dealerSavedSearch).toEqual(preset)
   })
+
+  it("converts null values to empty arrays if needed", () => {
+    const preset = {
+      emails: null,
+      query: {
+        modelType: null,
+        bodyType: null,
+        fuelTypeGroup: null,
+        transmissionType: null,
+      },
+    }
+
+    const dealerSavedSearch = DealerSavedSearchFactory(preset)
+    const {
+      emails,
+      query: { modelType, bodyType, fuelTypeGroup, transmissionType },
+    } = dealerSavedSearch
+    expect(emails).toEqual([])
+    expect(modelType).toEqual([])
+    expect(bodyType).toEqual([])
+    expect(fuelTypeGroup).toEqual([])
+    expect(transmissionType).toEqual([])
+  })
 })
