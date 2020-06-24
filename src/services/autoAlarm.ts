@@ -21,7 +21,7 @@ export const fetchSavedSearches = async (
   return withTokenRefresh(async () => {
     try {
       const result = await fetchPath(
-        Service.DEALER,
+        Service.SEARCH,
         `dealers/${id}/listing-saved-searches?type=${type}${
           page ? `&page=${page}` : ""
         }${size ? `&page=${size}` : ""}`
@@ -44,7 +44,7 @@ export const fetchSavedSearch = async (
   return withTokenRefresh(async () => {
     try {
       const result = await fetchPath(
-        Service.DEALER,
+        Service.SEARCH,
         `dealers/${dealerId}/listing-saved-searches/${savedSearchId}`
       )
 
@@ -70,7 +70,7 @@ export const putDealerSavedSearch = async ({
   return withTokenRefresh(async () => {
     try {
       const result = await putData(
-        Service.DEALER,
+        Service.SEARCH,
         `dealers/${dealerId}/listing-saved-searches/${savedSearchId}`,
         savedSearch
       )
@@ -96,7 +96,7 @@ export const postDealerSavedSearch = async ({
   return withTokenRefresh(async () => {
     try {
       const result = await postData(
-        Service.DEALER,
+        Service.SEARCH,
         `dealers/${dealerId}/listing-saved-searches`,
         savedSearch
       )
@@ -119,7 +119,7 @@ export const deleteDealerSavedSearch = async (
   return withTokenRefresh(async () => {
     try {
       const result = deletePath(
-        Service.DEALER,
+        Service.SEARCH,
         `dealers/${dealerId}/listing-saved-searches/${savedSearchId}`
       )
 
