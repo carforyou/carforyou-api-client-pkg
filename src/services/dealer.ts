@@ -50,7 +50,7 @@ export const putDealerProfile = async ({
   })
 }
 
-export const fetchDealerEntitlements = (
+export const fetchDealerEntitlements = async (
   dealerId
 ): Promise<WithValidationError<Entitlements>> =>
   withTokenRefresh(async () => {
