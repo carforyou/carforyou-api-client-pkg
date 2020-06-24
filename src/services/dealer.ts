@@ -31,11 +31,9 @@ export const fetchDealerProfile = async (
   return fetchPath(Service.DEALER, `dealers/${dealerId}/profile`)
 }
 
-export const postDealerProfile = async ({
-  profile,
-}: {
+export const postDealerProfile = async (
   profile: Omit<DealerProfile, "id" | "dealerSource">
-}): Promise<WithValidationError<{ id: number }>> => {
+): Promise<WithValidationError<{ id: number }>> => {
   return withTokenRefresh(async () => {
     try {
       const result = await postData(Service.DEALER, `dealers/profile`, profile)
