@@ -52,5 +52,5 @@ export const putDealerProfile = async ({
 
 export const fetchDealerEntitlements = async (
   dealerId
-): Promise<WithValidationError<Entitlements>> =>
+): Promise<Entitlements> =>
   fetchPath(Service.DEALER, `dealers/${dealerId}/entitlements`)
