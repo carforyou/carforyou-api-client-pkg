@@ -13,7 +13,7 @@ import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
 
 export const fetchSavedSearches = async (
-  id: number,
+  dealerId: number,
   type: AutoAlarmType,
   page?: number,
   size?: number
@@ -21,8 +21,8 @@ export const fetchSavedSearches = async (
   return withTokenRefresh(async () => {
     try {
       const result = await fetchPath(
-        Service.DEALER,
-        `dealers/${id}/listing-saved-searches?type=${type}${
+        Service.SEARCH,
+        `dealers/${dealerId}/listing-saved-searches/auto-alarms?type=${type}${
           page ? `&page=${page}` : ""
         }${size ? `&page=${size}` : ""}`
       )
@@ -39,13 +39,13 @@ export const fetchSavedSearches = async (
 
 export const fetchSavedSearch = async (
   dealerId: number,
-  savedSearchId: number
+  savedSearchId: string
 ): Promise<DealerSavedSearch> => {
   return withTokenRefresh(async () => {
     try {
       const result = await fetchPath(
-        Service.DEALER,
-        `dealers/${dealerId}/listing-saved-searches/${savedSearchId}`
+        Service.SEARCH,
+        `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`
       )
 
       return {
@@ -64,14 +64,14 @@ export const putDealerSavedSearch = async ({
   savedSearch,
 }: {
   dealerId: number
-  savedSearchId: number
+  savedSearchId: string
   savedSearch: object
 }): Promise<WithValidationError<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
       const result = await putData(
-        Service.DEALER,
-        `dealers/${dealerId}/listing-saved-searches/${savedSearchId}`,
+        Service.SEARCH,
+        `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
         savedSearch
       )
 
@@ -96,8 +96,8 @@ export const postDealerSavedSearch = async ({
   return withTokenRefresh(async () => {
     try {
       const result = await postData(
-        Service.DEALER,
-        `dealers/${dealerId}/listing-saved-searches`,
+        Service.SEARCH,
+        `dealers/${dealerId}/listing-saved-searches/auto-alarms`,
         savedSearch
       )
 
@@ -114,13 +114,13 @@ export const postDealerSavedSearch = async ({
 
 export const deleteDealerSavedSearch = async (
   dealerId: number,
-  savedSearchId: number
+  savedSearchId: string
 ): Promise<WithValidationError<{}>> => {
   return withTokenRefresh(async () => {
     try {
       const result = deletePath(
-        Service.DEALER,
-        `dealers/${dealerId}/listing-saved-searches/${savedSearchId}`
+        Service.SEARCH,
+        `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`
       )
 
       return {

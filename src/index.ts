@@ -5,6 +5,8 @@ export {
   Model,
   Dealer,
   DealerSource,
+  DealerSourceGroup,
+  DealerType,
   Option,
   Options,
   ImageEnrichment,
@@ -19,6 +21,7 @@ export {
   ListingAnalyticsStats,
   ListingAnalyticsData,
   DealerListingsAnalyticsData,
+  DealerEntitlements,
 } from "./types/models/index"
 
 export {
@@ -156,6 +159,7 @@ export {
   fetchDealerProfile,
   putDealerProfile,
   postDealerProfile,
+  fetchDealerEntitlements,
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export { fetchAnalyticsData } from "./services/analytics"

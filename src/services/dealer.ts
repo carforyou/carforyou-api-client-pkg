@@ -7,7 +7,7 @@ import {
 } from "../base"
 
 import { Paginated } from "../types/pagination"
-import { Dealer, DealerSuggestion } from "../types/models"
+import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 import { DealerProfile } from "../types/models/dealerProfile"
 import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
@@ -72,3 +72,8 @@ export const putDealerProfile = async ({
     }
   })
 }
+
+export const fetchDealerEntitlements = async (
+  dealerId
+): Promise<Entitlements> =>
+  fetchPath(Service.DEALER, `dealers/${dealerId}/entitlements`)
