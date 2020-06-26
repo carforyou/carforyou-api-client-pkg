@@ -43,6 +43,11 @@ export enum DealerSourceGroup {
   external = "external",
 }
 
+export enum DealerEntitlements {
+  AUTOALARM = "auto-alarm",
+  LISTING = "listing",
+}
+
 export interface Location {
   country: string
   lat: number

@@ -21,6 +21,7 @@ export {
   ListingAnalyticsStats,
   ListingAnalyticsData,
   DealerListingsAnalyticsData,
+  DealerEntitlements,
 } from "./types/models/index"
 
 export {
