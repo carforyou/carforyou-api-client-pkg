@@ -167,6 +167,9 @@ export interface ListingAnalyticsStats {
   callLeads: number
   messageLeads: number
   pdpViews: number
+  pdpViewsByFeature: {
+    [key: string]: number
+  }
 }
 export interface ListingAnalyticsData {
   id: number
