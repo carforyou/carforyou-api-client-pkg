@@ -89,4 +89,5 @@ export interface DealerListingQueryParams
     DealerListingSortParams {
   isActive?: boolean
   isManual?: boolean
+  features?: string
 }

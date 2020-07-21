@@ -1,4 +1,10 @@
-import { fetchPath, Service, handleValidationError, putData } from "../base"
+import {
+  fetchPath,
+  Service,
+  handleValidationError,
+  putData,
+  postData,
+} from "../base"
 
 import { Paginated } from "../types/pagination"
 import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
@@ -23,6 +29,23 @@ export const fetchDealerProfile = async (
   dealerId: number
 ): Promise<DealerProfile> => {
   return fetchPath(Service.DEALER, `dealers/${dealerId}/profile`)
+}
+
+export const postDealerProfile = async (
+  profile: Omit<DealerProfile, "id" | "dealerSource">
+): Promise<WithValidationError<{ id: number }>> => {
+  return withTokenRefresh(async () => {
+    try {
+      const result = await postData(Service.DEALER, `dealers/profile`, profile)
+
+      return {
+        tag: "success",
+        result,
+      }
+    } catch (error) {
+      return handleValidationError(error, { swallowErrors: true })
+    }
+  })
 }
 
 export const putDealerProfile = async ({

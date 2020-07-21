@@ -158,6 +158,7 @@ export {
   fetchDealerSuggestions,
   fetchDealerProfile,
   putDealerProfile,
+  postDealerProfile,
   fetchDealerEntitlements,
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
