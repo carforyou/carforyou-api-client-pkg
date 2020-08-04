@@ -171,7 +171,7 @@ export {
   putDealerSavedSearch,
   postDealerSavedSearch,
   deleteDealerSavedSearch,
-} from "./services/autoAlarm"
+} from "./services/search/autoAlarm"
 
 export {
   Listing as ListingFactory,
