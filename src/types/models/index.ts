@@ -65,6 +65,8 @@ export interface Dealer {
   email: string
   zipCode: string
   dealerSource: DealerSource
+  dealerSourceGroup: DealerSourceGroup
+  dealerType: DealerType
   address?: string
   city?: string
   location?: Location
