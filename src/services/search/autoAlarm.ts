@@ -17,7 +17,7 @@ export const fetchSavedSearches = async (
   type: AutoAlarmType,
   page?: number,
   size?: number
-): Promise<Paginated<DealerSavedSearch[]>> => {
+): Promise<Paginated<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
       const result = await fetchPath(
