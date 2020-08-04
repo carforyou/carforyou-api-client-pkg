@@ -28,13 +28,13 @@ fetchBodyTypes()
 
 | Option Name                  | Meaning                                                                                                             |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `carServiceUrl`              | URL to [CarForYou Service](https://carforyou-service.preprod.carforyou.ch/swagger-ui.html)                          |
-| `searchServiceUrl`           | URL to [Inventory Search Service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html)            |
+| `carServiceUrl`              | URL to [CarForYou Service](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html)                    |
+| `searchServiceUrl`           | URL to [Inventory Search Service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html)      |
 | `catalogueServiceUrl`        | URL to [Catalogue Service](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product_Catalogue) |
-| `dealerServiceUrl`           | URL to [Dealer Service](https://dealer-service.preprod.carforyou.ch/swagger-ui.html)                                |
-| `optionServiceUrl`           | URL to [Options Service](https://option-service.preprod.carforyou.ch/swagger-ui.html)                               |
-| `analyticsServiceUrl`        | URL to [Analytics Service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui.html)                |
-| `userNotificationServiceUrl` | URL to [User Notification Service](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html)          |
+| `dealerServiceUrl`           | URL to [Dealer Service](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html)                          |
+| `optionServiceUrl`           | URL to [Options Service](https://option-service.preprod.carforyou.ch/swagger-ui/index.html)                         |
+| `analyticsServiceUrl`        | URL to [Analytics Service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui/index.html)          |
+| `userNotificationServiceUrl` | URL to [User Notification Service](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html)    |
 | `tokenRefreshServiceUrl`     | URL to Auth Service used to refresh access tokens                                                                   |
 | `debug`                      | Set to `true` to `console.log` requests and API responses.                                                          |
 
@@ -84,7 +84,7 @@ Also accompanying modes and param types, as well as default values, are exported
 - [Money Back Guarantee](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money_Back_Guarantee)
   - [`sendMoneybackApplication`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money%20Back%20Guarantee/createMbgApplicationUsingPOST)
 
-### [Options service](https://option-service.preprod.carforyou.ch/swagger-ui.html)
+### [Options service](https://option-service.preprod.carforyou.ch/swagger-ui/index.html)
 
 - [Listing](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing)
   - [`fetchListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/getListingOptionsUsingGET_1)
@@ -93,7 +93,7 @@ Also accompanying modes and param types, as well as default values, are exported
 - [Type](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Type)
   - [`fetchTypeOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Type/getTypeOptionsUsingGET)
 
-### [Inventory search service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui.html)
+### [Inventory search service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html)
 
 - [Cities](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Cities)
 
@@ -131,14 +131,14 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`postDealerSavedSearch`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches/createAutoAlarmUsingPOST)
   - [`deleteDealerSavedSearch`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches/deleteAutoAlarmUsingDELETE)
 
-### [Catalogue service](https://catalogue-service.preprod.carforyou.ch/swagger-ui.html)
+### [Catalogue service](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html)
 
 - [Product Catalogue](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product_Catalogue)
   - [`fetchMakes`](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product%20Catalogue/getAllMakesUsingGET)
   - [`fetchModels`](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product%20Catalogue/getModelsUsingGET)
   - [`fetchType`](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product%20Catalogue/getTypeUsingGET)
 
-### [Dealer service](https://dealer-service.preprod.carforyou.ch/swagger-ui.html)
+### [Dealer service](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html)
 
 - [Dealer](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer)
   - [`fetchDealer`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/getUsingGET)
@@ -146,13 +146,13 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchDealerProfile`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/getProfileUsingGET)
   - [`putDealerProfile`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/updateProfileUsingPUT)
 
-### [User notification service](https://user-notification-service.preprod.carforyou.ch/swagger-ui.html)
+### [User notification service](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html)
 
 - [Saved Search](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html#/Saved_Search)
   - [`sendSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html#/Saved%20Search/createSavedSearchUsingPOST)
   - [`deleteSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html#/Saved%20Search/deleteSavedSearchUsingDELETE)
 
-### [Analytics service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui.html)
+### [Analytics service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui/index.html)
 
 - [Analytics](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics)
   - [fetchAnalyticsData](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics/getListingsMetricsUsingPOST)
