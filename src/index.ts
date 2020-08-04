@@ -22,6 +22,7 @@ export {
   ListingAnalyticsData,
   DealerListingsAnalyticsData,
   DealerEntitlements,
+  Entitlements,
 } from "./types/models/index"
 
 export {
@@ -171,7 +172,7 @@ export {
   putDealerSavedSearch,
   postDealerSavedSearch,
   deleteDealerSavedSearch,
-} from "./services/autoAlarm"
+} from "./services/search/autoAlarm"
 
 export {
   Listing as ListingFactory,

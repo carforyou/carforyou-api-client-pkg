@@ -5,19 +5,19 @@ import {
   putData,
   deletePath,
   postData,
-} from "../base"
+} from "../../base"
 
-import { Paginated } from "../types/pagination"
-import { DealerSavedSearch, AutoAlarmType } from "../types/models/autoAlarm"
-import { WithValidationError } from "../types/withValidationError"
-import { withTokenRefresh } from "../tokenRefresh"
+import { Paginated } from "../../types/pagination"
+import { DealerSavedSearch, AutoAlarmType } from "../../types/models/autoAlarm"
+import { WithValidationError } from "../../types/withValidationError"
+import { withTokenRefresh } from "../../tokenRefresh"
 
 export const fetchSavedSearches = async (
   dealerId: number,
   type: AutoAlarmType,
   page?: number,
   size?: number
-): Promise<Paginated<DealerSavedSearch>> => {
+): Promise<Paginated<DealerSavedSearch[]>> => {
   return withTokenRefresh(async () => {
     try {
       const result = await fetchPath(
