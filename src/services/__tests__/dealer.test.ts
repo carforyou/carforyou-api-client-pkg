@@ -4,10 +4,7 @@ import {
   putDealerProfile,
 } from "../dealer"
 import { ResponseError } from "../../responseError"
-import {
-  DealerType,
-  DealerSourceGroup,
-} from "../../types/models/index"
+import { DealerType, DealerSourceGroup } from "../../types/models/index"
 
 describe("Dealer", () => {
   describe("#fetchDealerSuggestions", () => {
