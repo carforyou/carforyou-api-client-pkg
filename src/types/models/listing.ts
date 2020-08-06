@@ -1,4 +1,4 @@
-import { Location, Date } from "./index"
+import { Location, Date, DealerSourceGroup, DealerType } from "./index"
 import {
   BasicListingTypeCommons,
   EnergyListingTypeCommons,
@@ -141,6 +141,8 @@ export interface SearchListingDealer {
   country: string
   regionFull: string
   region: string
+  dealerSourceGroup: DealerSourceGroup
+  dealerType: DealerType
 }
 
 interface BaseSearchListing {
