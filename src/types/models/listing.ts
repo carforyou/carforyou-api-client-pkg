@@ -141,7 +141,6 @@ export interface SearchListingDealer {
   country: string
   regionFull: string
   region: string
-  dealerSource: string
 }
 
 interface BaseSearchListing {

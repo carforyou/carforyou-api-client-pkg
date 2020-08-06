@@ -4,7 +4,6 @@ export {
   Make,
   Model,
   Dealer,
-  DealerSource,
   DealerSourceGroup,
   DealerType,
   Option,
