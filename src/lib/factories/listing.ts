@@ -3,6 +3,7 @@ import {
   SearchListing as SearchListingType,
 } from "../../types/models/listing"
 import { Type } from "../../types/models/type"
+import { DealerType, DealerSourceGroup } from "types/models"
 
 const defaults: ListingType = {
   id: 12,
@@ -141,6 +142,8 @@ export function SearchListing(attributes = {}): SearchListingType {
       country: "Switzerland",
       region: "ZH",
       regionFull: "Zurich",
+      dealerType: DealerType.professional,
+      dealerSourceGroup: DealerSourceGroup.carforyou,
     },
     ...Listing(attributes),
   }
