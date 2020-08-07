@@ -107,7 +107,6 @@ export interface Listing
   publishingDate: string
   publishingStatus: ListingPublishingStatus
   range: number
-  source: ListingSource
   spin360Code: string
   type: string
   vehicleClass: string
@@ -119,8 +118,6 @@ export interface Listing
   wheelbase: number
   enabledFeatures: Feature[]
 }
-
-type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
 
 type ListingPublishingStatus =
   | "unpublished"
@@ -174,7 +171,6 @@ interface BaseSearchListing {
   images: ListingImage[]
   gbdScore: string
   createdDate: string
-  source: ListingSource
   publishingStatus: ListingPublishingStatus
   active: boolean
   publishingDate: string
