@@ -120,7 +120,7 @@ export interface Listing
   enabledFeatures: Feature[]
 }
 
-type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
+export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
 
 type ListingPublishingStatus =
   | "unpublished"
