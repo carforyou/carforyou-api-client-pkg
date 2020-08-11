@@ -129,6 +129,7 @@ export {
 } from "./services/car/inventoryData"
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export { sendMessageLead } from "./services/car/messageLead"
+export { fetchLeasingFormUrl } from "./services/car/leasing"
 
 export {
   fetchListingOptions,
