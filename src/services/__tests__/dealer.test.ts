@@ -4,11 +4,7 @@ import {
   putDealerProfile,
 } from "../dealer"
 import { ResponseError } from "../../responseError"
-import {
-  DealerSource,
-  DealerType,
-  DealerSourceGroup,
-} from "../../types/models/index"
+import { DealerType, DealerSourceGroup } from "../../types/models/index"
 
 describe("Dealer", () => {
   describe("#fetchDealerSuggestions", () => {
@@ -31,7 +27,6 @@ describe("Dealer", () => {
       name: "Heiter Weit",
       address: "Heiterweit",
       city: "SW",
-      dealerSource: DealerSource.SALESFORCE,
       dealerType: DealerType.professional,
       dealerSourceGroup: DealerSourceGroup.carforyou,
       id: dealerIdMock,

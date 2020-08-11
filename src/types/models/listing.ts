@@ -1,4 +1,4 @@
-import { Location, Date } from "./index"
+import { Location, Date, DealerSourceGroup, DealerType } from "./index"
 import {
   BasicListingTypeCommons,
   EnergyListingTypeCommons,
@@ -120,7 +120,7 @@ export interface Listing
   enabledFeatures: Feature[]
 }
 
-type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
+export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
 
 type ListingPublishingStatus =
   | "unpublished"
@@ -141,7 +141,8 @@ export interface SearchListingDealer {
   country: string
   regionFull: string
   region: string
-  dealerSource: string
+  dealerSourceGroup: DealerSourceGroup
+  dealerType: DealerType
 }
 
 interface BaseSearchListing {

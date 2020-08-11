@@ -4,7 +4,6 @@ export {
   Make,
   Model,
   Dealer,
-  DealerSource,
   DealerSourceGroup,
   DealerType,
   Option,
@@ -38,6 +37,7 @@ export {
   Listing,
   ListingImage,
   DealerListingImages,
+  ListingSource,
 } from "./types/models/listing"
 
 export { SearchType, Type } from "./types/models/type"

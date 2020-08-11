@@ -27,12 +27,6 @@ export interface OpeningHours {
   close: OpeningHour
 }
 
-export enum DealerSource {
-  SALESFORCE = "SALESFORCE",
-  TUTTI = "TUTTI",
-  PRIVATE = "SELF_REGISTRATION",
-}
-
 export enum DealerType {
   private = "private",
   professional = "professional",
@@ -64,7 +58,6 @@ export interface Dealer {
   phone: string
   email: string
   zipCode: string
-  dealerSource: DealerSource
   dealerSourceGroup: DealerSourceGroup
   dealerType: DealerType
   address?: string

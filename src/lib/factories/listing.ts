@@ -3,6 +3,7 @@ import {
   SearchListing as SearchListingType,
 } from "../../types/models/listing"
 import { Type } from "../../types/models/type"
+import { DealerType, DealerSourceGroup } from "../../types/models/index"
 
 const defaults: ListingType = {
   id: 12,
@@ -131,7 +132,6 @@ export function SearchListing(attributes = {}): SearchListingType {
       city: "Zurich",
       address: "Bahnhof Strasse 123",
       zipCode: "8001",
-      dealerSource: "SALESFORCE",
       location: {
         country: "Switzerland",
         lat: 47.3742951,
@@ -142,6 +142,8 @@ export function SearchListing(attributes = {}): SearchListingType {
       country: "Switzerland",
       region: "ZH",
       regionFull: "Zurich",
+      dealerType: DealerType.professional,
+      dealerSourceGroup: DealerSourceGroup.carforyou,
     },
     ...Listing(attributes),
   }
