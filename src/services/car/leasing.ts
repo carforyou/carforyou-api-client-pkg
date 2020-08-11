@@ -1,6 +1,7 @@
 import { postData, Service, handleValidationError } from "../../base"
 
 import { WithValidationError } from "../../types/withValidationError"
+import { LeasingInterest } from "../../types/models"
 
 const wrappedFetchLeasingFormUrl = async ({
   listingId,
@@ -34,4 +35,38 @@ export const fetchLeasingFormUrl = async (args: {
     case "error":
       return null
   }
+}
+
+export const sendLeasingInterest = async (
+  listingId: number,
+  leasingInterest: LeasingInterest,
+  options = {}
+): Promise<WithValidationError<LeasingInterest>> => {
+  const { validateOnly, recaptchaToken } = {
+    validateOnly: false,
+    recaptchaToken: null,
+    ...options,
+  }
+
+  const path = `listings/${listingId}/leasing/interests${
+    validateOnly ? "/validate" : ""
+  }`
+
+  try {
+    await postData(
+      Service.CAR,
+      path,
+      leasingInterest,
+      recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
+    )
+
+    return {
+      tag: "success",
+      result: leasingInterest,
+    }
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
+}
+
 }
