@@ -136,6 +136,14 @@ export interface MessageLead {
   }
 }
 
+export interface LeasingInterest {
+  email?: string
+  language?: string
+  message?: string
+  name?: string
+  phone?: string
+}
+
 export interface MoneybackApplication {
   email?: string
   language?: string

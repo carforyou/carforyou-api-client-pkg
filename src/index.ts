@@ -12,6 +12,7 @@ export {
   ImageEnrichment,
   SavedSearch,
   MessageLead,
+  LeasingInterest,
   MoneybackApplication,
   City,
   PresignedUrl,
