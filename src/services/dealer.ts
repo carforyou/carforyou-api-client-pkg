@@ -32,7 +32,7 @@ export const fetchDealerProfile = async (
 }
 
 export const postDealerProfile = async (
-  profile: Omit<DealerProfile, "id" | "dealerSource">
+  profile: Omit<DealerProfile, "id" | "dealerSourceGroup" | "dealerType">
 ): Promise<WithValidationError<{ id: number }>> => {
   return withTokenRefresh(async () => {
     try {
