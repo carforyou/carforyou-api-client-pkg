@@ -68,5 +68,3 @@ export const sendLeasingInterest = async (
     return handleValidationError(error, { swallowErrors: true })
   }
 }
-
-}
