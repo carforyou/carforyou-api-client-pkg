@@ -21,6 +21,25 @@ describe("CAR service", () => {
         await fetchLeasingFormUrl({ listingId: 123, locale: "de" })
       ).toEqual(null)
     })
+
+    it("sends recaptcha token in a header", async () => {
+      fetchMock.mockResponse(JSON.stringify({ url: "test-url" }))
+
+      await fetchLeasingFormUrl(
+        { listingId: 123, locale: "de" },
+        {
+          recaptchaToken: "token",
+        }
+      )
+
+      expect(fetch).toHaveBeenCalledWith(expect.any(String), {
+        headers: expect.objectContaining({
+          "Recaptcha-Token": "token",
+        }),
+        body: expect.any(String),
+        method: "POST",
+      })
+    })
   })
 
   describe("sendLeasingInterest", () => {

@@ -3,15 +3,16 @@ import { postData, Service, handleValidationError } from "../../base"
 import { WithValidationError } from "../../types/withValidationError"
 import { LeasingInterest } from "../../types/models"
 
-const wrappedFetchLeasingFormUrl = async ({
-  listingId,
-  locale,
-}): Promise<WithValidationError<{ url: string }>> => {
+const wrappedFetchLeasingFormUrl = async (
+  { listingId, locale },
+  { recaptchaToken = null } = {}
+): Promise<WithValidationError<{ url: string }>> => {
   try {
     const result = await postData(
       Service.CAR,
       `listings/${listingId}/leasing/generate-provider-form-url`,
-      { language: locale }
+      { language: locale },
+      recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
     )
 
     return {
@@ -23,11 +24,14 @@ const wrappedFetchLeasingFormUrl = async ({
   }
 }
 
-export const fetchLeasingFormUrl = async (args: {
-  listingId: number
-  locale: string
-}): Promise<string | null> => {
-  const response = await wrappedFetchLeasingFormUrl(args)
+export const fetchLeasingFormUrl = async (
+  args: {
+    listingId: number
+    locale: string
+  },
+  options = {}
+): Promise<string | null> => {
+  const response = await wrappedFetchLeasingFormUrl(args, options)
 
   switch (response.tag) {
     case "success":
