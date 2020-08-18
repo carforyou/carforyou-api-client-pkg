@@ -39,7 +39,7 @@ describe("Car API", () => {
       )
     })
 
-    describe("valid parematers", () => {
+    describe("valid parameters", () => {
       beforeEach(() => {
         fetchMock.mockResponse("")
       })
