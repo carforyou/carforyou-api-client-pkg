@@ -9,6 +9,7 @@ import {
 import { Paginated } from "../types/pagination"
 import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 import { DealerProfile } from "../types/models/dealerProfile"
+import { DealerPromotion } from "../types/models/dealerPromotion"
 import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
 
@@ -77,3 +78,55 @@ export const fetchDealerEntitlements = async (
   dealerId
 ): Promise<Entitlements> =>
   fetchPath(Service.DEALER, `dealers/${dealerId}/entitlements`)
+
+export const fetchDealerPromotion = async (
+  dealerId: number
+): Promise<DealerPromotion> => {
+  return fetchPath(Service.DEALER, `dealers/${dealerId}/promotion`)
+}
+
+export const postDealerPromotion = async (
+  promotion: DealerPromotion
+): Promise<WithValidationError<{ id: number }>> => {
+  return withTokenRefresh(async () => {
+    try {
+      const result = await postData(
+        Service.DEALER,
+        `dealers/promotion`,
+        promotion
+      )
+
+      return {
+        tag: "success",
+        result,
+      }
+    } catch (error) {
+      return handleValidationError(error, { swallowErrors: true })
+    }
+  })
+}
+
+export const putDealerPromotion = async ({
+  dealerId,
+  promotion,
+}: {
+  dealerId: number
+  promotion: DealerPromotion
+}): Promise<WithValidationError<DealerPromotion>> => {
+  return withTokenRefresh(async () => {
+    try {
+      const result = await putData(
+        Service.DEALER,
+        `dealers/${dealerId}/promotion`,
+        promotion
+      )
+
+      return {
+        tag: "success",
+        result: { ...promotion, ...result },
+      }
+    } catch (error) {
+      return handleValidationError(error, { swallowErrors: true })
+    }
+  })
+}

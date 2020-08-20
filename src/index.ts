@@ -44,6 +44,7 @@ export {
 export { SearchType, Type } from "./types/models/type"
 export { Facets, Facet } from "./types/facets"
 export { DealerProfile } from "./types/models/dealerProfile"
+export { DealerPromotion } from "./types/models/dealerPromotion"
 
 export {
   DealerSavedSearch,
@@ -166,6 +167,9 @@ export {
   putDealerProfile,
   postDealerProfile,
   fetchDealerEntitlements,
+  fetchDealerPromotion,
+  postDealerPromotion,
+  putDealerPromotion,
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export { fetchAnalyticsData } from "./services/analytics"
