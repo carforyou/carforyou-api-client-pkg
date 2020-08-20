@@ -60,6 +60,7 @@ export interface Dealer {
   zipCode: string
   dealerSourceGroup: DealerSourceGroup
   dealerType: DealerType
+  defaultLanguage: string
   address?: string
   city?: string
   location?: Location
