@@ -12,7 +12,8 @@ export const fetchProducts = async (): Promise<Product[]> => {
 export const purchaseAndUseProduct = async (
   dealerId: number,
   listingId: number,
-  productId: number
+  productId: number,
+  startDate: string
 ): Promise<WithValidationError<PurchaseAndUseProduct>> => {
   return withTokenRefresh(async () => {
     try {
@@ -21,6 +22,7 @@ export const purchaseAndUseProduct = async (
         `dealers/${dealerId}/listings/${listingId}/products/purchase-and-use`,
         {
           productId,
+          startDate,
         }
       )
       return {
