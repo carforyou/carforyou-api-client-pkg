@@ -173,7 +173,11 @@ export {
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export { fetchAnalyticsData } from "./services/analytics"
-export { fetchProducts, purchaseAndUseProduct } from "./services/product"
+export {
+  fetchProducts,
+  purchaseAndUseProduct,
+  purchaseAndUseListingProduct,
+} from "./services/product"
 
 export {
   fetchSavedSearches,
