@@ -86,19 +86,20 @@ export const fetchDealerPromotion = async (
 }
 
 export const postDealerPromotion = async (
+  dealerId: number,
   promotion: DealerPromotion
-): Promise<WithValidationError<{ id: number }>> => {
+): Promise<WithValidationError<DealerPromotion>> => {
   return withTokenRefresh(async () => {
     try {
       const result = await postData(
         Service.DEALER,
-        `dealers/promotion`,
+        `dealers/${dealerId}/promotion`,
         promotion
       )
 
       return {
         tag: "success",
-        result,
+        result: { ...promotion, ...result },
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
@@ -106,13 +107,10 @@ export const postDealerPromotion = async (
   })
 }
 
-export const putDealerPromotion = async ({
-  dealerId,
-  promotion,
-}: {
-  dealerId: number
+export const putDealerPromotion = async (
+  dealerId: number,
   promotion: DealerPromotion
-}): Promise<WithValidationError<DealerPromotion>> => {
+): Promise<WithValidationError<DealerPromotion>> => {
   return withTokenRefresh(async () => {
     try {
       const result = await putData(
