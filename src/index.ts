@@ -176,7 +176,7 @@ export { fetchAnalyticsData } from "./services/analytics"
 export {
   fetchProducts,
   purchaseAndUseProduct,
-  purchaseAndUseListingProduct,
+  purchaseAndUseProductWithStartDate,
 } from "./services/product"
 
 export {

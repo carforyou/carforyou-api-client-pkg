@@ -9,7 +9,7 @@ export const fetchProducts = async (): Promise<Product[]> => {
   return fetchPath(Service.DEALER, "products")
 }
 
-export const purchaseAndUseListingProduct = async (
+export const purchaseAndUseProduct = async (
   dealerId: number,
   listingId: number,
   productId: number
@@ -33,7 +33,7 @@ export const purchaseAndUseListingProduct = async (
   })
 }
 
-export const purchaseAndUseProduct = async (
+export const purchaseAndUseProductWithStartDate = async (
   dealerId: number,
   productId: number,
   startDate: string
