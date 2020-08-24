@@ -1,6 +1,6 @@
 interface Data {
-  description?: "string"
-  title: "string"
+  description?: string
+  title: string
 }
 
 export interface DealerPromotion {
@@ -8,6 +8,6 @@ export interface DealerPromotion {
   dataEn?: Data
   dataFr?: Data
   dataIt?: Data
-  image: "string"
-  logo?: "string"
+  image: string
+  logo?: string
 }
