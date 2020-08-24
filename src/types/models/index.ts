@@ -50,6 +50,11 @@ export interface Location {
   regionFull: string
 }
 
+interface FeatureData {
+  endDate: string
+  feature: string
+  startDate: string
+}
 export interface Dealer {
   active: boolean
   id: number
@@ -61,6 +66,7 @@ export interface Dealer {
   dealerSourceGroup: DealerSourceGroup
   dealerType: DealerType
   defaultLanguage: string
+  enabledFeatures: FeatureData[]
   address?: string
   city?: string
   location?: Location
