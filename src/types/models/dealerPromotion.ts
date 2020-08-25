@@ -4,10 +4,10 @@ interface PromotionContent {
 }
 
 export interface DealerPromotion {
-  dataDe?: Data
-  dataEn?: Data
-  dataFr?: Data
-  dataIt?: Data
+  dataDe?: PromotionContent
+  dataEn?: PromotionContent
+  dataFr?: PromotionContent
+  dataIt?: PromotionContent
   image: string
   logo?: string
 }
