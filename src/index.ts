@@ -175,8 +175,8 @@ export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export { fetchAnalyticsData } from "./services/analytics"
 export {
   fetchProducts,
-  purchaseAndUseProduct,
-  purchaseAndUseProductWithStartDate,
+  purchaseAndUseListingProduct,
+  purchaseAndUseDealerProduct,
 } from "./services/product"
 
 export {
