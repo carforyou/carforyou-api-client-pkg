@@ -9,4 +9,5 @@ export interface DealerProfile {
   id: number
   phone: string
   zipCode: string
+  email: string
 }
