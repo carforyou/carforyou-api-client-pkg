@@ -1,4 +1,4 @@
-interface Data {
+interface PromotionContent {
   description?: string
   title: string
 }
