@@ -34,6 +34,7 @@ describe("Dealer", () => {
       id: dealerIdMock,
       phone: "12-13-65",
       zipCode: "345",
+      email: "dealer@gmail.com",
     }
 
     describe("#fetchDealerProfile", () => {
