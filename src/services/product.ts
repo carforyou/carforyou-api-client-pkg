@@ -9,7 +9,7 @@ export const fetchProducts = async (): Promise<Product[]> => {
   return fetchPath(Service.DEALER, "products")
 }
 
-export const purchaseAndUseProduct = async (
+export const purchaseAndUseListingProduct = async (
   dealerId: number,
   listingId: number,
   productId: number
@@ -21,6 +21,31 @@ export const purchaseAndUseProduct = async (
         `dealers/${dealerId}/listings/${listingId}/products/purchase-and-use`,
         {
           productId,
+        }
+      )
+      return {
+        tag: "success",
+        result,
+      }
+    } catch (error) {
+      return handleValidationError(error)
+    }
+  })
+}
+
+export const purchaseAndUseDealerProduct = async (
+  dealerId: number,
+  productId: number,
+  startDate: string
+): Promise<WithValidationError<PurchaseAndUseProduct>> => {
+  return withTokenRefresh(async () => {
+    try {
+      const result = await postData(
+        Service.DEALER,
+        `dealers/${dealerId}/products/purchase-and-use`,
+        {
+          productId,
+          startDate,
         }
       )
       return {
