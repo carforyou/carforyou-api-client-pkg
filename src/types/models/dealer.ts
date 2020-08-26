@@ -1,12 +1,12 @@
 import { DealerLocationFilter } from "types/params/dealer"
 
-interface DealerLocation {
+export interface DealerLocation {
   address: string
   city: string
   zipCode: string
 }
 
-interface DealerPromotion {
+export interface DealerPromotion {
   image: string
   logo: string
   title: string

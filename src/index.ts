@@ -41,6 +41,12 @@ export {
   ListingSource,
 } from "./types/models/listing"
 
+export {
+  DealerLocation,
+  DealerPromotion,
+  SearchDealer,
+} from "./types/models/dealer"
+
 export { SearchType, Type } from "./types/models/type"
 export { Facets, Facet } from "./types/facets"
 export { DealerProfile } from "./types/models/dealerProfile"
@@ -64,6 +70,12 @@ export {
 } from "./types/params/listings"
 
 export {
+  DealerLocationFilter,
+  DealerQueryParams,
+  DealerParams,
+} from "./types/params/dealer"
+
+export {
   SearchTypeQueryParams,
   TypeFiltersParams,
   PowerUnit,
@@ -76,6 +88,7 @@ export {
   DealerListingSortOrderParams,
   DealerListingSortTypeParams,
   DealerListingSortParams,
+  DealerSortTypeParams,
   DealerSortParams,
 } from "./types/sort"
 
@@ -154,6 +167,8 @@ export {
   defaultSort as defaultListingsSort,
   fetchMoneybackListings,
 } from "./services/search/listingSearch"
+export { fetchDealers } from "./services/search/dealerSearch"
+
 export { fetchTypes, fetchTypeFacets } from "./services/search/typeSearch"
 export { fetchCity, fetchCitySuggestions } from "./services/search/city"
 export { fetchRegions } from "./services/search/regions"
