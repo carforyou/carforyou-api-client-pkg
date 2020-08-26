@@ -33,3 +33,12 @@ export interface DealerListingSortParams {
   sortOrder?: DealerListingSortOrderParams
   sortType?: DealerListingSortTypeParams
 }
+
+export enum DealerSortTypeParams {
+  ROTATION = "ROTATION",
+}
+
+export interface DealerSortParams {
+  sortType: DealerSortTypeParams
+  seed: number
+}

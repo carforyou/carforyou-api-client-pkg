@@ -76,6 +76,7 @@ export {
   DealerListingSortOrderParams,
   DealerListingSortTypeParams,
   DealerListingSortParams,
+  DealerSortParams,
 } from "./types/sort"
 
 export { Product, PurchaseAndUseProduct } from "./types/models/product"
