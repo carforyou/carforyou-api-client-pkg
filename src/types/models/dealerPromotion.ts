@@ -3,6 +3,11 @@ interface PromotionContent {
   title: string
 }
 
+export interface  DealerPromotionContent extends PromotionContent {
+  image: string
+  logo?: string
+}
+
 export interface DealerPromotion {
   dataDe?: PromotionContent
   dataEn?: PromotionContent

@@ -44,7 +44,7 @@ export {
 export { SearchType, Type } from "./types/models/type"
 export { Facets, Facet } from "./types/facets"
 export { DealerProfile } from "./types/models/dealerProfile"
-export { DealerPromotion } from "./types/models/dealerPromotion"
+export { DealerPromotion, DealerPromotionContent } from "./types/models/dealerPromotion"
 
 export {
   DealerSavedSearch,
@@ -79,7 +79,7 @@ export {
   DealerListingSortParams,
 } from "./types/sort"
 
-export { Product, PurchaseAndUseProduct } from "./types/models/product"
+export { Product, PurchaseAndUseProduct, Feature, FeatureBooking } from "./types/models/product"
 
 export {
   WithValidationError,

@@ -1,4 +1,6 @@
 import { ListingFilterParams } from "../params/listings"
+import { FeatureBooking } from "./product"
+import { DealerPromotionContent } from "./dealerPromotion"
 
 export interface MappedValue {
   id: number
@@ -50,11 +52,6 @@ export interface Location {
   regionFull: string
 }
 
-interface FeatureData {
-  endDate: string
-  feature: string
-  startDate: string
-}
 export interface Dealer {
   active: boolean
   id: number
@@ -66,7 +63,7 @@ export interface Dealer {
   dealerSourceGroup: DealerSourceGroup
   dealerType: DealerType
   defaultLanguage: string
-  enabledFeatures: FeatureData[]
+  enabledFeatures: FeatureBooking[]
   address?: string
   city?: string
   location?: Location
@@ -74,6 +71,7 @@ export interface Dealer {
   whatsAppNumber?: string
   openingHours?: OpeningHours[]
   badges: string[]
+  promotion?: DealerPromotionContent
 }
 
 export interface ZipCode {
