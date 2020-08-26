@@ -3,7 +3,7 @@ interface PromotionContent {
   title: string
 }
 
-export interface  DealerPromotionContent extends PromotionContent {
+export interface DealerPromotionContent extends PromotionContent {
   image: string
   logo?: string
 }
