@@ -39,6 +39,6 @@ export enum DealerSortTypeParams {
 }
 
 export interface DealerSortParams {
-  sortType: DealerSortTypeParams
+  type: DealerSortTypeParams
   seed: number
 }
