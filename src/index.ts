@@ -43,7 +43,7 @@ export {
 
 export {
   DealerLocation,
-  DealerPromotion,
+  DealerCarouselPromotion,
   SearchDealer,
 } from "./types/models/dealer"
 

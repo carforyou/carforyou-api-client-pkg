@@ -4,7 +4,7 @@ export interface DealerLocation {
   zipCode: string
 }
 
-export interface DealerPromotion {
+export interface DealerCarouselPromotion {
   image: string
   logo: string
   title: string
@@ -14,5 +14,5 @@ export interface SearchDealer {
   id: number
   location: DealerLocation
   name: string
-  promotion: DealerPromotion
+  promotion: DealerCarouselPromotion
 }
