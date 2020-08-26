@@ -1,5 +1,3 @@
-import { DealerLocationFilter } from "types/params/dealer"
-
 export interface DealerLocation {
   address: string
   city: string
