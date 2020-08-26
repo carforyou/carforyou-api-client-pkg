@@ -9,6 +9,7 @@
     "lint": "eslint --ext ts,js,tsx,jsx,json .",
     "format": "npm run lint -- --fix",
     "typecheck": "tsc --noEmit",
+    "test": "npm run test:unit",
     "test:unit": "jest",
     "test:unit:debug": "node --inspect-brk --inspect=127.0.0.1:9229 ./node_modules/jest/bin/jest.js --runInBand"
   },
