@@ -3,7 +3,7 @@ import { postData, Service } from "../../base"
 import { Paginated } from "../../types/pagination"
 import { DealerParams } from "../../types/params/dealer"
 
-import { SearchDealer } from "types/models/dealer"
+import { SearchDealer } from "../../types/models/dealer"
 
 const defaultPagination = {
   page: 0,
