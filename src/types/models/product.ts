@@ -1,3 +1,15 @@
+export enum Feature {
+  garagePromotion = "garage-promotion",
+  goldListing = "gold-listing",
+  premiumListing = "premium-listing",
+}
+
+export type FeatureBooking = {
+  feature: Feature
+  startDate: string
+  endDate: string
+}
+
 export interface Product {
   id: number
   price: number
