@@ -1,10 +1,9 @@
-import { postData, handleValidationError, Service } from "../../base"
+import { postData, Service } from "../../base"
 
 import { Paginated } from "../../types/pagination"
 import { DealerParams } from "../../types/params/dealer"
 
 import { SearchDealer } from "../../types/models/dealer"
-import { WithValidationError } from "../../types/withValidationError"
 
 const defaultPagination = {
   page: 0,
@@ -34,12 +33,7 @@ const searchForDealers = (path, searchQuery: DealerParams) => {
 
 export const fetchDealers = async (
   query: DealerParams
-): Promise<WithValidationError<Paginated<SearchDealer>>> => {
-  try {
-    const response = await searchForDealers("dealers/search", query)
-
-    return response
-  } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
-  }
+): Promise<Paginated<SearchDealer>> => {
+  const response = await searchForDealers("dealers/search", query)
+  return response
 }
