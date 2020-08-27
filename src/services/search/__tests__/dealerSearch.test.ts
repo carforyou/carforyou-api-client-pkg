@@ -28,15 +28,25 @@ describe("SEARCH service", () => {
 
     it("unwraps the content from json", async () => {
       const paginatedListings = await fetchDealers({ sort, pagination, query })
-      const dealesPromotion = paginatedListings.content
+      const dealerPromotion = paginatedListings.content
 
-      expect(dealesPromotion.length).toEqual(1)
-      expect(dealesPromotion).toEqual(content)
-      expect(fetch).toHaveBeenCalled()
+      expect(dealerPromotion.length).toEqual(1)
+      expect(dealerPromotion).toEqual(content)
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/search"),
+        expect.objectContaining({
+          body: JSON.stringify({
+            pagination: { page: 0, size: 1 },
+            sort: [{ type: "ROTATION", seed: 1 }],
+            query: { feature: ["garage-promotion"] },
+          }),
+        })
+      )
     })
 
     describe("Pagination", () => {
-      it("is unwraped from json", async () => {
+      it("is unwrapped from json", async () => {
         const paginatedListings = await fetchDealers({
           sort,
           pagination,

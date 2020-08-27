@@ -135,9 +135,9 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`postDealerSavedSearch`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches/createAutoAlarmUsingPOST)
   - [`deleteDealerSavedSearch`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches/deleteAutoAlarmUsingDELETE)
 
-* [Dealer Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing_Search)
+* [Dealer Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer_Search)
 
-  - [`fetchDealers`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Search)
+  - [`fetchDealers`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Search/searchUsingPOST)
 
 ### [Catalogue service](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html)
 

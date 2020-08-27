@@ -4,15 +4,15 @@ export function DealerPromotion(): SearchDealer {
   return {
     id: 0,
     location: {
-      address: "string",
-      city: "string",
-      zipCode: "string",
+      address: "Badenerstrasse 8",
+      city: "Zurich",
+      zipCode: "8008",
     },
-    name: "string",
+    name: "Emil Frey",
     promotion: {
-      image: "string",
-      logo: "string",
-      title: "string",
+      image: "http://carforyou.ch/imageURL",
+      logo: "http://carforyou.ch/logoURL",
+      title: "Emil frey photo",
     },
   }
 }
