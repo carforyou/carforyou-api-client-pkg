@@ -14,4 +14,6 @@ export interface Success<T> {
   result: T
 }
 
-export type WithValidationError<T> = ValidationError | Success<T>
+export type WithValidationError<T = Record<string, unknown>> =
+  | ValidationError
+  | Success<T>
