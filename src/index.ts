@@ -45,7 +45,7 @@ export {
   DealerLocation,
   DealerCarouselPromotion,
   SearchDealer,
-} from "./types/models/dealer"
+} from "./types/models/dealerPromotion"
 
 export { SearchType, Type } from "./types/models/type"
 export { Facets, Facet } from "./types/facets"

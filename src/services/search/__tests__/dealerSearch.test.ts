@@ -3,6 +3,7 @@ import { DealerPromotion } from "../../../lib/factories/dealer"
 
 import { fetchDealers } from "../dealerSearch"
 import { DealerSortTypeParams } from "../../../types/sort"
+import { Feature } from "../../../types/models/product"
 
 describe("SEARCH service", () => {
   beforeEach(() => {
@@ -10,7 +11,7 @@ describe("SEARCH service", () => {
   })
 
   const sort = { type: DealerSortTypeParams.ROTATION, seed: 1 }
-  const query = { feature: ["garage-promotion"] }
+  const query = { feature: [Feature.garagePromotion] }
 
   describe("#fetchListings", () => {
     const { content, pagination } = PaginatedFactory([DealerPromotion()])
@@ -39,7 +40,7 @@ describe("SEARCH service", () => {
           body: JSON.stringify({
             pagination: { page: 0, size: 1 },
             sort: [{ type: "ROTATION", seed: 1 }],
-            query: { feature: ["garage-promotion"] },
+            query: { feature: [Feature.garagePromotion] },
           }),
         })
       )

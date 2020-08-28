@@ -1,9 +1,10 @@
 import { postData, Service } from "../../base"
 
+import { sizeOrDefault, pageOrDefault } from "../../lib/pageParams"
 import { Paginated } from "../../types/pagination"
 import { DealerParams } from "../../types/params/dealer"
 
-import { SearchDealer } from "../../types/models/dealer"
+import { SearchDealer } from "../../types/models/dealerPromotion"
 
 const defaultPagination = {
   page: 0,
@@ -14,15 +15,13 @@ const searchForDealers = (path, searchQuery: DealerParams) => {
   const { pagination, sort, query } = searchQuery
   const { page, size } = pagination
 
-  const sizeOrDefault =
-    parseInt((size || "").toString(), 10) || defaultPagination.size
-  const pageOrDefault =
-    parseInt((page || "").toString(), 10) - 1 || defaultPagination.page
+  const paginationSize = sizeOrDefault(size, defaultPagination)
+  const paginationPage = pageOrDefault(page, defaultPagination)
 
   const body = {
     pagination: {
-      page: pageOrDefault,
-      size: sizeOrDefault,
+      page: paginationPage,
+      size: paginationSize,
     },
     sort: [sort],
     query,

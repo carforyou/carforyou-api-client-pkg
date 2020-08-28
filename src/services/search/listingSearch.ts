@@ -11,6 +11,8 @@ import { SearchListing, ApiSearchListing } from "../../types/models/listing"
 import { WithTopListing } from "../../types/topListing"
 
 import { decodeDate } from "../../lib/dateEncoding"
+import { sizeOrDefault, pageOrDefault } from "../../lib/pageParams"
+
 import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
 import toQueryString from "../../lib/toQueryString"
 
@@ -52,15 +54,14 @@ const searchForListings = (
   } = {}
 ) => {
   const { page, size, sortOrder, sortType, ...rest } = query
-  const sizeOrDefault =
-    parseInt((size || "").toString(), 10) || defaultPagination.size
-  const pageOrDefault =
-    parseInt((page || "").toString(), 10) - 1 || defaultPagination.page
+
+  const paginationSize = sizeOrDefault(size, defaultPagination)
+  const paginationPage = pageOrDefault(page, defaultPagination)
 
   const body = {
     pagination: {
-      page: pageOrDefault,
-      size: sizeOrDefault,
+      page: paginationPage,
+      size: paginationSize,
     },
     sort: [
       {

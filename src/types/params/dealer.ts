@@ -1,5 +1,6 @@
 import { PaginationParams } from "./index"
 import { DealerSortParams } from "../sort"
+import { Feature } from "../../types/models/product"
 
 export interface DealerLocationFilter {
   cityId?: string
@@ -7,7 +8,7 @@ export interface DealerLocationFilter {
 }
 
 export interface DealerQueryParams {
-  feature: string[]
+  feature: Feature[]
   language?: string
   location?: DealerLocationFilter
 }
