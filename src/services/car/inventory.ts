@@ -251,7 +251,7 @@ export const archiveDealerListing = async ({
 }: {
   dealerId: number
   id: number
-}): Promise<WithValidationError<{}>> => {
+}): Promise<WithValidationError> => {
   return withTokenRefresh(async () => {
     try {
       await postData(
@@ -276,7 +276,7 @@ export const unpublishDealerListing = async ({
 }: {
   id: number
   dealerId: number
-}): Promise<WithValidationError<{}>> => {
+}): Promise<WithValidationError> => {
   return withTokenRefresh(async () => {
     try {
       await postData(

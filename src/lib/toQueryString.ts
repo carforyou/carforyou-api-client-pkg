@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/ban-types
 const toQueryString = (params: object): string => {
   return Object.keys(params)
     .filter(

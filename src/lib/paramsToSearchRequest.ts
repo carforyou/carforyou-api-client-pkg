@@ -6,7 +6,7 @@ import {
 
 const paramsToSearchRequest = (
   params: ListingFilterParams | ListingQueryParams
-): object => {
+): Record<string, unknown> => {
   const { cityId, radius, ...rest } = params
   const location: LocationFilter =
     cityId && radius ? { cityId, radius } : cityId ? { cityId } : undefined

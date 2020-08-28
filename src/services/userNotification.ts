@@ -33,7 +33,7 @@ export const sendSavedSearch = async (
 
 export const deleteSavedSearch = async (
   key: string
-): Promise<WithValidationError<{}>> => {
+): Promise<WithValidationError> => {
   try {
     await deletePath(Service.USER_NOTIFICATION, `saved-searches/key/${key}`)
     return {

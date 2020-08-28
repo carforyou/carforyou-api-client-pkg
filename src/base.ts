@@ -135,6 +135,7 @@ export const fetchPath = async (
 export const postData = async (
   service: Service,
   path: string,
+  // eslint-disable-next-line @typescript-eslint/ban-types
   body: object,
   headers = {}
 ) => {
@@ -148,6 +149,7 @@ export const postData = async (
 export const putData = async (
   service: Service,
   path: string,
+  // eslint-disable-next-line @typescript-eslint/ban-types
   body: object,
   headers = {}
 ) => {
