@@ -65,7 +65,7 @@ export const putDealerSavedSearch = async ({
 }: {
   dealerId: number
   savedSearchId: string
-  savedSearch: object
+  savedSearch: DealerSavedSearch
 }): Promise<WithValidationError<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
@@ -91,7 +91,7 @@ export const postDealerSavedSearch = async ({
   savedSearch,
 }: {
   dealerId: number
-  savedSearch: object
+  savedSearch: DealerSavedSearch
 }): Promise<WithValidationError<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
@@ -115,7 +115,7 @@ export const postDealerSavedSearch = async ({
 export const deleteDealerSavedSearch = async (
   dealerId: number,
   savedSearchId: string
-): Promise<WithValidationError<{}>> => {
+): Promise<WithValidationError> => {
   return withTokenRefresh(async () => {
     try {
       const result = deletePath(

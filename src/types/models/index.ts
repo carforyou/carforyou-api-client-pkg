@@ -99,7 +99,7 @@ export interface Options {
 
 export interface ImageEnrichment {
   imageId: number
-  enrichment: object
+  enrichment: Record<string, unknown>
 }
 
 export interface DealerSuggestion {
@@ -118,7 +118,7 @@ export interface SavedSearch {
   email: string
   language: string
   searchQuery: ListingFilterParams
-  uiMetadata: object
+  uiMetadata: Record<string, unknown>
 }
 
 export interface MessageLead {
