@@ -31,8 +31,8 @@ const searchForDealers = (path, searchQuery: DealerParams) => {
 }
 
 export const fetchDealers = async (
-  query: DealerParams
+  searchParams: DealerParams
 ): Promise<Paginated<SearchDealer>> => {
-  const response = await searchForDealers("dealers/search", query)
+  const response = await searchForDealers("dealers/search", searchParams)
   return response
 }
