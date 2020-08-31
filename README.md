@@ -128,11 +128,16 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchNeedsAssesmentListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Needs%20Assessment/searchUsingPOST_1)
 
 * [Saved Searches (Auto-Alarm)](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches)
+
   - [`fetchSavedSearches`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches/getAllAutoAlarmsUsingGET)
   - [`fetchSavedSearch`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches/getAutoAlarmUsingGET)
   - [`putDealerSavedSearch`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches/updateAutoAlarmUsingPUT)
   - [`postDealerSavedSearch`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches/createAutoAlarmUsingPOST)
   - [`deleteDealerSavedSearch`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches/deleteAutoAlarmUsingDELETE)
+
+* [Dealer Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer_Search)
+
+  - [`fetchDealers`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Search/searchUsingPOST)
 
 ### [Catalogue service](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html)
 
