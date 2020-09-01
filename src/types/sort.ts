@@ -36,9 +36,11 @@ export interface DealerListingSortParams {
 
 export enum DealerSortTypeParams {
   ROTATION = "ROTATION",
+  PREVIEW = "PREVIEW",
 }
 
 export interface DealerSortParams {
   type: DealerSortTypeParams
-  seed: number
+  seed?: number
+  previewId?: number
 }

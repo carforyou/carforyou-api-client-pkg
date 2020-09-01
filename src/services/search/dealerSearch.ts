@@ -23,7 +23,7 @@ const searchForDealers = (path, searchQuery: DealerParams) => {
       page: paginationPage,
       size: paginationSize,
     },
-    sort: [sort],
+    sort,
     query,
   }
 
