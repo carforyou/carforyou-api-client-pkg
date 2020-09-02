@@ -19,12 +19,8 @@ export const fetchDealer = async (
   id: number,
   options: { language?: "de" | "en" | "fr" | "it" } = {}
 ): Promise<Dealer> => {
-  return fetchPath(
-    Service.DEALER,
-    `dealers/${id}${
-      Object.keys(options).length ? `?${toQueryString(options)}` : ""
-    }`
-  )
+  const query = toQueryString(options)
+  return fetchPath(Service.DEALER, `dealers/${id}${query ? `?${query}` : ""}`)
 }
 
 export const fetchDealerSuggestions = async (
