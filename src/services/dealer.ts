@@ -21,7 +21,7 @@ export const fetchDealer = async (
 ): Promise<Dealer> => {
   return fetchPath(
     Service.DEALER,
-    `dealers/${id}${options?.language ? `?${toQueryString(options)}` : ""}`
+    `dealers/${id}${options.language ? `?${toQueryString(options)}` : ""}`
   )
 }
 
