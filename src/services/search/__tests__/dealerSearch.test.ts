@@ -46,6 +46,34 @@ describe("SEARCH service", () => {
       )
     })
 
+    it("previewId - add correct sort", async () => {
+      const paginatedListings = await fetchDealers(
+        { sort, pagination, query },
+        1316
+      )
+      const dealerPromotion = paginatedListings.content
+
+      expect(dealerPromotion.length).toEqual(1)
+      expect(dealerPromotion).toEqual(content)
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/search"),
+        expect.objectContaining({
+          body: JSON.stringify({
+            pagination: { page: 0, size: 1 },
+            sort: [
+              {
+                type: DealerSortTypeParams.PREVIEW,
+                previewId: 1316,
+              },
+              { type: "ROTATION", seed: 1 },
+            ],
+            query: { feature: [Feature.garagePromotion] },
+          }),
+        })
+      )
+    })
+
     describe("Pagination", () => {
       it("is unwrapped from json", async () => {
         const paginatedListings = await fetchDealers({
