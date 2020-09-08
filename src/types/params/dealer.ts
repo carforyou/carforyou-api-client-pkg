@@ -15,6 +15,6 @@ export interface DealerQueryParams {
 
 export interface DealerParams {
   query: DealerQueryParams
-  sort: DealerSortParams[]
+  sort: DealerSortParams
   pagination: PaginationParams
 }

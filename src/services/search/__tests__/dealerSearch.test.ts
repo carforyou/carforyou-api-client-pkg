@@ -10,7 +10,7 @@ describe("SEARCH service", () => {
     fetchMock.resetMocks()
   })
 
-  const sort = [{ type: DealerSortTypeParams.ROTATION, seed: 1 }]
+  const sort = { type: DealerSortTypeParams.ROTATION, seed: 1 }
   const query = { feature: [Feature.garagePromotion] }
 
   describe("#fetchListings", () => {
