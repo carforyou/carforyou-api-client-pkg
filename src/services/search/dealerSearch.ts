@@ -3,6 +3,7 @@ import { postData, Service } from "../../base"
 import { sizeOrDefault, pageOrDefault } from "../../lib/pageParams"
 import { Paginated } from "../../types/pagination"
 import { DealerParams } from "../../types/params/dealer"
+import { DealerSortTypeParams } from "../../types/sort"
 
 import { SearchDealer } from "../../types/models/dealerPromotion"
 
@@ -11,19 +12,29 @@ const defaultPagination = {
   size: 3,
 }
 
-const searchForDealers = (path, searchQuery: DealerParams) => {
-  const { pagination, sort, query } = searchQuery
+const searchForDealers = (path, searchQuery: DealerParams, previewId) => {
+  const { pagination, query } = searchQuery
   const { page, size } = pagination
 
   const paginationSize = sizeOrDefault(size, defaultPagination)
   const paginationPage = pageOrDefault(page, defaultPagination)
+
+  const sort = previewId
+    ? [
+        {
+          type: DealerSortTypeParams.PREVIEW,
+          previewId,
+        },
+        searchQuery.sort,
+      ]
+    : [searchQuery.sort]
 
   const body = {
     pagination: {
       page: paginationPage,
       size: paginationSize,
     },
-    sort: [sort],
+    sort,
     query,
   }
 
@@ -31,8 +42,13 @@ const searchForDealers = (path, searchQuery: DealerParams) => {
 }
 
 export const fetchDealers = async (
-  searchParams: DealerParams
+  searchParams: DealerParams,
+  previewId?: number
 ): Promise<Paginated<SearchDealer>> => {
-  const response = await searchForDealers("dealers/search", searchParams)
+  const response = await searchForDealers(
+    "dealers/search",
+    searchParams,
+    previewId
+  )
   return response
 }
