@@ -12,11 +12,7 @@ const defaultPagination = {
   size: 3,
 }
 
-const searchForDealers = (
-  path,
-  searchQuery: DealerParams,
-  previewId = null
-) => {
+const searchForDealers = (path, searchQuery: DealerParams, previewId) => {
   const { pagination, query } = searchQuery
   const { page, size } = pagination
 
@@ -46,8 +42,13 @@ const searchForDealers = (
 }
 
 export const fetchDealers = async (
-  searchParams: DealerParams
+  searchParams: DealerParams,
+  previewId?: number
 ): Promise<Paginated<SearchDealer>> => {
-  const response = await searchForDealers("dealers/search", searchParams)
+  const response = await searchForDealers(
+    "dealers/search",
+    searchParams,
+    previewId
+  )
   return response
 }
