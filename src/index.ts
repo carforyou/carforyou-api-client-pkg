@@ -41,18 +41,14 @@ export {
   ListingSource,
 } from "./types/models/listing"
 
-export {
-  DealerLocation,
-  DealerCarouselPromotion,
-  SearchDealer,
-} from "./types/models/dealerPromotion"
-
 export { SearchType, Type } from "./types/models/type"
 export { Facets, Facet } from "./types/facets"
 export { DealerProfile } from "./types/models/dealerProfile"
 export {
   DealerPromotion,
   DealerPromotionContent,
+  DealerLocation,
+  SearchDealer,
 } from "./types/models/dealerPromotion"
 
 export {
@@ -217,6 +213,8 @@ export {
   EmptyListing,
   ListingFromType,
 } from "./lib/factories/listing"
+
+export { DealerPromotion as DealerPromotionFactory } from "./lib/factories/dealer"
 
 export { DealerSavedSearchFactory } from "./lib/factories/dealerSavedSearch"
 

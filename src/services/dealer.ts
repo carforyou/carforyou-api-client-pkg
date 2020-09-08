@@ -13,8 +13,14 @@ import { DealerPromotion } from "../types/models/dealerPromotion"
 import { WithValidationError } from "../types/withValidationError"
 import { withTokenRefresh } from "../tokenRefresh"
 
-export const fetchDealer = async (id: number): Promise<Dealer> => {
-  return fetchPath(Service.DEALER, `dealers/${id}`)
+import toQueryString from "../lib/toQueryString"
+
+export const fetchDealer = async (
+  id: number,
+  options: { language?: "de" | "en" | "fr" | "it" } = {}
+): Promise<Dealer> => {
+  const query = toQueryString(options)
+  return fetchPath(Service.DEALER, `dealers/${id}${query ? `?${query}` : ""}`)
 }
 
 export const fetchDealerSuggestions = async (

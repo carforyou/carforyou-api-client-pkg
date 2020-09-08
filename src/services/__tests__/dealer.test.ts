@@ -1,4 +1,5 @@
 import {
+  fetchDealer,
   fetchDealerSuggestions,
   fetchDealerProfile,
   putDealerProfile,
@@ -18,6 +19,26 @@ describe("Dealer", () => {
         `dealer.service.test/dealers/suggestions?q=${encodeURIComponent(
           query
         )}`,
+        expect.any(Object)
+      )
+    })
+  })
+
+  describe("#fetchDealer", () => {
+    it("accepts language option", async () => {
+      await fetchDealer(123, { language: "de" })
+
+      expect(fetch).toHaveBeenCalledWith(
+        `dealer.service.test/dealers/123?language=de`,
+        expect.any(Object)
+      )
+    })
+
+    it("works without the language option", async () => {
+      await fetchDealer(123)
+
+      expect(fetch).toHaveBeenCalledWith(
+        "dealer.service.test/dealers/123",
         expect.any(Object)
       )
     })
