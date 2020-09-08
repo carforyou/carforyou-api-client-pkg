@@ -41,18 +41,14 @@ export {
   ListingSource,
 } from "./types/models/listing"
 
-export {
-  DealerLocation,
-  DealerCarouselPromotion,
-  SearchDealer,
-} from "./types/models/dealerPromotion"
-
 export { SearchType, Type } from "./types/models/type"
 export { Facets, Facet } from "./types/facets"
 export { DealerProfile } from "./types/models/dealerProfile"
 export {
   DealerPromotion,
   DealerPromotionContent,
+  DealerLocation,
+  SearchDealer,
 } from "./types/models/dealerPromotion"
 
 export {
