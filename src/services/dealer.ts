@@ -34,14 +34,18 @@ export const fetchDealerSuggestions = async (
 
 export const fetchDealerProfile = async (
   dealerId: number
-): Promise<DealerProfile> => withTokenRefresh(async () => {
-  try {
-    const response = await fetchPath(Service.DEALER, `dealers/${dealerId}/profile`)
-    return response
-  } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
-  }
-})
+): Promise<DealerProfile> =>
+  withTokenRefresh(async () => {
+    try {
+      const response = await fetchPath(
+        Service.DEALER,
+        `dealers/${dealerId}/profile`
+      )
+      return response
+    } catch (error) {
+      return handleValidationError(error, { swallowErrors: true })
+    }
+  })
 
 export const postDealerProfile = async (
   profile: Omit<DealerProfile, "id" | "dealerSourceGroup" | "dealerType">
@@ -87,25 +91,33 @@ export const putDealerProfile = async ({
 
 export const fetchDealerEntitlements = async (
   dealerId
-): Promise<Entitlements> => withTokenRefresh(async () => {
-  try {
-    const result = await fetchPath(Service.DEALER, `dealers/${dealerId}/entitlements`)
-    return result
-  } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
-  }
-})
+): Promise<Entitlements> =>
+  withTokenRefresh(async () => {
+    try {
+      const result = await fetchPath(
+        Service.DEALER,
+        `dealers/${dealerId}/entitlements`
+      )
+      return result
+    } catch (error) {
+      return handleValidationError(error, { swallowErrors: true })
+    }
+  })
 
 export const fetchDealerPromotion = async (
   dealerId: number
-): Promise<DealerPromotion> => withTokenRefresh(async () => {
-  try {
-    const result = await fetchPath(Service.DEALER, `dealers/${dealerId}/promotion`)
-    return result
-  } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
-  }
-})
+): Promise<DealerPromotion> =>
+  withTokenRefresh(async () => {
+    try {
+      const result = await fetchPath(
+        Service.DEALER,
+        `dealers/${dealerId}/promotion`
+      )
+      return result
+    } catch (error) {
+      return handleValidationError(error, { swallowErrors: true })
+    }
+  })
 
 export const postDealerPromotion = async (
   dealerId: number,
