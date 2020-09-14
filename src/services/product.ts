@@ -6,14 +6,7 @@ import { Product, PurchaseAndUseProduct } from "../types/models/product"
 import { withTokenRefresh } from "../tokenRefresh"
 
 export const fetchProducts = async (): Promise<Product[]> =>
-  withTokenRefresh(async () => {
-    try {
-      const result = await fetchPath(Service.DEALER, "products")
-      return result
-    } catch (error) {
-      return handleValidationError(error, { swallowErrors: true })
-    }
-  })
+  withTokenRefresh(fetchPath(Service.DEALER, "products"))
 
 export const purchaseAndUseListingProduct = async (
   dealerId: number,
