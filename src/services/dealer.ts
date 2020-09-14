@@ -35,7 +35,9 @@ export const fetchDealerSuggestions = async (
 export const fetchDealerProfile = async (
   dealerId: number
 ): Promise<DealerProfile> =>
-  withTokenRefresh(fetchPath(Service.DEALER, `dealers/${dealerId}/profile`))
+  withTokenRefresh(async () =>
+    fetchPath(Service.DEALER, `dealers/${dealerId}/profile`)
+  )
 
 export const postDealerProfile = async (
   profile: Omit<DealerProfile, "id" | "dealerSourceGroup" | "dealerType">
@@ -82,14 +84,16 @@ export const putDealerProfile = async ({
 export const fetchDealerEntitlements = async (
   dealerId
 ): Promise<Entitlements> =>
-  withTokenRefresh(
+  withTokenRefresh(async () =>
     fetchPath(Service.DEALER, `dealers/${dealerId}/entitlements`)
   )
 
 export const fetchDealerPromotion = async (
   dealerId: number
 ): Promise<DealerPromotion> =>
-  withTokenRefresh(fetchPath(Service.DEALER, `dealers/${dealerId}/promotion`))
+  withTokenRefresh(async () =>
+    fetchPath(Service.DEALER, `dealers/${dealerId}/promotion`)
+  )
 
 export const postDealerPromotion = async (
   dealerId: number,
