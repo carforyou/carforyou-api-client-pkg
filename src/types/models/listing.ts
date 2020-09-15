@@ -118,6 +118,8 @@ export interface Listing
   weightTotal: number
   wheelbase: number
   enabledFeatures: Feature[]
+  buyNowEligible: boolean
+  buyNowInProgress: boolean
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
@@ -184,6 +186,8 @@ interface BaseSearchListing {
   bodyColorGroup: string
   conditionType: string
   consumptionCategory: string
+  buyNowEligible: boolean
+  buyNowInProgress: boolean
 }
 
 export interface ApiSearchListing extends BaseSearchListing {
