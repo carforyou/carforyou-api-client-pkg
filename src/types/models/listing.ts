@@ -145,8 +145,6 @@ export interface SearchListingDealer {
   region: string
   dealerSourceGroup: DealerSourceGroup
   dealerType: DealerType
-  buyNowEligible: boolean
-  buyNowInProgress: boolean
 }
 
 interface BaseSearchListing {

@@ -112,6 +112,8 @@ const defaults: ListingType = {
       startDate: "2015-09-09",
     },
   ],
+  buyNowEligible: false,
+  buyNowInProgress: false,
 }
 
 export function Listing(attributes = {}): ListingType {
@@ -240,6 +242,8 @@ export function EmptyListing(): ListingType {
     weightTotal: undefined,
     wheelbase: undefined,
     enabledFeatures: [],
+    buyNowEligible: false,
+    buyNowInProgress: false,
   }
 }
 
