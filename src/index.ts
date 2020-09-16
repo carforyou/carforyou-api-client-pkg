@@ -12,7 +12,6 @@ export {
   SavedSearch,
   MessageLead,
   LeasingInterest,
-  MoneybackApplication,
   City,
   PresignedUrl,
   Date,
@@ -24,6 +23,11 @@ export {
   DealerEntitlements,
   Entitlements,
 } from "./types/models/index"
+
+export {
+  MoneybackApplication,
+  BuyNowApplication,
+} from "./types/models/applications"
 
 export {
   LifecycleState,
