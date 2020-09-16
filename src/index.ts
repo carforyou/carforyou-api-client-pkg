@@ -152,6 +152,7 @@ export {
   fetchTransmissionTypes,
 } from "./services/car/inventoryData"
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
+export { sendBuyNowApplication } from "./services/car/buyNowApplication"
 export { sendMessageLead } from "./services/car/messageLead"
 export {
   fetchLeasingFormUrl,

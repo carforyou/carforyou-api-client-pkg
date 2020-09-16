@@ -86,6 +86,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`sendLeasingInterest`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing/createLeasingInterestUsingPOST)
 - [Money Back Guarantee](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money_Back_Guarantee)
   - [`sendMoneybackApplication`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money%20Back%20Guarantee/createMbgApplicationUsingPOST)
+- [Buy Now](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now)
+  - [`sendBuyNowApplication`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now/createBuyNowApplicationUsingPOST)
 
 ### [Options service](https://option-service.preprod.carforyou.ch/swagger-ui/index.html)
 
