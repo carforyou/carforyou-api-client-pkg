@@ -1,7 +1,6 @@
 import {
   DealerSavedSearch,
   DealerSavedSearchQuery,
-  AutoAlarmType,
 } from "../../types/models/autoAlarm"
 
 type NestedPartial<T> = {
@@ -28,7 +27,6 @@ export const defaultDealerSavedSearch: DealerSavedSearch = {
     fuelTypeGroup: [],
     transmissionType: [],
   },
-  type: "auto-alarm" as AutoAlarmType,
 }
 
 export const DealerSavedSearchFactory = (

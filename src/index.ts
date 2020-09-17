@@ -55,7 +55,6 @@ export {
   DealerSavedSearch,
   DealerSavedSearchQuery,
   ModelType,
-  AutoAlarmType,
 } from "./types/models/autoAlarm"
 
 export { PaginationParams } from "./types/params"
