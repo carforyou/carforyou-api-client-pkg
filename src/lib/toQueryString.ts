@@ -3,7 +3,7 @@ const toQueryString = (params: object): string => {
   return Object.keys(params)
     .filter(
       (key) =>
-        typeof params[key] !== undefined &&
+        typeof params[key] !== "undefined" &&
         typeof params[key] !== null &&
         params[key] !== ""
     )

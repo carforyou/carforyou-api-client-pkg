@@ -19,12 +19,13 @@ export const fetchSavedSearches = async (
   size?: number
 ): Promise<Paginated<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
+    const query = toQueryString({ page, size })
     try {
       const result = await fetchPath(
         Service.SEARCH,
-        `dealers/${dealerId}/listing-saved-searches/auto-alarms?${toQueryString(
-          { type: "auto-alarm", page, size }
-        )}`
+        `dealers/${dealerId}/listing-saved-searches/auto-alarms${
+          query ? `?${query}` : ""
+        }`
       )
 
       return {
