@@ -6,15 +6,15 @@ import {
   deletePath,
   postData,
 } from "../../base"
+import toQueryString from "../../lib/toQueryString"
 
 import { Paginated } from "../../types/pagination"
-import { DealerSavedSearch, AutoAlarmType } from "../../types/models/autoAlarm"
+import { DealerSavedSearch } from "../../types/models/autoAlarm"
 import { WithValidationError } from "../../types/withValidationError"
 import { withTokenRefresh } from "../../tokenRefresh"
 
 export const fetchSavedSearches = async (
   dealerId: number,
-  type: AutoAlarmType,
   page?: number,
   size?: number
 ): Promise<Paginated<DealerSavedSearch>> => {
@@ -22,9 +22,9 @@ export const fetchSavedSearches = async (
     try {
       const result = await fetchPath(
         Service.SEARCH,
-        `dealers/${dealerId}/listing-saved-searches/auto-alarms?type=${type}${
-          page ? `&page=${page}` : ""
-        }${size ? `&page=${size}` : ""}`
+        `dealers/${dealerId}/listing-saved-searches/auto-alarms?${toQueryString(
+          { page, size }
+        )}`
       )
 
       return {
