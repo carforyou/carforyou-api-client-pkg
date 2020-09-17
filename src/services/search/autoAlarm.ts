@@ -23,7 +23,7 @@ export const fetchSavedSearches = async (
       const result = await fetchPath(
         Service.SEARCH,
         `dealers/${dealerId}/listing-saved-searches/auto-alarms?${toQueryString(
-          { page, size }
+          { type: "auto-alarm", page, size }
         )}`
       )
 
