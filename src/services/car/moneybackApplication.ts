@@ -1,7 +1,7 @@
 import { postData, handleValidationError, Service } from "../../base"
 
 import { WithValidationError } from "../../types/withValidationError"
-import { MoneybackApplication } from "../../types/models"
+import { MoneybackApplication } from "../../types/models/applications"
 
 export const sendMoneybackApplication = async (
   listingId: number,

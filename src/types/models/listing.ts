@@ -82,6 +82,7 @@ export interface Listing
     ListingOptionsData,
     ListingDescriptionData,
     ListingExtrasData {
+  typeSlug: string
   active: boolean
   bodyColorGroup: string
   co2Emission: number
@@ -152,9 +153,7 @@ interface BaseSearchListing {
   bodyType: string
   make: string
   model: string
-  makeId: number
   makeKey: string
-  modelId: number
   modelKey: string
   price: number
   leasingMonthlyRate: number
