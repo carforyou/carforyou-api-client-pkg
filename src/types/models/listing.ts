@@ -152,9 +152,7 @@ interface BaseSearchListing {
   bodyType: string
   make: string
   model: string
-  makeId: number
   makeKey: string
-  modelId: number
   modelKey: string
   price: number
   leasingMonthlyRate: number
