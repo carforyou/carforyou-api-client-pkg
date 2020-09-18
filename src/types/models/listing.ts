@@ -82,6 +82,7 @@ export interface Listing
     ListingOptionsData,
     ListingDescriptionData,
     ListingExtrasData {
+  typeSlug: string
   active: boolean
   bodyColorGroup: string
   co2Emission: number
