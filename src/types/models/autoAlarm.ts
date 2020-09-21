@@ -3,8 +3,6 @@ export interface ModelType {
   type: string
 }
 
-export type AutoAlarmType = "auto-alarm"
-
 export interface DealerSavedSearchQuery {
   makeKey: string
   modelType: ModelType[]
@@ -27,5 +25,4 @@ export interface DealerSavedSearch {
   id: string | null
   lastModifiedDate: string | null
   query: DealerSavedSearchQuery
-  type: AutoAlarmType
 }

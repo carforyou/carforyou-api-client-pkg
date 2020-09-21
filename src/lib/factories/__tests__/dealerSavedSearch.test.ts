@@ -2,7 +2,6 @@ import {
   DealerSavedSearchFactory,
   defaultDealerSavedSearch,
 } from "../dealerSavedSearch"
-import { AutoAlarmType } from "types/models/autoAlarm"
 
 describe("DealerSavedSearchBuilder", () => {
   it("returns a DealerSavedSearch when no preset is passed", () => {
@@ -65,7 +64,6 @@ describe("DealerSavedSearchBuilder", () => {
         fuelTypeGroup: ["gasoline"],
         transmissionType: ["manual"],
       },
-      type: "auto-alarm" as AutoAlarmType,
     }
 
     const dealerSavedSearch = DealerSavedSearchFactory(preset)
