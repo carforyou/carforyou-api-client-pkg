@@ -14,6 +14,7 @@ const defaults: ListingType = {
   modelKey: "a3",
   type: "sport",
   typeFull: "sport",
+  typeSlug: "sport",
   price: 1234532,
   leasingMonthlyRate: 295.87,
   firstRegistrationDate: { month: 6, year: 2015 },
@@ -123,8 +124,6 @@ export function Listing(attributes = {}): ListingType {
 export function SearchListing(attributes = {}): SearchListingType {
   const { typeSlug } = { typeSlug: "test-slug", ...attributes }
   return {
-    makeId: 1028,
-    modelId: 1049,
     typeSlug,
     dealer: {
       id: 1,
@@ -157,6 +156,7 @@ export function EmptyListing(): ListingType {
     make: undefined,
     model: undefined,
     typeFull: undefined,
+    typeSlug: undefined,
     makeKey: undefined,
     modelKey: undefined,
     typeId: undefined,
