@@ -78,7 +78,7 @@ describe("CAR service", () => {
       ]
 
       tests.forEach(({ name, fetchFunction, response }) => {
-        describe(name, () => {
+        describe(`${name} fetches data`, () => {
           beforeEach(() => {
             fetchMock.mockResponse(JSON.stringify(response))
           })
