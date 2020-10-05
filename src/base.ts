@@ -65,9 +65,9 @@ export const resolveServiceUrl = (service: Service): string => {
     case Service.USER_NOTIFICATION:
       url = apiClient.configuration.userNotificationServiceUrl
       break
-    case Service.TOKEN_REFRESH:
-      url = apiClient.configuration.tokenRefreshServiceUrl
-      break
+    // case Service.TOKEN_REFRESH:
+    //   url = apiClient.configuration.tokenRefreshServiceUrl
+    //   break
     default:
       throw new Error(`Tried to resolve url of unknown service "${service}"`)
   }
@@ -80,11 +80,11 @@ export const resolveServiceUrl = (service: Service): string => {
 }
 
 const authorizationHeader = () => {
-  if (!apiClient.tokens.accessToken) {
+  if (!apiClient.accessToken) {
     return null
   }
 
-  return `Bearer ${apiClient.tokens.accessToken}`
+  return `Bearer ${apiClient.accessToken}`
 }
 
 export const fetchPath = async (
@@ -135,8 +135,7 @@ export const fetchPath = async (
 export const postData = async (
   service: Service,
   path: string,
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  body: object,
+  body = {},
   headers = {}
 ) => {
   return fetchPath(service, path, {

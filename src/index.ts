@@ -1,4 +1,6 @@
-import apiClient, { Handlers, Tokens, ApiClientConfig } from "./apiClient"
+import apiClient from "./apiClient"
+// TODO: do we really wanna handle it like this and export the instance as if is a constructor
+export { apiClient as ApiClient }
 
 export {
   Make,
@@ -229,18 +231,3 @@ export {
 export { default as PaginatedFactory } from "./lib/factories/paginated"
 export { Options as OptionsFactory } from "./lib/factories/options"
 export { withRetries } from "./lib/withRetries"
-
-export const ApiClient = {
-  configure: (configuration: ApiClientConfig) =>
-    apiClient.configure(configuration),
-  setHandlers: (handlers: Handlers) => apiClient.setHandlers(handlers),
-  setTokens: (tokens: Tokens) => apiClient.setTokens(tokens),
-  getConfiguration: () => {
-    const configuration = apiClient.configuration
-    return {
-      ...configuration,
-      configured: Object.keys(configuration).length > 0,
-      version: apiClient.version,
-    }
-  },
-}

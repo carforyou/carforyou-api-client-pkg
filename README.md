@@ -35,8 +35,11 @@ fetchBodyTypes()
 | `optionServiceUrl`           | URL to [Options Service](https://option-service.preprod.carforyou.ch/swagger-ui/index.html)                         |
 | `analyticsServiceUrl`        | URL to [Analytics Service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui/index.html)          |
 | `userNotificationServiceUrl` | URL to [User Notification Service](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html)    |
-| `tokenRefreshServiceUrl`     | URL to Auth Service used to refresh access tokens                                                                   |
 | `debug`                      | Set to `true` to `console.log` requests and API responses.                                                          |
+
+### Authenticated Requests
+
+TODO
 
 ## Following API calls are handled
 

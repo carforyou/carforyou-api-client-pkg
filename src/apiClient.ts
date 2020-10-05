@@ -6,13 +6,8 @@ export interface ApiClientConfig {
   optionServiceUrl?: string
   analyticsServiceUrl?: string
   userNotificationServiceUrl?: string
-  tokenRefreshServiceUrl?: string
+  // tokenRefreshServiceUrl?: string
   debug?: boolean
-}
-
-export interface Tokens {
-  accessToken?: string
-  refreshToken?: string
 }
 
 export interface Handlers {
@@ -21,17 +16,31 @@ export interface Handlers {
 }
 
 class ApiClient {
-  static instance: ApiClient
+  private static instance: ApiClient
 
-  configuration: ApiClientConfig = {}
-  tokens: Tokens = {}
-  handlers: Handlers = {}
-  version = "v1"
+  configuration: ApiClientConfig
+  accessToken: string | null
+  handlers: Handlers
+  version: string
+  refreshToken: () => Promise<{ accessToken: string }>
 
   constructor() {
+    if (ApiClient.instance) return ApiClient.instance
+
+    this.configuration = {}
+    this.accessToken = null
+    this.handlers = {}
+    this.version = "v1"
+    this.refreshToken = async () => {
+      throw new Error(
+        "The refreshToken function has not been set the the apiClient instance, use apiClient.setTokenRefresh to pass a function which handles the token refresh"
+      )
+    }
     ApiClient.instance = this
+    return ApiClient.instance
   }
 
+  // To be consisten this would be setConfiguration
   public configure(configuration: ApiClientConfig): void {
     if (Object.keys(this.configuration).length) {
       throw new Error("Owerwriting API client configuration")
@@ -42,9 +51,24 @@ class ApiClient {
     })
   }
 
-  public setTokens(tokens: Tokens): void {
-    this.tokens.accessToken = tokens.accessToken
-    this.tokens.refreshToken = tokens.refreshToken
+  public getConfiguration() {
+    return {
+      ...this.configuration,
+      configured: Object.keys(this.configuration).length > 0,
+      version: this.version,
+    }
+  }
+
+  public setAccessToken(accessToken: string): void {
+    debugger
+    this.accessToken = accessToken
+  }
+
+  public setTokenRefreshHandler(
+    handler: () => Promise<{ accessToken: string }>
+  ): void {
+    debugger
+    this.refreshToken = handler
   }
 
   public setHandlers(handlers: Handlers): void {
@@ -53,7 +77,10 @@ class ApiClient {
   }
 }
 
+// Q: How would this behave if multiple files require the module
 const instance = new ApiClient()
-Object.freeze(instance)
+
+// Like how would the combination of frez and configuring the frozen object work????
+// Object.freeze(instance)
 
 export default instance
