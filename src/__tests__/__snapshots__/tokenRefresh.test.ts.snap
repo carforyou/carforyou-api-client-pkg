@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`the token refresh handling on a failed api call that's not unauthorized rethrows the error 1`] = `"API ResponseError: undefined"`;

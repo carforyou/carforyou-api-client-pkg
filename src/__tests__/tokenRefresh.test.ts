@@ -9,17 +9,16 @@ describe("the token refresh handling", () => {
 
   afterEach(() => {
     apiCall.mockClear()
-    fetchMock.resetMocks()
   })
 
-  describe("on a unauthorized api call", () => {
-    const mockRefresh = jest.fn()
-    const mockRefreshFailure = jest.fn()
+  describe("a unauthorized api call - 401", () => {
+    const mockOnAccessTokenUpdate = jest.fn()
+    const mockOnAccessTokenUpdateFailure = jest.fn()
 
     beforeEach(() => {
       apiClient.setHandlers({
-        onFailedTokenRefresh: mockRefreshFailure,
-        onAccessTokenUpdate: mockRefresh,
+        onFailedTokenRefresh: mockOnAccessTokenUpdateFailure,
+        onAccessTokenUpdate: mockOnAccessTokenUpdate,
       })
 
       apiCall.mockImplementationOnce(() => {
@@ -28,11 +27,9 @@ describe("the token refresh handling", () => {
     })
 
     describe("a successfull refresh", () => {
-      beforeEach(() => {
-        apiClient.setTokenRefreshHandler(async () => ({
-          accessToken: "new access",
-        }))
-      })
+      apiClient.setTokenRefreshHandler(async () => ({
+        accessToken: "new access",
+      }))
 
       it("retries the API call", async () => {
         const result = await withTokenRefresh(apiCall)
@@ -41,45 +38,95 @@ describe("the token refresh handling", () => {
         expect(result).toEqual({ ok: true })
       })
 
-      it("updates the tokens", async () => {
+      it("refreshes the tokens", async () => {
         await withTokenRefresh(apiCall)
 
         expect(apiClient.accessToken).toEqual("new access")
       })
 
-      it("calls the update handler with new access token", async () => {
+      it("calls the update handler with the new access token", async () => {
         await withTokenRefresh(apiCall)
 
-        expect(mockRefresh).toHaveBeenCalledWith("new access")
+        expect(mockOnAccessTokenUpdate).toHaveBeenCalledWith("new access")
+      })
+
+      it("calls the refresh handler once for parallel requests and waits for the pending request", async () => {
+        const mockTokenRefreshHandler = jest.fn(
+          async (): Promise<{
+            accessToken: string
+          }> => {
+            // Ensure multiple timeout ticks are tested
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                return resolve({
+                  accessToken: "new access",
+                })
+              }, 250)
+            })
+          }
+        )
+        apiClient.setTokenRefreshHandler(mockTokenRefreshHandler)
+        const mockCallOne = jest
+          .fn()
+          .mockImplementationOnce(async () => {
+            throw new ResponseError({ status: 401 })
+          })
+          .mockImplementationOnce(async () => ({
+            status: 200,
+          }))
+        const mockCallTwo = jest
+          .fn()
+          .mockImplementationOnce(async () => {
+            throw new ResponseError({ status: 401 })
+          })
+          .mockImplementationOnce(async () => ({
+            status: 200,
+          }))
+        await Promise.all([
+          withTokenRefresh(mockCallOne),
+          withTokenRefresh(mockCallTwo),
+        ])
+
+        expect(mockTokenRefreshHandler).toHaveBeenCalledTimes(1)
+        expect(mockOnAccessTokenUpdate).toHaveBeenCalledWith("new access")
+        expect(mockCallOne).toHaveBeenCalledTimes(2)
+        expect(mockCallTwo).toHaveBeenCalledTimes(2)
       })
     })
 
     describe("a failed refresh", () => {
       beforeEach(() => {
         apiCall.mockImplementationOnce(() => {
-          throw new ResponseError({ status: 400 })
+          throw new ResponseError({ status: 401 })
         })
         apiClient.setTokenRefreshHandler(async () => {
           return Promise.reject("I failed")
         })
       })
 
-      it("calls refresh failure", async () => {
-        await withTokenRefresh(apiCall)
+      it("calls refresh failure handler", async () => {
+        try {
+          await withTokenRefresh(apiCall)
+        } catch {
+          //
+        }
 
-        expect(mockRefreshFailure).toHaveBeenCalledTimes(1)
+        expect(mockOnAccessTokenUpdateFailure).toHaveBeenCalledTimes(1)
       })
     })
   })
 
-  describe("on a failed api call that's not unauthorized", () => {
+  describe("any other error 4xx, 5xx", () => {
+    const mockRefreshHandler = jest.fn()
+
     beforeEach(() => {
       apiCall.mockImplementationOnce(() => {
         throw new ResponseError({ status: 400 })
       })
+      apiClient.setTokenRefreshHandler(mockRefreshHandler)
     })
 
-    it("only tries the api call once", async () => {
+    it("only executes the api call once", async () => {
       try {
         await withTokenRefresh(apiCall)
       } catch {
@@ -96,13 +143,13 @@ describe("the token refresh handling", () => {
         //
       }
 
-      expect(fetchMock).toHaveBeenCalledTimes(0)
+      expect(mockRefreshHandler).toHaveBeenCalledTimes(0)
     })
 
     it("rethrows the error", async () => {
-      await expect(
-        withTokenRefresh(apiCall)
-      ).rejects.toThrowErrorMatchingSnapshot()
+      await expect(withTokenRefresh(apiCall)).rejects.toThrowError(
+        new ResponseError({ status: 400 })
+      )
     })
   })
 })
