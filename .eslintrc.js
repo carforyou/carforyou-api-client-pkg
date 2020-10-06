@@ -1,6 +1,9 @@
 module.exports = {
   extends: ["@carforyou/eslint-config"],
   rules: {
+    // We need conditional expects for error cases in api calls
+    // where we want to match our error type
+    "jest/no-conditional-expect": "off",
     "@typescript-eslint/naming-convention": [
       "error",
       {
