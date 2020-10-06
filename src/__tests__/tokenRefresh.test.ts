@@ -2,8 +2,6 @@ import apiClient from "../apiClient"
 import { withTokenRefresh } from "../tokenRefresh"
 import { ResponseError } from "../responseError"
 
-// TODO: FIXME
-// TODO: try to clean up the overdone nesting
 describe("the token refresh handling", () => {
   const apiCall = jest.fn(() => Promise.resolve({ ok: true }))
 
@@ -11,7 +9,7 @@ describe("the token refresh handling", () => {
     apiCall.mockReset()
   })
 
-  describe("a unauthorized api call - 401", () => {
+  describe("an unauthorized api call - 401", () => {
     const mockOnAccessTokenUpdate = jest.fn()
     const mockOnAccessTokenUpdateFailure = jest.fn()
 
@@ -26,7 +24,7 @@ describe("the token refresh handling", () => {
       })
     })
 
-    describe("a successfull refresh", () => {
+    describe("a successful refresh", () => {
       apiClient.setTokenRefreshHandler(async () => ({
         accessToken: "new access",
       }))
@@ -50,7 +48,7 @@ describe("the token refresh handling", () => {
         expect(mockOnAccessTokenUpdate).toHaveBeenCalledWith("new access")
       })
 
-      it("calls the refresh handler once for parallel requests and waits for the pending request", async () => {
+      it("calls the refresh handler only once for parallel requests", async () => {
         const mockTokenRefreshHandler = jest.fn(
           async (): Promise<{
             accessToken: string
