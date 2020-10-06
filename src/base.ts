@@ -64,9 +64,6 @@ export const resolveServiceUrl = (service: Service): string => {
     case Service.USER_NOTIFICATION:
       url = apiClient.configuration.userNotificationServiceUrl
       break
-    // case Service.TOKEN_REFRESH:
-    //   url = apiClient.configuration.tokenRefreshServiceUrl
-    //   break
     default:
       throw new Error(`Tried to resolve url of unknown service "${service}"`)
   }
