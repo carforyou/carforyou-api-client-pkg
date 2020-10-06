@@ -84,3 +84,4 @@ const instance = new ApiClient()
 // Object.freeze(instance)
 
 export default instance
+export const Constructor = ApiClient

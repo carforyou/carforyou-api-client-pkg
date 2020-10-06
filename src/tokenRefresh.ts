@@ -19,22 +19,16 @@ const refreshTokenAndRetry = async (apiCall) => {
   // TODO: we might wanna have state in here an just wait for the refresh to complete when there is one in progress
   try {
     await invokeTokenRefresh()
-    return apiCall()
   } catch (error) {
-    if (error.name === "ResponseError") {
-      const status = error.status.toString()
-      if (
-        (status.startsWith("4") || status.startsWith("5")) &&
-        apiClient.handlers.onFailedTokenRefresh
-      ) {
-        apiClient.handlers.onFailedTokenRefresh()
-      }
-
+    if (apiClient.handlers.onFailedTokenRefresh) {
+      // TODO: perhaps we wanna pass the error here
+      apiClient.handlers.onFailedTokenRefresh()
       return
     }
-
     throw error
   }
+
+  return apiCall()
 }
 
 // TODO: move this to an imperative style and don't add the auth token when it's missing so the requests fail initial on not just on token refresh

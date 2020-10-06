@@ -16,7 +16,6 @@ export enum Service {
   OPTION = "OPTION",
   ANALYTICS = "ANALYTICS",
   USER_NOTIFICATION = "USER_NOTIFICATION",
-  TOKEN_REFRESH = "TOKEN_REFRESH",
 }
 
 const stripLeadingSlash = (path: string): string => {

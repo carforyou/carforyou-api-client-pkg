@@ -9,6 +9,5 @@ beforeAll(() => {
     optionServiceUrl: "option.service.test",
     analyticsServiceUrl: "analytics.service.test",
     userNotificationServiceUrl: "user_notification.service.test",
-    tokenRefreshServiceUrl: "token_refresh.service.test",
   })
 })

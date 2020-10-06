@@ -2,108 +2,107 @@ import apiClient from "../apiClient"
 import { withTokenRefresh } from "../tokenRefresh"
 import { ResponseError } from "../responseError"
 
-describe("apiClient", () => {
-  describe("#withTokenRefresh", () => {
-    const apiCall = jest.fn(() => Promise.resolve({ ok: true }))
+// TODO: FIXME
+// TODO: try to clean up the overdone nesting
+describe("the token refresh handling", () => {
+  const apiCall = jest.fn(() => Promise.resolve({ ok: true }))
 
-    afterEach(() => {
-      apiCall.mockClear()
-      fetchMock.resetMocks()
+  afterEach(() => {
+    apiCall.mockClear()
+    fetchMock.resetMocks()
+  })
+
+  describe("on a unauthorized api call", () => {
+    const mockRefresh = jest.fn()
+    const mockRefreshFailure = jest.fn()
+
+    beforeEach(() => {
+      apiClient.setHandlers({
+        onFailedTokenRefresh: mockRefreshFailure,
+        onAccessTokenUpdate: mockRefresh,
+      })
+
+      apiCall.mockImplementationOnce(() => {
+        throw new ResponseError({ status: 401 })
+      })
     })
 
-    describe("on a failed api call that is unauthorized", () => {
-      const mockRefresh = jest.fn()
-      const mockRefreshFailure = jest.fn()
-
+    describe("a successfull refresh", () => {
       beforeEach(() => {
-        apiClient.setHandlers({
-          onFailedTokenRefresh: mockRefreshFailure,
-          onAccessTokenUpdate: mockRefresh,
-        })
-
-        apiCall.mockImplementationOnce(() => {
-          throw new ResponseError({ status: 401 })
-        })
+        apiClient.setTokenRefreshHandler(async () => ({
+          accessToken: "new access",
+        }))
       })
 
-      describe("and a successfull refresh", () => {
-        beforeEach(() => {
-          fetchMock.mockResponseOnce(
-            JSON.stringify({
-              refresh_token: "new refresh",
-              access_token: "new access",
-            })
-          )
-        })
+      it("retries the API call", async () => {
+        const result = await withTokenRefresh(apiCall)
 
-        it("retries the API call", async () => {
-          const result = await withTokenRefresh(apiCall)
-
-          expect(apiCall).toHaveBeenCalledTimes(2)
-          expect(result).toEqual({ ok: true })
-        })
-
-        it("updates the tokens", async () => {
-          await withTokenRefresh(apiCall)
-
-          expect(apiClient.tokens.accessToken).toEqual("new access")
-          expect(apiClient.tokens.refreshToken).toEqual("new refresh")
-        })
-
-        it("calls the update handler with new access token", async () => {
-          await withTokenRefresh(apiCall)
-
-          expect(mockRefresh).toHaveBeenCalledWith("new access")
-        })
+        expect(apiCall).toHaveBeenCalledTimes(2)
+        expect(result).toEqual({ ok: true })
       })
 
-      describe("and a failed refresh", () => {
-        beforeEach(() => {
-          fetchMock.mockResponseOnce(JSON.stringify({ ok: false }), {
-            status: 400,
-          })
-        })
+      it("updates the tokens", async () => {
+        await withTokenRefresh(apiCall)
 
-        it("calls refresh failure", async () => {
-          await withTokenRefresh(apiCall)
+        expect(apiClient.accessToken).toEqual("new access")
+      })
 
-          expect(mockRefreshFailure).toHaveBeenCalled()
-        })
+      it("calls the update handler with new access token", async () => {
+        await withTokenRefresh(apiCall)
+
+        expect(mockRefresh).toHaveBeenCalledWith("new access")
       })
     })
 
-    describe("on a failed api call that's not unauthorized", () => {
+    describe("a failed refresh", () => {
       beforeEach(() => {
         apiCall.mockImplementationOnce(() => {
           throw new ResponseError({ status: 400 })
         })
+        apiClient.setTokenRefreshHandler(async () => {
+          return Promise.reject("I failed")
+        })
       })
 
-      it("only tries the api call once", async () => {
-        try {
-          await withTokenRefresh(apiCall)
-        } catch {
-          //
-        }
+      it("calls refresh failure", async () => {
+        await withTokenRefresh(apiCall)
 
-        expect(apiCall).toHaveBeenCalledTimes(1)
+        expect(mockRefreshFailure).toHaveBeenCalledTimes(1)
       })
+    })
+  })
 
-      it("does not try to refresh the token", async () => {
-        try {
-          await withTokenRefresh(apiCall)
-        } catch {
-          //
-        }
-
-        expect(fetchMock).toHaveBeenCalledTimes(0)
+  describe("on a failed api call that's not unauthorized", () => {
+    beforeEach(() => {
+      apiCall.mockImplementationOnce(() => {
+        throw new ResponseError({ status: 400 })
       })
+    })
 
-      it("rethrows the error", async () => {
-        await expect(
-          withTokenRefresh(apiCall)
-        ).rejects.toThrowErrorMatchingSnapshot()
-      })
+    it("only tries the api call once", async () => {
+      try {
+        await withTokenRefresh(apiCall)
+      } catch {
+        //
+      }
+
+      expect(apiCall).toHaveBeenCalledTimes(1)
+    })
+
+    it("does not try to refresh the token", async () => {
+      try {
+        await withTokenRefresh(apiCall)
+      } catch {
+        //
+      }
+
+      expect(fetchMock).toHaveBeenCalledTimes(0)
+    })
+
+    it("rethrows the error", async () => {
+      await expect(
+        withTokenRefresh(apiCall)
+      ).rejects.toThrowErrorMatchingSnapshot()
     })
   })
 })
