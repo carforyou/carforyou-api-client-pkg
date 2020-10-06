@@ -8,7 +8,7 @@ describe("the token refresh handling", () => {
   const apiCall = jest.fn(() => Promise.resolve({ ok: true }))
 
   afterEach(() => {
-    apiCall.mockClear()
+    apiCall.mockReset()
   })
 
   describe("a unauthorized api call - 401", () => {
@@ -117,13 +117,12 @@ describe("the token refresh handling", () => {
   })
 
   describe("any other error 4xx, 5xx", () => {
-    const mockRefreshHandler = jest.fn()
-
+    const mockTokenRefreshHandler = jest.fn()
     beforeEach(() => {
-      apiCall.mockImplementationOnce(() => {
+      apiCall.mockImplementation(() => {
         throw new ResponseError({ status: 400 })
       })
-      apiClient.setTokenRefreshHandler(mockRefreshHandler)
+      apiClient.setTokenRefreshHandler(mockTokenRefreshHandler)
     })
 
     it("only executes the api call once", async () => {
@@ -143,7 +142,7 @@ describe("the token refresh handling", () => {
         //
       }
 
-      expect(mockRefreshHandler).toHaveBeenCalledTimes(0)
+      expect(mockTokenRefreshHandler).toHaveBeenCalledTimes(0)
     })
 
     it("rethrows the error", async () => {
