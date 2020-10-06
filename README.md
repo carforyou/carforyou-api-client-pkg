@@ -39,7 +39,20 @@ fetchBodyTypes()
 
 ### Authenticated Requests
 
-TODO
+#### Access Token
+
+In order to perform authenticated requests you need to set a valid access token to the api client in the consumers code `ApiClient.setAccessToken(JWT)` The provided token will be passed as `Authentication` header to the API.
+
+#### Refreshing Access Tokens
+
+Authenticated requests will try to issue a refresh token when they revive a 401 response form the remote server. In order to handle the process of refreshing the token the consumer must pass a handler function to the API-Client. (The function may vary depending on the environment the API-Client is used)
+
+```
+ApiClient.setTokenRefreshHandler(async () => {
+  const response = await fetch(process.env.TOKEN_REFRESH_ROUTE)
+  return response.json()
+})
+```
 
 ## Following API calls are handled
 

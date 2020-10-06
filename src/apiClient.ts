@@ -6,7 +6,6 @@ export interface ApiClientConfig {
   optionServiceUrl?: string
   analyticsServiceUrl?: string
   userNotificationServiceUrl?: string
-  // tokenRefreshServiceUrl?: string
   debug?: boolean
 }
 
@@ -40,7 +39,6 @@ class ApiClient {
     return ApiClient.instance
   }
 
-  // To be consisten this would be setConfiguration
   public configure(configuration: ApiClientConfig): void {
     if (Object.keys(this.configuration).length) {
       throw new Error("Owerwriting API client configuration")
@@ -60,14 +58,12 @@ class ApiClient {
   }
 
   public setAccessToken(accessToken: string): void {
-    debugger
     this.accessToken = accessToken
   }
 
   public setTokenRefreshHandler(
     handler: () => Promise<{ accessToken: string }>
   ): void {
-    debugger
     this.refreshToken = handler
   }
 
@@ -77,11 +73,5 @@ class ApiClient {
   }
 }
 
-// Q: How would this behave if multiple files require the module
-const instance = new ApiClient()
-
-// Like how would the combination of frez and configuring the frozen object work????
-// Object.freeze(instance)
-
-export default instance
+export default new ApiClient()
 export const Constructor = ApiClient

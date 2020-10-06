@@ -38,7 +38,6 @@ const refreshTokenAndRetry = async (apiCall) => {
   return apiCall()
 }
 
-// TODO: move this to an imperative style and don't add the auth token when it's missing so the requests fail initial on not just on token refresh
 export const withTokenRefresh = async (apiCall) => {
   try {
     return await apiCall()
