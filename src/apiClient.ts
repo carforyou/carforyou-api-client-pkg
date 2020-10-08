@@ -32,7 +32,7 @@ class ApiClient {
     this.version = "v1"
     this.refreshToken = async () => {
       throw new Error(
-        "The refreshToken function has not been set the the apiClient instance, use apiClient.setTokenRefresh to pass a function which handles the token refresh"
+        "The refreshToken function has not been set the the apiClient instance, use apiClient.setTokenRefreshHandler to pass a function which handles the token refresh"
       )
     }
     ApiClient.instance = this
