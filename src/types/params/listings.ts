@@ -74,6 +74,7 @@ export interface ListingFilterParams {
   lifestyleType?: string[]
   vehicleClass?: string[]
   hasImagesOnly?: boolean
+  buyNowEligibleOnly?: boolean
 
   [key: string]:
     | number
