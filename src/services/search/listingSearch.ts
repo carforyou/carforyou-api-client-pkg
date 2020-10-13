@@ -24,9 +24,13 @@ export const fetchListingCount = async (
     fieldsStats: [],
     ...options,
   }
-  const json = await postData(Service.SEARCH, "listings/count", {
-    query,
-    ...(fieldsStats.length > 0 ? { includeFieldsStats: fieldsStats } : {}),
+  const json = await postData({
+    service: Service.SEARCH,
+    path: "listings/count",
+    body: {
+      query,
+      ...(fieldsStats.length > 0 ? { includeFieldsStats: fieldsStats } : {}),
+    },
   })
 
   return {
@@ -76,7 +80,7 @@ const searchForListings = (
     query: paramsToSearchRequest(rest),
   }
 
-  return postData(Service.SEARCH, path, body)
+  return postData({ service: Service.SEARCH, path, body })
 }
 
 function sanitizeListingResponse<
@@ -131,10 +135,10 @@ export const fetchMoneybackListings = async (
     page: number
   }
 ): Promise<Paginated<SearchListing>> => {
-  const response = await fetchPath(
-    Service.CAR,
-    `dealers/${dealerId}/mbg-listings?${toQueryString(query)}`
-  )
+  const response = await fetchPath({
+    service: Service.CAR,
+    path: `dealers/${dealerId}/mbg-listings?${toQueryString(query)}`,
+  })
 
   return sanitizeListingResponse(response)
 }

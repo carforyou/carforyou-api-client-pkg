@@ -38,15 +38,15 @@ import apiClient from "./apiClient"
 //   return apiCall()
 // }
 
-export const withTokenRefresh = async (apiCall) => {
-  return await apiCall()
+// export const withTokenRefresh = async (apiCall) => {
+//   return await apiCall()
 
-  // try {
-  // } catch (error) {
-  //   if (error.name === "ResponseError" && error.status.toString() === "401") {
-  //     return refreshTokenAndRetry(apiCall)
-  //   }
+//   // try {
+//   // } catch (error) {
+//   //   if (error.name === "ResponseError" && error.status.toString() === "401") {
+//   //     return refreshTokenAndRetry(apiCall)
+//   //   }
 
-  //   throw error
-  // }
-}
+//   //   throw error
+//   // }
+// }

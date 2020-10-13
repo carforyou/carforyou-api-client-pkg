@@ -26,18 +26,20 @@ export const sendMessageLead = async (
   }`
 
   try {
-    await postData(
-      Service.CAR,
+    await postData({
+      service: Service.CAR,
       path,
-      {
+      body: {
         ...messageLeadBase,
         videoCallPreference: {
           available,
           services: [...services, otherService].filter(Boolean),
         },
       },
-      recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
-    )
+      options: {
+        headers: recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {},
+      },
+    })
 
     return {
       tag: "success",

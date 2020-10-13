@@ -11,8 +11,8 @@ export const fetchTypeOptions = async (
     productionYear: number
   }
 ): Promise<Options> => {
-  return fetchPath(
-    Service.OPTION,
-    `types/${typeId}/options?${toQueryString(query)}`
-  )
+  return fetchPath({
+    service: Service.OPTION,
+    path: `types/${typeId}/options?${toQueryString(query)}`,
+  })
 }

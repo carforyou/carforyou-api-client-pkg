@@ -15,12 +15,14 @@ export const sendSavedSearch = async (
   const { searchQuery, ...rest } = data
 
   try {
-    await postData(
-      Service.USER_NOTIFICATION,
-      "saved-searches",
-      { ...rest, searchQuery: paramsToSearchRequest(searchQuery) },
-      recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
-    )
+    await postData({
+      service: Service.USER_NOTIFICATION,
+      path: "saved-searches",
+      body: { ...rest, searchQuery: paramsToSearchRequest(searchQuery) },
+      options: {
+        headers: recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {},
+      },
+    })
 
     return {
       tag: "success",
@@ -35,7 +37,10 @@ export const deleteSavedSearch = async (
   key: string
 ): Promise<WithValidationError> => {
   try {
-    await deletePath(Service.USER_NOTIFICATION, `saved-searches/key/${key}`)
+    await deletePath({
+      service: Service.USER_NOTIFICATION,
+      path: `saved-searches/key/${key}`,
+    })
     return {
       tag: "success",
       result: {},

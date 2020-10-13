@@ -38,7 +38,7 @@ const searchForDealers = (path, searchQuery: DealerParams, previewId) => {
     query,
   }
 
-  return postData(Service.SEARCH, path, body)
+  return postData({ service: Service.SEARCH, path, body })
 }
 
 export const fetchDealers = async (

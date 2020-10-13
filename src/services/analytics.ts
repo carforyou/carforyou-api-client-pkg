@@ -6,11 +6,11 @@ export const fetchAnalyticsData = async (
   dealerId: number,
   listingIds: number[]
 ): Promise<DealerListingsAnalyticsData> => {
-  return postData(
-    Service.ANALYTICS,
-    `analytics/dealers/${dealerId}/listings/metrics`,
-    {
+  return postData({
+    service: Service.ANALYTICS,
+    path: `analytics/dealers/${dealerId}/listings/metrics`,
+    body: {
       id: listingIds,
-    }
-  )
+    },
+  })
 }

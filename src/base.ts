@@ -80,7 +80,6 @@ export interface RequestOptions {
   accessToken?: string
   method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
   headers?: {}
-  body?: string
 }
 
 const getAuthorizationHeader = (token = null) => {
@@ -95,11 +94,17 @@ const getAuthorizationHeader = (token = null) => {
   return { Authorization: `Bearer ${accessToken}` }
 }
 
-export const fetchPath = async (
-  service: Service,
-  path: string,
-  options: RequestOptions = {}
-) => {
+export const fetchPath = async ({
+  service,
+  path,
+  body,
+  options = {},
+}: {
+  service: Service
+  path: string
+  body?: string
+  options?: RequestOptions
+}) => {
   const defaultOptions: RequestOptions = {
     isAuthorizedRequest: false,
     headers: {
@@ -130,7 +135,7 @@ export const fetchPath = async (
   console.log("Request URL", url)
   console.log("Request headers", mergedOptions.headers)
 
-  const { headers, method, body } = mergedOptions
+  const { headers, method } = mergedOptions
   const response = await fetch(url, {
     headers,
     method,
@@ -156,39 +161,60 @@ export const fetchPath = async (
   }
 }
 
-export const postData = async (
-  service: Service,
-  path: string,
-  body = {},
-  headers = {}
-) => {
-  return fetchPath(service, path, {
-    method: "POST",
-    body: JSON.stringify(body),
-    headers,
-  })
-}
-
-export const putData = async (
-  service: Service,
-  path: string,
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  body: object,
-  headers = {} // TODO: move to options
-) => {
-  return fetchPath(service, path, {
-    method: "PUT",
-    body: JSON.stringify(body),
-    headers,
-  })
-}
-
-export const deletePath = async (
-  service: Service,
-  path: string,
+export const postData = async ({
+  service,
+  path,
+  body,
+  options = {},
+}: {
+  service: Service
+  path: string
+  body: unknown
   options?: RequestOptions
-) => {
-  return fetchPath(service, path, { method: "DELETE", ...options })
+}) => {
+  return fetchPath({
+    service,
+    path,
+    body: JSON.stringify(body),
+    options: {
+      method: "POST",
+      ...options,
+    },
+  })
+}
+
+export const putData = async ({
+  service,
+  path,
+  body,
+  options = {},
+}: {
+  service: Service
+  path: string
+  body: unknown
+  options?: RequestOptions
+}) => {
+  return fetchPath({
+    service,
+    path,
+    body: JSON.stringify(body),
+    options: {
+      method: "PUT",
+      ...options,
+    },
+  })
+}
+
+export const deletePath = async ({
+  service,
+  path,
+  options = {},
+}: {
+  service: Service
+  path: string
+  options?: RequestOptions
+}) => {
+  return fetchPath({ service, path, options: { method: "DELETE", ...options } })
 }
 
 export const handleValidationError = async (

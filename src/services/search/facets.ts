@@ -9,9 +9,13 @@ export const fetchFacets = async (
   query: ListingSearchParams = {},
   fields: string[] = []
 ): Promise<Facets> => {
-  const json = await postData(Service.SEARCH, "/listings/facets", {
-    query: paramsToSearchRequest(query),
-    fields,
+  const json = await postData({
+    service: Service.SEARCH,
+    path: "/listings/facets",
+    body: {
+      query: paramsToSearchRequest(query),
+      fields,
+    },
   })
 
   return json.facets

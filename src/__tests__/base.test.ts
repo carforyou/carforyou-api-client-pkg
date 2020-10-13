@@ -39,13 +39,14 @@ describe("Base", () => {
     })
   })
 
+  // TODO: add some tests for thems new interface
   describe("#fetchPath", () => {
     beforeEach(() => {
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
     })
 
     it("strips leading '/' from path", async () => {
-      const json = await fetchPath(Service.CAR, "/api/path")
+      const json = await fetchPath({ service: Service.CAR, path: "/api/path" })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(
@@ -55,7 +56,7 @@ describe("Base", () => {
     })
 
     it("inserts correct version header", async () => {
-      const json = await fetchPath(Service.CAR, "api/path")
+      const json = await fetchPath({ service: Service.CAR, path: "api/path" })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(expect.any(String), {
@@ -66,8 +67,12 @@ describe("Base", () => {
     })
 
     it("allows setting custom headers", async () => {
-      const json = await fetchPath(Service.CAR, "api/path", {
-        headers: { Foo: "bar" },
+      const json = await fetchPath({
+        service: Service.CAR,
+        path: "api/path",
+        options: {
+          headers: { Foo: "bar" },
+        },
       })
 
       expect(json).toEqual({ ok: true })
@@ -84,7 +89,10 @@ describe("Base", () => {
       })
 
       it("includes content", async () => {
-        const json = await fetchPath(Service.CAR, "/api/path")
+        const json = await fetchPath({
+          service: Service.CAR,
+          path: "/api/path",
+        })
         expect(json).toEqual([])
       })
     })
@@ -95,12 +103,18 @@ describe("Base", () => {
       })
 
       it("includes pagination separately when content field is returned", async () => {
-        const json = await fetchPath(Service.CAR, "/api/path")
+        const json = await fetchPath({
+          service: Service.CAR,
+          path: "/api/path",
+        })
         expect(json.pagination).toEqual({ totalPages: 3 })
       })
 
       it("includes content separately when content field is returned", async () => {
-        const json = await fetchPath(Service.CAR, "/api/path")
+        const json = await fetchPath({
+          service: Service.CAR,
+          path: "/api/path",
+        })
         expect(json.content).toEqual([])
       })
     })
@@ -112,7 +126,7 @@ describe("Base", () => {
     })
 
     it("sets HTTP method for fetch", async () => {
-      const json = await deletePath(Service.CAR, "api/path")
+      const json = await deletePath({ service: Service.CAR, path: "api/path" })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(
@@ -132,7 +146,11 @@ describe("Base", () => {
     const data = { key: "value" }
 
     it("sets body and HTTP method for fetch", async () => {
-      const json = await postData(Service.CAR, "api/path", data)
+      const json = await postData({
+        service: Service.CAR,
+        path: "api/path",
+        body: data,
+      })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(
@@ -153,8 +171,11 @@ describe("Base", () => {
     const data = { key: "value" }
 
     it("sets body and HTTP method for fetch", async () => {
-      const json = await putData(Service.CAR, "api/path", data)
-
+      const json = await putData({
+        service: Service.CAR,
+        path: "api/path",
+        body: data,
+      })
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(
         expect.any(String),

@@ -17,7 +17,12 @@ export const sendBuyNowApplication = async (
   }
 
   try {
-    await postData(Service.CAR, path, buyNowApplication, headers)
+    await postData({
+      service: Service.CAR,
+      path,
+      body: buyNowApplication,
+      options: { headers },
+    })
     return {
       tag: "success",
       result: buyNowApplication,

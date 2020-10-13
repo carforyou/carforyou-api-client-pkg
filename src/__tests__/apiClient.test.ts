@@ -40,14 +40,26 @@ describe("ApiClient", () => {
   })
 
   it("sets the accessToken", () => {
-    ApiClient.setAccessToken("Thems Token")
-    expect(ApiClient.accessToken).toEqual("Thems Token")
+    const dummyTokenData = {
+      token: "Dat token",
+      expires: new Date(),
+    }
+    ApiClient.setAccessToken(dummyTokenData)
+    expect(ApiClient.accessToken).toEqual(dummyTokenData)
   })
 
   it("overrrides the accessToken", () => {
-    ApiClient.setAccessToken("Thems Token")
-    ApiClient.setAccessToken("New Token")
-    expect(ApiClient.accessToken).toEqual("New Token")
+    const dummyTokenDataOne = {
+      token: "Dat token",
+      expires: new Date(),
+    }
+    const dummyTokenDataTwo = {
+      token: "Funky fresh",
+      expires: new Date(),
+    }
+    ApiClient.setAccessToken(dummyTokenDataOne)
+    ApiClient.setAccessToken(dummyTokenDataTwo)
+    expect(ApiClient.accessToken).toEqual(dummyTokenDataTwo)
   })
 
   it("throws an error when calling the prototype token refresh handler", async () => {
@@ -60,7 +72,7 @@ describe("ApiClient", () => {
 
   it("sets the token refresh handler function", () => {
     const dummyFn = async () => {
-      return { accessToken: "Dummy" }
+      return { accessToken: "Dummy", expires: Date.now().toString() }
     }
     ApiClient.setTokenRefreshHandler(dummyFn)
     expect(ApiClient.refreshToken).toEqual(dummyFn)
@@ -68,10 +80,10 @@ describe("ApiClient", () => {
 
   it("overrides the token refresh handler function", () => {
     const dummyFn = async () => {
-      return { accessToken: "Dummy" }
+      return { accessToken: "Dummy", expires: Date.now().toString() }
     }
     const anotherDummyFn = async () => {
-      return { accessToken: "Dummy" }
+      return { accessToken: "Dummy", expires: Date.now().toString() }
     }
     ApiClient.setTokenRefreshHandler(dummyFn)
     ApiClient.setTokenRefreshHandler(anotherDummyFn)
