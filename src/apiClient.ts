@@ -18,22 +18,35 @@ class ApiClient {
   private static instance: ApiClient
 
   configuration: ApiClientConfig
-  accessToken: string | null
+  accessToken: {
+    token: string | null
+    expires: Date | null
+  }
   handlers: Handlers
   version: string
+  runsInBrowser: boolean
   refreshToken: () => Promise<{ accessToken: string }>
+  ensureTokenFreshness: () => void
 
   constructor() {
     if (ApiClient.instance) return ApiClient.instance
 
     this.configuration = {}
-    this.accessToken = null
+    this.accessToken = {
+      expires: null,
+      token: null,
+    }
     this.handlers = {}
     this.version = "v1"
-    this.refreshToken = async () => {
-      throw new Error(
-        "The refreshToken function has not been set the the apiClient instance, use apiClient.setTokenRefresh to pass a function which handles the token refresh"
-      )
+    this.runsInBrowser = typeof window !== "undefined"
+    this.ensureTokenFreshness = async () => {
+      console.log("ensure fresshenes!!!", Date.now())
+      console.log("ensure fresshenes!!!", this.accessToken)
+      // TODO: check weather the token is n minutes valid if not refreh it
+    }
+
+    if (this.runsInBrowser) {
+      window.setInterval(this.ensureTokenFreshness, 60 * 1000)
     }
     ApiClient.instance = this
     return ApiClient.instance
@@ -57,13 +70,24 @@ class ApiClient {
     }
   }
 
-  public setAccessToken(accessToken: string): void {
+  public setAccessToken(accessToken: { token: string; expires: Date }): void {
+    if (!this.runsInBrowser) {
+      throw new Error(
+        "You may only globally set and access-token on a client side usage, to avoid leaking the token on the global module for a server side implementation. Please pass tha access-token as an option to the request instead when using the package server side!"
+      )
+    }
+    console.log("setting thems access token", accessToken)
     this.accessToken = accessToken
   }
 
   public setTokenRefreshHandler(
-    handler: () => Promise<{ accessToken: string }>
+    handler: () => Promise<{ accessToken: string; expires: string }>
   ): void {
+    if (!this.runsInBrowser) {
+      throw new Error(
+        "You tried to assign a token refresh handler without a browser context, please ensure to only implement this for the client side part of your application."
+      )
+    }
     this.refreshToken = handler
   }
 

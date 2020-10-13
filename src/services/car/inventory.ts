@@ -4,6 +4,7 @@ import {
   postData,
   putData,
   handleValidationError,
+  RequestOptions,
 } from "../../base"
 import { withTokenRefresh } from "../../tokenRefresh"
 
@@ -45,17 +46,20 @@ export const fetchDealerMakes = async (
 
 export const fetchDealerListingsCount = async (
   dealerId: number,
-  query: DealerListingQueryParams
+  query: DealerListingQueryParams,
+  options?: RequestOptions
 ): Promise<number> => {
-  return withTokenRefresh(async () => {
-    const { count } = await fetchPath(
-      Service.CAR,
-      `dealers/${dealerId}/listings/count${
-        Object.keys(query).length > 0 ? "?" + toQueryString(query) : null
-      }`
-    )
-    return count
-  })
+  const { count } = await fetchPath(
+    Service.CAR,
+    `dealers/${dealerId}/listings/count${
+      Object.keys(query).length > 0 ? "?" + toQueryString(query) : null
+    }`,
+    {
+      isAuthorizedRequest: true,
+      ...options,
+    }
+  )
+  return count
 }
 
 export const defaultPagination = {

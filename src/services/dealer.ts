@@ -4,6 +4,7 @@ import {
   handleValidationError,
   putData,
   postData,
+  RequestOptions,
 } from "../base"
 
 import { Paginated } from "../types/pagination"
@@ -32,12 +33,17 @@ export const fetchDealerSuggestions = async (
   )
 }
 
+// TODO:
+
 export const fetchDealerProfile = async (
-  dealerId: number
-): Promise<DealerProfile> =>
-  withTokenRefresh(async () =>
-    fetchPath(Service.DEALER, `dealers/${dealerId}/profile`)
-  )
+  dealerId: number,
+  options: RequestOptions
+): Promise<DealerProfile> => {
+  return fetchPath(Service.DEALER, `dealers/${dealerId}/profile`, {
+    isAuthorizedRequest: true,
+    ...options,
+  })
+}
 
 export const postDealerProfile = async (
   profile: Omit<DealerProfile, "id" | "dealerSourceGroup" | "dealerType">
@@ -82,11 +88,13 @@ export const putDealerProfile = async ({
 }
 
 export const fetchDealerEntitlements = async (
-  dealerId
+  dealerId,
+  options?: RequestOptions
 ): Promise<Entitlements> =>
-  withTokenRefresh(async () =>
-    fetchPath(Service.DEALER, `dealers/${dealerId}/entitlements`)
-  )
+  fetchPath(Service.DEALER, `dealers/${dealerId}/entitlements`, {
+    isAuthorizedRequest: true,
+    ...options,
+  })
 
 export const fetchDealerPromotion = async (
   dealerId: number

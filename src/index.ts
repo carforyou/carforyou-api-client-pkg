@@ -2,6 +2,8 @@ import apiClient from "./apiClient"
 // TODO: do we really wanna handle it like this and export the instance as if is a constructor
 export { apiClient as ApiClient }
 
+export { RequestOptions } from "./base"
+
 export {
   Make,
   Model,
