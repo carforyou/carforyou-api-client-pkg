@@ -39,20 +39,28 @@ fetchBodyTypes()
 
 ### Authenticated Requests
 
-#### Access Token
+Authenticated requests need to be handled in a different way depending on weather the request is performed server- or client-side.
+Client-Side, we can use the api client as a singelton to store the token. Server-side the access token needs to be passed to the request in order
+to not expose user credentials to the global module scope and ensure the request is performed with the correct
 
-In order to perform authenticated requests you need to set a valid access token to the api client in the consumers code `ApiClient.setAccessToken(JWT)` The provided token will be passed as `Authentication` header to the API.
+#### Implementing authenticated requests
+
+To implement a authenticated request, simply pass the `isAuthorizedRequest` option to the request helper (fetch/post/put/delete-Data) and the api client will add the `Authorization` header. For server side requests, don't forget to pass the options down to the helper function so the consumer can pass the `accessToken` when invoking the request.
+
+#### Access Token Handling
+
+##### Client-Side requests
+
+Set the access token along with it's expiration date to the api client using the `setToken` function provided by the api client instance.
+
+##### Server-Side requests
+
+Pass the access token as a request option to the api call `dummyFetchCall(data, {accessToken: JWT})`
 
 #### Refreshing Access Tokens
 
-Authenticated requests will try to issue a refresh token when they receive a 401 response form the remote server. In order to handle the process of refreshing the token the consumer must pass a handler function to the API-Client. (The function may vary depending on the environment the API-Client is used)
-
-```
-ApiClient.setTokenRefreshHandler(async () => {
-  const response = await fetch(process.env.TOKEN_REFRESH_ROUTE)
-  return response.json()
-})
-```
+In order to ensure the freshness of the token, on client side usage, the api client will evaluate the validity of the provided token and issue a new token before the
+token expires. Server-Side the api client expects a valid token to be passed to the api call. (The freshness is ensured by the server)
 
 ## Following API calls are handled
 
