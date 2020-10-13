@@ -21,7 +21,7 @@ export const fetchAnalyticsData = async (
 
 export const fetchLeadsAnalytics = async (
   dealerId: number,
-  dimensions: string[],
+  dimensions?: string[],
   query?: { verificationDateFrom: string }
 ): Promise<LeadsAnalytics> => {
   return postData(Service.ANALYTICS, `dealers/${dealerId}/leads/analytics`, {
@@ -33,7 +33,7 @@ export const fetchLeadsAnalytics = async (
 
 export const fetchListingsAnalytics = async (
   dealerId: number,
-  dimensions: string[]
+  dimensions?: string[]
 ): Promise<ListingsAnalytics> => {
   return postData(Service.ANALYTICS, `dealers/${dealerId}/listings/analytics`, {
     function: "count",
