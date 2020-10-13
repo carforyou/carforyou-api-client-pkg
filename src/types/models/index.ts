@@ -174,3 +174,12 @@ export interface Entitlements {
     limit: number
   }
 }
+
+export interface ListingsAnalytics {
+  makeKey: string
+  count: number
+}
+
+export interface LeadsAnalytics extends ListingsAnalytics {
+  conditionType?: string
+}

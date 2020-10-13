@@ -1,6 +1,10 @@
 import { postData, Service } from "../base"
 
-import { DealerListingsAnalyticsData } from "../types/models"
+import {
+  DealerListingsAnalyticsData,
+  LeadsAnalytics,
+  ListingsAnalytics,
+} from "../types/models"
 
 export const fetchAnalyticsData = async (
   dealerId: number,
@@ -13,4 +17,26 @@ export const fetchAnalyticsData = async (
       id: listingIds,
     }
   )
+}
+
+export const fetchLeadsAnalytics = async (
+  dealerId: number,
+  dimensions: string[],
+  query?: { verificationDateFrom: string }
+): Promise<LeadsAnalytics> => {
+  return postData(Service.ANALYTICS, `dealers/${dealerId}/leads/analytics`, {
+    function: "count",
+    dimensions,
+    query,
+  })
+}
+
+export const fetchListingsAnalytics = async (
+  dealerId: number,
+  dimensions: string[]
+): Promise<ListingsAnalytics> => {
+  return postData(Service.ANALYTICS, `dealers/${dealerId}/listings/analytics`, {
+    function: "count",
+    dimensions,
+  })
 }
