@@ -75,13 +75,6 @@ export const resolveServiceUrl = (service: Service): string => {
   throw new Error(`Missing endpoint configuration for "${service}" service`)
 }
 
-export interface RequestOptions {
-  isAuthorizedRequest?: boolean
-  accessToken?: string
-  method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
-  headers?: {}
-}
-
 const getAuthorizationHeader = (token = null) => {
   console.log("getAuthorizationHeader instance ", apiClient)
   const accessToken = token || apiClient.accessToken.token
@@ -92,6 +85,13 @@ const getAuthorizationHeader = (token = null) => {
   }
 
   return { Authorization: `Bearer ${accessToken}` }
+}
+
+export interface RequestOptions {
+  isAuthorizedRequest?: boolean
+  accessToken?: string
+  method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
+  headers?: {}
 }
 
 export const fetchPath = async ({
@@ -107,6 +107,8 @@ export const fetchPath = async ({
 }) => {
   const defaultOptions: RequestOptions = {
     isAuthorizedRequest: false,
+    accessToken: null,
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
       Accept: `application/vnd.carforyou.${apiClient.version}+json`,
@@ -115,7 +117,7 @@ export const fetchPath = async ({
         : {}),
     },
   }
-  const mergedOptions = {
+  const mergedOptions: RequestOptions = {
     ...defaultOptions,
     ...options,
     headers: {
@@ -129,7 +131,7 @@ export const fetchPath = async ({
 
   if (apiClient.configuration.debug) {
     // eslint-disable-next-line no-console
-    console.info(`    >> API #fetchPath: ${url}`, defaultOptions)
+    console.info(`    >> API #fetchPath: ${url}`, mergedOptions)
   }
 
   console.log("Request URL", url)
