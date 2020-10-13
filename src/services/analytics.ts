@@ -19,11 +19,15 @@ export const fetchAnalyticsData = async (
   )
 }
 
-export const fetchLeadsAnalytics = async (
-  dealerId: number,
-  dimensions?: string[],
+export const fetchLeadsAnalytics = async ({
+  dealerId,
+  dimensions,
+  query,
+}: {
+  dealerId: number
+  dimensions?: string[]
   query?: { verificationDateFrom: string }
-): Promise<LeadsAnalytics> => {
+}): Promise<LeadsAnalytics> => {
   return postData(Service.ANALYTICS, `dealers/${dealerId}/leads/analytics`, {
     function: "count",
     dimensions,
@@ -31,10 +35,13 @@ export const fetchLeadsAnalytics = async (
   })
 }
 
-export const fetchListingsAnalytics = async (
-  dealerId: number,
+export const fetchListingsAnalytics = async ({
+  dealerId,
+  dimensions,
+}: {
+  dealerId: number
   dimensions?: string[]
-): Promise<ListingsAnalytics> => {
+}): Promise<ListingsAnalytics> => {
   return postData(Service.ANALYTICS, `dealers/${dealerId}/listings/analytics`, {
     function: "count",
     dimensions,
