@@ -39,15 +39,20 @@ class ApiClient {
     this.handlers = {}
     this.version = "v1"
     this.runsInBrowser = typeof window !== "undefined"
+    this.refreshToken = async () => {
+      throw new Error(
+        "The refreshToken function has not been set the the apiClient instance, use apiClient.setTokenRefreshHandler to pass a function which handles the token refresh"
+      )
+    }
     this.ensureTokenFreshness = async () => {
       console.log("ensure fresshenes!!!", Date.now())
       console.log("ensure fresshenes!!!", this.accessToken)
       // TODO: check weather the token is n minutes valid if not refreh it
     }
-
     if (this.runsInBrowser) {
       window.setInterval(this.ensureTokenFreshness, 60 * 1000)
     }
+
     ApiClient.instance = this
     return ApiClient.instance
   }

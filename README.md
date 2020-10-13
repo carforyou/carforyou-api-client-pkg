@@ -45,7 +45,7 @@ In order to perform authenticated requests you need to set a valid access token 
 
 #### Refreshing Access Tokens
 
-Authenticated requests will try to issue a refresh token when they revive a 401 response form the remote server. In order to handle the process of refreshing the token the consumer must pass a handler function to the API-Client. (The function may vary depending on the environment the API-Client is used)
+Authenticated requests will try to issue a refresh token when they receive a 401 response form the remote server. In order to handle the process of refreshing the token the consumer must pass a handler function to the API-Client. (The function may vary depending on the environment the API-Client is used)
 
 ```
 ApiClient.setTokenRefreshHandler(async () => {
