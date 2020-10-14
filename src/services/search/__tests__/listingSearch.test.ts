@@ -6,7 +6,7 @@ import { encodeDate } from "../../../lib/dateEncoding"
 import {
   fetchListingCount,
   fetchListings,
-  fetchNeedsAssesmentListings,
+  fetchNeedsAssessmentListings,
   fetchMoneybackListings,
 } from "../listingSearch"
 
@@ -40,7 +40,7 @@ describe("SEARCH service", () => {
 
     describe("query", () => {
       it("accepts priceTo and bodyType params", async () => {
-        await fetchListingCount(bodyTypeQuery)
+        await fetchListingCount({ query: bodyTypeQuery })
 
         expect(fetch).toHaveBeenCalledWith(
           expect.stringContaining("/listings/count"),
@@ -53,7 +53,7 @@ describe("SEARCH service", () => {
       })
 
       it("accepts makeKey, modelKey and priceTo params", async () => {
-        await fetchListingCount(makeModelQuery)
+        await fetchListingCount({ query: makeModelQuery })
 
         expect(fetch).toHaveBeenCalledWith(
           expect.stringContaining("/listings/count"),
@@ -107,7 +107,7 @@ describe("SEARCH service", () => {
     })
 
     describe("Pagination", () => {
-      it("is unwraped from json", async () => {
+      it("is unwrapped from json", async () => {
         const paginatedListings = await fetchListings()
 
         expect(paginatedListings.pagination).toEqual(pagination)
@@ -116,7 +116,7 @@ describe("SEARCH service", () => {
     })
 
     describe("FieldsStats", () => {
-      it("are unwraped from json", async () => {
+      it("are unwrapped from json", async () => {
         const paginatedListings = await fetchListings()
 
         expect(paginatedListings.fieldsStats).toEqual(fieldsStats)
@@ -133,7 +133,7 @@ describe("SEARCH service", () => {
     })
   })
 
-  describe("#fetchNeedsAssesmentListings", () => {
+  describe("#fetchNeedsAssessmentListings", () => {
     const { content, pagination, fieldsStats } = PaginatedFactory([
       SearchListing({ id: 1 }),
     ])
@@ -152,7 +152,7 @@ describe("SEARCH service", () => {
     })
 
     it("encodes the date", async () => {
-      const paginatedListings = await fetchNeedsAssesmentListings()
+      const paginatedListings = await fetchNeedsAssessmentListings()
       const listings = paginatedListings.content
 
       expect(listings[0].firstRegistrationDate).toEqual(
@@ -180,10 +180,13 @@ describe("SEARCH service", () => {
     })
 
     it("encodes the date", async () => {
-      const paginatedListings = await fetchMoneybackListings(123, {
-        makeKey: "audi",
-        size: 24,
-        page: 1,
+      const paginatedListings = await fetchMoneybackListings({
+        dealerId: 123,
+        query: {
+          makeKey: "audi",
+          size: 24,
+          page: 1,
+        },
       })
       const listings = paginatedListings.content
 

@@ -176,7 +176,7 @@ export {
 export {
   fetchListingCount,
   fetchListings,
-  fetchNeedsAssesmentListings,
+  fetchNeedsAssessmentListings,
   defaultSort as defaultListingsSort,
   fetchMoneybackListings,
 } from "./services/search/listingSearch"
