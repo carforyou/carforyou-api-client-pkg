@@ -1,27 +1,40 @@
-import { fetchPath, Service, postData, handleValidationError } from "../base"
+import {
+  fetchPath,
+  postData,
+  handleValidationError,
+  RequestOptions,
+} from "../base"
 
 import { WithValidationError } from "../types/withValidationError"
 import { Product, PurchaseAndUseProduct } from "../types/models/product"
 
 import { withTokenRefresh } from "../tokenRefresh"
 
-export const fetchProducts = async (): Promise<Product[]> =>
-  withTokenRefresh(async () => fetchPath(Service.DEALER, "products"))
+export const fetchProducts = async ({
+  options = {},
+}: { options?: RequestOptions } = {}): Promise<Product[]> =>
+  withTokenRefresh(async () => fetchPath({ path: "products", options }))
 
-export const purchaseAndUseListingProduct = async (
-  dealerId: number,
-  listingId: number,
+export const purchaseAndUseListingProduct = async ({
+  dealerId,
+  listingId,
+  productId,
+  options = {},
+}: {
+  dealerId: number
+  listingId: number
   productId: number
-): Promise<WithValidationError<PurchaseAndUseProduct>> => {
+  options?: RequestOptions
+}): Promise<WithValidationError<PurchaseAndUseProduct>> => {
   return withTokenRefresh(async () => {
     try {
-      const result = await postData(
-        Service.DEALER,
-        `dealers/${dealerId}/listings/${listingId}/products/purchase-and-use`,
-        {
+      const result = await postData({
+        path: `dealers/${dealerId}/listings/${listingId}/products/purchase-and-use`,
+        body: {
           productId,
-        }
-      )
+        },
+        options,
+      })
       return {
         tag: "success",
         result,
@@ -32,21 +45,27 @@ export const purchaseAndUseListingProduct = async (
   })
 }
 
-export const purchaseAndUseDealerProduct = async (
-  dealerId: number,
-  productId: number,
+export const purchaseAndUseDealerProduct = async ({
+  dealerId,
+  productId,
+  startDate,
+  options = {},
+}: {
+  dealerId: number
+  productId: number
   startDate: string
-): Promise<WithValidationError<PurchaseAndUseProduct>> => {
+  options?: RequestOptions
+}): Promise<WithValidationError<PurchaseAndUseProduct>> => {
   return withTokenRefresh(async () => {
     try {
-      const result = await postData(
-        Service.DEALER,
-        `dealers/${dealerId}/products/purchase-and-use`,
-        {
+      const result = await postData({
+        path: `dealers/${dealerId}/products/purchase-and-use`,
+        body: {
           productId,
           startDate,
-        }
-      )
+        },
+        options,
+      })
       return {
         tag: "success",
         result,
