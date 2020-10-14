@@ -1,9 +1,9 @@
 import {
   fetchPath,
-  Service,
   handleValidationError,
   putData,
   postData,
+  RequestOptions,
 } from "../base"
 
 import { Paginated } from "../types/pagination"
@@ -15,36 +15,63 @@ import { withTokenRefresh } from "../tokenRefresh"
 
 import toQueryString from "../lib/toQueryString"
 
-export const fetchDealer = async (
-  id: number,
-  options: { language?: "de" | "en" | "fr" | "it" } = {}
-): Promise<Dealer> => {
-  const query = toQueryString(options)
-  return fetchPath(Service.DEALER, `dealers/${id}${query ? `?${query}` : ""}`)
+export const fetchDealer = async ({
+  id,
+  language,
+  options,
+}: {
+  id: number
+  language?: "de" | "en" | "fr" | "it"
+  options?: RequestOptions
+}): Promise<Dealer> => {
+  const query = toQueryString({ language })
+  return fetchPath({
+    path: `dealers/${id}${query ? `?${query}` : ""}`,
+    options,
+  })
 }
 
-export const fetchDealerSuggestions = async (
+export const fetchDealerSuggestions = async ({
+  query,
+  options = {},
+}: {
   query: string
-): Promise<Paginated<DealerSuggestion>> => {
-  return fetchPath(
-    Service.DEALER,
-    `dealers/suggestions?q=${query ? encodeURIComponent(query) : query}`
-  )
+  options?: RequestOptions
+}): Promise<Paginated<DealerSuggestion>> => {
+  return fetchPath({
+    path: `dealers/suggestions?q=${query ? encodeURIComponent(query) : query}`,
+    options,
+  })
 }
 
-export const fetchDealerProfile = async (
+export const fetchDealerProfile = async ({
+  dealerId,
+  options = {},
+}: {
   dealerId: number
-): Promise<DealerProfile> =>
+  options?: RequestOptions
+}): Promise<DealerProfile> =>
   withTokenRefresh(async () =>
-    fetchPath(Service.DEALER, `dealers/${dealerId}/profile`)
+    fetchPath({
+      path: `dealers/${dealerId}/profile`,
+      options,
+    })
   )
 
-export const postDealerProfile = async (
+export const postDealerProfile = async ({
+  profile,
+  options = {},
+}: {
   profile: Omit<DealerProfile, "id" | "dealerSourceGroup" | "dealerType">
-): Promise<WithValidationError<{ id: number }>> => {
+  options?: RequestOptions
+}): Promise<WithValidationError<{ id: number }>> => {
   return withTokenRefresh(async () => {
     try {
-      const result = await postData(Service.DEALER, `dealers/profile`, profile)
+      const result = await postData({
+        path: `dealers/profile`,
+        body: profile,
+        options,
+      })
 
       return {
         tag: "success",
@@ -59,17 +86,19 @@ export const postDealerProfile = async (
 export const putDealerProfile = async ({
   dealerId,
   profile,
+  options = {},
 }: {
   dealerId: number
   profile: DealerProfile
+  options?: RequestOptions
 }): Promise<WithValidationError<DealerProfile>> => {
   return withTokenRefresh(async () => {
     try {
-      const result = await putData(
-        Service.DEALER,
-        `dealers/${dealerId}/profile`,
-        profile
-      )
+      const result = await putData({
+        path: `dealers/${dealerId}/profile`,
+        body: profile,
+        options,
+      })
 
       return {
         tag: "success",
@@ -81,31 +110,44 @@ export const putDealerProfile = async ({
   })
 }
 
-export const fetchDealerEntitlements = async (
-  dealerId
-): Promise<Entitlements> =>
-  withTokenRefresh(async () =>
-    fetchPath(Service.DEALER, `dealers/${dealerId}/entitlements`)
-  )
-
-export const fetchDealerPromotion = async (
+export const fetchDealerEntitlements = async ({
+  dealerId,
+  options = {},
+}: {
   dealerId: number
-): Promise<DealerPromotion> =>
+  options?: RequestOptions
+}): Promise<Entitlements> =>
   withTokenRefresh(async () =>
-    fetchPath(Service.DEALER, `dealers/${dealerId}/promotion`)
+    fetchPath({ path: `dealers/${dealerId}/entitlements`, options })
   )
 
-export const postDealerPromotion = async (
-  dealerId: number,
+export const fetchDealerPromotion = async ({
+  dealerId,
+  options = {},
+}: {
+  dealerId: number
+  options?: RequestOptions
+}): Promise<DealerPromotion> =>
+  withTokenRefresh(async () =>
+    fetchPath({ path: `dealers/${dealerId}/promotion`, options })
+  )
+
+export const postDealerPromotion = async ({
+  dealerId,
+  promotion,
+  options = {},
+}: {
+  dealerId: number
   promotion: DealerPromotion
-): Promise<WithValidationError<DealerPromotion>> => {
+  options?: RequestOptions
+}): Promise<WithValidationError<DealerPromotion>> => {
   return withTokenRefresh(async () => {
     try {
-      const result = await postData(
-        Service.DEALER,
-        `dealers/${dealerId}/promotion`,
-        promotion
-      )
+      const result = await postData({
+        path: `dealers/${dealerId}/promotion`,
+        body: promotion,
+        options,
+      })
 
       return {
         tag: "success",
@@ -117,17 +159,22 @@ export const postDealerPromotion = async (
   })
 }
 
-export const putDealerPromotion = async (
-  dealerId: number,
+export const putDealerPromotion = async ({
+  dealerId,
+  promotion,
+  options = {},
+}: {
+  dealerId: number
   promotion: DealerPromotion
-): Promise<WithValidationError<DealerPromotion>> => {
+  options?: RequestOptions
+}): Promise<WithValidationError<DealerPromotion>> => {
   return withTokenRefresh(async () => {
     try {
-      const result = await putData(
-        Service.DEALER,
-        `dealers/${dealerId}/promotion`,
-        promotion
-      )
+      const result = await putData({
+        path: `dealers/${dealerId}/promotion`,
+        body: promotion,
+        options,
+      })
 
       return {
         tag: "success",

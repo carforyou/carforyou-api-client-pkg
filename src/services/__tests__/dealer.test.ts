@@ -13,7 +13,7 @@ describe("Dealer", () => {
   describe("#fetchDealerSuggestions", () => {
     it("encodes the query", async () => {
       const query = "k+k"
-      await fetchDealerSuggestions(query)
+      await fetchDealerSuggestions({ query })
 
       expect(fetch).toHaveBeenCalledWith(
         `dealer.service.test/dealers/suggestions?q=${encodeURIComponent(
@@ -26,7 +26,7 @@ describe("Dealer", () => {
 
   describe("#fetchDealer", () => {
     it("accepts language option", async () => {
-      await fetchDealer(123, { language: "de" })
+      await fetchDealer({ id: 123, language: "de" })
 
       expect(fetch).toHaveBeenCalledWith(
         `dealer.service.test/dealers/123?language=de`,
@@ -35,7 +35,7 @@ describe("Dealer", () => {
     })
 
     it("works without the language option", async () => {
-      await fetchDealer(123)
+      await fetchDealer({ id: 123 })
 
       expect(fetch).toHaveBeenCalledWith(
         "dealer.service.test/dealers/123",
@@ -64,7 +64,7 @@ describe("Dealer", () => {
       })
 
       it("returns the dealer data form the api", async () => {
-        const profile = await fetchDealerProfile(dealerIdMock)
+        const profile = await fetchDealerProfile({ dealerId: dealerIdMock })
 
         expect(profile).toEqual(profileMock)
       })
@@ -120,7 +120,7 @@ describe("Dealer", () => {
       })
 
       it("returns the dealer promotion form the api", async () => {
-        const profile = await fetchDealerPromotion(dealerIdMock)
+        const profile = await fetchDealerPromotion({ dealerId: dealerIdMock })
 
         expect(profile).toEqual(promotionMock)
       })
@@ -130,10 +130,10 @@ describe("Dealer", () => {
       it("successfully puts data to the api", async () => {
         fetchMock.mockResponse(JSON.stringify(promotionMock))
 
-        const promotionResponse = await putDealerPromotion(
-          dealerIdMock,
-          promotionMock
-        )
+        const promotionResponse = await putDealerPromotion({
+          dealerId: dealerIdMock,
+          promotion: promotionMock,
+        })
 
         expect(promotionResponse.tag).toBe("success")
       })
@@ -145,10 +145,10 @@ describe("Dealer", () => {
           })
         })
 
-        const promotionResponse = await putDealerPromotion(
-          dealerIdMock,
-          promotionMock
-        )
+        const promotionResponse = await putDealerPromotion({
+          dealerId: dealerIdMock,
+          promotion: promotionMock,
+        })
 
         expect(promotionResponse.tag).toBe("error")
       })
