@@ -18,7 +18,7 @@ import toQueryString from "../lib/toQueryString"
 export const fetchDealer = async ({
   id,
   language,
-  options,
+  options = {},
 }: {
   id: number
   language?: "de" | "en" | "fr" | "it"

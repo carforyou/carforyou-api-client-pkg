@@ -16,9 +16,9 @@ describe("Dealer", () => {
       await fetchDealerSuggestions({ query })
 
       expect(fetch).toHaveBeenCalledWith(
-        `dealer.service.test/dealers/suggestions?q=${encodeURIComponent(
-          query
-        )}`,
+        expect.stringContaining(
+          `dealers/suggestions?q=${encodeURIComponent(query)}`
+        ),
         expect.any(Object)
       )
     })
@@ -29,7 +29,7 @@ describe("Dealer", () => {
       await fetchDealer({ id: 123, language: "de" })
 
       expect(fetch).toHaveBeenCalledWith(
-        `dealer.service.test/dealers/123?language=de`,
+        expect.stringContaining("dealers/123?language=de"),
         expect.any(Object)
       )
     })
@@ -38,7 +38,7 @@ describe("Dealer", () => {
       await fetchDealer({ id: 123 })
 
       expect(fetch).toHaveBeenCalledWith(
-        "dealer.service.test/dealers/123",
+        expect.stringContaining("dealers/123"),
         expect.any(Object)
       )
     })
