@@ -32,7 +32,7 @@ describe("Base", () => {
     })
 
     it("strips leading '/' from path", async () => {
-      const json = await fetchPath({ path: "/api/path" })
+      const json = await fetchPath({ path: "/api/path", options: {} })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(
@@ -42,7 +42,7 @@ describe("Base", () => {
     })
 
     it("inserts correct version header", async () => {
-      const json = await fetchPath({ path: "/api/path" })
+      const json = await fetchPath({ path: "/api/path", options: {} })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(expect.any(String), {
@@ -76,7 +76,7 @@ describe("Base", () => {
       })
 
       it("includes content", async () => {
-        const json = await fetchPath({ path: "/api/path" })
+        const json = await fetchPath({ path: "/api/path", options: {} })
         expect(json).toEqual([])
       })
     })
@@ -87,12 +87,12 @@ describe("Base", () => {
       })
 
       it("includes pagination separately when content field is returned", async () => {
-        const json = await fetchPath({ path: "/api/path" })
+        const json = await fetchPath({ path: "/api/path", options: {} })
         expect(json.pagination).toEqual({ totalPages: 3 })
       })
 
       it("includes content separately when content field is returned", async () => {
-        const json = await fetchPath({ path: "/api/path" })
+        const json = await fetchPath({ path: "/api/path", options: {} })
         expect(json.content).toEqual([])
       })
     })
@@ -104,7 +104,7 @@ describe("Base", () => {
     })
 
     it("sets HTTP method for fetch", async () => {
-      const json = await deletePath({ path: "/api/path" })
+      const json = await deletePath({ path: "/api/path", options: {} })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(
@@ -124,7 +124,11 @@ describe("Base", () => {
     const data = { key: "value" }
 
     it("sets body and HTTP method for fetch", async () => {
-      const json = await postData({ path: "/api/path", body: data })
+      const json = await postData({
+        path: "/api/path",
+        body: data,
+        options: {},
+      })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(
@@ -145,7 +149,7 @@ describe("Base", () => {
     const data = { key: "value" }
 
     it("sets body and HTTP method for fetch", async () => {
-      const json = await putData({ path: "/api/path", body: data })
+      const json = await putData({ path: "/api/path", body: data, options: {} })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(

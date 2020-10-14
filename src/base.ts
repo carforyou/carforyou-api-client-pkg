@@ -38,7 +38,7 @@ const authorizationHeader = () => {
   return `Bearer ${apiClient.tokens.accessToken}`
 }
 
-interface RequestOptions {
+export interface RequestOptions {
   headers?: Record<string, string>
   // TODO: think about this naming
   serviceUrl?: string
@@ -63,11 +63,11 @@ export const getHost = ({ serviceUrl }) => {
 export const fetchPath = async ({
   path,
   body,
-  options = {},
+  options,
 }: {
   path: string
   body?: string
-  options?: RequestOptionsWithMethod
+  options: RequestOptionsWithMethod
 }) => {
   const { headers = {}, method = "GET", serviceUrl = null } = options
   const url = `${getHost({ serviceUrl })}/${stripLeadingSlash(path)}`
@@ -111,12 +111,12 @@ export const fetchPath = async ({
 export const postData = async ({
   path,
   body,
-  options = {},
+  options,
 }: {
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options?: RequestOptions
+  options: RequestOptions
 }) => {
   return fetchPath({
     path,
@@ -131,12 +131,12 @@ export const postData = async ({
 export const putData = async ({
   path,
   body,
-  options = {},
+  options,
 }: {
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options?: RequestOptions
+  options: RequestOptions
 }) => {
   return fetchPath({
     path,
@@ -150,10 +150,10 @@ export const putData = async ({
 
 export const deletePath = async ({
   path,
-  options = {},
+  options,
 }: {
   path: string
-  options?: RequestOptions
+  options: RequestOptions
 }) => {
   return fetchPath({
     path,
