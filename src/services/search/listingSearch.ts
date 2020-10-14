@@ -1,4 +1,4 @@
-import { fetchPath, postData, RequestOptions, Service } from "../../base"
+import { fetchPath, postData, RequestOptions } from "../../base"
 
 import { Paginated } from "../../types/pagination"
 import { WithFieldStats, FieldsStats } from "../../types/fieldStats"
