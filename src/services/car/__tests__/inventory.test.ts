@@ -37,7 +37,7 @@ describe("CAR service", () => {
     })
 
     it("returns ListingAttributes", async () => {
-      const fetchedListing = await fetchListing(10)
+      const fetchedListing = await fetchListing({ id: 10 })
 
       expect(fetch).toHaveBeenCalled()
       expect(fetchedListing).toEqual(listing)
@@ -61,7 +61,7 @@ describe("CAR service", () => {
     })
 
     it("unwraps the content from json", async () => {
-      const paginatedListings = await fetchDealerListings(dealerId)
+      const paginatedListings = await fetchDealerListings({ dealerId })
       const listings = paginatedListings.content
 
       expect(listings.length).toEqual(1)
@@ -70,8 +70,8 @@ describe("CAR service", () => {
     })
 
     describe("Pagination", () => {
-      it("is unwraped from json", async () => {
-        const paginatedListings = await fetchDealerListings(dealerId)
+      it("is unwrapped from json", async () => {
+        const paginatedListings = await fetchDealerListings({ dealerId })
 
         expect(paginatedListings.pagination).toEqual(pagination)
         expect(fetch).toHaveBeenCalled()
@@ -81,7 +81,7 @@ describe("CAR service", () => {
     describe("query formatting", () => {
       describe("pagination", () => {
         it("indexes page from 0", async () => {
-          await fetchDealerListings(dealerId, { page: 5 })
+          await fetchDealerListings({ dealerId, query: { page: 5 } })
 
           expect(fetchMock).toHaveBeenCalledWith(
             expect.stringMatching(
@@ -92,8 +92,11 @@ describe("CAR service", () => {
         })
 
         it("defaults `page` to 0 when not provided", async () => {
-          await fetchDealerListings(dealerId, {
-            size: 10,
+          await fetchDealerListings({
+            dealerId,
+            query: {
+              size: 10,
+            },
           })
 
           expect(fetchMock).toHaveBeenCalledWith(
@@ -105,7 +108,7 @@ describe("CAR service", () => {
         })
 
         it("defaults `size` to 25 when it's not provided", async () => {
-          await fetchDealerListings(dealerId, { page: 5 })
+          await fetchDealerListings({ dealerId, query: { page: 5 } })
 
           expect(fetchMock).toHaveBeenCalledWith(
             expect.stringMatching(
@@ -118,9 +121,12 @@ describe("CAR service", () => {
 
       describe("sort", () => {
         it("can sort by creation date", async () => {
-          await fetchDealerListings(dealerId, {
-            sortType: DealerListingSortTypeParams.CREATED_DATE,
-            sortOrder: DealerListingSortOrderParams.ASC,
+          await fetchDealerListings({
+            dealerId,
+            query: {
+              sortType: DealerListingSortTypeParams.CREATED_DATE,
+              sortOrder: DealerListingSortOrderParams.ASC,
+            },
           })
 
           expect(fetchMock).toHaveBeenCalledWith(
@@ -134,7 +140,7 @@ describe("CAR service", () => {
         })
 
         it("defaults to sorting by creation date, descending", async () => {
-          await fetchDealerListings(dealerId)
+          await fetchDealerListings({ dealerId })
 
           expect(fetchMock).toHaveBeenCalledWith(
             expect.stringMatching(
@@ -161,7 +167,7 @@ describe("CAR service", () => {
         await validateDealerListing({
           dealerId,
           listing,
-          validationEndpoint: ListingValidationEndpoint.draft,
+          options: { validationEndpoint: ListingValidationEndpoint.draft },
         })
 
         expect(fetchMock).toHaveBeenCalledWith(
@@ -177,7 +183,7 @@ describe("CAR service", () => {
         await validateDealerListing({
           dealerId,
           listing,
-          validationEndpoint: ListingValidationEndpoint.publish,
+          options: { validationEndpoint: ListingValidationEndpoint.publish },
         })
 
         expect(fetchMock).toHaveBeenCalledWith(
@@ -201,7 +207,7 @@ describe("CAR service", () => {
         const result = await validateDealerListing({
           dealerId,
           listing,
-          validationEndpoint: ListingValidationEndpoint.publish,
+          options: { validationEndpoint: ListingValidationEndpoint.publish },
         })
 
         expect(result).toEqual({
@@ -229,7 +235,7 @@ describe("CAR service", () => {
         const result = await validateDealerListing({
           dealerId,
           listing,
-          validationEndpoint: ListingValidationEndpoint.publish,
+          options: { validationEndpoint: ListingValidationEndpoint.publish },
         })
 
         expect(result).toEqual({
