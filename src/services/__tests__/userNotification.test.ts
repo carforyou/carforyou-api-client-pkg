@@ -10,41 +10,41 @@ describe("USER_NOTIFICATION service", () => {
 
     it("calls endpoint", async () => {
       await sendSavedSearch({
-        email: "save@thesear.ch",
-        language: "de",
-        uiMetadata: {
-          searchPath: "?makeKeys=bmw",
-        },
-        searchQuery: {
-          makeKey: ["bmw"],
+        savedSearch: {
+          email: "save@thesear.ch",
+          language: "de",
+          uiMetadata: {
+            searchPath: "?makeKeys=bmw",
+          },
+          searchQuery: {
+            makeKey: ["bmw"],
+          },
         },
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringMatching(
-          /user_notification\.service\.test\/saved-searches$/
-        ),
+        expect.stringMatching(/saved-searches$/),
         expect.any(Object)
       )
     })
 
     it("wraps location params", async () => {
       await sendSavedSearch({
-        email: "save@thesear.ch",
-        language: "de",
-        uiMetadata: {
-          searchPath: "?cityId=1001&radius=20",
-        },
-        searchQuery: {
-          cityId: "1001",
-          radius: "20",
+        savedSearch: {
+          email: "save@thesear.ch",
+          language: "de",
+          uiMetadata: {
+            searchPath: "?cityId=1001&radius=20",
+          },
+          searchQuery: {
+            cityId: "1001",
+            radius: "20",
+          },
         },
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringMatching(
-          /user_notification\.service\.test\/saved-searches$/
-        ),
+        expect.stringMatching(/saved-searches$/),
         expect.objectContaining({
           body: JSON.stringify({
             email: "save@thesear.ch",

@@ -1,41 +1,61 @@
-import { postData, deletePath, Service, handleValidationError } from "../base"
+import {
+  postData,
+  deletePath,
+  handleValidationError,
+  RequestOptions,
+} from "../base"
 
 import { SavedSearch } from "../types/models"
 import { WithValidationError } from "../types/withValidationError"
 import paramsToSearchRequest from "../lib/paramsToSearchRequest"
 
-export const sendSavedSearch = async (
-  data: SavedSearch,
-  options = {}
-): Promise<WithValidationError<SavedSearch>> => {
-  const { recaptchaToken } = {
-    recaptchaToken: null,
-    ...options,
-  }
-  const { searchQuery, ...rest } = data
+export const sendSavedSearch = async ({
+  savedSearch,
+  recaptchaToken,
+  options = {},
+}: {
+  savedSearch: SavedSearch
+  recaptchaToken?: string
+  options?: RequestOptions
+}): Promise<WithValidationError<SavedSearch>> => {
+  const { headers = {}, ...otherOptions } = options
+  const { searchQuery, ...rest } = savedSearch
 
   try {
-    await postData(
-      Service.USER_NOTIFICATION,
-      "saved-searches",
-      { ...rest, searchQuery: paramsToSearchRequest(searchQuery) },
-      recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
-    )
+    await postData({
+      path: "saved-searches",
+      body: { ...rest, searchQuery: paramsToSearchRequest(searchQuery) },
+      options: {
+        ...otherOptions,
+        headers: {
+          ...headers,
+          ...(recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}),
+        },
+      },
+    })
 
     return {
       tag: "success",
-      result: data,
+      result: savedSearch,
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })
   }
 }
 
-export const deleteSavedSearch = async (
+export const deleteSavedSearch = async ({
+  key,
+  options = {},
+}: {
   key: string
-): Promise<WithValidationError> => {
+  options?: RequestOptions
+}): Promise<WithValidationError> => {
   try {
-    await deletePath(Service.USER_NOTIFICATION, `saved-searches/key/${key}`)
+    await deletePath({
+      path: `saved-searches/key/${key}`,
+      options,
+    })
+
     return {
       tag: "success",
       result: {},
