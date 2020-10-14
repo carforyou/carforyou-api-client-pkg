@@ -2,7 +2,7 @@ import {
   postData,
   deletePath,
   handleValidationError,
-  RequestOptions,
+  RequestOptionsWithRecaptcha,
 } from "../base"
 
 import { SavedSearch } from "../types/models"
@@ -11,27 +11,18 @@ import paramsToSearchRequest from "../lib/paramsToSearchRequest"
 
 export const sendSavedSearch = async ({
   savedSearch,
-  recaptchaToken,
   options = {},
 }: {
   savedSearch: SavedSearch
-  recaptchaToken?: string
-  options?: RequestOptions
+  options?: RequestOptionsWithRecaptcha
 }): Promise<WithValidationError<SavedSearch>> => {
-  const { headers = {}, ...otherOptions } = options
   const { searchQuery, ...rest } = savedSearch
 
   try {
     await postData({
       path: "saved-searches",
       body: { ...rest, searchQuery: paramsToSearchRequest(searchQuery) },
-      options: {
-        ...otherOptions,
-        headers: {
-          ...headers,
-          ...(recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}),
-        },
-      },
+      options,
     })
 
     return {
@@ -48,7 +39,7 @@ export const deleteSavedSearch = async ({
   options = {},
 }: {
   key: string
-  options?: RequestOptions
+  options?: RequestOptionsWithRecaptcha
 }): Promise<WithValidationError> => {
   try {
     await deletePath({
