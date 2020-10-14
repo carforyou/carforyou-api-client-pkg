@@ -41,7 +41,7 @@ class ApiClient {
     this.runsInBrowser = typeof window !== "undefined"
     this.refreshToken = async () => {
       throw new Error(
-        "The refreshToken function has not been set the the apiClient instance, use apiClient.setTokenRefreshHandler to pass a function which handles the token refresh"
+        "The refreshToken function has not been set on the apiClient instance, use apiClient.setTokenRefreshHandler to pass a function which handles the token refresh"
       )
     }
     this.ensureTokenFreshness = async () => {
