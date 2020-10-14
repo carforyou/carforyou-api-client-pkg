@@ -1,4 +1,8 @@
-import apiClient, { Handlers, Tokens, ApiClientConfig } from "./apiClient"
+import apiClient, {
+  Handlers,
+  Tokens,
+  ApiClientConfiguration,
+} from "./apiClient"
 
 export {
   Make,
@@ -231,7 +235,7 @@ export { Options as OptionsFactory } from "./lib/factories/options"
 export { withRetries } from "./lib/withRetries"
 
 export const ApiClient = {
-  configure: (configuration: ApiClientConfig) =>
+  configure: (configuration: ApiClientConfiguration) =>
     apiClient.configure(configuration),
   setHandlers: (handlers: Handlers) => apiClient.setHandlers(handlers),
   setTokens: (tokens: Tokens) => apiClient.setTokens(tokens),
