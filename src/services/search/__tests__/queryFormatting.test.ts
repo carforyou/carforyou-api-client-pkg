@@ -1,6 +1,6 @@
 import { fetchListings } from "../listingSearch"
 
-import { postData, Service } from "../../../base"
+import { postData } from "../../../base"
 
 jest.mock("../../../base", () => ({
   ...jest.requireActual("../../../base"),
@@ -14,116 +14,122 @@ describe("SEARCH service", () => {
     describe("query formatting", () => {
       it("forwards the filters as query", async () => {
         await fetchListings({
-          bodyType: ["suv"],
-          makeKey: ["bmw"],
-          modelKey: ["m3"],
+          query: {
+            bodyType: ["suv"],
+            makeKey: ["bmw"],
+            modelKey: ["m3"],
+          },
         })
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          path: "listings/search",
+          body: expect.objectContaining({
             query: {
               bodyType: ["suv"],
               makeKey: ["bmw"],
               modelKey: ["m3"],
             },
-          })
-        )
+          }),
+          options: {},
+        })
       })
 
       it("wraps the pagination indexed from 0", async () => {
-        await fetchListings({ page: 5, size: 10 })
+        await fetchListings({ query: { page: 5, size: 10 } })
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          path: "listings/search",
+          body: expect.objectContaining({
             pagination: {
               page: 4,
               size: 10,
             },
-          })
-        )
+          }),
+          options: {},
+        })
       })
 
       it("defaults `page` to 0 when it's not a number", async () => {
-        await fetchListings({ page: ("qwerty" as unknown) as number, size: 10 })
+        await fetchListings({
+          query: { page: ("qwerty" as unknown) as number, size: 10 },
+        })
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          path: "listings/search",
+          body: expect.objectContaining({
             pagination: {
               page: 0,
               size: 10,
             },
-          })
-        )
+          }),
+          options: {},
+        })
       })
 
       it("defaults `size` to 24 when it's not a number", async () => {
-        await fetchListings({ page: 5, size: ("qwerty" as unknown) as number })
+        await fetchListings({
+          query: { page: 5, size: ("qwerty" as unknown) as number },
+        })
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          path: "listings/search",
+          body: expect.objectContaining({
             pagination: {
               page: 4,
               size: 24,
             },
-          })
-        )
+          }),
+          options: {},
+        })
       })
 
       it("provides default pagination", async () => {
         await fetchListings()
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          path: "listings/search",
+          body: expect.objectContaining({
             pagination: {
               page: 0,
               size: 24,
             },
-          })
-        )
+          }),
+          options: {},
+        })
       })
 
       it("wraps sort", async () => {
-        await fetchListings({ sortType: "PRICE", sortOrder: "ASC" })
+        await fetchListings({ query: { sortType: "PRICE", sortOrder: "ASC" } })
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          path: "listings/search",
+          body: expect.objectContaining({
             sort: [
               {
                 type: "PRICE",
                 order: "ASC",
               },
             ],
-          })
-        )
+          }),
+          options: {},
+        })
       })
 
       it("provides a default sort", async () => {
         await fetchListings()
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          path: "listings/search",
+          body: expect.objectContaining({
             sort: [
               {
                 type: "RELEVANCE",
                 order: "ASC",
               },
             ],
-          })
-        )
+          }),
+          options: {},
+        })
       })
     })
   })
