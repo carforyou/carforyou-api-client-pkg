@@ -78,7 +78,7 @@ class ApiClient {
   public setAccessToken(accessToken: { token: string; expires: Date }): void {
     if (!this.runsInBrowser) {
       throw new Error(
-        "You may only globally set and access-token on a client side usage, to avoid leaking the token on the global module for a server side implementation. Please pass tha access-token as an option to the request instead when using the package server side!"
+        "You may only globally set (xyz) and access-token on a client side usage, to avoid leaking the token on the global module for a server side implementation. Please pass the access-token as an option to the request instead when using the package server side!"
       )
     }
     console.log("setting thems access token", accessToken)
