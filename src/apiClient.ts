@@ -25,8 +25,7 @@ class ApiClient {
   handlers: Handlers
   version: string
   runsInBrowser: boolean
-  refreshToken: () => Promise<{ accessToken: string }>
-  ensureTokenFreshness: () => void
+  refreshToken: () => Promise<{ accessToken: string; expires: string }>
 
   constructor() {
     if (ApiClient.instance) return ApiClient.instance
@@ -44,17 +43,39 @@ class ApiClient {
         "The refreshToken function has not been set on the apiClient instance, use apiClient.setTokenRefreshHandler to pass a function which handles the token refresh"
       )
     }
-    this.ensureTokenFreshness = async () => {
-      console.log("ensure fresshenes!!!", Date.now())
-      console.log("ensure fresshenes!!!", this.accessToken)
-      // TODO: check weather the token is n minutes valid if not refreh it
-    }
+
+    // TODO: make this a config
     if (this.runsInBrowser) {
-      window.setInterval(this.ensureTokenFreshness, 60 * 1000)
+      window.setInterval(() => this.ensureTokenFreshness(), 60 * 1000)
     }
 
     ApiClient.instance = this
     return ApiClient.instance
+  }
+
+  private async ensureTokenFreshness() {
+    const compareDate = new Date()
+    compareDate.setMinutes(compareDate.getMinutes() + 1)
+    if (compareDate.getTime() > this.accessToken.expires.getTime()) return
+
+    try {
+      const { accessToken, expires } = await this.refreshToken()
+      debugger
+      this.setAccessToken({
+        token: accessToken,
+        expires: new Date(expires),
+      })
+      if (this.handlers.onAccessTokenUpdate) {
+        this.handlers.onAccessTokenUpdate(accessToken)
+      }
+    } catch (error) {
+      debugger
+      if (this.handlers.onFailedTokenRefresh) {
+        this.handlers.onFailedTokenRefresh()
+      }
+
+      throw error
+    }
   }
 
   public configure(configuration: ApiClientConfig): void {
@@ -81,7 +102,6 @@ class ApiClient {
         "You may only globally set (xyz) and access-token on a client side usage, to avoid leaking the token on the global module for a server side implementation. Please pass the access-token as an option to the request instead when using the package server side!"
       )
     }
-    console.log("setting thems access token", accessToken)
     this.accessToken = accessToken
   }
 

@@ -79,11 +79,9 @@ export const putDealerSavedSearch = async (
       options: { isAuthorizedRequest: true, ...options },
     })
 
-    // TODO: FIXME: Calrify the intention of this
     return {
       tag: "success",
       result,
-      savedSearch,
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })
@@ -111,7 +109,6 @@ export const postDealerSavedSearch = async (
     return {
       tag: "success",
       result,
-      savedSearch,
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })
@@ -122,7 +119,7 @@ export const deleteDealerSavedSearch = async (
   dealerId: number,
   savedSearchId: string,
   options: RequestOptions = {}
-): Promise<WithValidationError> => {
+): Promise<WithValidationError<unknown>> => {
   try {
     const result = deletePath({
       service: Service.SEARCH,
