@@ -18,45 +18,27 @@ export const fetchSavedSearches = async (
   page?: number,
   size?: number,
   options: RequestOptions = {}
-): Promise<WithValidationError<Paginated<DealerSavedSearch>>> => {
+): Promise<Paginated<DealerSavedSearch>> => {
   const query = toQueryString({ page, size })
-  try {
-    const result = await fetchPath({
-      service: Service.SEARCH,
-      path: `dealers/${dealerId}/listing-saved-searches/auto-alarms${
-        query ? `?${query}` : ""
-      }`,
-      options: { isAuthorizedRequest: true, ...options },
-    })
-
-    return {
-      tag: "success",
-      ...result,
-    }
-  } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
-  }
+  return fetchPath({
+    service: Service.SEARCH,
+    path: `dealers/${dealerId}/listing-saved-searches/auto-alarms${
+      query ? `?${query}` : ""
+    }`,
+    options: { isAuthorizedRequest: true, ...options },
+  })
 }
 
 export const fetchSavedSearch = async (
   dealerId: number,
   savedSearchId: string,
   options: RequestOptions = {}
-): Promise<WithValidationError<DealerSavedSearch>> => {
-  try {
-    const result = await fetchPath({
-      service: Service.SEARCH,
-      path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
-      options: { isAuthorizedRequest: true, ...options },
-    })
-
-    return {
-      tag: "success",
-      ...result,
-    }
-  } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
-  }
+): Promise<DealerSavedSearch> => {
+  return fetchPath({
+    service: Service.SEARCH,
+    path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
+    options: { isAuthorizedRequest: true, ...options },
+  })
 }
 
 export const putDealerSavedSearch = async (
