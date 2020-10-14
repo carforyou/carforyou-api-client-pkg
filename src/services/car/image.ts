@@ -1,9 +1,9 @@
 import {
   fetchPath,
-  Service,
   postData,
   putData,
   handleValidationError,
+  RequestOptions,
 } from "../../base"
 import { withTokenRefresh } from "../../tokenRefresh"
 
@@ -11,46 +11,67 @@ import { ImageEnrichment, PresignedUrl } from "../../types/models"
 import { Listing, DealerListingImages } from "../../types/models/listing"
 import { WithValidationError } from "../../types/withValidationError"
 
-export const fetchImageEnrichment = async (
+export const fetchImageEnrichment = async ({
+  imageId,
+  options = {},
+}: {
   imageId: number
-): Promise<ImageEnrichment> => {
-  return fetchPath(Service.CAR, `images/${imageId}/enrichment`)
+  options?: RequestOptions
+}): Promise<ImageEnrichment> => {
+  return fetchPath({ path: `images/${imageId}/enrichment`, options })
 }
 
-export const generatePresignedImageUrl = (imageData: {
-  key: string
-  title: string
-  contentType: string
+export const generatePresignedImageUrl = ({
+  imageData,
+  options = {},
+}: {
+  imageData: {
+    key: string
+    title: string
+    contentType: string
+  }
+  options?: RequestOptions
 }): Promise<PresignedUrl> => {
   return withTokenRefresh(() =>
-    postData(Service.CAR, "images/generate-presigned-url", imageData)
+    postData({
+      path: "images/generate-presigned-url",
+      body: imageData,
+      options,
+    })
   )
 }
 
-export const fetchDealerListingImages = async (
-  dealerId: number,
+export const fetchDealerListingImages = async ({
+  dealerId,
+  listingId,
+  options = {},
+}: {
+  dealerId: number
   listingId: number
-): Promise<DealerListingImages> => {
-  return fetchPath(
-    Service.CAR,
-    `dealers/${dealerId}/listings/${listingId}/images`
-  )
+  options?: RequestOptions
+}): Promise<DealerListingImages> => {
+  return fetchPath({
+    path: `dealers/${dealerId}/listings/${listingId}/images`,
+    options,
+  })
 }
 
 export const saveDealerListingImages = ({
   dealerId,
   listing,
+  options = {},
 }: {
   dealerId: number
   listing: Listing
+  options?: RequestOptions
 }): Promise<WithValidationError<Listing>> => {
   return withTokenRefresh(async () => {
     try {
-      await putData(
-        Service.CAR,
-        `dealers/${dealerId}/listings/${listing.id}/images`,
-        { images: listing.images }
-      )
+      await putData({
+        path: `dealers/${dealerId}/listings/${listing.id}/images`,
+        body: { images: listing.images },
+        options,
+      })
     } catch (error) {
       return handleValidationError(error)
     }

@@ -24,11 +24,13 @@ describe("Dealer listing images", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchDealerListingImages(dealerId, listingId)
+      const fetched = await fetchDealerListingImages({ dealerId, listingId })
 
       expect(fetched).toEqual(dealerListingImages)
       expect(fetch).toHaveBeenCalledWith(
-        `car.service.test/dealers/${dealerId}/listings/${listingId}/images`,
+        expect.stringMatching(
+          `/dealers/${dealerId}/listings/${listingId}/images`
+        ),
         expect.any(Object)
       )
     })
