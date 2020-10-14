@@ -117,7 +117,7 @@ export { WithTopListing } from "./types/topListing"
 
 export { ResponseError } from "./responseError"
 
-export { featchDealScores } from "./services/car/goodBadDealData"
+export { fetchDealScores } from "./services/car/goodBadDealData"
 export {
   fetchImageEnrichment,
   generatePresignedImageUrl,

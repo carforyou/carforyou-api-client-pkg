@@ -1,5 +1,7 @@
-import { fetchPath, Service } from "../../base"
+import { fetchPath, RequestOptions } from "../../base"
 
-export const featchDealScores = (): Promise<string[]> => {
-  return fetchPath(Service.CAR, "gbd/scores")
+export const fetchDealScores = ({
+  options = {},
+}: { options?: RequestOptions } = {}): Promise<string[]> => {
+  return fetchPath({ path: "gbd/scores", options })
 }
