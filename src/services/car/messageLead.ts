@@ -1,13 +1,21 @@
-import { postData, handleValidationError, Service } from "../../base"
+import {
+  postData,
+  handleValidationError,
+  RequestOptionsWithRecaptcha,
+} from "../../base"
 
 import { WithValidationError } from "../../types/withValidationError"
 import { MessageLead } from "../../types/models"
 
-export const sendMessageLead = async (
-  listingId: number,
-  messageLead: MessageLead,
-  options = {}
-): Promise<WithValidationError<MessageLead>> => {
+export const sendMessageLead = async ({
+  listingId,
+  messageLead,
+  options = {},
+}: {
+  listingId: number
+  messageLead: MessageLead
+  options?: RequestOptionsWithRecaptcha & { validateOnly?: boolean }
+}): Promise<WithValidationError<MessageLead>> => {
   const {
     videoCallPreference: {
       available = false,
@@ -16,28 +24,24 @@ export const sendMessageLead = async (
     },
     ...messageLeadBase
   } = { ...{ videoCallPreference: {} }, ...messageLead }
-  const { validateOnly, recaptchaToken } = {
-    validateOnly: false,
-    recaptchaToken: null,
-    ...options,
-  }
+  const { validateOnly, ...otherOptions } = options
+
   const path = `listings/${listingId}/message-leads${
     validateOnly ? "/validate" : ""
   }`
 
   try {
-    await postData(
-      Service.CAR,
+    await postData({
       path,
-      {
+      body: {
         ...messageLeadBase,
         videoCallPreference: {
           available,
           services: [...services, otherService].filter(Boolean),
         },
       },
-      recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
-    )
+      options: otherOptions,
+    })
 
     return {
       tag: "success",
