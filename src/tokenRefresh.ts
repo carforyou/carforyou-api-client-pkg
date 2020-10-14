@@ -1,12 +1,12 @@
 import apiClient from "./apiClient"
-import { Service, postData } from "./base"
+import { postData } from "./base"
 
 const refreshToken = async () => {
-  const { refresh_token, access_token } = await postData(
-    Service.TOKEN_REFRESH,
-    "refresh-token",
-    { token: apiClient.tokens.refreshToken }
-  )
+  const { refresh_token, access_token } = await postData({
+    path: "refresh-token",
+    body: { token: apiClient.tokens.refreshToken },
+    options: { serviceUrl: apiClient.configuration.tokenRefreshServiceUrl },
+  })
 
   apiClient.setTokens({
     accessToken: access_token,
