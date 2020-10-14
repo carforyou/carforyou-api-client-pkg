@@ -11,7 +11,7 @@ describe("SEARCH service", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchRegions("en")
+      const fetched = await fetchRegions({ locale: "en" })
 
       expect(fetched).toEqual(regions)
       expect(fetch).toHaveBeenCalled()

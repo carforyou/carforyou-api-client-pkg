@@ -1,7 +1,13 @@
-import { fetchPath, Service } from "../../base"
+import { fetchPath, RequestOptions } from "../../base"
 
 import { Region } from "../../types/models"
 
-export const fetchRegions = (lng: string): Promise<Region[]> => {
-  return fetchPath(Service.SEARCH, `regions?language=${lng}`)
+export const fetchRegions = ({
+  locale,
+  options = {},
+}: {
+  locale: string
+  options?: RequestOptions
+}): Promise<Region[]> => {
+  return fetchPath({ path: `regions?language=${locale}`, options })
 }
