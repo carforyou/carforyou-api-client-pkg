@@ -44,8 +44,14 @@ export interface RequestOptions {
   serviceUrl?: string
 }
 
+export interface RequestOptionsWithRecaptcha extends RequestOptions {
+  recaptchaToken?: string
+}
+
+type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
+
 interface RequestOptionsWithMethod extends RequestOptions {
-  method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
+  method?: Method
 }
 
 export const getHost = ({ serviceUrl }) => {
@@ -108,6 +114,25 @@ export const fetchPath = async ({
   }
 }
 
+const buildOptions = ({
+  options,
+  method,
+}: {
+  options: RequestOptionsWithRecaptcha
+  method: Method
+}): RequestOptionsWithMethod => {
+  const { recaptchaToken, headers, ...otherOptions } = options
+
+  return {
+    ...otherOptions,
+    headers: {
+      ...headers,
+      ...(recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}),
+    },
+    method,
+  }
+}
+
 export const postData = async ({
   path,
   body,
@@ -116,15 +141,15 @@ export const postData = async ({
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options: RequestOptions
+  options: RequestOptionsWithRecaptcha
 }) => {
   return fetchPath({
     path,
     body: JSON.stringify(body),
-    options: {
-      ...options,
+    options: buildOptions({
+      options,
       method: "POST",
-    },
+    }),
   })
 }
 
@@ -136,15 +161,15 @@ export const putData = async ({
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options: RequestOptions
+  options: RequestOptionsWithRecaptcha
 }) => {
   return fetchPath({
     path,
     body: JSON.stringify(body),
-    options: {
-      ...options,
+    options: buildOptions({
+      options,
       method: "PUT",
-    },
+    }),
   })
 }
 
@@ -153,11 +178,14 @@ export const deletePath = async ({
   options,
 }: {
   path: string
-  options: RequestOptions
+  options: RequestOptionsWithRecaptcha
 }) => {
   return fetchPath({
     path,
-    options: { ...options, method: "DELETE" },
+    options: buildOptions({
+      options,
+      method: "DELETE",
+    }),
   })
 }
 

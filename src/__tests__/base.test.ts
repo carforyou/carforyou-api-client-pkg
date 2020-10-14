@@ -114,6 +114,25 @@ describe("Base", () => {
         })
       )
     })
+
+    it("sets recaptcha header if token is provided", async () => {
+      const json = await deletePath({
+        path: "/api/path",
+        options: { recaptchaToken: "token" },
+      })
+
+      expect(json).toEqual({ ok: true })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          headers: {
+            Accept: "application/vnd.carforyou.v1+json",
+            "Content-Type": "application/json",
+            "Recaptcha-Token": "token",
+          },
+        })
+      )
+    })
   })
 
   describe("#postData", () => {
@@ -139,6 +158,26 @@ describe("Base", () => {
         })
       )
     })
+
+    it("sets recaptcha header if token is provided", async () => {
+      const json = await postData({
+        path: "/api/path",
+        body: data,
+        options: { recaptchaToken: "token" },
+      })
+
+      expect(json).toEqual({ ok: true })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          headers: {
+            Accept: "application/vnd.carforyou.v1+json",
+            "Content-Type": "application/json",
+            "Recaptcha-Token": "token",
+          },
+        })
+      )
+    })
   })
 
   describe("#putData", () => {
@@ -157,6 +196,26 @@ describe("Base", () => {
         expect.objectContaining({
           method: "PUT",
           body: JSON.stringify(data),
+        })
+      )
+    })
+
+    it("sets recaptcha header if token is provided", async () => {
+      const json = await putData({
+        path: "/api/path",
+        body: data,
+        options: { recaptchaToken: "token" },
+      })
+
+      expect(json).toEqual({ ok: true })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          headers: {
+            Accept: "application/vnd.carforyou.v1+json",
+            "Content-Type": "application/json",
+            "Recaptcha-Token": "token",
+          },
         })
       )
     })
