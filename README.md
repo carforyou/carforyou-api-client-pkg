@@ -39,7 +39,7 @@ fetchBodyTypes()
 
 ### Authenticated Requests
 
-Authenticated requests need to be handled in a different way depending on weather the request is performed server- or client-side.
+Authenticated requests need to be handled in a different way depending on whether the request is performed server- or client-side.
 Client-Side, we can use the api client as a singelton to store the token. Server-side the access token needs to be passed to the request in order
 to not expose user credentials to the global module scope and ensure the request is performed with the correct
 
