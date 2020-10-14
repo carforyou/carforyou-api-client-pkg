@@ -89,7 +89,7 @@ export interface RequestOptions {
   isAuthorizedRequest?: boolean
   accessToken?: string
   method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
-  headers?: {}
+  headers?: HeadersInit
 }
 
 export const fetchPath = async ({
