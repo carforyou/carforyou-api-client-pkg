@@ -14,17 +14,17 @@ describe("ApiClient", () => {
   describe("configuration", () => {
     it("can be set", () => {
       ApiClient.configure({
-        carServiceUrl: "car.service.test",
+        apiGatewayUrl: "api.gateway.test",
       })
 
-      expect(ApiClient.configuration.carServiceUrl).toEqual("car.service.test")
+      expect(ApiClient.configuration.apiGatewayUrl).toEqual("api.gateway.test")
     })
 
     it("cannot be configured twice", () => {
       expect(() => {
-        ApiClient.configure({ carServiceUrl: "car.service.test1" })
-        ApiClient.configure({ carServiceUrl: "car.service.test2" })
-      }).toThrowError("Owerwriting API client configuration")
+        ApiClient.configure({ apiGatewayUrl: "api.gateway.test1" })
+        ApiClient.configure({ apiGatewayUrl: "api.gateway.test2" })
+      }).toThrowError("Overwriting API client configuration")
     })
   })
 })
