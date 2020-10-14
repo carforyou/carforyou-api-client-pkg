@@ -75,12 +75,10 @@ export const resolveServiceUrl = (service: Service): string => {
   throw new Error(`Missing endpoint configuration for "${service}" service`)
 }
 
-const getAuthorizationHeader = (token = null) => {
-  console.log("getAuthorizationHeader instance ", apiClient)
-  const accessToken = token || apiClient.accessToken.token
+const getAuthorizationHeader = (accessToken = null) => {
   if (!accessToken) {
     throw new Error(
-      "You tried to make an authenticated requests without providing an access token!"
+      "You tried to make an authenticated requests without providing an access token!\n Please pass a valid token as a request option."
     )
   }
 
@@ -134,9 +132,6 @@ export const fetchPath = async ({
     console.info(`    >> API #fetchPath: ${url}`, mergedOptions)
   }
 
-  console.log("Request URL", url)
-  console.log("Request headers", mergedOptions.headers)
-
   const { headers, method } = mergedOptions
   const response = await fetch(url, {
     headers,
@@ -171,7 +166,8 @@ export const postData = async ({
 }: {
   service: Service
   path: string
-  body: unknown
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  body: object
   options?: RequestOptions
 }) => {
   return fetchPath({
@@ -193,7 +189,8 @@ export const putData = async ({
 }: {
   service: Service
   path: string
-  body: unknown
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  body: object
   options?: RequestOptions
 }) => {
   return fetchPath({

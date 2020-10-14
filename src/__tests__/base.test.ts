@@ -39,7 +39,6 @@ describe("Base", () => {
     })
   })
 
-  // TODO: add some tests for thems new interface
   describe("#fetchPath", () => {
     beforeEach(() => {
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
@@ -59,11 +58,14 @@ describe("Base", () => {
       const json = await fetchPath({ service: Service.CAR, path: "api/path" })
 
       expect(json).toEqual({ ok: true })
-      expect(fetch).toHaveBeenCalledWith(expect.any(String), {
-        headers: expect.objectContaining({
-          Accept: `application/vnd.carforyou.v1+json`,
-        }),
-      })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          headers: expect.objectContaining({
+            Accept: `application/vnd.carforyou.v1+json`,
+          }),
+        })
+      )
     })
 
     it("allows setting custom headers", async () => {
@@ -76,10 +78,78 @@ describe("Base", () => {
       })
 
       expect(json).toEqual({ ok: true })
-      expect(fetch).toHaveBeenCalledWith(expect.any(String), {
-        headers: expect.objectContaining({
-          Foo: "bar",
-        }),
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          headers: expect.objectContaining({
+            Foo: "bar",
+          }),
+        })
+      )
+    })
+
+    describe("access token handling", () => {
+      it("does not throw and error when the request is not marked as authorized", async () => {
+        const response = await fetchPath({
+          service: Service.CAR,
+          path: "api/path",
+          options: {
+            accessToken: "GIMME ACCESS!",
+          },
+        })
+        expect(response).toEqual({ ok: true })
+      })
+
+      it("does not add the access token as a header when the request is not marked as authorized", async () => {
+        await fetchPath({
+          service: Service.CAR,
+          path: "api/path",
+          options: {
+            accessToken: "GIMME ACCESS!",
+          },
+        })
+        expect(fetch).toHaveBeenCalledWith(
+          expect.any(String),
+          expect.objectContaining({
+            headers: expect.not.objectContaining({
+              Authorization: "Bearer GIMME ACCESS!",
+            }),
+          })
+        )
+      })
+
+      it("adds the token as a Authorization header to an authenticated request", async () => {
+        await fetchPath({
+          service: Service.CAR,
+          path: "api/path",
+          options: {
+            isAuthorizedRequest: true,
+            accessToken: "GIMME ACCESS!",
+          },
+        })
+
+        expect(fetch).toHaveBeenCalledWith(
+          expect.any(String),
+          expect.objectContaining({
+            headers: expect.objectContaining({
+              Authorization: "Bearer GIMME ACCESS!",
+            }),
+          })
+        )
+      })
+
+      it("throws an error if the toke is not passed for an authenticated request", async () => {
+        return fetchPath({
+          service: Service.CAR,
+          path: "api/path",
+          options: {
+            isAuthorizedRequest: true,
+          },
+        }).catch((error) => {
+          expect(error.message).toEqual(
+            "You tried to make an authenticated requests without providing an access token!\n Please pass a valid token as a request option."
+          )
+        })
       })
     })
 

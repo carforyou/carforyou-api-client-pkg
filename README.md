@@ -39,28 +39,21 @@ fetchBodyTypes()
 
 ### Authenticated Requests
 
-Authenticated requests need to be handled in a different way depending on whether the request is performed server- or client-side.
-Client-Side, we can use the api client as a singelton to store the token. Server-side the access token needs to be passed to the request in order
-to not expose user credentials to the global module scope and ensure the request is performed with the correct
+Requests that need authorization, need to pass a valid JWT to authenticate the user on the requested resource.
 
 #### Implementing authenticated requests
 
 To implement a authenticated request, simply pass the `isAuthorizedRequest` option to the request helper (fetch/post/put/delete-Data) and the api client will add the `Authorization` header. For server side requests, don't forget to pass the options down to the helper function so the consumer can pass the `accessToken` when invoking the request.
 
-#### Access Token Handling
+Note: If one forgets to add the `isAuthorizedRequest` option, the access token will not be set as a header. On the consumer side, if the access token is not passed, the api client will throw an error.
 
-##### Client-Side requests
-
-Set the access token along with it's expiration date to the api client using the `setToken` function provided by the api client instance.
-
-##### Server-Side requests
+#### Performing authenticated requests
 
 Pass the access token as a request option to the api call `dummyFetchCall(data, {accessToken: JWT})`
 
 #### Refreshing Access Tokens
 
-In order to ensure the freshness of the token, on client side usage, the api client will evaluate the validity of the provided token and issue a new token before the
-token expires. Server-Side the api client expects a valid token to be passed to the api call. (The freshness is ensured by the server)
+The consumer is responsible to ensure a valid token is passed to the request. The api client will pass the provided token as an `Authorization` header to the api call.
 
 ## Following API calls are handled
 

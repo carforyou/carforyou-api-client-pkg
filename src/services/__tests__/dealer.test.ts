@@ -10,6 +10,10 @@ import { ResponseError } from "../../responseError"
 import { DealerType, DealerSourceGroup } from "../../types/models/index"
 
 describe("Dealer", () => {
+  const requestOptionsMock = {
+    accessToken: "DUMMY TOKEN",
+  }
+
   describe("#fetchDealerSuggestions", () => {
     it("encodes the query", async () => {
       const query = "k+k"
@@ -64,7 +68,9 @@ describe("Dealer", () => {
       })
 
       it("returns the dealer data form the api", async () => {
-        const profile = await fetchDealerProfile(dealerIdMock)
+        const profile = await fetchDealerProfile(dealerIdMock, {
+          accessToken: "DUMMY TOKEN",
+        })
 
         expect(profile).toEqual(profileMock)
       })
@@ -74,10 +80,13 @@ describe("Dealer", () => {
       it("successfully puts data to the api", async () => {
         fetchMock.mockResponse(JSON.stringify(profileMock))
 
-        const profileResponse = await putDealerProfile({
-          dealerId: dealerIdMock,
-          profile: profileMock,
-        })
+        const profileResponse = await putDealerProfile(
+          {
+            dealerId: dealerIdMock,
+            profile: profileMock,
+          },
+          requestOptionsMock
+        )
 
         expect(profileResponse.tag).toBe("success")
       })
@@ -89,10 +98,13 @@ describe("Dealer", () => {
           })
         })
 
-        const profileResponse = await putDealerProfile({
-          dealerId: dealerIdMock,
-          profile: profileMock,
-        })
+        const profileResponse = await putDealerProfile(
+          {
+            dealerId: dealerIdMock,
+            profile: profileMock,
+          },
+          requestOptionsMock
+        )
 
         expect(profileResponse.tag).toBe("error")
       })
@@ -120,7 +132,10 @@ describe("Dealer", () => {
       })
 
       it("returns the dealer promotion form the api", async () => {
-        const profile = await fetchDealerPromotion(dealerIdMock)
+        const profile = await fetchDealerPromotion(
+          dealerIdMock,
+          requestOptionsMock
+        )
 
         expect(profile).toEqual(promotionMock)
       })
@@ -132,7 +147,8 @@ describe("Dealer", () => {
 
         const promotionResponse = await putDealerPromotion(
           dealerIdMock,
-          promotionMock
+          promotionMock,
+          requestOptionsMock
         )
 
         expect(promotionResponse.tag).toBe("success")
@@ -147,7 +163,8 @@ describe("Dealer", () => {
 
         const promotionResponse = await putDealerPromotion(
           dealerIdMock,
-          promotionMock
+          promotionMock,
+          requestOptionsMock
         )
 
         expect(promotionResponse.tag).toBe("error")
