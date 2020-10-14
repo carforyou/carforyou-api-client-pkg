@@ -43,7 +43,7 @@ Requests that need authorization, need to pass a valid JWT to authenticate the u
 
 #### Implementing authenticated requests
 
-To implement a authenticated request, simply pass the `isAuthorizedRequest` option to the request helper (fetch/post/put/delete-Data) and the api client will add the `Authorization` header. For server side requests, don't forget to pass the options down to the helper function so the consumer can pass the `accessToken` when invoking the request.
+To authenticate a request, simply pass the `isAuthorizedRequest` option to the request helper (fetch/post/put/delete-Data) and the api client will add the `Authorization` header. For server side requests, don't forget to pass the options down to the helper function so the consumer can pass the `accessToken` when invoking the request.
 
 Note: If one forgets to add the `isAuthorizedRequest` option, the access token will not be set as a header. On the consumer side, if the access token is not passed, the api client will throw an error.
 
