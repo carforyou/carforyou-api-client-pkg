@@ -93,9 +93,6 @@ describe("Base", () => {
         const response = await fetchPath({
           service: Service.CAR,
           path: "api/path",
-          options: {
-            accessToken: "GIMME ACCESS!",
-          },
         })
         expect(response).toEqual({ ok: true })
       })
