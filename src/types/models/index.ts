@@ -174,3 +174,9 @@ export interface Entitlements {
     limit: number
   }
 }
+
+export interface CockpitAnalytics {
+  count: number
+  makeKey?: string
+  conditionType?: string
+}
