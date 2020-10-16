@@ -138,7 +138,7 @@ describe("Base", () => {
         )
       })
 
-      it("throws an error if the toke is not passed for an authenticated request", async () => {
+      it("throws an error if the token is not passed for an authenticated request", async () => {
         return fetchPath({
           service: Service.CAR,
           path: "api/path",
