@@ -175,8 +175,8 @@ export interface Entitlements {
   }
 }
 
-export interface ListingsLeadsAnalytics {
-  makeKey: string
+export interface CockpitAnalytics {
   count: number
+  makeKey?: string
   conditionType?: string
 }
