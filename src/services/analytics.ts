@@ -20,31 +20,53 @@ export const fetchAnalyticsData = async (
   })
 }
 
-export const fetchLeadsAnalytics = async ({
-  dealerId,
-  dimensions,
-  query,
-}: {
-  dealerId: number
-  dimensions?: string[]
-  query?: { verificationDateFrom: string }
-}): Promise<CockpitAnalytics> => {
-  return postData(Service.ANALYTICS, `dealers/${dealerId}/leads/analytics`, {
-    function: "count",
+export const fetchLeadsAnalytics = async (
+  {
+    dealerId,
     dimensions,
     query,
+  }: {
+    dealerId: number
+    dimensions?: string[]
+    query?: { verificationDateFrom: string }
+  },
+  options: RequestOptions
+): Promise<CockpitAnalytics> => {
+  return postData({
+    service: Service.ANALYTICS,
+    path: `dealers/${dealerId}/leads/analytics`,
+    body: {
+      function: "count",
+      dimensions,
+      query,
+    },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
 }
 
-export const fetchListingsAnalytics = async ({
-  dealerId,
-  dimensions,
-}: {
-  dealerId: number
-  dimensions?: string[]
-}): Promise<CockpitAnalytics> => {
-  return postData(Service.ANALYTICS, `dealers/${dealerId}/listings/analytics`, {
-    function: "count",
+export const fetchListingsAnalytics = async (
+  {
+    dealerId,
     dimensions,
+  }: {
+    dealerId: number
+    dimensions?: string[]
+  },
+  options: RequestOptions
+): Promise<CockpitAnalytics> => {
+  return postData({
+    service: Service.ANALYTICS,
+    path: `dealers/${dealerId}/listings/analytics`,
+    body: {
+      function: "count",
+      dimensions,
+    },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
 }
