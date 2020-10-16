@@ -2,8 +2,7 @@ import { postData, Service } from "../base"
 
 import {
   DealerListingsAnalyticsData,
-  LeadsAnalytics,
-  ListingsAnalytics,
+  ListingsLeadsAnalytics,
 } from "../types/models"
 
 export const fetchAnalyticsData = async (
@@ -27,7 +26,7 @@ export const fetchLeadsAnalytics = async ({
   dealerId: number
   dimensions?: string[]
   query?: { verificationDateFrom: string }
-}): Promise<LeadsAnalytics> => {
+}): Promise<ListingsLeadsAnalytics> => {
   return postData(Service.ANALYTICS, `dealers/${dealerId}/leads/analytics`, {
     function: "count",
     dimensions,
@@ -41,7 +40,7 @@ export const fetchListingsAnalytics = async ({
 }: {
   dealerId: number
   dimensions?: string[]
-}): Promise<ListingsAnalytics> => {
+}): Promise<ListingsLeadsAnalytics> => {
   return postData(Service.ANALYTICS, `dealers/${dealerId}/listings/analytics`, {
     function: "count",
     dimensions,

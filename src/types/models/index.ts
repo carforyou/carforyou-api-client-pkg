@@ -175,11 +175,8 @@ export interface Entitlements {
   }
 }
 
-export interface ListingsAnalytics {
+export interface ListingsLeadsAnalytics {
   makeKey: string
   count: number
-}
-
-export interface LeadsAnalytics extends ListingsAnalytics {
   conditionType?: string
 }
