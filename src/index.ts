@@ -25,6 +25,7 @@ export {
   DealerListingsAnalyticsData,
   DealerEntitlements,
   Entitlements,
+  CockpitAnalytics,
 } from "./types/models/index"
 
 export {
@@ -199,7 +200,11 @@ export {
   putDealerPromotion,
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
-export { fetchAnalyticsData } from "./services/analytics"
+export {
+  fetchAnalyticsData,
+  fetchLeadsAnalytics,
+  fetchListingsAnalytics,
+} from "./services/analytics"
 export {
   fetchProducts,
   purchaseAndUseListingProduct,
