@@ -14,16 +14,16 @@ describe("ApiClient", () => {
   describe("configuration", () => {
     it("can be set", () => {
       ApiClient.configure({
-        apiGatewayUrl: "api.gateway.test",
+        host: "api.gateway.test",
       })
 
-      expect(ApiClient.configuration.apiGatewayUrl).toEqual("api.gateway.test")
+      expect(ApiClient.configuration.host).toEqual("api.gateway.test")
     })
 
     it("cannot be configured twice", () => {
       expect(() => {
-        ApiClient.configure({ apiGatewayUrl: "api.gateway.test1" })
-        ApiClient.configure({ apiGatewayUrl: "api.gateway.test2" })
+        ApiClient.configure({ host: "api.gateway.test1" })
+        ApiClient.configure({ host: "api.gateway.test2" })
       }).toThrowError("Overwriting API client configuration")
     })
   })

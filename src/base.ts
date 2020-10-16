@@ -40,8 +40,7 @@ const authorizationHeader = () => {
 
 export interface RequestOptions {
   headers?: Record<string, string>
-  // TODO: think about this naming
-  serviceUrl?: string
+  host?: string
 }
 
 export interface RequestOptionsWithRecaptcha extends RequestOptions {
@@ -54,16 +53,14 @@ interface RequestOptionsWithMethod extends RequestOptions {
   method?: Method
 }
 
-export const getHost = ({ serviceUrl }) => {
-  const url = serviceUrl || apiClient.configuration.apiGatewayUrl
-
-  if (!url) {
+export const getHost = (host: string = null) => {
+  if (!apiClient.configuration.host) {
     throw new Error(
       'ApiClient not configured, please run: ApiClient.configure({ apiGatewayUrl: "your.api.gateway" }'
     )
   }
 
-  return url
+  return host || apiClient.configuration.host
 }
 
 export const fetchPath = async ({
@@ -75,8 +72,8 @@ export const fetchPath = async ({
   body?: string
   options: RequestOptionsWithMethod
 }) => {
-  const { headers = {}, method = "GET", serviceUrl = null } = options
-  const url = `${getHost({ serviceUrl })}/${stripLeadingSlash(path)}`
+  const { headers = {}, method = "GET", host = null } = options
+  const url = `${getHost(host)}/${stripLeadingSlash(path)}`
 
   if (apiClient.configuration.debug) {
     // eslint-disable-next-line no-console

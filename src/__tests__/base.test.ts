@@ -6,23 +6,23 @@ describe("Base", () => {
 
   describe("#getHost", () => {
     afterEach(() => {
-      apiClient.configuration.apiGatewayUrl = "test.gateway"
+      apiClient.configuration.host = "test.gateway"
     })
 
     it("throws if ApiClient is not configured", () => {
-      delete apiClient.configuration.apiGatewayUrl
+      delete apiClient.configuration.host
 
       expect(() => {
-        getHost({ serviceUrl: undefined })
+        getHost("test.service")
       }).toThrowError(/ApiClient not configured/)
     })
 
     it("returns gateway url by default", () => {
-      expect(getHost({ serviceUrl: undefined })).toEqual("test.gateway")
+      expect(getHost()).toEqual("test.gateway")
     })
 
     it("allows overwriting gateway url", () => {
-      expect(getHost({ serviceUrl: "service.stub" })).toEqual("service.stub")
+      expect(getHost("service.stub")).toEqual("service.stub")
     })
   })
 

@@ -5,7 +5,7 @@ const refreshToken = async () => {
   const { refresh_token, access_token } = await postData({
     path: "refresh-token",
     body: { token: apiClient.tokens.refreshToken },
-    options: { serviceUrl: apiClient.configuration.tokenRefreshServiceUrl },
+    options: { host: apiClient.configuration.tokenRefreshServiceUrl },
   })
 
   apiClient.setTokens({

@@ -1,11 +1,11 @@
 export interface ApiClientConfiguration {
-  apiGatewayUrl: string
+  host: string
   tokenRefreshServiceUrl?: string
   debug?: boolean
 }
 
 interface ApiClientConfig {
-  apiGatewayUrl?: string
+  host?: string
   tokenRefreshServiceUrl?: string
   debug?: boolean
 }
