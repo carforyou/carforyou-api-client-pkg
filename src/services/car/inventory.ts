@@ -55,11 +55,11 @@ export const fetchDealerMakes = async ({
 
 export const fetchDealerListingsCount = async ({
   dealerId,
-  query,
+  query = {},
   options = {},
 }: {
   dealerId: number
-  query: DealerListingQueryParams
+  query?: DealerListingQueryParams
   options?: ApiCallOptions
 }): Promise<number> => {
   return withTokenRefresh(async () => {
@@ -278,17 +278,17 @@ export const publishDealerListing = async ({
 
 export const archiveDealerListing = async ({
   dealerId,
-  id,
+  listingId,
   options,
 }: {
   dealerId: number
-  id: number
+  listingId: number
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   return withTokenRefresh(async () => {
     try {
       await postData({
-        path: `dealers/${dealerId}/listings/${id}/archive`,
+        path: `dealers/${dealerId}/listings/${listingId}/archive`,
         body: {},
         options,
       })
@@ -304,18 +304,18 @@ export const archiveDealerListing = async ({
 }
 
 export const unpublishDealerListing = async ({
-  id,
+  listingId,
   dealerId,
   options = {},
 }: {
-  id: number
+  listingId: number
   dealerId: number
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   return withTokenRefresh(async () => {
     try {
       await postData({
-        path: `dealers/${dealerId}/listings/${id}/unpublish`,
+        path: `dealers/${dealerId}/listings/${listingId}/unpublish`,
         body: {},
         options,
       })

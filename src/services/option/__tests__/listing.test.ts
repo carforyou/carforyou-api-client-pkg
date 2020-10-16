@@ -20,7 +20,7 @@ describe("OPTION service", () => {
     it("returns ListingOptions", async () => {
       const fetchedOptions = await fetchListingOptions({
         listingId: 10,
-        locale: "de",
+        language: "de",
       })
 
       expect(fetch).toHaveBeenCalled()

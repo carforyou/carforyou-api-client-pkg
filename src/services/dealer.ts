@@ -6,6 +6,7 @@ import {
   ApiCallOptions,
 } from "../base"
 
+import { Language } from "../types/params"
 import { Paginated } from "../types/pagination"
 import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 import { DealerProfile } from "../types/models/dealerProfile"
@@ -21,7 +22,7 @@ export const fetchDealer = async ({
   options = {},
 }: {
   id: number
-  language?: "de" | "en" | "fr" | "it"
+  language?: Language
   options?: ApiCallOptions
 }): Promise<Dealer> => {
   const query = toQueryString({ language })

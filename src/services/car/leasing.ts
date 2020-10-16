@@ -1,21 +1,22 @@
 import { postData, handleValidationError, ApiCallOptions } from "../../base"
 
-import { WithValidationError } from "../../types/withValidationError"
+import { Language } from "../../types/params"
 import { LeasingInterest } from "../../types/models"
+import { WithValidationError } from "../../types/withValidationError"
 
 const wrappedFetchLeasingFormUrl = async ({
   listingId,
-  locale,
+  language,
   options = {},
 }: {
   listingId: number
-  locale: string
+  language: Language
   options?: ApiCallOptions
 }): Promise<WithValidationError<{ url: string }>> => {
   try {
     const result = await postData({
       path: `listings/${listingId}/leasing/generate-provider-form-url`,
-      body: { language: locale },
+      body: { language: language },
       options,
     })
 
@@ -30,7 +31,7 @@ const wrappedFetchLeasingFormUrl = async ({
 
 export const fetchLeasingFormUrl = async (args: {
   listingId: number
-  locale: string
+  language: Language
   options?: ApiCallOptions
 }): Promise<string | null> => {
   const response = await wrappedFetchLeasingFormUrl(args)

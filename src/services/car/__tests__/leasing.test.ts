@@ -8,7 +8,7 @@ describe("CAR service", () => {
       fetchMock.mockResponse(JSON.stringify({ url: "test-url" }))
 
       expect(
-        await fetchLeasingFormUrl({ listingId: 123, locale: "de" })
+        await fetchLeasingFormUrl({ listingId: 123, language: "de" })
       ).toEqual("test-url")
     })
 
@@ -18,7 +18,7 @@ describe("CAR service", () => {
       })
 
       expect(
-        await fetchLeasingFormUrl({ listingId: 123, locale: "de" })
+        await fetchLeasingFormUrl({ listingId: 123, language: "de" })
       ).toEqual(null)
     })
 
@@ -27,7 +27,7 @@ describe("CAR service", () => {
 
       await fetchLeasingFormUrl({
         listingId: 123,
-        locale: "de",
+        language: "de",
         options: {
           recaptchaToken: "token",
         },

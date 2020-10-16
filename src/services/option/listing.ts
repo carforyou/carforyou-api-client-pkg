@@ -6,21 +6,22 @@ import {
 } from "../../base"
 import { withTokenRefresh } from "../../tokenRefresh"
 
+import { Language } from "../../types/params"
 import { Options } from "../../types/models"
 import { Listing } from "../../types/models/listing"
 import { WithValidationError } from "../../types/withValidationError"
 
 export const fetchListingOptions = async ({
   listingId,
-  locale,
+  language,
   options = {},
 }: {
   listingId: number
-  locale: string
+  language: Language
   options?: ApiCallOptions
 }): Promise<Options> => {
   return fetchPath({
-    path: `listings/${listingId}/options?language=${locale}`,
+    path: `listings/${listingId}/options?language=${language}`,
     options,
   })
 }
