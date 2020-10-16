@@ -130,7 +130,7 @@ export const fetchDealerListing = async (
   },
   options: RequestOptions = {}
 ): Promise<Listing> => {
-  const listing = fetchPath({
+  const listing = await fetchPath({
     service: Service.CAR,
     path: `dealers/${dealerId}/listings/${listingId}`,
     options: { isAuthorizedRequest: true, ...options },
