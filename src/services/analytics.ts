@@ -24,27 +24,39 @@ export const fetchLeadsAnalytics = async ({
   dealerId,
   dimensions,
   query,
+  options = {},
 }: {
   dealerId: number
   dimensions?: string[]
   query?: { verificationDateFrom: string }
+  options?: ApiCallOptions
 }): Promise<CockpitAnalytics> => {
-  return postData(Service.ANALYTICS, `dealers/${dealerId}/leads/analytics`, {
-    function: "count",
-    dimensions,
-    query,
+  return postData({
+    path: `dealers/${dealerId}/leads/analytics`,
+    body: {
+      function: "count",
+      dimensions,
+      query,
+    },
+    options,
   })
 }
 
 export const fetchListingsAnalytics = async ({
   dealerId,
   dimensions,
+  options = {},
 }: {
   dealerId: number
   dimensions?: string[]
+  options: ApiCallOptions
 }): Promise<CockpitAnalytics> => {
-  return postData(Service.ANALYTICS, `dealers/${dealerId}/listings/analytics`, {
-    function: "count",
-    dimensions,
+  return postData({
+    path: `dealers/${dealerId}/listings/analytics`,
+    body: {
+      function: "count",
+      dimensions,
+    },
+    options,
   })
 }
