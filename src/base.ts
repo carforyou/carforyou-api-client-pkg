@@ -60,6 +60,21 @@ export const getHost = (host: string = null) => {
   return host || apiClient.configuration.host
 }
 
+const buildHeaders = ({
+  headers = {},
+  recaptchaToken,
+}: RequestOptions): Record<string, string> => {
+  const auth = authorizationHeader()
+
+  return {
+    "Content-Type": "application/json",
+    Accept: `application/vnd.carforyou.${apiClient.version}+json`,
+    ...(auth ? { Authorization: auth } : {}),
+    ...(recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}),
+    ...headers,
+  }
+}
+
 export const fetchPath = async ({
   path,
   body,
@@ -69,7 +84,7 @@ export const fetchPath = async ({
   body?: string
   options: RequestOptions
 }) => {
-  const { headers = {}, method = "GET", host = null } = options
+  const { method = "GET", host = null } = options
   const url = `${getHost(host)}/${stripLeadingSlash(path)}`
 
   if (apiClient.configuration.debug) {
@@ -77,14 +92,8 @@ export const fetchPath = async ({
     console.info(`    >> API #fetchPath: ${url}`, options)
   }
 
-  const auth = authorizationHeader()
   const response = await fetch(url, {
-    headers: {
-      "Content-Type": "application/json",
-      Accept: `application/vnd.carforyou.${apiClient.version}+json`,
-      ...(auth ? { Authorization: auth } : {}),
-      ...headers,
-    },
+    headers: buildHeaders(options),
     method,
     ...(body ? { body } : {}),
   })
@@ -108,25 +117,6 @@ export const fetchPath = async ({
   }
 }
 
-const buildOptions = ({
-  options,
-  method,
-}: {
-  options: ApiCallOptions
-  method: Method
-}): RequestOptions => {
-  const { recaptchaToken, headers, ...otherOptions } = options
-
-  return {
-    ...otherOptions,
-    headers: {
-      ...headers,
-      ...(recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}),
-    },
-    method,
-  }
-}
-
 export const postData = async ({
   path,
   body,
@@ -140,10 +130,10 @@ export const postData = async ({
   return fetchPath({
     path,
     body: JSON.stringify(body),
-    options: buildOptions({
-      options,
+    options: {
+      ...options,
       method: "POST",
-    }),
+    },
   })
 }
 
@@ -160,10 +150,10 @@ export const putData = async ({
   return fetchPath({
     path,
     body: JSON.stringify(body),
-    options: buildOptions({
-      options,
+    options: {
+      ...options,
       method: "PUT",
-    }),
+    },
   })
 }
 
@@ -176,10 +166,10 @@ export const deletePath = async ({
 }) => {
   return fetchPath({
     path,
-    options: buildOptions({
-      options,
+    options: {
+      ...options,
       method: "DELETE",
-    }),
+    },
   })
 }
 
