@@ -2,7 +2,7 @@ import {
   postData,
   deletePath,
   handleValidationError,
-  RequestOptionsWithRecaptcha,
+  ApiCallOptions,
 } from "../base"
 
 import { SavedSearch } from "../types/models"
@@ -14,7 +14,7 @@ export const sendSavedSearch = async ({
   options = {},
 }: {
   savedSearch: SavedSearch
-  options?: RequestOptionsWithRecaptcha
+  options?: ApiCallOptions
 }): Promise<WithValidationError<SavedSearch>> => {
   const { searchQuery, ...rest } = savedSearch
 
@@ -39,7 +39,7 @@ export const deleteSavedSearch = async ({
   options = {},
 }: {
   key: string
-  options?: RequestOptionsWithRecaptcha
+  options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   try {
     await deletePath({

@@ -1,4 +1,4 @@
-import { fetchPath, RequestOptions } from "../../base"
+import { fetchPath, ApiCallOptions } from "../../base"
 
 import { Paginated } from "../../types/pagination"
 import { City } from "../../types/models"
@@ -10,7 +10,7 @@ export const fetchCity = ({
 }: {
   id: number
   locale: string
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<City> => {
   return fetchPath({ path: `cities/${id}?language=${locale}`, options })
 }
@@ -22,7 +22,7 @@ export const fetchCitySuggestions = async ({
 }: {
   locale: string
   query: string
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Paginated<City>> => {
   return fetchPath({
     path: `cities/suggestions?language=${locale}&q=${query}`,

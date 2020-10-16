@@ -1,7 +1,7 @@
-import { fetchPath, RequestOptions } from "../../base"
+import { fetchPath, ApiCallOptions } from "../../base"
 
 export const fetchDealScores = ({
   options = {},
-}: { options?: RequestOptions } = {}): Promise<string[]> => {
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
   return fetchPath({ path: "gbd/scores", options })
 }

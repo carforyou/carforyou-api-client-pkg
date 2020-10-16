@@ -1,4 +1,4 @@
-import { fetchPath, RequestOptions } from "../base"
+import { fetchPath, ApiCallOptions } from "../base"
 
 import { Make, Model } from "../types/models"
 import { Type } from "../types/models/type"
@@ -6,7 +6,7 @@ import { Type } from "../types/models/type"
 export const fetchMakes = ({
   options = {},
 }: {
-  options?: RequestOptions
+  options?: ApiCallOptions
 } = {}): Promise<Make[]> => {
   return fetchPath({ path: "makes", options })
 }
@@ -16,7 +16,7 @@ export const fetchModels = ({
   options = {},
 }: {
   makeKey: string
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Model[]> => {
   return fetchPath({ path: `makes/key/${makeKey}/models`, options })
 }
@@ -26,7 +26,7 @@ export const fetchType = ({
   options = {},
 }: {
   id: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Type> => {
   return fetchPath({ path: `types/${id}`, options })
 }

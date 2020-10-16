@@ -1,10 +1,10 @@
-import { fetchPath, RequestOptions } from "../../base"
+import { fetchPath, ApiCallOptions } from "../../base"
 
 import { Make, Model } from "../../types/models"
 
 export const fetchCurrentMakes = async ({
   options = {},
-}: { options?: RequestOptions } = {}): Promise<Make[]> => {
+}: { options?: ApiCallOptions } = {}): Promise<Make[]> => {
   return fetchPath({ path: "current-makes", options })
 }
 
@@ -13,7 +13,7 @@ export const fetchCurrentModels = async ({
   options = {},
 }: {
   makeKey: string
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Model[]> => {
   return fetchPath({
     path: `current-makes/key/${makeKey}/current-models?includeBodyTypes=true`,

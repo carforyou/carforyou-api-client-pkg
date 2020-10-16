@@ -1,4 +1,4 @@
-import { postData, RequestOptions } from "../../base"
+import { postData, ApiCallOptions } from "../../base"
 
 import { ListingSearchParams } from "../../types/params/listings"
 import { Facets } from "../../types/facets"
@@ -12,7 +12,7 @@ export const fetchFacets = async ({
 }: {
   query?: ListingSearchParams
   fields?: string[]
-  options?: RequestOptions
+  options?: ApiCallOptions
 } = {}): Promise<Facets> => {
   const json = await postData({
     path: "/listings/facets",

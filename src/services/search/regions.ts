@@ -1,4 +1,4 @@
-import { fetchPath, RequestOptions } from "../../base"
+import { fetchPath, ApiCallOptions } from "../../base"
 
 import { Region } from "../../types/models"
 
@@ -7,7 +7,7 @@ export const fetchRegions = ({
   options = {},
 }: {
   locale: string
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Region[]> => {
   return fetchPath({ path: `regions?language=${locale}`, options })
 }

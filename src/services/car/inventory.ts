@@ -3,7 +3,7 @@ import {
   postData,
   putData,
   handleValidationError,
-  RequestOptions,
+  ApiCallOptions,
 } from "../../base"
 import { withTokenRefresh } from "../../tokenRefresh"
 
@@ -36,7 +36,7 @@ export const fetchListing = async ({
   options = {},
 }: {
   id: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Listing> => {
   const listing = await fetchPath({ path: `listings/${id}`, options })
 
@@ -48,7 +48,7 @@ export const fetchDealerMakes = async ({
   options = {},
 }: {
   dealerId: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Array<{ make: string; makeKey: string }>> => {
   return fetchPath({ path: `inventory/dealers/${dealerId}/makes`, options })
 }
@@ -60,7 +60,7 @@ export const fetchDealerListingsCount = async ({
 }: {
   dealerId: number
   query: DealerListingQueryParams
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<number> => {
   return withTokenRefresh(async () => {
     const { count } = await fetchPath({
@@ -90,7 +90,7 @@ export const fetchDealerListings = async ({
 }: {
   dealerId: number
   query?: DealerListingQueryParams
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Paginated<Listing>> => {
   const { page, size, sortOrder, sortType, ...rest } = query
 
@@ -135,7 +135,7 @@ export const fetchDealerListing = async ({
 }: {
   dealerId: number
   listingId: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Listing> => {
   const listing = await withTokenRefresh(() =>
     fetchPath({ path: `dealers/${dealerId}/listings/${listingId}`, options })
@@ -183,7 +183,7 @@ export const validateDealerListing = async ({
 }: {
   dealerId: number
   listing: Listing
-  options: RequestOptions & { validationEndpoint: ListingValidationEndpoint }
+  options: ApiCallOptions & { validationEndpoint: ListingValidationEndpoint }
 }): Promise<WithValidationError<Listing>> => {
   const { validationEndpoint, ...otherOptions } = options
   const data = prepareListingData(listing)
@@ -213,7 +213,7 @@ export const saveDealerListing = async ({
 }: {
   dealerId: number
   listing: Listing
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<Listing>> => {
   const { id } = listing
   const data = prepareListingData(listing)
@@ -254,7 +254,7 @@ export const publishDealerListing = async ({
 }: {
   dealerId: number
   listing: Listing
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<Listing>> => {
   const { id } = listing
 
@@ -283,7 +283,7 @@ export const archiveDealerListing = async ({
 }: {
   dealerId: number
   id: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   return withTokenRefresh(async () => {
     try {
@@ -310,7 +310,7 @@ export const unpublishDealerListing = async ({
 }: {
   id: number
   dealerId: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   return withTokenRefresh(async () => {
     try {
@@ -335,7 +335,7 @@ export const listingMandatoryFields = async ({
   options = {},
 }: {
   dealerId: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Set<string>> => {
   return withTokenRefresh(async () => {
     const data = await fetchPath({

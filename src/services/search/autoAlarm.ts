@@ -4,7 +4,7 @@ import {
   putData,
   deletePath,
   postData,
-  RequestOptions,
+  ApiCallOptions,
 } from "../../base"
 import toQueryString from "../../lib/toQueryString"
 
@@ -22,7 +22,7 @@ export const fetchSavedSearches = async ({
   dealerId: number
   page?: number
   size?: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Paginated<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     const query = toQueryString({ page, size })
@@ -51,7 +51,7 @@ export const fetchSavedSearch = async ({
 }: {
   dealerId: number
   savedSearchId: string
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<DealerSavedSearch> => {
   return withTokenRefresh(async () => {
     try {
@@ -79,7 +79,7 @@ export const putDealerSavedSearch = async ({
   dealerId: number
   savedSearchId: string
   savedSearch: DealerSavedSearch
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
@@ -107,7 +107,7 @@ export const postDealerSavedSearch = async ({
 }: {
   dealerId: number
   savedSearch: DealerSavedSearch
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
@@ -135,7 +135,7 @@ export const deleteDealerSavedSearch = async ({
 }: {
   dealerId: number
   savedSearchId: string
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   return withTokenRefresh(async () => {
     try {

@@ -1,4 +1,4 @@
-import { postData, RequestOptions } from "../base"
+import { postData, ApiCallOptions } from "../base"
 
 import { DealerListingsAnalyticsData } from "../types/models"
 
@@ -9,7 +9,7 @@ export const fetchAnalyticsData = async ({
 }: {
   dealerId: number
   listingIds: number[]
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<DealerListingsAnalyticsData> => {
   return postData({
     path: `analytics/dealers/${dealerId}/listings/metrics`,

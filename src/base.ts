@@ -38,18 +38,15 @@ const authorizationHeader = () => {
   return `Bearer ${apiClient.tokens.accessToken}`
 }
 
-export interface RequestOptions {
+export interface ApiCallOptions {
+  recaptchaToken?: string
   headers?: Record<string, string>
   host?: string
 }
 
-export interface RequestOptionsWithRecaptcha extends RequestOptions {
-  recaptchaToken?: string
-}
-
 type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
 
-interface RequestOptionsWithMethod extends RequestOptions {
+interface RequestOptions extends ApiCallOptions {
   method?: Method
 }
 
@@ -70,7 +67,7 @@ export const fetchPath = async ({
 }: {
   path: string
   body?: string
-  options: RequestOptionsWithMethod
+  options: RequestOptions
 }) => {
   const { headers = {}, method = "GET", host = null } = options
   const url = `${getHost(host)}/${stripLeadingSlash(path)}`
@@ -115,9 +112,9 @@ const buildOptions = ({
   options,
   method,
 }: {
-  options: RequestOptionsWithRecaptcha
+  options: ApiCallOptions
   method: Method
-}): RequestOptionsWithMethod => {
+}): RequestOptions => {
   const { recaptchaToken, headers, ...otherOptions } = options
 
   return {
@@ -138,7 +135,7 @@ export const postData = async ({
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options: RequestOptionsWithRecaptcha
+  options: ApiCallOptions
 }) => {
   return fetchPath({
     path,
@@ -158,7 +155,7 @@ export const putData = async ({
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options: RequestOptionsWithRecaptcha
+  options: ApiCallOptions
 }) => {
   return fetchPath({
     path,
@@ -175,7 +172,7 @@ export const deletePath = async ({
   options,
 }: {
   path: string
-  options: RequestOptionsWithRecaptcha
+  options: ApiCallOptions
 }) => {
   return fetchPath({
     path,

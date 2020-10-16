@@ -3,7 +3,7 @@ import {
   postData,
   putData,
   handleValidationError,
-  RequestOptions,
+  ApiCallOptions,
 } from "../../base"
 import { withTokenRefresh } from "../../tokenRefresh"
 
@@ -16,7 +16,7 @@ export const fetchImageEnrichment = async ({
   options = {},
 }: {
   imageId: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<ImageEnrichment> => {
   return fetchPath({ path: `images/${imageId}/enrichment`, options })
 }
@@ -30,7 +30,7 @@ export const generatePresignedImageUrl = ({
     title: string
     contentType: string
   }
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<PresignedUrl> => {
   return withTokenRefresh(() =>
     postData({
@@ -48,7 +48,7 @@ export const fetchDealerListingImages = async ({
 }: {
   dealerId: number
   listingId: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<DealerListingImages> => {
   return fetchPath({
     path: `dealers/${dealerId}/listings/${listingId}/images`,
@@ -63,7 +63,7 @@ export const saveDealerListingImages = ({
 }: {
   dealerId: number
   listing: Listing
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<Listing>> => {
   return withTokenRefresh(async () => {
     try {

@@ -1,8 +1,4 @@
-import {
-  postData,
-  handleValidationError,
-  RequestOptionsWithRecaptcha,
-} from "../../base"
+import { postData, handleValidationError, ApiCallOptions } from "../../base"
 
 import { WithValidationError } from "../../types/withValidationError"
 import { LeasingInterest } from "../../types/models"
@@ -14,7 +10,7 @@ const wrappedFetchLeasingFormUrl = async ({
 }: {
   listingId: number
   locale: string
-  options?: RequestOptionsWithRecaptcha
+  options?: ApiCallOptions
 }): Promise<WithValidationError<{ url: string }>> => {
   try {
     const result = await postData({
@@ -35,7 +31,7 @@ const wrappedFetchLeasingFormUrl = async ({
 export const fetchLeasingFormUrl = async (args: {
   listingId: number
   locale: string
-  options?: RequestOptionsWithRecaptcha
+  options?: ApiCallOptions
 }): Promise<string | null> => {
   const response = await wrappedFetchLeasingFormUrl(args)
 
@@ -54,7 +50,7 @@ export const sendLeasingInterest = async ({
 }: {
   listingId: number
   leasingInterest: LeasingInterest
-  options?: RequestOptionsWithRecaptcha & { validateOnly?: boolean }
+  options?: ApiCallOptions & { validateOnly?: boolean }
 }): Promise<WithValidationError<LeasingInterest>> => {
   const { validateOnly, ...otherOptions } = options
 

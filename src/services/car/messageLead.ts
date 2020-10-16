@@ -1,8 +1,4 @@
-import {
-  postData,
-  handleValidationError,
-  RequestOptionsWithRecaptcha,
-} from "../../base"
+import { postData, handleValidationError, ApiCallOptions } from "../../base"
 
 import { WithValidationError } from "../../types/withValidationError"
 import { MessageLead } from "../../types/models"
@@ -14,7 +10,7 @@ export const sendMessageLead = async ({
 }: {
   listingId: number
   messageLead: MessageLead
-  options?: RequestOptionsWithRecaptcha & { validateOnly?: boolean }
+  options?: ApiCallOptions & { validateOnly?: boolean }
 }): Promise<WithValidationError<MessageLead>> => {
   const {
     videoCallPreference: {

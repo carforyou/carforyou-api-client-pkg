@@ -3,7 +3,7 @@ import {
   handleValidationError,
   putData,
   postData,
-  RequestOptions,
+  ApiCallOptions,
 } from "../base"
 
 import { Paginated } from "../types/pagination"
@@ -22,7 +22,7 @@ export const fetchDealer = async ({
 }: {
   id: number
   language?: "de" | "en" | "fr" | "it"
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Dealer> => {
   const query = toQueryString({ language })
   return fetchPath({
@@ -36,7 +36,7 @@ export const fetchDealerSuggestions = async ({
   options = {},
 }: {
   query: string
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Paginated<DealerSuggestion>> => {
   return fetchPath({
     path: `dealers/suggestions?q=${query ? encodeURIComponent(query) : query}`,
@@ -49,7 +49,7 @@ export const fetchDealerProfile = async ({
   options = {},
 }: {
   dealerId: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<DealerProfile> =>
   withTokenRefresh(async () =>
     fetchPath({
@@ -63,7 +63,7 @@ export const postDealerProfile = async ({
   options = {},
 }: {
   profile: Omit<DealerProfile, "id" | "dealerSourceGroup" | "dealerType">
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<{ id: number }>> => {
   return withTokenRefresh(async () => {
     try {
@@ -90,7 +90,7 @@ export const putDealerProfile = async ({
 }: {
   dealerId: number
   profile: DealerProfile
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<DealerProfile>> => {
   return withTokenRefresh(async () => {
     try {
@@ -115,7 +115,7 @@ export const fetchDealerEntitlements = async ({
   options = {},
 }: {
   dealerId: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Entitlements> =>
   withTokenRefresh(async () =>
     fetchPath({ path: `dealers/${dealerId}/entitlements`, options })
@@ -126,7 +126,7 @@ export const fetchDealerPromotion = async ({
   options = {},
 }: {
   dealerId: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<DealerPromotion> =>
   withTokenRefresh(async () =>
     fetchPath({ path: `dealers/${dealerId}/promotion`, options })
@@ -139,7 +139,7 @@ export const postDealerPromotion = async ({
 }: {
   dealerId: number
   promotion: DealerPromotion
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<DealerPromotion>> => {
   return withTokenRefresh(async () => {
     try {
@@ -166,7 +166,7 @@ export const putDealerPromotion = async ({
 }: {
   dealerId: number
   promotion: DealerPromotion
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<DealerPromotion>> => {
   return withTokenRefresh(async () => {
     try {

@@ -1,8 +1,4 @@
-import {
-  postData,
-  handleValidationError,
-  RequestOptionsWithRecaptcha,
-} from "../../base"
+import { postData, handleValidationError, ApiCallOptions } from "../../base"
 
 import { WithValidationError } from "../../types/withValidationError"
 import { MoneybackApplication } from "../../types/models/applications"
@@ -14,7 +10,7 @@ export const sendMoneybackApplication = async ({
 }: {
   listingId: number
   moneybackApplication: MoneybackApplication
-  options: RequestOptionsWithRecaptcha & {
+  options: ApiCallOptions & {
     validateOnly?: boolean
     validateFields?: string[]
   }

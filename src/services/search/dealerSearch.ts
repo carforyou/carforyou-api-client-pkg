@@ -1,4 +1,4 @@
-import { postData, RequestOptions } from "../../base"
+import { postData, ApiCallOptions } from "../../base"
 
 import { sizeOrDefault, pageOrDefault } from "../../lib/pageParams"
 import { Paginated } from "../../types/pagination"
@@ -21,7 +21,7 @@ const searchForDealers = ({
   path: string
   searchQuery: DealerParams
   previewId?: number
-  options: RequestOptions
+  options: ApiCallOptions
 }) => {
   const { pagination, query } = searchQuery
   const { page, size } = pagination
@@ -58,7 +58,7 @@ export const fetchDealers = async ({
 }: {
   searchQuery: DealerParams
   previewId?: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Paginated<SearchDealer>> => {
   const response = await searchForDealers({
     path: "dealers/search",

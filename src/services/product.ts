@@ -2,7 +2,7 @@ import {
   fetchPath,
   postData,
   handleValidationError,
-  RequestOptions,
+  ApiCallOptions,
 } from "../base"
 
 import { WithValidationError } from "../types/withValidationError"
@@ -12,7 +12,7 @@ import { withTokenRefresh } from "../tokenRefresh"
 
 export const fetchProducts = async ({
   options = {},
-}: { options?: RequestOptions } = {}): Promise<Product[]> =>
+}: { options?: ApiCallOptions } = {}): Promise<Product[]> =>
   withTokenRefresh(async () => fetchPath({ path: "products", options }))
 
 export const purchaseAndUseListingProduct = async ({
@@ -24,7 +24,7 @@ export const purchaseAndUseListingProduct = async ({
   dealerId: number
   listingId: number
   productId: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<PurchaseAndUseProduct>> => {
   return withTokenRefresh(async () => {
     try {
@@ -54,7 +54,7 @@ export const purchaseAndUseDealerProduct = async ({
   dealerId: number
   productId: number
   startDate: string
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<PurchaseAndUseProduct>> => {
   return withTokenRefresh(async () => {
     try {

@@ -1,4 +1,4 @@
-import { fetchPath, postData, RequestOptions } from "../../base"
+import { fetchPath, postData, ApiCallOptions } from "../../base"
 
 import { Paginated } from "../../types/pagination"
 import { WithFieldStats, FieldsStats } from "../../types/fieldStats"
@@ -21,7 +21,7 @@ export const fetchListingCount = async ({
   options = {},
 }: {
   query?: ListingSearchParams
-  options?: RequestOptions & { fieldsStats?: string[] }
+  options?: ApiCallOptions & { fieldsStats?: string[] }
 } = {}): Promise<{ count: number; fieldsStats?: FieldsStats }> => {
   const { fieldsStats = [], ...otherOptions } = options
 
@@ -57,7 +57,7 @@ const searchForListings = ({
 }: {
   path: string
   query?: ListingQueryParams
-  options: RequestOptions & {
+  options: ApiCallOptions & {
     includeFieldsStats?: string[]
     includeTopListing?: boolean
   }
@@ -120,7 +120,7 @@ export const fetchListings = async ({
   options = {},
 }: {
   query?: ListingQueryParams
-  options?: RequestOptions & {
+  options?: ApiCallOptions & {
     includeFieldsStats?: string[]
     includeTopListing?: boolean
   }
@@ -139,7 +139,7 @@ export const fetchNeedsAssessmentListings = async ({
   options = {},
 }: {
   query?: ListingQueryParams
-  options?: RequestOptions & {
+  options?: ApiCallOptions & {
     includeFieldsStats?: string[]
     includeTopListing?: boolean
   }
@@ -164,7 +164,7 @@ export const fetchMoneybackListings = async ({
     size?: number
     page?: number
   }
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Paginated<SearchListing>> => {
   const response = await fetchPath({
     path: `dealers/${dealerId}/mbg-listings?${toQueryString(query)}`,

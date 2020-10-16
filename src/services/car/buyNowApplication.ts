@@ -1,8 +1,4 @@
-import {
-  postData,
-  handleValidationError,
-  RequestOptionsWithRecaptcha,
-} from "../../base"
+import { postData, handleValidationError, ApiCallOptions } from "../../base"
 
 import { WithValidationError } from "../../types/withValidationError"
 import { BuyNowApplication } from "../../types/models/applications"
@@ -14,7 +10,7 @@ export const sendBuyNowApplication = async ({
 }: {
   listingId: number
   buyNowApplication: BuyNowApplication
-  options?: RequestOptionsWithRecaptcha & { validateOnly?: boolean }
+  options?: ApiCallOptions & { validateOnly?: boolean }
 }): Promise<WithValidationError<BuyNowApplication>> => {
   const { validateOnly = false, ...otherOptions } = options
   const path = `/listings/${listingId}/buy-now-applications${

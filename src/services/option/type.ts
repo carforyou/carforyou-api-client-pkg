@@ -1,4 +1,4 @@
-import { fetchPath, RequestOptions } from "../../base"
+import { fetchPath, ApiCallOptions } from "../../base"
 
 import toQueryString from "../../lib/toQueryString"
 
@@ -13,7 +13,7 @@ export const fetchTypeOptions = async ({
   typeId: number
   locale: string
   productionYear: number
-  options: RequestOptions
+  options: ApiCallOptions
 }): Promise<Options> => {
   return fetchPath({
     path: `types/${typeId}/options?${toQueryString({

@@ -1,4 +1,4 @@
-import { handleValidationError, postData, RequestOptions } from "../../base"
+import { handleValidationError, postData, ApiCallOptions } from "../../base"
 
 import { Paginated } from "../../types/pagination"
 import { WithValidationError } from "../../types/withValidationError"
@@ -41,7 +41,7 @@ export const fetchTypes = async ({
   options = {},
 }: {
   query?: SearchTypeQueryParams
-  options?: RequestOptions
+  options?: ApiCallOptions
 } = {}): Promise<WithValidationError<Paginated<SearchType>>> => {
   const sizeOrDefault =
     parseInt((size || "").toString(), 10) || defaultPagination.size
@@ -76,7 +76,7 @@ export const fetchTypeFacets = async ({
 }: {
   query?: SearchTypeQueryParams
   fields?: string[]
-  options?: RequestOptions
+  options?: ApiCallOptions
 } = {}): Promise<WithValidationError<Facets>> => {
   try {
     const result = await postData({

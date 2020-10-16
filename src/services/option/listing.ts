@@ -2,7 +2,7 @@ import {
   fetchPath,
   handleValidationError,
   putData,
-  RequestOptions,
+  ApiCallOptions,
 } from "../../base"
 import { withTokenRefresh } from "../../tokenRefresh"
 
@@ -17,7 +17,7 @@ export const fetchListingOptions = async ({
 }: {
   listingId: number
   locale: string
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Options> => {
   return fetchPath({
     path: `listings/${listingId}/options?language=${locale}`,
@@ -32,7 +32,7 @@ export const fetchDealerListingOptions = async ({
 }: {
   dealerId: number
   listingId: number
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<Options> => {
   return withTokenRefresh(() =>
     fetchPath({
@@ -49,7 +49,7 @@ export const saveDealerListingOptions = async ({
 }: {
   dealerId: number
   listing: Listing
-  options?: RequestOptions
+  options?: ApiCallOptions
 }): Promise<WithValidationError<Listing>> => {
   const { standardOptions, additionalOptions, id } = listing
 
