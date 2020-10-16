@@ -1,4 +1,9 @@
-import { Service, handleValidationError, postData } from "../../base"
+import {
+  Service,
+  handleValidationError,
+  postData,
+  RequestOptions,
+} from "../../base"
 
 import { Paginated } from "../../types/pagination"
 import { WithValidationError } from "../../types/withValidationError"
@@ -36,13 +41,10 @@ const sanitizeQuery = ({
   }
 }
 
-export const fetchTypes = async ({
-  page,
-  size,
-  ...query
-}: SearchTypeQueryParams): Promise<
-  WithValidationError<Paginated<SearchType>>
-> => {
+export const fetchTypes = async (
+  { page, size, ...query }: SearchTypeQueryParams,
+  options: RequestOptions
+): Promise<WithValidationError<Paginated<SearchType>>> => {
   const sizeOrDefault =
     parseInt((size || "").toString(), 10) || defaultPagination.size
   const pageOrDefault =
@@ -59,6 +61,10 @@ export const fetchTypes = async ({
           size: sizeOrDefault,
         },
       },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
     })
     return {
       tag: "success",
@@ -71,7 +77,8 @@ export const fetchTypes = async ({
 
 export const fetchTypeFacets = async (
   query: SearchTypeQueryParams = {},
-  fields: string[] = []
+  fields: string[] = [],
+  options: RequestOptions
 ): Promise<WithValidationError<Facets>> => {
   try {
     const result = await postData({
@@ -80,6 +87,10 @@ export const fetchTypeFacets = async (
       body: {
         query: sanitizeQuery(query),
         fields,
+      },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
       },
     })
 
