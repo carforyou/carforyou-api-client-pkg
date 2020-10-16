@@ -7,7 +7,7 @@ describe("ApiClient", () => {
     })
   })
 
-  it("returns a singelton", () => {
+  it("returns a singleton", () => {
     expect(ApiClient).toEqual(new Constructor())
   })
 
