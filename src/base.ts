@@ -38,7 +38,7 @@ const authorizationHeader = () => {
   return `Bearer ${apiClient.tokens.accessToken}`
 }
 
-export interface ApiCallOptions {
+export interface ApiCallOptions extends Omit<RequestInit, "method" | "body"> {
   recaptchaToken?: string
   headers?: Record<string, string>
   host?: string
@@ -84,7 +84,13 @@ export const fetchPath = async ({
   body?: string
   options: RequestOptions
 }) => {
-  const { method = "GET", host = null } = options
+  const {
+    method = "GET",
+    host = null,
+    headers,
+    recaptchaToken,
+    ...fetchOptions
+  } = options
   const url = `${getHost(host)}/${stripLeadingSlash(path)}`
 
   if (apiClient.configuration.debug) {
@@ -96,6 +102,7 @@ export const fetchPath = async ({
     headers: buildHeaders(options),
     method,
     ...(body ? { body } : {}),
+    ...fetchOptions,
   })
 
   if (!response.ok) {
