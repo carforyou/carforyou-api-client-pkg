@@ -30,7 +30,7 @@ export const fetchLeadsAnalytics = async ({
   dimensions?: string[]
   query?: { verificationDateFrom: string }
   options?: ApiCallOptions
-}): Promise<CockpitAnalytics> => {
+}): Promise<Array<CockpitAnalytics>> => {
   return postData({
     path: `dealers/${dealerId}/leads/analytics`,
     body: {
@@ -49,8 +49,8 @@ export const fetchListingsAnalytics = async ({
 }: {
   dealerId: number
   dimensions?: string[]
-  options: ApiCallOptions
-}): Promise<CockpitAnalytics> => {
+  options?: ApiCallOptions
+}): Promise<Array<CockpitAnalytics>> => {
   return postData({
     path: `dealers/${dealerId}/listings/analytics`,
     body: {
