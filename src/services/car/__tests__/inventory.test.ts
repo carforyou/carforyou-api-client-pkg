@@ -5,6 +5,12 @@ import {
   ListingValidationEndpoint,
   prepareListingData,
   saveDealerListing,
+  listingMandatoryFields,
+  fetchDealerListingsCount,
+  fetchDealerMakes,
+  publishDealerListing,
+  archiveDealerListing,
+  unpublishDealerListing,
 } from "../inventory"
 
 import {
@@ -152,6 +158,42 @@ describe("CAR service", () => {
           )
         })
       })
+    })
+  })
+
+  describe("#fetchDealerMakes", () => {
+    it("fetches data", async () => {
+      const makes = [
+        { make: "Audi", makeKey: "audi" },
+        { make: "BMW", makeKey: "bmw" },
+      ]
+      fetchMock.mockResponse(JSON.stringify(makes))
+
+      const data = await fetchDealerMakes({ dealerId: 123 })
+      expect(data).toEqual(makes)
+      expect(fetch).toHaveBeenCalled()
+    })
+  })
+
+  describe("#fetchDealerListingsCount", () => {
+    it("unwraps count from json", async () => {
+      const count = 400
+      fetchMock.mockResponse(JSON.stringify({ count }))
+
+      const response = await fetchDealerListingsCount({ dealerId: 123 })
+      expect(response).toEqual(count)
+      expect(fetch).toHaveBeenCalled()
+    })
+
+    it("passes query in the query string", async () => {
+      const query = { isActive: true }
+      fetchMock.mockResponse(JSON.stringify({ count: 40 }))
+
+      await fetchDealerListingsCount({ dealerId: 123, query })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/123/listings/count?isActive=true"),
+        expect.any(Object)
+      )
     })
   })
 
@@ -307,6 +349,109 @@ describe("CAR service", () => {
 
         expect(result).toEqual({ tag: "success", result: listing })
       })
+    })
+  })
+
+  describe("#publishDealerListing", () => {
+    const listing = Listing({ id: 123 })
+
+    it("publishes and returns the listing", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await publishDealerListing({ dealerId: 6, listing })
+      expect(response).toEqual({ tag: "success", result: listing })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/123/publish"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await publishDealerListing({ dealerId: 6, listing })
+      expect(response).toEqual({ tag: "error", message, errors })
+    })
+  })
+
+  describe("#archiveDealerListing", () => {
+    it("archives the listing", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await archiveDealerListing({
+        dealerId: 6,
+        listingId: 123,
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/123/archive"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await archiveDealerListing({
+        dealerId: 6,
+        listingId: 123,
+      })
+      expect(response).toEqual({ tag: "error", message, errors })
+    })
+  })
+
+  describe("#unpublishDealerListing", () => {
+    it("un-publishes the listing", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await unpublishDealerListing({
+        dealerId: 6,
+        listingId: 123,
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/123/unpublish"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await unpublishDealerListing({
+        dealerId: 6,
+        listingId: 123,
+      })
+      expect(response).toEqual({ tag: "error", message, errors })
+    })
+  })
+
+  describe("#listingMandatoryFields", () => {
+    it("returns a set of mandatory fields", async () => {
+      const fields = ["makeKey", "modelKey"]
+      fetchMock.mockResponse(
+        JSON.stringify(
+          fields.map((field) => ({ message: "not-empty", param: field }))
+        )
+      )
+
+      const data = await listingMandatoryFields({ dealerId: 123 })
+      expect(data).toEqual(new Set(fields))
     })
   })
 })
