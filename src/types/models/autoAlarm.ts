@@ -7,22 +7,22 @@ export interface DealerSavedSearchQuery {
   makeKey: string
   modelType: ModelType[]
   bodyType: string[]
-  firstRegistrationYearFrom: number | null
-  firstRegistrationYearTo: number | null
-  mileageFrom: number | null
-  mileageTo: number | null
-  priceFrom: number | null
-  priceTo: number | null
-  horsePowerFrom: number | null
-  horsePowerTo: number | null
+  firstRegistrationYearFrom?: number
+  firstRegistrationYearTo?: number
+  mileageFrom?: number
+  mileageTo?: number
+  priceFrom?: number
+  priceTo?: number
+  horsePowerFrom?: number
+  horsePowerTo?: number
   fuelTypeGroup: string[]
   transmissionType: string[]
 }
 
 export interface DealerSavedSearch {
-  createdDate: string | null
+  createdDate?: string
   emails: string[]
-  id: string | null
-  lastModifiedDate: string | null
+  id?: string
+  lastModifiedDate?: string
   query: DealerSavedSearchQuery
 }
