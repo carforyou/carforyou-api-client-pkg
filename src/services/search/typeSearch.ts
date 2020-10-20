@@ -1,4 +1,9 @@
-import { Service, handleValidationError, postData } from "../../base"
+import {
+  Service,
+  handleValidationError,
+  postData,
+  RequestOptions,
+} from "../../base"
 
 import { Paginated } from "../../types/pagination"
 import { WithValidationError } from "../../types/withValidationError"
@@ -36,24 +41,29 @@ const sanitizeQuery = ({
   }
 }
 
-export const fetchTypes = async ({
-  page,
-  size,
-  ...query
-}: SearchTypeQueryParams): Promise<
-  WithValidationError<Paginated<SearchType>>
-> => {
+export const fetchTypes = async (
+  { page, size, ...query }: SearchTypeQueryParams,
+  options: RequestOptions
+): Promise<WithValidationError<Paginated<SearchType>>> => {
   const sizeOrDefault =
     parseInt((size || "").toString(), 10) || defaultPagination.size
   const pageOrDefault =
     parseInt((page || "").toString(), 10) - 1 || defaultPagination.page
 
   try {
-    const result = await postData(Service.SEARCH, "types/search", {
-      query: sanitizeQuery(query),
-      pagination: {
-        page: pageOrDefault,
-        size: sizeOrDefault,
+    const result = await postData({
+      service: Service.SEARCH,
+      path: "types/search",
+      body: {
+        query: sanitizeQuery(query),
+        pagination: {
+          page: pageOrDefault,
+          size: sizeOrDefault,
+        },
+      },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
       },
     })
     return {
@@ -67,12 +77,21 @@ export const fetchTypes = async ({
 
 export const fetchTypeFacets = async (
   query: SearchTypeQueryParams = {},
-  fields: string[] = []
+  fields: string[] = [],
+  options: RequestOptions
 ): Promise<WithValidationError<Facets>> => {
   try {
-    const result = await postData(Service.SEARCH, "types/facets", {
-      query: sanitizeQuery(query),
-      fields,
+    const result = await postData({
+      service: Service.SEARCH,
+      path: "types/facets",
+      body: {
+        query: sanitizeQuery(query),
+        fields,
+      },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
     })
 
     return {

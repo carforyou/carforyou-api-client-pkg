@@ -19,111 +19,111 @@ describe("SEARCH service", () => {
           modelKey: ["m3"],
         })
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          service: Service.SEARCH,
+          path: "listings/search",
+          body: expect.objectContaining({
             query: {
               bodyType: ["suv"],
               makeKey: ["bmw"],
               modelKey: ["m3"],
             },
-          })
-        )
+          }),
+        })
       })
 
       it("wraps the pagination indexed from 0", async () => {
         await fetchListings({ page: 5, size: 10 })
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          service: Service.SEARCH,
+          path: "listings/search",
+          body: expect.objectContaining({
             pagination: {
               page: 4,
               size: 10,
             },
-          })
-        )
+          }),
+        })
       })
 
       it("defaults `page` to 0 when it's not a number", async () => {
         await fetchListings({ page: ("qwerty" as unknown) as number, size: 10 })
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          service: Service.SEARCH,
+          path: "listings/search",
+          body: expect.objectContaining({
             pagination: {
               page: 0,
               size: 10,
             },
-          })
-        )
+          }),
+        })
       })
 
       it("defaults `size` to 24 when it's not a number", async () => {
         await fetchListings({ page: 5, size: ("qwerty" as unknown) as number })
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          service: Service.SEARCH,
+          path: "listings/search",
+          body: expect.objectContaining({
             pagination: {
               page: 4,
               size: 24,
             },
-          })
-        )
+          }),
+        })
       })
 
       it("provides default pagination", async () => {
         await fetchListings()
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          service: Service.SEARCH,
+          path: "listings/search",
+          body: expect.objectContaining({
             pagination: {
               page: 0,
               size: 24,
             },
-          })
-        )
+          }),
+        })
       })
 
       it("wraps sort", async () => {
         await fetchListings({ sortType: "PRICE", sortOrder: "ASC" })
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          service: Service.SEARCH,
+          path: "listings/search",
+          body: expect.objectContaining({
             sort: [
               {
                 type: "PRICE",
                 order: "ASC",
               },
             ],
-          })
-        )
+          }),
+        })
       })
 
       it("provides a default sort", async () => {
         await fetchListings()
 
-        expect(postData).toHaveBeenCalledWith(
-          Service.SEARCH,
-          "listings/search",
-          expect.objectContaining({
+        expect(postData).toHaveBeenCalledWith({
+          service: Service.SEARCH,
+          path: "listings/search",
+          body: expect.objectContaining({
             sort: [
               {
                 type: "RELEVANCE",
                 order: "ASC",
               },
             ],
-          })
-        )
+          }),
+        })
       })
     })
   })

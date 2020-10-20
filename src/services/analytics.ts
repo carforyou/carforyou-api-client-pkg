@@ -1,45 +1,72 @@
-import { postData, Service } from "../base"
+import { postData, RequestOptions, Service } from "../base"
 
 import { DealerListingsAnalyticsData, CockpitAnalytics } from "../types/models"
 
 export const fetchAnalyticsData = async (
   dealerId: number,
-  listingIds: number[]
+  listingIds: number[],
+  options: RequestOptions
 ): Promise<DealerListingsAnalyticsData> => {
-  return postData(
-    Service.ANALYTICS,
-    `analytics/dealers/${dealerId}/listings/metrics`,
-    {
+  return postData({
+    service: Service.ANALYTICS,
+    path: `analytics/dealers/${dealerId}/listings/metrics`,
+    body: {
       id: listingIds,
-    }
-  )
-}
-
-export const fetchLeadsAnalytics = async ({
-  dealerId,
-  dimensions,
-  query,
-}: {
-  dealerId: number
-  dimensions?: string[]
-  query?: { verificationDateFrom: string }
-}): Promise<CockpitAnalytics> => {
-  return postData(Service.ANALYTICS, `dealers/${dealerId}/leads/analytics`, {
-    function: "count",
-    dimensions,
-    query,
+    },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
 }
 
-export const fetchListingsAnalytics = async ({
-  dealerId,
-  dimensions,
-}: {
-  dealerId: number
-  dimensions?: string[]
-}): Promise<CockpitAnalytics> => {
-  return postData(Service.ANALYTICS, `dealers/${dealerId}/listings/analytics`, {
-    function: "count",
+export const fetchLeadsAnalytics = async (
+  {
+    dealerId,
     dimensions,
+    query,
+  }: {
+    dealerId: number
+    dimensions?: string[]
+    query?: { verificationDateFrom: string }
+  },
+  options: RequestOptions
+): Promise<CockpitAnalytics> => {
+  return postData({
+    service: Service.ANALYTICS,
+    path: `dealers/${dealerId}/leads/analytics`,
+    body: {
+      function: "count",
+      dimensions,
+      query,
+    },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
+}
+
+export const fetchListingsAnalytics = async (
+  {
+    dealerId,
+    dimensions,
+  }: {
+    dealerId: number
+    dimensions?: string[]
+  },
+  options: RequestOptions
+): Promise<CockpitAnalytics> => {
+  return postData({
+    service: Service.ANALYTICS,
+    path: `dealers/${dealerId}/listings/analytics`,
+    body: {
+      function: "count",
+      dimensions,
+    },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
 }

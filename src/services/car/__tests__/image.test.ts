@@ -24,7 +24,9 @@ describe("Dealer listing images", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchDealerListingImages(dealerId, listingId)
+      const fetched = await fetchDealerListingImages(dealerId, listingId, {
+        accessToken: "DUMMY TOKEN",
+      })
 
       expect(fetched).toEqual(dealerListingImages)
       expect(fetch).toHaveBeenCalledWith(

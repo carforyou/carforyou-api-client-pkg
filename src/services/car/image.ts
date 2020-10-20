@@ -4,8 +4,8 @@ import {
   postData,
   putData,
   handleValidationError,
+  RequestOptions,
 } from "../../base"
-import { withTokenRefresh } from "../../tokenRefresh"
 
 import { ImageEnrichment, PresignedUrl } from "../../types/models"
 import { Listing, DealerListingImages } from "../../types/models/listing"
@@ -14,50 +14,66 @@ import { WithValidationError } from "../../types/withValidationError"
 export const fetchImageEnrichment = async (
   imageId: number
 ): Promise<ImageEnrichment> => {
-  return fetchPath(Service.CAR, `images/${imageId}/enrichment`)
+  return fetchPath({
+    service: Service.CAR,
+    path: `images/${imageId}/enrichment`,
+  })
 }
 
-export const generatePresignedImageUrl = (imageData: {
-  key: string
-  title: string
-  contentType: string
-}): Promise<PresignedUrl> => {
-  return withTokenRefresh(() =>
-    postData(Service.CAR, "images/generate-presigned-url", imageData)
-  )
+export const generatePresignedImageUrl = (
+  imageData: {
+    key: string
+    title: string
+    contentType: string
+  },
+  options: RequestOptions = {}
+): Promise<PresignedUrl> => {
+  return postData({
+    service: Service.CAR,
+    path: "images/generate-presigned-url",
+    body: imageData,
+    options: { isAuthorizedRequest: true, ...options },
+  })
 }
 
 export const fetchDealerListingImages = async (
   dealerId: number,
-  listingId: number
+  listingId: number,
+  options: RequestOptions = {}
 ): Promise<DealerListingImages> => {
-  return fetchPath(
-    Service.CAR,
-    `dealers/${dealerId}/listings/${listingId}/images`
-  )
+  return fetchPath({
+    service: Service.CAR,
+    path: `dealers/${dealerId}/listings/${listingId}/images`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
 }
 
-export const saveDealerListingImages = ({
-  dealerId,
-  listing,
-}: {
-  dealerId: number
-  listing: Listing
-}): Promise<WithValidationError<Listing>> => {
-  return withTokenRefresh(async () => {
-    try {
-      await putData(
-        Service.CAR,
-        `dealers/${dealerId}/listings/${listing.id}/images`,
-        { images: listing.images }
-      )
-    } catch (error) {
-      return handleValidationError(error)
-    }
+export const saveDealerListingImages = async (
+  {
+    dealerId,
+    listing,
+  }: {
+    dealerId: number
+    listing: Listing
+  },
+  options: RequestOptions = {}
+): Promise<WithValidationError<Listing>> => {
+  try {
+    await putData({
+      service: Service.CAR,
+      path: `dealers/${dealerId}/listings/${listing.id}/images`,
+      body: { images: listing.images },
+      options: { isAuthorizedRequest: true, ...options },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
 
-    return {
-      tag: "success",
-      result: listing,
-    }
-  })
+  return {
+    tag: "success",
+    result: listing,
+  }
 }

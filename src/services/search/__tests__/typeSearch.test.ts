@@ -4,6 +4,8 @@ import { PowerUnit } from "../../../types/params/types"
 import Paginated from "../../../lib/factories/paginated"
 import { SearchType } from "../../../lib/factories/type"
 
+const requestOptionsMock = { accessToken: "DUMMY" }
+
 describe("#fetchTypes", () => {
   const types = Paginated([SearchType()])
 
@@ -17,7 +19,7 @@ describe("#fetchTypes", () => {
   })
 
   it("removes spaces from tsn", async () => {
-    await fetchTypes({ tsn: "Q W E  R   TY" })
+    await fetchTypes({ tsn: "Q W E  R   TY" }, requestOptionsMock)
 
     expect(fetch).toHaveBeenCalledWith(
       expect.stringMatching(/types\/search$/),
@@ -29,7 +31,10 @@ describe("#fetchTypes", () => {
 
   describe("filtering by power", () => {
     it("converts exact horsePower to range", async () => {
-      await fetchTypes({ power: { unit: PowerUnit.HorsePower, value: 75 } })
+      await fetchTypes(
+        { power: { unit: PowerUnit.HorsePower, value: 75 } },
+        requestOptionsMock
+      )
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(/types\/search$/),
@@ -42,7 +47,10 @@ describe("#fetchTypes", () => {
     })
 
     it("converts exact kiloWatts to range", async () => {
-      await fetchTypes({ power: { unit: PowerUnit.KiloWatts, value: 75 } })
+      await fetchTypes(
+        { power: { unit: PowerUnit.KiloWatts, value: 75 } },
+        requestOptionsMock
+      )
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(/types\/search$/),
@@ -53,7 +61,7 @@ describe("#fetchTypes", () => {
     })
 
     it("ignores power value without a unit", async () => {
-      await fetchTypes({ power: { value: 75 } })
+      await fetchTypes({ power: { value: 75 } }, requestOptionsMock)
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(/types\/search$/),
@@ -64,7 +72,10 @@ describe("#fetchTypes", () => {
     })
 
     it("ignores power unit without a value", async () => {
-      await fetchTypes({ power: { unit: PowerUnit.HorsePower } })
+      await fetchTypes(
+        { power: { unit: PowerUnit.HorsePower } },
+        requestOptionsMock
+      )
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(/types\/search$/),
@@ -76,7 +87,7 @@ describe("#fetchTypes", () => {
   })
 
   it("converts exact gears to range", async () => {
-    await fetchTypes({ gears: 5 })
+    await fetchTypes({ gears: 5 }, requestOptionsMock)
 
     expect(fetch).toHaveBeenCalledWith(
       expect.stringMatching(/types\/search$/),
@@ -88,7 +99,7 @@ describe("#fetchTypes", () => {
 
   describe("when successful", () => {
     it("returns paginated types", async () => {
-      const response = await fetchTypes({})
+      const response = await fetchTypes({}, requestOptionsMock)
 
       expect(response.tag).toBe("success")
 
@@ -112,7 +123,7 @@ describe("#fetchTypes", () => {
     })
 
     it("returns error messages", async () => {
-      const response = await fetchTypes({})
+      const response = await fetchTypes({}, requestOptionsMock)
 
       expect(response.tag).toBe("error")
 
@@ -126,7 +137,7 @@ describe("#fetchTypes", () => {
 
   describe("pagination", () => {
     it("indexes page from 0", async () => {
-      await fetchTypes({ page: 5 })
+      await fetchTypes({ page: 5 }, requestOptionsMock)
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(/types\/search$/),
@@ -137,7 +148,7 @@ describe("#fetchTypes", () => {
     })
 
     it("defaults `page` to 0 when not provided", async () => {
-      await fetchTypes({ size: 10 })
+      await fetchTypes({ size: 10 }, requestOptionsMock)
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(/types\/search$/),
@@ -148,7 +159,7 @@ describe("#fetchTypes", () => {
     })
 
     it("defaults `size` to 25 when it's not provided", async () => {
-      await fetchTypes({ page: 5 })
+      await fetchTypes({ page: 5 }, requestOptionsMock)
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(/types\/search$/),
@@ -169,7 +180,7 @@ describe("#fetchTypeFacets", () => {
     const facets = { makeKey: 312 }
     fetchMock.mockResponse(JSON.stringify({ facets }))
 
-    const fetched = await fetchTypeFacets()
+    const fetched = await fetchTypeFacets({}, [], requestOptionsMock)
 
     expect(fetch).toHaveBeenCalled()
     expect(fetched.tag).toEqual("success")

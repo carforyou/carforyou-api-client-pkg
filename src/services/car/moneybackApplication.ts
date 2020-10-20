@@ -24,7 +24,12 @@ export const sendMoneybackApplication = async (
   }
 
   try {
-    await postData(Service.CAR, path, moneybackApplication, headers)
+    await postData({
+      service: Service.CAR,
+      path,
+      body: moneybackApplication,
+      options: { headers },
+    })
     return {
       tag: "success",
       result: moneybackApplication,

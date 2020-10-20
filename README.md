@@ -35,8 +35,25 @@ fetchBodyTypes()
 | `optionServiceUrl`           | URL to [Options Service](https://option-service.preprod.carforyou.ch/swagger-ui/index.html)                         |
 | `analyticsServiceUrl`        | URL to [Analytics Service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui/index.html)          |
 | `userNotificationServiceUrl` | URL to [User Notification Service](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html)    |
-| `tokenRefreshServiceUrl`     | URL to Auth Service used to refresh access tokens                                                                   |
 | `debug`                      | Set to `true` to `console.log` requests and API responses.                                                          |
+
+### Authenticated Requests
+
+Requests that need authorization, need to pass a valid JWT to authenticate the user on the requested resource.
+
+#### Implementing authenticated requests
+
+To authenticate a request, simply pass the `isAuthorizedRequest` option to the request helper (fetch/post/put/delete-Data) and the api client will add the `Authorization` header. For server side requests, don't forget to pass the options down to the helper function so the consumer can pass the `accessToken` when invoking the request.
+
+Note: If one forgets to add the `isAuthorizedRequest` option, the access token will not be set as a header. On the consumer side, if the access token is not passed, the api client will throw an error.
+
+#### Performing authenticated requests
+
+Pass the access token as a request option to the api call `dummyFetchCall(data, {accessToken: JWT})`
+
+#### Refreshing Access Tokens
+
+The consumer is responsible to ensure a valid token is passed to the request. The api client will pass the provided token as an `Authorization` header to the api call.
 
 ## Following API calls are handled
 

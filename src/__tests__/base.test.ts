@@ -45,7 +45,7 @@ describe("Base", () => {
     })
 
     it("strips leading '/' from path", async () => {
-      const json = await fetchPath(Service.CAR, "/api/path")
+      const json = await fetchPath({ service: Service.CAR, path: "/api/path" })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(
@@ -55,26 +55,98 @@ describe("Base", () => {
     })
 
     it("inserts correct version header", async () => {
-      const json = await fetchPath(Service.CAR, "api/path")
+      const json = await fetchPath({ service: Service.CAR, path: "api/path" })
 
       expect(json).toEqual({ ok: true })
-      expect(fetch).toHaveBeenCalledWith(expect.any(String), {
-        headers: expect.objectContaining({
-          Accept: `application/vnd.carforyou.v1+json`,
-        }),
-      })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          headers: expect.objectContaining({
+            Accept: `application/vnd.carforyou.v1+json`,
+          }),
+        })
+      )
     })
 
     it("allows setting custom headers", async () => {
-      const json = await fetchPath(Service.CAR, "api/path", {
-        headers: { Foo: "bar" },
+      const json = await fetchPath({
+        service: Service.CAR,
+        path: "api/path",
+        options: {
+          headers: { Foo: "bar" },
+        },
       })
 
       expect(json).toEqual({ ok: true })
-      expect(fetch).toHaveBeenCalledWith(expect.any(String), {
-        headers: expect.objectContaining({
-          Foo: "bar",
-        }),
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          headers: expect.objectContaining({
+            Foo: "bar",
+          }),
+        })
+      )
+    })
+
+    describe("access token handling", () => {
+      it("does not throw and error when the request is not marked as authorized", async () => {
+        const response = await fetchPath({
+          service: Service.CAR,
+          path: "api/path",
+        })
+        expect(response).toEqual({ ok: true })
+      })
+
+      it("does not add the access token as a header when the request is not marked as authorized", async () => {
+        await fetchPath({
+          service: Service.CAR,
+          path: "api/path",
+          options: {
+            accessToken: "GIMME ACCESS!",
+          },
+        })
+        expect(fetch).toHaveBeenCalledWith(
+          expect.any(String),
+          expect.objectContaining({
+            headers: expect.not.objectContaining({
+              Authorization: "Bearer GIMME ACCESS!",
+            }),
+          })
+        )
+      })
+
+      it("adds the token as a Authorization header to an authenticated request", async () => {
+        await fetchPath({
+          service: Service.CAR,
+          path: "api/path",
+          options: {
+            isAuthorizedRequest: true,
+            accessToken: "GIMME ACCESS!",
+          },
+        })
+
+        expect(fetch).toHaveBeenCalledWith(
+          expect.any(String),
+          expect.objectContaining({
+            headers: expect.objectContaining({
+              Authorization: "Bearer GIMME ACCESS!",
+            }),
+          })
+        )
+      })
+
+      it("throws an error if the token is not passed for an authenticated request", async () => {
+        return fetchPath({
+          service: Service.CAR,
+          path: "api/path",
+          options: {
+            isAuthorizedRequest: true,
+          },
+        }).catch((error) => {
+          expect(error.message).toEqual(
+            "You tried to make an authenticated requests without providing an access token!\n Please pass a valid token as a request option."
+          )
+        })
       })
     })
 
@@ -84,7 +156,10 @@ describe("Base", () => {
       })
 
       it("includes content", async () => {
-        const json = await fetchPath(Service.CAR, "/api/path")
+        const json = await fetchPath({
+          service: Service.CAR,
+          path: "/api/path",
+        })
         expect(json).toEqual([])
       })
     })
@@ -95,12 +170,18 @@ describe("Base", () => {
       })
 
       it("includes pagination separately when content field is returned", async () => {
-        const json = await fetchPath(Service.CAR, "/api/path")
+        const json = await fetchPath({
+          service: Service.CAR,
+          path: "/api/path",
+        })
         expect(json.pagination).toEqual({ totalPages: 3 })
       })
 
       it("includes content separately when content field is returned", async () => {
-        const json = await fetchPath(Service.CAR, "/api/path")
+        const json = await fetchPath({
+          service: Service.CAR,
+          path: "/api/path",
+        })
         expect(json.content).toEqual([])
       })
     })
@@ -112,7 +193,7 @@ describe("Base", () => {
     })
 
     it("sets HTTP method for fetch", async () => {
-      const json = await deletePath(Service.CAR, "api/path")
+      const json = await deletePath({ service: Service.CAR, path: "api/path" })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(
@@ -132,7 +213,11 @@ describe("Base", () => {
     const data = { key: "value" }
 
     it("sets body and HTTP method for fetch", async () => {
-      const json = await postData(Service.CAR, "api/path", data)
+      const json = await postData({
+        service: Service.CAR,
+        path: "api/path",
+        body: data,
+      })
 
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(
@@ -153,8 +238,11 @@ describe("Base", () => {
     const data = { key: "value" }
 
     it("sets body and HTTP method for fetch", async () => {
-      const json = await putData(Service.CAR, "api/path", data)
-
+      const json = await putData({
+        service: Service.CAR,
+        path: "api/path",
+        body: data,
+      })
       expect(json).toEqual({ ok: true })
       expect(fetch).toHaveBeenCalledWith(
         expect.any(String),

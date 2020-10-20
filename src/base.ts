@@ -16,7 +16,6 @@ export enum Service {
   OPTION = "OPTION",
   ANALYTICS = "ANALYTICS",
   USER_NOTIFICATION = "USER_NOTIFICATION",
-  TOKEN_REFRESH = "TOKEN_REFRESH",
 }
 
 const stripLeadingSlash = (path: string): string => {
@@ -65,9 +64,6 @@ export const resolveServiceUrl = (service: Service): string => {
     case Service.USER_NOTIFICATION:
       url = apiClient.configuration.userNotificationServiceUrl
       break
-    case Service.TOKEN_REFRESH:
-      url = apiClient.configuration.tokenRefreshServiceUrl
-      break
     default:
       throw new Error(`Tried to resolve url of unknown service "${service}"`)
   }
@@ -79,38 +75,68 @@ export const resolveServiceUrl = (service: Service): string => {
   throw new Error(`Missing endpoint configuration for "${service}" service`)
 }
 
-const authorizationHeader = () => {
-  if (!apiClient.tokens.accessToken) {
-    return null
+const getAuthorizationHeader = (accessToken = null) => {
+  if (!accessToken) {
+    throw new Error(
+      "You tried to make an authenticated requests without providing an access token!\n Please pass a valid token as a request option."
+    )
   }
 
-  return `Bearer ${apiClient.tokens.accessToken}`
+  return { Authorization: `Bearer ${accessToken}` }
 }
 
-export const fetchPath = async (
-  service: Service,
-  path: string,
-  options = {}
-) => {
-  const prefix = resolveServiceUrl(service)
-  const url = `${prefix}/${stripLeadingSlash(path)}`
+export interface RequestOptions {
+  isAuthorizedRequest?: boolean
+  accessToken?: string
+  method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
+  headers?: HeadersInit
+}
 
-  if (apiClient.configuration.debug) {
-    // eslint-disable-next-line no-console
-    console.info(`    >> API #fetchPath: ${url}`, options)
-  }
-
-  const { headers, ...otherOptions } = { headers: {}, ...options }
-  const auth = authorizationHeader()
-
-  const response = await fetch(url, {
+export const fetchPath = async ({
+  service,
+  path,
+  body,
+  options = {},
+}: {
+  service: Service
+  path: string
+  body?: string
+  options?: RequestOptions
+}) => {
+  const defaultOptions: RequestOptions = {
+    isAuthorizedRequest: false,
+    accessToken: null,
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
       Accept: `application/vnd.carforyou.${apiClient.version}+json`,
-      ...(auth ? { Authorization: auth } : {}),
-      ...headers,
+      ...(options.isAuthorizedRequest
+        ? getAuthorizationHeader(options.accessToken)
+        : {}),
     },
-    ...otherOptions,
+  }
+  const mergedOptions: RequestOptions = {
+    ...defaultOptions,
+    ...options,
+    headers: {
+      ...defaultOptions.headers,
+      ...(options.headers ? options.headers : {}),
+    },
+  }
+
+  const baseUrl = resolveServiceUrl(service)
+  const url = `${baseUrl}/${stripLeadingSlash(path)}`
+
+  if (apiClient.configuration.debug) {
+    // eslint-disable-next-line no-console
+    console.info(`    >> API #fetchPath: ${url}`, mergedOptions)
+  }
+
+  const { headers, method } = mergedOptions
+  const response = await fetch(url, {
+    headers,
+    method,
+    body,
   })
 
   if (!response.ok) {
@@ -132,36 +158,62 @@ export const fetchPath = async (
   }
 }
 
-export const postData = async (
-  service: Service,
-  path: string,
+export const postData = async ({
+  service,
+  path,
+  body,
+  options = {},
+}: {
+  service: Service
+  path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
-  body: object,
-  headers = {}
-) => {
-  return fetchPath(service, path, {
-    method: "POST",
+  body: object
+  options?: RequestOptions
+}) => {
+  return fetchPath({
+    service,
+    path,
     body: JSON.stringify(body),
-    headers,
+    options: {
+      method: "POST",
+      ...options,
+    },
   })
 }
 
-export const putData = async (
-  service: Service,
-  path: string,
+export const putData = async ({
+  service,
+  path,
+  body,
+  options = {},
+}: {
+  service: Service
+  path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
-  body: object,
-  headers = {}
-) => {
-  return fetchPath(service, path, {
-    method: "PUT",
+  body: object
+  options?: RequestOptions
+}) => {
+  return fetchPath({
+    service,
+    path,
     body: JSON.stringify(body),
-    headers,
+    options: {
+      method: "PUT",
+      ...options,
+    },
   })
 }
 
-export const deletePath = async (service: Service, path: string) => {
-  return fetchPath(service, path, { method: "DELETE" })
+export const deletePath = async ({
+  service,
+  path,
+  options = {},
+}: {
+  service: Service
+  path: string
+  options?: RequestOptions
+}) => {
+  return fetchPath({ service, path, options: { method: "DELETE", ...options } })
 }
 
 export const handleValidationError = async (

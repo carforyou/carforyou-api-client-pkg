@@ -8,12 +8,14 @@ const wrappedFetchLeasingFormUrl = async (
   { recaptchaToken = null } = {}
 ): Promise<WithValidationError<{ url: string }>> => {
   try {
-    const result = await postData(
-      Service.CAR,
-      `listings/${listingId}/leasing/generate-provider-form-url`,
-      { language: locale },
-      recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
-    )
+    const result = await postData({
+      service: Service.CAR,
+      path: `listings/${listingId}/leasing/generate-provider-form-url`,
+      body: { language: locale },
+      options: {
+        headers: recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {},
+      },
+    })
 
     return {
       tag: "success",
@@ -57,12 +59,14 @@ export const sendLeasingInterest = async (
   }`
 
   try {
-    await postData(
-      Service.CAR,
+    await postData({
+      service: Service.CAR,
       path,
-      leasingInterest,
-      recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}
-    )
+      body: leasingInterest,
+      options: {
+        headers: recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {},
+      },
+    })
 
     return {
       tag: "success",
