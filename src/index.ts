@@ -213,8 +213,8 @@ export {
 } from "./services/product"
 
 export {
-  fetchSavedSearches,
-  fetchSavedSearch,
+  fetchDealerSavedSearches,
+  fetchDealerSavedSearch,
   putDealerSavedSearch,
   postDealerSavedSearch,
   deleteDealerSavedSearch,

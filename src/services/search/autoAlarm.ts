@@ -13,7 +13,7 @@ import { DealerSavedSearch } from "../../types/models/autoAlarm"
 import { WithValidationError } from "../../types/withValidationError"
 import { withTokenRefresh } from "../../tokenRefresh"
 
-export const fetchSavedSearches = async ({
+export const fetchDealerSavedSearches = async ({
   dealerId,
   page,
   size,
@@ -44,7 +44,7 @@ export const fetchSavedSearches = async ({
   })
 }
 
-export const fetchSavedSearch = async ({
+export const fetchDealerSavedSearch = async ({
   dealerId,
   savedSearchId,
   options = {},
