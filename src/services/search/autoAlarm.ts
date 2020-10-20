@@ -24,23 +24,14 @@ export const fetchDealerSavedSearches = async ({
   size?: number
   options?: ApiCallOptions
 }): Promise<Paginated<DealerSavedSearch>> => {
-  return withTokenRefresh(async () => {
+  return withTokenRefresh(() => {
     const query = toQueryString({ page, size })
-    try {
-      const result = await fetchPath({
-        path: `dealers/${dealerId}/listing-saved-searches/auto-alarms${
-          query ? `?${query}` : ""
-        }`,
-        options,
-      })
-
-      return {
-        tag: "success",
-        ...result,
-      }
-    } catch (error) {
-      return handleValidationError(error, { swallowErrors: true })
-    }
+    return fetchPath({
+      path: `dealers/${dealerId}/listing-saved-searches/auto-alarms${
+        query ? `?${query}` : ""
+      }`,
+      options,
+    })
   })
 }
 
@@ -53,20 +44,11 @@ export const fetchDealerSavedSearch = async ({
   savedSearchId: string
   options?: ApiCallOptions
 }): Promise<DealerSavedSearch> => {
-  return withTokenRefresh(async () => {
-    try {
-      const result = await fetchPath({
-        path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
-        options,
-      })
-
-      return {
-        tag: "success",
-        ...result,
-      }
-    } catch (error) {
-      return handleValidationError(error, { swallowErrors: true })
-    }
+  return withTokenRefresh(() => {
+    return fetchPath({
+      path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
+      options,
+    })
   })
 }
 
@@ -83,7 +65,7 @@ export const putDealerSavedSearch = async ({
 }): Promise<WithValidationError<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
-      const result = await putData({
+      await putData({
         path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
         body: savedSearch,
         options,
@@ -91,8 +73,7 @@ export const putDealerSavedSearch = async ({
 
       return {
         tag: "success",
-        result,
-        savedSearch,
+        result: savedSearch,
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
@@ -111,7 +92,7 @@ export const postDealerSavedSearch = async ({
 }): Promise<WithValidationError<DealerSavedSearch>> => {
   return withTokenRefresh(async () => {
     try {
-      const result = await postData({
+      await postData({
         path: `dealers/${dealerId}/listing-saved-searches/auto-alarms`,
         body: savedSearch,
         options,
@@ -119,8 +100,7 @@ export const postDealerSavedSearch = async ({
 
       return {
         tag: "success",
-        result,
-        savedSearch,
+        result: savedSearch,
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
@@ -139,14 +119,14 @@ export const deleteDealerSavedSearch = async ({
 }): Promise<WithValidationError> => {
   return withTokenRefresh(async () => {
     try {
-      const result = deletePath({
+      await deletePath({
         path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
         options,
       })
 
       return {
         tag: "success",
-        result,
+        result: {},
       }
     } catch (error) {
       return handleValidationError(error, { swallowErrors: true })
