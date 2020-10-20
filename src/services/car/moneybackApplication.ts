@@ -10,7 +10,7 @@ export const sendMoneybackApplication = async ({
 }: {
   listingId: number
   moneybackApplication: MoneybackApplication
-  options: ApiCallOptions & {
+  options?: ApiCallOptions & {
     validateOnly?: boolean
     validateFields?: string[]
   }
