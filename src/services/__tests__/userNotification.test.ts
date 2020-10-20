@@ -1,4 +1,4 @@
-import { sendSavedSearch } from "../userNotification"
+import { deleteSavedSearch, sendSavedSearch } from "../userNotification"
 
 describe("USER_NOTIFICATION service", () => {
   beforeEach(fetchMock.resetMocks)
@@ -61,6 +61,26 @@ describe("USER_NOTIFICATION service", () => {
           }),
         })
       )
+    })
+  })
+
+  describe("#deleteSavedSearch", () => {
+    it("deletes saved search", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await deleteSavedSearch({ key: "qwertyuiop" })
+      expect(response.tag).toEqual("success")
+      expect(fetch).toBeCalledWith(
+        expect.stringContaining("/saved-searches/key/qwertyuiop"),
+        expect.objectContaining({ method: "DELETE" })
+      )
+    })
+
+    it("handles response errors", async () => {
+      fetchMock.mockResponses([null, { status: 404 }])
+
+      const response = await deleteSavedSearch({ key: "qwertyuiop" })
+      expect(response.tag).toEqual("error")
     })
   })
 })
