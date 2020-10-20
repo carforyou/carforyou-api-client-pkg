@@ -34,9 +34,9 @@ describe("ApiClient", () => {
 
   describe("#getConfiguration", () => {
     it("returns the configuration", () => {
-      ApiClient.configure({ carServiceUrl: "dummy" })
+      ApiClient.configure({ host: "dummy" })
       expect(ApiClient.getConfiguration()).toEqual({
-        carServiceUrl: "dummy",
+        host: "dummy",
         configured: true,
         version: "v1",
       })
