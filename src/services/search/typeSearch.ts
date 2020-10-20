@@ -58,7 +58,10 @@ export const fetchTypes = async ({
           size: sizeOrDefault,
         },
       },
-      options,
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
     })
     return {
       tag: "success",
@@ -85,7 +88,10 @@ export const fetchTypeFacets = async ({
         query: sanitizeQuery(query),
         fields,
       },
-      options,
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
     })
 
     return {

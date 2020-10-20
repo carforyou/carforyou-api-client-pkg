@@ -1,8 +1,7 @@
-import apiClient, {
-  Handlers,
-  Tokens,
-  ApiClientConfiguration,
-} from "./apiClient"
+import apiClient from "./apiClient"
+export { apiClient as ApiClient }
+
+export { ApiCallOptions } from "./base"
 
 export {
   Make,
@@ -238,18 +237,3 @@ export {
 export { default as PaginatedFactory } from "./lib/factories/paginated"
 export { Options as OptionsFactory } from "./lib/factories/options"
 export { withRetries } from "./lib/withRetries"
-
-export const ApiClient = {
-  configure: (configuration: ApiClientConfiguration) =>
-    apiClient.configure(configuration),
-  setHandlers: (handlers: Handlers) => apiClient.setHandlers(handlers),
-  setTokens: (tokens: Tokens) => apiClient.setTokens(tokens),
-  getConfiguration: () => {
-    const configuration = apiClient.configuration
-    return {
-      ...configuration,
-      configured: Object.keys(configuration).length > 0,
-      version: apiClient.version,
-    }
-  },
-}

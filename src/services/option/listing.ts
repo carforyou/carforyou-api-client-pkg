@@ -4,7 +4,6 @@ import {
   putData,
   ApiCallOptions,
 } from "../../base"
-import { withTokenRefresh } from "../../tokenRefresh"
 
 import { Language } from "../../types/params"
 import { Options } from "../../types/models"
@@ -35,12 +34,13 @@ export const fetchDealerListingOptions = async ({
   listingId: number
   options?: ApiCallOptions
 }): Promise<Options> => {
-  return withTokenRefresh(() =>
-    fetchPath({
-      path: `dealers/${dealerId}/listings/${listingId}/options`,
-      options,
-    })
-  )
+  return fetchPath({
+    path: `dealers/${dealerId}/listings/${listingId}/options`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
 }
 
 export const saveDealerListingOptions = async ({
@@ -54,27 +54,28 @@ export const saveDealerListingOptions = async ({
 }): Promise<WithValidationError<Listing>> => {
   const { standardOptions, additionalOptions, id } = listing
 
-  return withTokenRefresh(async () => {
-    try {
-      await putData({
-        path: `dealers/${dealerId}/listings/${id}/options`,
-        body: {
-          standardOptions: standardOptions.map((optionId) => ({
-            id: optionId,
-          })),
-          additionalOptions: additionalOptions.map((optionId) => ({
-            id: optionId,
-          })),
-        },
-        options,
-      })
-    } catch (error) {
-      return handleValidationError(error)
-    }
+  try {
+    await putData({
+      path: `dealers/${dealerId}/listings/${id}/options`,
+      body: {
+        standardOptions: standardOptions.map((optionId) => ({
+          id: optionId,
+        })),
+        additionalOptions: additionalOptions.map((optionId) => ({
+          id: optionId,
+        })),
+      },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
 
-    return {
-      tag: "success",
-      result: listing,
-    }
-  })
+  return {
+    tag: "success",
+    result: listing,
+  }
 }

@@ -35,6 +35,7 @@ describe("Auto alarm", () => {
       const data = await fetchDealerSavedSearch({
         dealerId: 123,
         savedSearchId: "qwertyuiop",
+        options: { accessToken: "TOKEN" },
       })
       expect(data).toEqual(dealerSavedSearch)
       expect(fetch).toHaveBeenCalled()
@@ -58,19 +59,30 @@ describe("Auto alarm", () => {
     })
 
     it("unwraps content from json", async () => {
-      const data = await fetchDealerSavedSearches({ dealerId: 123 })
+      const data = await fetchDealerSavedSearches({
+        dealerId: 123,
+        options: { accessToken: "TOKEN" },
+      })
 
       expect(data.content).toEqual(content)
     })
 
     it("unwraps pagination from json", async () => {
-      const data = await fetchDealerSavedSearches({ dealerId: 123 })
+      const data = await fetchDealerSavedSearches({
+        dealerId: 123,
+        options: { accessToken: "TOKEN" },
+      })
 
       expect(data.pagination).toEqual(pagination)
     })
 
     it("passes query in query string", async () => {
-      await fetchDealerSavedSearches({ dealerId: 123, page: 5, size: 25 })
+      await fetchDealerSavedSearches({
+        dealerId: 123,
+        page: 5,
+        size: 25,
+        options: { accessToken: "TOKEN" },
+      })
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining(
@@ -90,6 +102,7 @@ describe("Auto alarm", () => {
       const response = await postDealerSavedSearch({
         dealerId: 123,
         savedSearch: dealerSavedSearch,
+        options: { accessToken: "TOKEN" },
       })
       expect(response).toEqual({ tag: "success", result: dealerSavedSearch })
       expect(fetch).toHaveBeenCalledWith(
@@ -116,6 +129,7 @@ describe("Auto alarm", () => {
       const response = await postDealerSavedSearch({
         dealerId: 123,
         savedSearch: dealerSavedSearch,
+        options: { accessToken: "TOKEN" },
       })
       expect(response).toEqual({ tag: "error", message, errors })
       expect(fetch).toHaveBeenCalled()
@@ -132,6 +146,7 @@ describe("Auto alarm", () => {
         dealerId: 123,
         savedSearchId: "test",
         savedSearch: dealerSavedSearch,
+        options: { accessToken: "TOKEN" },
       })
       expect(response).toEqual({ tag: "success", result: dealerSavedSearch })
       expect(fetch).toHaveBeenCalledWith(
@@ -159,6 +174,7 @@ describe("Auto alarm", () => {
         dealerId: 123,
         savedSearchId: "test",
         savedSearch: dealerSavedSearch,
+        options: { accessToken: "TOKEN" },
       })
       expect(response).toEqual({ tag: "error", message, errors })
       expect(fetch).toHaveBeenCalled()
@@ -172,6 +188,7 @@ describe("Auto alarm", () => {
       const response = await deleteDealerSavedSearch({
         dealerId: 123,
         savedSearchId: "test",
+        options: { accessToken: "TOKEN" },
       })
       expect(response).toEqual({ tag: "success", result: {} })
       expect(fetch).toHaveBeenCalledWith(
@@ -188,6 +205,7 @@ describe("Auto alarm", () => {
       const response = await deleteDealerSavedSearch({
         dealerId: 123,
         savedSearchId: "test",
+        options: { accessToken: "TOKEN" },
       })
       expect(response.tag).toEqual("error")
       expect(fetch).toHaveBeenCalled()

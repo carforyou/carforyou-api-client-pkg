@@ -20,8 +20,10 @@ describe("OPTION service", () => {
     it("returns ListingOptions", async () => {
       const fetchedOptions = await fetchTypeOptions({
         typeId: 10,
-        language: "de",
-        productionYear: 1988,
+        query: {
+          language: "de",
+          productionYear: 1988,
+        },
       })
 
       expect(fetch).toHaveBeenCalled()

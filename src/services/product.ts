@@ -8,12 +8,16 @@ import {
 import { WithValidationError } from "../types/withValidationError"
 import { Product, PurchaseAndUseProduct } from "../types/models/product"
 
-import { withTokenRefresh } from "../tokenRefresh"
-
 export const fetchProducts = async ({
   options = {},
 }: { options?: ApiCallOptions } = {}): Promise<Product[]> =>
-  withTokenRefresh(async () => fetchPath({ path: "products", options }))
+  fetchPath({
+    path: "products",
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
 
 export const purchaseAndUseListingProduct = async ({
   dealerId,
@@ -26,23 +30,24 @@ export const purchaseAndUseListingProduct = async ({
   productId: number
   options?: ApiCallOptions
 }): Promise<WithValidationError<PurchaseAndUseProduct>> => {
-  return withTokenRefresh(async () => {
-    try {
-      const result = await postData({
-        path: `dealers/${dealerId}/listings/${listingId}/products/purchase-and-use`,
-        body: {
-          productId,
-        },
-        options,
-      })
-      return {
-        tag: "success",
-        result,
-      }
-    } catch (error) {
-      return handleValidationError(error)
+  try {
+    const result = await postData({
+      path: `dealers/${dealerId}/listings/${listingId}/products/purchase-and-use`,
+      body: {
+        productId,
+      },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+    return {
+      tag: "success",
+      result,
     }
-  })
+  } catch (error) {
+    return handleValidationError(error)
+  }
 }
 
 export const purchaseAndUseDealerProduct = async ({
@@ -56,22 +61,23 @@ export const purchaseAndUseDealerProduct = async ({
   startDate: string
   options?: ApiCallOptions
 }): Promise<WithValidationError<PurchaseAndUseProduct>> => {
-  return withTokenRefresh(async () => {
-    try {
-      const result = await postData({
-        path: `dealers/${dealerId}/products/purchase-and-use`,
-        body: {
-          productId,
-          startDate,
-        },
-        options,
-      })
-      return {
-        tag: "success",
-        result,
-      }
-    } catch (error) {
-      return handleValidationError(error)
+  try {
+    const result = await postData({
+      path: `dealers/${dealerId}/products/purchase-and-use`,
+      body: {
+        productId,
+        startDate,
+      },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+    return {
+      tag: "success",
+      result,
     }
-  })
+  } catch (error) {
+    return handleValidationError(error)
+  }
 }

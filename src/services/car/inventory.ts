@@ -5,7 +5,6 @@ import {
   handleValidationError,
   ApiCallOptions,
 } from "../../base"
-import { withTokenRefresh } from "../../tokenRefresh"
 
 import { Paginated } from "../../types/pagination"
 import { WithValidationError } from "../../types/withValidationError"
@@ -62,15 +61,16 @@ export const fetchDealerListingsCount = async ({
   query?: DealerListingQueryParams
   options?: ApiCallOptions
 }): Promise<number> => {
-  return withTokenRefresh(async () => {
-    const { count } = await fetchPath({
-      path: `dealers/${dealerId}/listings/count${
-        Object.keys(query).length > 0 ? "?" + toQueryString(query) : null
-      }`,
-      options,
-    })
-    return count
+  const { count } = await fetchPath({
+    path: `dealers/${dealerId}/listings/count${
+      Object.keys(query).length > 0 ? "?" + toQueryString(query) : null
+    }`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
+  return count
 }
 
 export const defaultPagination = {
@@ -111,16 +111,17 @@ export const fetchDealerListings = async ({
     ...rest,
   }
 
-  const { content, ...response } = await withTokenRefresh(() =>
-    fetchPath({
-      path: `dealers/${dealerId}/listings${
-        Object.keys(queryParams).length > 0
-          ? "?" + toQueryString(queryParams)
-          : null
-      }`,
-      options,
-    })
-  )
+  const { content, ...response } = await fetchPath({
+    path: `dealers/${dealerId}/listings${
+      Object.keys(queryParams).length > 0
+        ? "?" + toQueryString(queryParams)
+        : null
+    }`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
 
   return {
     ...response,
@@ -137,9 +138,13 @@ export const fetchDealerListing = async ({
   listingId: number
   options?: ApiCallOptions
 }): Promise<Listing> => {
-  const listing = await withTokenRefresh(() =>
-    fetchPath({ path: `dealers/${dealerId}/listings/${listingId}`, options })
-  )
+  const listing = await fetchPath({
+    path: `dealers/${dealerId}/listings/${listingId}`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
 
   return sanitizeListing(listing)
 }
@@ -188,22 +193,23 @@ export const validateDealerListing = async ({
   const { validationEndpoint, ...otherOptions } = options
   const data = prepareListingData(listing)
 
-  return withTokenRefresh(async () => {
-    try {
-      await postData({
-        path: validationPathForListing(dealerId, listing, validationEndpoint),
-        body: data,
-        options: otherOptions,
-      })
-    } catch (error) {
-      return handleValidationError(error)
-    }
+  try {
+    await postData({
+      path: validationPathForListing(dealerId, listing, validationEndpoint),
+      body: data,
+      options: {
+        isAuthorizedRequest: true,
+        ...otherOptions,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
 
-    return {
-      tag: "success",
-      result: listing,
-    }
-  })
+  return {
+    tag: "success",
+    result: listing,
+  }
 }
 
 export const saveDealerListing = async ({
@@ -218,33 +224,34 @@ export const saveDealerListing = async ({
   const { id } = listing
   const data = prepareListingData(listing)
 
-  return withTokenRefresh(async () => {
-    try {
-      let result
-      if (id) {
-        await putData({
-          path: `dealers/${dealerId}/listings/${id}`,
-          body: data,
-          options,
-        })
+  try {
+    let result
+    if (id) {
+      await putData({
+        path: `dealers/${dealerId}/listings/${id}`,
+        body: data,
+        options,
+      })
 
-        result = { id }
-      } else {
-        result = await postData({
-          path: `dealers/${dealerId}/listings`,
-          body: data,
-          options,
-        })
-      }
-
-      return {
-        tag: "success",
-        result: { ...listing, ...result },
-      }
-    } catch (error) {
-      return handleValidationError(error)
+      result = { id }
+    } else {
+      result = await postData({
+        path: `dealers/${dealerId}/listings`,
+        body: data,
+        options: {
+          isAuthorizedRequest: true,
+          ...options,
+        },
+      })
     }
-  })
+
+    return {
+      tag: "success",
+      result: { ...listing, ...result },
+    }
+  } catch (error) {
+    return handleValidationError(error)
+  }
 }
 
 export const publishDealerListing = async ({
@@ -258,22 +265,23 @@ export const publishDealerListing = async ({
 }): Promise<WithValidationError<Listing>> => {
   const { id } = listing
 
-  return withTokenRefresh(async () => {
-    try {
-      await postData({
-        path: `dealers/${dealerId}/listings/${id}/publish`,
-        body: {},
-        options,
-      })
-    } catch (error) {
-      return handleValidationError(error)
-    }
+  try {
+    await postData({
+      path: `dealers/${dealerId}/listings/${id}/publish`,
+      body: {},
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
 
-    return {
-      tag: "success",
-      result: listing,
-    }
-  })
+  return {
+    tag: "success",
+    result: listing,
+  }
 }
 
 export const archiveDealerListing = async ({
@@ -285,22 +293,23 @@ export const archiveDealerListing = async ({
   listingId: number
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
-  return withTokenRefresh(async () => {
-    try {
-      await postData({
-        path: `dealers/${dealerId}/listings/${listingId}/archive`,
-        body: {},
-        options,
-      })
-    } catch (error) {
-      return handleValidationError(error)
-    }
+  try {
+    await postData({
+      path: `dealers/${dealerId}/listings/${listingId}/archive`,
+      body: {},
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
 
-    return {
-      tag: "success",
-      result: {},
-    }
-  })
+  return {
+    tag: "success",
+    result: {},
+  }
 }
 
 export const unpublishDealerListing = async ({
@@ -312,22 +321,23 @@ export const unpublishDealerListing = async ({
   dealerId: number
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
-  return withTokenRefresh(async () => {
-    try {
-      await postData({
-        path: `dealers/${dealerId}/listings/${listingId}/unpublish`,
-        body: {},
-        options,
-      })
-    } catch (error) {
-      return handleValidationError(error)
-    }
+  try {
+    await postData({
+      path: `dealers/${dealerId}/listings/${listingId}/unpublish`,
+      body: {},
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
 
-    return {
-      tag: "success",
-      result: {},
-    }
-  })
+  return {
+    tag: "success",
+    result: {},
+  }
 }
 
 export const listingMandatoryFields = async ({
@@ -337,12 +347,13 @@ export const listingMandatoryFields = async ({
   dealerId: number
   options?: ApiCallOptions
 }): Promise<Set<string>> => {
-  return withTokenRefresh(async () => {
-    const data = await fetchPath({
-      path: `dealers/${dealerId}/listings/publish/mandatory-fields`,
-      options,
-    })
-
-    return new Set(data.map((entry) => entry.param))
+  const data = await fetchPath({
+    path: `dealers/${dealerId}/listings/publish/mandatory-fields`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
+
+  return new Set(data.map((entry) => entry.param))
 }

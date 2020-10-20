@@ -1,4 +1,4 @@
-import ApiClient from "../apiClient"
+import ApiClient, { Constructor } from "../apiClient"
 
 describe("ApiClient", () => {
   beforeEach(() => {
@@ -7,12 +7,16 @@ describe("ApiClient", () => {
     })
   })
 
+  it("returns a singleton", () => {
+    expect(ApiClient).toEqual(new Constructor())
+  })
+
   it("sets the version", () => {
     expect(ApiClient.version).toEqual("v1")
   })
 
-  describe("configuration", () => {
-    it("can be set", () => {
+  describe("#configure", () => {
+    it("configuration can be set", () => {
       ApiClient.configure({
         host: "api.gateway.test",
       })
@@ -25,6 +29,17 @@ describe("ApiClient", () => {
         ApiClient.configure({ host: "api.gateway.test1" })
         ApiClient.configure({ host: "api.gateway.test2" })
       }).toThrowError("Overwriting API client configuration")
+    })
+  })
+
+  describe("#getConfiguration", () => {
+    it("returns the configuration", () => {
+      ApiClient.configure({ carServiceUrl: "dummy" })
+      expect(ApiClient.getConfiguration()).toEqual({
+        carServiceUrl: "dummy",
+        configured: true,
+        version: "v1",
+      })
     })
   })
 })

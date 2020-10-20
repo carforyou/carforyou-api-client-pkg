@@ -22,7 +22,7 @@ describe("Products service", () => {
     })
 
     it("fetches products", async () => {
-      const data = await fetchProducts()
+      const data = await fetchProducts({ options: { accessToken: "Token" } })
 
       expect(data).toEqual(products)
       expect(fetch).toHaveBeenCalled()
@@ -38,6 +38,7 @@ describe("Products service", () => {
         dealerId: 123,
         listingId: 4,
         productId: 2,
+        options: { accessToken: "Token" },
       })
 
       expect(response).toEqual({
@@ -71,6 +72,7 @@ describe("Products service", () => {
         dealerId: 123,
         listingId: 4,
         productId: 2,
+        options: { accessToken: "Token" },
       })
 
       expect(response).toEqual({
@@ -90,6 +92,7 @@ describe("Products service", () => {
         dealerId: 123,
         productId: 2,
         startDate: "2020-10-11",
+        options: { accessToken: "Token" },
       })
 
       expect(response).toEqual({
@@ -121,6 +124,7 @@ describe("Products service", () => {
         dealerId: 123,
         productId: 2,
         startDate: "",
+        options: { accessToken: "Token" },
       })
 
       expect(response).toEqual({

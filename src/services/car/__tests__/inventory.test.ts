@@ -23,6 +23,9 @@ import { Listing, EmptyListing } from "../../../lib/factories/listing"
 import { encodeDate } from "../../../lib/dateEncoding"
 
 const dealerId = 123
+const requestOptionsMock = {
+  accessToken: "DUMMY TOKEN",
+}
 
 describe("CAR service", () => {
   beforeEach(() => {
@@ -67,7 +70,10 @@ describe("CAR service", () => {
     })
 
     it("unwraps the content from json", async () => {
-      const paginatedListings = await fetchDealerListings({ dealerId })
+      const paginatedListings = await fetchDealerListings({
+        dealerId,
+        options: requestOptionsMock,
+      })
       const listings = paginatedListings.content
 
       expect(listings.length).toEqual(1)
@@ -77,7 +83,10 @@ describe("CAR service", () => {
 
     describe("Pagination", () => {
       it("is unwrapped from json", async () => {
-        const paginatedListings = await fetchDealerListings({ dealerId })
+        const paginatedListings = await fetchDealerListings({
+          dealerId,
+          options: requestOptionsMock,
+        })
 
         expect(paginatedListings.pagination).toEqual(pagination)
         expect(fetch).toHaveBeenCalled()
@@ -87,7 +96,11 @@ describe("CAR service", () => {
     describe("query formatting", () => {
       describe("pagination", () => {
         it("indexes page from 0", async () => {
-          await fetchDealerListings({ dealerId, query: { page: 5 } })
+          await fetchDealerListings({
+            dealerId,
+            query: { page: 5 },
+            options: requestOptionsMock,
+          })
 
           expect(fetchMock).toHaveBeenCalledWith(
             expect.stringMatching(
@@ -103,6 +116,7 @@ describe("CAR service", () => {
             query: {
               size: 10,
             },
+            options: requestOptionsMock,
           })
 
           expect(fetchMock).toHaveBeenCalledWith(
@@ -114,7 +128,11 @@ describe("CAR service", () => {
         })
 
         it("defaults `size` to 25 when it's not provided", async () => {
-          await fetchDealerListings({ dealerId, query: { page: 5 } })
+          await fetchDealerListings({
+            dealerId,
+            query: { page: 5 },
+            options: requestOptionsMock,
+          })
 
           expect(fetchMock).toHaveBeenCalledWith(
             expect.stringMatching(
@@ -133,6 +151,7 @@ describe("CAR service", () => {
               sortType: DealerListingSortTypeParams.CREATED_DATE,
               sortOrder: DealerListingSortOrderParams.ASC,
             },
+            options: requestOptionsMock,
           })
 
           expect(fetchMock).toHaveBeenCalledWith(
@@ -146,7 +165,7 @@ describe("CAR service", () => {
         })
 
         it("defaults to sorting by creation date, descending", async () => {
-          await fetchDealerListings({ dealerId })
+          await fetchDealerListings({ dealerId, options: requestOptionsMock })
 
           expect(fetchMock).toHaveBeenCalledWith(
             expect.stringMatching(
@@ -180,7 +199,10 @@ describe("CAR service", () => {
       const count = 400
       fetchMock.mockResponse(JSON.stringify({ count }))
 
-      const response = await fetchDealerListingsCount({ dealerId: 123 })
+      const response = await fetchDealerListingsCount({
+        dealerId: 123,
+        options: requestOptionsMock,
+      })
       expect(response).toEqual(count)
       expect(fetch).toHaveBeenCalled()
     })
@@ -189,7 +211,11 @@ describe("CAR service", () => {
       const query = { isActive: true }
       fetchMock.mockResponse(JSON.stringify({ count: 40 }))
 
-      await fetchDealerListingsCount({ dealerId: 123, query })
+      await fetchDealerListingsCount({
+        dealerId: 123,
+        query,
+        options: requestOptionsMock,
+      })
       expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining("/dealers/123/listings/count?isActive=true"),
         expect.any(Object)
@@ -209,7 +235,10 @@ describe("CAR service", () => {
         await validateDealerListing({
           dealerId,
           listing,
-          options: { validationEndpoint: ListingValidationEndpoint.draft },
+          options: {
+            validationEndpoint: ListingValidationEndpoint.draft,
+            ...requestOptionsMock,
+          },
         })
 
         expect(fetchMock).toHaveBeenCalledWith(
@@ -225,7 +254,10 @@ describe("CAR service", () => {
         await validateDealerListing({
           dealerId,
           listing,
-          options: { validationEndpoint: ListingValidationEndpoint.publish },
+          options: {
+            validationEndpoint: ListingValidationEndpoint.publish,
+            ...requestOptionsMock,
+          },
         })
 
         expect(fetchMock).toHaveBeenCalledWith(
@@ -249,7 +281,10 @@ describe("CAR service", () => {
         const result = await validateDealerListing({
           dealerId,
           listing,
-          options: { validationEndpoint: ListingValidationEndpoint.publish },
+          options: {
+            validationEndpoint: ListingValidationEndpoint.publish,
+            ...requestOptionsMock,
+          },
         })
 
         expect(result).toEqual({
@@ -277,7 +312,10 @@ describe("CAR service", () => {
         const result = await validateDealerListing({
           dealerId,
           listing,
-          options: { validationEndpoint: ListingValidationEndpoint.publish },
+          options: {
+            validationEndpoint: ListingValidationEndpoint.publish,
+            ...requestOptionsMock,
+          },
         })
 
         expect(result).toEqual({
@@ -301,6 +339,7 @@ describe("CAR service", () => {
         await saveDealerListing({
           dealerId: 1234,
           listing,
+          options: requestOptionsMock,
         })
 
         expect(fetchMock).toHaveBeenCalledWith(
@@ -313,6 +352,7 @@ describe("CAR service", () => {
         const result = await saveDealerListing({
           dealerId: 1234,
           listing,
+          options: requestOptionsMock,
         })
 
         expect(result).toEqual({
@@ -333,6 +373,7 @@ describe("CAR service", () => {
         await saveDealerListing({
           dealerId: 1234,
           listing,
+          options: requestOptionsMock,
         })
 
         expect(fetchMock).toHaveBeenCalledWith(
@@ -345,6 +386,7 @@ describe("CAR service", () => {
         const result = await saveDealerListing({
           dealerId: 1234,
           listing,
+          options: requestOptionsMock,
         })
 
         expect(result).toEqual({ tag: "success", result: listing })
@@ -358,7 +400,11 @@ describe("CAR service", () => {
     it("publishes and returns the listing", async () => {
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
 
-      const response = await publishDealerListing({ dealerId: 6, listing })
+      const response = await publishDealerListing({
+        dealerId: 6,
+        listing,
+        options: requestOptionsMock,
+      })
       expect(response).toEqual({ tag: "success", result: listing })
       expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining("/dealers/6/listings/123/publish"),
@@ -374,7 +420,11 @@ describe("CAR service", () => {
         { status: 400 },
       ])
 
-      const response = await publishDealerListing({ dealerId: 6, listing })
+      const response = await publishDealerListing({
+        dealerId: 6,
+        listing,
+        options: requestOptionsMock,
+      })
       expect(response).toEqual({ tag: "error", message, errors })
     })
   })
@@ -386,6 +436,7 @@ describe("CAR service", () => {
       const response = await archiveDealerListing({
         dealerId: 6,
         listingId: 123,
+        options: requestOptionsMock,
       })
       expect(response).toEqual({ tag: "success", result: {} })
       expect(fetch).toHaveBeenCalledWith(
@@ -405,6 +456,7 @@ describe("CAR service", () => {
       const response = await archiveDealerListing({
         dealerId: 6,
         listingId: 123,
+        options: requestOptionsMock,
       })
       expect(response).toEqual({ tag: "error", message, errors })
     })
@@ -417,6 +469,7 @@ describe("CAR service", () => {
       const response = await unpublishDealerListing({
         dealerId: 6,
         listingId: 123,
+        options: requestOptionsMock,
       })
       expect(response).toEqual({ tag: "success", result: {} })
       expect(fetch).toHaveBeenCalledWith(
@@ -436,6 +489,7 @@ describe("CAR service", () => {
       const response = await unpublishDealerListing({
         dealerId: 6,
         listingId: 123,
+        options: requestOptionsMock,
       })
       expect(response).toEqual({ tag: "error", message, errors })
     })
@@ -450,7 +504,10 @@ describe("CAR service", () => {
         )
       )
 
-      const data = await listingMandatoryFields({ dealerId: 123 })
+      const data = await listingMandatoryFields({
+        dealerId: 123,
+        options: requestOptionsMock,
+      })
       expect(data).toEqual(new Set(fields))
     })
   })

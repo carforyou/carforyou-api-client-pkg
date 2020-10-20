@@ -16,7 +16,10 @@ export const fetchAnalyticsData = async ({
     body: {
       id: listingIds,
     },
-    options,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
 }
 
@@ -38,7 +41,10 @@ export const fetchLeadsAnalytics = async ({
       dimensions,
       query,
     },
-    options,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
 }
 
@@ -57,6 +63,9 @@ export const fetchListingsAnalytics = async ({
       function: "count",
       dimensions,
     },
-    options,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
 }

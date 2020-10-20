@@ -12,7 +12,6 @@ import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 import { DealerProfile } from "../types/models/dealerProfile"
 import { DealerPromotion } from "../types/models/dealerPromotion"
 import { WithValidationError } from "../types/withValidationError"
-import { withTokenRefresh } from "../tokenRefresh"
 
 import toQueryString from "../lib/toQueryString"
 
@@ -52,12 +51,13 @@ export const fetchDealerProfile = async ({
   dealerId: number
   options?: ApiCallOptions
 }): Promise<DealerProfile> =>
-  withTokenRefresh(async () =>
-    fetchPath({
-      path: `dealers/${dealerId}/profile`,
-      options,
-    })
-  )
+  fetchPath({
+    path: `dealers/${dealerId}/profile`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
 
 export const postDealerProfile = async ({
   profile,
@@ -66,22 +66,23 @@ export const postDealerProfile = async ({
   profile: Omit<DealerProfile, "id" | "dealerSourceGroup" | "dealerType">
   options?: ApiCallOptions
 }): Promise<WithValidationError<{ id: number }>> => {
-  return withTokenRefresh(async () => {
-    try {
-      const result = await postData({
-        path: `dealers/profile`,
-        body: profile,
-        options,
-      })
+  try {
+    const result = await postData({
+      path: `dealers/profile`,
+      body: profile,
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
 
-      return {
-        tag: "success",
-        result,
-      }
-    } catch (error) {
-      return handleValidationError(error, { swallowErrors: true })
+    return {
+      tag: "success",
+      result,
     }
-  })
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
 }
 
 export const putDealerProfile = async ({
@@ -93,22 +94,23 @@ export const putDealerProfile = async ({
   profile: DealerProfile
   options?: ApiCallOptions
 }): Promise<WithValidationError<DealerProfile>> => {
-  return withTokenRefresh(async () => {
-    try {
-      const result = await putData({
-        path: `dealers/${dealerId}/profile`,
-        body: profile,
-        options,
-      })
+  try {
+    const result = await putData({
+      path: `dealers/${dealerId}/profile`,
+      body: profile,
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
 
-      return {
-        tag: "success",
-        result: { ...profile, ...result },
-      }
-    } catch (error) {
-      return handleValidationError(error, { swallowErrors: true })
+    return {
+      tag: "success",
+      result: { ...profile, ...result },
     }
-  })
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
 }
 
 export const fetchDealerEntitlements = async ({
@@ -118,9 +120,13 @@ export const fetchDealerEntitlements = async ({
   dealerId: number
   options?: ApiCallOptions
 }): Promise<Entitlements> =>
-  withTokenRefresh(async () =>
-    fetchPath({ path: `dealers/${dealerId}/entitlements`, options })
-  )
+  fetchPath({
+    path: `dealers/${dealerId}/entitlements`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
 
 export const fetchDealerPromotion = async ({
   dealerId,
@@ -129,9 +135,13 @@ export const fetchDealerPromotion = async ({
   dealerId: number
   options?: ApiCallOptions
 }): Promise<DealerPromotion> =>
-  withTokenRefresh(async () =>
-    fetchPath({ path: `dealers/${dealerId}/promotion`, options })
-  )
+  fetchPath({
+    path: `dealers/${dealerId}/promotion`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
 
 export const postDealerPromotion = async ({
   dealerId,
@@ -142,22 +152,23 @@ export const postDealerPromotion = async ({
   promotion: DealerPromotion
   options?: ApiCallOptions
 }): Promise<WithValidationError<DealerPromotion>> => {
-  return withTokenRefresh(async () => {
-    try {
-      const result = await postData({
-        path: `dealers/${dealerId}/promotion`,
-        body: promotion,
-        options,
-      })
+  try {
+    const result = await postData({
+      path: `dealers/${dealerId}/promotion`,
+      body: promotion,
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
 
-      return {
-        tag: "success",
-        result: { ...promotion, ...result },
-      }
-    } catch (error) {
-      return handleValidationError(error, { swallowErrors: true })
+    return {
+      tag: "success",
+      result: { ...promotion, ...result },
     }
-  })
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
 }
 
 export const putDealerPromotion = async ({
@@ -169,20 +180,21 @@ export const putDealerPromotion = async ({
   promotion: DealerPromotion
   options?: ApiCallOptions
 }): Promise<WithValidationError<DealerPromotion>> => {
-  return withTokenRefresh(async () => {
-    try {
-      const result = await putData({
-        path: `dealers/${dealerId}/promotion`,
-        body: promotion,
-        options,
-      })
+  try {
+    const result = await putData({
+      path: `dealers/${dealerId}/promotion`,
+      body: promotion,
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
 
-      return {
-        tag: "success",
-        result: { ...promotion, ...result },
-      }
-    } catch (error) {
-      return handleValidationError(error, { swallowErrors: true })
+    return {
+      tag: "success",
+      result: { ...promotion, ...result },
     }
-  })
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
 }

@@ -1,35 +1,26 @@
 export interface ApiClientConfiguration {
   host: string
-  tokenRefreshServiceUrl?: string
   debug?: boolean
 }
 
 interface ApiClientConfig {
   host?: string
-  tokenRefreshServiceUrl?: string
   debug?: boolean
 }
 
-export interface Tokens {
-  accessToken?: string
-  refreshToken?: string
-}
-
-export interface Handlers {
-  onAccessTokenUpdate?: (token: string) => void
-  onFailedTokenRefresh?: () => void
-}
-
 class ApiClient {
-  static instance: ApiClient
+  private static instance: ApiClient
 
-  configuration: ApiClientConfig = {}
-  tokens: Tokens = {}
-  handlers: Handlers = {}
-  version = "v1"
+  configuration: ApiClientConfig
+  version: string
 
   constructor() {
+    if (ApiClient.instance) return ApiClient.instance
+
+    this.configuration = {}
+    this.version = "v1"
     ApiClient.instance = this
+    return ApiClient.instance
   }
 
   public configure(configuration: ApiClientConfiguration): void {
@@ -42,18 +33,14 @@ class ApiClient {
     })
   }
 
-  public setTokens(tokens: Tokens): void {
-    this.tokens.accessToken = tokens.accessToken
-    this.tokens.refreshToken = tokens.refreshToken
-  }
-
-  public setHandlers(handlers: Handlers): void {
-    this.handlers.onAccessTokenUpdate = handlers.onAccessTokenUpdate
-    this.handlers.onFailedTokenRefresh = handlers.onFailedTokenRefresh
+  public getConfiguration() {
+    return {
+      ...this.configuration,
+      configured: Object.keys(this.configuration).length > 0,
+      version: this.version,
+    }
   }
 }
 
-const instance = new ApiClient()
-Object.freeze(instance)
-
-export default instance
+export default new ApiClient()
+export const Constructor = ApiClient

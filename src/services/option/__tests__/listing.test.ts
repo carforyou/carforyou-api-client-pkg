@@ -51,6 +51,7 @@ describe("OPTION service", () => {
       const fetchedOptions = await fetchDealerListingOptions({
         listingId: 10,
         dealerId: 123,
+        options: { accessToken: "TOKEN" },
       })
 
       expect(fetch).toHaveBeenCalled()
@@ -69,6 +70,7 @@ describe("OPTION service", () => {
       const response = await saveDealerListingOptions({
         dealerId: 123,
         listing,
+        options: { accessToken: "TOKEN" },
       })
       expect(response).toEqual({ tag: "success", result: listing })
       expect(fetch).toHaveBeenCalledWith(
@@ -96,6 +98,7 @@ describe("OPTION service", () => {
       const response = await saveDealerListingOptions({
         dealerId: 123,
         listing: Listing(),
+        options: { accessToken: "TOKEN" },
       })
 
       expect(response).toEqual({ tag: "error", message, errors })

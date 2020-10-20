@@ -30,7 +30,11 @@ describe("Dealer listing images", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchDealerListingImages({ dealerId, listingId })
+      const fetched = await fetchDealerListingImages({
+        dealerId,
+        listingId,
+        options: { accessToken: "TOKEN" },
+      })
 
       expect(fetched).toEqual(dealerListingImages)
       expect(fetch).toHaveBeenCalledWith(
@@ -60,7 +64,11 @@ describe("Dealer listing images", () => {
 
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
 
-      const response = await saveDealerListingImages({ dealerId: 123, listing })
+      const response = await saveDealerListingImages({
+        dealerId: 123,
+        listing,
+        options: { accessToken: "TOKEN" },
+      })
       expect(response).toEqual({ tag: "success", result: listing })
       expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining("/dealers/123/listings/5/images"),
@@ -82,6 +90,7 @@ describe("Dealer listing images", () => {
       const response = await saveDealerListingImages({
         dealerId: 123,
         listing: Listing({ images: [] }),
+        options: { accessToken: "TOKEN" },
       })
 
       expect(response).toEqual({ tag: "error", message, errors })
@@ -103,6 +112,7 @@ describe("Dealer listing images", () => {
       }
       const response = await generatePresignedImageUrl({
         imageData,
+        options: { accessToken: "TOKEN" },
       })
 
       expect(response).toEqual(presignedUrl)

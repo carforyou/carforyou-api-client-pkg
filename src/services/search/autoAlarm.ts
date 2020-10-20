@@ -11,7 +11,6 @@ import toQueryString from "../../lib/toQueryString"
 import { Paginated } from "../../types/pagination"
 import { DealerSavedSearch } from "../../types/models/autoAlarm"
 import { WithValidationError } from "../../types/withValidationError"
-import { withTokenRefresh } from "../../tokenRefresh"
 
 export const fetchDealerSavedSearches = async ({
   dealerId,
@@ -24,14 +23,12 @@ export const fetchDealerSavedSearches = async ({
   size?: number
   options?: ApiCallOptions
 }): Promise<Paginated<DealerSavedSearch>> => {
-  return withTokenRefresh(() => {
-    const query = toQueryString({ page, size })
-    return fetchPath({
-      path: `dealers/${dealerId}/listing-saved-searches/auto-alarms${
-        query ? `?${query}` : ""
-      }`,
-      options,
-    })
+  const query = toQueryString({ page, size })
+  return fetchPath({
+    path: `dealers/${dealerId}/listing-saved-searches/auto-alarms${
+      query ? `?${query}` : ""
+    }`,
+    options: { isAuthorizedRequest: true, ...options },
   })
 }
 
@@ -44,11 +41,9 @@ export const fetchDealerSavedSearch = async ({
   savedSearchId: string
   options?: ApiCallOptions
 }): Promise<DealerSavedSearch> => {
-  return withTokenRefresh(() => {
-    return fetchPath({
-      path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
-      options,
-    })
+  return fetchPath({
+    path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
+    options: { isAuthorizedRequest: true, ...options },
   })
 }
 
@@ -63,22 +58,20 @@ export const putDealerSavedSearch = async ({
   savedSearch: DealerSavedSearch
   options?: ApiCallOptions
 }): Promise<WithValidationError<DealerSavedSearch>> => {
-  return withTokenRefresh(async () => {
-    try {
-      await putData({
-        path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
-        body: savedSearch,
-        options,
-      })
+  try {
+    await putData({
+      path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
+      body: savedSearch,
+      options: { isAuthorizedRequest: true, ...options },
+    })
 
-      return {
-        tag: "success",
-        result: savedSearch,
-      }
-    } catch (error) {
-      return handleValidationError(error, { swallowErrors: true })
+    return {
+      tag: "success",
+      result: savedSearch,
     }
-  })
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
 }
 
 export const postDealerSavedSearch = async ({
@@ -90,22 +83,20 @@ export const postDealerSavedSearch = async ({
   savedSearch: DealerSavedSearch
   options?: ApiCallOptions
 }): Promise<WithValidationError<DealerSavedSearch>> => {
-  return withTokenRefresh(async () => {
-    try {
-      await postData({
-        path: `dealers/${dealerId}/listing-saved-searches/auto-alarms`,
-        body: savedSearch,
-        options,
-      })
+  try {
+    await postData({
+      path: `dealers/${dealerId}/listing-saved-searches/auto-alarms`,
+      body: savedSearch,
+      options: { isAuthorizedRequest: true, ...options },
+    })
 
-      return {
-        tag: "success",
-        result: savedSearch,
-      }
-    } catch (error) {
-      return handleValidationError(error, { swallowErrors: true })
+    return {
+      tag: "success",
+      result: savedSearch,
     }
-  })
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
 }
 
 export const deleteDealerSavedSearch = async ({
@@ -117,19 +108,17 @@ export const deleteDealerSavedSearch = async ({
   savedSearchId: string
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
-  return withTokenRefresh(async () => {
-    try {
-      await deletePath({
-        path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
-        options,
-      })
+  try {
+    await deletePath({
+      path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
+      options: { isAuthorizedRequest: true, ...options },
+    })
 
-      return {
-        tag: "success",
-        result: {},
-      }
-    } catch (error) {
-      return handleValidationError(error, { swallowErrors: true })
+    return {
+      tag: "success",
+      result: {},
     }
-  })
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
 }

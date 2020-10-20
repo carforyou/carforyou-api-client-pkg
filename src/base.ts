@@ -30,24 +30,14 @@ const withPagination = <T>(json: {
   return { content, fieldsStats, pagination, topListing }
 }
 
-const authorizationHeader = () => {
-  if (!apiClient.tokens.accessToken) {
-    return null
+const getAuthorizationHeader = (accessToken = null) => {
+  if (!accessToken) {
+    throw new Error(
+      "You tried to make an authenticated requests without providing an access token!\n Please pass a valid token as a request option."
+    )
   }
 
-  return `Bearer ${apiClient.tokens.accessToken}`
-}
-
-export interface ApiCallOptions extends Omit<RequestInit, "method" | "body"> {
-  recaptchaToken?: string
-  headers?: Record<string, string>
-  host?: string
-}
-
-type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
-
-interface RequestOptions extends ApiCallOptions {
-  method?: Method
+  return { Authorization: `Bearer ${accessToken}` }
 }
 
 export const getHost = (host: string = null) => {
@@ -63,16 +53,33 @@ export const getHost = (host: string = null) => {
 const buildHeaders = ({
   headers = {},
   recaptchaToken,
+  accessToken,
+  isAuthorizedRequest,
 }: RequestOptions): Record<string, string> => {
-  const auth = authorizationHeader()
-
   return {
     "Content-Type": "application/json",
     Accept: `application/vnd.carforyou.${apiClient.version}+json`,
-    ...(auth ? { Authorization: auth } : {}),
+    ...(isAuthorizedRequest ? getAuthorizationHeader(accessToken) : {}),
     ...(recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}),
     ...headers,
   }
+}
+
+export interface ApiCallOptions extends Omit<RequestInit, "method" | "body"> {
+  recaptchaToken?: string
+  accessToken?: string
+  headers?: Record<string, string>
+  host?: string
+}
+
+interface AuthorizedApiCallOptions extends ApiCallOptions {
+  isAuthorizedRequest?: boolean
+}
+
+type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
+
+interface RequestOptions extends AuthorizedApiCallOptions {
+  method?: Method
 }
 
 export const fetchPath = async ({
@@ -89,6 +96,8 @@ export const fetchPath = async ({
     host = null,
     headers,
     recaptchaToken,
+    accessToken,
+    isAuthorizedRequest,
     ...fetchOptions
   } = options
   const url = `${getHost(host)}/${stripLeadingSlash(path)}`
@@ -132,7 +141,7 @@ export const postData = async ({
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options: ApiCallOptions
+  options: AuthorizedApiCallOptions
 }) => {
   return fetchPath({
     path,
@@ -152,7 +161,7 @@ export const putData = async ({
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options: ApiCallOptions
+  options: AuthorizedApiCallOptions
 }) => {
   return fetchPath({
     path,
@@ -169,7 +178,7 @@ export const deletePath = async ({
   options,
 }: {
   path: string
-  options: ApiCallOptions
+  options: AuthorizedApiCallOptions
 }) => {
   return fetchPath({
     path,

@@ -27,14 +27,22 @@ describe("Analytics service", () => {
     })
 
     it("fetches the data", async () => {
-      const data = await fetchAnalyticsData({ dealerId: 123, listingIds: [1] })
+      const data = await fetchAnalyticsData({
+        dealerId: 123,
+        listingIds: [1],
+        options: { accessToken: "TOKEN" },
+      })
 
       expect(data).toEqual(analyticsData)
       expect(fetch).toHaveBeenCalled()
     })
 
     it("sends listing ids in the request body", async () => {
-      await fetchAnalyticsData({ dealerId: 123, listingIds: [1] })
+      await fetchAnalyticsData({
+        dealerId: 123,
+        listingIds: [1],
+        options: { accessToken: "TOKEN" },
+      })
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining(`/analytics/dealers/123/listings/metrics`),
@@ -62,6 +70,7 @@ describe("Analytics service", () => {
       const data = await fetchLeadsAnalytics({
         dealerId: 123,
         query: { verificationDateFrom: "2020-10-20" },
+        options: { accessToken: "TOKEN" },
       })
 
       expect(data).toEqual(analyticsData)
@@ -72,6 +81,7 @@ describe("Analytics service", () => {
       await fetchLeadsAnalytics({
         dealerId: 123,
         query: { verificationDateFrom: "2020-10-20" },
+        options: { accessToken: "TOKEN" },
       })
 
       expect(fetch).toHaveBeenCalledWith(
@@ -106,6 +116,7 @@ describe("Analytics service", () => {
       const data = await fetchListingsAnalytics({
         dealerId: 123,
         dimensions: ["makeKey"],
+        options: { accessToken: "TOKEN" },
       })
 
       expect(data).toEqual(analyticsData)
@@ -116,6 +127,7 @@ describe("Analytics service", () => {
       await fetchListingsAnalytics({
         dealerId: 123,
         dimensions: ["makeKey"],
+        options: { accessToken: "TOKEN" },
       })
 
       expect(fetch).toHaveBeenCalledWith(
