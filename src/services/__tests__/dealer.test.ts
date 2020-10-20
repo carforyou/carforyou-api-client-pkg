@@ -3,8 +3,11 @@ import {
   fetchDealerSuggestions,
   fetchDealerProfile,
   putDealerProfile,
+  postDealerProfile,
   fetchDealerPromotion,
   putDealerPromotion,
+  postDealerPromotion,
+  fetchDealerEntitlements,
 } from "../dealer"
 import { ResponseError } from "../../responseError"
 import { DealerType, DealerSourceGroup } from "../../types/models/index"
@@ -44,6 +47,23 @@ describe("Dealer", () => {
     })
   })
 
+  describe("#fetchDealerEntitlements", () => {
+    const entitlements = {
+      listings: { limit: 3 },
+    }
+
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify(entitlements))
+    })
+
+    it("fetches the entitlements", async () => {
+      const fetched = await fetchDealerEntitlements({ dealerId: 123 })
+
+      expect(fetched).toEqual(entitlements)
+      expect(fetch).toHaveBeenCalled()
+    })
+  })
+
   describe("Dealer Profile", () => {
     const dealerIdMock = 12
     const profileMock = {
@@ -67,6 +87,32 @@ describe("Dealer", () => {
         const profile = await fetchDealerProfile({ dealerId: dealerIdMock })
 
         expect(profile).toEqual(profileMock)
+      })
+    })
+
+    describe("#postDealerProfile", () => {
+      it("successfully post data to the api", async () => {
+        fetchMock.mockResponse(JSON.stringify(profileMock))
+
+        const profileResponse = await postDealerProfile({
+          profile: profileMock,
+        })
+
+        expect(profileResponse.tag).toBe("success")
+      })
+
+      it("fails to put data to the api", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const profileResponse = await postDealerProfile({
+          profile: profileMock,
+        })
+
+        expect(profileResponse.tag).toBe("error")
       })
     })
 
@@ -123,6 +169,34 @@ describe("Dealer", () => {
         const profile = await fetchDealerPromotion({ dealerId: dealerIdMock })
 
         expect(profile).toEqual(promotionMock)
+      })
+    })
+
+    describe("#postDealerPromotion", () => {
+      it("successfully puts data to the api", async () => {
+        fetchMock.mockResponse(JSON.stringify(promotionMock))
+
+        const promotionResponse = await postDealerPromotion({
+          dealerId: dealerIdMock,
+          promotion: promotionMock,
+        })
+
+        expect(promotionResponse.tag).toBe("success")
+      })
+
+      it("fails to put data to the api", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const promotionResponse = await postDealerPromotion({
+          dealerId: dealerIdMock,
+          promotion: promotionMock,
+        })
+
+        expect(promotionResponse.tag).toBe("error")
       })
     })
 
