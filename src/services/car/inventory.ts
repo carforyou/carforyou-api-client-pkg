@@ -230,7 +230,10 @@ export const saveDealerListing = async ({
       await putData({
         path: `dealers/${dealerId}/listings/${id}`,
         body: data,
-        options,
+        options: {
+          isAuthorizedRequest: true,
+          ...options,
+        },
       })
 
       result = { id }
