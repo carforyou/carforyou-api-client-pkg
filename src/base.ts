@@ -43,7 +43,7 @@ const getAuthorizationHeader = (accessToken = null) => {
 export const getHost = (host: string = null) => {
   if (!apiClient.configuration.host) {
     throw new Error(
-      'ApiClient not configured, please run: ApiClient.configure({ apiGatewayUrl: "your.api.gateway" }'
+      'ApiClient not configured, please run: ApiClient.configure({ host: "your.api.gateway" }'
     )
   }
 
