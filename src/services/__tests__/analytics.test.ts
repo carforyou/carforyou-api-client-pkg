@@ -83,11 +83,10 @@ describe("Analytics service", () => {
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining(`/dealers/123/leads/analytics`),
+        expect.stringContaining(`/dealers/123/leads/impressions`),
         expect.objectContaining({
           body: JSON.stringify({
             function: "count",
-            query: { verificationDateFrom: "2020-10-20" },
           }),
         })
       )
