@@ -20,7 +20,7 @@ describe("Car API", () => {
 
   describe("#messageLead", () => {
     it("merges otherService into services in videoCallPreference", async () => {
-      await sendMessageLead(12345, messageLead())
+      await sendMessageLead({ listingId: 12345, messageLead: messageLead() })
 
       expect(fetch).toHaveBeenCalledWith(
         expect.any(String),
@@ -46,8 +46,12 @@ describe("Car API", () => {
 
       describe("validate only", () => {
         it("calls validation endpoint", async () => {
-          await sendMessageLead(12345, messageLead(), {
-            validateOnly: true,
+          await sendMessageLead({
+            listingId: 12345,
+            messageLead: messageLead(),
+            options: {
+              validateOnly: true,
+            },
           })
 
           expect(fetch).toHaveBeenCalledWith(
@@ -59,8 +63,12 @@ describe("Car API", () => {
         })
 
         it("returns a success", async () => {
-          const result = await sendMessageLead(12345, messageLead(), {
-            validateOnly: true,
+          const result = await sendMessageLead({
+            listingId: 12345,
+            messageLead: messageLead(),
+            options: {
+              validateOnly: true,
+            },
           })
 
           expect(result).toEqual({ tag: "success", result: messageLead() })
@@ -69,7 +77,10 @@ describe("Car API", () => {
 
       describe("submit", () => {
         it("calls submission endpoint", async () => {
-          await sendMessageLead(12345, messageLead())
+          await sendMessageLead({
+            listingId: 12345,
+            messageLead: messageLead(),
+          })
 
           expect(fetch).toHaveBeenCalledWith(
             expect.stringMatching(/\/listings\/12345\/message-leads$/),
@@ -78,8 +89,12 @@ describe("Car API", () => {
         })
 
         it("sends recaptcha token in a header", async () => {
-          await sendMessageLead(12345, messageLead(), {
-            recaptchaToken: "token",
+          await sendMessageLead({
+            listingId: 12345,
+            messageLead: messageLead(),
+            options: {
+              recaptchaToken: "token",
+            },
           })
 
           expect(fetch).toHaveBeenCalledWith(expect.any(String), {
@@ -92,7 +107,10 @@ describe("Car API", () => {
         })
 
         it("returns a success", async () => {
-          const result = await sendMessageLead(12345, messageLead())
+          const result = await sendMessageLead({
+            listingId: 12345,
+            messageLead: messageLead(),
+          })
 
           expect(result).toEqual({ tag: "success", result: messageLead() })
         })
@@ -112,10 +130,10 @@ describe("Car API", () => {
       })
 
       it("returns a failure", async () => {
-        const result = await sendMessageLead(
-          12345,
-          messageLead({ email: "test@test" })
-        )
+        const result = await sendMessageLead({
+          listingId: 12345,
+          messageLead: messageLead({ email: "test@test" }),
+        })
 
         expect(result.tag).toEqual("error")
         if (result.tag === "error") {
@@ -133,7 +151,10 @@ describe("Car API", () => {
       })
 
       it("returns a failure", async () => {
-        const result = await sendMessageLead(12345, messageLead())
+        const result = await sendMessageLead({
+          listingId: 12345,
+          messageLead: messageLead(),
+        })
 
         expect(result.tag).toEqual("error")
         if (result.tag === "error") {

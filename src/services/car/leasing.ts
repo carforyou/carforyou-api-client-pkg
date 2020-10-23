@@ -1,20 +1,23 @@
-import { postData, Service, handleValidationError } from "../../base"
+import { postData, handleValidationError, ApiCallOptions } from "../../base"
 
-import { WithValidationError } from "../../types/withValidationError"
+import { Language } from "../../types/params"
 import { LeasingInterest } from "../../types/models"
+import { WithValidationError } from "../../types/withValidationError"
 
-const wrappedFetchLeasingFormUrl = async (
-  { listingId, locale },
-  { recaptchaToken = null } = {}
-): Promise<WithValidationError<{ url: string }>> => {
+const wrappedFetchLeasingFormUrl = async ({
+  listingId,
+  language,
+  options = {},
+}: {
+  listingId: number
+  language: Language
+  options?: ApiCallOptions
+}): Promise<WithValidationError<{ url: string }>> => {
   try {
     const result = await postData({
-      service: Service.CAR,
       path: `listings/${listingId}/leasing/generate-provider-form-url`,
-      body: { language: locale },
-      options: {
-        headers: recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {},
-      },
+      body: { language: language },
+      options,
     })
 
     return {
@@ -26,14 +29,12 @@ const wrappedFetchLeasingFormUrl = async (
   }
 }
 
-export const fetchLeasingFormUrl = async (
-  args: {
-    listingId: number
-    locale: string
-  },
-  options = {}
-): Promise<string | null> => {
-  const response = await wrappedFetchLeasingFormUrl(args, options)
+export const fetchLeasingFormUrl = async (args: {
+  listingId: number
+  language: Language
+  options?: ApiCallOptions
+}): Promise<string | null> => {
+  const response = await wrappedFetchLeasingFormUrl(args)
 
   switch (response.tag) {
     case "success":
@@ -43,16 +44,16 @@ export const fetchLeasingFormUrl = async (
   }
 }
 
-export const sendLeasingInterest = async (
-  listingId: number,
-  leasingInterest: LeasingInterest,
-  options = {}
-): Promise<WithValidationError<LeasingInterest>> => {
-  const { validateOnly, recaptchaToken } = {
-    validateOnly: false,
-    recaptchaToken: null,
-    ...options,
-  }
+export const sendLeasingInterest = async ({
+  listingId,
+  leasingInterest,
+  options = {},
+}: {
+  listingId: number
+  leasingInterest: LeasingInterest
+  options?: ApiCallOptions & { validateOnly?: boolean }
+}): Promise<WithValidationError<LeasingInterest>> => {
+  const { validateOnly, ...otherOptions } = options
 
   const path = `listings/${listingId}/leasing/interests${
     validateOnly ? "/validate" : ""
@@ -60,12 +61,9 @@ export const sendLeasingInterest = async (
 
   try {
     await postData({
-      service: Service.CAR,
       path,
       body: leasingInterest,
-      options: {
-        headers: recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {},
-      },
+      options: otherOptions,
     })
 
     return {

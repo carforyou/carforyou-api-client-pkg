@@ -1,37 +1,40 @@
 import {
   fetchPath,
-  Service,
   handleValidationError,
   putData,
-  RequestOptions,
+  ApiCallOptions,
 } from "../../base"
 
+import { Language } from "../../types/params"
 import { Options } from "../../types/models"
 import { Listing } from "../../types/models/listing"
 import { WithValidationError } from "../../types/withValidationError"
 
-export const fetchListingOptions = async (
-  id: number,
-  lng: string
-): Promise<Options> => {
+export const fetchListingOptions = async ({
+  listingId,
+  language,
+  options = {},
+}: {
+  listingId: number
+  language: Language
+  options?: ApiCallOptions
+}): Promise<Options> => {
   return fetchPath({
-    service: Service.OPTION,
-    path: `listings/${id}/options?language=${lng}`,
+    path: `listings/${listingId}/options?language=${language}`,
+    options,
   })
 }
 
-export const fetchDealerListingOptions = async (
-  {
-    dealerId,
-    listingId,
-  }: {
-    dealerId: number
-    listingId: number
-  },
-  options: RequestOptions = {}
-): Promise<Options> => {
+export const fetchDealerListingOptions = async ({
+  dealerId,
+  listingId,
+  options = {},
+}: {
+  dealerId: number
+  listingId: number
+  options?: ApiCallOptions
+}): Promise<Options> => {
   return fetchPath({
-    service: Service.OPTION,
     path: `dealers/${dealerId}/listings/${listingId}/options`,
     options: {
       isAuthorizedRequest: true,
@@ -40,21 +43,19 @@ export const fetchDealerListingOptions = async (
   })
 }
 
-export const saveDealerListingOptions = async (
-  {
-    dealerId,
-    listing,
-  }: {
-    dealerId: number
-    listing: Listing
-  },
-  options: RequestOptions = {}
-): Promise<WithValidationError<Listing>> => {
+export const saveDealerListingOptions = async ({
+  dealerId,
+  listing,
+  options = {},
+}: {
+  dealerId: number
+  listing: Listing
+  options?: ApiCallOptions
+}): Promise<WithValidationError<Listing>> => {
   const { standardOptions, additionalOptions, id } = listing
 
   try {
     await putData({
-      service: Service.OPTION,
       path: `dealers/${dealerId}/listings/${id}/options`,
       body: {
         standardOptions: standardOptions.map((optionId) => ({

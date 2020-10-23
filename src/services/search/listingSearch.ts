@@ -1,4 +1,4 @@
-import { fetchPath, postData, Service } from "../../base"
+import { fetchPath, postData, ApiCallOptions } from "../../base"
 
 import { Paginated } from "../../types/pagination"
 import { WithFieldStats, FieldsStats } from "../../types/fieldStats"
@@ -16,21 +16,22 @@ import { sizeOrDefault, pageOrDefault } from "../../lib/pageParams"
 import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
 import toQueryString from "../../lib/toQueryString"
 
-export const fetchListingCount = async (
-  query: ListingSearchParams = {},
-  options = {}
-): Promise<{ count: number; fieldsStats?: FieldsStats }> => {
-  const { fieldsStats } = {
-    fieldsStats: [],
-    ...options,
-  }
+export const fetchListingCount = async ({
+  query = {},
+  options = {},
+}: {
+  query?: ListingSearchParams
+  options?: ApiCallOptions & { fieldsStats?: string[] }
+} = {}): Promise<{ count: number; fieldsStats?: FieldsStats }> => {
+  const { fieldsStats = [], ...otherOptions } = options
+
   const json = await postData({
-    service: Service.SEARCH,
     path: "listings/count",
     body: {
       query,
       ...(fieldsStats.length > 0 ? { includeFieldsStats: fieldsStats } : {}),
     },
+    options: otherOptions,
   })
 
   return {
@@ -49,15 +50,24 @@ const defaultPagination = {
   size: 24,
 }
 
-const searchForListings = (
+const searchForListings = ({
   path,
-  query: ListingQueryParams = {},
-  options: {
+  query = {},
+  options = {},
+}: {
+  path: string
+  query?: ListingQueryParams
+  options: ApiCallOptions & {
     includeFieldsStats?: string[]
     includeTopListing?: boolean
-  } = {}
-) => {
+  }
+}) => {
   const { page, size, sortOrder, sortType, ...rest } = query
+  const {
+    includeFieldsStats = [],
+    includeTopListing = false,
+    ...otherOptions
+  } = options
 
   const paginationSize = sizeOrDefault(size, defaultPagination)
   const paginationPage = pageOrDefault(page, defaultPagination)
@@ -73,14 +83,14 @@ const searchForListings = (
         type: sortType || defaultSort.sortType,
       },
     ],
-    ...(options.includeFieldsStats && options.includeFieldsStats.length > 0
-      ? { includeFieldsStats: options.includeFieldsStats }
+    ...(includeFieldsStats && includeFieldsStats.length > 0
+      ? { includeFieldsStats }
       : {}),
-    ...(options.includeTopListing ? { includeTopListing: true } : {}),
+    ...(includeTopListing ? { includeTopListing: true } : {}),
     query: paramsToSearchRequest(rest),
   }
 
-  return postData({ service: Service.SEARCH, path, body })
+  return postData({ path, body, options: otherOptions })
 }
 
 function sanitizeListingResponse<
@@ -105,39 +115,60 @@ function sanitizeListingResponse<
   }
 }
 
-export const fetchListings = async (
-  query: ListingQueryParams = {},
-  options = {}
-): Promise<WithFieldStats<WithTopListing<Paginated<SearchListing>>>> => {
-  const response = await searchForListings("listings/search", query, options)
-
-  return sanitizeListingResponse(response)
-}
-
-export const fetchNeedsAssesmentListings = async (
-  query: ListingQueryParams = {},
-  options = {}
-): Promise<WithFieldStats<Paginated<SearchListing>>> => {
-  const response = await searchForListings(
-    "listings/needs-assessment/search",
-    query,
-    options
-  )
-
-  return sanitizeListingResponse(response)
-}
-
-export const fetchMoneybackListings = async (
-  dealerId: number,
-  query?: {
-    makeKey: string
-    size: number
-    page: number
+export const fetchListings = async ({
+  query = {},
+  options = {},
+}: {
+  query?: ListingQueryParams
+  options?: ApiCallOptions & {
+    includeFieldsStats?: string[]
+    includeTopListing?: boolean
   }
-): Promise<Paginated<SearchListing>> => {
+} = {}): Promise<WithFieldStats<WithTopListing<Paginated<SearchListing>>>> => {
+  const response = await searchForListings({
+    path: "listings/search",
+    query,
+    options,
+  })
+
+  return sanitizeListingResponse(response)
+}
+
+export const fetchNeedsAssessmentListings = async ({
+  query = {},
+  options = {},
+}: {
+  query?: ListingQueryParams
+  options?: ApiCallOptions & {
+    includeFieldsStats?: string[]
+    includeTopListing?: boolean
+  }
+} = {}): Promise<WithFieldStats<Paginated<SearchListing>>> => {
+  const response = await searchForListings({
+    path: "listings/needs-assessment/search",
+    query,
+    options,
+  })
+
+  return sanitizeListingResponse(response)
+}
+
+export const fetchMoneybackListings = async ({
+  dealerId,
+  query = {},
+  options = {},
+}: {
+  dealerId: number
+  query?: {
+    makeKey?: string
+    size?: number
+    page?: number
+  }
+  options?: ApiCallOptions
+}): Promise<Paginated<SearchListing>> => {
   const response = await fetchPath({
-    service: Service.CAR,
     path: `dealers/${dealerId}/mbg-listings?${toQueryString(query)}`,
+    options,
   })
 
   return sanitizeListingResponse(response)

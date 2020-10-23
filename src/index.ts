@@ -1,7 +1,7 @@
 import apiClient from "./apiClient"
 export { apiClient as ApiClient }
 
-export { RequestOptions } from "./base"
+export { ApiCallOptions } from "./base"
 
 export {
   Make,
@@ -117,7 +117,7 @@ export { WithTopListing } from "./types/topListing"
 
 export { ResponseError } from "./responseError"
 
-export { featchDealScores } from "./services/car/goodBadDealData"
+export { fetchDealScores } from "./services/car/goodBadDealData"
 export {
   fetchImageEnrichment,
   generatePresignedImageUrl,
@@ -176,7 +176,7 @@ export {
 export {
   fetchListingCount,
   fetchListings,
-  fetchNeedsAssesmentListings,
+  fetchNeedsAssessmentListings,
   defaultSort as defaultListingsSort,
   fetchMoneybackListings,
 } from "./services/search/listingSearch"
@@ -212,8 +212,8 @@ export {
 } from "./services/product"
 
 export {
-  fetchSavedSearches,
-  fetchSavedSearch,
+  fetchDealerSavedSearches,
+  fetchDealerSavedSearch,
   putDealerSavedSearch,
   postDealerSavedSearch,
   deleteDealerSavedSearch,

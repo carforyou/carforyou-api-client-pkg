@@ -1,12 +1,12 @@
 import {
   fetchPath,
-  Service,
   handleValidationError,
   putData,
   postData,
-  RequestOptions,
+  ApiCallOptions,
 } from "../base"
 
+import { Language } from "../types/params"
 import { Paginated } from "../types/pagination"
 import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 import { DealerProfile } from "../types/models/dealerProfile"
@@ -15,47 +15,59 @@ import { WithValidationError } from "../types/withValidationError"
 
 import toQueryString from "../lib/toQueryString"
 
-export const fetchDealer = async (
-  id: number,
-  options: { language?: "de" | "en" | "fr" | "it" } = {}
-): Promise<Dealer> => {
-  const query = toQueryString(options)
+export const fetchDealer = async ({
+  id,
+  language,
+  options = {},
+}: {
+  id: number
+  language?: Language
+  options?: ApiCallOptions
+}): Promise<Dealer> => {
+  const query = toQueryString({ language })
   return fetchPath({
-    service: Service.DEALER,
     path: `dealers/${id}${query ? `?${query}` : ""}`,
+    options,
   })
 }
 
-export const fetchDealerSuggestions = async (
+export const fetchDealerSuggestions = async ({
+  query,
+  options = {},
+}: {
   query: string
-): Promise<Paginated<DealerSuggestion>> => {
+  options?: ApiCallOptions
+}): Promise<Paginated<DealerSuggestion>> => {
   return fetchPath({
-    service: Service.DEALER,
     path: `dealers/suggestions?q=${query ? encodeURIComponent(query) : query}`,
+    options,
   })
 }
 
-export const fetchDealerProfile = async (
-  dealerId: number,
-  options: RequestOptions = {}
-): Promise<DealerProfile> => {
-  return fetchPath({
-    service: Service.DEALER,
+export const fetchDealerProfile = async ({
+  dealerId,
+  options = {},
+}: {
+  dealerId: number
+  options?: ApiCallOptions
+}): Promise<DealerProfile> =>
+  fetchPath({
     path: `dealers/${dealerId}/profile`,
     options: {
       isAuthorizedRequest: true,
       ...options,
     },
   })
-}
 
-export const postDealerProfile = async (
-  profile: Omit<DealerProfile, "id" | "dealerSourceGroup" | "dealerType">,
-  options: RequestOptions = {}
-): Promise<WithValidationError<{ id: number }>> => {
+export const postDealerProfile = async ({
+  profile,
+  options = {},
+}: {
+  profile: Omit<DealerProfile, "id" | "dealerSourceGroup" | "dealerType">
+  options?: ApiCallOptions
+}): Promise<WithValidationError<{ id: number }>> => {
   try {
     const result = await postData({
-      service: Service.DEALER,
       path: `dealers/profile`,
       body: profile,
       options: {
@@ -73,19 +85,17 @@ export const postDealerProfile = async (
   }
 }
 
-export const putDealerProfile = async (
-  {
-    dealerId,
-    profile,
-  }: {
-    dealerId: number
-    profile: DealerProfile
-  },
-  options: RequestOptions = {}
-): Promise<WithValidationError<DealerProfile>> => {
+export const putDealerProfile = async ({
+  dealerId,
+  profile,
+  options = {},
+}: {
+  dealerId: number
+  profile: DealerProfile
+  options?: ApiCallOptions
+}): Promise<WithValidationError<DealerProfile>> => {
   try {
     const result = await putData({
-      service: Service.DEALER,
       path: `dealers/${dealerId}/profile`,
       body: profile,
       options: {
@@ -103,12 +113,14 @@ export const putDealerProfile = async (
   }
 }
 
-export const fetchDealerEntitlements = async (
+export const fetchDealerEntitlements = async ({
   dealerId,
-  options: RequestOptions = {}
-): Promise<Entitlements> =>
+  options = {},
+}: {
+  dealerId: number
+  options?: ApiCallOptions
+}): Promise<Entitlements> =>
   fetchPath({
-    service: Service.DEALER,
     path: `dealers/${dealerId}/entitlements`,
     options: {
       isAuthorizedRequest: true,
@@ -116,12 +128,14 @@ export const fetchDealerEntitlements = async (
     },
   })
 
-export const fetchDealerPromotion = async (
-  dealerId: number,
-  options: RequestOptions = {}
-): Promise<DealerPromotion> =>
+export const fetchDealerPromotion = async ({
+  dealerId,
+  options = {},
+}: {
+  dealerId: number
+  options?: ApiCallOptions
+}): Promise<DealerPromotion> =>
   fetchPath({
-    service: Service.DEALER,
     path: `dealers/${dealerId}/promotion`,
     options: {
       isAuthorizedRequest: true,
@@ -129,14 +143,17 @@ export const fetchDealerPromotion = async (
     },
   })
 
-export const postDealerPromotion = async (
-  dealerId: number,
-  promotion: DealerPromotion,
-  options: RequestOptions = {}
-): Promise<WithValidationError<DealerPromotion>> => {
+export const postDealerPromotion = async ({
+  dealerId,
+  promotion,
+  options = {},
+}: {
+  dealerId: number
+  promotion: DealerPromotion
+  options?: ApiCallOptions
+}): Promise<WithValidationError<DealerPromotion>> => {
   try {
     const result = await postData({
-      service: Service.DEALER,
       path: `dealers/${dealerId}/promotion`,
       body: promotion,
       options: {
@@ -154,14 +171,17 @@ export const postDealerPromotion = async (
   }
 }
 
-export const putDealerPromotion = async (
-  dealerId: number,
-  promotion: DealerPromotion,
-  options: RequestOptions = {}
-): Promise<WithValidationError<DealerPromotion>> => {
+export const putDealerPromotion = async ({
+  dealerId,
+  promotion,
+  options = {},
+}: {
+  dealerId: number
+  promotion: DealerPromotion
+  options?: ApiCallOptions
+}): Promise<WithValidationError<DealerPromotion>> => {
   try {
     const result = await putData({
-      service: Service.DEALER,
       path: `dealers/${dealerId}/promotion`,
       body: promotion,
       options: {

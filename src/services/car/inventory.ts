@@ -1,10 +1,9 @@
 import {
   fetchPath,
-  Service,
   postData,
   putData,
   handleValidationError,
-  RequestOptions,
+  ApiCallOptions,
 } from "../../base"
 
 import { Paginated } from "../../types/pagination"
@@ -31,31 +30,38 @@ const sanitizeListing = (json): Listing => {
   }
 }
 
-export const fetchListing = async (id: number): Promise<Listing> => {
-  const listing = await fetchPath({
-    service: Service.CAR,
-    path: `listings/${id}`,
-  })
+export const fetchListing = async ({
+  id,
+  options = {},
+}: {
+  id: number
+  options?: ApiCallOptions
+}): Promise<Listing> => {
+  const listing = await fetchPath({ path: `listings/${id}`, options })
 
   return sanitizeListing(listing)
 }
 
-export const fetchDealerMakes = async (
+export const fetchDealerMakes = async ({
+  dealerId,
+  options = {},
+}: {
   dealerId: number
-): Promise<Array<{ make: string; makeKey: string }>> => {
-  return fetchPath({
-    service: Service.CAR,
-    path: `inventory/dealers/${dealerId}/makes`,
-  })
+  options?: ApiCallOptions
+}): Promise<Array<{ make: string; makeKey: string }>> => {
+  return fetchPath({ path: `inventory/dealers/${dealerId}/makes`, options })
 }
 
-export const fetchDealerListingsCount = async (
-  dealerId: number,
-  query: DealerListingQueryParams,
-  options: RequestOptions = {}
-): Promise<number> => {
+export const fetchDealerListingsCount = async ({
+  dealerId,
+  query = {},
+  options = {},
+}: {
+  dealerId: number
+  query?: DealerListingQueryParams
+  options?: ApiCallOptions
+}): Promise<number> => {
   const { count } = await fetchPath({
-    service: Service.CAR,
     path: `dealers/${dealerId}/listings/count${
       Object.keys(query).length > 0 ? "?" + toQueryString(query) : null
     }`,
@@ -77,11 +83,15 @@ export const defaultSort = {
   sortType: DealerListingSortTypeParams.CREATED_DATE,
 }
 
-export const fetchDealerListings = async (
-  dealerId: number,
-  query: DealerListingQueryParams = {},
-  options: RequestOptions = {}
-): Promise<Paginated<Listing>> => {
+export const fetchDealerListings = async ({
+  dealerId,
+  query = {},
+  options = {},
+}: {
+  dealerId: number
+  query?: DealerListingQueryParams
+  options?: ApiCallOptions
+}): Promise<Paginated<Listing>> => {
   const { page, size, sortOrder, sortType, ...rest } = query
 
   const sizeOrDefault =
@@ -102,7 +112,6 @@ export const fetchDealerListings = async (
   }
 
   const { content, ...response } = await fetchPath({
-    service: Service.CAR,
     path: `dealers/${dealerId}/listings${
       Object.keys(queryParams).length > 0
         ? "?" + toQueryString(queryParams)
@@ -120,20 +129,21 @@ export const fetchDealerListings = async (
   }
 }
 
-export const fetchDealerListing = async (
-  {
-    dealerId,
-    listingId,
-  }: {
-    dealerId: number
-    listingId: number
-  },
-  options: RequestOptions = {}
-): Promise<Listing> => {
+export const fetchDealerListing = async ({
+  dealerId,
+  listingId,
+  options = {},
+}: {
+  dealerId: number
+  listingId: number
+  options?: ApiCallOptions
+}): Promise<Listing> => {
   const listing = await fetchPath({
-    service: Service.CAR,
     path: `dealers/${dealerId}/listings/${listingId}`,
-    options: { isAuthorizedRequest: true, ...options },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
 
   return sanitizeListing(listing)
@@ -171,28 +181,25 @@ const validationPathForListing = (dealerId, listing, validationEndpoint) => {
   }
 }
 
-export const validateDealerListing = async (
-  {
-    dealerId,
-    listing,
-    validationEndpoint,
-  }: {
-    dealerId: number
-    listing: Listing
-    validationEndpoint: ListingValidationEndpoint
-  },
-  options: RequestOptions = {}
-): Promise<WithValidationError<Listing>> => {
+export const validateDealerListing = async ({
+  dealerId,
+  listing,
+  options,
+}: {
+  dealerId: number
+  listing: Listing
+  options: ApiCallOptions & { validationEndpoint: ListingValidationEndpoint }
+}): Promise<WithValidationError<Listing>> => {
+  const { validationEndpoint, ...otherOptions } = options
   const data = prepareListingData(listing)
 
   try {
     await postData({
-      service: Service.CAR,
       path: validationPathForListing(dealerId, listing, validationEndpoint),
       body: data,
       options: {
         isAuthorizedRequest: true,
-        ...options,
+        ...otherOptions,
       },
     })
   } catch (error) {
@@ -205,16 +212,15 @@ export const validateDealerListing = async (
   }
 }
 
-export const saveDealerListing = async (
-  {
-    dealerId,
-    listing,
-  }: {
-    dealerId: number
-    listing: Listing
-  },
-  options: RequestOptions = {}
-): Promise<WithValidationError<Listing>> => {
+export const saveDealerListing = async ({
+  dealerId,
+  listing,
+  options = {},
+}: {
+  dealerId: number
+  listing: Listing
+  options?: ApiCallOptions
+}): Promise<WithValidationError<Listing>> => {
   const { id } = listing
   const data = prepareListingData(listing)
 
@@ -222,19 +228,23 @@ export const saveDealerListing = async (
     let result
     if (id) {
       await putData({
-        service: Service.CAR,
         path: `dealers/${dealerId}/listings/${id}`,
         body: data,
-        options: { isAuthorizedRequest: true, ...options },
+        options: {
+          isAuthorizedRequest: true,
+          ...options,
+        },
       })
 
       result = { id }
     } else {
       result = await postData({
-        service: Service.CAR,
         path: `dealers/${dealerId}/listings`,
         body: data,
-        options: { isAuthorizedRequest: true, ...options },
+        options: {
+          isAuthorizedRequest: true,
+          ...options,
+        },
       })
     }
 
@@ -247,21 +257,19 @@ export const saveDealerListing = async (
   }
 }
 
-export const publishDealerListing = async (
-  {
-    dealerId,
-    listing,
-  }: {
-    dealerId: number
-    listing: Listing
-  },
-  options: RequestOptions = {}
-): Promise<WithValidationError<Listing>> => {
+export const publishDealerListing = async ({
+  dealerId,
+  listing,
+  options = {},
+}: {
+  dealerId: number
+  listing: Listing
+  options?: ApiCallOptions
+}): Promise<WithValidationError<Listing>> => {
   const { id } = listing
 
   try {
     await postData({
-      service: Service.CAR,
       path: `dealers/${dealerId}/listings/${id}/publish`,
       body: {},
       options: {
@@ -279,22 +287,23 @@ export const publishDealerListing = async (
   }
 }
 
-export const archiveDealerListing = async (
-  {
-    dealerId,
-    id,
-  }: {
-    dealerId: number
-    id: number
-  },
-  options: RequestOptions = {}
-): Promise<WithValidationError> => {
+export const archiveDealerListing = async ({
+  dealerId,
+  listingId,
+  options,
+}: {
+  dealerId: number
+  listingId: number
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
   try {
     await postData({
-      service: Service.CAR,
-      path: `dealers/${dealerId}/listings/${id}/archive`,
+      path: `dealers/${dealerId}/listings/${listingId}/archive`,
       body: {},
-      options: { isAuthorizedRequest: true, ...options },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
     })
   } catch (error) {
     return handleValidationError(error)
@@ -306,22 +315,23 @@ export const archiveDealerListing = async (
   }
 }
 
-export const unpublishDealerListing = async (
-  {
-    id,
-    dealerId,
-  }: {
-    id: number
-    dealerId: number
-  },
-  options: RequestOptions = {}
-): Promise<WithValidationError> => {
+export const unpublishDealerListing = async ({
+  listingId,
+  dealerId,
+  options = {},
+}: {
+  listingId: number
+  dealerId: number
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
   try {
     await postData({
-      service: Service.CAR,
-      path: `dealers/${dealerId}/listings/${id}/unpublish`,
+      path: `dealers/${dealerId}/listings/${listingId}/unpublish`,
       body: {},
-      options: { isAuthorizedRequest: true, ...options },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
     })
   } catch (error) {
     return handleValidationError(error)
@@ -333,14 +343,19 @@ export const unpublishDealerListing = async (
   }
 }
 
-export const listingMandatoryFields = async (
-  dealerId: number,
-  options: RequestOptions = {}
-): Promise<Set<string>> => {
+export const listingMandatoryFields = async ({
+  dealerId,
+  options = {},
+}: {
+  dealerId: number
+  options?: ApiCallOptions
+}): Promise<Set<string>> => {
   const data = await fetchPath({
-    service: Service.CAR,
     path: `dealers/${dealerId}/listings/publish/mandatory-fields`,
-    options: { isAuthorizedRequest: true, ...options },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
 
   return new Set(data.map((entry) => entry.param))

@@ -36,7 +36,7 @@ describe("CATALOGUE service", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchModels("audi")
+      const fetched = await fetchModels({ makeKey: "audi" })
 
       expect(fetched).toEqual(models)
       expect(fetch).toHaveBeenCalled()
@@ -51,14 +51,14 @@ describe("CATALOGUE service", () => {
     })
 
     it("returns type", async () => {
-      const fetchedType = await fetchType(123)
+      const fetchedType = await fetchType({ id: 123 })
 
       expect(fetchedType).toEqual(type)
       expect(fetch).toHaveBeenCalled()
     })
 
     it("fetches the correct type", async () => {
-      await fetchType(123)
+      await fetchType({ id: 123 })
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining("/types/123"),

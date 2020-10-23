@@ -1,9 +1,4 @@
-import {
-  Service,
-  handleValidationError,
-  postData,
-  RequestOptions,
-} from "../../base"
+import { handleValidationError, postData, ApiCallOptions } from "../../base"
 
 import { Paginated } from "../../types/pagination"
 import { WithValidationError } from "../../types/withValidationError"
@@ -41,10 +36,13 @@ const sanitizeQuery = ({
   }
 }
 
-export const fetchTypes = async (
-  { page, size, ...query }: SearchTypeQueryParams,
-  options: RequestOptions
-): Promise<WithValidationError<Paginated<SearchType>>> => {
+export const fetchTypes = async ({
+  query: { page, size, ...searchQuery } = {},
+  options = {},
+}: {
+  query?: SearchTypeQueryParams
+  options?: ApiCallOptions
+} = {}): Promise<WithValidationError<Paginated<SearchType>>> => {
   const sizeOrDefault =
     parseInt((size || "").toString(), 10) || defaultPagination.size
   const pageOrDefault =
@@ -52,10 +50,9 @@ export const fetchTypes = async (
 
   try {
     const result = await postData({
-      service: Service.SEARCH,
       path: "types/search",
       body: {
-        query: sanitizeQuery(query),
+        query: sanitizeQuery(searchQuery),
         pagination: {
           page: pageOrDefault,
           size: sizeOrDefault,
@@ -75,14 +72,17 @@ export const fetchTypes = async (
   }
 }
 
-export const fetchTypeFacets = async (
-  query: SearchTypeQueryParams = {},
-  fields: string[] = [],
-  options: RequestOptions
-): Promise<WithValidationError<Facets>> => {
+export const fetchTypeFacets = async ({
+  query = {},
+  fields = [],
+  options = {},
+}: {
+  query?: SearchTypeQueryParams
+  fields?: string[]
+  options?: ApiCallOptions
+} = {}): Promise<WithValidationError<Facets>> => {
   try {
     const result = await postData({
-      service: Service.SEARCH,
       path: "types/facets",
       body: {
         query: sanitizeQuery(query),

@@ -3,8 +3,11 @@ import {
   fetchDealerSuggestions,
   fetchDealerProfile,
   putDealerProfile,
+  postDealerProfile,
   fetchDealerPromotion,
   putDealerPromotion,
+  postDealerPromotion,
+  fetchDealerEntitlements,
 } from "../dealer"
 import { ResponseError } from "../../responseError"
 import { DealerType, DealerSourceGroup } from "../../types/models/index"
@@ -17,12 +20,12 @@ describe("Dealer", () => {
   describe("#fetchDealerSuggestions", () => {
     it("encodes the query", async () => {
       const query = "k+k"
-      await fetchDealerSuggestions(query)
+      await fetchDealerSuggestions({ query })
 
       expect(fetch).toHaveBeenCalledWith(
-        `dealer.service.test/dealers/suggestions?q=${encodeURIComponent(
-          query
-        )}`,
+        expect.stringContaining(
+          `dealers/suggestions?q=${encodeURIComponent(query)}`
+        ),
         expect.any(Object)
       )
     })
@@ -30,21 +33,41 @@ describe("Dealer", () => {
 
   describe("#fetchDealer", () => {
     it("accepts language option", async () => {
-      await fetchDealer(123, { language: "de" })
+      await fetchDealer({ id: 123, language: "de" })
 
       expect(fetch).toHaveBeenCalledWith(
-        `dealer.service.test/dealers/123?language=de`,
+        expect.stringContaining("dealers/123?language=de"),
         expect.any(Object)
       )
     })
 
     it("works without the language option", async () => {
-      await fetchDealer(123)
+      await fetchDealer({ id: 123 })
 
       expect(fetch).toHaveBeenCalledWith(
-        "dealer.service.test/dealers/123",
+        expect.stringContaining("dealers/123"),
         expect.any(Object)
       )
+    })
+  })
+
+  describe("#fetchDealerEntitlements", () => {
+    const entitlements = {
+      listings: { limit: 3 },
+    }
+
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify(entitlements))
+    })
+
+    it("fetches the entitlements", async () => {
+      const fetched = await fetchDealerEntitlements({
+        dealerId: 123,
+        options: requestOptionsMock,
+      })
+
+      expect(fetched).toEqual(entitlements)
+      expect(fetch).toHaveBeenCalled()
     })
   })
 
@@ -68,25 +91,23 @@ describe("Dealer", () => {
       })
 
       it("returns the dealer data form the api", async () => {
-        const profile = await fetchDealerProfile(dealerIdMock, {
-          accessToken: "DUMMY TOKEN",
+        const profile = await fetchDealerProfile({
+          dealerId: dealerIdMock,
+          options: requestOptionsMock,
         })
 
         expect(profile).toEqual(profileMock)
       })
     })
 
-    describe("#putDealerProfile", () => {
-      it("successfully puts data to the api", async () => {
+    describe("#postDealerProfile", () => {
+      it("successfully post data to the api", async () => {
         fetchMock.mockResponse(JSON.stringify(profileMock))
 
-        const profileResponse = await putDealerProfile(
-          {
-            dealerId: dealerIdMock,
-            profile: profileMock,
-          },
-          requestOptionsMock
-        )
+        const profileResponse = await postDealerProfile({
+          profile: profileMock,
+          options: requestOptionsMock,
+        })
 
         expect(profileResponse.tag).toBe("success")
       })
@@ -98,13 +119,39 @@ describe("Dealer", () => {
           })
         })
 
-        const profileResponse = await putDealerProfile(
-          {
-            dealerId: dealerIdMock,
-            profile: profileMock,
-          },
-          requestOptionsMock
-        )
+        const profileResponse = await postDealerProfile({
+          profile: profileMock,
+        })
+
+        expect(profileResponse.tag).toBe("error")
+      })
+    })
+
+    describe("#putDealerProfile", () => {
+      it("successfully puts data to the api", async () => {
+        fetchMock.mockResponse(JSON.stringify(profileMock))
+
+        const profileResponse = await putDealerProfile({
+          dealerId: dealerIdMock,
+          profile: profileMock,
+          options: requestOptionsMock,
+        })
+
+        expect(profileResponse.tag).toBe("success")
+      })
+
+      it("fails to put data to the api", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const profileResponse = await putDealerProfile({
+          dealerId: dealerIdMock,
+          profile: profileMock,
+          options: requestOptionsMock,
+        })
 
         expect(profileResponse.tag).toBe("error")
       })
@@ -132,24 +179,24 @@ describe("Dealer", () => {
       })
 
       it("returns the dealer promotion form the api", async () => {
-        const profile = await fetchDealerPromotion(
-          dealerIdMock,
-          requestOptionsMock
-        )
+        const profile = await fetchDealerPromotion({
+          dealerId: dealerIdMock,
+          options: requestOptionsMock,
+        })
 
         expect(profile).toEqual(promotionMock)
       })
     })
 
-    describe("#putDealerPromotion", () => {
+    describe("#postDealerPromotion", () => {
       it("successfully puts data to the api", async () => {
         fetchMock.mockResponse(JSON.stringify(promotionMock))
 
-        const promotionResponse = await putDealerPromotion(
-          dealerIdMock,
-          promotionMock,
-          requestOptionsMock
-        )
+        const promotionResponse = await postDealerPromotion({
+          dealerId: dealerIdMock,
+          promotion: promotionMock,
+          options: requestOptionsMock,
+        })
 
         expect(promotionResponse.tag).toBe("success")
       })
@@ -161,11 +208,40 @@ describe("Dealer", () => {
           })
         })
 
-        const promotionResponse = await putDealerPromotion(
-          dealerIdMock,
-          promotionMock,
-          requestOptionsMock
-        )
+        const promotionResponse = await postDealerPromotion({
+          dealerId: dealerIdMock,
+          promotion: promotionMock,
+        })
+
+        expect(promotionResponse.tag).toBe("error")
+      })
+    })
+
+    describe("#putDealerPromotion", () => {
+      it("successfully puts data to the api", async () => {
+        fetchMock.mockResponse(JSON.stringify(promotionMock))
+
+        const promotionResponse = await putDealerPromotion({
+          dealerId: dealerIdMock,
+          promotion: promotionMock,
+          options: requestOptionsMock,
+        })
+
+        expect(promotionResponse.tag).toBe("success")
+      })
+
+      it("fails to put data to the api", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const promotionResponse = await putDealerPromotion({
+          dealerId: dealerIdMock,
+          promotion: promotionMock,
+          options: requestOptionsMock,
+        })
 
         expect(promotionResponse.tag).toBe("error")
       })

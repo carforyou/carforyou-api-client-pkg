@@ -1,46 +1,52 @@
-import { postData, deletePath, Service, handleValidationError } from "../base"
+import {
+  postData,
+  deletePath,
+  handleValidationError,
+  ApiCallOptions,
+} from "../base"
 
 import { SavedSearch } from "../types/models"
 import { WithValidationError } from "../types/withValidationError"
 import paramsToSearchRequest from "../lib/paramsToSearchRequest"
 
-export const sendSavedSearch = async (
-  data: SavedSearch,
-  options = {}
-): Promise<WithValidationError<SavedSearch>> => {
-  const { recaptchaToken } = {
-    recaptchaToken: null,
-    ...options,
-  }
-  const { searchQuery, ...rest } = data
+export const sendSavedSearch = async ({
+  savedSearch,
+  options = {},
+}: {
+  savedSearch: SavedSearch
+  options?: ApiCallOptions
+}): Promise<WithValidationError<SavedSearch>> => {
+  const { searchQuery, ...rest } = savedSearch
 
   try {
     await postData({
-      service: Service.USER_NOTIFICATION,
       path: "saved-searches",
       body: { ...rest, searchQuery: paramsToSearchRequest(searchQuery) },
-      options: {
-        headers: recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {},
-      },
+      options,
     })
 
     return {
       tag: "success",
-      result: data,
+      result: savedSearch,
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })
   }
 }
 
-export const deleteSavedSearch = async (
+export const deleteSavedSearch = async ({
+  key,
+  options = {},
+}: {
   key: string
-): Promise<WithValidationError> => {
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
   try {
     await deletePath({
-      service: Service.USER_NOTIFICATION,
       path: `saved-searches/key/${key}`,
+      options,
     })
+
     return {
       tag: "success",
       result: {},

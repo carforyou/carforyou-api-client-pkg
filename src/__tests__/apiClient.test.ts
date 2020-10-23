@@ -18,25 +18,25 @@ describe("ApiClient", () => {
   describe("#configure", () => {
     it("configuration can be set", () => {
       ApiClient.configure({
-        carServiceUrl: "car.service.test",
+        host: "api.gateway.test",
       })
 
-      expect(ApiClient.configuration.carServiceUrl).toEqual("car.service.test")
+      expect(ApiClient.configuration.host).toEqual("api.gateway.test")
     })
 
     it("cannot be configured twice", () => {
       expect(() => {
-        ApiClient.configure({ carServiceUrl: "car.service.test1" })
-        ApiClient.configure({ carServiceUrl: "car.service.test2" })
-      }).toThrowError("Owerwriting API client configuration")
+        ApiClient.configure({ host: "api.gateway.test1" })
+        ApiClient.configure({ host: "api.gateway.test2" })
+      }).toThrowError("Overwriting API client configuration")
     })
   })
 
   describe("#getConfiguration", () => {
     it("returns the configuration", () => {
-      ApiClient.configure({ carServiceUrl: "dummy" })
+      ApiClient.configure({ host: "dummy" })
       expect(ApiClient.getConfiguration()).toEqual({
-        carServiceUrl: "dummy",
+        host: "dummy",
         configured: true,
         version: "v1",
       })

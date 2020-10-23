@@ -1,11 +1,10 @@
 import {
   fetchPath,
-  Service,
   handleValidationError,
   putData,
   deletePath,
   postData,
-  RequestOptions,
+  ApiCallOptions,
 } from "../../base"
 import toQueryString from "../../lib/toQueryString"
 
@@ -13,15 +12,19 @@ import { Paginated } from "../../types/pagination"
 import { DealerSavedSearch } from "../../types/models/autoAlarm"
 import { WithValidationError } from "../../types/withValidationError"
 
-export const fetchSavedSearches = async (
-  dealerId: number,
-  page?: number,
-  size?: number,
-  options: RequestOptions = {}
-): Promise<Paginated<DealerSavedSearch>> => {
+export const fetchDealerSavedSearches = async ({
+  dealerId,
+  page,
+  size,
+  options = {},
+}: {
+  dealerId: number
+  page?: number
+  size?: number
+  options?: ApiCallOptions
+}): Promise<Paginated<DealerSavedSearch>> => {
   const query = toQueryString({ page, size })
   return fetchPath({
-    service: Service.SEARCH,
     path: `dealers/${dealerId}/listing-saved-searches/auto-alarms${
       query ? `?${query}` : ""
     }`,
@@ -29,33 +32,34 @@ export const fetchSavedSearches = async (
   })
 }
 
-export const fetchSavedSearch = async (
-  dealerId: number,
-  savedSearchId: string,
-  options: RequestOptions = {}
-): Promise<DealerSavedSearch> => {
+export const fetchDealerSavedSearch = async ({
+  dealerId,
+  savedSearchId,
+  options = {},
+}: {
+  dealerId: number
+  savedSearchId: string
+  options?: ApiCallOptions
+}): Promise<DealerSavedSearch> => {
   return fetchPath({
-    service: Service.SEARCH,
     path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
     options: { isAuthorizedRequest: true, ...options },
   })
 }
 
-export const putDealerSavedSearch = async (
-  {
-    dealerId,
-    savedSearchId,
-    savedSearch,
-  }: {
-    dealerId: number
-    savedSearchId: string
-    savedSearch: DealerSavedSearch
-  },
-  options: RequestOptions = {}
-): Promise<WithValidationError<DealerSavedSearch>> => {
+export const putDealerSavedSearch = async ({
+  dealerId,
+  savedSearchId,
+  savedSearch,
+  options = {},
+}: {
+  dealerId: number
+  savedSearchId: string
+  savedSearch: DealerSavedSearch
+  options?: ApiCallOptions
+}): Promise<WithValidationError<DealerSavedSearch>> => {
   try {
-    const result = await putData({
-      service: Service.SEARCH,
+    await putData({
       path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
       body: savedSearch,
       options: { isAuthorizedRequest: true, ...options },
@@ -63,26 +67,24 @@ export const putDealerSavedSearch = async (
 
     return {
       tag: "success",
-      result,
+      result: savedSearch,
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })
   }
 }
 
-export const postDealerSavedSearch = async (
-  {
-    dealerId,
-    savedSearch,
-  }: {
-    dealerId: number
-    savedSearch: DealerSavedSearch
-  },
-  options: RequestOptions = {}
-): Promise<WithValidationError<DealerSavedSearch>> => {
+export const postDealerSavedSearch = async ({
+  dealerId,
+  savedSearch,
+  options = {},
+}: {
+  dealerId: number
+  savedSearch: DealerSavedSearch
+  options?: ApiCallOptions
+}): Promise<WithValidationError<DealerSavedSearch>> => {
   try {
-    const result = await postData({
-      service: Service.SEARCH,
+    await postData({
       path: `dealers/${dealerId}/listing-saved-searches/auto-alarms`,
       body: savedSearch,
       options: { isAuthorizedRequest: true, ...options },
@@ -90,28 +92,31 @@ export const postDealerSavedSearch = async (
 
     return {
       tag: "success",
-      result,
+      result: savedSearch,
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })
   }
 }
 
-export const deleteDealerSavedSearch = async (
-  dealerId: number,
-  savedSearchId: string,
-  options: RequestOptions = {}
-): Promise<WithValidationError<unknown>> => {
+export const deleteDealerSavedSearch = async ({
+  dealerId,
+  savedSearchId,
+  options = {},
+}: {
+  dealerId: number
+  savedSearchId: string
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
   try {
-    const result = deletePath({
-      service: Service.SEARCH,
+    await deletePath({
       path: `dealers/${dealerId}/listing-saved-searches/auto-alarms/${savedSearchId}`,
       options: { isAuthorizedRequest: true, ...options },
     })
 
     return {
       tag: "success",
-      result,
+      result: {},
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })

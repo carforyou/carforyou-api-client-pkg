@@ -11,7 +11,7 @@ describe("SEARCH service", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchCity(1, "de")
+      const fetched = await fetchCity({ id: 1, language: "de" })
 
       expect(fetched).toEqual(city)
       expect(fetch).toHaveBeenCalled()
@@ -30,7 +30,10 @@ describe("SEARCH service", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchCitySuggestions("de", "800")
+      const fetched = await fetchCitySuggestions({
+        language: "de",
+        query: "800",
+      })
 
       expect(fetched).toEqual(cities)
       expect(fetch).toHaveBeenCalled()

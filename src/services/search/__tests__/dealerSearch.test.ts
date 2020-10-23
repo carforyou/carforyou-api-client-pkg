@@ -13,7 +13,7 @@ describe("SEARCH service", () => {
   const sort = { type: DealerSortTypeParams.ROTATION, seed: 1 }
   const query = { feature: [Feature.garagePromotion] }
 
-  describe("#fetchListings", () => {
+  describe("#fetchDealers", () => {
     const { content, pagination } = PaginatedFactory([DealerPromotion()])
 
     beforeEach(() => {
@@ -28,7 +28,9 @@ describe("SEARCH service", () => {
     })
 
     it("unwraps the content from json", async () => {
-      const paginatedListings = await fetchDealers({ sort, pagination, query })
+      const paginatedListings = await fetchDealers({
+        searchQuery: { sort, pagination, query },
+      })
       const dealerPromotion = paginatedListings.content
 
       expect(dealerPromotion.length).toEqual(1)
@@ -47,10 +49,10 @@ describe("SEARCH service", () => {
     })
 
     it("previewId - add correct sort", async () => {
-      const paginatedListings = await fetchDealers(
-        { sort, pagination, query },
-        1316
-      )
+      const paginatedListings = await fetchDealers({
+        searchQuery: { sort, pagination, query },
+        previewId: 1316,
+      })
       const dealerPromotion = paginatedListings.content
 
       expect(dealerPromotion.length).toEqual(1)
@@ -77,9 +79,11 @@ describe("SEARCH service", () => {
     describe("Pagination", () => {
       it("is unwrapped from json", async () => {
         const paginatedListings = await fetchDealers({
-          sort,
-          pagination,
-          query,
+          searchQuery: {
+            sort,
+            pagination,
+            query,
+          },
         })
 
         expect(paginatedListings.pagination).toEqual(pagination)

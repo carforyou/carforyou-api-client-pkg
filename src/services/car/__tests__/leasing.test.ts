@@ -8,7 +8,7 @@ describe("CAR service", () => {
       fetchMock.mockResponse(JSON.stringify({ url: "test-url" }))
 
       expect(
-        await fetchLeasingFormUrl({ listingId: 123, locale: "de" })
+        await fetchLeasingFormUrl({ listingId: 123, language: "de" })
       ).toEqual("test-url")
     })
 
@@ -18,19 +18,20 @@ describe("CAR service", () => {
       })
 
       expect(
-        await fetchLeasingFormUrl({ listingId: 123, locale: "de" })
+        await fetchLeasingFormUrl({ listingId: 123, language: "de" })
       ).toEqual(null)
     })
 
     it("sends recaptcha token in a header", async () => {
       fetchMock.mockResponse(JSON.stringify({ url: "test-url" }))
 
-      await fetchLeasingFormUrl(
-        { listingId: 123, locale: "de" },
-        {
+      await fetchLeasingFormUrl({
+        listingId: 123,
+        language: "de",
+        options: {
           recaptchaToken: "token",
-        }
-      )
+        },
+      })
 
       expect(fetch).toHaveBeenCalledWith(expect.any(String), {
         headers: expect.objectContaining({
@@ -58,8 +59,12 @@ describe("CAR service", () => {
 
       describe("validate only", () => {
         it("calls validation endpoint", async () => {
-          await sendLeasingInterest(12345, leasingInterest(), {
-            validateOnly: true,
+          await sendLeasingInterest({
+            listingId: 12345,
+            leasingInterest: leasingInterest(),
+            options: {
+              validateOnly: true,
+            },
           })
 
           expect(fetch).toHaveBeenCalledWith(
@@ -71,8 +76,12 @@ describe("CAR service", () => {
         })
 
         it("returns a success", async () => {
-          const result = await sendLeasingInterest(12345, leasingInterest(), {
-            validateOnly: true,
+          const result = await sendLeasingInterest({
+            listingId: 12345,
+            leasingInterest: leasingInterest(),
+            options: {
+              validateOnly: true,
+            },
           })
 
           expect(result).toEqual({ tag: "success", result: leasingInterest() })
@@ -81,7 +90,10 @@ describe("CAR service", () => {
 
       describe("submit", () => {
         it("calls submission endpoint", async () => {
-          await sendLeasingInterest(12345, leasingInterest())
+          await sendLeasingInterest({
+            listingId: 12345,
+            leasingInterest: leasingInterest(),
+          })
 
           expect(fetch).toHaveBeenCalledWith(
             expect.stringMatching(/\/listings\/12345\/leasing\/interests$/),
@@ -90,8 +102,12 @@ describe("CAR service", () => {
         })
 
         it("sends recaptcha token in a header", async () => {
-          await sendLeasingInterest(12345, leasingInterest(), {
-            recaptchaToken: "token",
+          await sendLeasingInterest({
+            listingId: 12345,
+            leasingInterest: leasingInterest(),
+            options: {
+              recaptchaToken: "token",
+            },
           })
 
           expect(fetch).toHaveBeenCalledWith(expect.any(String), {
@@ -104,7 +120,10 @@ describe("CAR service", () => {
         })
 
         it("returns a success", async () => {
-          const result = await sendLeasingInterest(12345, leasingInterest())
+          const result = await sendLeasingInterest({
+            listingId: 12345,
+            leasingInterest: leasingInterest(),
+          })
 
           expect(result).toEqual({ tag: "success", result: leasingInterest() })
         })
@@ -124,10 +143,10 @@ describe("CAR service", () => {
       })
 
       it("returns a failure", async () => {
-        const result = await sendLeasingInterest(
-          12345,
-          leasingInterest({ email: "test@test" })
-        )
+        const result = await sendLeasingInterest({
+          listingId: 12345,
+          leasingInterest: leasingInterest({ email: "test@test" }),
+        })
 
         expect(result.tag).toEqual("error")
         if (result.tag === "error") {
@@ -145,7 +164,10 @@ describe("CAR service", () => {
       })
 
       it("returns a failure", async () => {
-        const result = await sendLeasingInterest(12345, leasingInterest())
+        const result = await sendLeasingInterest({
+          listingId: 12345,
+          leasingInterest: leasingInterest(),
+        })
 
         expect(result.tag).toEqual("error")
         if (result.tag === "error") {

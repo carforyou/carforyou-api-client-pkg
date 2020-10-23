@@ -1,19 +1,32 @@
-import { fetchPath, Service } from "../base"
+import { fetchPath, ApiCallOptions } from "../base"
 
 import { Make, Model } from "../types/models"
 import { Type } from "../types/models/type"
 
-export const fetchMakes = (): Promise<Make[]> => {
-  return fetchPath({ service: Service.CATALOGUE, path: "makes" })
+export const fetchMakes = ({
+  options = {},
+}: {
+  options?: ApiCallOptions
+} = {}): Promise<Make[]> => {
+  return fetchPath({ path: "makes", options })
 }
 
-export const fetchModels = (makeKey: string): Promise<Model[]> => {
-  return fetchPath({
-    service: Service.CATALOGUE,
-    path: `makes/key/${makeKey}/models`,
-  })
+export const fetchModels = ({
+  makeKey,
+  options = {},
+}: {
+  makeKey: string
+  options?: ApiCallOptions
+}): Promise<Model[]> => {
+  return fetchPath({ path: `makes/key/${makeKey}/models`, options })
 }
 
-export const fetchType = (id: number): Promise<Type> => {
-  return fetchPath({ service: Service.CATALOGUE, path: `types/${id}` })
+export const fetchType = ({
+  id,
+  options = {},
+}: {
+  id: number
+  options?: ApiCallOptions
+}): Promise<Type> => {
+  return fetchPath({ path: `types/${id}`, options })
 }

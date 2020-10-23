@@ -28,14 +28,12 @@ fetchBodyTypes()
 
 | Option Name                  | Meaning                                                                                                             |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `carServiceUrl`              | URL to [CarForYou Service](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html)                    |
-| `searchServiceUrl`           | URL to [Inventory Search Service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html)      |
-| `catalogueServiceUrl`        | URL to [Catalogue Service](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product_Catalogue) |
-| `dealerServiceUrl`           | URL to [Dealer Service](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html)                          |
-| `optionServiceUrl`           | URL to [Options Service](https://option-service.preprod.carforyou.ch/swagger-ui/index.html)                         |
-| `analyticsServiceUrl`        | URL to [Analytics Service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui/index.html)          |
-| `userNotificationServiceUrl` | URL to [User Notification Service](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html)    |
+| `host`                       | URL to the API gateway                                                                                              |
 | `debug`                      | Set to `true` to `console.log` requests and API responses.                                                          |
+
+### Overwriting services per call
+
+To overwrite a default API host an options object with a `host` key can be passed to the API call. This allows making requests against a different environment, dev version of the API or stubs.
 
 ### Authenticated Requests
 

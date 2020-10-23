@@ -5,7 +5,7 @@ describe("Facets", () => {
     fetchMock.resetMocks()
   })
 
-  it("are unwraped from json", async () => {
+  it("are unwrapped from json", async () => {
     const facets = { makeKey: 312 }
     fetchMock.mockResponse(JSON.stringify({ facets }))
 

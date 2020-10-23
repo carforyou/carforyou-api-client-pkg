@@ -1,6 +1,6 @@
 import { fetchListings } from "../listingSearch"
 
-import { postData, Service } from "../../../base"
+import { postData } from "../../../base"
 
 jest.mock("../../../base", () => ({
   ...jest.requireActual("../../../base"),
@@ -14,13 +14,14 @@ describe("SEARCH service", () => {
     describe("query formatting", () => {
       it("forwards the filters as query", async () => {
         await fetchListings({
-          bodyType: ["suv"],
-          makeKey: ["bmw"],
-          modelKey: ["m3"],
+          query: {
+            bodyType: ["suv"],
+            makeKey: ["bmw"],
+            modelKey: ["m3"],
+          },
         })
 
         expect(postData).toHaveBeenCalledWith({
-          service: Service.SEARCH,
           path: "listings/search",
           body: expect.objectContaining({
             query: {
@@ -29,14 +30,14 @@ describe("SEARCH service", () => {
               modelKey: ["m3"],
             },
           }),
+          options: {},
         })
       })
 
       it("wraps the pagination indexed from 0", async () => {
-        await fetchListings({ page: 5, size: 10 })
+        await fetchListings({ query: { page: 5, size: 10 } })
 
         expect(postData).toHaveBeenCalledWith({
-          service: Service.SEARCH,
           path: "listings/search",
           body: expect.objectContaining({
             pagination: {
@@ -44,14 +45,16 @@ describe("SEARCH service", () => {
               size: 10,
             },
           }),
+          options: {},
         })
       })
 
       it("defaults `page` to 0 when it's not a number", async () => {
-        await fetchListings({ page: ("qwerty" as unknown) as number, size: 10 })
+        await fetchListings({
+          query: { page: ("qwerty" as unknown) as number, size: 10 },
+        })
 
         expect(postData).toHaveBeenCalledWith({
-          service: Service.SEARCH,
           path: "listings/search",
           body: expect.objectContaining({
             pagination: {
@@ -59,14 +62,16 @@ describe("SEARCH service", () => {
               size: 10,
             },
           }),
+          options: {},
         })
       })
 
       it("defaults `size` to 24 when it's not a number", async () => {
-        await fetchListings({ page: 5, size: ("qwerty" as unknown) as number })
+        await fetchListings({
+          query: { page: 5, size: ("qwerty" as unknown) as number },
+        })
 
         expect(postData).toHaveBeenCalledWith({
-          service: Service.SEARCH,
           path: "listings/search",
           body: expect.objectContaining({
             pagination: {
@@ -74,6 +79,7 @@ describe("SEARCH service", () => {
               size: 24,
             },
           }),
+          options: {},
         })
       })
 
@@ -81,7 +87,6 @@ describe("SEARCH service", () => {
         await fetchListings()
 
         expect(postData).toHaveBeenCalledWith({
-          service: Service.SEARCH,
           path: "listings/search",
           body: expect.objectContaining({
             pagination: {
@@ -89,14 +94,14 @@ describe("SEARCH service", () => {
               size: 24,
             },
           }),
+          options: {},
         })
       })
 
       it("wraps sort", async () => {
-        await fetchListings({ sortType: "PRICE", sortOrder: "ASC" })
+        await fetchListings({ query: { sortType: "PRICE", sortOrder: "ASC" } })
 
         expect(postData).toHaveBeenCalledWith({
-          service: Service.SEARCH,
           path: "listings/search",
           body: expect.objectContaining({
             sort: [
@@ -106,6 +111,7 @@ describe("SEARCH service", () => {
               },
             ],
           }),
+          options: {},
         })
       })
 
@@ -113,7 +119,6 @@ describe("SEARCH service", () => {
         await fetchListings()
 
         expect(postData).toHaveBeenCalledWith({
-          service: Service.SEARCH,
           path: "listings/search",
           body: expect.objectContaining({
             sort: [
@@ -123,6 +128,7 @@ describe("SEARCH service", () => {
               },
             ],
           }),
+          options: {},
         })
       })
     })

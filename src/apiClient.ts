@@ -1,11 +1,10 @@
-export interface ApiClientConfig {
-  carServiceUrl?: string
-  searchServiceUrl?: string
-  catalogueServiceUrl?: string
-  dealerServiceUrl?: string
-  optionServiceUrl?: string
-  analyticsServiceUrl?: string
-  userNotificationServiceUrl?: string
+export interface ApiClientConfiguration {
+  host: string
+  debug?: boolean
+}
+
+interface ApiClientConfig {
+  host?: string
   debug?: boolean
 }
 
@@ -24,9 +23,9 @@ class ApiClient {
     return ApiClient.instance
   }
 
-  public configure(configuration: ApiClientConfig): void {
+  public configure(configuration: ApiClientConfiguration): void {
     if (Object.keys(this.configuration).length) {
-      throw new Error("Owerwriting API client configuration")
+      throw new Error("Overwriting API client configuration")
     }
 
     Object.keys(configuration).forEach((key) => {

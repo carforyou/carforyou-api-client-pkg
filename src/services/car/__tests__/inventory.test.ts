@@ -5,6 +5,12 @@ import {
   ListingValidationEndpoint,
   prepareListingData,
   saveDealerListing,
+  listingMandatoryFields,
+  fetchDealerListingsCount,
+  fetchDealerMakes,
+  publishDealerListing,
+  archiveDealerListing,
+  unpublishDealerListing,
 } from "../inventory"
 
 import {
@@ -40,7 +46,7 @@ describe("CAR service", () => {
     })
 
     it("returns ListingAttributes", async () => {
-      const fetchedListing = await fetchListing(10)
+      const fetchedListing = await fetchListing({ id: 10 })
 
       expect(fetch).toHaveBeenCalled()
       expect(fetchedListing).toEqual(listing)
@@ -64,11 +70,10 @@ describe("CAR service", () => {
     })
 
     it("unwraps the content from json", async () => {
-      const paginatedListings = await fetchDealerListings(
+      const paginatedListings = await fetchDealerListings({
         dealerId,
-        {},
-        requestOptionsMock
-      )
+        options: requestOptionsMock,
+      })
       const listings = paginatedListings.content
 
       expect(listings.length).toEqual(1)
@@ -77,12 +82,11 @@ describe("CAR service", () => {
     })
 
     describe("Pagination", () => {
-      it("is unwraped from json", async () => {
-        const paginatedListings = await fetchDealerListings(
+      it("is unwrapped from json", async () => {
+        const paginatedListings = await fetchDealerListings({
           dealerId,
-          {},
-          requestOptionsMock
-        )
+          options: requestOptionsMock,
+        })
 
         expect(paginatedListings.pagination).toEqual(pagination)
         expect(fetch).toHaveBeenCalled()
@@ -92,7 +96,11 @@ describe("CAR service", () => {
     describe("query formatting", () => {
       describe("pagination", () => {
         it("indexes page from 0", async () => {
-          await fetchDealerListings(dealerId, { page: 5 }, requestOptionsMock)
+          await fetchDealerListings({
+            dealerId,
+            query: { page: 5 },
+            options: requestOptionsMock,
+          })
 
           expect(fetchMock).toHaveBeenCalledWith(
             expect.stringMatching(
@@ -103,13 +111,13 @@ describe("CAR service", () => {
         })
 
         it("defaults `page` to 0 when not provided", async () => {
-          await fetchDealerListings(
+          await fetchDealerListings({
             dealerId,
-            {
+            query: {
               size: 10,
             },
-            requestOptionsMock
-          )
+            options: requestOptionsMock,
+          })
 
           expect(fetchMock).toHaveBeenCalledWith(
             expect.stringMatching(
@@ -120,7 +128,11 @@ describe("CAR service", () => {
         })
 
         it("defaults `size` to 25 when it's not provided", async () => {
-          await fetchDealerListings(dealerId, { page: 5 }, requestOptionsMock)
+          await fetchDealerListings({
+            dealerId,
+            query: { page: 5 },
+            options: requestOptionsMock,
+          })
 
           expect(fetchMock).toHaveBeenCalledWith(
             expect.stringMatching(
@@ -133,14 +145,14 @@ describe("CAR service", () => {
 
       describe("sort", () => {
         it("can sort by creation date", async () => {
-          await fetchDealerListings(
+          await fetchDealerListings({
             dealerId,
-            {
+            query: {
               sortType: DealerListingSortTypeParams.CREATED_DATE,
               sortOrder: DealerListingSortOrderParams.ASC,
             },
-            requestOptionsMock
-          )
+            options: requestOptionsMock,
+          })
 
           expect(fetchMock).toHaveBeenCalledWith(
             expect.stringMatching(
@@ -153,7 +165,7 @@ describe("CAR service", () => {
         })
 
         it("defaults to sorting by creation date, descending", async () => {
-          await fetchDealerListings(dealerId, {}, requestOptionsMock)
+          await fetchDealerListings({ dealerId, options: requestOptionsMock })
 
           expect(fetchMock).toHaveBeenCalledWith(
             expect.stringMatching(
@@ -168,6 +180,49 @@ describe("CAR service", () => {
     })
   })
 
+  describe("#fetchDealerMakes", () => {
+    it("fetches data", async () => {
+      const makes = [
+        { make: "Audi", makeKey: "audi" },
+        { make: "BMW", makeKey: "bmw" },
+      ]
+      fetchMock.mockResponse(JSON.stringify(makes))
+
+      const data = await fetchDealerMakes({ dealerId: 123 })
+      expect(data).toEqual(makes)
+      expect(fetch).toHaveBeenCalled()
+    })
+  })
+
+  describe("#fetchDealerListingsCount", () => {
+    it("unwraps count from json", async () => {
+      const count = 400
+      fetchMock.mockResponse(JSON.stringify({ count }))
+
+      const response = await fetchDealerListingsCount({
+        dealerId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual(count)
+      expect(fetch).toHaveBeenCalled()
+    })
+
+    it("passes query in the query string", async () => {
+      const query = { isActive: true }
+      fetchMock.mockResponse(JSON.stringify({ count: 40 }))
+
+      await fetchDealerListingsCount({
+        dealerId: 123,
+        query,
+        options: requestOptionsMock,
+      })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/123/listings/count?isActive=true"),
+        expect.any(Object)
+      )
+    })
+  })
+
   describe("#validateDealerListing", () => {
     const listing = Listing({ id: 123 })
 
@@ -177,14 +232,14 @@ describe("CAR service", () => {
       })
 
       it("when validating draft", async () => {
-        await validateDealerListing(
-          {
-            dealerId,
-            listing,
+        await validateDealerListing({
+          dealerId,
+          listing,
+          options: {
             validationEndpoint: ListingValidationEndpoint.draft,
+            ...requestOptionsMock,
           },
-          requestOptionsMock
-        )
+        })
 
         expect(fetchMock).toHaveBeenCalledWith(
           expect.stringMatching(`dealers/${dealerId}/listings/validate`),
@@ -196,14 +251,14 @@ describe("CAR service", () => {
       })
 
       it("when validating publication", async () => {
-        await validateDealerListing(
-          {
-            dealerId,
-            listing,
+        await validateDealerListing({
+          dealerId,
+          listing,
+          options: {
             validationEndpoint: ListingValidationEndpoint.publish,
+            ...requestOptionsMock,
           },
-          requestOptionsMock
-        )
+        })
 
         expect(fetchMock).toHaveBeenCalledWith(
           expect.stringMatching(
@@ -223,14 +278,14 @@ describe("CAR service", () => {
       })
 
       it("returns the listing if validation is successful", async () => {
-        const result = await validateDealerListing(
-          {
-            dealerId,
-            listing,
+        const result = await validateDealerListing({
+          dealerId,
+          listing,
+          options: {
             validationEndpoint: ListingValidationEndpoint.publish,
+            ...requestOptionsMock,
           },
-          requestOptionsMock
-        )
+        })
 
         expect(result).toEqual({
           tag: "success",
@@ -254,14 +309,14 @@ describe("CAR service", () => {
       })
 
       it("returns the validation errors if validation fails", async () => {
-        const result = await validateDealerListing(
-          {
-            dealerId,
-            listing,
+        const result = await validateDealerListing({
+          dealerId,
+          listing,
+          options: {
             validationEndpoint: ListingValidationEndpoint.publish,
+            ...requestOptionsMock,
           },
-          requestOptionsMock
-        )
+        })
 
         expect(result).toEqual({
           tag: "error",
@@ -281,13 +336,11 @@ describe("CAR service", () => {
       })
 
       it("posts", async () => {
-        await saveDealerListing(
-          {
-            dealerId: 1234,
-            listing,
-          },
-          requestOptionsMock
-        )
+        await saveDealerListing({
+          dealerId: 1234,
+          listing,
+          options: requestOptionsMock,
+        })
 
         expect(fetchMock).toHaveBeenCalledWith(
           expect.any(String),
@@ -296,13 +349,11 @@ describe("CAR service", () => {
       })
 
       it("returns the listing", async () => {
-        const result = await saveDealerListing(
-          {
-            dealerId: 1234,
-            listing,
-          },
-          requestOptionsMock
-        )
+        const result = await saveDealerListing({
+          dealerId: 1234,
+          listing,
+          options: requestOptionsMock,
+        })
 
         expect(result).toEqual({
           tag: "success",
@@ -319,13 +370,11 @@ describe("CAR service", () => {
       })
 
       it("puts", async () => {
-        await saveDealerListing(
-          {
-            dealerId: 1234,
-            listing,
-          },
-          requestOptionsMock
-        )
+        await saveDealerListing({
+          dealerId: 1234,
+          listing,
+          options: requestOptionsMock,
+        })
 
         expect(fetchMock).toHaveBeenCalledWith(
           expect.any(String),
@@ -334,16 +383,132 @@ describe("CAR service", () => {
       })
 
       it("returns the listing", async () => {
-        const result = await saveDealerListing(
-          {
-            dealerId: 1234,
-            listing,
-          },
-          requestOptionsMock
-        )
+        const result = await saveDealerListing({
+          dealerId: 1234,
+          listing,
+          options: requestOptionsMock,
+        })
 
         expect(result).toEqual({ tag: "success", result: listing })
       })
+    })
+  })
+
+  describe("#publishDealerListing", () => {
+    const listing = Listing({ id: 123 })
+
+    it("publishes and returns the listing", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await publishDealerListing({
+        dealerId: 6,
+        listing,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "success", result: listing })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/123/publish"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await publishDealerListing({
+        dealerId: 6,
+        listing,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "error", message, errors })
+    })
+  })
+
+  describe("#archiveDealerListing", () => {
+    it("archives the listing", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await archiveDealerListing({
+        dealerId: 6,
+        listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/123/archive"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await archiveDealerListing({
+        dealerId: 6,
+        listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "error", message, errors })
+    })
+  })
+
+  describe("#unpublishDealerListing", () => {
+    it("un-publishes the listing", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await unpublishDealerListing({
+        dealerId: 6,
+        listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/123/unpublish"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await unpublishDealerListing({
+        dealerId: 6,
+        listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "error", message, errors })
+    })
+  })
+
+  describe("#listingMandatoryFields", () => {
+    it("returns a set of mandatory fields", async () => {
+      const fields = ["makeKey", "modelKey"]
+      fetchMock.mockResponse(
+        JSON.stringify(
+          fields.map((field) => ({ message: "not-empty", param: field }))
+        )
+      )
+
+      const data = await listingMandatoryFields({
+        dealerId: 123,
+        options: requestOptionsMock,
+      })
+      expect(data).toEqual(new Set(fields))
     })
   })
 })

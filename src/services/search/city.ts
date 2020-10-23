@@ -1,21 +1,32 @@
-import { fetchPath, Service } from "../../base"
+import { fetchPath, ApiCallOptions } from "../../base"
 
+import { Language } from "../../types/params"
 import { Paginated } from "../../types/pagination"
 import { City } from "../../types/models"
 
-export const fetchCity = (id: number, lng: string): Promise<City> => {
-  return fetchPath({
-    service: Service.SEARCH,
-    path: `cities/${id}?language=${lng}`,
-  })
+export const fetchCity = ({
+  id,
+  language,
+  options = {},
+}: {
+  id: number
+  language: Language
+  options?: ApiCallOptions
+}): Promise<City> => {
+  return fetchPath({ path: `cities/${id}?language=${language}`, options })
 }
 
-export const fetchCitySuggestions = async (
-  lng: string,
+export const fetchCitySuggestions = async ({
+  language,
+  query,
+  options = {},
+}: {
+  language: Language
   query: string
-): Promise<Paginated<City>> => {
+  options?: ApiCallOptions
+}): Promise<Paginated<City>> => {
   return fetchPath({
-    service: Service.SEARCH,
-    path: `cities/suggestions?language=${lng}&q=${query}`,
+    path: `cities/suggestions?language=${language}&q=${query}`,
+    options,
   })
 }

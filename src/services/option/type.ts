@@ -1,18 +1,24 @@
-import { Service, fetchPath } from "../../base"
+import { fetchPath, ApiCallOptions } from "../../base"
 
 import toQueryString from "../../lib/toQueryString"
 
+import { Language } from "../../types/params"
 import { Options } from "../../types/models"
 
-export const fetchTypeOptions = async (
-  typeId: number,
+export const fetchTypeOptions = async ({
+  typeId,
+  query,
+  options = {},
+}: {
+  typeId: number
   query: {
-    language: string
+    language: Language
     productionYear: number
   }
-): Promise<Options> => {
+  options?: ApiCallOptions
+}): Promise<Options> => {
   return fetchPath({
-    service: Service.OPTION,
     path: `types/${typeId}/options?${toQueryString(query)}`,
+    options,
   })
 }

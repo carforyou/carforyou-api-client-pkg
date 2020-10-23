@@ -8,16 +8,6 @@ import { ResponseError } from "./responseError"
 import { SearchListing } from "./types/models/listing"
 import { WithTopListing } from "./types/topListing"
 
-export enum Service {
-  SEARCH = "SEARCH",
-  CATALOGUE = "CATALOGUE",
-  CAR = "CAR",
-  DEALER = "DEALER",
-  OPTION = "OPTION",
-  ANALYTICS = "ANALYTICS",
-  USER_NOTIFICATION = "USER_NOTIFICATION",
-}
-
 const stripLeadingSlash = (path: string): string => {
   return path.startsWith("/") ? path.slice(1) : path
 }
@@ -40,41 +30,6 @@ const withPagination = <T>(json: {
   return { content, fieldsStats, pagination, topListing }
 }
 
-export const resolveServiceUrl = (service: Service): string => {
-  let url: string
-  switch (service) {
-    case Service.CAR:
-      url = apiClient.configuration.carServiceUrl
-      break
-    case Service.CATALOGUE:
-      url = apiClient.configuration.catalogueServiceUrl
-      break
-    case Service.SEARCH:
-      url = apiClient.configuration.searchServiceUrl
-      break
-    case Service.DEALER:
-      url = apiClient.configuration.dealerServiceUrl
-      break
-    case Service.OPTION:
-      url = apiClient.configuration.optionServiceUrl
-      break
-    case Service.ANALYTICS:
-      url = apiClient.configuration.analyticsServiceUrl
-      break
-    case Service.USER_NOTIFICATION:
-      url = apiClient.configuration.userNotificationServiceUrl
-      break
-    default:
-      throw new Error(`Tried to resolve url of unknown service "${service}"`)
-  }
-
-  if ((url || "").trim()) {
-    return url
-  }
-
-  throw new Error(`Missing endpoint configuration for "${service}" service`)
-}
-
 const getAuthorizationHeader = (accessToken = null) => {
   if (!accessToken) {
     throw new Error(
@@ -85,58 +40,78 @@ const getAuthorizationHeader = (accessToken = null) => {
   return { Authorization: `Bearer ${accessToken}` }
 }
 
-export interface RequestOptions {
-  isAuthorizedRequest?: boolean
+export const getHost = (host: string = null) => {
+  if (!apiClient.configuration.host) {
+    throw new Error(
+      'ApiClient not configured, please run: ApiClient.configure({ host: "your.api.gateway" }'
+    )
+  }
+
+  return host || apiClient.configuration.host
+}
+
+const buildHeaders = ({
+  headers = {},
+  recaptchaToken,
+  accessToken,
+  isAuthorizedRequest,
+}: RequestOptions): Record<string, string> => {
+  return {
+    "Content-Type": "application/json",
+    Accept: `application/vnd.carforyou.${apiClient.version}+json`,
+    ...(isAuthorizedRequest ? getAuthorizationHeader(accessToken) : {}),
+    ...(recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}),
+    ...headers,
+  }
+}
+
+export interface ApiCallOptions extends Omit<RequestInit, "method" | "body"> {
+  recaptchaToken?: string
   accessToken?: string
-  method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
-  headers?: HeadersInit
+  headers?: Record<string, string>
+  host?: string
+}
+
+interface AuthorizedApiCallOptions extends ApiCallOptions {
+  isAuthorizedRequest?: boolean
+}
+
+type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
+
+interface RequestOptions extends AuthorizedApiCallOptions {
+  method?: Method
 }
 
 export const fetchPath = async ({
-  service,
   path,
   body,
-  options = {},
+  options,
 }: {
-  service: Service
   path: string
   body?: string
-  options?: RequestOptions
+  options: RequestOptions
 }) => {
-  const defaultOptions: RequestOptions = {
-    isAuthorizedRequest: false,
-    accessToken: null,
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: `application/vnd.carforyou.${apiClient.version}+json`,
-      ...(options.isAuthorizedRequest
-        ? getAuthorizationHeader(options.accessToken)
-        : {}),
-    },
-  }
-  const mergedOptions: RequestOptions = {
-    ...defaultOptions,
-    ...options,
-    headers: {
-      ...defaultOptions.headers,
-      ...(options.headers ? options.headers : {}),
-    },
-  }
-
-  const baseUrl = resolveServiceUrl(service)
-  const url = `${baseUrl}/${stripLeadingSlash(path)}`
+  const {
+    method = "GET",
+    host = null,
+    headers,
+    recaptchaToken,
+    accessToken,
+    isAuthorizedRequest,
+    ...fetchOptions
+  } = options
+  const url = `${getHost(host)}/${stripLeadingSlash(path)}`
 
   if (apiClient.configuration.debug) {
     // eslint-disable-next-line no-console
-    console.info(`    >> API #fetchPath: ${url}`, mergedOptions)
+    console.info(`    >> API #fetchPath: ${url}`, options)
   }
 
-  const { headers, method } = mergedOptions
   const response = await fetch(url, {
-    headers,
+    headers: buildHeaders(options),
     method,
-    body,
+    ...(body ? { body } : {}),
+    ...fetchOptions,
   })
 
   if (!response.ok) {
@@ -159,61 +134,59 @@ export const fetchPath = async ({
 }
 
 export const postData = async ({
-  service,
   path,
   body,
-  options = {},
+  options,
 }: {
-  service: Service
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options?: RequestOptions
+  options: AuthorizedApiCallOptions
 }) => {
   return fetchPath({
-    service,
     path,
     body: JSON.stringify(body),
     options: {
-      method: "POST",
       ...options,
+      method: "POST",
     },
   })
 }
 
 export const putData = async ({
-  service,
   path,
   body,
-  options = {},
+  options,
 }: {
-  service: Service
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options?: RequestOptions
+  options: AuthorizedApiCallOptions
 }) => {
   return fetchPath({
-    service,
     path,
     body: JSON.stringify(body),
     options: {
-      method: "PUT",
       ...options,
+      method: "PUT",
     },
   })
 }
 
 export const deletePath = async ({
-  service,
   path,
-  options = {},
+  options,
 }: {
-  service: Service
   path: string
-  options?: RequestOptions
+  options: AuthorizedApiCallOptions
 }) => {
-  return fetchPath({ service, path, options: { method: "DELETE", ...options } })
+  return fetchPath({
+    path,
+    options: {
+      ...options,
+      method: "DELETE",
+    },
+  })
 }
 
 export const handleValidationError = async (

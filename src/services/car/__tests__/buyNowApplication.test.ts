@@ -23,7 +23,10 @@ describe("Car API", () => {
     })
 
     it("calls submission endpoint", async () => {
-      await sendBuyNowApplication(12345, buyNowApplication())
+      await sendBuyNowApplication({
+        listingId: 12345,
+        buyNowApplication: buyNowApplication(),
+      })
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(/\/listings\/12345\/buy-now-applications$/),
@@ -32,8 +35,10 @@ describe("Car API", () => {
     })
 
     it("calls validation endpoint when requested", async () => {
-      await sendBuyNowApplication(12345, buyNowApplication(), {
-        validateOnly: true,
+      await sendBuyNowApplication({
+        listingId: 12345,
+        buyNowApplication: buyNowApplication(),
+        options: { validateOnly: true },
       })
 
       expect(fetch).toHaveBeenCalledWith(
@@ -45,8 +50,10 @@ describe("Car API", () => {
     })
 
     it("sends recaptcha token in a header", async () => {
-      await sendBuyNowApplication(12345, buyNowApplication(), {
-        recaptchaToken: "token",
+      await sendBuyNowApplication({
+        listingId: 12345,
+        buyNowApplication: buyNowApplication(),
+        options: { recaptchaToken: "token" },
       })
 
       expect(fetch).toHaveBeenCalledWith(expect.any(String), {
@@ -60,7 +67,10 @@ describe("Car API", () => {
 
     describe("valid parameters", () => {
       it("returns a success", async () => {
-        const result = await sendBuyNowApplication(12345, buyNowApplication())
+        const result = await sendBuyNowApplication({
+          listingId: 12345,
+          buyNowApplication: buyNowApplication(),
+        })
 
         expect(result).toEqual({ tag: "success", result: buyNowApplication() })
       })
@@ -79,10 +89,10 @@ describe("Car API", () => {
       })
 
       it("returns validation error", async () => {
-        const result = await sendBuyNowApplication(
-          12345,
-          buyNowApplication({ email: "test@test" })
-        )
+        const result = await sendBuyNowApplication({
+          listingId: 12345,
+          buyNowApplication: buyNowApplication({ email: "test@test" }),
+        })
 
         expect(result.tag).toEqual("error")
         if (result.tag === "error") {

@@ -1,19 +1,17 @@
 import {
   fetchPath,
-  Service,
   postData,
   handleValidationError,
-  RequestOptions,
+  ApiCallOptions,
 } from "../base"
 
 import { WithValidationError } from "../types/withValidationError"
 import { Product, PurchaseAndUseProduct } from "../types/models/product"
 
-export const fetchProducts = async (
-  options: RequestOptions = {}
-): Promise<Product[]> =>
+export const fetchProducts = async ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<Product[]> =>
   fetchPath({
-    service: Service.DEALER,
     path: "products",
     options: {
       isAuthorizedRequest: true,
@@ -21,15 +19,19 @@ export const fetchProducts = async (
     },
   })
 
-export const purchaseAndUseListingProduct = async (
-  dealerId: number,
-  listingId: number,
-  productId: number,
-  options: RequestOptions = {}
-): Promise<WithValidationError<PurchaseAndUseProduct>> => {
+export const purchaseAndUseListingProduct = async ({
+  dealerId,
+  listingId,
+  productId,
+  options = {},
+}: {
+  dealerId: number
+  listingId: number
+  productId: number
+  options?: ApiCallOptions
+}): Promise<WithValidationError<PurchaseAndUseProduct>> => {
   try {
     const result = await postData({
-      service: Service.DEALER,
       path: `dealers/${dealerId}/listings/${listingId}/products/purchase-and-use`,
       body: {
         productId,
@@ -48,15 +50,19 @@ export const purchaseAndUseListingProduct = async (
   }
 }
 
-export const purchaseAndUseDealerProduct = async (
-  dealerId: number,
-  productId: number,
-  startDate: string,
-  options: RequestOptions = {}
-): Promise<WithValidationError<PurchaseAndUseProduct>> => {
+export const purchaseAndUseDealerProduct = async ({
+  dealerId,
+  productId,
+  startDate,
+  options = {},
+}: {
+  dealerId: number
+  productId: number
+  startDate: string
+  options?: ApiCallOptions
+}): Promise<WithValidationError<PurchaseAndUseProduct>> => {
   try {
     const result = await postData({
-      service: Service.DEALER,
       path: `dealers/${dealerId}/products/purchase-and-use`,
       body: {
         productId,

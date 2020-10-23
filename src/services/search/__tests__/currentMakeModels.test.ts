@@ -34,7 +34,7 @@ describe("SEARCH service", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchCurrentModels("audi")
+      const fetched = await fetchCurrentModels({ makeKey: "audi" })
 
       expect(fetched).toEqual(models)
       expect(fetch).toHaveBeenCalled()

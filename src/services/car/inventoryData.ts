@@ -1,55 +1,73 @@
-import { fetchPath, Service } from "../../base"
+import { fetchPath, ApiCallOptions } from "../../base"
 
-export const fetchBodyTypes = (): Promise<string[]> => {
-  return fetchPath({ service: Service.CAR, path: "inventory/bodytypes" })
+export const fetchBodyTypes = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({ path: "inventory/bodytypes", options })
 }
 
-export const fetchColorGroups = (): Promise<string[]> => {
-  return fetchPath({ service: Service.CAR, path: "inventory/colorgroups" })
+export const fetchColorGroups = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({ path: "inventory/colorgroups", options })
 }
 
-export const fetchColors = (): Promise<string[]> => {
-  return fetchPath({ service: Service.CAR, path: "inventory/colors" })
+export const fetchColors = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({ path: "inventory/colors", options })
 }
 
-export const fetchConditionTypes = (): Promise<string[]> => {
-  return fetchPath({ service: Service.CAR, path: "inventory/conditiontypes" })
+export const fetchConditionTypes = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({ path: "inventory/conditiontypes", options })
 }
 
-export const fetchDoors = (): Promise<number[]> => {
-  return fetchPath({ service: Service.CAR, path: "inventory/doors" })
+export const fetchDoors = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<number[]> => {
+  return fetchPath({ path: "inventory/doors", options })
 }
 
-export const fetchDriveTypes = (): Promise<string[]> => {
-  return fetchPath({ service: Service.CAR, path: "inventory/drivetypes" })
+export const fetchDriveTypes = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({ path: "inventory/drivetypes", options })
 }
 
-export const fetchFuelTypeGroups = (): Promise<string[]> => {
-  return fetchPath({ service: Service.CAR, path: "inventory/fueltypegroups" })
+export const fetchFuelTypeGroups = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({ path: "inventory/fueltypegroups", options })
 }
 
-export const fetchFuelTypes = (): Promise<string[]> => {
-  return fetchPath({ service: Service.CAR, path: "inventory/fueltypes" })
+export const fetchFuelTypes = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({ path: "inventory/fueltypes", options })
 }
 
-export const fetchMinFirstRegistrationYear = (): Promise<number> => {
-  return fetchPath({
-    service: Service.CAR,
-    path: "inventory/min-first-registration-year",
-  })
+export const fetchMinFirstRegistrationYear = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<number> => {
+  return fetchPath({ path: "inventory/min-first-registration-year", options })
 }
 
-export const fetchOptions = (): Promise<string[]> => {
-  return fetchPath({ service: Service.CAR, path: "inventory/options" })
+export const fetchOptions = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({ path: "inventory/options", options })
 }
 
-export const fetchSeats = (): Promise<number[]> => {
-  return fetchPath({ service: Service.CAR, path: "inventory/seats" })
+export const fetchSeats = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<number[]> => {
+  return fetchPath({ path: "inventory/seats", options })
 }
 
-export const fetchTransmissionTypes = (): Promise<string[]> => {
-  return fetchPath({
-    service: Service.CAR,
-    path: "inventory/transmissiontypes",
-  })
+export const fetchTransmissionTypes = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({ path: "inventory/transmissiontypes", options })
 }

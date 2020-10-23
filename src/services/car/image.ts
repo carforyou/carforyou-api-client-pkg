@@ -1,69 +1,69 @@
 import {
   fetchPath,
-  Service,
   postData,
   putData,
   handleValidationError,
-  RequestOptions,
+  ApiCallOptions,
 } from "../../base"
 
 import { ImageEnrichment, PresignedUrl } from "../../types/models"
 import { Listing, DealerListingImages } from "../../types/models/listing"
 import { WithValidationError } from "../../types/withValidationError"
 
-export const fetchImageEnrichment = async (
+export const fetchImageEnrichment = async ({
+  imageId,
+  options = {},
+}: {
   imageId: number
-): Promise<ImageEnrichment> => {
-  return fetchPath({
-    service: Service.CAR,
-    path: `images/${imageId}/enrichment`,
-  })
+  options?: ApiCallOptions
+}): Promise<ImageEnrichment> => {
+  return fetchPath({ path: `images/${imageId}/enrichment`, options })
 }
 
-export const generatePresignedImageUrl = (
+export const generatePresignedImageUrl = ({
+  imageData,
+  options = {},
+}: {
   imageData: {
     key: string
     title: string
     contentType: string
-  },
-  options: RequestOptions = {}
-): Promise<PresignedUrl> => {
+  }
+  options?: ApiCallOptions
+}): Promise<PresignedUrl> => {
   return postData({
-    service: Service.CAR,
     path: "images/generate-presigned-url",
     body: imageData,
     options: { isAuthorizedRequest: true, ...options },
   })
 }
 
-export const fetchDealerListingImages = async (
-  dealerId: number,
-  listingId: number,
-  options: RequestOptions = {}
-): Promise<DealerListingImages> => {
+export const fetchDealerListingImages = async ({
+  dealerId,
+  listingId,
+  options = {},
+}: {
+  dealerId: number
+  listingId: number
+  options?: ApiCallOptions
+}): Promise<DealerListingImages> => {
   return fetchPath({
-    service: Service.CAR,
     path: `dealers/${dealerId}/listings/${listingId}/images`,
-    options: {
-      isAuthorizedRequest: true,
-      ...options,
-    },
+    options: { isAuthorizedRequest: true, ...options },
   })
 }
 
-export const saveDealerListingImages = async (
-  {
-    dealerId,
-    listing,
-  }: {
-    dealerId: number
-    listing: Listing
-  },
-  options: RequestOptions = {}
-): Promise<WithValidationError<Listing>> => {
+export const saveDealerListingImages = async ({
+  dealerId,
+  listing,
+  options = {},
+}: {
+  dealerId: number
+  listing: Listing
+  options?: ApiCallOptions
+}): Promise<WithValidationError<Listing>> => {
   try {
     await putData({
-      service: Service.CAR,
       path: `dealers/${dealerId}/listings/${listing.id}/images`,
       body: { images: listing.images },
       options: { isAuthorizedRequest: true, ...options },
