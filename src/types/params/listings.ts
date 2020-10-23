@@ -75,6 +75,7 @@ export interface ListingFilterParams {
   vehicleClass?: string[]
   hasImagesOnly?: boolean
   buyNowEligibleOnly?: boolean
+  options?: string[]
 
   [key: string]:
     | number
