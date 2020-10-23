@@ -179,3 +179,9 @@ export interface CockpitAnalytics {
   count: number
   [key: string]: string | number
 }
+
+export interface LeadsCount {
+  callLeads: number
+  messageLeads: number
+  total: number
+}

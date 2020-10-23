@@ -26,6 +26,7 @@ export {
   DealerEntitlements,
   Entitlements,
   CockpitAnalytics,
+  LeadsCount,
 } from "./types/models/index"
 
 export {
@@ -202,8 +203,9 @@ export {
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export {
   fetchAnalyticsData,
-  fetchLeadsAnalytics,
+  fetchLeadsImpressions,
   fetchListingsAnalytics,
+  fetchLeadsCount,
 } from "./services/analytics"
 export {
   fetchProducts,

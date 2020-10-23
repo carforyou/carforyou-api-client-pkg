@@ -1,6 +1,10 @@
-import { postData, ApiCallOptions } from "../base"
+import { postData, ApiCallOptions, fetchPath } from "../base"
 
-import { DealerListingsAnalyticsData, CockpitAnalytics } from "../types/models"
+import {
+  DealerListingsAnalyticsData,
+  CockpitAnalytics,
+  LeadsCount,
+} from "../types/models"
 
 export const fetchAnalyticsData = async ({
   dealerId,
@@ -23,23 +27,20 @@ export const fetchAnalyticsData = async ({
   })
 }
 
-export const fetchLeadsAnalytics = async ({
+export const fetchLeadsImpressions = async ({
   dealerId,
   dimensions,
-  query,
   options = {},
 }: {
   dealerId: number
   dimensions?: string[]
-  query?: { verificationDateFrom: string }
   options?: ApiCallOptions
 }): Promise<Array<CockpitAnalytics>> => {
   return postData({
-    path: `dealers/${dealerId}/leads/analytics`,
+    path: `dealers/${dealerId}/leads/impressions`,
     body: {
       function: "count",
       dimensions,
-      query,
     },
     options: {
       isAuthorizedRequest: true,
@@ -67,5 +68,18 @@ export const fetchListingsAnalytics = async ({
       isAuthorizedRequest: true,
       ...options,
     },
+  })
+}
+
+export const fetchLeadsCount = async ({
+  id,
+  options = {},
+}: {
+  id: number
+  options?: ApiCallOptions
+}): Promise<LeadsCount> => {
+  return fetchPath({
+    path: `dealers/${id}/leads/count`,
+    options,
   })
 }

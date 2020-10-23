@@ -1,6 +1,6 @@
 import {
   fetchAnalyticsData,
-  fetchLeadsAnalytics,
+  fetchLeadsImpressions,
   fetchListingsAnalytics,
 } from "../analytics"
 
@@ -67,9 +67,8 @@ describe("Analytics service", () => {
     })
 
     it("fetches the data", async () => {
-      const data = await fetchLeadsAnalytics({
+      const data = await fetchLeadsImpressions({
         dealerId: 123,
-        query: { verificationDateFrom: "2020-10-20" },
         options: { accessToken: "TOKEN" },
       })
 
@@ -78,9 +77,8 @@ describe("Analytics service", () => {
     })
 
     it("sends query in the request body", async () => {
-      await fetchLeadsAnalytics({
+      await fetchLeadsImpressions({
         dealerId: 123,
-        query: { verificationDateFrom: "2020-10-20" },
         options: { accessToken: "TOKEN" },
       })
 
