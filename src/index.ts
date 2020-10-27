@@ -26,7 +26,6 @@ export {
   DealerEntitlements,
   Entitlements,
   CockpitAnalytics,
-  LeadsCount,
 } from "./types/models/index"
 
 export {
