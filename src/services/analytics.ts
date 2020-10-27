@@ -27,28 +27,6 @@ export const fetchAnalyticsData = async ({
   })
 }
 
-export const fetchLeadsImpressions = async ({
-  dealerId,
-  dimensions,
-  options = {},
-}: {
-  dealerId: number
-  dimensions?: string[]
-  options?: ApiCallOptions
-}): Promise<Array<CockpitAnalytics>> => {
-  return postData({
-    path: `dealers/${dealerId}/leads/impressions`,
-    body: {
-      function: "count",
-      dimensions,
-    },
-    options: {
-      isAuthorizedRequest: true,
-      ...options,
-    },
-  })
-}
-
 export const fetchListingsAnalytics = async ({
   dealerId,
   dimensions,
@@ -71,15 +49,46 @@ export const fetchListingsAnalytics = async ({
   })
 }
 
-export const fetchLeadsCount = async ({
-  id,
+export const fetchLeadsAnalytics = async ({
+  dealerId,
+  dimensions,
   options = {},
 }: {
-  id: number
+  dealerId: number
+  dimensions?: string[]
   options?: ApiCallOptions
-}): Promise<LeadsCount> => {
-  return fetchPath({
-    path: `dealers/${id}/leads/count`,
-    options,
+}): Promise<Array<CockpitAnalytics>> => {
+  return postData({
+    path: `dealers/${dealerId}/leads/analytics`,
+    body: {
+      function: "count",
+      dimensions,
+    },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
+}
+
+export const fetchLeadsInteractionsAnalytics = async ({
+  dealerId,
+  dimensions,
+  options = {},
+}: {
+  dealerId: number
+  dimensions?: string[]
+  options?: ApiCallOptions
+}): Promise<Array<CockpitAnalytics>> => {
+  return postData({
+    path: `dealers/${dealerId}/leads-interactions/analytics`,
+    body: {
+      function: "count",
+      dimensions,
+    },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
 }

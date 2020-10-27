@@ -203,9 +203,9 @@ export {
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export {
   fetchAnalyticsData,
-  fetchLeadsImpressions,
+  fetchLeadsAnalytics,
   fetchListingsAnalytics,
-  fetchLeadsCount,
+  fetchLeadsInteractionsAnalytics,
 } from "./services/analytics"
 export {
   fetchProducts,
