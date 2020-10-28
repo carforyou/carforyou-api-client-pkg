@@ -77,7 +77,7 @@ export const fetchLeadsInteractionsAnalytics = async ({
   options?: ApiCallOptions
 }): Promise<Array<CockpitAnalytics>> => {
   return postData({
-    path: `dealers/${dealerId}/leads-interactions/analytics`,
+    path: `dealers/${dealerId}/lead-interactions/analytics`,
     body: {
       function: "count",
       dimensions,
