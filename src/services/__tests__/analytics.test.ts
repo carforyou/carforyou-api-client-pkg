@@ -2,6 +2,7 @@ import {
   fetchAnalyticsData,
   fetchLeadsAnalytics,
   fetchListingsAnalytics,
+  fetchLeadsInteractionsAnalytics,
 } from "../analytics"
 
 describe("Analytics service", () => {
@@ -69,7 +70,6 @@ describe("Analytics service", () => {
     it("fetches the data", async () => {
       const data = await fetchLeadsAnalytics({
         dealerId: 123,
-        query: { verificationDateFrom: "2020-10-20" },
         options: { accessToken: "TOKEN" },
       })
 
@@ -80,7 +80,6 @@ describe("Analytics service", () => {
     it("sends query in the request body", async () => {
       await fetchLeadsAnalytics({
         dealerId: 123,
-        query: { verificationDateFrom: "2020-10-20" },
         options: { accessToken: "TOKEN" },
       })
 
@@ -89,7 +88,50 @@ describe("Analytics service", () => {
         expect.objectContaining({
           body: JSON.stringify({
             function: "count",
-            query: { verificationDateFrom: "2020-10-20" },
+          }),
+        })
+      )
+    })
+  })
+
+  describe("#fetchLeadsInteractionsAnalytics", () => {
+    const analyticsData = [
+      {
+        type: "message",
+        count: 25,
+      },
+      {
+        type: "call",
+        count: 30,
+      },
+    ]
+
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify(analyticsData))
+    })
+
+    it("fetches the data", async () => {
+      const data = await fetchLeadsInteractionsAnalytics({
+        dealerId: 123,
+        dimensions: ["type"],
+        options: { accessToken: "TOKEN" },
+      })
+
+      expect(data).toEqual(analyticsData)
+      expect(fetch).toHaveBeenCalled()
+    })
+
+    it("sends query in the request body", async () => {
+      await fetchLeadsAnalytics({
+        dealerId: 123,
+        options: { accessToken: "TOKEN" },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining(`/dealers/123/leads/analytics`),
+        expect.objectContaining({
+          body: JSON.stringify({
+            function: "count",
           }),
         })
       )
