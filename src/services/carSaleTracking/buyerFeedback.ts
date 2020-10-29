@@ -1,7 +1,7 @@
 import { putData, ApiCallOptions } from "../../base"
 import { WithValidationError } from "../../types/withValidationError"
 
-export const confirmPurchase = async ({
+export const addPurchaseConfirmation = async ({
   key,
   confirmed,
   options = {},
