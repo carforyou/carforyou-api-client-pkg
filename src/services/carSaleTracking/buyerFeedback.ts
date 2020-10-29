@@ -6,7 +6,7 @@ export const addPurchaseConfirmation = async ({
   confirmed,
   options = {},
 }: {
-  key: number
+  key: string
   confirmed: boolean
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
