@@ -11,7 +11,7 @@ export const addPurchaseConfirmation = async ({
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   return putData({
-    path: `buyer-feedback/key/${key}/add-purchase-confirmation`,
+    path: `car-sale/buyer-feedback/key/${key}/add-purchase-confirmation`,
     body: {
       confirmed,
     },
