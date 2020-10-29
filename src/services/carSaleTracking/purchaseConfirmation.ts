@@ -1,4 +1,5 @@
 import { putData, ApiCallOptions } from "../../base"
+import { WithValidationError } from "../../types/withValidationError"
 
 export const confirmPurchase = async ({
   key,
@@ -8,9 +9,9 @@ export const confirmPurchase = async ({
   key: number
   confirmed: boolean
   options?: ApiCallOptions
-}): Promise<boolean> => {
+}): Promise<WithValidationError> => {
   return putData({
-    path: `buyer-feedback/key/${key}/purchase-confirmation`,
+    path: `buyer-feedback/key/${key}/add-purchase-confirmation`,
     body: {
       confirmed,
     },
