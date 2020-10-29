@@ -1,4 +1,4 @@
-import { putData, ApiCallOptions } from "../../base"
+import { postData, ApiCallOptions } from "../../base"
 import { WithValidationError } from "../../types/withValidationError"
 
 export const addPurchaseConfirmation = async ({
@@ -10,7 +10,7 @@ export const addPurchaseConfirmation = async ({
   confirmed: boolean
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
-  return putData({
+  return postData({
     path: `car-sale/buyer-feedback/key/${key}/add-purchase-confirmation`,
     body: {
       confirmed,
