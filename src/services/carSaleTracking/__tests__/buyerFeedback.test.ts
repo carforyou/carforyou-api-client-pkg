@@ -11,13 +11,13 @@ describe("Car sale tracking API", () => {
 
     it("calls purchase confirmation endpoint", async () => {
       await addPurchaseConfirmation({
-        key: 12345,
+        key: "abc123",
         confirmed: true,
       })
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(
-          /\/buyer-feedback\/key\/12345\/add-purchase-confirmation$/
+          /\/car-sale\/buyer-feedback\/key\/abc123\/add-purchase-confirmation$/
         ),
         expect.any(Object)
       )
@@ -38,7 +38,7 @@ describe("Car sale tracking API", () => {
       let error
       try {
         await addPurchaseConfirmation({
-          key: 12345,
+          key: "abc123",
           confirmed: true,
         })
       } catch (err) {
