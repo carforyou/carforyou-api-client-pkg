@@ -157,6 +157,7 @@ export {
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export { sendBuyNowApplication } from "./services/car/buyNowApplication"
 export { sendMessageLead } from "./services/car/messageLead"
+export { addPurchaseConfirmation } from "./services/carSaleTracking/buyerFeedback"
 export {
   fetchLeasingFormUrl,
   sendLeasingInterest,
