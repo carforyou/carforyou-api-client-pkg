@@ -177,5 +177,7 @@ export interface Entitlements {
 
 export interface CockpitAnalytics {
   count: number
-  [key: string]: string | number
+  makeKey?: string
+  type?: string
+  conditionType?: string
 }
