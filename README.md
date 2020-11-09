@@ -31,9 +31,25 @@ fetchBodyTypes()
 | `host`                       | URL to the API gateway                                                                                              |
 | `debug`                      | Set to `true` to `console.log` requests and API responses.                                                          |
 
-### Overwriting services per call
+### Mocking API calls during development
 
-To overwrite a default API host an options object with a `host` key can be passed to the API call. This allows making requests against a different environment, dev version of the API or stubs.
+You can pass a custom `host` with the API calls options object.
+
+Backend offers [stub APIs for each service](https://github.com/carforyou/carforyou-docs#stubs), which you can use:
+
+```
+import { fetchListings } from "@carforyou/api-client"
+
+fetchListings({ host: "https://inventory-search-service-stub.dev.carforyou.ch" })
+```
+
+If you want to provide your own mock data, serve a mock json file locally with [json-server](https://www.npmjs.com/package/json-server).
+
+```
+import { fetchListings } from "@carforyou/api-client"
+
+fetchListings({ host: "http://localhost:3001" })
+```
 
 ### Authenticated Requests
 
