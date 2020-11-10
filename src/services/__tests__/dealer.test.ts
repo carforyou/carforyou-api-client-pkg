@@ -83,6 +83,7 @@ describe("Dealer", () => {
       phone: "12-13-65",
       zipCode: "345",
       email: "dealer@gmail.com",
+      matelsoPhone: "12-13-65",
     }
 
     describe("#fetchDealerProfile", () => {
