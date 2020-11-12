@@ -121,6 +121,7 @@ export interface Listing
   enabledFeatures: Feature[]
   buyNowEligible: boolean
   buyNowInProgress: boolean
+  transferredToManual: boolean
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
