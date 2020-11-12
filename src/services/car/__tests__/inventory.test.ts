@@ -11,6 +11,7 @@ import {
   publishDealerListing,
   archiveDealerListing,
   unpublishDealerListing,
+  transferDealerListingToManual,
 } from "../inventory"
 
 import {
@@ -487,6 +488,39 @@ describe("CAR service", () => {
       ])
 
       const response = await unpublishDealerListing({
+        dealerId: 6,
+        listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "error", message, errors })
+    })
+  })
+
+  describe("#transferDealerListingToManual", () => {
+    it("transfers the listing to manual the listing", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await transferDealerListingToManual({
+        dealerId: 6,
+        listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/123/transfer-to-manual"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await transferDealerListingToManual({
         dealerId: 6,
         listingId: 123,
         options: requestOptionsMock,

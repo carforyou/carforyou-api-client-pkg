@@ -139,6 +139,7 @@ export {
   ListingValidationEndpoint,
   validateDealerListing,
   saveDealerListing,
+  transferDealerListingToManual,
 } from "./services/car/inventory"
 export {
   fetchBodyTypes,

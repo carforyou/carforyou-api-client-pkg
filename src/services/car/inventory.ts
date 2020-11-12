@@ -343,6 +343,34 @@ export const unpublishDealerListing = async ({
   }
 }
 
+export const transferDealerListingToManual = async ({
+  listingId,
+  dealerId,
+  options = {},
+}: {
+  listingId: number
+  dealerId: number
+  options: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `dealers/${dealerId}/listings/${listingId}/transfer-to-manual`,
+      body: {},
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
+
+  return {
+    tag: "success",
+    result: {},
+  }
+}
+
 export const listingMandatoryFields = async ({
   dealerId,
   options = {},
