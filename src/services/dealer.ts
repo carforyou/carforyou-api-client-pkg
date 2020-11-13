@@ -218,7 +218,7 @@ export const requestMatelsoIntegration = async ({
 
     return {
       tag: "success",
-      result: { ...result },
+      result,
     }
   } catch (error) {
     return handleValidationError(error, { swallowErrors: true })
