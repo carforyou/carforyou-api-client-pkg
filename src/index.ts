@@ -140,6 +140,8 @@ export {
   validateDealerListing,
   saveDealerListing,
   transferDealerListingToManual,
+  hideListing,
+  unhideListing,
 } from "./services/car/inventory"
 export {
   fetchBodyTypes,

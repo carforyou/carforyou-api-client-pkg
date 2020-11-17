@@ -116,6 +116,7 @@ const defaults: ListingType = {
   buyNowEligible: false,
   buyNowInProgress: false,
   transferredToManual: false,
+  hidden: false,
 }
 
 export function Listing(attributes = {}): ListingType {
@@ -246,6 +247,7 @@ export function EmptyListing(): ListingType {
     buyNowEligible: false,
     buyNowInProgress: false,
     transferredToManual: false,
+    hidden: false,
   }
 }
 

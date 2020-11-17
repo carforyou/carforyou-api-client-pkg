@@ -122,6 +122,7 @@ export interface Listing
   buyNowEligible: boolean
   buyNowInProgress: boolean
   transferredToManual: boolean
+  hidden: boolean
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
