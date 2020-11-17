@@ -202,6 +202,7 @@ export {
   fetchDealerPromotion,
   postDealerPromotion,
   putDealerPromotion,
+  requestMatelsoIntegration,
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export {

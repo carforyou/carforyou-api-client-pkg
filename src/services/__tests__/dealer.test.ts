@@ -8,6 +8,7 @@ import {
   putDealerPromotion,
   postDealerPromotion,
   fetchDealerEntitlements,
+  requestMatelsoIntegration,
 } from "../dealer"
 import { ResponseError } from "../../responseError"
 import { DealerType, DealerSourceGroup } from "../../types/models/index"
@@ -83,6 +84,7 @@ describe("Dealer", () => {
       phone: "12-13-65",
       zipCode: "345",
       email: "dealer@gmail.com",
+      matelsoPhone: "12-13-65",
     }
 
     describe("#fetchDealerProfile", () => {
@@ -240,6 +242,34 @@ describe("Dealer", () => {
         const promotionResponse = await putDealerPromotion({
           dealerId: dealerIdMock,
           promotion: promotionMock,
+          options: requestOptionsMock,
+        })
+
+        expect(promotionResponse.tag).toBe("error")
+      })
+    })
+
+    describe("#requestMatelsoIntegration", () => {
+      it("successfully posts data to the api", async () => {
+        fetchMock.mockResponse(JSON.stringify(promotionMock))
+
+        const promotionResponse = await requestMatelsoIntegration({
+          dealerId: dealerIdMock,
+          options: requestOptionsMock,
+        })
+
+        expect(promotionResponse.tag).toBe("success")
+      })
+
+      it("fails to post data to the api", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const promotionResponse = await requestMatelsoIntegration({
+          dealerId: dealerIdMock,
           options: requestOptionsMock,
         })
 
