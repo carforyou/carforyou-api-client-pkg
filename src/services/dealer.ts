@@ -198,3 +198,29 @@ export const putDealerPromotion = async ({
     return handleValidationError(error, { swallowErrors: true })
   }
 }
+
+export const requestMatelsoIntegration = async ({
+  dealerId,
+  options = {},
+}: {
+  dealerId: number
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    const result = await postData({
+      path: `dealers/${dealerId}/request-matelso-integration`,
+      body: {},
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
+}
