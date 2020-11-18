@@ -67,6 +67,8 @@ const buildHeaders = ({
   }
 }
 
+type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
+
 export interface ApiCallOptions extends Omit<RequestInit, "method" | "body"> {
   recaptchaToken?: string
   accessToken?: string
@@ -74,16 +76,9 @@ export interface ApiCallOptions extends Omit<RequestInit, "method" | "body"> {
   host?: string
 }
 
-interface AuthorizedApiCallOptions extends ApiCallOptions {
+interface RequestOptions extends ApiCallOptions {
+  apiVersion?: ApiVersion
   isAuthorizedRequest?: boolean
-  apiVersion?: ApiVersion
-}
-
-type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
-
-interface RequestOptions extends AuthorizedApiCallOptions {
-  method?: Method
-  apiVersion?: ApiVersion
 }
 
 export const fetchPath = async ({
@@ -93,7 +88,7 @@ export const fetchPath = async ({
 }: {
   path: string
   body?: string
-  options: RequestOptions
+  options: RequestOptions & { method?: Method }
 }) => {
   const {
     method = "GET",
@@ -146,7 +141,7 @@ export const postData = async ({
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options: AuthorizedApiCallOptions
+  options: RequestOptions
 }) => {
   return fetchPath({
     path,
@@ -166,7 +161,7 @@ export const putData = async ({
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options: AuthorizedApiCallOptions
+  options: RequestOptions
 }) => {
   return fetchPath({
     path,
@@ -183,7 +178,7 @@ export const deletePath = async ({
   options,
 }: {
   path: string
-  options: AuthorizedApiCallOptions
+  options: RequestOptions
 }) => {
   return fetchPath({
     path,
