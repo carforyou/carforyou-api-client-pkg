@@ -6,6 +6,7 @@ describe("Car API", () => {
   })
 
   const messageLead = (attributes = {}) => ({
+    language: "de",
     name: "Test",
     phone: "+41781234567",
     email: "test@test.com",

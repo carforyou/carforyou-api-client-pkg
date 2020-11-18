@@ -122,11 +122,11 @@ export interface SavedSearch {
 }
 
 export interface MessageLead {
-  email?: string
   language?: string
-  message?: string
-  name?: string
-  phone?: string
+  email: string
+  message: string
+  name: string
+  phone: string
   videoCallPreference?: {
     available?: boolean
     services?: string[]
