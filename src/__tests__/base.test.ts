@@ -53,6 +53,21 @@ describe("Base", () => {
       })
     })
 
+    it("allows overriding the version header", async () => {
+      const json = await fetchPath({
+        path: "/api/path",
+        options: { apiVersion: "v2" },
+      })
+
+      expect(json).toEqual({ ok: true })
+      expect(fetch).toHaveBeenCalledWith(expect.any(String), {
+        method: "GET",
+        headers: expect.objectContaining({
+          Accept: `application/vnd.carforyou.v2+json`,
+        }),
+      })
+    })
+
     it("allows setting custom headers", async () => {
       const json = await fetchPath({
         path: "api/path",
