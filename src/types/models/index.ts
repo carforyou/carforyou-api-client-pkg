@@ -125,7 +125,8 @@ export interface MessageLead {
   language?: string
   email: string
   message: string
-  name: string
+  firstName: string
+  lastName: string
   phone: string
   videoCallPreference?: {
     available?: boolean
