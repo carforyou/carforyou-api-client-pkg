@@ -8,6 +8,8 @@ interface ApiClientConfig {
   debug?: boolean
 }
 
+export type ApiVersion = "v1" | "v2"
+
 class ApiClient {
   private static instance: ApiClient
 
