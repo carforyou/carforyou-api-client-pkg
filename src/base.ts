@@ -3,7 +3,7 @@ import { WithFieldStats, FieldsStats } from "./types/fieldStats"
 import { Facets } from "./types/facets"
 import { ValidationError } from "./types/withValidationError"
 
-import apiClient from "./apiClient"
+import apiClient, { ApiVersion } from "./apiClient"
 import { ResponseError } from "./responseError"
 import { SearchListing } from "./types/models/listing"
 import { WithTopListing } from "./types/topListing"
@@ -54,11 +54,13 @@ const buildHeaders = ({
   headers = {},
   recaptchaToken,
   accessToken,
+  apiVersion,
   isAuthorizedRequest,
 }: RequestOptions): Record<string, string> => {
+  const version = apiVersion || apiClient.version
   return {
     "Content-Type": "application/json",
-    Accept: `application/vnd.carforyou.${apiClient.version}+json`,
+    Accept: `application/vnd.carforyou.${version}+json`,
     ...(isAuthorizedRequest ? getAuthorizationHeader(accessToken) : {}),
     ...(recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}),
     ...headers,
@@ -80,6 +82,7 @@ type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
 
 interface RequestOptions extends AuthorizedApiCallOptions {
   method?: Method
+  apiVersion?: ApiVersion
 }
 
 export const fetchPath = async ({
@@ -95,6 +98,7 @@ export const fetchPath = async ({
     method = "GET",
     host = null,
     headers,
+    apiVersion,
     recaptchaToken,
     accessToken,
     isAuthorizedRequest,
