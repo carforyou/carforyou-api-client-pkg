@@ -85,6 +85,7 @@ describe("Dealer", () => {
       zipCode: "345",
       email: "dealer@gmail.com",
       matelsoPhone: "12-13-65",
+      whatsAppNumber: "00000",
     }
 
     describe("#fetchDealerProfile", () => {

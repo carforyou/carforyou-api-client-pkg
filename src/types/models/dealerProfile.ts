@@ -11,4 +11,5 @@ export interface DealerProfile {
   zipCode: string
   email: string
   matelsoPhone: string
+  whatsAppNumber: string
 }
