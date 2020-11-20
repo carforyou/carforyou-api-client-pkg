@@ -9,6 +9,7 @@ import {
   postDealerPromotion,
   fetchDealerEntitlements,
   requestMatelsoIntegration,
+  requestWhatsAppIntegration,
 } from "../dealer"
 import { ResponseError } from "../../responseError"
 import { DealerType, DealerSourceGroup } from "../../types/models/index"
@@ -254,12 +255,12 @@ describe("Dealer", () => {
       it("successfully posts data to the api", async () => {
         fetchMock.mockResponse(JSON.stringify(promotionMock))
 
-        const promotionResponse = await requestMatelsoIntegration({
+        const response = await requestMatelsoIntegration({
           dealerId: dealerIdMock,
           options: requestOptionsMock,
         })
 
-        expect(promotionResponse.tag).toBe("success")
+        expect(response.tag).toBe("success")
       })
 
       it("fails to post data to the api", async () => {
@@ -269,12 +270,42 @@ describe("Dealer", () => {
           })
         })
 
-        const promotionResponse = await requestMatelsoIntegration({
+        const response = await requestMatelsoIntegration({
           dealerId: dealerIdMock,
           options: requestOptionsMock,
         })
 
-        expect(promotionResponse.tag).toBe("error")
+        expect(response.tag).toBe("error")
+      })
+    })
+
+    describe("#requestWhatsAppIntegration", () => {
+      it("successfully posts data to the api", async () => {
+        fetchMock.mockResponse(JSON.stringify({}))
+
+        const response = await requestWhatsAppIntegration({
+          dealerId: dealerIdMock,
+          whatsAppNumber: "00000",
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("success")
+      })
+
+      it("fails to post data to the api", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const response = await requestWhatsAppIntegration({
+          dealerId: dealerIdMock,
+          whatsAppNumber: "",
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("error")
       })
     })
   })

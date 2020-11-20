@@ -203,7 +203,7 @@ export {
   postDealerPromotion,
   putDealerPromotion,
   requestMatelsoIntegration,
-  requestWhatsappIntegration,
+  requestWhatsAppIntegration,
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export {

@@ -225,7 +225,7 @@ export const requestMatelsoIntegration = async ({
   }
 }
 
-export const requestWhatsappIntegration = async ({
+export const requestWhatsAppIntegration = async ({
   dealerId,
   whatsAppNumber,
   options = {},
