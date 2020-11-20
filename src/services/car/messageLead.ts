@@ -36,7 +36,10 @@ export const sendMessageLead = async ({
           services: [...services, otherService].filter(Boolean),
         },
       },
-      options: otherOptions,
+      options: {
+        ...otherOptions,
+        apiVersion: "v2",
+      },
     })
 
     return {
