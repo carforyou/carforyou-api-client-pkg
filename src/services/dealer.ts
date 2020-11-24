@@ -236,7 +236,7 @@ export const requestWhatsAppIntegration = async ({
 }): Promise<WithValidationError> => {
   try {
     const result = await postData({
-      path: `dealers/${dealerId}/request-matelso-integration`,
+      path: `dealers/${dealerId}/request-whatsapp-integration`,
       body: { whatsAppNumber },
       options: {
         isAuthorizedRequest: true,
