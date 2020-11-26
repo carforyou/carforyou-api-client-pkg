@@ -190,6 +190,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`postDealerPromotion`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/createPromotionUsingPOST)
   - [`putDealerPromotion`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/updatePromotionUsingPUT)
   - [`requestMatelsoIntegration`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/requestMatelsoIntegrationUsingPOST)
+  - [`requestWhatsAppIntegration`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/requestWhatsAppIntegrationUsingPOST)
 
 ### [User notification service](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html)
 
