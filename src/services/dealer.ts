@@ -11,7 +11,7 @@ import { Paginated } from "../types/pagination"
 import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 import { DealerProfile } from "../types/models/dealerProfile"
 import { DealerPromotion } from "../types/models/dealerPromotion"
-import { WithValidationError } from "../types/withValidationError"
+import { WithValidationError, ValidationError } from "../types/withValidationError"
 
 import toQueryString from "../lib/toQueryString"
 
@@ -252,3 +252,21 @@ export const requestWhatsAppIntegration = async ({
     return handleValidationError(error, { swallowErrors: true })
   }
 }
+
+export const setLogo = async ({
+  dealerId,
+  logo,
+  options = {},
+}: {
+  dealerId: number
+  logo: string
+  options?: ApiCallOptions
+}): Promise<ValidationError> =>
+  putData({
+    path: `dealers/${dealerId}/logo`,
+    body: { logo },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
