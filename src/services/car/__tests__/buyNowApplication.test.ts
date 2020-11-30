@@ -49,22 +49,6 @@ describe("Car API", () => {
       )
     })
 
-    it("sends recaptcha token in a header", async () => {
-      await sendBuyNowApplication({
-        listingId: 12345,
-        buyNowApplication: buyNowApplication(),
-        options: { recaptchaToken: "token" },
-      })
-
-      expect(fetch).toHaveBeenCalledWith(expect.any(String), {
-        headers: expect.objectContaining({
-          "Recaptcha-Token": "token",
-        }),
-        body: expect.any(String),
-        method: "POST",
-      })
-    })
-
     describe("valid parameters", () => {
       it("returns a success", async () => {
         const result = await sendBuyNowApplication({
