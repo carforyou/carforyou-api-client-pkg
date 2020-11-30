@@ -261,12 +261,22 @@ export const setLogo = async ({
   dealerId: number
   logo: string
   options?: ApiCallOptions
-}): Promise<WithValidationError> =>
-  putData({
-    path: `dealers/${dealerId}/logo`,
-    body: { logo },
-    options: {
-      isAuthorizedRequest: true,
-      ...options,
-    },
-  })
+}): Promise<WithValidationError> => {
+  try {
+    const result = await putData({
+      path: `dealers/${dealerId}/logo`,
+      body: { logo },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
+}
