@@ -252,3 +252,31 @@ export const requestWhatsAppIntegration = async ({
     return handleValidationError(error, { swallowErrors: true })
   }
 }
+
+export const setLogo = async ({
+  dealerId,
+  logo,
+  options = {},
+}: {
+  dealerId: number
+  logo: string
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    const result = await putData({
+      path: `dealers/${dealerId}/logo`,
+      body: { logo },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
+}

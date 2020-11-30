@@ -77,6 +77,7 @@ export interface Dealer {
   openingHours?: OpeningHours[]
   badges: string[]
   promotion?: DealerPromotionContent
+  logo: string
   googleReviewSummary?: GoogleReviewSummary
   googlePlaceId?: number
 }

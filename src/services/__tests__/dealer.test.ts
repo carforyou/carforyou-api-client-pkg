@@ -10,6 +10,7 @@ import {
   fetchDealerEntitlements,
   requestMatelsoIntegration,
   requestWhatsAppIntegration,
+  setLogo,
 } from "../dealer"
 import { ResponseError } from "../../responseError"
 import { DealerType, DealerSourceGroup } from "../../types/models/index"
@@ -302,6 +303,36 @@ describe("Dealer", () => {
         const response = await requestWhatsAppIntegration({
           dealerId: dealerIdMock,
           whatsAppNumber: "",
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("error")
+      })
+    })
+
+    describe("#setLogo", () => {
+      it("successfully sets dealer logo", async () => {
+        fetchMock.mockResponse(JSON.stringify({}))
+
+        const response = await setLogo({
+          dealerId: dealerIdMock,
+          logo: "s3key..",
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("success")
+      })
+
+      it("fails to set dealers logo", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const response = await setLogo({
+          dealerId: dealerIdMock,
+          logo: null,
           options: requestOptionsMock,
         })
 
