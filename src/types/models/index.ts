@@ -44,6 +44,11 @@ export enum DealerEntitlements {
   LISTING = "listing",
 }
 
+export interface GoogleReviewSummary {
+  count: number
+  rating: number
+}
+
 export interface Location {
   country: string
   lat: number
@@ -72,6 +77,8 @@ export interface Dealer {
   openingHours?: OpeningHours[]
   badges: string[]
   promotion?: DealerPromotionContent
+  googleReviewSummary?: GoogleReviewSummary
+  googlePlaceId?: number
 }
 
 export interface ZipCode {
