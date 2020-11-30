@@ -11,10 +11,7 @@ import { Paginated } from "../types/pagination"
 import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 import { DealerProfile } from "../types/models/dealerProfile"
 import { DealerPromotion } from "../types/models/dealerPromotion"
-import {
-  WithValidationError,
-  ValidationError,
-} from "../types/withValidationError"
+import { WithValidationError } from "../types/withValidationError"
 
 import toQueryString from "../lib/toQueryString"
 
@@ -264,7 +261,7 @@ export const setLogo = async ({
   dealerId: number
   logo: string
   options?: ApiCallOptions
-}): Promise<ValidationError> =>
+}): Promise<WithValidationError> =>
   putData({
     path: `dealers/${dealerId}/logo`,
     body: { logo },
