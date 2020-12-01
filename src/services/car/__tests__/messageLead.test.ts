@@ -105,24 +105,6 @@ describe("Car API", () => {
           )
         })
 
-        it("sends recaptcha token in a header", async () => {
-          await sendMessageLead({
-            listingId: 12345,
-            messageLead: messageLead(),
-            options: {
-              recaptchaToken: "token",
-            },
-          })
-
-          expect(fetch).toHaveBeenCalledWith(expect.any(String), {
-            headers: expect.objectContaining({
-              "Recaptcha-Token": "token",
-            }),
-            body: expect.any(String),
-            method: "POST",
-          })
-        })
-
         it("returns a success", async () => {
           const result = await sendMessageLead({
             listingId: 12345,

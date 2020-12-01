@@ -52,7 +52,6 @@ export const getHost = (host: string = null) => {
 
 const buildHeaders = ({
   headers = {},
-  recaptchaToken,
   accessToken,
   apiVersion,
   isAuthorizedRequest,
@@ -62,7 +61,6 @@ const buildHeaders = ({
     "Content-Type": "application/json",
     Accept: `application/vnd.carforyou.${version}+json`,
     ...(isAuthorizedRequest ? getAuthorizationHeader(accessToken) : {}),
-    ...(recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}),
     ...headers,
   }
 }
@@ -70,7 +68,6 @@ const buildHeaders = ({
 type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
 
 export interface ApiCallOptions extends Omit<RequestInit, "method" | "body"> {
-  recaptchaToken?: string
   accessToken?: string
   headers?: Record<string, string>
   host?: string
@@ -95,7 +92,6 @@ export const fetchPath = async ({
     host = null,
     headers,
     apiVersion,
-    recaptchaToken,
     accessToken,
     isAuthorizedRequest,
     ...fetchOptions

@@ -146,25 +146,6 @@ describe("Base", () => {
       })
     })
 
-    it("sets recaptcha header if token is provided", async () => {
-      const json = await fetchPath({
-        path: "/api/path",
-        options: { recaptchaToken: "token" },
-      })
-
-      expect(json).toEqual({ ok: true })
-      expect(fetch).toHaveBeenCalledWith(
-        expect.any(String),
-        expect.objectContaining({
-          headers: {
-            Accept: "application/vnd.carforyou.v1+json",
-            "Content-Type": "application/json",
-            "Recaptcha-Token": "token",
-          },
-        })
-      )
-    })
-
     it("passes fetch options to fetch", async () => {
       const json = await fetchPath({
         path: "/api/path",
