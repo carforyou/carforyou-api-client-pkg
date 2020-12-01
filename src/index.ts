@@ -204,6 +204,7 @@ export {
   putDealerPromotion,
   requestMatelsoIntegration,
   requestWhatsAppIntegration,
+  setLogo,
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export {
