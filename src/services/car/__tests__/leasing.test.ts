@@ -21,26 +21,6 @@ describe("CAR service", () => {
         await fetchLeasingFormUrl({ listingId: 123, language: "de" })
       ).toEqual(null)
     })
-
-    it("sends recaptcha token in a header", async () => {
-      fetchMock.mockResponse(JSON.stringify({ url: "test-url" }))
-
-      await fetchLeasingFormUrl({
-        listingId: 123,
-        language: "de",
-        options: {
-          recaptchaToken: "token",
-        },
-      })
-
-      expect(fetch).toHaveBeenCalledWith(expect.any(String), {
-        headers: expect.objectContaining({
-          "Recaptcha-Token": "token",
-        }),
-        body: expect.any(String),
-        method: "POST",
-      })
-    })
   })
 
   describe("sendLeasingInterest", () => {
@@ -99,24 +79,6 @@ describe("CAR service", () => {
             expect.stringMatching(/\/listings\/12345\/leasing\/interests$/),
             expect.any(Object)
           )
-        })
-
-        it("sends recaptcha token in a header", async () => {
-          await sendLeasingInterest({
-            listingId: 12345,
-            leasingInterest: leasingInterest(),
-            options: {
-              recaptchaToken: "token",
-            },
-          })
-
-          expect(fetch).toHaveBeenCalledWith(expect.any(String), {
-            headers: expect.objectContaining({
-              "Recaptcha-Token": "token",
-            }),
-            body: expect.any(String),
-            method: "POST",
-          })
         })
 
         it("returns a success", async () => {

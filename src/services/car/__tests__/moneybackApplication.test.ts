@@ -26,24 +26,6 @@ describe("Car API", () => {
   })
 
   describe("#sendMoneybackApplication", () => {
-    it("sends recaptcha token in a header", async () => {
-      await sendMoneybackApplication({
-        listingId: 12345,
-        moneybackApplication: moneybackApplication(),
-        options: {
-          recaptchaToken: "token",
-        },
-      })
-
-      expect(fetch).toHaveBeenCalledWith(expect.any(String), {
-        headers: expect.objectContaining({
-          "Recaptcha-Token": "token",
-        }),
-        body: expect.any(String),
-        method: "POST",
-      })
-    })
-
     it("sends validate fields in the header", async () => {
       await sendMoneybackApplication({
         listingId: 12345,

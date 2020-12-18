@@ -8,6 +8,9 @@ import {
   putDealerPromotion,
   postDealerPromotion,
   fetchDealerEntitlements,
+  requestMatelsoIntegration,
+  requestWhatsAppIntegration,
+  setLogo,
 } from "../dealer"
 import { ResponseError } from "../../responseError"
 import { DealerType, DealerSourceGroup } from "../../types/models/index"
@@ -83,6 +86,8 @@ describe("Dealer", () => {
       phone: "12-13-65",
       zipCode: "345",
       email: "dealer@gmail.com",
+      matelsoPhone: "12-13-65",
+      whatsAppNumber: "00000",
     }
 
     describe("#fetchDealerProfile", () => {
@@ -244,6 +249,94 @@ describe("Dealer", () => {
         })
 
         expect(promotionResponse.tag).toBe("error")
+      })
+    })
+
+    describe("#requestMatelsoIntegration", () => {
+      it("successfully posts data to the api", async () => {
+        fetchMock.mockResponse(JSON.stringify(promotionMock))
+
+        const response = await requestMatelsoIntegration({
+          dealerId: dealerIdMock,
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("success")
+      })
+
+      it("fails to post data to the api", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const response = await requestMatelsoIntegration({
+          dealerId: dealerIdMock,
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("error")
+      })
+    })
+
+    describe("#requestWhatsAppIntegration", () => {
+      it("successfully posts data to the api", async () => {
+        fetchMock.mockResponse(JSON.stringify({}))
+
+        const response = await requestWhatsAppIntegration({
+          dealerId: dealerIdMock,
+          whatsAppNumber: "00000",
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("success")
+      })
+
+      it("fails to post data to the api", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const response = await requestWhatsAppIntegration({
+          dealerId: dealerIdMock,
+          whatsAppNumber: "",
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("error")
+      })
+    })
+
+    describe("#setLogo", () => {
+      it("successfully sets dealer logo", async () => {
+        fetchMock.mockResponse(JSON.stringify({}))
+
+        const response = await setLogo({
+          dealerId: dealerIdMock,
+          logo: "s3key..",
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("success")
+      })
+
+      it("fails to set dealers logo", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const response = await setLogo({
+          dealerId: dealerIdMock,
+          logo: null,
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("error")
       })
     })
   })

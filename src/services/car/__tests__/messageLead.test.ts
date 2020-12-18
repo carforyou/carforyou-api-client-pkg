@@ -6,7 +6,9 @@ describe("Car API", () => {
   })
 
   const messageLead = (attributes = {}) => ({
-    name: "Test",
+    language: "de",
+    firstName: "Test firstname",
+    lastName: "Test lastname",
     phone: "+41781234567",
     email: "test@test.com",
     message: "This is a message of a interested customer",
@@ -26,7 +28,9 @@ describe("Car API", () => {
         expect.any(String),
         expect.objectContaining({
           body: JSON.stringify({
-            name: "Test",
+            language: "de",
+            firstName: "Test firstname",
+            lastName: "Test lastname",
             phone: "+41781234567",
             email: "test@test.com",
             message: "This is a message of a interested customer",
@@ -34,6 +38,19 @@ describe("Car API", () => {
               available: true,
               services: ["some other cool video provider"],
             },
+          }),
+        })
+      )
+    })
+
+    it("calls api v2", async () => {
+      await sendMessageLead({ listingId: 12345, messageLead: messageLead() })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          headers: expect.objectContaining({
+            Accept: "application/vnd.carforyou.v2+json",
           }),
         })
       )
@@ -86,24 +103,6 @@ describe("Car API", () => {
             expect.stringMatching(/\/listings\/12345\/message-leads$/),
             expect.any(Object)
           )
-        })
-
-        it("sends recaptcha token in a header", async () => {
-          await sendMessageLead({
-            listingId: 12345,
-            messageLead: messageLead(),
-            options: {
-              recaptchaToken: "token",
-            },
-          })
-
-          expect(fetch).toHaveBeenCalledWith(expect.any(String), {
-            headers: expect.objectContaining({
-              "Recaptcha-Token": "token",
-            }),
-            body: expect.any(String),
-            method: "POST",
-          })
         })
 
         it("returns a success", async () => {
