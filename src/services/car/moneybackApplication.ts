@@ -1,9 +1,4 @@
-import {
-  postData,
-  handleValidationError,
-  ApiCallOptions,
-  ignoreServerSideErrors,
-} from "../../base"
+import { postData, ApiCallOptions, ignoreServerSideErrors } from "../../base"
 
 import { WithValidationError } from "../../types/withValidationError"
 import { MoneybackApplication } from "../../types/models/applications"

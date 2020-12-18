@@ -2,7 +2,6 @@ import { Paginated } from "./types/pagination"
 import { WithFieldStats, FieldsStats } from "./types/fieldStats"
 import { Facets } from "./types/facets"
 import {
-  Success,
   ValidationError,
   WithValidationError,
 } from "./types/withValidationError"
