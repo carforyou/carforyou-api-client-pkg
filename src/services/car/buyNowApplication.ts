@@ -1,4 +1,4 @@
-import { postData, handleValidationError, ApiCallOptions } from "../../base"
+import { postData, ApiCallOptions, ignoreServerSideErrors } from "../../base"
 
 import { WithValidationError } from "../../types/withValidationError"
 import { BuyNowApplication } from "../../types/models/applications"
@@ -28,6 +28,6 @@ export const sendBuyNowApplication = async ({
       result: buyNowApplication,
     }
   } catch (error) {
-    return handleValidationError(error)
+    return ignoreServerSideErrors({ error, returnValue: buyNowApplication })
   }
 }

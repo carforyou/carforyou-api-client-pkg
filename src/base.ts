@@ -1,7 +1,10 @@
 import { Paginated } from "./types/pagination"
 import { WithFieldStats, FieldsStats } from "./types/fieldStats"
 import { Facets } from "./types/facets"
-import { ValidationError } from "./types/withValidationError"
+import {
+  ValidationError,
+  WithValidationError,
+} from "./types/withValidationError"
 
 import apiClient, { ApiVersion } from "./apiClient"
 import { ResponseError } from "./responseError"
@@ -185,9 +188,12 @@ export const deletePath = async ({
   })
 }
 
+interface ErrorHandlerOptions {
+  swallowErrors?: boolean
+}
 export const handleValidationError = async (
   error,
-  options: { swallowErrors?: boolean } = {}
+  options: ErrorHandlerOptions = {}
 ): Promise<ValidationError> => {
   if (
     error.name !== "ResponseError" ||
@@ -211,4 +217,24 @@ export const handleValidationError = async (
     message: data.message.toString() as string,
     errors: data.errors || [],
   }
+}
+
+export async function ignoreServerSideErrors<T>({
+  error,
+  returnValue,
+  errorHandlerOptions = {},
+}: {
+  error: ResponseError
+  returnValue: T
+  errorHandlerOptions?: ErrorHandlerOptions
+}): Promise<WithValidationError<T>> {
+  // Ignore internal server errors
+  if (error.response.status.toString().charAt(0) === "5") {
+    return {
+      tag: "success",
+      result: returnValue,
+    }
+  }
+
+  return handleValidationError(error, errorHandlerOptions)
 }

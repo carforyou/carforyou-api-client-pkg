@@ -142,23 +142,20 @@ describe("Car API", () => {
       })
     })
 
-    describe("other error", () => {
+    describe("on a 5xx error", () => {
       beforeEach(() => {
         fetchMock.mockResponse("", {
           status: 500,
         })
       })
 
-      it("returns a failure", async () => {
+      it("returns success", async () => {
         const result = await sendMessageLead({
           listingId: 12345,
           messageLead: messageLead(),
         })
 
-        expect(result.tag).toEqual("error")
-        if (result.tag === "error") {
-          expect(result.message).toEqual("validation.other-error")
-        }
+        expect(result.tag).toEqual("success")
       })
     })
   })

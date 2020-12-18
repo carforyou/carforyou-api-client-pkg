@@ -1,4 +1,4 @@
-import { postData, handleValidationError, ApiCallOptions } from "../../base"
+import { postData, ApiCallOptions, ignoreServerSideErrors } from "../../base"
 
 import { WithValidationError } from "../../types/withValidationError"
 import { MoneybackApplication } from "../../types/models/applications"
@@ -43,6 +43,10 @@ export const sendMoneybackApplication = async ({
       result: moneybackApplication,
     }
   } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
+    return ignoreServerSideErrors({
+      error,
+      errorHandlerOptions: { swallowErrors: true },
+      returnValue: moneybackApplication,
+    })
   }
 }
