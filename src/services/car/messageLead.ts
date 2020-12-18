@@ -1,4 +1,4 @@
-import { postData, handleValidationError, ApiCallOptions } from "../../base"
+import { postData, ApiCallOptions, ignoreServerSideErrors } from "../../base"
 
 import { WithValidationError } from "../../types/withValidationError"
 import { MessageLead } from "../../types/models"
@@ -44,6 +44,10 @@ export const sendMessageLead = async ({
       result: messageLead,
     }
   } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
+    return ignoreServerSideErrors({
+      error,
+      errorHandlerOptions: { swallowErrors: true },
+      returnValue: messageLead,
+    })
   }
 }
