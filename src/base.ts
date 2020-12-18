@@ -7,7 +7,7 @@ import {
   WithValidationError,
 } from "./types/withValidationError"
 
-import apiClient from "./apiClient"
+import apiClient, { ApiVersion } from "./apiClient"
 import { ResponseError } from "./responseError"
 import { SearchListing } from "./types/models/listing"
 import { WithTopListing } from "./types/topListing"
@@ -56,34 +56,30 @@ export const getHost = (host: string = null) => {
 
 const buildHeaders = ({
   headers = {},
-  recaptchaToken,
   accessToken,
+  apiVersion,
   isAuthorizedRequest,
 }: RequestOptions): Record<string, string> => {
+  const version = apiVersion || apiClient.version
   return {
     "Content-Type": "application/json",
-    Accept: `application/vnd.carforyou.${apiClient.version}+json`,
+    Accept: `application/vnd.carforyou.${version}+json`,
     ...(isAuthorizedRequest ? getAuthorizationHeader(accessToken) : {}),
-    ...(recaptchaToken ? { "Recaptcha-Token": recaptchaToken } : {}),
     ...headers,
   }
 }
 
+type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
+
 export interface ApiCallOptions extends Omit<RequestInit, "method" | "body"> {
-  recaptchaToken?: string
   accessToken?: string
   headers?: Record<string, string>
   host?: string
 }
 
-interface AuthorizedApiCallOptions extends ApiCallOptions {
+interface RequestOptions extends ApiCallOptions {
+  apiVersion?: ApiVersion
   isAuthorizedRequest?: boolean
-}
-
-type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
-
-interface RequestOptions extends AuthorizedApiCallOptions {
-  method?: Method
 }
 
 export const fetchPath = async ({
@@ -93,13 +89,13 @@ export const fetchPath = async ({
 }: {
   path: string
   body?: string
-  options: RequestOptions
+  options: RequestOptions & { method?: Method }
 }) => {
   const {
     method = "GET",
     host = null,
     headers,
-    recaptchaToken,
+    apiVersion,
     accessToken,
     isAuthorizedRequest,
     ...fetchOptions
@@ -145,7 +141,7 @@ export const postData = async ({
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options: AuthorizedApiCallOptions
+  options: RequestOptions
 }) => {
   return fetchPath({
     path,
@@ -165,7 +161,7 @@ export const putData = async ({
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object
-  options: AuthorizedApiCallOptions
+  options: RequestOptions
 }) => {
   return fetchPath({
     path,
@@ -182,7 +178,7 @@ export const deletePath = async ({
   options,
 }: {
   path: string
-  options: AuthorizedApiCallOptions
+  options: RequestOptions
 }) => {
   return fetchPath({
     path,

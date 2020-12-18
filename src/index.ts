@@ -140,6 +140,8 @@ export {
   validateDealerListing,
   saveDealerListing,
   transferDealerListingToManual,
+  hideListing,
+  unhideListing,
 } from "./services/car/inventory"
 export {
   fetchBodyTypes,
@@ -200,6 +202,9 @@ export {
   fetchDealerPromotion,
   postDealerPromotion,
   putDealerPromotion,
+  requestMatelsoIntegration,
+  requestWhatsAppIntegration,
+  setLogo,
 } from "./services/dealer"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export {

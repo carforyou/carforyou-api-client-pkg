@@ -198,3 +198,85 @@ export const putDealerPromotion = async ({
     return handleValidationError(error, { swallowErrors: true })
   }
 }
+
+export const requestMatelsoIntegration = async ({
+  dealerId,
+  options = {},
+}: {
+  dealerId: number
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    const result = await postData({
+      path: `dealers/${dealerId}/request-matelso-integration`,
+      body: {},
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
+}
+
+export const requestWhatsAppIntegration = async ({
+  dealerId,
+  whatsAppNumber,
+  options = {},
+}: {
+  dealerId: number
+  whatsAppNumber: string
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    const result = await postData({
+      path: `dealers/${dealerId}/request-whatsapp-integration`,
+      body: { whatsAppNumber },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
+}
+
+export const setLogo = async ({
+  dealerId,
+  logo,
+  options = {},
+}: {
+  dealerId: number
+  logo: string
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    const result = await putData({
+      path: `dealers/${dealerId}/logo`,
+      body: { logo },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
+}

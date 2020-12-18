@@ -12,6 +12,8 @@ import {
   archiveDealerListing,
   unpublishDealerListing,
   transferDealerListingToManual,
+  hideListing,
+  unhideListing,
 } from "../inventory"
 
 import {
@@ -521,6 +523,72 @@ describe("CAR service", () => {
       ])
 
       const response = await transferDealerListingToManual({
+        dealerId: 6,
+        listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "error", message, errors })
+    })
+  })
+
+  describe("#hideImportedListing", () => {
+    it("hides an imported listing", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await hideListing({
+        dealerId: 6,
+        listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/123/hide"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await hideListing({
+        dealerId: 6,
+        listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "error", message, errors })
+    })
+  })
+
+  describe("#unhideImportedListing", () => {
+    it("unhides an imported listing", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await unhideListing({
+        dealerId: 6,
+        listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/123/unhide"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await unhideListing({
         dealerId: 6,
         listingId: 123,
         options: requestOptionsMock,
