@@ -1,4 +1,4 @@
-import { fetchPath, ApiCallOptions } from "../../base"
+import { ApiCallOptions, fetchPath } from "../../base"
 
 export const fetchDealScores = ({
   options = {},

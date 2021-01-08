@@ -1,14 +1,13 @@
+import { WithValidationError } from "../../types/withValidationError"
+import { Language } from "../../types/params"
+import { Listing } from "../../types/models/listing"
+import { Options } from "../../types/models"
 import {
+  ApiCallOptions,
   fetchPath,
   handleValidationError,
   putData,
-  ApiCallOptions,
 } from "../../base"
-
-import { Language } from "../../types/params"
-import { Options } from "../../types/models"
-import { Listing } from "../../types/models/listing"
-import { WithValidationError } from "../../types/withValidationError"
 
 export const fetchListingOptions = async ({
   listingId,

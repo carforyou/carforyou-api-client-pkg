@@ -1,6 +1,6 @@
-import { ListingFilterParams } from "../params/listings"
 import { FeatureBooking } from "./product"
 import { DealerPromotionContent } from "./dealerPromotion"
+import { ListingFilterParams } from "../params/listings"
 
 export interface MappedValue {
   id: number

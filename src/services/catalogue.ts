@@ -1,7 +1,6 @@
-import { fetchPath, ApiCallOptions } from "../base"
-
-import { Make, Model } from "../types/models"
 import { Type } from "../types/models/type"
+import { Make, Model } from "../types/models"
+import { ApiCallOptions, fetchPath } from "../base"
 
 export const fetchMakes = ({
   options = {},

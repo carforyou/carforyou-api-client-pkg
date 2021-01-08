@@ -1,8 +1,8 @@
-import { fetchTypes, fetchTypeFacets } from "../typeSearch"
+import { fetchTypeFacets, fetchTypes } from "../typeSearch"
 
 import { PowerUnit } from "../../../types/params/types"
-import Paginated from "../../../lib/factories/paginated"
 import { SearchType } from "../../../lib/factories/type"
+import Paginated from "../../../lib/factories/paginated"
 
 const requestOptionsMock = { accessToken: "DUMMY" }
 

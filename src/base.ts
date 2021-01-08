@@ -1,15 +1,15 @@
-import { Paginated } from "./types/pagination"
-import { WithFieldStats, FieldsStats } from "./types/fieldStats"
-import { Facets } from "./types/facets"
 import {
   ValidationError,
   WithValidationError,
 } from "./types/withValidationError"
-
-import apiClient, { ApiVersion } from "./apiClient"
-import { ResponseError } from "./responseError"
-import { SearchListing } from "./types/models/listing"
 import { WithTopListing } from "./types/topListing"
+import { Paginated } from "./types/pagination"
+import { SearchListing } from "./types/models/listing"
+import { FieldsStats, WithFieldStats } from "./types/fieldStats"
+import { Facets } from "./types/facets"
+
+import { ResponseError } from "./responseError"
+import apiClient, { ApiVersion } from "./apiClient"
 
 const stripLeadingSlash = (path: string): string => {
   return path.startsWith("/") ? path.slice(1) : path

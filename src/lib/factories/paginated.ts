@@ -1,7 +1,7 @@
+import { SearchListing } from "./listing"
+import { WithTopListing } from "../../types/topListing"
 import { Paginated } from "../../types/pagination"
 import { WithFieldStats } from "../../types/fieldStats"
-import { WithTopListing } from "../../types/topListing"
-import { SearchListing } from "./listing"
 
 export default function <T>(
   content: T[],

@@ -1,11 +1,10 @@
-import { handleValidationError, postData, ApiCallOptions } from "../../base"
-
-import { Paginated } from "../../types/pagination"
 import { WithValidationError } from "../../types/withValidationError"
+import { SearchTypeQueryParams } from "../../types/params/types"
+import { Paginated } from "../../types/pagination"
 
 import { SearchType } from "../../types/models/type"
-import { SearchTypeQueryParams } from "../../types/params/types"
 import { Facets } from "../../types/facets"
+import { ApiCallOptions, handleValidationError, postData } from "../../base"
 
 const defaultPagination = {
   page: 0,

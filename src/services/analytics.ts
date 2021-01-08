@@ -1,6 +1,5 @@
-import { postData, ApiCallOptions } from "../base"
-
-import { DealerListingsAnalyticsData, CockpitAnalytics } from "../types/models"
+import { CockpitAnalytics, DealerListingsAnalyticsData } from "../types/models"
+import { ApiCallOptions, postData } from "../base"
 
 export const fetchAnalyticsData = async ({
   dealerId,

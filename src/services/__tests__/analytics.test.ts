@@ -1,8 +1,8 @@
 import {
   fetchAnalyticsData,
   fetchLeadsAnalytics,
-  fetchListingsAnalytics,
   fetchLeadsInteractionsAnalytics,
+  fetchListingsAnalytics,
 } from "../analytics"
 
 describe("Analytics service", () => {

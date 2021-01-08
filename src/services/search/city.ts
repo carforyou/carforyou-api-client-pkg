@@ -1,8 +1,7 @@
-import { fetchPath, ApiCallOptions } from "../../base"
-
 import { Language } from "../../types/params"
 import { Paginated } from "../../types/pagination"
 import { City } from "../../types/models"
+import { ApiCallOptions, fetchPath } from "../../base"
 
 export const fetchCity = ({
   id,

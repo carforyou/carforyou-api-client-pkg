@@ -1,6 +1,6 @@
-import { PaginationParams } from "./index"
-
 import { Date } from "../../types/models"
+
+import { PaginationParams } from "./index"
 
 export enum PowerUnit {
   HorsePower = "horsePower",

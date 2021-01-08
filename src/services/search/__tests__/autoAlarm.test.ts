@@ -1,11 +1,11 @@
-import PaginatedFactory from "../../../lib/factories/paginated"
 import {
+  deleteDealerSavedSearch,
   fetchDealerSavedSearch,
   fetchDealerSavedSearches,
   postDealerSavedSearch,
   putDealerSavedSearch,
-  deleteDealerSavedSearch,
 } from "../autoAlarm"
+import PaginatedFactory from "../../../lib/factories/paginated"
 
 const savedSearch = (attributes = {}) => ({
   createdDate: "2020-10-10",
