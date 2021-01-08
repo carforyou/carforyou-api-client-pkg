@@ -1,9 +1,9 @@
+import { Type } from "../../types/models/type"
 import {
   Listing as ListingType,
   SearchListing as SearchListingType,
 } from "../../types/models/listing"
-import { Type } from "../../types/models/type"
-import { DealerType, DealerSourceGroup } from "../../types/models/index"
+import { DealerSourceGroup, DealerType } from "../../types/models/index"
 
 const defaults: ListingType = {
   id: 12,

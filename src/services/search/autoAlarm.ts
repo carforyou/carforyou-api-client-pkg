@@ -1,16 +1,15 @@
-import {
-  fetchPath,
-  handleValidationError,
-  putData,
-  deletePath,
-  postData,
-  ApiCallOptions,
-} from "../../base"
-import toQueryString from "../../lib/toQueryString"
-
+import { WithValidationError } from "../../types/withValidationError"
 import { Paginated } from "../../types/pagination"
 import { DealerSavedSearch } from "../../types/models/autoAlarm"
-import { WithValidationError } from "../../types/withValidationError"
+import toQueryString from "../../lib/toQueryString"
+import {
+  ApiCallOptions,
+  deletePath,
+  fetchPath,
+  handleValidationError,
+  postData,
+  putData,
+} from "../../base"
 
 export const fetchDealerSavedSearches = async ({
   dealerId,

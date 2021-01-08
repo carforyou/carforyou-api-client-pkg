@@ -1,9 +1,9 @@
-import { Listing } from "../../../lib/factories/listing"
 import {
-  fetchListingOptions,
   fetchDealerListingOptions,
+  fetchListingOptions,
   saveDealerListingOptions,
 } from "../listing"
+import { Listing } from "../../../lib/factories/listing"
 
 describe("OPTION service", () => {
   beforeEach(fetchMock.resetMocks)

@@ -1,14 +1,13 @@
+import {
+  fetchListingCount,
+  fetchListings,
+  fetchMoneybackListings,
+  fetchNeedsAssessmentListings,
+} from "../listingSearch"
 import PaginatedFactory from "../../../lib/factories/paginated"
 import { SearchListing } from "../../../lib/factories/listing"
 
 import { encodeDate } from "../../../lib/dateEncoding"
-
-import {
-  fetchListingCount,
-  fetchListings,
-  fetchNeedsAssessmentListings,
-  fetchMoneybackListings,
-} from "../listingSearch"
 
 describe("SEARCH service", () => {
   beforeEach(() => {

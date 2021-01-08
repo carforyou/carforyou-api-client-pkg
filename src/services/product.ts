@@ -1,12 +1,11 @@
-import {
-  fetchPath,
-  postData,
-  handleValidationError,
-  ApiCallOptions,
-} from "../base"
-
 import { WithValidationError } from "../types/withValidationError"
 import { Product, PurchaseAndUseProduct } from "../types/models/product"
+import {
+  ApiCallOptions,
+  fetchPath,
+  handleValidationError,
+  postData,
+} from "../base"
 
 export const fetchProducts = async ({
   options = {},

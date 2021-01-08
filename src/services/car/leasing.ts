@@ -1,8 +1,7 @@
-import { postData, handleValidationError, ApiCallOptions } from "../../base"
-
+import { WithValidationError } from "../../types/withValidationError"
 import { Language } from "../../types/params"
 import { LeasingInterest } from "../../types/models"
-import { WithValidationError } from "../../types/withValidationError"
+import { ApiCallOptions, handleValidationError, postData } from "../../base"
 
 const wrappedFetchLeasingFormUrl = async ({
   listingId,

@@ -1,5 +1,5 @@
+import { deletePath, fetchPath, getHost, postData, putData } from "../base"
 import apiClient from "../apiClient"
-import { fetchPath, postData, deletePath, putData, getHost } from "../base"
 
 describe("Base", () => {
   beforeEach(fetchMock.resetMocks)

@@ -1,7 +1,6 @@
-import { postData, ApiCallOptions, ignoreServerSideErrors } from "../../base"
-
 import { WithValidationError } from "../../types/withValidationError"
 import { MessageLead } from "../../types/models"
+import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
 
 export const sendMessageLead = async ({
   listingId,

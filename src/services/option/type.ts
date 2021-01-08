@@ -1,9 +1,7 @@
-import { fetchPath, ApiCallOptions } from "../../base"
-
-import toQueryString from "../../lib/toQueryString"
-
 import { Language } from "../../types/params"
 import { Options } from "../../types/models"
+import toQueryString from "../../lib/toQueryString"
+import { ApiCallOptions, fetchPath } from "../../base"
 
 export const fetchTypeOptions = async ({
   typeId,

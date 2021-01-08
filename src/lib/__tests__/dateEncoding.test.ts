@@ -1,4 +1,4 @@
-import { encodeDate, decodeDate } from "../dateEncoding"
+import { decodeDate, encodeDate } from "../dateEncoding"
 
 describe("dateEncoding", () => {
   describe("#encodeDate", () => {

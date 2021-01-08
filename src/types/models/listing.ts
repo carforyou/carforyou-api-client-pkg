@@ -1,9 +1,10 @@
-import { Location, Date, DealerSourceGroup, DealerType } from "./index"
 import {
   BasicListingTypeCommons,
-  EnergyListingTypeCommons,
   DriveListingTypeCommons,
+  EnergyListingTypeCommons,
 } from "./commons"
+
+import { Date, DealerSourceGroup, DealerType, Location } from "./index"
 
 export interface ListingImage {
   id: number

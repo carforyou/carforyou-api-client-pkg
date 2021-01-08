@@ -1,20 +1,19 @@
-import { fetchPath, postData, ApiCallOptions } from "../../base"
-
-import { Paginated } from "../../types/pagination"
-import { WithFieldStats, FieldsStats } from "../../types/fieldStats"
-import {
-  ListingSearchParams,
-  ListingQueryParams,
-} from "../../types/params/listings"
-import { ListingSortTypeParams, ListingSortOrderParams } from "../../types/sort"
-import { SearchListing, ApiSearchListing } from "../../types/models/listing"
 import { WithTopListing } from "../../types/topListing"
+import { ListingSortOrderParams, ListingSortTypeParams } from "../../types/sort"
+import {
+  ListingQueryParams,
+  ListingSearchParams,
+} from "../../types/params/listings"
+import { Paginated } from "../../types/pagination"
+import { ApiSearchListing, SearchListing } from "../../types/models/listing"
+import { FieldsStats, WithFieldStats } from "../../types/fieldStats"
 
-import { decodeDate } from "../../lib/dateEncoding"
-import { sizeOrDefault, pageOrDefault } from "../../lib/pageParams"
-
-import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
 import toQueryString from "../../lib/toQueryString"
+import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
+import { pageOrDefault, sizeOrDefault } from "../../lib/pageParams"
+import { decodeDate } from "../../lib/dateEncoding"
+
+import { ApiCallOptions, fetchPath, postData } from "../../base"
 
 export const fetchListingCount = async ({
   query = {},

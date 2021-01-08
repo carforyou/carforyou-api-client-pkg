@@ -1,19 +1,19 @@
 import {
   fetchDealer,
-  fetchDealerSuggestions,
-  fetchDealerProfile,
-  putDealerProfile,
-  postDealerProfile,
-  fetchDealerPromotion,
-  putDealerPromotion,
-  postDealerPromotion,
   fetchDealerEntitlements,
+  fetchDealerProfile,
+  fetchDealerPromotion,
+  fetchDealerSuggestions,
+  postDealerProfile,
+  postDealerPromotion,
+  putDealerProfile,
+  putDealerPromotion,
   requestMatelsoIntegration,
   requestWhatsAppIntegration,
   setLogo,
 } from "../dealer"
+import { DealerSourceGroup, DealerType } from "../../types/models/index"
 import { ResponseError } from "../../responseError"
-import { DealerType, DealerSourceGroup } from "../../types/models/index"
 
 describe("Dealer", () => {
   const requestOptionsMock = {

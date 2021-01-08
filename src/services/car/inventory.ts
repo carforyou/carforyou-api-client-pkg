@@ -1,22 +1,21 @@
-import {
-  fetchPath,
-  postData,
-  putData,
-  handleValidationError,
-  ApiCallOptions,
-} from "../../base"
-
-import { Paginated } from "../../types/pagination"
 import { WithValidationError } from "../../types/withValidationError"
 import {
   DealerListingSortOrderParams,
   DealerListingSortTypeParams,
 } from "../../types/sort"
-import { Listing } from "../../types/models/listing"
 import { DealerListingQueryParams } from "../../types/params/listings"
+import { Paginated } from "../../types/pagination"
+import { Listing } from "../../types/models/listing"
 
 import toQueryString from "../../lib/toQueryString"
 import { decodeDate, encodeDate } from "../../lib/dateEncoding"
+import {
+  ApiCallOptions,
+  fetchPath,
+  handleValidationError,
+  postData,
+  putData,
+} from "../../base"
 
 const sanitizeListing = (json): Listing => {
   const { firstRegistrationDate, lastInspectionDate, ...rest } = json

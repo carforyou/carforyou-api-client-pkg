@@ -1,14 +1,13 @@
+import { WithValidationError } from "../../types/withValidationError"
+import { DealerListingImages, Listing } from "../../types/models/listing"
+import { ImageEnrichment, PresignedUrl } from "../../types/models"
 import {
+  ApiCallOptions,
   fetchPath,
+  handleValidationError,
   postData,
   putData,
-  handleValidationError,
-  ApiCallOptions,
 } from "../../base"
-
-import { ImageEnrichment, PresignedUrl } from "../../types/models"
-import { Listing, DealerListingImages } from "../../types/models/listing"
-import { WithValidationError } from "../../types/withValidationError"
 
 export const fetchImageEnrichment = async ({
   imageId,

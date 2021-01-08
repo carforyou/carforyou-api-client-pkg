@@ -1,5 +1,5 @@
-import { ListingFromType } from "../listing"
 import { Type } from "../type"
+import { ListingFromType } from "../listing"
 
 describe("listing", () => {
   describe("ListingFromType", () => {

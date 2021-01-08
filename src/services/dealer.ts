@@ -1,19 +1,18 @@
-import {
-  fetchPath,
-  handleValidationError,
-  putData,
-  postData,
-  ApiCallOptions,
-} from "../base"
-
+import { WithValidationError } from "../types/withValidationError"
 import { Language } from "../types/params"
 import { Paginated } from "../types/pagination"
-import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
-import { DealerProfile } from "../types/models/dealerProfile"
 import { DealerPromotion } from "../types/models/dealerPromotion"
-import { WithValidationError } from "../types/withValidationError"
+import { DealerProfile } from "../types/models/dealerProfile"
+import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 
 import toQueryString from "../lib/toQueryString"
+import {
+  ApiCallOptions,
+  fetchPath,
+  handleValidationError,
+  postData,
+  putData,
+} from "../base"
 
 export const fetchDealer = async ({
   id,

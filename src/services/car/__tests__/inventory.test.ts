@@ -1,28 +1,28 @@
 import {
-  fetchListing,
+  archiveDealerListing,
   fetchDealerListings,
-  validateDealerListing,
-  ListingValidationEndpoint,
-  prepareListingData,
-  saveDealerListing,
-  listingMandatoryFields,
   fetchDealerListingsCount,
   fetchDealerMakes,
-  publishDealerListing,
-  archiveDealerListing,
-  unpublishDealerListing,
-  transferDealerListingToManual,
+  fetchListing,
   hideListing,
+  listingMandatoryFields,
+  ListingValidationEndpoint,
+  prepareListingData,
+  publishDealerListing,
+  saveDealerListing,
+  transferDealerListingToManual,
   unhideListing,
+  unpublishDealerListing,
+  validateDealerListing,
 } from "../inventory"
 
 import {
-  DealerListingSortTypeParams,
   DealerListingSortOrderParams,
+  DealerListingSortTypeParams,
 } from "../../../types/sort"
 
 import Paginated from "../../../lib/factories/paginated"
-import { Listing, EmptyListing } from "../../../lib/factories/listing"
+import { EmptyListing, Listing } from "../../../lib/factories/listing"
 import { encodeDate } from "../../../lib/dateEncoding"
 
 const dealerId = 123

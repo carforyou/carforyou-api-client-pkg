@@ -1,6 +1,6 @@
 import {
-  ListingQueryParams,
   ListingFilterParams,
+  ListingQueryParams,
   LocationFilter,
 } from "../types/params/listings"
 

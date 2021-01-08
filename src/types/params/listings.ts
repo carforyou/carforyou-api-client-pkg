@@ -1,5 +1,6 @@
-import { PaginationParams } from "./index"
 import { DealerListingSortParams } from "../sort"
+
+import { PaginationParams } from "./index"
 
 export interface MakeModelFilter {
   makeKey?: string

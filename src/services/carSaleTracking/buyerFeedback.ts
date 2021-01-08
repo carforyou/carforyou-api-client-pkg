@@ -1,4 +1,4 @@
-import { postData, ApiCallOptions } from "../../base"
+import { ApiCallOptions, postData } from "../../base"
 
 export const addPurchaseConfirmation = async ({
   key,

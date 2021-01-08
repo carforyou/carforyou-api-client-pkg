@@ -1,13 +1,12 @@
+import { WithValidationError } from "../types/withValidationError"
+import { SavedSearch } from "../types/models"
+import paramsToSearchRequest from "../lib/paramsToSearchRequest"
 import {
-  postData,
+  ApiCallOptions,
   deletePath,
   handleValidationError,
-  ApiCallOptions,
+  postData,
 } from "../base"
-
-import { SavedSearch } from "../types/models"
-import { WithValidationError } from "../types/withValidationError"
-import paramsToSearchRequest from "../lib/paramsToSearchRequest"
 
 export const sendSavedSearch = async ({
   savedSearch,

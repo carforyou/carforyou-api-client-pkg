@@ -1,11 +1,10 @@
-import { postData, ApiCallOptions } from "../../base"
-
-import { sizeOrDefault, pageOrDefault } from "../../lib/pageParams"
-import { Paginated } from "../../types/pagination"
-import { DealerParams } from "../../types/params/dealer"
 import { DealerSortTypeParams } from "../../types/sort"
+import { DealerParams } from "../../types/params/dealer"
+import { Paginated } from "../../types/pagination"
 
 import { SearchDealer } from "../../types/models/dealerPromotion"
+import { pageOrDefault, sizeOrDefault } from "../../lib/pageParams"
+import { ApiCallOptions, postData } from "../../base"
 
 const defaultPagination = {
   page: 0,

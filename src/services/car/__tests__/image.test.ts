@@ -1,10 +1,10 @@
-import { Listing } from "../../../lib/factories/listing"
 import {
   fetchDealerListingImages,
   fetchImageEnrichment,
   generatePresignedImageUrl,
   saveDealerListingImages,
 } from "../image"
+import { Listing } from "../../../lib/factories/listing"
 
 describe("Dealer listing images", () => {
   beforeEach(fetchMock.resetMocks)

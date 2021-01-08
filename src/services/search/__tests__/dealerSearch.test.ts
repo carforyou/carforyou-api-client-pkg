@@ -1,9 +1,8 @@
-import PaginatedFactory from "../../../lib/factories/paginated"
-import { DealerPromotion } from "../../../lib/factories/dealer"
-
 import { fetchDealers } from "../dealerSearch"
 import { DealerSortTypeParams } from "../../../types/sort"
 import { Feature } from "../../../types/models/product"
+import PaginatedFactory from "../../../lib/factories/paginated"
+import { DealerPromotion } from "../../../lib/factories/dealer"
 
 describe("SEARCH service", () => {
   beforeEach(() => {
