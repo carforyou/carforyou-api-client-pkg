@@ -55,30 +55,33 @@ describe("Whatsapp API", () => {
       expect(response).toEqual({ tag: "success", result: whatsappEntry })
     })
 
-    const responses = [
-      { param: "firstName", message: "validation.field.not-empty" },
-      { param: "language", message: "validation.field.not-empty" },
-      { param: "lastName", message: "validation.field.not-empty" },
-      { param: "phone", message: "validation.field.not-empty" },
-    ]
+    it("should map the error correctly", async () => {
+      const errors = [
+        { param: "firstName", message: "validation.field.not-empty" },
+      ]
+      fetchMock.mockResponseOnce(
+        JSON.stringify({
+          message: "validation.not-valid",
+          errors,
+        }),
+        { status: 400 }
+      )
 
-    responses.forEach((response) => {
-      it("should return error if a field is empty or missing", async () => {
-        const whatsAppEntryToBeSent = { ...whatsappEntry }
-        delete whatsAppEntryToBeSent[response.param]
-        const result = await postWhatsappTrackingEntry({
-          listingId: 12345,
-          whatsappEntry: { ...whatsAppEntryToBeSent },
-          options: {
-            validateOnly: true,
-          },
-        })
-        expect(result.tag).toEqual("error")
-        if (result.tag === "error") {
-          expect(result.errors).toEqual([{ ...response }])
-          expect(result.message).toEqual("validation.not-valid")
-        }
+      const whatsAppEntryToBeSent = { ...whatsappEntry }
+      delete whatsAppEntryToBeSent["firstName"]
+      const result = await postWhatsappTrackingEntry({
+        listingId: 12345,
+        whatsappEntry: { ...whatsAppEntryToBeSent },
+        options: {
+          validateOnly: true,
+        },
       })
+
+      expect(result.tag).toEqual("error")
+      if (result.tag === "error") {
+        expect(result.errors).toEqual(errors)
+        expect(result.message).toEqual("validation.not-valid")
+      }
     })
   })
 
