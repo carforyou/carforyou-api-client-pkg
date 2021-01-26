@@ -2,6 +2,7 @@ import { WithValidationError } from "../../types/withValidationError"
 import { Language } from "../../types/params"
 import { LeasingInterest } from "../../types/models"
 import { ApiCallOptions, handleValidationError, postData } from "../../base"
+import { createApiPathWithValidate } from "../../lib/path"
 
 const wrappedFetchLeasingFormUrl = async ({
   listingId,
@@ -54,9 +55,10 @@ export const sendLeasingInterest = async ({
 }): Promise<WithValidationError<LeasingInterest>> => {
   const { validateOnly, ...otherOptions } = options
 
-  const path = `listings/${listingId}/leasing/interests${
-    validateOnly ? "/validate" : ""
-  }`
+  const path = createApiPathWithValidate(
+    `listings/${listingId}/leasing/interests`,
+    validateOnly
+  )
 
   try {
     await postData({

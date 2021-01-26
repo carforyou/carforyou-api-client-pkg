@@ -1,6 +1,7 @@
 import { WithValidationError } from "../../types/withValidationError"
 import { MessageLead } from "../../types/models"
 import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
+import { createApiPathWithValidate } from "../../lib/path"
 
 export const sendMessageLead = async ({
   listingId,
@@ -21,9 +22,10 @@ export const sendMessageLead = async ({
   } = { ...{ videoCallPreference: {} }, ...messageLead }
   const { validateOnly, ...otherOptions } = options
 
-  const path = `listings/${listingId}/message-leads${
-    validateOnly ? "/validate" : ""
-  }`
+  const path = createApiPathWithValidate(
+    `listings/${listingId}/message-leads`,
+    validateOnly
+  )
 
   try {
     await postData({
