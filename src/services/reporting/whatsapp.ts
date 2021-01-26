@@ -25,7 +25,7 @@ export const postWhatsappTrackingEntry = async ({
       },
       options: {
         ...otherOptions,
-        apiVersion: "v2",
+        apiVersion: "v1",
       },
     })
     return {

@@ -9,7 +9,7 @@ describe("Whatsapp API", () => {
     phone: "+41781234567",
   }
 
-  it("should call api v2", async () => {
+  it("should call api v1", async () => {
     await postWhatsappTrackingEntry({
       listingId: 12345,
       whatsappEntry: { ...whatsappEntry },
@@ -19,7 +19,7 @@ describe("Whatsapp API", () => {
       expect.any(String),
       expect.objectContaining({
         headers: expect.objectContaining({
-          Accept: "application/vnd.carforyou.v2+json",
+          Accept: "application/vnd.carforyou.v1+json",
         }),
       })
     )
