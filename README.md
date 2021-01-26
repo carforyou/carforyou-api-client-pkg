@@ -207,6 +207,11 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchListingsAnalytics`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics/getDealerListingsAnalyticsUsingPOST),
   - [`fetchLeadsInteractionsAnalytics`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics/getDealerLeadsInteractionsUsingPOST)
 
+### [Reporting service](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html)
+
+- [Whatsapp Tracking](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/WhatsApp%20Tracking)
+  - [`postWhatsappTrackingEntry`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/WhatsApp%20Tracking/createWhatsAppTrackingEntryUsingPOST)
+
 ### [Car sale tracking service](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html)
 
 - [Buyer feedback](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Buyer%20Feedback)

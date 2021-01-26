@@ -1,5 +1,6 @@
 import { WithValidationError } from "../../types/withValidationError"
 import { MoneybackApplication } from "../../types/models/applications"
+import { createApiPathWithValidate } from "../../lib/path"
 import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
 
 export const sendMoneybackApplication = async ({
@@ -21,9 +22,10 @@ export const sendMoneybackApplication = async ({
   } = options
   const { headers = {}, ...otherOptions } = rest
 
-  const path = `listings/${listingId}/mbg-applications${
-    validateOnly ? "/validate" : ""
-  }`
+  const path = createApiPathWithValidate(
+    `listings/${listingId}/mbg-applications`,
+    validateOnly
+  )
 
   try {
     await postData({

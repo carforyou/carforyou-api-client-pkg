@@ -1,29 +1,21 @@
 import { WithValidationError } from "../../types/withValidationError"
-import { MessageLead } from "../../types/models"
+import { WhatsappEntry } from "../../types/models"
 import { createApiPathWithValidate } from "../../lib/path"
 import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
 
-export const sendMessageLead = async ({
+export const postWhatsappTrackingEntry = async ({
   listingId,
-  messageLead,
+  whatsappEntry,
   options = {},
 }: {
   listingId: number
-  messageLead: MessageLead
+  whatsappEntry: WhatsappEntry
   options?: ApiCallOptions & { validateOnly?: boolean }
-}): Promise<WithValidationError<MessageLead>> => {
-  const {
-    videoCallPreference: {
-      available = false,
-      services = [],
-      otherService = null,
-    },
-    ...messageLeadBase
-  } = { ...{ videoCallPreference: {} }, ...messageLead }
+}): Promise<WithValidationError<WhatsappEntry>> => {
   const { validateOnly, ...otherOptions } = options
 
   const path = createApiPathWithValidate(
-    `listings/${listingId}/message-leads`,
+    `listings/${listingId}/whats-app-tracking-entries`,
     validateOnly
   )
 
@@ -31,27 +23,22 @@ export const sendMessageLead = async ({
     await postData({
       path,
       body: {
-        ...messageLeadBase,
-        videoCallPreference: {
-          available,
-          services: [...services, otherService].filter(Boolean),
-        },
+        ...whatsappEntry,
       },
       options: {
         ...otherOptions,
-        apiVersion: "v2",
+        apiVersion: "v1",
       },
     })
-
     return {
       tag: "success",
-      result: messageLead,
+      result: whatsappEntry,
     }
   } catch (error) {
     return ignoreServerSideErrors({
       error,
       errorHandlerOptions: { swallowErrors: true },
-      returnValue: messageLead,
+      returnValue: whatsappEntry,
     })
   }
 }

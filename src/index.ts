@@ -213,6 +213,7 @@ export {
   fetchListingsAnalytics,
   fetchLeadsInteractionsAnalytics,
 } from "./services/analytics"
+export { postWhatsappTrackingEntry } from "./services/reporting/whatsapp"
 export {
   fetchProducts,
   purchaseAndUseListingProduct,
