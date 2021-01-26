@@ -1,5 +1,6 @@
 import { WithValidationError } from "../../types/withValidationError"
 import { WhatsappEntry } from "../../types/models"
+import { createApiPathWithValidate } from "../../lib/path"
 import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
 
 export const postWhatsappTrackingEntry = async ({
@@ -13,9 +14,10 @@ export const postWhatsappTrackingEntry = async ({
 }): Promise<WithValidationError<WhatsappEntry>> => {
   const { validateOnly, ...otherOptions } = options
 
-  const path = `listings/${listingId}/whats-app-tracking-entries${
-    validateOnly ? "/validate" : ""
-  }`
+  const path = createApiPathWithValidate(
+    `listings/${listingId}/whats-app-tracking-entries`,
+    validateOnly
+  )
 
   try {
     await postData({
