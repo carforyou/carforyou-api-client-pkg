@@ -1,7 +1,7 @@
 import { WithValidationError } from "../../types/withValidationError"
 import { BuyNowApplication } from "../../types/models/applications"
-import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
 import { createApiPathWithValidate } from "../../lib/path"
+import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
 
 export const sendBuyNowApplication = async ({
   listingId,

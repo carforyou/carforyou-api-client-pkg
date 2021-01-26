@@ -1,7 +1,7 @@
 import { WithValidationError } from "../../types/withValidationError"
 import { MoneybackApplication } from "../../types/models/applications"
-import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
 import { createApiPathWithValidate } from "../../lib/path"
+import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
 
 export const sendMoneybackApplication = async ({
   listingId,
