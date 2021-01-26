@@ -188,3 +188,10 @@ export interface CockpitAnalytics {
   count: number
   [key: string]: string | number
 }
+
+export interface WhatsappEntry {
+  firstName: string
+  language: string
+  lastName: string
+  phone: string
+}
