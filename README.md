@@ -11,7 +11,7 @@ npm install @carforyou/api-client
 Initialize the API client:
 
 ```
-import ApiClient from "@carforyou/api-client"
+import { ApiClient } from "@carforyou/api-client"
 
 ApiClient.configure(<your_configuration_object>)
 ```
