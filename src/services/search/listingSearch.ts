@@ -62,6 +62,13 @@ export const fetchDealerListingsCount = async ({
   return count
 }
 
+export const fetchArchivedDealerListingsCount = async (_params: {
+  dealerId: number
+  options?: ApiCallOptions
+}): Promise<number> => {
+  return 42
+}
+
 export const defaultSort = {
   sortType: ListingSortTypeParams.RELEVANCE,
   sortOrder: ListingSortOrderParams.ASC,
