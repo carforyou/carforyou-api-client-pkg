@@ -1,3 +1,5 @@
+import { DealerListingSortParams } from "../sort"
+
 import { PaginationParams } from "./index"
 
 export interface MakeModelFilter {
@@ -86,4 +88,12 @@ export interface ListingFilterParams {
     | MakeModelFilter[]
     | LocationFilter
     | boolean
+}
+
+export interface DealerListingQueryParams
+  extends PaginationParams,
+    DealerListingSortParams {
+  isActive?: boolean
+  isManual?: boolean
+  features?: string
 }

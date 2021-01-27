@@ -1,7 +1,6 @@
 import {
   archiveDealerListing,
   fetchDealerListings,
-  fetchDealerListingsCount,
   fetchDealerMakes,
   fetchListing,
   hideListing,
