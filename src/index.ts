@@ -127,7 +127,6 @@ export {
 export {
   fetchListing,
   fetchDealerMakes,
-  fetchDealerListingsCount,
   defaultSort as defaultDealerListingsSort,
   defaultPagination as defaultDealerListingsPagination,
   fetchDealerListings,
@@ -179,6 +178,7 @@ export {
 } from "./services/search/currentMakeModels"
 export {
   fetchListingCount,
+  fetchDealerListingsCount,
   fetchListings,
   fetchNeedsAssessmentListings,
   defaultSort as defaultListingsSort,

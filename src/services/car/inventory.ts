@@ -51,27 +51,6 @@ export const fetchDealerMakes = async ({
   return fetchPath({ path: `inventory/dealers/${dealerId}/makes`, options })
 }
 
-export const fetchDealerListingsCount = async ({
-  dealerId,
-  query = {},
-  options = {},
-}: {
-  dealerId: number
-  query?: DealerListingQueryParams
-  options?: ApiCallOptions
-}): Promise<number> => {
-  const { count } = await fetchPath({
-    path: `dealers/${dealerId}/listings/count${
-      Object.keys(query).length > 0 ? "?" + toQueryString(query) : null
-    }`,
-    options: {
-      isAuthorizedRequest: true,
-      ...options,
-    },
-  })
-  return count
-}
-
 export const defaultPagination = {
   page: 0,
   size: 25,

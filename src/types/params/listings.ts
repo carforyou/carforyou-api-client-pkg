@@ -1,5 +1,3 @@
-import { DealerListingSortParams } from "../sort"
-
 import { PaginationParams } from "./index"
 
 export interface MakeModelFilter {
@@ -33,6 +31,9 @@ export interface ListingSearchParams extends ListingQueryParams {
   makeKey?: string[]
   modelKey?: string[]
   bodyType?: string | string[]
+  isActive?: boolean
+  isManual?: boolean
+  features?: string[]
 }
 
 export enum ConsumptionCategory {
@@ -85,12 +86,4 @@ export interface ListingFilterParams {
     | MakeModelFilter[]
     | LocationFilter
     | boolean
-}
-
-export interface DealerListingQueryParams
-  extends PaginationParams,
-    DealerListingSortParams {
-  isActive?: boolean
-  isManual?: boolean
-  features?: string
 }

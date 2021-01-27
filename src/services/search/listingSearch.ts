@@ -39,6 +39,29 @@ export const fetchListingCount = async ({
   }
 }
 
+export const fetchDealerListingsCount = async ({
+  dealerId,
+  query = {},
+  options = {},
+}: {
+  dealerId: number
+  query?: ListingSearchParams
+  options?: ApiCallOptions
+}): Promise<number> => {
+  const { count } = await postData({
+    path: `dealers/${dealerId}/listings/count`,
+    body: {
+      query,
+    },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
+
+  return count
+}
+
 export const defaultSort = {
   sortType: ListingSortTypeParams.RELEVANCE,
   sortOrder: ListingSortOrderParams.ASC,

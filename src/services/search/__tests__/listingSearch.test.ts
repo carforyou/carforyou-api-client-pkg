@@ -1,5 +1,6 @@
 import {
   fetchListingCount,
+  fetchDealerListingsCount,
   fetchListings,
   fetchMoneybackListings,
   fetchNeedsAssessmentListings,
@@ -67,6 +68,42 @@ describe("SEARCH service", () => {
           })
         )
       })
+    })
+  })
+
+  describe("#fetchDealerListingsCount", () => {
+    const dealerId = 123
+    const requestOptionsMock = {
+      accessToken: "DUMMY TOKEN",
+    }
+
+    it("unwraps count from json", async () => {
+      const count = 400
+      fetchMock.mockResponse(JSON.stringify({ count }))
+
+      const response = await fetchDealerListingsCount({
+        dealerId,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual(count)
+      expect(fetch).toHaveBeenCalled()
+    })
+
+    it("passes query in the query string", async () => {
+      const query = { isActive: true }
+      fetchMock.mockResponse(JSON.stringify({ count: 40 }))
+
+      await fetchDealerListingsCount({
+        dealerId,
+        query,
+        options: requestOptionsMock,
+      })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining(`/dealers/${dealerId}/listings/count`),
+        expect.objectContaining({
+          body: JSON.stringify({ query: { isActive: true } }),
+        })
+      )
     })
   })
 

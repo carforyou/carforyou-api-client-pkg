@@ -197,35 +197,6 @@ describe("CAR service", () => {
     })
   })
 
-  describe("#fetchDealerListingsCount", () => {
-    it("unwraps count from json", async () => {
-      const count = 400
-      fetchMock.mockResponse(JSON.stringify({ count }))
-
-      const response = await fetchDealerListingsCount({
-        dealerId: 123,
-        options: requestOptionsMock,
-      })
-      expect(response).toEqual(count)
-      expect(fetch).toHaveBeenCalled()
-    })
-
-    it("passes query in the query string", async () => {
-      const query = { isActive: true }
-      fetchMock.mockResponse(JSON.stringify({ count: 40 }))
-
-      await fetchDealerListingsCount({
-        dealerId: 123,
-        query,
-        options: requestOptionsMock,
-      })
-      expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining("/dealers/123/listings/count?isActive=true"),
-        expect.any(Object)
-      )
-    })
-  })
-
   describe("#validateDealerListing", () => {
     const listing = Listing({ id: 123 })
 
