@@ -62,11 +62,22 @@ export const fetchDealerListingsCount = async ({
   return count
 }
 
-export const fetchArchivedDealerListingsCount = async (_params: {
+export const fetchDealerArchivedListingsCount = async ({
+  dealerId,
+  options,
+}: {
   dealerId: number
   options?: ApiCallOptions
 }): Promise<number> => {
-  return 42
+  const { count } = await fetchPath({
+    path: `dealers/${dealerId}/archived-listings/count`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
+
+  return count
 }
 
 export const defaultSort = {

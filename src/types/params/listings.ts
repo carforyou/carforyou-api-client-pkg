@@ -33,7 +33,6 @@ export interface ListingSearchParams extends ListingQueryParams {
   makeKey?: string[]
   modelKey?: string[]
   bodyType?: string | string[]
-  isActive?: boolean
   isManual?: boolean
   features?: string[]
 }

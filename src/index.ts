@@ -179,7 +179,7 @@ export {
 export {
   fetchListingCount,
   fetchDealerListingsCount,
-  fetchArchivedDealerListingsCount,
+  fetchDealerArchivedListingsCount,
   fetchListings,
   fetchNeedsAssessmentListings,
   defaultSort as defaultListingsSort,

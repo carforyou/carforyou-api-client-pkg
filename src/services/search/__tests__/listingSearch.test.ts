@@ -1,4 +1,5 @@
 import {
+  fetchDealerArchivedListingsCount,
   fetchDealerListingsCount,
   fetchListingCount,
   fetchListings,
@@ -89,7 +90,7 @@ describe("SEARCH service", () => {
       expect(fetch).toHaveBeenCalled()
     })
 
-    it("passes query in the query string", async () => {
+    it("passes query in the request body", async () => {
       const query = { isActive: true }
       fetchMock.mockResponse(JSON.stringify({ count: 40 }))
 
@@ -104,6 +105,25 @@ describe("SEARCH service", () => {
           body: JSON.stringify({ query: { isActive: true } }),
         })
       )
+    })
+  })
+
+  describe("#fetchDealerArchivedListingsCount", () => {
+    const dealerId = 123
+    const requestOptionsMock = {
+      accessToken: "DUMMY TOKEN",
+    }
+
+    it("unwraps count from json", async () => {
+      const count = 400
+      fetchMock.mockResponse(JSON.stringify({ count }))
+
+      const response = await fetchDealerArchivedListingsCount({
+        dealerId,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual(count)
+      expect(fetch).toHaveBeenCalled()
     })
   })
 
