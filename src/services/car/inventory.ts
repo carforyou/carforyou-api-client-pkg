@@ -1,13 +1,6 @@
 import { WithValidationError } from "../../types/withValidationError"
-import {
-  DealerListingSortOrderParams,
-  DealerListingSortTypeParams,
-} from "../../types/sort"
-import { DealerListingQueryParams } from "../../types/params/listings"
-import { Paginated } from "../../types/pagination"
 import { Listing } from "../../types/models/listing"
 
-import toQueryString from "../../lib/toQueryString"
 import { decodeDate, encodeDate } from "../../lib/dateEncoding"
 import {
   ApiCallOptions,
@@ -49,62 +42,6 @@ export const fetchDealerMakes = async ({
   options?: ApiCallOptions
 }): Promise<Array<{ make: string; makeKey: string }>> => {
   return fetchPath({ path: `inventory/dealers/${dealerId}/makes`, options })
-}
-
-export const defaultPagination = {
-  page: 0,
-  size: 25,
-}
-
-export const defaultSort = {
-  sortOrder: DealerListingSortOrderParams.DESC,
-  sortType: DealerListingSortTypeParams.CREATED_DATE,
-}
-
-export const fetchDealerListings = async ({
-  dealerId,
-  query = {},
-  options = {},
-}: {
-  dealerId: number
-  query?: DealerListingQueryParams
-  options?: ApiCallOptions
-}): Promise<Paginated<Listing>> => {
-  const { page, size, sortOrder, sortType, ...rest } = query
-
-  const sizeOrDefault =
-    parseInt((size || "").toString(), 10) || defaultPagination.size
-  const pageOrDefault =
-    parseInt((page || "").toString(), 10) - 1 || defaultPagination.page
-
-  const sortOrDefault = {
-    sortType: sortType || defaultSort.sortType,
-    sortOrder: sortOrder || defaultSort.sortOrder,
-  }
-
-  const queryParams = {
-    page: pageOrDefault,
-    size: sizeOrDefault,
-    sort: `${sortOrDefault.sortType},${sortOrDefault.sortOrder}`,
-    ...rest,
-  }
-
-  const { content, ...response } = await fetchPath({
-    path: `dealers/${dealerId}/listings${
-      Object.keys(queryParams).length > 0
-        ? "?" + toQueryString(queryParams)
-        : null
-    }`,
-    options: {
-      isAuthorizedRequest: true,
-      ...options,
-    },
-  })
-
-  return {
-    ...response,
-    content: content.map(sanitizeListing),
-  }
 }
 
 export const fetchDealerListing = async ({

@@ -6,6 +6,8 @@ export enum ListingSortTypeParams {
   HORSE_POWER = "HORSE_POWER",
   MAKE_MODEL_A_Z = "MAKE_MODEL_A_Z",
   RELEVANCE = "RELEVANCE",
+  CREATED_DATE = "CREATED_DATE",
+  PUBLISHING_DATE = "PUBLISHING_DATE",
 }
 
 export enum ListingSortOrderParams {
@@ -16,22 +18,6 @@ export enum ListingSortOrderParams {
 export interface ListingSortParams {
   sortOrder?: ListingSortOrderParams
   sortType?: ListingSortTypeParams
-}
-
-export enum DealerListingSortOrderParams {
-  ASC = "asc",
-  DESC = "desc",
-}
-
-export enum DealerListingSortTypeParams {
-  PRICE = "price",
-  CREATED_DATE = "createdDate",
-  STANDING_DAYS = "publishingDate",
-}
-
-export interface DealerListingSortParams {
-  sortOrder?: DealerListingSortOrderParams
-  sortType?: DealerListingSortTypeParams
 }
 
 export enum DealerSortTypeParams {

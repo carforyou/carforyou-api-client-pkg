@@ -1,10 +1,21 @@
-import { fetchListings } from "../listingSearch"
+import {
+  fetchDealerArchivedListings,
+  fetchDealerListings,
+  fetchListings,
+} from "../listingSearch"
 
-import { postData } from "../../../base"
+import {
+  ListingSortOrderParams,
+  ListingSortTypeParams,
+} from "../../../types/sort"
+import { fetchPath, postData } from "../../../base"
 
 jest.mock("../../../base", () => ({
   ...jest.requireActual("../../../base"),
   postData: jest.fn(() => ({
+    content: [],
+  })),
+  fetchPath: jest.fn(() => ({
     content: [],
   })),
 }))
@@ -62,7 +73,7 @@ describe("SEARCH service", () => {
               size: 10,
             },
           }),
-          options: {},
+          options: expect.any(Object),
         })
       })
 
@@ -129,6 +140,220 @@ describe("SEARCH service", () => {
             ],
           }),
           options: {},
+        })
+      })
+    })
+  })
+
+  describe("#fetchDealerListings", () => {
+    const dealerId = 123
+    const requestOptionsMock = {
+      accessToken: "DUMMY TOKEN",
+    }
+
+    describe("query formatting", () => {
+      describe("pagination", () => {
+        it("indexes page from 0", async () => {
+          await fetchDealerListings({
+            dealerId,
+            query: { page: 5, size: 10 },
+            options: requestOptionsMock,
+          })
+
+          expect(postData).toHaveBeenCalledWith({
+            path: "dealers/123/listings/search",
+            body: expect.objectContaining({
+              pagination: {
+                page: 4,
+                size: 10,
+              },
+            }),
+            options: expect.any(Object),
+          })
+        })
+
+        it("defaults `page` to 0 when not provided", async () => {
+          await fetchDealerListings({
+            dealerId,
+            query: {
+              size: 10,
+            },
+            options: requestOptionsMock,
+          })
+
+          expect(postData).toHaveBeenCalledWith({
+            path: "dealers/123/listings/search",
+            body: expect.objectContaining({
+              pagination: {
+                page: 0,
+                size: 10,
+              },
+            }),
+            options: expect.any(Object),
+          })
+        })
+
+        it("defaults `size` to 25 when it's not provided", async () => {
+          await fetchDealerListings({
+            dealerId,
+            query: { page: 5 },
+            options: requestOptionsMock,
+          })
+
+          expect(postData).toHaveBeenCalledWith({
+            path: "dealers/123/listings/search",
+            body: expect.objectContaining({
+              pagination: {
+                page: 4,
+                size: 25,
+              },
+            }),
+            options: expect.any(Object),
+          })
+        })
+      })
+
+      describe("sort", () => {
+        it("can sort by creation date", async () => {
+          await fetchDealerListings({
+            dealerId,
+            query: {
+              sortType: "CREATED_DATE",
+              sortOrder: "ASC",
+            },
+            options: requestOptionsMock,
+          })
+
+          expect(postData).toHaveBeenCalledWith({
+            path: "dealers/123/listings/search",
+            body: expect.objectContaining({
+              sort: [
+                {
+                  type: "CREATED_DATE",
+                  order: "ASC",
+                },
+              ],
+            }),
+            options: expect.any(Object),
+          })
+        })
+
+        it("defaults to sorting by creation date, descending", async () => {
+          await fetchDealerListings({ dealerId, options: requestOptionsMock })
+
+          expect(postData).toHaveBeenCalledWith({
+            path: "dealers/123/listings/search",
+            body: expect.objectContaining({
+              sort: [
+                {
+                  type: "CREATED_DATE",
+                  order: "DESC",
+                },
+              ],
+            }),
+            options: expect.any(Object),
+          })
+        })
+      })
+    })
+  })
+
+  describe("#fetchDealerArchivedListings", () => {
+    const dealerId = 123
+    const requestOptionsMock = {
+      accessToken: "DUMMY TOKEN",
+    }
+
+    describe("query formatting", () => {
+      describe("pagination", () => {
+        it("indexes page from 0", async () => {
+          await fetchDealerArchivedListings({
+            dealerId,
+            query: { page: 5, size: 10 },
+            options: requestOptionsMock,
+          })
+
+          expect(fetchPath).toHaveBeenCalledWith(
+            expect.objectContaining({
+              path: expect.stringMatching(
+                new RegExp(`dealers/${dealerId}/archived-listings?(.*)page=4`)
+              ),
+            })
+          )
+        })
+
+        it("defaults `page` to 0 when not provided", async () => {
+          await fetchDealerArchivedListings({
+            dealerId,
+            query: {
+              size: 10,
+            },
+            options: requestOptionsMock,
+          })
+
+          expect(fetchPath).toHaveBeenCalledWith(
+            expect.objectContaining({
+              path: expect.stringMatching(
+                new RegExp(`dealers/${dealerId}/archived-listings?(.*)page=0`)
+              ),
+            })
+          )
+        })
+
+        it("defaults `size` to 25 when it's not provided", async () => {
+          await fetchDealerArchivedListings({
+            dealerId,
+            query: { page: 5 },
+            options: requestOptionsMock,
+          })
+
+          expect(fetchPath).toHaveBeenCalledWith(
+            expect.objectContaining({
+              path: expect.stringMatching(
+                new RegExp(`dealers/${dealerId}/archived-listings?(.*)size=25`)
+              ),
+            })
+          )
+        })
+      })
+
+      describe("sort", () => {
+        it("can sort by creation date", async () => {
+          await fetchDealerArchivedListings({
+            dealerId,
+            query: {
+              sortType: ListingSortTypeParams.CREATED_DATE,
+              sortOrder: ListingSortOrderParams.ASC,
+            },
+            options: requestOptionsMock,
+          })
+
+          expect(fetchPath).toHaveBeenCalledWith(
+            expect.objectContaining({
+              path: expect.stringMatching(
+                new RegExp(
+                  `dealers/${dealerId}/archived-listings?(.*)sort=createdDate%2Casc`
+                )
+              ),
+            })
+          )
+        })
+
+        it("defaults to sorting by creation date, descending", async () => {
+          await fetchDealerArchivedListings({
+            dealerId,
+            options: requestOptionsMock,
+          })
+
+          expect(fetchPath).toHaveBeenCalledWith(
+            expect.objectContaining({
+              path: expect.stringMatching(
+                new RegExp(
+                  `dealers/${dealerId}/archived-listings?(.*)sort=createdDate%2Cdesc`
+                )
+              ),
+            })
+          )
         })
       })
     })

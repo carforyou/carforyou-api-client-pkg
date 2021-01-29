@@ -1,5 +1,7 @@
 import {
   fetchDealerArchivedListingsCount,
+  fetchDealerArchivedListings,
+  fetchDealerListings,
   fetchDealerListingsCount,
   fetchListingCount,
   fetchListings,
@@ -184,6 +186,94 @@ describe("SEARCH service", () => {
       it("fetch", async () => {
         const paginatedListings = await fetchListings()
         expect(paginatedListings.topListing).toEqual(topListing)
+        expect(fetch).toHaveBeenCalled()
+      })
+    })
+  })
+
+  describe("#fetchDealerListings", () => {
+    const dealerId = 123
+    const requestOptionsMock = {
+      accessToken: "DUMMY TOKEN",
+    }
+    const { content, pagination } = PaginatedFactory([SearchListing()])
+
+    beforeEach(() => {
+      fetchMock.mockResponse(
+        JSON.stringify({
+          content: content.map((listing) => ({
+            ...listing,
+            firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
+          })),
+          ...pagination,
+        })
+      )
+    })
+
+    it("unwraps the content from json", async () => {
+      const paginatedListings = await fetchDealerListings({
+        dealerId,
+        options: requestOptionsMock,
+      })
+      const listings = paginatedListings.content
+
+      expect(listings.length).toEqual(1)
+      expect(listings).toEqual(content)
+      expect(fetch).toHaveBeenCalled()
+    })
+
+    describe("Pagination", () => {
+      it("is unwrapped from json", async () => {
+        const paginatedListings = await fetchDealerListings({
+          dealerId,
+          options: requestOptionsMock,
+        })
+
+        expect(paginatedListings.pagination).toEqual(pagination)
+        expect(fetch).toHaveBeenCalled()
+      })
+    })
+  })
+
+  describe("#fetchDealerArchivedListings", () => {
+    const dealerId = 123
+    const requestOptionsMock = {
+      accessToken: "DUMMY TOKEN",
+    }
+    const { content, pagination } = PaginatedFactory([SearchListing()])
+
+    beforeEach(() => {
+      fetchMock.mockResponse(
+        JSON.stringify({
+          content: content.map((listing) => ({
+            ...listing,
+            firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
+          })),
+          ...pagination,
+        })
+      )
+    })
+
+    it("unwraps the content from json", async () => {
+      const paginatedListings = await fetchDealerArchivedListings({
+        dealerId,
+        options: requestOptionsMock,
+      })
+      const listings = paginatedListings.content
+
+      expect(listings.length).toEqual(1)
+      expect(listings).toEqual(content)
+      expect(fetch).toHaveBeenCalled()
+    })
+
+    describe("Pagination", () => {
+      it("is unwrapped from json", async () => {
+        const paginatedListings = await fetchDealerArchivedListings({
+          dealerId,
+          options: requestOptionsMock,
+        })
+
+        expect(paginatedListings.pagination).toEqual(pagination)
         expect(fetch).toHaveBeenCalled()
       })
     })
