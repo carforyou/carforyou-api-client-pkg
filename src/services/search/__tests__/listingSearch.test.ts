@@ -1,6 +1,6 @@
 import {
-  fetchDealerArchivedListingsCount,
   fetchDealerArchivedListings,
+  fetchDealerArchivedListingsCount,
   fetchDealerListings,
   fetchDealerListingsCount,
   fetchListingCount,
