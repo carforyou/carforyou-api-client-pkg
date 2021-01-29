@@ -27,6 +27,8 @@ export enum DealerListingSortTypeParams {
   PRICE = "price",
   CREATED_DATE = "createdDate",
   STANDING_DAYS = "publishingDate",
+  MILEAGE = "mileage",
+  HORSE_POWER = "horsePower",
 }
 
 export interface DealerListingSortParams {
