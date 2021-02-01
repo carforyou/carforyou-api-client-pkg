@@ -42,6 +42,7 @@ export enum DealerSourceGroup {
 export enum DealerEntitlements {
   AUTOALARM = "auto-alarm",
   LISTING = "listing",
+  LEADS = "leads",
 }
 
 export interface GoogleReviewSummary {
@@ -141,6 +142,18 @@ export interface MessageLead {
     services?: string[]
     otherService?: string
   }
+}
+
+export interface MessageLeadsListItem extends MessageLead {
+  id: number
+  listingId: number
+  listing: {
+    externalListingId: string
+    make: string
+    model: string
+    type: string
+  }
+  createdDate: string
 }
 
 export interface LeasingInterest {
