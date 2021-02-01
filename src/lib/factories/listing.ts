@@ -82,7 +82,7 @@ const defaults: ListingType = {
   warrantyDuration: 12,
   warrantyName: "Warranty1",
   warrantyType: "from-date",
-  warrantyText: "",
+  warrantyDetails: "",
   warrantyStartDate: "2015-01-01",
   metallic: true,
   description: "This is description...",
