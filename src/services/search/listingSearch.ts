@@ -91,7 +91,7 @@ export const defaultUserSort = {
 }
 
 export const defaultDealerSort = {
-  sortType: ListingSortTypeParams.CREATED_DATE,
+  sortType: ListingSortTypeParams.NEWEST,
   sortOrder: ListingSortOrderParams.DESC,
 }
 
