@@ -245,11 +245,7 @@ export const fetchDealerArchivedListings = async ({
   }
 
   const { content, ...response } = await fetchPath({
-    path: `dealers/${dealerId}/archived-listings${
-      Object.keys(queryParams).length > 0
-        ? "?" + toQueryString(queryParams)
-        : null
-    }`,
+    path: `dealers/${dealerId}/archived-listings?${toQueryString(queryParams)}`,
     options: {
       isAuthorizedRequest: true,
       ...options,
