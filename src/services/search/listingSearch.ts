@@ -17,6 +17,7 @@ import toQueryString from "../../lib/toQueryString"
 import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
 import { pageOrDefault, sizeOrDefault } from "../../lib/pageParams"
 import { decodeDate } from "../../lib/dateEncoding"
+import { toSpringSortParams } from "../../lib/convertParams"
 
 import { ApiCallOptions, fetchPath, postData } from "../../base"
 
@@ -221,16 +222,6 @@ export const fetchDealerListings = async ({
   return sanitizeListingResponse(response)
 }
 
-const toCamelCase = (snakeCase) => {
-  const [w, ...ws] = snakeCase.split("_").map((word) => {
-    const [l, ...ls] = word.toLowerCase()
-
-    return [l.toUpperCase(), ...ls].join("")
-  })
-
-  return [w.toLowerCase(), ...ws].join("")
-}
-
 export const fetchDealerArchivedListings = async ({
   dealerId,
   query = {},
@@ -250,9 +241,7 @@ export const fetchDealerArchivedListings = async ({
   const queryParams = {
     page: pageOrDefault(page, defaultDealerPagination),
     size: sizeOrDefault(size, defaultDealerPagination),
-    sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
-      sortOrDefault.sortOrder
-    )}`,
+    sort: toSpringSortParams(sortOrDefault),
   }
 
   const { content, ...response } = await fetchPath({

@@ -246,7 +246,7 @@ describe("SEARCH service", () => {
             body: expect.objectContaining({
               sort: [
                 {
-                  type: "CREATED_DATE",
+                  type: "NEWEST",
                   order: "DESC",
                 },
               ],
@@ -322,7 +322,7 @@ describe("SEARCH service", () => {
           await fetchDealerArchivedListings({
             dealerId,
             query: {
-              sortType: ListingSortTypeParams.CREATED_DATE,
+              sortType: ListingSortTypeParams.NEWEST,
               sortOrder: ListingSortOrderParams.ASC,
             },
             options: requestOptionsMock,
