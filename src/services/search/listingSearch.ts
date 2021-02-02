@@ -93,7 +93,7 @@ export const defaultUserSort = {
 
 export const defaultDealerSort = {
   sortType: ListingSortTypeParams.NEWEST,
-  sortOrder: ListingSortOrderParams.DESC,
+  sortOrder: ListingSortOrderParams.ASC,
 }
 
 export const defaultUserPagination = {

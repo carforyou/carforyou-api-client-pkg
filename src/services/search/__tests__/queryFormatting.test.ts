@@ -238,7 +238,7 @@ describe("SEARCH service", () => {
           })
         })
 
-        it("defaults to sorting by creation date, descending", async () => {
+        it("defaults to sorting by newest, ascending", async () => {
           await fetchDealerListings({ dealerId, options: requestOptionsMock })
 
           expect(postData).toHaveBeenCalledWith({
@@ -247,7 +247,7 @@ describe("SEARCH service", () => {
               sort: [
                 {
                   type: "NEWEST",
-                  order: "DESC",
+                  order: "ASC",
                 },
               ],
             }),
@@ -332,7 +332,7 @@ describe("SEARCH service", () => {
             expect.objectContaining({
               path: expect.stringMatching(
                 new RegExp(
-                  `dealers/${dealerId}/archived-listings?(.*)sort=createdDate%2Casc`
+                  `dealers/${dealerId}/archived-listings?(.*)sort=createdDate%2Cdesc`
                 )
               ),
             })

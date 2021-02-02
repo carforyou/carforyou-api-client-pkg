@@ -9,7 +9,7 @@ describe("toSpringParams", () => {
         sortOrder: ListingSortOrderParams.ASC,
         sortType: ListingSortTypeParams.NEWEST,
       })
-    ).toEqual("createdDate,asc")
+    ).toEqual("createdDate,desc")
   })
 
   it("converts make model to two fields sort", () => {
