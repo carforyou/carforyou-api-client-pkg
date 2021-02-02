@@ -8,16 +8,16 @@ import { ListingSortParams, ListingSortTypeParams } from "../types/sort"
 export const toSpringSortParams = (elasticSortParams: ListingSortParams) => {
   const { sortOrder, sortType } = elasticSortParams
 
-  const convertedSortType = toCamelCase(sortOrder)
+  const convertedSortOrder = toCamelCase(sortOrder)
 
   switch (sortType) {
     // We use alias in elastic, field name is createdDate
     case ListingSortTypeParams.NEWEST:
-      return `createdDate,${convertedSortType}`
+      return `createdDate,${convertedSortOrder}`
     // Uses two existing fields
     case ListingSortTypeParams.MAKE_MODEL_A_Z:
-      return `make,${convertedSortType}&model,${convertedSortType}`
+      return `make,${convertedSortOrder}&model,${convertedSortOrder}`
     default:
-      return `${toCamelCase(sortOrder)},${convertedSortType}`
+      return `${toCamelCase(sortType)},${convertedSortOrder}`
   }
 }
