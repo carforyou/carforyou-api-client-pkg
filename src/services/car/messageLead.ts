@@ -93,8 +93,9 @@ export const fetchDealerMessageLeads = async ({
   }*/
 
   // MOCK DATA HERE
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-  return sleep(1000).then(() => {
+  const sleep = (ms, opt) =>
+    new Promise((resolve) => setTimeout(resolve || opt, ms))
+  return sleep(dealerId, options).then(() => {
     const result = mockData
     const { content, ...pagination } = result
 
@@ -138,7 +139,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 502,
@@ -154,7 +156,8 @@ const mockData = {
       firstName: "Frederic",
       lastName: "Berghmans",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 503,
@@ -170,7 +173,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 504,
@@ -186,7 +190,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 505,
@@ -202,7 +207,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 506,
@@ -218,7 +224,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 507,
@@ -234,7 +241,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 508,
@@ -250,7 +258,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 509,
@@ -266,7 +275,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 510,
@@ -282,7 +292,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 511,
@@ -298,7 +309,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 512,
@@ -314,7 +326,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 513,
@@ -330,7 +343,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 514,
@@ -346,7 +360,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 515,
@@ -362,7 +377,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 516,
@@ -378,7 +394,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 517,
@@ -394,7 +411,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 518,
@@ -410,7 +428,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 519,
@@ -426,7 +445,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 520,
@@ -442,7 +462,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 521,
@@ -458,7 +479,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 522,
@@ -474,7 +496,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 523,
@@ -490,7 +513,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 524,
@@ -506,7 +530,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 525,
@@ -522,7 +547,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 526,
@@ -538,7 +564,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 527,
@@ -554,7 +581,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 528,
@@ -570,7 +598,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 529,
@@ -586,7 +615,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 530,
@@ -602,7 +632,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 531,
@@ -618,7 +649,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
     {
       id: 532,
@@ -634,7 +666,8 @@ const mockData = {
       firstName: "Birra",
       lastName: "Peroni",
       createdDate: "2021-01-01T12:34:56.000Z",
-      message: "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X."
+      message:
+        "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
     },
   ],
   last: true,
