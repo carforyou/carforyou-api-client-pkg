@@ -38,6 +38,7 @@ export interface ListingBasicData extends BasicListingTypeCommons {
   lastInspectionDate: Date
   inspected: boolean
   price: number
+  listPrice: number
 
   frameNumber: string
   serialNumber: string
