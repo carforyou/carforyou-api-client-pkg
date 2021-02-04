@@ -255,11 +255,11 @@ export function EmptyListing(): ListingType {
     buyNowInProgress: false,
     transferredToManual: false,
     hidden: false,
-    nextInspectionIncluded: false,
-    deliveryFeeIncluded: false,
-    vignetteIncluded: false,
-    fullTankIncluded: false,
-    expertInstructionIncluded: false,
+    nextInspectionIncluded: undefined,
+    deliveryFeeIncluded: undefined,
+    vignetteIncluded: undefined,
+    fullTankIncluded: undefined,
+    expertInstructionIncluded: undefined,
   }
 }
 
