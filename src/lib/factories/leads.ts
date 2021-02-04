@@ -1,4 +1,4 @@
-import { MessageLeadsListItem  as MessageLeadsListItemType } from "../../types/models"
+import { MessageLeadsListItem as MessageLeadsListItemType } from "../../types/models"
 
 const leadListItemDefaults: MessageLeadsListItemType = {
   id: 501,
