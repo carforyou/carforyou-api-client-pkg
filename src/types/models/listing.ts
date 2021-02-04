@@ -71,6 +71,14 @@ export interface ListingExtrasData {
   racingCar: boolean
 }
 
+export interface OtherServices {
+  nextInspectionIncluded: boolean
+  deliveryFeeIncluded: boolean
+  vignetteIncluded: boolean
+  fullTankIncluded: boolean
+  expertInstructionIncluded: boolean
+}
+
 interface Feature {
   feature: string
   endDate: string
@@ -83,6 +91,7 @@ export interface Listing
     ListingDriveData,
     ListingOptionsData,
     ListingDescriptionData,
+    OtherServices,
     ListingExtrasData {
   typeSlug: string
   active: boolean
