@@ -95,7 +95,7 @@ export const fetchDealerMessageLeads = async ({
   // MOCK DATA HERE
   const sleep = (ms, opt) =>
     new Promise((resolve) => setTimeout(resolve || opt, ms))
-  return sleep(dealerId, options).then(() => {
+  return sleep(1, { ...options, dealerId }).then(() => {
     const result = mockData
     const { content, ...pagination } = result
 

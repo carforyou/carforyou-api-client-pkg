@@ -250,3 +250,5 @@ export {
 export { default as PaginatedFactory } from "./lib/factories/paginated"
 export { Options as OptionsFactory } from "./lib/factories/options"
 export { withRetries } from "./lib/withRetries"
+
+export { LeadListItem as LeadListItemFactory } from "./lib/factories/leads"
