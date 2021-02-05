@@ -92,9 +92,6 @@ export {
   ListingSortOrderParams,
   ListingSortTypeParams,
   ListingSortParams,
-  DealerListingSortOrderParams,
-  DealerListingSortTypeParams,
-  DealerListingSortParams,
   DealerSortTypeParams,
   DealerSortParams,
 } from "./types/sort"
@@ -127,10 +124,6 @@ export {
 export {
   fetchListing,
   fetchDealerMakes,
-  fetchDealerListingsCount,
-  defaultSort as defaultDealerListingsSort,
-  defaultPagination as defaultDealerListingsPagination,
-  fetchDealerListings,
   fetchDealerListing,
   publishDealerListing,
   archiveDealerListing,
@@ -179,9 +172,16 @@ export {
 } from "./services/search/currentMakeModels"
 export {
   fetchListingCount,
+  fetchDealerListingsCount,
+  fetchDealerArchivedListingsCount,
   fetchListings,
+  fetchDealerListings,
+  fetchDealerArchivedListings,
   fetchNeedsAssessmentListings,
-  defaultSort as defaultListingsSort,
+  defaultUserSort as defaultListingsSort,
+  defaultUserPagination as defaultListingsPagination,
+  defaultDealerSort as defaultDealerListingsSort,
+  defaultDealerPagination as defaultDealerListingsPagination,
   fetchMoneybackListings,
 } from "./services/search/listingSearch"
 export { fetchDealers } from "./services/search/dealerSearch"

@@ -1,7 +1,5 @@
 import {
   archiveDealerListing,
-  fetchDealerListings,
-  fetchDealerListingsCount,
   fetchDealerMakes,
   fetchListing,
   hideListing,
@@ -16,12 +14,6 @@ import {
   validateDealerListing,
 } from "../inventory"
 
-import {
-  DealerListingSortOrderParams,
-  DealerListingSortTypeParams,
-} from "../../../types/sort"
-
-import Paginated from "../../../lib/factories/paginated"
 import { EmptyListing, Listing } from "../../../lib/factories/listing"
 import { encodeDate } from "../../../lib/dateEncoding"
 
@@ -56,133 +48,6 @@ describe("CAR service", () => {
     })
   })
 
-  describe("#fetchDealerListings", () => {
-    const { content, pagination } = Paginated([Listing()])
-
-    beforeEach(() => {
-      fetchMock.mockResponse(
-        JSON.stringify({
-          content: content.map((listing) => ({
-            ...listing,
-            firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
-            lastInspectionDate: encodeDate(listing.lastInspectionDate),
-          })),
-          ...pagination,
-        })
-      )
-    })
-
-    it("unwraps the content from json", async () => {
-      const paginatedListings = await fetchDealerListings({
-        dealerId,
-        options: requestOptionsMock,
-      })
-      const listings = paginatedListings.content
-
-      expect(listings.length).toEqual(1)
-      expect(listings).toEqual(content)
-      expect(fetch).toHaveBeenCalled()
-    })
-
-    describe("Pagination", () => {
-      it("is unwrapped from json", async () => {
-        const paginatedListings = await fetchDealerListings({
-          dealerId,
-          options: requestOptionsMock,
-        })
-
-        expect(paginatedListings.pagination).toEqual(pagination)
-        expect(fetch).toHaveBeenCalled()
-      })
-    })
-
-    describe("query formatting", () => {
-      describe("pagination", () => {
-        it("indexes page from 0", async () => {
-          await fetchDealerListings({
-            dealerId,
-            query: { page: 5 },
-            options: requestOptionsMock,
-          })
-
-          expect(fetchMock).toHaveBeenCalledWith(
-            expect.stringMatching(
-              new RegExp(`dealers/${dealerId}/listings?(.*)page=4`)
-            ),
-            expect.any(Object)
-          )
-        })
-
-        it("defaults `page` to 0 when not provided", async () => {
-          await fetchDealerListings({
-            dealerId,
-            query: {
-              size: 10,
-            },
-            options: requestOptionsMock,
-          })
-
-          expect(fetchMock).toHaveBeenCalledWith(
-            expect.stringMatching(
-              new RegExp(`dealers/${dealerId}/listings?(.*)page=0`)
-            ),
-            expect.any(Object)
-          )
-        })
-
-        it("defaults `size` to 25 when it's not provided", async () => {
-          await fetchDealerListings({
-            dealerId,
-            query: { page: 5 },
-            options: requestOptionsMock,
-          })
-
-          expect(fetchMock).toHaveBeenCalledWith(
-            expect.stringMatching(
-              new RegExp(`dealers/${dealerId}/listings?(.*)size=25`)
-            ),
-            expect.any(Object)
-          )
-        })
-      })
-
-      describe("sort", () => {
-        it("can sort by creation date", async () => {
-          await fetchDealerListings({
-            dealerId,
-            query: {
-              sortType: DealerListingSortTypeParams.CREATED_DATE,
-              sortOrder: DealerListingSortOrderParams.ASC,
-            },
-            options: requestOptionsMock,
-          })
-
-          expect(fetchMock).toHaveBeenCalledWith(
-            expect.stringMatching(
-              new RegExp(
-                `dealers/${dealerId}/listings?(.*)sort=createdDate%2Casc`
-              )
-            ),
-            expect.any(Object)
-          )
-        })
-
-        it("defaults to sorting by creation date, descending", async () => {
-          await fetchDealerListings({ dealerId, options: requestOptionsMock })
-
-          expect(fetchMock).toHaveBeenCalledWith(
-            expect.stringMatching(
-              new RegExp(
-                `dealers/${dealerId}/listings?(.*)sort=createdDate%2Cdesc`
-              )
-            ),
-            expect.any(Object)
-          )
-        })
-      })
-    })
-  })
-
   describe("#fetchDealerMakes", () => {
     it("fetches data", async () => {
       const makes = [
@@ -194,35 +59,6 @@ describe("CAR service", () => {
       const data = await fetchDealerMakes({ dealerId: 123 })
       expect(data).toEqual(makes)
       expect(fetch).toHaveBeenCalled()
-    })
-  })
-
-  describe("#fetchDealerListingsCount", () => {
-    it("unwraps count from json", async () => {
-      const count = 400
-      fetchMock.mockResponse(JSON.stringify({ count }))
-
-      const response = await fetchDealerListingsCount({
-        dealerId: 123,
-        options: requestOptionsMock,
-      })
-      expect(response).toEqual(count)
-      expect(fetch).toHaveBeenCalled()
-    })
-
-    it("passes query in the query string", async () => {
-      const query = { isActive: true }
-      fetchMock.mockResponse(JSON.stringify({ count: 40 }))
-
-      await fetchDealerListingsCount({
-        dealerId: 123,
-        query,
-        options: requestOptionsMock,
-      })
-      expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining("/dealers/123/listings/count?isActive=true"),
-        expect.any(Object)
-      )
     })
   })
 

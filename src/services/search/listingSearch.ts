@@ -1,9 +1,14 @@
 import { WithTopListing } from "../../types/topListing"
-import { ListingSortOrderParams, ListingSortTypeParams } from "../../types/sort"
+import {
+  ListingSortOrderParams,
+  ListingSortParams,
+  ListingSortTypeParams,
+} from "../../types/sort"
 import {
   ListingQueryParams,
   ListingSearchParams,
 } from "../../types/params/listings"
+import { PaginationParams } from "../../types/params"
 import { Paginated } from "../../types/pagination"
 import { ApiSearchListing, SearchListing } from "../../types/models/listing"
 import { FieldsStats, WithFieldStats } from "../../types/fieldStats"
@@ -12,6 +17,7 @@ import toQueryString from "../../lib/toQueryString"
 import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
 import { pageOrDefault, sizeOrDefault } from "../../lib/pageParams"
 import { decodeDate } from "../../lib/dateEncoding"
+import { toSpringSortParams } from "../../lib/convertParams"
 
 import { ApiCallOptions, fetchPath, postData } from "../../base"
 
@@ -39,27 +45,83 @@ export const fetchListingCount = async ({
   }
 }
 
-export const defaultSort = {
+export const fetchDealerListingsCount = async ({
+  dealerId,
+  query = {},
+  options = {},
+}: {
+  dealerId: number
+  query?: ListingSearchParams
+  options?: ApiCallOptions
+}): Promise<number> => {
+  const { count } = await postData({
+    path: `dealers/${dealerId}/listings/count`,
+    body: {
+      query,
+    },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
+
+  return count
+}
+
+export const fetchDealerArchivedListingsCount = async ({
+  dealerId,
+  options,
+}: {
+  dealerId: number
+  options?: ApiCallOptions
+}): Promise<number> => {
+  const { count } = await fetchPath({
+    path: `dealers/${dealerId}/archived-listings/count`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
+
+  return count
+}
+
+export const defaultUserSort = {
   sortType: ListingSortTypeParams.RELEVANCE,
   sortOrder: ListingSortOrderParams.ASC,
 }
 
-const defaultPagination = {
+export const defaultDealerSort = {
+  sortType: ListingSortTypeParams.NEWEST,
+  sortOrder: ListingSortOrderParams.ASC,
+}
+
+export const defaultUserPagination = {
   page: 0,
   size: 24,
+}
+
+export const defaultDealerPagination = {
+  page: 0,
+  size: 25,
 }
 
 const searchForListings = ({
   path,
   query = {},
   options = {},
+  defaultSort,
+  defaultPagination,
 }: {
   path: string
   query?: ListingQueryParams
   options: ApiCallOptions & {
     includeFieldsStats?: string[]
     includeTopListing?: boolean
+    isAuthorizedRequest?: boolean
   }
+  defaultSort: ListingSortParams
+  defaultPagination: PaginationParams
 }) => {
   const { page, size, sortOrder, sortType, ...rest } = query
   const {
@@ -92,6 +154,14 @@ const searchForListings = ({
   return postData({ path, body, options: otherOptions })
 }
 
+const sanitizeListing = ({
+  firstRegistrationDate,
+  ...listing
+}: ApiSearchListing): SearchListing => ({
+  ...listing,
+  firstRegistrationDate: decodeDate(firstRegistrationDate),
+})
+
 function sanitizeListingResponse<
   T extends Paginated<ApiSearchListing> & { topListing: ApiSearchListing }
 >({
@@ -102,15 +172,9 @@ function sanitizeListingResponse<
   return {
     ...rest,
     ...(topListing && {
-      topListing: {
-        ...topListing,
-        firstRegistrationDate: decodeDate(topListing.firstRegistrationDate),
-      },
+      topListing: sanitizeListing(topListing),
     }),
-    content: content.map((listing) => ({
-      ...listing,
-      firstRegistrationDate: decodeDate(listing.firstRegistrationDate),
-    })),
+    content: content.map(sanitizeListing),
   }
 }
 
@@ -128,9 +192,70 @@ export const fetchListings = async ({
     path: "listings/search",
     query,
     options,
+    defaultSort: defaultUserSort,
+    defaultPagination: defaultUserPagination,
   })
 
   return sanitizeListingResponse(response)
+}
+
+export const fetchDealerListings = async ({
+  dealerId,
+  query = {},
+  options = {},
+}: {
+  dealerId: number
+  query?: ListingQueryParams
+  options?: ApiCallOptions
+}): Promise<Paginated<SearchListing>> => {
+  const response = await searchForListings({
+    path: `dealers/${dealerId}/listings/search`,
+    query,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+    defaultSort: defaultDealerSort,
+    defaultPagination: defaultDealerPagination,
+  })
+
+  return sanitizeListingResponse(response)
+}
+
+export const fetchDealerArchivedListings = async ({
+  dealerId,
+  query = {},
+  options = {},
+}: {
+  dealerId: number
+  query?: ListingSortParams & PaginationParams
+  options?: ApiCallOptions
+}): Promise<Paginated<SearchListing>> => {
+  const { page, size, sortOrder, sortType } = query
+
+  const sortOrDefault = {
+    sortType: sortType || defaultDealerSort.sortType,
+    sortOrder: sortOrder || defaultDealerSort.sortOrder,
+  }
+
+  const queryParams = {
+    page: pageOrDefault(page, defaultDealerPagination),
+    size: sizeOrDefault(size, defaultDealerPagination),
+    sort: toSpringSortParams(sortOrDefault),
+  }
+
+  const { content, ...response } = await fetchPath({
+    path: `dealers/${dealerId}/archived-listings?${toQueryString(queryParams)}`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
+
+  return {
+    ...response,
+    content: content.map(sanitizeListing),
+  }
 }
 
 export const fetchNeedsAssessmentListings = async ({
@@ -147,6 +272,8 @@ export const fetchNeedsAssessmentListings = async ({
     path: "listings/needs-assessment/search",
     query,
     options,
+    defaultSort: defaultUserSort,
+    defaultPagination: defaultUserPagination,
   })
 
   return sanitizeListingResponse(response)
