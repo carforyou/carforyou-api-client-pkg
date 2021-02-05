@@ -1,4 +1,4 @@
-import { fetchFacets, fetchDealerListingsFacets } from "../facets"
+import { fetchDealerListingsFacets, fetchFacets } from "../facets"
 
 describe("fetchFacets", () => {
   beforeEach(() => {
