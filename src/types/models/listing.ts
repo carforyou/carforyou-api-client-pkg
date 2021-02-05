@@ -118,6 +118,8 @@ export interface Listing
   warrantyName: string
   warrantyStartDate: string
   warrantyType: string
+  warrantyDetails: string
+  warrantyMileage: number
   weightTotal: number
   wheelbase: number
   enabledFeatures: Feature[]
