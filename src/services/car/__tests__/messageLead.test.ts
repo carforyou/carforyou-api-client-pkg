@@ -1,4 +1,7 @@
-import { sendMessageLead } from "../messageLead"
+import { fetchDealerMessageLeads, sendMessageLead } from "../messageLead"
+
+import { PaginatedLeads } from "../../../lib/factories/paginated"
+import { LeadListItem } from "../../../lib/factories/leads"
 
 describe("Car API", () => {
   beforeEach(() => {
@@ -157,6 +160,75 @@ describe("Car API", () => {
 
         expect(result.tag).toEqual("success")
       })
+    })
+  })
+
+  describe("#fetchDealerMessageLeads", () => {
+    // use only data that we need for leads messages
+    const { content, pagination } = PaginatedLeads([LeadListItem()])
+
+    beforeEach(() => {
+      fetchMock.mockClear()
+      fetchMock.mockResponse(
+        JSON.stringify({
+          content: content,
+          ...pagination,
+        })
+      )
+    })
+
+    it("calls correct validation endpoint", async () => {
+      await fetchDealerMessageLeads({
+        dealerId: 1234,
+        page: 1,
+        size: 7,
+        options: {
+          validateOnly: true,
+          accessToken: "DummyTokenString",
+        },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(
+          /\/dealers\/1234\/message-leads\/validate\?page=1&size=7$/
+        ),
+        expect.any(Object)
+      )
+    })
+
+    it("should trow error if accessToken is not passed", async () => {
+      let error
+      try {
+        await fetchDealerMessageLeads({
+          dealerId: 1234,
+          page: 0,
+          size: 7,
+          options: {
+            validateOnly: true,
+          },
+        })
+      } catch (err) {
+        error = err
+      }
+
+      expect(fetch).not.toHaveBeenCalled()
+      expect(error).toBeDefined()
+      expect(error.message).toBeDefined()
+    })
+
+    it("should return paginated leads messages data", async () => {
+      const result = await fetchDealerMessageLeads({
+        dealerId: 1234,
+        page: 0,
+        size: 7,
+        options: {
+          validateOnly: true,
+          accessToken: "DummyTokenString",
+        },
+      })
+
+      expect(fetch).toHaveBeenCalled()
+      expect(result).toEqual(PaginatedLeads([LeadListItem()]))
     })
   })
 })
