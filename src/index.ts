@@ -47,6 +47,7 @@ export {
   ListingImage,
   DealerListingImages,
   ListingSource,
+  OtherServices,
   WarrantyTypes,
 } from "./types/models/listing"
 
