@@ -24,3 +24,29 @@ export const fetchFacets = async ({
 
   return json.facets
 }
+
+export const fetchDealerListingsFacets = async ({
+  dealerId,
+  query = {},
+  fields = [],
+  options = {},
+}: {
+  dealerId: number
+  query?: ListingSearchParams
+  fields?: string[]
+  options?: ApiCallOptions
+}): Promise<Facets> => {
+  const json = await postData({
+    path: `/dealers/${dealerId}/listings/facets`,
+    body: {
+      query: paramsToSearchRequest(query),
+      fields,
+    },
+    options: {
+      ...options,
+      isAuthorizedRequest: true,
+    },
+  })
+
+  return json.facets
+}
