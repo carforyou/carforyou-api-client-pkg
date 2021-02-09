@@ -77,6 +77,11 @@ const defaults: ListingType = {
   externalNote: "This is external note",
   standardOptions: [],
   additionalOptions: [],
+  nextInspectionIncluded: false,
+  deliveryFeeIncluded: false,
+  vignetteIncluded: false,
+  fullTankIncluded: false,
+  expertInstructionIncluded: false,
   lastInspectionDate: { month: 6, year: 2015 },
   inspected: true,
   hasWarranty: true,
@@ -254,6 +259,11 @@ export function EmptyListing(): ListingType {
     buyNowInProgress: false,
     transferredToManual: false,
     hidden: false,
+    nextInspectionIncluded: undefined,
+    deliveryFeeIncluded: undefined,
+    vignetteIncluded: undefined,
+    fullTankIncluded: undefined,
+    expertInstructionIncluded: undefined,
   }
 }
 
