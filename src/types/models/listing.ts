@@ -82,7 +82,6 @@ export type WarrantyTypes =
   | "from-delivery"
   | "from-first-registration"
   | "none"
-  | "not-defined"
 
 export interface Listing
   extends ListingBasicData,
