@@ -71,11 +71,25 @@ export interface ListingExtrasData {
   racingCar: boolean
 }
 
+export interface OtherServices {
+  nextInspectionIncluded: boolean
+  deliveryFeeIncluded: boolean
+  vignetteIncluded: boolean
+  fullTankIncluded: boolean
+  expertInstructionIncluded: boolean
+}
+
 interface Feature {
   feature: string
   endDate: string
   startDate: string
 }
+
+export type WarrantyTypes =
+  | "from-date"
+  | "from-delivery"
+  | "from-first-registration"
+  | "none"
 
 export interface Listing
   extends ListingBasicData,
@@ -83,6 +97,7 @@ export interface Listing
     ListingDriveData,
     ListingOptionsData,
     ListingDescriptionData,
+    OtherServices,
     ListingExtrasData {
   typeSlug: string
   active: boolean
@@ -117,7 +132,9 @@ export interface Listing
   warrantyDuration: number
   warrantyName: string
   warrantyStartDate: string
-  warrantyType: string
+  warrantyType: WarrantyTypes
+  warrantyDetails: string
+  warrantyMileage: number
   weightTotal: number
   wheelbase: number
   enabledFeatures: Feature[]
