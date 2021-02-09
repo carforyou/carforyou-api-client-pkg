@@ -252,7 +252,10 @@ export {
   Type as TypeFactory,
   SearchType as SearchTypeFactory,
 } from "./lib/factories/type"
-export { default as PaginatedFactory } from "./lib/factories/paginated"
+export {
+  default as PaginatedFactory,
+  PaginatedLeads as PaginatedLeadsFactory,
+} from "./lib/factories/paginated"
 export { Options as OptionsFactory } from "./lib/factories/options"
 export { withRetries } from "./lib/withRetries"
 
