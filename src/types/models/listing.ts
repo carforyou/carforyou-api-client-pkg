@@ -85,6 +85,12 @@ interface Feature {
   startDate: string
 }
 
+export type WarrantyTypes =
+  | "from-date"
+  | "from-delivery"
+  | "from-first-registration"
+  | "none"
+
 export interface Listing
   extends ListingBasicData,
     ListingEnergyData,
@@ -126,7 +132,9 @@ export interface Listing
   warrantyDuration: number
   warrantyName: string
   warrantyStartDate: string
-  warrantyType: string
+  warrantyType: WarrantyTypes
+  warrantyDetails: string
+  warrantyMileage: number
   weightTotal: number
   wheelbase: number
   enabledFeatures: Feature[]

@@ -48,6 +48,7 @@ export {
   DealerListingImages,
   ListingSource,
   OtherServices,
+  WarrantyTypes,
 } from "./types/models/listing"
 
 export { SearchType, Type } from "./types/models/type"
