@@ -7,7 +7,7 @@ export interface ValidationError {
   tag: "error"
   message: string
   errors: FieldError[]
-  globalErrors: FieldError[]
+  globalErrors?: FieldError[]
 }
 
 export interface Success<T> {
