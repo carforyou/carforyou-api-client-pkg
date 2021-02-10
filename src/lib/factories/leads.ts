@@ -20,9 +20,7 @@ const searchMessageLeadDefaults: SearchMessageLeadType = {
     "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
 }
 
-export const SearchMessageLeadItem = (
-  attributes = {}
-): SearchMessageLeadType => ({
-  ...searchMessageLeadItemDefaults,
+export const SearchMessageLead = (attributes = {}): SearchMessageLeadType => ({
+  ...searchMessageLeadDefaults,
   ...attributes,
 })

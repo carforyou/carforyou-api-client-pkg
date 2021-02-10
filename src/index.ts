@@ -259,4 +259,4 @@ export {
 export { Options as OptionsFactory } from "./lib/factories/options"
 export { withRetries } from "./lib/withRetries"
 
-export { SearchMessageLeadItem as SearchMessageLeadItemFactory } from "./lib/factories/leads"
+export { SearchMessageLead as SearchMessageLeadFactory } from "./lib/factories/leads"

@@ -1,7 +1,7 @@
 import { fetchDealerMessageLeads, sendMessageLead } from "../messageLead"
 
 import { PaginatedLeads } from "../../../lib/factories/paginated"
-import { SearchMessageLeadItem as SearchMessageLeadItemFactory } from "../../../lib/factories/leads"
+import { SearchMessageLead as SearchMessageLeadFactory } from "../../../lib/factories/leads"
 
 describe("Car API", () => {
   beforeEach(() => {
@@ -165,9 +165,7 @@ describe("Car API", () => {
 
   describe("#fetchDealerMessageLeads", () => {
     // use only data that we need for leads messages
-    const { content, pagination } = PaginatedLeads([
-      SearchMessageLeadItemFactory(),
-    ])
+    const { content, pagination } = PaginatedLeads([SearchMessageLeadFactory()])
 
     beforeEach(() => {
       fetchMock.mockClear()
@@ -229,7 +227,7 @@ describe("Car API", () => {
       })
 
       expect(fetch).toHaveBeenCalled()
-      expect(result).toEqual(PaginatedLeads([SearchMessageLeadItemFactory()]))
+      expect(result).toEqual(PaginatedLeads([SearchMessageLeadFactory()]))
     })
   })
 })
