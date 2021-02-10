@@ -1,3 +1,4 @@
+import toQueryString from "./toQueryString"
 import toCamelCase from "./toCamelCase"
 
 import {
@@ -5,7 +6,6 @@ import {
   ListingSortParams,
   ListingSortTypeParams,
 } from "../types/sort"
-import toQueryString from "./toQueryString"
 
 const reverseSortOrder = (sortOrder: ListingSortOrderParams) => {
   switch (sortOrder) {
