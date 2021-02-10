@@ -5,6 +5,7 @@ import {
   ListingSortParams,
   ListingSortTypeParams,
 } from "../types/sort"
+import toQueryString from "./toQueryString"
 
 const reverseSortOrder = (sortOrder: ListingSortOrderParams) => {
   switch (sortOrder) {
@@ -28,7 +29,9 @@ export const toSpringSortParams = (elasticSortParams: ListingSortParams) => {
       return `createdDate,${toCamelCase(reverseSortOrder(sortOrder))}`
     // Uses two existing fields
     case ListingSortTypeParams.MAKE_MODEL_A_Z:
-      return `make,${convertedSortOrder}&sort=model,${convertedSortOrder}`
+      return `${toQueryString({
+        sort: [`make,${convertedSortOrder}`, `model,${convertedSortOrder}`],
+      })}`
     default:
       return `${toCamelCase(sortType)},${convertedSortOrder}`
   }
