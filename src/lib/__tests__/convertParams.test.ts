@@ -18,7 +18,7 @@ describe("toSpringParams", () => {
         sortOrder: ListingSortOrderParams.DESC,
         sortType: ListingSortTypeParams.MAKE_MODEL_A_Z,
       })
-    ).toEqual(["make,desc", "model,desc")
+    ).toEqual(["make,desc", "model,desc"])
   })
 
   const sortParams = {
