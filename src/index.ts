@@ -47,6 +47,8 @@ export {
   ListingImage,
   DealerListingImages,
   ListingSource,
+  OtherServices,
+  WarrantyTypes,
 } from "./types/models/listing"
 
 export { SearchType, Type } from "./types/models/type"
@@ -189,7 +191,10 @@ export { fetchDealers } from "./services/search/dealerSearch"
 export { fetchTypes, fetchTypeFacets } from "./services/search/typeSearch"
 export { fetchCity, fetchCitySuggestions } from "./services/search/city"
 export { fetchRegions } from "./services/search/regions"
-export { fetchFacets } from "./services/search/facets"
+export {
+  fetchFacets,
+  fetchDealerListingsFacets,
+} from "./services/search/facets"
 
 export { fetchMakes, fetchModels, fetchType } from "./services/catalogue"
 export {
