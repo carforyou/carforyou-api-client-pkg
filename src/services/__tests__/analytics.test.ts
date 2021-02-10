@@ -1,5 +1,6 @@
 import {
   fetchAnalyticsData,
+  fetchDealerAnalytics,
   fetchLeadsAnalytics,
   fetchLeadsInteractionsAnalytics,
   fetchListingsAnalytics,
@@ -181,6 +182,45 @@ describe("Analytics service", () => {
           }),
         })
       )
+    })
+  })
+
+  describe("#fetchDealerAnalytics", () => {
+    const analyticsData = {
+      pdpViews: 12400,
+      srpViews: 7200,
+    }
+
+    const avgAnalyticsData = {
+      pdpViewsDaily: 25,
+    }
+
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify(analyticsData))
+    })
+
+    it("fetches the sum data", async () => {
+      const data = await fetchDealerAnalytics({
+        dealerId: 123,
+        metrics: ["pdpViews", "srpViews"],
+        period: "30-days",
+        fnc: "sum",
+        options: { accessToken: "TOKEN" },
+      })
+
+      expect(data).toEqual(analyticsData)
+    })
+
+    it("fetches the avg data", async () => {
+      const data = await fetchDealerAnalytics({
+        dealerId: 123,
+        metrics: ["pdpViewsDaily"],
+        period: "30-days",
+        fnc: "avg",
+        options: { accessToken: "TOKEN" },
+      })
+
+      expect(data).toEqual(avgAnalyticsData)
     })
   })
 })

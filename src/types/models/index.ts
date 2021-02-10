@@ -195,3 +195,9 @@ export interface WhatsappEntry {
   lastName: string
   phone: string
 }
+
+export interface DealerAnalytics {
+  pdpViews?: number
+  srpViews?: number
+  pdpViewsDaily?: number
+}
