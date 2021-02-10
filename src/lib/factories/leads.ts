@@ -1,6 +1,6 @@
 import { SearchMessageLead as SearchMessageLeadType } from "../../types/models"
 
-const searchMessageLeadItemDefaults: SearchMessageLeadType = {
+const searchMessageLeadDefaults: SearchMessageLeadType = {
   id: 501,
   listingId: 501,
   listing: {
