@@ -1,10 +1,12 @@
-import { MessageLeadsListItem as MessageLeadsListItemType } from "../../types/models"
+import { SearchMessageLead as SearchMessageLeadType } from "../../types/models"
 
-const leadListItemDefaults: MessageLeadsListItemType = {
+const searchMessageLeadItemDefaults: SearchMessageLeadType = {
   id: 501,
   listingId: 501,
   listing: {
     externalListingId: "1234567",
+    image:
+      "2019/09/17/11/13/13/1-aixam-mac-500-cabriolet-480-261485-7e5hF5fhFUiC.jpg",
     make: "Ford",
     model: "Fiesta",
     type: "1.0 EcoB 125 Titanium X",
@@ -18,7 +20,9 @@ const leadListItemDefaults: MessageLeadsListItemType = {
     "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
 }
 
-export const LeadListItem = (attributes = {}): MessageLeadsListItemType => ({
-  ...leadListItemDefaults,
+export const SearchMessageLeadItem = (
+  attributes = {}
+): SearchMessageLeadType => ({
+  ...searchMessageLeadItemDefaults,
   ...attributes,
 })

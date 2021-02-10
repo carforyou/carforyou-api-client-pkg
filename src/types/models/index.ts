@@ -144,11 +144,12 @@ export interface MessageLead {
   }
 }
 
-export interface MessageLeadsListItem extends MessageLead {
+export interface SearchMessageLead extends MessageLead {
   id: number
   listingId: number
   listing: {
     externalListingId: string
+    image: string
     make: string
     model: string
     type: string

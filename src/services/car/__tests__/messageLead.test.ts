@@ -1,7 +1,7 @@
 import { fetchDealerMessageLeads, sendMessageLead } from "../messageLead"
 
 import { PaginatedLeads } from "../../../lib/factories/paginated"
-import { LeadListItem } from "../../../lib/factories/leads"
+import { SearchMessageLeadItem as SearchMessageLeadItemFactory } from "../../../lib/factories/leads"
 
 describe("Car API", () => {
   beforeEach(() => {
@@ -165,7 +165,9 @@ describe("Car API", () => {
 
   describe("#fetchDealerMessageLeads", () => {
     // use only data that we need for leads messages
-    const { content, pagination } = PaginatedLeads([LeadListItem()])
+    const { content, pagination } = PaginatedLeads([
+      SearchMessageLeadItemFactory(),
+    ])
 
     beforeEach(() => {
       fetchMock.mockClear()
@@ -177,21 +179,20 @@ describe("Car API", () => {
       )
     })
 
-    it("calls correct validation endpoint", async () => {
+    it("calls correct endpoint", async () => {
       await fetchDealerMessageLeads({
         dealerId: 1234,
-        page: 1,
-        size: 7,
+        query: {
+          page: 2,
+          size: 7,
+        },
         options: {
-          validateOnly: true,
           accessToken: "DummyTokenString",
         },
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringMatching(
-          /\/dealers\/1234\/message-leads\/validate\?page=1&size=7$/
-        ),
+        expect.stringMatching(/\/dealers\/1234\/message-leads\?page=1&size=7$/),
         expect.any(Object)
       )
     })
@@ -201,10 +202,9 @@ describe("Car API", () => {
       try {
         await fetchDealerMessageLeads({
           dealerId: 1234,
-          page: 0,
-          size: 7,
-          options: {
-            validateOnly: true,
+          query: {
+            page: 0,
+            size: 7,
           },
         })
       } catch (err) {
@@ -219,16 +219,17 @@ describe("Car API", () => {
     it("should return paginated leads messages data", async () => {
       const result = await fetchDealerMessageLeads({
         dealerId: 1234,
-        page: 0,
-        size: 7,
+        query: {
+          page: 0,
+          size: 7,
+        },
         options: {
-          validateOnly: true,
           accessToken: "DummyTokenString",
         },
       })
 
       expect(fetch).toHaveBeenCalled()
-      expect(result).toEqual(PaginatedLeads([LeadListItem()]))
+      expect(result).toEqual(PaginatedLeads([SearchMessageLeadItemFactory()]))
     })
   })
 })

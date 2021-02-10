@@ -14,7 +14,7 @@ export {
   ImageEnrichment,
   SavedSearch,
   MessageLead,
-  MessageLeadsListItem,
+  SearchMessageLead,
   LeasingInterest,
   City,
   PresignedUrl,
@@ -259,4 +259,4 @@ export {
 export { Options as OptionsFactory } from "./lib/factories/options"
 export { withRetries } from "./lib/withRetries"
 
-export { LeadListItem as LeadListItemFactory } from "./lib/factories/leads"
+export { SearchMessageLeadItem as SearchMessageLeadItemFactory } from "./lib/factories/leads"
