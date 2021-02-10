@@ -29,9 +29,7 @@ export const toSpringSortParams = (elasticSortParams: ListingSortParams) => {
       return `createdDate,${toCamelCase(reverseSortOrder(sortOrder))}`
     // Uses two existing fields
     case ListingSortTypeParams.MAKE_MODEL_A_Z:
-      return `${toQueryString({
-        sort: [`make,${convertedSortOrder}`, `model,${convertedSortOrder}`],
-      })}`
+      return [`make,${convertedSortOrder}`, `model,${convertedSortOrder}`]
     default:
       return `${toCamelCase(sortType)},${convertedSortOrder}`
   }
