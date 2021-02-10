@@ -12,6 +12,15 @@ describe("toSpringParams", () => {
     ).toEqual("createdDate,desc")
   })
 
+  it("converts make model to two fields sort", () => {
+    expect(
+      toSpringSortParams({
+        sortOrder: ListingSortOrderParams.DESC,
+        sortType: ListingSortTypeParams.MAKE_MODEL_A_Z,
+      })
+    ).toEqual(["make,desc", "model,desc")
+  })
+
   const sortParams = {
     [ListingSortTypeParams.PRICE]: "price",
     [ListingSortTypeParams.REGISTATION_DATE]: "registrationDate",
