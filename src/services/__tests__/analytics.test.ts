@@ -186,40 +186,80 @@ describe("Analytics service", () => {
   })
 
   describe("#fetchDealerAnalytics", () => {
-    const analyticsData = {
-      pdpViews: 12400,
-      srpViews: 7200,
-    }
+    const tilesData = [
+      {
+        dimensions: {},
+        metrics: [
+          {
+            name: "srpViews",
+            value: 123,
+          },
+          {
+            name: "pdpViews",
+            value: 42,
+          },
+          {
+            name: "pdpViewsAvg",
+            value: 4,
+          },
+          {
+            name: "pdpViewsPerListingAvg",
+            value: 2,
+          },
+          {
+            name: "callLeads",
+            value: 24,
+          },
+          {
+            name: "messageLeads",
+            value: 13,
+          },
+          {
+            name: "whatsAppTrackingEntries",
+            value: 5,
+          },
+        ],
+      },
+    ]
 
-    const avgAnalyticsData = {
-      pdpViewsDaily: 25,
-    }
-
-    it("fetches the sum data", async () => {
-      fetchMock.mockResponse(JSON.stringify(analyticsData))
-      const data = await fetchDealerAnalytics({
-        dealerId: 123,
-        metrics: ["pdpViews", "srpViews"],
-        period: "30-days",
-        fnc: "sum",
-        options: { accessToken: "TOKEN" },
-      })
-
-      expect(data).toEqual(analyticsData)
-      expect(fetch).toHaveBeenCalled()
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify(tilesData))
     })
 
-    it("fetches the avg data", async () => {
-      fetchMock.mockResponse(JSON.stringify(avgAnalyticsData))
+    it("fetches tiles data", async () => {
       const data = await fetchDealerAnalytics({
         dealerId: 123,
-        metrics: ["pdpViewsDaily"],
-        period: "30-days",
-        fnc: "avg",
+        dimensions: [],
+        metrics: [
+          {
+            name: "srpViews",
+          },
+          {
+            name: "pdpViews",
+          },
+          {
+            name: "pdpViewsAvg",
+          },
+          {
+            name: "pdpViewsPerListingAvg",
+          },
+          {
+            name: "callLeads",
+          },
+          {
+            name: "messageLeads",
+          },
+          {
+            name: "whatsAppTrackingEntries",
+          },
+        ],
+        query: {
+          period: "30d",
+        },
         options: { accessToken: "TOKEN" },
       })
 
-      expect(data).toEqual(avgAnalyticsData)
+      expect(data).toEqual(tilesData)
       expect(fetch).toHaveBeenCalled()
     })
   })

@@ -94,23 +94,25 @@ export const fetchLeadsInteractionsAnalytics = async ({
 
 export const fetchDealerAnalytics = async ({
   dealerId,
+  dimensions,
   metrics,
-  period,
-  fnc,
+  query,
   options = {},
 }: {
   dealerId: number
-  metrics: string[]
-  period: string
-  fnc: "avg" | "sum"
+  dimensions: []
+  metrics: { name: string }[]
+  query: {
+    period: string
+  }
   options?: ApiCallOptions
 }): Promise<DealerAnalytics> => {
   return postData({
     path: `dealers/${dealerId}/analytics`,
     body: {
+      dimensions,
       metrics,
-      period,
-      function: fnc,
+      query,
     },
     options: {
       isAuthorizedRequest: true,
