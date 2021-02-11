@@ -93,14 +93,10 @@ export const fetchLeadsInteractionsAnalytics = async ({
 }
 
 export const fetchDealerAnalytics = async ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   dealerId,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   metrics,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   period,
   fnc,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   options = {},
 }: {
   dealerId: number
@@ -109,8 +105,6 @@ export const fetchDealerAnalytics = async ({
   fnc: "avg" | "sum"
   options?: ApiCallOptions
 }): Promise<DealerAnalytics> => {
-  // Uncomment the code below once the backend endpoint is ready
-  /*
   return postData({
     path: `dealers/${dealerId}/analytics`,
     body: {
@@ -122,20 +116,5 @@ export const fetchDealerAnalytics = async ({
       isAuthorizedRequest: true,
       ...options,
     },
-  })
-  */
-
-  /* Mock response of this function */
-  const res =
-    fnc === "sum"
-      ? {
-          pdpViews: 12400,
-          srpViews: 7200,
-        }
-      : {
-          pdpViewsDaily: 25,
-        }
-  return new Promise((resolve, _) => {
-    return resolve(res)
   })
 }

@@ -195,11 +195,8 @@ describe("Analytics service", () => {
       pdpViewsDaily: 25,
     }
 
-    beforeEach(() => {
-      fetchMock.mockResponse(JSON.stringify(analyticsData))
-    })
-
     it("fetches the sum data", async () => {
+      fetchMock.mockResponse(JSON.stringify(analyticsData))
       const data = await fetchDealerAnalytics({
         dealerId: 123,
         metrics: ["pdpViews", "srpViews"],
@@ -209,9 +206,11 @@ describe("Analytics service", () => {
       })
 
       expect(data).toEqual(analyticsData)
+      expect(fetch).toHaveBeenCalled()
     })
 
     it("fetches the avg data", async () => {
+      fetchMock.mockResponse(JSON.stringify(avgAnalyticsData))
       const data = await fetchDealerAnalytics({
         dealerId: 123,
         metrics: ["pdpViewsDaily"],
@@ -221,6 +220,7 @@ describe("Analytics service", () => {
       })
 
       expect(data).toEqual(avgAnalyticsData)
+      expect(fetch).toHaveBeenCalled()
     })
   })
 })
