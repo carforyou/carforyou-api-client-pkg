@@ -43,6 +43,7 @@ export enum DealerEntitlements {
   AUTOALARM = "auto-alarm",
   LISTING = "listing",
   LEADS = "leads",
+  PRINTCENTER = "print-center",
 }
 
 export interface GoogleReviewSummary {
