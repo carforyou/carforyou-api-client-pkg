@@ -14,6 +14,7 @@ export {
   ImageEnrichment,
   SavedSearch,
   MessageLead,
+  SearchMessageLead,
   LeasingInterest,
   City,
   PresignedUrl,
@@ -154,7 +155,10 @@ export {
 } from "./services/car/inventoryData"
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export { sendBuyNowApplication } from "./services/car/buyNowApplication"
-export { sendMessageLead } from "./services/car/messageLead"
+export {
+  sendMessageLead,
+  fetchDealerMessageLeads,
+} from "./services/car/messageLead"
 export { addPurchaseConfirmation } from "./services/carSaleTracking/buyerFeedback"
 export {
   fetchLeasingFormUrl,
@@ -248,6 +252,11 @@ export {
   Type as TypeFactory,
   SearchType as SearchTypeFactory,
 } from "./lib/factories/type"
-export { default as PaginatedFactory } from "./lib/factories/paginated"
+export {
+  default as PaginatedFactory,
+  PaginatedLeads as PaginatedLeadsFactory,
+} from "./lib/factories/paginated"
 export { Options as OptionsFactory } from "./lib/factories/options"
 export { withRetries } from "./lib/withRetries"
+
+export { SearchMessageLead as SearchMessageLeadFactory } from "./lib/factories/leads"
