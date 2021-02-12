@@ -202,6 +202,6 @@ export interface DealerAnalytics {
   }
   metrics: {
     name: string
-    value: string | number
+    value: number
   }[]
 }

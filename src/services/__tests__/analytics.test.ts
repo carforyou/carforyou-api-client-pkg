@@ -1,4 +1,5 @@
 import { DealerAnalytics } from "types/models"
+
 import {
   fetchAnalyticsData,
   fetchDealerAnalytics,
