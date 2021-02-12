@@ -106,7 +106,7 @@ export const fetchDealerAnalytics = async ({
     period: string
   }
   options?: ApiCallOptions
-}): Promise<DealerAnalytics> => {
+}): Promise<Array<DealerAnalytics>> => {
   return postData({
     path: `dealers/${dealerId}/analytics`,
     body: {

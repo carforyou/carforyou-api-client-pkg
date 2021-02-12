@@ -197,7 +197,11 @@ export interface WhatsappEntry {
 }
 
 export interface DealerAnalytics {
-  pdpViews?: number
-  srpViews?: number
-  pdpViewsDaily?: number
+  dimensions: {
+    [key: string]: string | number
+  }
+  metrics: {
+    name: string
+    value: string | number
+  }[]
 }

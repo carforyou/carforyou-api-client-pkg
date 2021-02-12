@@ -1,3 +1,4 @@
+import { DealerAnalytics } from "types/models"
 import {
   fetchAnalyticsData,
   fetchDealerAnalytics,
@@ -186,7 +187,7 @@ describe("Analytics service", () => {
   })
 
   describe("#fetchDealerAnalytics", () => {
-    const tilesData = [
+    const tilesData: DealerAnalytics[] = [
       {
         dimensions: {},
         metrics: [
