@@ -161,6 +161,7 @@ describe("CAR service", () => {
           tag: "error",
           message,
           errors,
+          globalErrors: [],
         })
       })
     })
@@ -264,7 +265,12 @@ describe("CAR service", () => {
         listing,
         options: requestOptionsMock,
       })
-      expect(response).toEqual({ tag: "error", message, errors })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
     })
   })
 
@@ -297,7 +303,12 @@ describe("CAR service", () => {
         listingId: 123,
         options: requestOptionsMock,
       })
-      expect(response).toEqual({ tag: "error", message, errors })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
     })
   })
 
@@ -330,7 +341,12 @@ describe("CAR service", () => {
         listingId: 123,
         options: requestOptionsMock,
       })
-      expect(response).toEqual({ tag: "error", message, errors })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
     })
   })
 
@@ -363,7 +379,12 @@ describe("CAR service", () => {
         listingId: 123,
         options: requestOptionsMock,
       })
-      expect(response).toEqual({ tag: "error", message, errors })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
     })
   })
 
@@ -396,7 +417,12 @@ describe("CAR service", () => {
         listingId: 123,
         options: requestOptionsMock,
       })
-      expect(response).toEqual({ tag: "error", message, errors })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
     })
   })
 
@@ -429,7 +455,12 @@ describe("CAR service", () => {
         listingId: 123,
         options: requestOptionsMock,
       })
-      expect(response).toEqual({ tag: "error", message, errors })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
     })
   })
 

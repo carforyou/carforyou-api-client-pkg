@@ -217,6 +217,7 @@ export const handleValidationError = async (
         tag: "error",
         message: "validation.other-error",
         errors: [],
+        globalErrors: [],
       }
     }
 
@@ -229,6 +230,7 @@ export const handleValidationError = async (
     tag: "error",
     message: data.message.toString() as string,
     errors: data.errors || [],
+    globalErrors: data.globalErrors || [],
   }
 }
 
