@@ -207,6 +207,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchLeadsAnalytics`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics/getDealerLeadsAnalyticsUsingPOST)
   - [`fetchListingsAnalytics`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics/getDealerListingsAnalyticsUsingPOST),
   - [`fetchLeadsInteractionsAnalytics`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics/getDealerLeadsInteractionsUsingPOST)
+  - [`fetchDealerAnalytics`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics/getDealerAnalyticsUsingPOST)
 
 ### [Reporting service](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html)
 
