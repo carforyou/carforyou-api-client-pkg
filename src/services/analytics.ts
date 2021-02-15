@@ -100,7 +100,7 @@ export const fetchDealerAnalytics = async ({
   options = {},
 }: {
   dealerId: number
-  dimensions: []
+  dimensions: string[]
   metrics: { name: string }[]
   query: {
     period: string
