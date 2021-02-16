@@ -210,3 +210,13 @@ export interface WhatsappEntry {
   lastName: string
   phone: string
 }
+
+export interface DealerAnalytics {
+  dimensions: {
+    [key: string]: string | number
+  }
+  metrics: {
+    name: string
+    value: number
+  }[]
+}

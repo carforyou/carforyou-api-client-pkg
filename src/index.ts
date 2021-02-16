@@ -27,6 +27,7 @@ export {
   DealerEntitlements,
   Entitlements,
   CockpitAnalytics,
+  DealerAnalytics,
 } from "./types/models/index"
 
 export {
@@ -221,6 +222,7 @@ export {
   fetchLeadsAnalytics,
   fetchListingsAnalytics,
   fetchLeadsInteractionsAnalytics,
+  fetchDealerAnalytics,
 } from "./services/analytics"
 export { postWhatsappTrackingEntry } from "./services/reporting/whatsapp"
 export {
