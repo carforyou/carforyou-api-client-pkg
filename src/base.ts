@@ -15,7 +15,7 @@ const stripLeadingSlash = (path: string): string => {
   return path.startsWith("/") ? path.slice(1) : path
 }
 
-const withPagination = <T>(json: {
+interface PaginationType<T> {
   content: T[]
   number: number
   numberOfElements: number
@@ -24,10 +24,21 @@ const withPagination = <T>(json: {
   totalElements: number
   first: boolean
   last: boolean
+}
+const withPagination = <T>(json: PaginationType<T>): Paginated<T> => {
+  const { content, ...pagination } = json
+
+  return { content, pagination }
+}
+
+interface PaginationExtendedType<T> extends PaginationType<T> {
   facets: Facets
   fieldsStats: FieldsStats
   topListing: SearchListing
-}): WithTopListing<WithFieldStats<Paginated<T>>> => {
+}
+const withExtendedPagination = <T>(
+  json: PaginationExtendedType<T>
+): WithTopListing<WithFieldStats<Paginated<T>>> => {
   const { content, fieldsStats, facets, topListing, ...pagination } = json
 
   return { content, fieldsStats, pagination, topListing }
@@ -126,7 +137,9 @@ export const fetchPath = async ({
   }
 
   if (json.content) {
-    return withPagination(json)
+    return json.topListing || json.fieldsStats || json.facets
+      ? withExtendedPagination(json)
+      : withPagination(json)
   } else {
     return json
   }
@@ -204,6 +217,7 @@ export const handleValidationError = async (
         tag: "error",
         message: "validation.other-error",
         errors: [],
+        globalErrors: [],
       }
     }
 
@@ -216,6 +230,7 @@ export const handleValidationError = async (
     tag: "error",
     message: data.message.toString() as string,
     errors: data.errors || [],
+    globalErrors: data.globalErrors || [],
   }
 }
 

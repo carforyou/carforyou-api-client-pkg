@@ -1,7 +1,21 @@
 import { WithValidationError } from "../../types/withValidationError"
-import { MessageLead } from "../../types/models"
+import { PaginationParams } from "../../types/params"
+import { Paginated } from "../../types/pagination"
+import { MessageLead, SearchMessageLead } from "../../types/models"
+import toQueryString from "../../lib/toQueryString"
 import { createApiPathWithValidate } from "../../lib/path"
-import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
+import { pageOrDefault, sizeOrDefault } from "../../lib/pageParams"
+import {
+  ApiCallOptions,
+  fetchPath,
+  ignoreServerSideErrors,
+  postData,
+} from "../../base"
+
+export const defaultDealerMessageLeadsPagination = {
+  page: 0,
+  size: 10,
+}
 
 export const sendMessageLead = async ({
   listingId,
@@ -54,4 +68,32 @@ export const sendMessageLead = async ({
       returnValue: messageLead,
     })
   }
+}
+
+export const fetchDealerMessageLeads = async ({
+  dealerId,
+  query,
+  options = {},
+}: {
+  dealerId: number
+  query: PaginationParams
+  options?: ApiCallOptions & { validateOnly?: boolean }
+}): Promise<Paginated<SearchMessageLead>> => {
+  const { validateOnly, ...otherOptions } = options
+  const { page, size } = query
+
+  const queryParams = {
+    page: pageOrDefault(page, defaultDealerMessageLeadsPagination),
+    size: sizeOrDefault(size, defaultDealerMessageLeadsPagination),
+  }
+
+  const path = `dealers/${dealerId}/message-leads?${toQueryString(queryParams)}`
+
+  return await fetchPath({
+    path,
+    options: {
+      ...otherOptions,
+      isAuthorizedRequest: true,
+    },
+  })
 }

@@ -79,6 +79,7 @@ describe("Products service", () => {
         tag: "error",
         message,
         errors,
+        globalErrors: [],
       })
     })
   })
@@ -131,6 +132,7 @@ describe("Products service", () => {
         tag: "error",
         message,
         errors,
+        globalErrors: [],
       })
     })
   })

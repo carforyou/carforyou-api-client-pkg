@@ -131,7 +131,12 @@ describe("Auto alarm", () => {
         savedSearch: dealerSavedSearch,
         options: { accessToken: "TOKEN" },
       })
-      expect(response).toEqual({ tag: "error", message, errors })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
       expect(fetch).toHaveBeenCalled()
     })
   })
@@ -176,7 +181,12 @@ describe("Auto alarm", () => {
         savedSearch: dealerSavedSearch,
         options: { accessToken: "TOKEN" },
       })
-      expect(response).toEqual({ tag: "error", message, errors })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
       expect(fetch).toHaveBeenCalled()
     })
   })

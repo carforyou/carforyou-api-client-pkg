@@ -82,6 +82,7 @@ const defaults: ListingType = {
   vignetteIncluded: false,
   fullTankIncluded: false,
   expertInstructionIncluded: false,
+  otherServices: "",
   lastInspectionDate: { month: 6, year: 2015 },
   inspected: true,
   hasWarranty: true,
@@ -264,6 +265,7 @@ export function EmptyListing(): ListingType {
     vignetteIncluded: undefined,
     fullTankIncluded: undefined,
     expertInstructionIncluded: undefined,
+    otherServices: undefined,
   }
 }
 

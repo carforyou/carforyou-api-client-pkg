@@ -3,6 +3,44 @@ import { WithTopListing } from "../../types/topListing"
 import { Paginated } from "../../types/pagination"
 import { WithFieldStats } from "../../types/fieldStats"
 
+export const PaginatedLeads = <T>(
+  content: T[],
+  pagination = {}
+): Paginated<T> => {
+  const {
+    number,
+    totalPages,
+    size,
+    totalElements,
+    numberOfElements,
+    first,
+    last,
+  } = {
+    number: 0,
+    totalPages: 3,
+    size: 10,
+    totalElements: 22,
+    numberOfElements: 10,
+    first: true,
+    last: false,
+    ...pagination,
+  }
+
+  return {
+    content,
+    pagination: {
+      number,
+      totalPages,
+      size,
+      totalElements,
+      numberOfElements,
+      first,
+      last,
+      ...pagination,
+    },
+  }
+}
+
 export default function <T>(
   content: T[],
   options = {}
