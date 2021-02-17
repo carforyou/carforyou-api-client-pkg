@@ -1,5 +1,4 @@
 import { ApiSearchListing } from "../../types/models/listing"
-import { SearchMessageLead } from "../../types/models"
 
 export interface Buyer {
   email: string
@@ -8,16 +7,24 @@ export interface Buyer {
   phone: string
 }
 
-export type FirstListingParams = Pick<
-  ApiSearchListing,
-  "id" | "firstRegistrationDate" | "price" | "mileage"
->
-
-export type SecondListingParams = SearchMessageLead["listing"]
+export interface CarSalesListing
+  extends Pick<
+    ApiSearchListing,
+    | "id"
+    | "firstRegistrationDate"
+    | "make"
+    | "model"
+    | "type"
+    | "price"
+    | "mileage"
+  > {
+  externalListingId: string
+  image: string
+}
 
 export interface CarSales {
   buyer: Buyer
   carSaleDate: string
   id: number
-  listing: [FirstListingParams, SecondListingParams]
+  listing: CarSalesListing
 }

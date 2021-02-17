@@ -118,12 +118,7 @@ export { WithTopListing } from "./types/topListing"
 
 export { ResponseError } from "./responseError"
 
-export {
-  Buyer,
-  FirstListingParams,
-  SecondListingParams,
-  CarSales,
-} from "./types/models/carSales"
+export { Buyer, CarSalesListing, CarSales } from "./types/models/carSales"
 
 export { fetchCarSales } from "./services/reporting/carSales"
 
