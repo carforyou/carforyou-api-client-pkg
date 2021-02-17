@@ -1,6 +1,6 @@
-import { DealerCarSales } from "types/models/carSales"
-
 import { Paginated } from "../../types/pagination"
+import { DealerCarSales } from "../../types/models/carSales"
+
 import toQueryString from "../../lib/toQueryString"
 import { ApiCallOptions, fetchPath } from "../../base"
 
