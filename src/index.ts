@@ -217,7 +217,7 @@ export {
   setLogo,
 } from "./services/dealer"
 
-export { supportCases } from "./services/emailDelivery"
+export { sendSupportCase } from "./services/emailDelivery"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export {
   fetchAnalyticsData,

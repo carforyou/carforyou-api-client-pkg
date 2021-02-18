@@ -196,7 +196,7 @@ Also accompanying modes and param types, as well as default values, are exported
 
 ### [Email delivery service](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html)
 - [Support case](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html#/Support%20Case)
-  - [`supportCases`](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html#/Support%20Case/createUsingPOST)
+  - [`sendSupportCase`](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html#/Support%20Case/createUsingPOST)
 
 ### [User notification service](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html)
 

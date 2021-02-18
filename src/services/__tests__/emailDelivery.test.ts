@@ -1,10 +1,10 @@
-import { supportCases } from "../emailDelivery"
+import { sendSupportCase } from "../emailDelivery"
 import { ResponseError } from "../../responseError"
 
 describe("Email delivery service", () => {
   beforeEach(fetchMock.resetMocks)
 
-  describe("supportCases", () => {
+  describe("sendSupportCase", () => {
     const requestOptionsMock = {
       accessToken: "DUMMY TOKEN",
     }
@@ -13,10 +13,10 @@ describe("Email delivery service", () => {
     })
 
     it("successfully posts data to the api", async () => {
-      const response = await supportCases({
+      const response = await sendSupportCase({
         dealerId: 12355,
         subject: "email subject",
-        details: "email details",
+        message: "email message",
         options: requestOptionsMock,
       })
 
@@ -24,10 +24,10 @@ describe("Email delivery service", () => {
     })
 
     it("calls endpoint", async () => {
-      await supportCases({
+      await sendSupportCase({
         dealerId: 12355,
         subject: "email subject",
-        details: "email details",
+        message: "email message",
         options: requestOptionsMock,
       })
 
@@ -44,10 +44,10 @@ describe("Email delivery service", () => {
         })
       })
 
-      const response = await supportCases({
+      const response = await sendSupportCase({
         dealerId: 12355,
         subject: "email subject",
-        details: "email details",
+        message: "email message",
         options: requestOptionsMock,
       })
 

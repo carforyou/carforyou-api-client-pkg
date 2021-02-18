@@ -1,21 +1,21 @@
 import { WithValidationError } from "../types/withValidationError"
 import { ApiCallOptions, handleValidationError, postData } from "../base"
 
-export const supportCases = async ({
+export const sendSupportCase = async ({
   dealerId,
-  details,
+  message,
   subject,
   options = {},
 }: {
   dealerId: number
-  details: string
+  message: string
   subject: string
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   try {
     const result = await postData({
       path: `dealers/${dealerId}/support-cases`,
-      body: { details, subject },
+      body: { details: message, subject },
       options: {
         isAuthorizedRequest: true,
         ...options,
