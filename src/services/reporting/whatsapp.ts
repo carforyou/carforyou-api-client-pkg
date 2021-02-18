@@ -2,7 +2,7 @@ import { WithValidationError } from "../../types/withValidationError"
 import { WhatsappEntry } from "../../types/models/tracking"
 import { ApiCallOptions } from "../../base"
 
-import { postTrackingData } from "."
+import { postTrackingData } from "./index"
 
 export const postWhatsappTrackingEntry = async ({
   listingId,
