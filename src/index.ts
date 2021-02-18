@@ -220,6 +220,8 @@ export {
   requestWhatsAppIntegration,
   setLogo,
 } from "./services/dealer"
+
+export { sendSupportCase } from "./services/emailDelivery"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export {
   fetchAnalyticsData,
