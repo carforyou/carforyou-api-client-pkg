@@ -26,10 +26,10 @@ fetchBodyTypes()
 
 ## Configuration
 
-| Option Name                  | Meaning                                                                                                             |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `host`                       | URL to the API gateway                                                                                              |
-| `debug`                      | Set to `true` to `console.log` requests and API responses.                                                          |
+| Option Name | Meaning                                                    |
+| ----------- | ---------------------------------------------------------- |
+| `host`      | URL to the API gateway                                     |
+| `debug`     | Set to `true` to `console.log` requests and API responses. |
 
 ### Mocking API calls during development
 
@@ -195,6 +195,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`setLogo`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setLogoUsingPUT)
 
 ### [Email delivery service](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html)
+
 - [Support case](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html#/Support%20Case)
   - [`sendSupportCase`](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html#/Support%20Case/createUsingPOST)
 
@@ -219,6 +220,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`postWhatsappTrackingEntry`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/WhatsApp%20Tracking/createWhatsAppTrackingEntryUsingPOST)
 - [Reporting](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting)
   - [`fetchCarSales`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getDealerCarSalesUsingGET)
+- [Call Tracking](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking)
+  - [`postCallTrackingEntry`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking/createCallTrackingEntryUsingPOST)
 
 ### [Car sale tracking service](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html)
 

@@ -1,21 +1,21 @@
 import { WithValidationError } from "../../types/withValidationError"
 import { ApiCallOptions } from "../../base"
-import { WhatsappEntry } from "../../types/models/tracking"
+import { CallTrackingEntry } from "../../types/models/tracking"
 import { postTrackingData } from "."
 
-export const postWhatsappTrackingEntry = async ({
+export const postCallTrackingEntry = async ({
   listingId,
-  whatsappEntry,
+  body,
   options = {},
 }: {
   listingId: number
-  whatsappEntry: WhatsappEntry
+  body: CallTrackingEntry
   options?: ApiCallOptions & { validateOnly?: boolean }
-}): Promise<WithValidationError<WhatsappEntry>> => {
+}): Promise<WithValidationError<CallTrackingEntry>> => {
   return postTrackingData({
-    pathSegment: "whats-app-tracking-entries",
+    pathSegment: "call-tracking-entries",
     listingId,
-    body: whatsappEntry,
+    body,
     options,
   })
 }

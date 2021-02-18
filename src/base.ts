@@ -152,7 +152,7 @@ export const postData = async ({
 }: {
   path: string
   // eslint-disable-next-line @typescript-eslint/ban-types
-  body: object
+  body: object | Record<string, unknown>
   options: RequestOptions
 }) => {
   return fetchPath({

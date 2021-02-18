@@ -120,6 +120,8 @@ export { ResponseError } from "./responseError"
 
 export { Buyer, CarSalesListing, CarSales } from "./types/models/carSales"
 
+export { WhatsappEntry, CallTrackingEntry } from "./types/models/tracking"
+
 export { fetchCarSales } from "./services/reporting/carSales"
 
 export { fetchDealScores } from "./services/car/goodBadDealData"
@@ -231,6 +233,7 @@ export {
   fetchDealerAnalytics,
 } from "./services/analytics"
 export { postWhatsappTrackingEntry } from "./services/reporting/whatsapp"
+export { postCallTrackingEntry } from "./services/reporting/callTracking"
 export {
   fetchProducts,
   purchaseAndUseListingProduct,
