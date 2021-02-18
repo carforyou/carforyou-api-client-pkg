@@ -2,7 +2,8 @@ import { createApiPathWithValidate } from "../../lib/path"
 import { WithValidationError } from "../../index"
 import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
 
-export const postTrackingData = async <T extends Record<string, unknown>>({
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const postTrackingData = async <T extends {}>({
   listingId,
   pathSegment,
   body,

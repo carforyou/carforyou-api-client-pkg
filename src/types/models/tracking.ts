@@ -1,8 +1,12 @@
 import { Language } from "../../types/params"
 
-export type WhatsappEntry = Record<
-  "firstName" | "language" | "lastName" | "phone",
-  string
->
+export interface WhatsappEntry {
+  firstName: string
+  lastName: string
+  language: boolean
+  phone: string
+}
 
-export type CallTrackingEntry = Record<"language", Language>
+export interface CallTrackingEntry {
+  language: Language
+}
