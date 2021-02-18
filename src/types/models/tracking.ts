@@ -3,7 +3,7 @@ import { Language } from "../../types/params"
 export interface WhatsappEntry {
   firstName: string
   lastName: string
-  language: boolean
+  language: string
   phone: string
 }
 
