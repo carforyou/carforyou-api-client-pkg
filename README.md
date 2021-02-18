@@ -213,6 +213,8 @@ Also accompanying modes and param types, as well as default values, are exported
 
 - [Whatsapp Tracking](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/WhatsApp%20Tracking)
   - [`postWhatsappTrackingEntry`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/WhatsApp%20Tracking/createWhatsAppTrackingEntryUsingPOST)
+- [Reporting](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting)
+  - [`fetchCarSales`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getDealerCarSalesUsingGET)
 
 ### [Car sale tracking service](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html)
 
