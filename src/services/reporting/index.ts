@@ -1,6 +1,6 @@
-import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
-import { WithValidationError } from "../../index"
 import { createApiPathWithValidate } from "../../lib/path"
+import { WithValidationError } from "../../index"
+import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
 
 export const postTrackingData = async <T extends Record<string, unknown>>({
   listingId,

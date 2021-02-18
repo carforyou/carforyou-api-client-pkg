@@ -1,5 +1,5 @@
-import { WhatsappEntry } from "../../../types/models/tracking"
 import { postWhatsappTrackingEntry } from "../whatsapp"
+import { WhatsappEntry } from "../../../types/models/tracking"
 
 describe("Whatsapp API", () => {
   const whatsappEntry: WhatsappEntry = {

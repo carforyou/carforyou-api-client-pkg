@@ -1,6 +1,7 @@
 import { WithValidationError } from "../../types/withValidationError"
-import { ApiCallOptions } from "../../base"
 import { CallTrackingEntry } from "../../types/models/tracking"
+import { ApiCallOptions } from "../../base"
+
 import { postTrackingData } from "."
 
 export const postCallTrackingEntry = async ({

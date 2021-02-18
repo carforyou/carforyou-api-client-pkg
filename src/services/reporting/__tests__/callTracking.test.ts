@@ -1,6 +1,6 @@
-import { CallTrackingEntry } from "../../../types/models/tracking"
-import { Language } from "../../../types/params"
 import { postCallTrackingEntry } from "../callTracking"
+import { Language } from "../../../types/params"
+import { CallTrackingEntry } from "../../../types/models/tracking"
 
 describe("Call Tracking API", () => {
   const callTrackingEntry: CallTrackingEntry = {
