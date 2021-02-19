@@ -1,5 +1,5 @@
-import { ApiCallOptions, postData, handleValidationError } from "../base"
 import { WithValidationError, SearchType } from "../index"
+import { ApiCallOptions, postData, handleValidationError } from "../base"
 
 export const fetchFrameNumberTypes = async ({
   query,
