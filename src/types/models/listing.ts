@@ -77,6 +77,7 @@ export interface OtherServices {
   vignetteIncluded: boolean
   fullTankIncluded: boolean
   expertInstructionIncluded: boolean
+  otherServices: string
 }
 
 interface Feature {

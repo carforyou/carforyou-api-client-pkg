@@ -1,5 +1,8 @@
+import { DealerAnalytics } from "types/models"
+
 import {
   fetchAnalyticsData,
+  fetchDealerAnalytics,
   fetchLeadsAnalytics,
   fetchLeadsInteractionsAnalytics,
   fetchListingsAnalytics,
@@ -181,6 +184,85 @@ describe("Analytics service", () => {
           }),
         })
       )
+    })
+  })
+
+  describe("#fetchDealerAnalytics", () => {
+    const tilesData: DealerAnalytics[] = [
+      {
+        dimensions: {},
+        metrics: [
+          {
+            name: "srpViews",
+            value: 123,
+          },
+          {
+            name: "pdpViews",
+            value: 42,
+          },
+          {
+            name: "pdpViewsAvg",
+            value: 4,
+          },
+          {
+            name: "pdpViewsPerListingAvg",
+            value: 2,
+          },
+          {
+            name: "callLeads",
+            value: 24,
+          },
+          {
+            name: "messageLeads",
+            value: 13,
+          },
+          {
+            name: "whatsAppTrackingEntries",
+            value: 5,
+          },
+        ],
+      },
+    ]
+
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify(tilesData))
+    })
+
+    it("fetches tiles data", async () => {
+      const data = await fetchDealerAnalytics({
+        dealerId: 123,
+        dimensions: [],
+        metrics: [
+          {
+            name: "srpViews",
+          },
+          {
+            name: "pdpViews",
+          },
+          {
+            name: "pdpViewsAvg",
+          },
+          {
+            name: "pdpViewsPerListingAvg",
+          },
+          {
+            name: "callLeads",
+          },
+          {
+            name: "messageLeads",
+          },
+          {
+            name: "whatsAppTrackingEntries",
+          },
+        ],
+        query: {
+          period: "30d",
+        },
+        options: { accessToken: "TOKEN" },
+      })
+
+      expect(data).toEqual(tilesData)
+      expect(fetch).toHaveBeenCalled()
     })
   })
 })

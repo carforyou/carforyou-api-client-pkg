@@ -204,9 +204,12 @@ export interface CockpitAnalytics {
   [key: string]: string | number
 }
 
-export interface WhatsappEntry {
-  firstName: string
-  language: string
-  lastName: string
-  phone: string
+export interface DealerAnalytics {
+  dimensions: {
+    [key: string]: string | number
+  }
+  metrics: {
+    name: string
+    value: number
+  }[]
 }
