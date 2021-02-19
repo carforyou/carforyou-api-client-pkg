@@ -9,7 +9,7 @@ export enum PowerUnit {
 
 export interface TypeFiltersParams {
   tsn?: string
-  vin?: string
+  frameNumber?: string
   makeKey?: string
   modelKey?: string
   fuelType?: string[]
