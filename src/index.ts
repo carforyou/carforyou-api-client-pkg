@@ -27,6 +27,7 @@ export {
   DealerEntitlements,
   Entitlements,
   CockpitAnalytics,
+  DealerAnalytics,
 } from "./types/models/index"
 
 export {
@@ -116,6 +117,12 @@ export { Paginated } from "./types/pagination"
 export { WithTopListing } from "./types/topListing"
 
 export { ResponseError } from "./responseError"
+
+export { Buyer, CarSalesListing, CarSales } from "./types/models/carSales"
+
+export { WhatsappEntry, CallTrackingEntry } from "./types/models/tracking"
+
+export { fetchCarSales } from "./services/reporting/carSales"
 
 export { fetchDealScores } from "./services/car/goodBadDealData"
 export {
@@ -215,14 +222,18 @@ export {
   requestWhatsAppIntegration,
   setLogo,
 } from "./services/dealer"
+
+export { sendSupportCase } from "./services/emailDelivery"
 export { sendSavedSearch, deleteSavedSearch } from "./services/userNotification"
 export {
   fetchAnalyticsData,
   fetchLeadsAnalytics,
   fetchListingsAnalytics,
   fetchLeadsInteractionsAnalytics,
+  fetchDealerAnalytics,
 } from "./services/analytics"
 export { postWhatsappTrackingEntry } from "./services/reporting/whatsapp"
+export { postCallTrackingEntry } from "./services/reporting/callTracking"
 export {
   fetchProducts,
   purchaseAndUseListingProduct,
