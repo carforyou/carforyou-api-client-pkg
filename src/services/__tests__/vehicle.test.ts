@@ -28,9 +28,10 @@ describe("#fetchTypes", () => {
 
       if (response.tag === "success") {
         expect(response.result).toEqual({
-          frameNumber: "frameNumber",
-          productionYear: 2020,
-          types,
+          content: {
+            ...types,
+          },
+          pagination: null,
         })
       }
     })
