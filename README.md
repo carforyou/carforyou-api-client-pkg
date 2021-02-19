@@ -179,6 +179,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchMakes`](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product%20Catalogue/getAllMakesUsingGET)
   - [`fetchModels`](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product%20Catalogue/getModelsUsingGET)
   - [`fetchType`](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product%20Catalogue/getTypeUsingGET)
+- [Vehicle](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product_Catalogue)
+  - [`fetchFrameNumberTypes`](https://catalogue-service.preprod.carforyou.ch/swagger-ui/#/Vehicle/getVehicleUsingGET)
 
 ### [Dealer service](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html)
 
