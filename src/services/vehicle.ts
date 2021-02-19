@@ -1,4 +1,4 @@
-import { SearchType, WithValidationError } from "../index"
+import { Paginated, SearchType, WithValidationError } from "../index"
 import { ApiCallOptions, fetchPath, handleValidationError } from "../base"
 
 export const fetchFrameNumberTypes = async ({
@@ -7,7 +7,7 @@ export const fetchFrameNumberTypes = async ({
 }: {
   query: { dealerId: number; frameNumber: string }
   options?: ApiCallOptions
-}): Promise<WithValidationError<SearchType>> => {
+}): Promise<WithValidationError<Paginated<SearchType>>> => {
   try {
     const { dealerId, frameNumber } = query
     const result = await fetchPath({
@@ -19,7 +19,7 @@ export const fetchFrameNumberTypes = async ({
     })
     return {
       tag: "success",
-      result,
+      result: { content: result.types, pagination: null },
     }
   } catch (error) {
     return handleValidationError(error)
