@@ -73,7 +73,9 @@ describe("Car Sales", () => {
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining("/dealers/123/car-sales?page=5&size=25"),
+        expect.stringContaining(
+          "/dealers/123/car-sales?status=confirmed&page=5&size=25"
+        ),
         expect.any(Object)
       )
     })
