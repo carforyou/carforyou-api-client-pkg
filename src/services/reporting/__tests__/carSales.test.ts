@@ -1,4 +1,8 @@
-import { fetchCarSales } from "../carSales"
+import {
+  deleteCarSalesRejection,
+  fetchCarSales,
+  rejectCarSales,
+} from "../carSales"
 import PaginatedFactory from "../../../lib/factories/paginated"
 
 const carSales = (attributes = {}) => ({
@@ -78,6 +82,81 @@ describe("Car Sales", () => {
         ),
         expect.any(Object)
       )
+    })
+  })
+
+  describe("rejectCarSales", () => {
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify({}))
+    })
+
+    it("makes a PUT request to the endpoint", async () => {
+      await rejectCarSales({
+        dealerId: 111,
+        carSaleId: 222,
+        options: { accessToken: "DUMMY TOKEN" },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        "test.gateway/dealers/111/care-sales/222/rejection",
+        expect.objectContaining({
+          body: "{}",
+          method: "PUT",
+          headers: expect.objectContaining({
+            Authorization: "Bearer DUMMY TOKEN",
+          }),
+        })
+      )
+    })
+
+    it("envelops the response", async () => {
+      const response = await rejectCarSales({
+        dealerId: 111,
+        carSaleId: 222,
+        options: { accessToken: "DUMMY TOKEN" },
+      })
+
+      expect(response).toEqual({
+        tag: "success",
+        result: null,
+      })
+    })
+  })
+
+  describe("deleteCarSalesRejection", () => {
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify({}))
+    })
+
+    it("makes a PUT request to the endpoint", async () => {
+      await deleteCarSalesRejection({
+        dealerId: 333,
+        carSaleId: 444,
+        options: { accessToken: "DUMMY TOKEN" },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        "test.gateway/dealers/333/care-sales/444/rejection",
+        expect.objectContaining({
+          method: "DELETE",
+          headers: expect.objectContaining({
+            Authorization: "Bearer DUMMY TOKEN",
+          }),
+        })
+      )
+    })
+
+    it("envelops the response", async () => {
+      const response = await deleteCarSalesRejection({
+        dealerId: 333,
+        carSaleId: 444,
+        options: { accessToken: "DUMMY TOKEN" },
+      })
+
+      expect(response).toEqual({
+        tag: "success",
+        result: null,
+      })
     })
   })
 })
