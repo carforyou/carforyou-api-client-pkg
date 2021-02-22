@@ -78,7 +78,7 @@ describe("CAR service", () => {
 
       {
         name: "fetchImagesCountGroups",
-        fetchFunction: fetchTransmissionTypes,
+        fetchFunction: fetchImagesCountGroups,
         response: ["group-0", "group-1-3"],
       },
     ]
