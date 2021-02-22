@@ -11,6 +11,7 @@ import {
   fetchOptions,
   fetchSeats,
   fetchTransmissionTypes,
+  fetchImagesCountGroups,
 } from "../inventoryData"
 
 describe("CAR service", () => {
@@ -73,6 +74,12 @@ describe("CAR service", () => {
         name: "fetchTransmissionTypes",
         fetchFunction: fetchTransmissionTypes,
         response: ["manual", "automatic"],
+      },
+
+      {
+        name: "fetchImagesCountGroups",
+        fetchFunction: fetchTransmissionTypes,
+        response: ["group-0", "group-1-3"],
       },
     ]
 

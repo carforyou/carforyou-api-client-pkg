@@ -19,7 +19,6 @@ export interface SearchType {
   doors: number
   productionStartDate: string
   productionEndDate: string
-  imagesCountGroup: string
 }
 
 export interface Type
