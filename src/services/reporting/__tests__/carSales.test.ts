@@ -128,7 +128,7 @@ describe("Car Sales", () => {
       fetchMock.mockResponse(JSON.stringify({}))
     })
 
-    it("makes a PUT request to the endpoint", async () => {
+    it("makes a DELETE request to the endpoint", async () => {
       await deleteCarSalesRejection({
         dealerId: 333,
         carSaleId: 444,
