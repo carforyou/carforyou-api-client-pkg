@@ -7,11 +7,11 @@ import {
   fetchDriveTypes,
   fetchFuelTypeGroups,
   fetchFuelTypes,
+  fetchImagesCountGroups,
   fetchMinFirstRegistrationYear,
   fetchOptions,
   fetchSeats,
   fetchTransmissionTypes,
-  fetchImagesCountGroups,
 } from "../inventoryData"
 
 describe("CAR service", () => {
