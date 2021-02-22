@@ -46,6 +46,7 @@ describe("Car Sales", () => {
     it("unwraps content from json", async () => {
       const data = await fetchCarSales({
         dealerId: 123,
+        status: "confirmed",
         options: { accessToken: "DUMMY TOKEN" },
       })
 
@@ -55,6 +56,7 @@ describe("Car Sales", () => {
     it("unwraps pagination from json", async () => {
       const data = await fetchCarSales({
         dealerId: 123,
+        status: "confirmed",
         options: { accessToken: "DUMMY TOKEN" },
       })
 
@@ -64,13 +66,16 @@ describe("Car Sales", () => {
     it("passes query in query string", async () => {
       await fetchCarSales({
         dealerId: 123,
+        status: "confirmed",
         page: 5,
         size: 25,
         options: { accessToken: "DUMMY TOKEN" },
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining("/dealers/123/car-sales?page=5&size=25"),
+        expect.stringContaining(
+          "/dealers/123/car-sales?status=confirmed&page=5&size=25"
+        ),
         expect.any(Object)
       )
     })
