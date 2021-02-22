@@ -22,6 +22,7 @@ const overviewDefaults: SearchTypeType = {
   driveType: "front",
   productionStartDate: "2006-10-01",
   productionEndDate: "2018-06-30",
+  imagesCountGroup: "group-1-3",
 }
 
 export const SearchType = (attributes = {}): SearchTypeType => ({

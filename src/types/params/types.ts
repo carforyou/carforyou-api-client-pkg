@@ -18,6 +18,7 @@ export interface TypeFiltersParams {
   power?: { unit?: PowerUnit; value?: number }
   fullName?: string
   productionYear?: number
+  imagesCountGroup?: string
 }
 export interface SearchTypeQueryParams
   extends PaginationParams,

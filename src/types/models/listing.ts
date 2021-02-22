@@ -119,6 +119,7 @@ export interface Listing
   hasWarranty: boolean
   id: number
   images: ListingImage[]
+  imagesCountGroup: string
   interior: string
   kiloWatts: number
   leasingMonthlyRate: number
@@ -195,6 +196,7 @@ interface BaseSearchListing {
   seats: number
   dealer: SearchListingDealer
   images: ListingImage[]
+  imagesCountGroup: string
   gbdScore: string
   createdDate: string
   source: ListingSource

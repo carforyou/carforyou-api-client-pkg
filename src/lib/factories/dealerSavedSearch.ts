@@ -26,6 +26,7 @@ export const defaultDealerSavedSearch: DealerSavedSearch = {
     horsePowerTo: null,
     fuelTypeGroup: [],
     transmissionType: [],
+    imagesCountGroup: [],
   },
 }
 
@@ -42,6 +43,8 @@ export const DealerSavedSearchFactory = (
     fuelTypeGroup: presetQuery.fuelTypeGroup || defaultQuery.fuelTypeGroup,
     transmissionType:
       presetQuery.transmissionType || defaultQuery.transmissionType,
+    imagesCountGroup:
+      presetQuery.imagesCountGroup || defaultQuery.imagesCountGroup,
   }
 
   return {

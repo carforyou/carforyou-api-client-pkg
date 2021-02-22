@@ -159,6 +159,7 @@ export {
   fetchOptions,
   fetchSeats,
   fetchTransmissionTypes,
+  fetchImagesCountGroups,
 } from "./services/car/inventoryData"
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export { sendBuyNowApplication } from "./services/car/buyNowApplication"

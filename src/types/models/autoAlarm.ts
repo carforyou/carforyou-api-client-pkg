@@ -17,6 +17,7 @@ export interface DealerSavedSearchQuery {
   horsePowerTo?: number
   fuelTypeGroup: string[]
   transmissionType: string[]
+  imagesCountGroup: string[]
 }
 
 export interface DealerSavedSearch {
