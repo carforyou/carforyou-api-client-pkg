@@ -1,4 +1,10 @@
-import { fetchCarSales } from "../carSales"
+import { CarSaleRejection } from "index"
+
+import {
+  deleteCarSalesRejection,
+  fetchCarSales,
+  rejectCarSales,
+} from "../carSales"
 import PaginatedFactory from "../../../lib/factories/paginated"
 
 const carSales = (attributes = {}) => ({
@@ -78,6 +84,87 @@ describe("Car Sales", () => {
         ),
         expect.any(Object)
       )
+    })
+  })
+
+  describe("rejectCarSales", () => {
+    const carSaleRejectionMock: CarSaleRejection = {
+      comment: "Motor kaputt",
+      reason: "car-not-sold",
+    }
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify({}))
+    })
+
+    it("makes a PUT request to the endpoint", async () => {
+      await rejectCarSales({
+        dealerId: 111,
+        carSaleId: 222,
+        body: carSaleRejectionMock,
+        options: { accessToken: "DUMMY TOKEN" },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        "test.gateway/dealers/111/car-sales/222/rejection",
+        expect.objectContaining({
+          body: '{"comment":"Motor kaputt","reason":"car-not-sold"}',
+          method: "PUT",
+          headers: expect.objectContaining({
+            Authorization: "Bearer DUMMY TOKEN",
+          }),
+        })
+      )
+    })
+
+    it("envelops the response", async () => {
+      const response = await rejectCarSales({
+        dealerId: 111,
+        carSaleId: 222,
+        body: carSaleRejectionMock,
+        options: { accessToken: "DUMMY TOKEN" },
+      })
+
+      expect(response).toEqual({
+        tag: "success",
+        result: null,
+      })
+    })
+  })
+
+  describe("deleteCarSalesRejection", () => {
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify({}))
+    })
+
+    it("makes a DELETE request to the endpoint", async () => {
+      await deleteCarSalesRejection({
+        dealerId: 333,
+        carSaleId: 444,
+        options: { accessToken: "DUMMY TOKEN" },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        "test.gateway/dealers/333/car-sales/444/rejection",
+        expect.objectContaining({
+          method: "DELETE",
+          headers: expect.objectContaining({
+            Authorization: "Bearer DUMMY TOKEN",
+          }),
+        })
+      )
+    })
+
+    it("envelops the response", async () => {
+      const response = await deleteCarSalesRejection({
+        dealerId: 333,
+        carSaleId: 444,
+        options: { accessToken: "DUMMY TOKEN" },
+      })
+
+      expect(response).toEqual({
+        tag: "success",
+        result: null,
+      })
     })
   })
 })
