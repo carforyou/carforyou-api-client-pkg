@@ -118,11 +118,20 @@ export { WithTopListing } from "./types/topListing"
 
 export { ResponseError } from "./responseError"
 
-export { Buyer, CarSalesListing, CarSales } from "./types/models/carSales"
+export {
+  Buyer,
+  CarSalesListing,
+  CarSales,
+  CarSaleRejection,
+} from "./types/models/carSales"
 
 export { WhatsappEntry, CallTrackingEntry } from "./types/models/tracking"
 
-export { fetchCarSales } from "./services/reporting/carSales"
+export {
+  fetchCarSales,
+  rejectCarSales,
+  deleteCarSalesRejection,
+} from "./services/reporting/carSales"
 
 export { fetchDealScores } from "./services/car/goodBadDealData"
 export {
@@ -219,8 +228,6 @@ export {
   fetchDealerPromotion,
   postDealerPromotion,
   putDealerPromotion,
-  requestMatelsoIntegration,
-  requestWhatsAppIntegration,
   setLogo,
 } from "./services/dealer"
 

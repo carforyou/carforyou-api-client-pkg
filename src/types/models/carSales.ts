@@ -7,6 +7,11 @@ export interface Buyer {
   phone: string
 }
 
+export interface CarSaleRejection {
+  comment?: string
+  reason: "car-not-sold" | "wrong-buyer"
+}
+
 export interface CarSalesListing
   extends Pick<
     ApiSearchListing,
@@ -27,4 +32,5 @@ export interface CarSales {
   carSaleDate: string
   id: number
   listing: CarSalesListing
+  rejection: CarSaleRejection | null
 }

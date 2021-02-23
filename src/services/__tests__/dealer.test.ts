@@ -8,8 +8,6 @@ import {
   postDealerPromotion,
   putDealerProfile,
   putDealerPromotion,
-  requestMatelsoIntegration,
-  requestWhatsAppIntegration,
   setLogo,
 } from "../dealer"
 import { DealerSourceGroup, DealerType } from "../../types/models/index"
@@ -249,64 +247,6 @@ describe("Dealer", () => {
         })
 
         expect(promotionResponse.tag).toBe("error")
-      })
-    })
-
-    describe("#requestMatelsoIntegration", () => {
-      it("successfully posts data to the api", async () => {
-        fetchMock.mockResponse(JSON.stringify(promotionMock))
-
-        const response = await requestMatelsoIntegration({
-          dealerId: dealerIdMock,
-          options: requestOptionsMock,
-        })
-
-        expect(response.tag).toBe("success")
-      })
-
-      it("fails to post data to the api", async () => {
-        fetchMock.mockResponse(() => {
-          throw new ResponseError({
-            status: 500,
-          })
-        })
-
-        const response = await requestMatelsoIntegration({
-          dealerId: dealerIdMock,
-          options: requestOptionsMock,
-        })
-
-        expect(response.tag).toBe("error")
-      })
-    })
-
-    describe("#requestWhatsAppIntegration", () => {
-      it("successfully posts data to the api", async () => {
-        fetchMock.mockResponse(JSON.stringify({}))
-
-        const response = await requestWhatsAppIntegration({
-          dealerId: dealerIdMock,
-          whatsAppNumber: "00000",
-          options: requestOptionsMock,
-        })
-
-        expect(response.tag).toBe("success")
-      })
-
-      it("fails to post data to the api", async () => {
-        fetchMock.mockResponse(() => {
-          throw new ResponseError({
-            status: 500,
-          })
-        })
-
-        const response = await requestWhatsAppIntegration({
-          dealerId: dealerIdMock,
-          whatsAppNumber: "",
-          options: requestOptionsMock,
-        })
-
-        expect(response.tag).toBe("error")
       })
     })
 
