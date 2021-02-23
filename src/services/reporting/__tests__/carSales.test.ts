@@ -1,10 +1,11 @@
+import { CarSaleRejection } from "index"
+
 import {
   deleteCarSalesRejection,
   fetchCarSales,
   rejectCarSales,
 } from "../carSales"
 import PaginatedFactory from "../../../lib/factories/paginated"
-import { CarSaleRejection } from "index"
 
 const carSales = (attributes = {}) => ({
   buyer: {
