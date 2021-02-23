@@ -227,8 +227,6 @@ export {
   fetchDealerPromotion,
   postDealerPromotion,
   putDealerPromotion,
-  requestMatelsoIntegration,
-  requestWhatsAppIntegration,
   setLogo,
 } from "./services/dealer"
 
