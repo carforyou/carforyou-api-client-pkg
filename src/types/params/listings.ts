@@ -35,7 +35,6 @@ export interface ListingSearchParams extends ListingQueryParams {
   bodyType?: string | string[]
   isManual?: boolean
   features?: string[]
-  imagesCountGroup?: string[]
 }
 
 export enum ConsumptionCategory {
