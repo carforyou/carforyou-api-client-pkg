@@ -4,6 +4,7 @@ import {
   rejectCarSales,
 } from "../carSales"
 import PaginatedFactory from "../../../lib/factories/paginated"
+import { CarSaleRejection } from "index"
 
 const carSales = (attributes = {}) => ({
   buyer: {
@@ -86,6 +87,10 @@ describe("Car Sales", () => {
   })
 
   describe("rejectCarSales", () => {
+    const carSaleRejectionMock: CarSaleRejection = {
+      comment: "Motor kaputt",
+      reason: "car-not-sold",
+    }
     beforeEach(() => {
       fetchMock.mockResponse(JSON.stringify({}))
     })
@@ -94,13 +99,14 @@ describe("Car Sales", () => {
       await rejectCarSales({
         dealerId: 111,
         carSaleId: 222,
+        body: carSaleRejectionMock,
         options: { accessToken: "DUMMY TOKEN" },
       })
 
       expect(fetch).toHaveBeenCalledWith(
         "test.gateway/dealers/111/care-sales/222/rejection",
         expect.objectContaining({
-          body: "{}",
+          body: '{"comment":"Motor kaputt","reason":"car-not-sold"}',
           method: "PUT",
           headers: expect.objectContaining({
             Authorization: "Bearer DUMMY TOKEN",
@@ -113,6 +119,7 @@ describe("Car Sales", () => {
       const response = await rejectCarSales({
         dealerId: 111,
         carSaleId: 222,
+        body: carSaleRejectionMock,
         options: { accessToken: "DUMMY TOKEN" },
       })
 

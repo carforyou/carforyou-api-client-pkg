@@ -28,3 +28,8 @@ export interface CarSales {
   id: number
   listing: CarSalesListing
 }
+
+export interface CarSaleRejection {
+  comment?: string
+  reason: "car-not-sold" | "wrong-buyer"
+}

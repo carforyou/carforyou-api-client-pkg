@@ -2,7 +2,7 @@ import { Paginated } from "../../types/pagination"
 import { CarSales } from "../../types/models/carSales"
 
 import toQueryString from "../../lib/toQueryString"
-import { WithValidationError } from "../../index"
+import { CarSaleRejection, WithValidationError } from "../../index"
 import {
   ApiCallOptions,
   deletePath,
@@ -57,16 +57,18 @@ const getRejectionPath = ({
 export const rejectCarSales = async ({
   dealerId,
   carSaleId,
+  body,
   options = {},
 }: {
   dealerId: number
   carSaleId: number
+  body: CarSaleRejection
   options?: ApiCallOptions
 }): Promise<WithValidationError<null>> => {
   return envelopeRequest(
     putData({
       path: getRejectionPath({ dealerId, carSaleId }),
-      body: {},
+      body,
       options: {
         ...options,
         isAuthorizedRequest: true,
