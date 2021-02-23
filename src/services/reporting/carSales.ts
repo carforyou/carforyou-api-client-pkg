@@ -52,7 +52,7 @@ const getRejectionPath = ({
 }: {
   dealerId: number
   carSaleId: number
-}) => `dealers/${dealerId}/care-sales/${carSaleId}/rejection`
+}) => `dealers/${dealerId}/car-sales/${carSaleId}/rejection`
 
 export const rejectCarSales = async ({
   dealerId,

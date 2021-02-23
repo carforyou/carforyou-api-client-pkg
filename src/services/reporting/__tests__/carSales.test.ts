@@ -105,7 +105,7 @@ describe("Car Sales", () => {
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        "test.gateway/dealers/111/care-sales/222/rejection",
+        "test.gateway/dealers/111/car-sales/222/rejection",
         expect.objectContaining({
           body: '{"comment":"Motor kaputt","reason":"car-not-sold"}',
           method: "PUT",
@@ -144,7 +144,7 @@ describe("Car Sales", () => {
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        "test.gateway/dealers/333/care-sales/444/rejection",
+        "test.gateway/dealers/333/car-sales/444/rejection",
         expect.objectContaining({
           method: "DELETE",
           headers: expect.objectContaining({
