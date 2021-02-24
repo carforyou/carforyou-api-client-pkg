@@ -7,6 +7,7 @@ import {
   fetchDriveTypes,
   fetchFuelTypeGroups,
   fetchFuelTypes,
+  fetchImagesCountGroups,
   fetchMinFirstRegistrationYear,
   fetchOptions,
   fetchSeats,
@@ -73,6 +74,12 @@ describe("CAR service", () => {
         name: "fetchTransmissionTypes",
         fetchFunction: fetchTransmissionTypes,
         response: ["manual", "automatic"],
+      },
+
+      {
+        name: "fetchImagesCountGroups",
+        fetchFunction: fetchImagesCountGroups,
+        response: ["group-0", "group-1-3"],
       },
     ]
 

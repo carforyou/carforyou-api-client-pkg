@@ -79,6 +79,7 @@ export interface ListingFilterParams {
   hasImagesOnly?: boolean
   buyNowEligibleOnly?: boolean
   options?: string[]
+  imagesCountGroup?: string[]
 
   [key: string]:
     | number
