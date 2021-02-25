@@ -71,3 +71,9 @@ export const fetchTransmissionTypes = ({
 }: { options?: ApiCallOptions } = {}): Promise<string[]> => {
   return fetchPath({ path: "inventory/transmissiontypes", options })
 }
+
+export const fetchImagesCountGroups = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({ path: "inventory/images-count-groups", options })
+}
