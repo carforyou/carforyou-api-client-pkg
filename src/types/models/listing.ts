@@ -210,6 +210,7 @@ interface BaseSearchListing {
   consumptionCategory: string
   buyNowEligible: boolean
   buyNowInProgress: boolean
+  description: string
 }
 
 export interface ApiSearchListing extends BaseSearchListing {
