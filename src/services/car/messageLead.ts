@@ -1,10 +1,12 @@
 import { WithValidationError } from "../../types/withValidationError"
-import { PaginationParams } from "../../types/params"
+import { LeadSortOrderParams, LeadSortTypeParams } from "../../types/sort"
+import { LeadQueryParams } from "../../types/params/leads"
 import { Paginated } from "../../types/pagination"
 import { MessageLead, SearchMessageLead } from "../../types/models"
 import toQueryString from "../../lib/toQueryString"
 import { createApiPathWithValidate } from "../../lib/path"
 import { pageOrDefault, sizeOrDefault } from "../../lib/pageParams"
+import { toSpringSortLeadParams } from "../../lib/convertParams"
 import {
   ApiCallOptions,
   fetchPath,
@@ -15,6 +17,11 @@ import {
 export const defaultDealerMessageLeadsPagination = {
   page: 0,
   size: 10,
+}
+
+export const defaultLeadSort = {
+  sortType: LeadSortTypeParams.NEWEST,
+  sortOrder: LeadSortOrderParams.ASC,
 }
 
 export const sendMessageLead = async ({
@@ -76,15 +83,23 @@ export const fetchDealerMessageLeads = async ({
   options = {},
 }: {
   dealerId: number
-  query: PaginationParams
+  query: LeadQueryParams
   options?: ApiCallOptions & { validateOnly?: boolean }
 }): Promise<Paginated<SearchMessageLead>> => {
   const { validateOnly, ...otherOptions } = options
-  const { page, size } = query
+  const { page, size, sort = {} } = query
+
+  const { sortOrder, sortType } = sort
+
+  const sortOrDefault = {
+    sortType: sortType || defaultLeadSort.sortType,
+    sortOrder: sortOrder || defaultLeadSort.sortOrder,
+  }
 
   const queryParams = {
     page: pageOrDefault(page, defaultDealerMessageLeadsPagination),
     size: sizeOrDefault(size, defaultDealerMessageLeadsPagination),
+    sort: toSpringSortLeadParams(sortOrDefault),
   }
 
   const path = `dealers/${dealerId}/message-leads?${toQueryString(queryParams)}`

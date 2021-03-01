@@ -1,6 +1,9 @@
 import toCamelCase from "./toCamelCase"
 
 import {
+  LeadSortOrderParams,
+  LeadSortParams,
+  LeadSortTypeParams,
   ListingSortOrderParams,
   ListingSortParams,
   ListingSortTypeParams,
@@ -29,6 +32,28 @@ export const toSpringSortParams = (elasticSortParams: ListingSortParams) => {
     // Uses two existing fields
     case ListingSortTypeParams.MAKE_MODEL_A_Z:
       return [`make,${convertedSortOrder}`, `model,${convertedSortOrder}`]
+    default:
+      return `${toCamelCase(sortType)},${convertedSortOrder}`
+  }
+}
+
+const reverseSortLeadOrder = (sortOrder: LeadSortOrderParams) => {
+  switch (sortOrder) {
+    case LeadSortOrderParams.ASC:
+      return LeadSortOrderParams.DESC
+    case LeadSortOrderParams.DESC:
+      return LeadSortOrderParams.ASC
+  }
+}
+
+export const toSpringSortLeadParams = (elasticSortParams: LeadSortParams) => {
+  const { sortOrder, sortType } = elasticSortParams
+  const convertedSortOrder = toCamelCase(sortOrder)
+
+  switch (sortType) {
+    // We use alias in elastic, field name is createdDate
+    case LeadSortTypeParams.NEWEST:
+      return `createdDate,${toCamelCase(reverseSortLeadOrder(sortOrder))}`
     default:
       return `${toCamelCase(sortType)},${convertedSortOrder}`
   }

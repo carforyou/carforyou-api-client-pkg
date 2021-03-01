@@ -98,6 +98,9 @@ export {
   ListingSortParams,
   DealerSortTypeParams,
   DealerSortParams,
+  LeadSortOrderParams,
+  LeadSortParams,
+  LeadSortTypeParams,
 } from "./types/sort"
 
 export {
@@ -175,6 +178,7 @@ export { sendBuyNowApplication } from "./services/car/buyNowApplication"
 export {
   sendMessageLead,
   fetchDealerMessageLeads,
+  defaultLeadSort as defaultLeadListingsSort,
 } from "./services/car/messageLead"
 export { addPurchaseConfirmation } from "./services/carSaleTracking/buyerFeedback"
 export {

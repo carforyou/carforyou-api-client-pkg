@@ -29,3 +29,17 @@ export interface DealerSortParams {
   seed?: number
   previewId?: number
 }
+
+export enum LeadSortTypeParams {
+  NEWEST = "NEWEST",
+}
+
+export enum LeadSortOrderParams {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+export interface LeadSortParams {
+  sortOrder?: LeadSortOrderParams
+  sortType?: LeadSortTypeParams
+}
