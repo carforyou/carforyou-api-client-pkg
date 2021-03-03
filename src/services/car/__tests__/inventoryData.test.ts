@@ -5,9 +5,11 @@ import {
   fetchConditionTypes,
   fetchDoors,
   fetchDriveTypes,
+  fetchFirstPublishingDateAgeGroups,
   fetchFuelTypeGroups,
   fetchFuelTypes,
   fetchImagesCountGroups,
+  fetchLastPriceModifiedDateAgeGroups,
   fetchMinFirstRegistrationYear,
   fetchOptions,
   fetchSeats,
@@ -80,6 +82,16 @@ describe("CAR service", () => {
         name: "fetchImagesCountGroups",
         fetchFunction: fetchImagesCountGroups,
         response: ["group-0", "group-1-3"],
+      },
+      {
+        name: "fetchFirstPublishingDateAgeGroups",
+        fetchFunction: fetchFirstPublishingDateAgeGroups,
+        response: ["group-0-60", "group-61-90", "group-90-plus"],
+      },
+      {
+        name: "fetchLastPriceModifiedDateAgeGroups",
+        fetchFunction: fetchLastPriceModifiedDateAgeGroups,
+        response: ["group-0-60", "group-61-90", "group-90-plus"],
       },
     ]
 

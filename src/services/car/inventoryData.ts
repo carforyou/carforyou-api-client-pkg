@@ -77,3 +77,21 @@ export const fetchImagesCountGroups = ({
 }: { options?: ApiCallOptions } = {}): Promise<string[]> => {
   return fetchPath({ path: "inventory/images-count-groups", options })
 }
+
+export const fetchFirstPublishingDateAgeGroups = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({
+    path: "inventory/first-publishing-date-age-groups",
+    options,
+  })
+}
+
+export const fetchLastPriceModifiedDateAgeGroups = ({
+  options = {},
+}: { options?: ApiCallOptions } = {}): Promise<string[]> => {
+  return fetchPath({
+    path: "inventory/last-price-modified-date-age-groups",
+    options,
+  })
+}
