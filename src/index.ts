@@ -154,6 +154,7 @@ export {
   transferDealerListingToManual,
   hideListing,
   unhideListing,
+  getAllDealerFrameNumbers,
 } from "./services/car/inventory"
 export {
   fetchBodyTypes,
