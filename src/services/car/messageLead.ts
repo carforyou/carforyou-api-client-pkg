@@ -1,12 +1,12 @@
 import { WithValidationError } from "../../types/withValidationError"
-import { LeadSortOrderParams, LeadSortTypeParams } from "../../types/sort"
+import { LeadSortTypeParams, SortOrderParams } from "../../types/sort"
 import { LeadQueryParams } from "../../types/params/leads"
 import { Paginated } from "../../types/pagination"
 import { MessageLead, SearchMessageLead } from "../../types/models"
 import toQueryString from "../../lib/toQueryString"
+import toCamelCase from "../../lib/toCamelCase"
 import { createApiPathWithValidate } from "../../lib/path"
 import { pageOrDefault, sizeOrDefault } from "../../lib/pageParams"
-import { toSpringSortLeadParams } from "../../lib/convertParams"
 import {
   ApiCallOptions,
   fetchPath,
@@ -20,8 +20,8 @@ export const defaultDealerMessageLeadsPagination = {
 }
 
 export const defaultLeadSort = {
-  sortType: LeadSortTypeParams.NEWEST,
-  sortOrder: LeadSortOrderParams.ASC,
+  sortType: LeadSortTypeParams.CREATED_DATE,
+  sortOrder: SortOrderParams.ASC,
 }
 
 export const sendMessageLead = async ({
@@ -99,7 +99,9 @@ export const fetchDealerMessageLeads = async ({
   const queryParams = {
     page: pageOrDefault(page, defaultDealerMessageLeadsPagination),
     size: sizeOrDefault(size, defaultDealerMessageLeadsPagination),
-    sort: toSpringSortLeadParams(sortOrDefault),
+    sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
+      sortOrDefault.sortOrder
+    )}`,
   }
 
   const path = `dealers/${dealerId}/message-leads?${toQueryString(queryParams)}`

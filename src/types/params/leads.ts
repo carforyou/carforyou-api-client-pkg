@@ -1,7 +1,7 @@
-import { LeadSortParams } from "../../types/sort"
+import { LeadSortTypeParams, SortParams } from "../../types/sort"
 
 import { PaginationParams } from "./index"
 
 export interface LeadQueryParams extends PaginationParams {
-  sort: LeadSortParams
+  sort: SortParams<LeadSortTypeParams>
 }

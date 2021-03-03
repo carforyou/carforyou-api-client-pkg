@@ -1,3 +1,17 @@
+export enum SortOrderParams {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+export interface SortParams<T> {
+  sortOrder?: SortOrderParams
+  sortType?: T
+}
+
+export enum LeadSortTypeParams {
+  CREATED_DATE = "CREATED_DATE",
+}
+
 export enum ListingSortTypeParams {
   NEWEST = "NEWEST",
   PRICE = "PRICE",
@@ -9,16 +23,6 @@ export enum ListingSortTypeParams {
   PUBLISHING_DATE = "PUBLISHING_DATE",
 }
 
-export enum ListingSortOrderParams {
-  ASC = "ASC",
-  DESC = "DESC",
-}
-
-export interface ListingSortParams {
-  sortOrder?: ListingSortOrderParams
-  sortType?: ListingSortTypeParams
-}
-
 export enum DealerSortTypeParams {
   ROTATION = "ROTATION",
   PREVIEW = "PREVIEW",
@@ -28,18 +32,4 @@ export interface DealerSortParams {
   type: DealerSortTypeParams
   seed?: number
   previewId?: number
-}
-
-export enum LeadSortTypeParams {
-  NEWEST = "NEWEST",
-}
-
-export enum LeadSortOrderParams {
-  ASC = "ASC",
-  DESC = "DESC",
-}
-
-export interface LeadSortParams {
-  sortOrder?: LeadSortOrderParams
-  sortType?: LeadSortTypeParams
 }

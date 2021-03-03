@@ -93,13 +93,13 @@ export {
 } from "./types/params/types"
 
 export {
-  ListingSortOrderParams,
+  SortOrderParams as ListingSortOrderParams,
   ListingSortTypeParams,
-  ListingSortParams,
+  SortParams as ListingSortParams,
   DealerSortTypeParams,
   DealerSortParams,
-  LeadSortOrderParams,
-  LeadSortParams,
+  SortOrderParams,
+  SortParams,
   LeadSortTypeParams,
 } from "./types/sort"
 
