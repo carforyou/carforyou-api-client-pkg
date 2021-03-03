@@ -170,6 +170,8 @@ export {
   fetchSeats,
   fetchTransmissionTypes,
   fetchImagesCountGroups,
+  fetchLastPriceModifiedDateAgeGroups,
+  fetchFirstPublishingDateAgeGroups,
 } from "./services/car/inventoryData"
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export { sendBuyNowApplication } from "./services/car/buyNowApplication"
