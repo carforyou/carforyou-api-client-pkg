@@ -152,6 +152,7 @@ export {
   validateDealerListing,
   saveDealerListing,
   transferDealerListingToManual,
+  transferDealerListingsToManual,
   hideListing,
   unhideListing,
 } from "./services/car/inventory"
