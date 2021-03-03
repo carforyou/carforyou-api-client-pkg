@@ -108,6 +108,10 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchOptions`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getOptionsUsingGET)
   - [`fetchSeats`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/findDistinctSeatsUsingGET)
   - [`fetchTransmissionTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getTransmissionTypesUsingGET)
+  - [`fetchImagesCountGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getImagesCountGroupsUsingGET)
+  - [`fetchLastPriceModifiedDateAgeGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getLastPriceModifiedDateAgeGroupsUsingGET)
+  - [`fetchFirstPublishingDateAgeGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getFirstPublishingDateAgeGroupsUsingGET)
+
 - [Lead](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Lead)
   - [`sendMessageLead`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Lead/createMessageLeadUsingPOST)
 - [Leasing](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing)
