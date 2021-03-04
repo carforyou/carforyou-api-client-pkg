@@ -1,6 +1,6 @@
 import {
-  fetchDealerDefaultListing,
-  saveDealerDefaultDescription,
+  fetchDealerDefaultListingData,
+  saveDealerDefaultListingDescription,
 } from "../defaultListing"
 
 describe("Dealer default listing", () => {
@@ -28,7 +28,7 @@ describe("Dealer default listing", () => {
     })
 
     it("returns data", async () => {
-      const fetched = await fetchDealerDefaultListing({
+      const fetched = await fetchDealerDefaultListingData({
         dealerId,
         options: { accessToken: "TOKEN" },
       })
@@ -43,11 +43,11 @@ describe("Dealer default listing", () => {
 
   describe("#saveDealerDefaultDescription", () => {
     it("sends description in the body", async () => {
-      const description = "this is a big description text"
+      const description = { description: "this is a big description text" }
 
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
 
-      const response = await saveDealerDefaultDescription({
+      const response = await saveDealerDefaultListingDescription({
         dealerId: 123,
         description,
         options: { accessToken: "TOKEN" },
@@ -65,14 +65,14 @@ describe("Dealer default listing", () => {
     it("handles validation error", async () => {
       const message = "not-valid"
       const errors = [{ param: "description", error: "validations.not-empty" }]
-      const description = "this is a big description text"
+      const description = { description: "this is a big description text" }
 
       fetchMock.mockResponses([
         JSON.stringify({ message, errors }),
         { status: 400 },
       ])
 
-      const response = await saveDealerDefaultDescription({
+      const response = await saveDealerDefaultListingDescription({
         dealerId: 123,
         description,
         options: { accessToken: "TOKEN" },

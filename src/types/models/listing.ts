@@ -19,29 +19,6 @@ export interface DealerListingImages {
   spinCode: string
 }
 
-export interface DealerDefaultAdditionalServices {
-  deliveryFeeIncluded: boolean
-  expertInstructionIncluded: boolean
-  fullTankIncluded: boolean
-  nextInspectionIncluded: boolean
-  otherServices: string
-  vignetteIncluded: boolean
-}
-
-export interface DealerDefaultWarranty {
-  warrantyDetails: string
-  warrantyDuration: number
-  warrantyMileage: number
-  warrantyStartDate: string
-  warrantyType: string
-}
-
-export interface DealerDefaultListing
-  extends DealerDefaultAdditionalServices,
-    DealerDefaultWarranty {
-  description: string
-}
-
 export type LifecycleState = "active" | "inactive" | "gone"
 
 export interface ListingBasicData extends BasicListingTypeCommons {

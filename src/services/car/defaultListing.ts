@@ -1,9 +1,10 @@
 import { WithValidationError } from "../../types/withValidationError"
 import {
-  DealerDefaultAdditionalServices,
-  DealerDefaultListing,
-  DealerDefaultWarranty,
-} from "../../types/models/listing"
+  DealerDefaultListingAdditionalServices,
+  DealerDefaultListingData,
+  DealerDefaultListingDescription,
+  DealerDefaultListingWarranty,
+} from "../../types/models/dealerDefaultListing"
 import {
   ApiCallOptions,
   fetchPath,
@@ -11,28 +12,28 @@ import {
   putData,
 } from "../../base"
 
-export const fetchDealerDefaultListing = async ({
+export const fetchDealerDefaultListingData = async ({
   dealerId,
   options = {},
 }: {
   dealerId: number
   options?: ApiCallOptions
-}): Promise<DealerDefaultListing> => {
+}): Promise<DealerDefaultListingData> => {
   return fetchPath({
     path: `dealers/${dealerId}/default-listing`,
     options: { isAuthorizedRequest: true, ...options },
   })
 }
 
-export const saveDealerDefaultAdditionalServices = async ({
+export const saveDealerDefaultListingAdditionalServices = async ({
   dealerId,
   additionalServices,
   options = {},
 }: {
   dealerId: number
-  additionalServices: DealerDefaultAdditionalServices
+  additionalServices: DealerDefaultListingAdditionalServices
   options?: ApiCallOptions
-}): Promise<WithValidationError<DealerDefaultAdditionalServices>> => {
+}): Promise<WithValidationError<DealerDefaultListingAdditionalServices>> => {
   try {
     const result = await putData({
       path: `dealers/${dealerId}/default-listing/additional-services`,
@@ -48,15 +49,15 @@ export const saveDealerDefaultAdditionalServices = async ({
   }
 }
 
-export const saveDealerDefaultDescription = async ({
+export const saveDealerDefaultListingDescription = async ({
   dealerId,
   description,
   options = {},
 }: {
   dealerId: number
-  description: string
+  description: DealerDefaultListingDescription
   options?: ApiCallOptions
-}): Promise<WithValidationError<{ description: string }>> => {
+}): Promise<WithValidationError<DealerDefaultListingDescription>> => {
   try {
     const result = await putData({
       path: `dealers/${dealerId}/default-listing/description`,
@@ -72,15 +73,15 @@ export const saveDealerDefaultDescription = async ({
   }
 }
 
-export const saveDealerDefaultWarranty = async ({
+export const saveDealerDefaultListingWarranty = async ({
   dealerId,
   warranty,
   options = {},
 }: {
   dealerId: number
-  warranty: DealerDefaultWarranty
+  warranty: DealerDefaultListingWarranty
   options?: ApiCallOptions
-}): Promise<WithValidationError<DealerDefaultWarranty>> => {
+}): Promise<WithValidationError<DealerDefaultListingWarranty>> => {
   try {
     const result = await putData({
       path: `dealers/${dealerId}/default-listing/warranty`,
