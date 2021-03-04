@@ -95,7 +95,7 @@ export {
 export {
   SortOrderParams as ListingSortOrderParams,
   ListingSortTypeParams,
-  SortParams as ListingSortParams,
+  ListingSortParams,
   DealerSortTypeParams,
   DealerSortParams,
   SortOrderParams,

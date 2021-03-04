@@ -23,6 +23,11 @@ export enum ListingSortTypeParams {
   PUBLISHING_DATE = "PUBLISHING_DATE",
 }
 
+export interface ListingSortParams {
+  sortOrder?: SortOrderParams
+  sortType?: ListingSortTypeParams
+}
+
 export enum DealerSortTypeParams {
   ROTATION = "ROTATION",
   PREVIEW = "PREVIEW",
