@@ -143,6 +143,10 @@ export interface MessageLead {
     services?: string[]
     otherService?: string
   }
+  testDrive?: {
+    requested?: boolean
+    proposedDate?: string
+  }
 }
 
 export interface SearchMessageLead extends MessageLead {
