@@ -21,7 +21,7 @@ export const defaultDealerMessageLeadsPagination = {
 
 export const defaultLeadSort = {
   sortType: LeadSortTypeParams.CREATED_DATE,
-  sortOrder: SortOrderParams.ASC,
+  sortOrder: SortOrderParams.DESC,
 }
 
 export const sendMessageLead = async ({
