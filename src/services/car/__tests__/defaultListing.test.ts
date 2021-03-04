@@ -1,6 +1,8 @@
 import {
   fetchDealerDefaultListingData,
   saveDealerDefaultListingDescription,
+  saveDealerDefaultListingAdditionalServices,
+  saveDealerDefaultListingWarranty,
 } from "../defaultListing"
 
 describe("Dealer default listing", () => {
@@ -41,7 +43,7 @@ describe("Dealer default listing", () => {
     })
   })
 
-  describe("#saveDealerDefaultDescription", () => {
+  describe("#saveDealerDefaultListingDescription", () => {
     it("sends description in the body", async () => {
       const description = { description: "this is a big description text" }
 
@@ -75,6 +77,128 @@ describe("Dealer default listing", () => {
       const response = await saveDealerDefaultListingDescription({
         dealerId: 123,
         description,
+        options: { accessToken: "TOKEN" },
+      })
+
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#saveDealerDefaultListingWarranty", () => {
+    it("sends description in the body", async () => {
+      const warranty = {
+        warrantyDetails: "string",
+        warrantyDuration: 0,
+        warrantyMileage: 0,
+        warrantyStartDate: "2021-03-04",
+        warrantyType: "from-date",
+      }
+
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await saveDealerDefaultListingWarranty({
+        dealerId: 123,
+        warranty,
+        options: { accessToken: "TOKEN" },
+      })
+      expect(response).toEqual({ tag: "success", result: { ok: true } })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/123/default-listing/warranty"),
+        expect.objectContaining({
+          body: JSON.stringify({ warranty }),
+        })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "warranty", error: "validations.not-empty" }]
+      const warranty = {
+        warrantyDetails: "string",
+        warrantyDuration: 0,
+        warrantyMileage: 0,
+        warrantyStartDate: "2021-03-04",
+        warrantyType: "from-date",
+      }
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await saveDealerDefaultListingWarranty({
+        dealerId: 123,
+        warranty,
+        options: { accessToken: "TOKEN" },
+      })
+
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#saveDealerDefaultListingAdditionalServices", () => {
+    it("sends description in the body", async () => {
+      const additionalServices = {
+        deliveryFeeIncluded: true,
+        description: "string",
+        expertInstructionIncluded: true,
+        fullTankIncluded: true,
+        nextInspectionIncluded: true,
+        otherServices: "string",
+        vignetteIncluded: true,
+      }
+
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await saveDealerDefaultListingAdditionalServices({
+        dealerId: 123,
+        additionalServices,
+        options: { accessToken: "TOKEN" },
+      })
+      expect(response).toEqual({ tag: "success", result: { ok: true } })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining(
+          "/dealers/123/default-listing/additional-services"
+        ),
+        expect.objectContaining({
+          body: JSON.stringify({ additionalServices }),
+        })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [
+        { param: "additionalServices", error: "validations.not-empty" },
+      ]
+      const additionalServices = {
+        deliveryFeeIncluded: true,
+        description: "string",
+        expertInstructionIncluded: true,
+        fullTankIncluded: true,
+        nextInspectionIncluded: true,
+        otherServices: "string",
+        vignetteIncluded: true,
+      }
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await saveDealerDefaultListingAdditionalServices({
+        dealerId: 123,
+        additionalServices,
         options: { accessToken: "TOKEN" },
       })
 
