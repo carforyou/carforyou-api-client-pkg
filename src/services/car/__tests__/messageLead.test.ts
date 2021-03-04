@@ -193,7 +193,7 @@ describe("Car API", () => {
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(
-          /\/dealers\/1234\/message-leads\?page=1&size=7&sort=createdDate%2Casc$/
+          /\/dealers\/1234\/message-leads\?page=1&size=7&sort=createdDate%2Cdesc$/
         ),
         expect.any(Object)
       )
