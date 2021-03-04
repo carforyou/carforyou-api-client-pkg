@@ -38,7 +38,6 @@ export interface DealerDefaultWarranty {
 
 export interface DealerDefaultListing
   extends DealerDefaultAdditionalServices,
-    DealerDefaultDescription,
     DealerDefaultWarranty {
   description: string
 }
