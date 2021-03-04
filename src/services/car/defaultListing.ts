@@ -1,7 +1,7 @@
 import { WithValidationError } from "../../types/withValidationError"
 import {
-  DealerDefaultListing,
   DealerDefaultAdditionalServices,
+  DealerDefaultListing,
   DealerDefaultWarranty,
 } from "../../types/models/listing"
 import {
