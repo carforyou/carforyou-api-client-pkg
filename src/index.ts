@@ -154,6 +154,7 @@ export {
   transferDealerListingToManual,
   hideListing,
   unhideListing,
+  getAllDealerFrameNumbers,
 } from "./services/car/inventory"
 export {
   fetchBodyTypes,
@@ -169,6 +170,8 @@ export {
   fetchSeats,
   fetchTransmissionTypes,
   fetchImagesCountGroups,
+  fetchLastPriceModifiedDateAgeGroups,
+  fetchFirstPublishingDateAgeGroups,
 } from "./services/car/inventoryData"
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export { sendBuyNowApplication } from "./services/car/buyNowApplication"

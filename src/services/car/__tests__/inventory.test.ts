@@ -2,6 +2,7 @@ import {
   archiveDealerListing,
   fetchDealerMakes,
   fetchListing,
+  getAllDealerFrameNumbers,
   hideListing,
   listingMandatoryFields,
   ListingValidationEndpoint,
@@ -478,6 +479,21 @@ describe("CAR service", () => {
         options: requestOptionsMock,
       })
       expect(data).toEqual(new Set(fields))
+    })
+  })
+
+  describe("#getAllDealerFrameNumbers", () => {
+    it("returns all delaer frame numbers", async () => {
+      const frameNumbers = ["1234", "123ABCDS", "123AB23CD"]
+
+      fetchMock.mockResponse(JSON.stringify(frameNumbers))
+
+      const data = await getAllDealerFrameNumbers({
+        dealerId: 123,
+        query: "123",
+        options: requestOptionsMock,
+      })
+      expect(data).toEqual(frameNumbers)
     })
   })
 })
