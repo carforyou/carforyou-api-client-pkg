@@ -225,3 +225,31 @@ export const setLogo = async ({
     return handleValidationError(error, { swallowErrors: true })
   }
 }
+
+export const putDealerDescription = async ({
+  dealerId,
+  description,
+  options = {},
+}: {
+  dealerId: number
+  description: string
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    const result = await putData({
+      path: `dealers/${dealerId}/description`,
+      body: { description },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
+}
