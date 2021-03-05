@@ -69,6 +69,13 @@ export {
   ModelType,
 } from "./types/models/autoAlarm"
 
+export {
+  DealerDefaultListingAdditionalServices,
+  DealerDefaultListingData,
+  DealerDefaultListingDescription,
+  DealerDefaultListingWarranty,
+} from "./types/models/dealerDefaultListing"
+
 export { PaginationParams } from "./types/params"
 export {
   MakeModelFilter,
@@ -143,6 +150,14 @@ export {
   saveDealerListingImages,
   fetchDealerListingImages,
 } from "./services/car/image"
+
+export {
+  fetchDealerDefaultListingData,
+  saveDealerDefaultListingAdditionalServices,
+  saveDealerDefaultListingDescription,
+  saveDealerDefaultListingWarranty,
+} from "./services/car/defaultListing"
+
 export {
   fetchListing,
   fetchDealerMakes,
