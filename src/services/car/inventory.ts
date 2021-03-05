@@ -297,7 +297,7 @@ export const transferDealerListingsToManual = async ({
 }): Promise<WithValidationError> => {
   try {
     await postData({
-      path: `/api/dealers/${dealerId}/listings/transfer-to-manual`,
+      path: `dealers/${dealerId}/listings/transfer-to-manual`,
       body: {
         elements: listingIds,
       },
