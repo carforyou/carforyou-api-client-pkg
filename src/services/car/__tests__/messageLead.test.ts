@@ -1,5 +1,6 @@
 import { fetchDealerMessageLeads, sendMessageLead } from "../messageLead"
 
+import { defaultLeadSort } from "../messageLead"
 import { PaginatedLeads } from "../../../lib/factories/paginated"
 import { SearchMessageLead as SearchMessageLeadFactory } from "../../../lib/factories/leads"
 
@@ -183,6 +184,7 @@ describe("Car API", () => {
         query: {
           page: 2,
           size: 7,
+          sort: defaultLeadSort,
         },
         options: {
           accessToken: "DummyTokenString",
@@ -190,7 +192,9 @@ describe("Car API", () => {
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringMatching(/\/dealers\/1234\/message-leads\?page=1&size=7$/),
+        expect.stringMatching(
+          /\/dealers\/1234\/message-leads\?page=1&size=7&sort=createdDate%2Cdesc$/
+        ),
         expect.any(Object)
       )
     })
@@ -203,6 +207,7 @@ describe("Car API", () => {
           query: {
             page: 0,
             size: 7,
+            sort: {},
           },
         })
       } catch (err) {
@@ -220,6 +225,7 @@ describe("Car API", () => {
         query: {
           page: 0,
           size: 7,
+          sort: {},
         },
         options: {
           accessToken: "DummyTokenString",

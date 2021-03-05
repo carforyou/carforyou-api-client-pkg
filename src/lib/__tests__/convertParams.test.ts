@@ -1,12 +1,12 @@
 import { toSpringSortParams } from "../convertParams"
 
-import { ListingSortOrderParams, ListingSortTypeParams } from "../../types/sort"
+import { ListingSortTypeParams, SortOrderParams } from "../../types/sort"
 
 describe("toSpringParams", () => {
   it("converts newest to createdDate", () => {
     expect(
       toSpringSortParams({
-        sortOrder: ListingSortOrderParams.ASC,
+        sortOrder: SortOrderParams.ASC,
         sortType: ListingSortTypeParams.NEWEST,
       })
     ).toEqual("createdDate,desc")
@@ -15,7 +15,7 @@ describe("toSpringParams", () => {
   it("converts make model to two fields sort", () => {
     expect(
       toSpringSortParams({
-        sortOrder: ListingSortOrderParams.DESC,
+        sortOrder: SortOrderParams.DESC,
         sortType: ListingSortTypeParams.MAKE_MODEL_A_Z,
       })
     ).toEqual(["make,desc", "model,desc"])
@@ -33,7 +33,7 @@ describe("toSpringParams", () => {
     it(`converts the ${sortType} name to ${converted}`, () => {
       expect(
         toSpringSortParams({
-          sortOrder: ListingSortOrderParams.ASC,
+          sortOrder: SortOrderParams.ASC,
           sortType: sortType as ListingSortTypeParams,
         })
       ).toEqual(`${converted},asc`)

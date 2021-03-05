@@ -4,10 +4,7 @@ import {
   fetchListings,
 } from "../listingSearch"
 
-import {
-  ListingSortOrderParams,
-  ListingSortTypeParams,
-} from "../../../types/sort"
+import { ListingSortTypeParams, SortOrderParams } from "../../../types/sort"
 import { fetchPath, postData } from "../../../base"
 
 jest.mock("../../../base", () => ({
@@ -323,7 +320,7 @@ describe("SEARCH service", () => {
             dealerId,
             query: {
               sortType: ListingSortTypeParams.NEWEST,
-              sortOrder: ListingSortOrderParams.ASC,
+              sortOrder: SortOrderParams.ASC,
             },
             options: requestOptionsMock,
           })
