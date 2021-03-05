@@ -1,4 +1,4 @@
-import { ListingSortParams } from "../../types/sort"
+import { ListingSortTypeParams, SortParams } from "../../types/sort"
 
 import { PaginationParams } from "./index"
 
@@ -92,7 +92,7 @@ export interface ListingFilterParams {
 
 export interface DealerListingQueryParams
   extends PaginationParams,
-    ListingSortParams {
+    SortParams<ListingSortTypeParams> {
   manual?: boolean
   features?: string[]
 }
