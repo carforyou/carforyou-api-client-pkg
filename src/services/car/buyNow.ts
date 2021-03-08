@@ -1,7 +1,13 @@
 import { WithValidationError } from "../../types/withValidationError"
 import { BuyNowApplication } from "../../types/models/applications"
+import { BuyNowConfiguration } from "../../types/models"
 import { createApiPathWithValidate } from "../../lib/path"
-import { ApiCallOptions, ignoreServerSideErrors, postData } from "../../base"
+import {
+  ApiCallOptions,
+  fetchPath,
+  ignoreServerSideErrors,
+  postData,
+} from "../../base"
 
 export const sendBuyNowApplication = async ({
   listingId,
@@ -32,4 +38,17 @@ export const sendBuyNowApplication = async ({
   } catch (error) {
     return ignoreServerSideErrors({ error, returnValue: buyNowApplication })
   }
+}
+
+export const fetchBuyNowConfiguration = async ({
+  dealerId,
+  options = {},
+}: {
+  dealerId: number
+  options?: ApiCallOptions
+}): Promise<BuyNowConfiguration> => {
+  return fetchPath({
+    path: `dealers/${dealerId}/buy-now-configuration'`,
+    options,
+  })
 }
