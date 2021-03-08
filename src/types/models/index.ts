@@ -217,3 +217,6 @@ export interface DealerAnalytics {
     value: number
   }[]
 }
+export interface BuyNowConfiguration {
+  paymentAvailable: boolean
+}

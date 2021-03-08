@@ -28,6 +28,7 @@ export {
   Entitlements,
   CockpitAnalytics,
   DealerAnalytics,
+  BuyNowConfiguration,
 } from "./types/models/index"
 
 export {
@@ -192,7 +193,10 @@ export {
   fetchFirstPublishingDateAgeGroups,
 } from "./services/car/inventoryData"
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
-export { sendBuyNowApplication } from "./services/car/buyNowApplication"
+export {
+  sendBuyNowApplication,
+  fetchBuyNowConfiguration,
+} from "./services/car/buyNow"
 export {
   sendMessageLead,
   fetchDealerMessageLeads,
