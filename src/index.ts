@@ -252,6 +252,7 @@ export {
   postDealerPromotion,
   putDealerPromotion,
   setLogo,
+  setImage,
 } from "./services/dealer"
 
 export { sendSupportCase } from "./services/emailDelivery"

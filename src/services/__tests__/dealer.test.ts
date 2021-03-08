@@ -8,6 +8,7 @@ import {
   postDealerPromotion,
   putDealerProfile,
   putDealerPromotion,
+  setImage,
   setLogo,
 } from "../dealer"
 import { DealerSourceGroup, DealerType } from "../../types/models/index"
@@ -273,6 +274,36 @@ describe("Dealer", () => {
         const response = await setLogo({
           dealerId: dealerIdMock,
           logo: null,
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("error")
+      })
+    })
+
+    describe("#setImage", () => {
+      it("successfully sets dealer image", async () => {
+        fetchMock.mockResponse(JSON.stringify({}))
+
+        const response = await setImage({
+          dealerId: dealerIdMock,
+          image: "s3key..",
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("success")
+      })
+
+      it("fails to set dealers image", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const response = await setImage({
+          dealerId: dealerIdMock,
+          image: null,
           options: requestOptionsMock,
         })
 
