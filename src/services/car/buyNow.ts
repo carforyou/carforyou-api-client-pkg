@@ -48,7 +48,7 @@ export const fetchBuyNowConfiguration = async ({
   options?: ApiCallOptions
 }): Promise<BuyNowConfiguration> => {
   return fetchPath({
-    path: `dealers/${dealerId}/buy-now-configuration'`,
+    path: `dealers/${dealerId}/buy-now-configuration`,
     options,
   })
 }
