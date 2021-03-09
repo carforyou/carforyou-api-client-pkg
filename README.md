@@ -75,6 +75,11 @@ Also accompanying modes and param types, as well as default values, are exported
 
 ### [CarForYou service](carforyou-service.preprod.carforyou.ch)
 
+- [Dealer Default Listing](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing)
+  - [`fetchDealerDefaultListingData`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/getUsingGET)
+  - [`saveDealerDefaultListingAdditionalServices](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setAdditionalServicesUsingPUT)
+  - [`saveDealerDefaultListingDescription`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setDescriptionUsingPUT)
+  - [`saveDealerDefaultListingWarranty`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setWarrantyUsingPUT)
 - [Good-Bad Deal data](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Good-Bad_Deal_Data)
   - [`featchDealScores`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Good-Bad%20Deal%20Data/getScoresUsingGET)
 - [Image](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Image)
@@ -97,6 +102,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`listingMandatoryFields`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getPublishingMandatoryFieldsUsingGET)
   - [`getAllDealerFrameNumbers`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getAllDealerFrameNumbersUsingGET)
 - [Inventory data](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory_Data)
+
   - [`fetchBodyTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getBodyTypesUsingGET)
   - [`fetchColorGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getColorGroupsUsingGET)
   - [`fetchColors`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getColorsUsingGET)
@@ -121,8 +127,6 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`sendLeasingInterest`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing/createLeasingInterestUsingPOST)
 - [Money Back Guarantee](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money_Back_Guarantee)
   - [`sendMoneybackApplication`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money%20Back%20Guarantee/createMbgApplicationUsingPOST)
-- [Buy Now](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now)
-  - [`sendBuyNowApplication`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now/createBuyNowApplicationUsingPOST)
 
 ### [Options service](https://option-service.preprod.carforyou.ch/swagger-ui/index.html)
 
@@ -236,6 +240,12 @@ Also accompanying modes and param types, as well as default values, are exported
 
 - [Buyer feedback](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Buyer%20Feedback)
   - [`addPurchaseConfirmation`](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Buyer%20Feedback/addPurchaseConfirmationUsingPOST)
+
+### [Buyer service](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html)
+
+- [Buy Now](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html)
+  - [`sendBuyNowApplication`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Application)
+  - [`fetchBuyNowConfiguration`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Configuration)
 
 ## Mocking in tests
 
