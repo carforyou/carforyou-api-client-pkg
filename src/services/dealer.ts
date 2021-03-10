@@ -265,7 +265,7 @@ export const putDealerDescription = async ({
 }): Promise<WithValidationError> => {
   try {
     const result = await putData({
-      path: `dealers/${dealerId}/image`,
+      path: `dealers/${dealerId}/description`,
       body: { description },
       options: {
         isAuthorizedRequest: true,
