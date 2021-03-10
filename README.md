@@ -100,6 +100,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`archiveDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/archiveUsingPOST)
   - [`unpublishDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/unpublishUsingPOST)
   - [`listingMandatoryFields`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getPublishingMandatoryFieldsUsingGET)
+  - [`transferDealerListingToManual`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/transferToManualUsingPOST)
+  - [`transferDealerListingsToManual`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/bulkTransferToManualUsingPOST)
   - [`getAllDealerFrameNumbers`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getAllDealerFrameNumbersUsingGET)
 - [Inventory data](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory_Data)
 
@@ -203,6 +205,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`postDealerPromotion`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/createPromotionUsingPOST)
   - [`putDealerPromotion`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/updatePromotionUsingPUT)
   - [`setLogo`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setLogoUsingPUT)
+  - [`setImage`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setImageUsingPUT)
+  - [`putDealerDescription`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setDescriptionUsingPUT)
 
 ### [Email delivery service](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html)
 

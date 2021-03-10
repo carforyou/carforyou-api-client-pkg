@@ -171,6 +171,7 @@ export {
   validateDealerListing,
   saveDealerListing,
   transferDealerListingToManual,
+  transferDealerListingsToManual,
   hideListing,
   unhideListing,
   getAllDealerFrameNumbers,
@@ -256,6 +257,8 @@ export {
   postDealerPromotion,
   putDealerPromotion,
   setLogo,
+  setImage,
+  putDealerDescription,
 } from "./services/dealer"
 
 export { sendSupportCase } from "./services/emailDelivery"
