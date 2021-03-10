@@ -256,6 +256,7 @@ export {
   postDealerPromotion,
   putDealerPromotion,
   setLogo,
+  setImage,
   putDealerDescription,
 } from "./services/dealer"
 
