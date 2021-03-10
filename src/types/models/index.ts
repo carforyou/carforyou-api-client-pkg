@@ -82,11 +82,8 @@ export interface Dealer {
   logo?: string
   googleReviewSummary?: GoogleReviewSummary
   googlePlaceId?: number
-<<<<<<< HEAD
   image?: string
-=======
   description?: string
->>>>>>> master
 }
 
 export interface ZipCode {
