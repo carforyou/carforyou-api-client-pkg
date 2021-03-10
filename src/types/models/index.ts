@@ -143,6 +143,10 @@ export interface MessageLead {
     services?: string[]
     otherService?: string
   }
+  testDrive?: {
+    requested?: boolean
+    proposedDate?: string
+  }
 }
 
 export interface SearchMessageLead extends MessageLead {
@@ -212,4 +216,7 @@ export interface DealerAnalytics {
     name: string
     value: number
   }[]
+}
+export interface BuyNowConfiguration {
+  paymentAvailable: boolean
 }

@@ -389,3 +389,20 @@ export const listingMandatoryFields = async ({
 
   return new Set(data.map((entry) => entry.param))
 }
+
+export const getAllDealerFrameNumbers = async ({
+  dealerId,
+  query,
+  options = {},
+}: {
+  dealerId: number
+  query: string
+  options?: ApiCallOptions
+}): Promise<string[]> =>
+  await fetchPath({
+    path: `dealers/${dealerId}/frame-numbers?q=${query}`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })

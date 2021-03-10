@@ -1,3 +1,17 @@
+export enum SortOrderParams {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+export interface SortParams<T> {
+  sortOrder?: SortOrderParams
+  sortType?: T
+}
+
+export enum LeadSortTypeParams {
+  CREATED_DATE = "CREATED_DATE",
+}
+
 export enum ListingSortTypeParams {
   NEWEST = "NEWEST",
   PRICE = "PRICE",
@@ -11,13 +25,8 @@ export enum ListingSortTypeParams {
   PRODUCTION_YEAR = "PRODUCTION_YEAR",
 }
 
-export enum ListingSortOrderParams {
-  ASC = "ASC",
-  DESC = "DESC",
-}
-
 export interface ListingSortParams {
-  sortOrder?: ListingSortOrderParams
+  sortOrder?: SortOrderParams
   sortType?: ListingSortTypeParams
 }
 

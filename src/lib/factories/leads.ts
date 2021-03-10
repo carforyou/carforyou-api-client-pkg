@@ -18,6 +18,14 @@ const searchMessageLeadDefaults: SearchMessageLeadType = {
   createdDate: "2021-01-01T12:34:56.000Z",
   message:
     "Grüezi, Ich interessiere mich für Ihr Inserat Ford, Fiesta 1.0 EcoB 125 Titanium X.",
+  testDrive: {
+    requested: true,
+    proposedDate: "2021-02-05",
+  },
+  videoCallPreference: {
+    available: true,
+    services: ["Whatsapp", "Facetime"],
+  },
 }
 
 export const SearchMessageLead = (attributes = {}): SearchMessageLeadType => ({

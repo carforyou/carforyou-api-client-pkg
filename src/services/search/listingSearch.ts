@@ -1,8 +1,8 @@
 import { WithTopListing } from "../../types/topListing"
 import {
-  ListingSortOrderParams,
-  ListingSortParams,
   ListingSortTypeParams,
+  SortOrderParams,
+  SortParams,
 } from "../../types/sort"
 import {
   ListingQueryParams,
@@ -88,12 +88,12 @@ export const fetchDealerArchivedListingsCount = async ({
 
 export const defaultUserSort = {
   sortType: ListingSortTypeParams.RELEVANCE,
-  sortOrder: ListingSortOrderParams.ASC,
+  sortOrder: SortOrderParams.ASC,
 }
 
 export const defaultDealerSort = {
   sortType: ListingSortTypeParams.NEWEST,
-  sortOrder: ListingSortOrderParams.ASC,
+  sortOrder: SortOrderParams.ASC,
 }
 
 export const defaultUserPagination = {
@@ -120,7 +120,7 @@ const searchForListings = ({
     includeTopListing?: boolean
     isAuthorizedRequest?: boolean
   }
-  defaultSort: ListingSortParams
+  defaultSort: SortParams<ListingSortTypeParams>
   defaultPagination: PaginationParams
 }) => {
   const { page, size, sortOrder, sortType, ...rest } = query
@@ -228,7 +228,7 @@ export const fetchDealerArchivedListings = async ({
   options = {},
 }: {
   dealerId: number
-  query?: ListingSortParams & PaginationParams
+  query?: SortParams<ListingSortTypeParams> & PaginationParams
   options?: ApiCallOptions
 }): Promise<Paginated<SearchListing>> => {
   const { page, size, sortOrder, sortType } = query

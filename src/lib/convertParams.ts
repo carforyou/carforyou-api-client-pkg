@@ -1,24 +1,26 @@
 import toCamelCase from "./toCamelCase"
 
 import {
-  ListingSortOrderParams,
-  ListingSortParams,
   ListingSortTypeParams,
+  SortOrderParams,
+  SortParams,
 } from "../types/sort"
 
-const reverseSortOrder = (sortOrder: ListingSortOrderParams) => {
+const reverseSortOrder = (sortOrder: SortOrderParams) => {
   switch (sortOrder) {
-    case ListingSortOrderParams.ASC:
-      return ListingSortOrderParams.DESC
-    case ListingSortOrderParams.DESC:
-      return ListingSortOrderParams.ASC
+    case SortOrderParams.ASC:
+      return SortOrderParams.DESC
+    case SortOrderParams.DESC:
+      return SortOrderParams.ASC
   }
 }
 
 // search APIs generally use elastic search, with the exception of the archived listing search
 // for the ease of use to not have a need for multiple data types we convert existing sort params
 // to the ones accepted by spring
-export const toSpringSortParams = (elasticSortParams: ListingSortParams) => {
+export const toSpringSortParams = (
+  elasticSortParams: SortParams<ListingSortTypeParams>
+) => {
   const { sortOrder, sortType } = elasticSortParams
   const convertedSortOrder = toCamelCase(sortOrder)
 
