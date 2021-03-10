@@ -51,7 +51,7 @@ describe("Dealer default listing", () => {
 
       const response = await saveDealerDefaultListingDescription({
         dealerId: 123,
-        description,
+        description: description,
         options: { accessToken: "TOKEN" },
       })
       expect(response).toEqual({ tag: "success", result: { ok: true } })
@@ -59,7 +59,7 @@ describe("Dealer default listing", () => {
       expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining("/dealers/123/default-listing/description"),
         expect.objectContaining({
-          body: JSON.stringify({ description }),
+          body: JSON.stringify(description),
         })
       )
     })
@@ -90,7 +90,7 @@ describe("Dealer default listing", () => {
   })
 
   describe("#saveDealerDefaultListingWarranty", () => {
-    it("sends description in the body", async () => {
+    it("sends warranty in the body", async () => {
       const warranty = {
         warrantyDetails: "string",
         warrantyDuration: 0,
@@ -111,7 +111,7 @@ describe("Dealer default listing", () => {
       expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining("/dealers/123/default-listing/warranty"),
         expect.objectContaining({
-          body: JSON.stringify({ warranty }),
+          body: JSON.stringify(warranty),
         })
       )
     })
@@ -147,7 +147,7 @@ describe("Dealer default listing", () => {
   })
 
   describe("#saveDealerDefaultListingAdditionalServices", () => {
-    it("sends description in the body", async () => {
+    it("sends additional services in the body", async () => {
       const additionalServices = {
         deliveryFeeIncluded: true,
         description: "string",
@@ -172,7 +172,7 @@ describe("Dealer default listing", () => {
           "/dealers/123/default-listing/additional-services"
         ),
         expect.objectContaining({
-          body: JSON.stringify({ additionalServices }),
+          body: JSON.stringify(additionalServices),
         })
       )
     })
