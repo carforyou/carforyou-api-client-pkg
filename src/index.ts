@@ -257,6 +257,8 @@ export {
   postDealerPromotion,
   putDealerPromotion,
   setLogo,
+  setImage,
+  putDealerDescription,
 } from "./services/dealer"
 
 export { sendSupportCase } from "./services/emailDelivery"
