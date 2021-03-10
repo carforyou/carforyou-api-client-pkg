@@ -6,6 +6,7 @@ import {
   fetchDealerSuggestions,
   postDealerProfile,
   postDealerPromotion,
+  putDealerDescription,
   putDealerProfile,
   putDealerPromotion,
   setLogo,
@@ -274,6 +275,36 @@ describe("Dealer", () => {
         const response = await setLogo({
           dealerId: dealerIdMock,
           logo: null,
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("error")
+      })
+    })
+
+    describe("#putDealerDescription", () => {
+      it("successfully sets dealer description", async () => {
+        fetchMock.mockResponse(JSON.stringify({}))
+
+        const response = await putDealerDescription({
+          dealerId: dealerIdMock,
+          description: "Best deals",
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("success")
+      })
+
+      it("fails to set dealers description", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const response = await putDealerDescription({
+          dealerId: dealerIdMock,
+          description: null,
           options: requestOptionsMock,
         })
 
