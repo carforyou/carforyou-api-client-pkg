@@ -22,8 +22,9 @@ describe("Car API", () => {
   })
 
   describe("#sendBuyNowApplication", () => {
+    const mockResponse = { paymentUrl: "dummyPaymentUrl" }
     beforeEach(() => {
-      fetchMock.mockResponse("")
+      fetchMock.mockResponse(JSON.stringify(mockResponse))
     })
 
     it("calls submission endpoint", async () => {
@@ -60,7 +61,7 @@ describe("Car API", () => {
           buyNowApplication: buyNowApplication(),
         })
 
-        expect(result).toEqual({ tag: "success", result: buyNowApplication() })
+        expect(result).toEqual({ tag: "success", result: mockResponse })
       })
     })
 
@@ -83,6 +84,7 @@ describe("Car API", () => {
         })
 
         expect(result.tag).toEqual("error")
+
         if (result.tag === "error") {
           expect(result.errors).toEqual(errors)
           expect(result.message).toEqual("validations.not-valid")

@@ -40,7 +40,7 @@ export const sendBuyNowApplication = async ({
       result: response,
     }
   } catch (error) {
-    return handleValidationError({ error })
+    return handleValidationError(error)
   }
 }
 
