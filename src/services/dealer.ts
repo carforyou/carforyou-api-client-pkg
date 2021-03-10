@@ -228,17 +228,17 @@ export const setLogo = async ({
 
 export const setImage = async ({
   dealerId,
-  image,
+  imageS3Key,
   options = {},
 }: {
   dealerId: number
-  image: string
+  imageS3Key: string
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   try {
     const result = await putData({
       path: `dealers/${dealerId}/image`,
-      body: { image },
+      body: { image: imageS3Key },
       options: {
         isAuthorizedRequest: true,
         ...options,
