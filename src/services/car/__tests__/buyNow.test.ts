@@ -1,4 +1,4 @@
-import { sendBuyNowApplication } from "../buyNowApplication"
+import { fetchBuyNowConfiguration, sendBuyNowApplication } from "../buyNow"
 
 describe("Car API", () => {
   beforeEach(fetchMock.resetMocks)
@@ -84,6 +84,19 @@ describe("Car API", () => {
           expect(result.message).toEqual("validations.not-valid")
         }
       })
+    })
+  })
+
+  describe("fetchBuyNowConfiguration", () => {
+    it("fetches the data", async () => {
+      const config = {
+        paymentAvailable: true,
+      }
+      fetchMock.mockResponse(JSON.stringify(config))
+
+      const data = await fetchBuyNowConfiguration({ dealerId: 1 })
+      expect(data).toEqual(config)
+      expect(fetch).toHaveBeenCalled()
     })
   })
 })
