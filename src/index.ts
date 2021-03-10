@@ -171,6 +171,7 @@ export {
   validateDealerListing,
   saveDealerListing,
   transferDealerListingToManual,
+  transferDealerListingsToManual,
   hideListing,
   unhideListing,
   getAllDealerFrameNumbers,

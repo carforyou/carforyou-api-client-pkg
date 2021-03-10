@@ -9,6 +9,7 @@ import {
   prepareListingData,
   publishDealerListing,
   saveDealerListing,
+  transferDealerListingsToManual,
   transferDealerListingToManual,
   unhideListing,
   unpublishDealerListing,
@@ -352,7 +353,7 @@ describe("CAR service", () => {
   })
 
   describe("#transferDealerListingToManual", () => {
-    it("transfers the listing to manual the listing", async () => {
+    it("transfers the listing to manual", async () => {
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
 
       const response = await transferDealerListingToManual({
@@ -378,6 +379,47 @@ describe("CAR service", () => {
       const response = await transferDealerListingToManual({
         dealerId: 6,
         listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#transfersDealerListingToManual", () => {
+    it("transfers multiple listings to manual", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+      const listingIds = [123, 456]
+      const response = await transferDealerListingsToManual({
+        dealerId: 6,
+        listingIds,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/transfer-to-manual"),
+        expect.objectContaining({
+          method: "POST",
+          body: JSON.stringify({ elements: listingIds }),
+        })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "bulk-execute-action-failed"
+      const errors = [{ param: "123", message: "listing is manual already" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await transferDealerListingsToManual({
+        dealerId: 6,
+        listingIds: [123],
         options: requestOptionsMock,
       })
       expect(response).toEqual({
