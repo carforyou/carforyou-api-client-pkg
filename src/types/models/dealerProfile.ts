@@ -12,4 +12,5 @@ export interface DealerProfile {
   email: string
   matelsoPhone: string
   whatsAppNumber: string
+  website: string
 }
