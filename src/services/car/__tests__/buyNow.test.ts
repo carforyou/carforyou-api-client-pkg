@@ -1,4 +1,8 @@
-import { fetchBuyNowConfiguration, sendBuyNowApplication } from "../buyNow"
+import {
+  fetchBuyNowConfiguration,
+  markBuyNowApplicationAsPayed,
+  sendBuyNowApplication,
+} from "../buyNow"
 
 describe("Car API", () => {
   beforeEach(fetchMock.resetMocks)
@@ -97,6 +101,16 @@ describe("Car API", () => {
       const data = await fetchBuyNowConfiguration({ dealerId: 1 })
       expect(data).toEqual(config)
       expect(fetch).toHaveBeenCalled()
+    })
+  })
+
+  describe("markBuyNowApplicationAsPayed", () => {
+    it("calls the correct endpoint", async () => {
+      await markBuyNowApplicationAsPayed({ buyNowApplicationKey: "dummy" })
+      expect(fetch).toHaveBeenCalledWith(
+        "test.gateway/listings/buy-now-applications/key/dummy/mark-as-paid",
+        expect.any(Object)
+      )
     })
   })
 })

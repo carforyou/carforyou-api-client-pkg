@@ -44,6 +44,20 @@ export const sendBuyNowApplication = async ({
   }
 }
 
+export const markBuyNowApplicationAsPayed = async ({
+  buyNowApplicationKey,
+  options = {},
+}: {
+  buyNowApplicationKey: string
+  options?: ApiCallOptions
+}): Promise<Response> => {
+  return postData({
+    path: `listings/buy-now-applications/key/${buyNowApplicationKey}/mark-as-paid`,
+    body: {},
+    options,
+  })
+}
+
 export const fetchBuyNowConfiguration = async ({
   dealerId,
   options = {},
