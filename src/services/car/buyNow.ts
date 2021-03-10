@@ -5,7 +5,7 @@ import { createApiPathWithValidate } from "../../lib/path"
 import {
   ApiCallOptions,
   fetchPath,
-  ignoreServerSideErrors,
+  handleValidationError,
   postData,
 } from "../../base"
 
@@ -17,7 +17,11 @@ export const sendBuyNowApplication = async ({
   listingId: number
   buyNowApplication: BuyNowApplication
   options?: ApiCallOptions & { validateOnly?: boolean }
-}): Promise<WithValidationError<BuyNowApplication>> => {
+}): Promise<
+  WithValidationError<{
+    paymentUrl: string
+  }>
+> => {
   const { validateOnly = false, ...otherOptions } = options
 
   const path = createApiPathWithValidate(
@@ -26,17 +30,17 @@ export const sendBuyNowApplication = async ({
   )
 
   try {
-    await postData({
+    const response = await postData({
       path,
       body: buyNowApplication,
       options: otherOptions,
     })
     return {
       tag: "success",
-      result: buyNowApplication,
+      result: response,
     }
   } catch (error) {
-    return ignoreServerSideErrors({ error, returnValue: buyNowApplication })
+    return handleValidationError({ error })
   }
 }
 
