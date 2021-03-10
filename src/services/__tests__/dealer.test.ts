@@ -6,6 +6,7 @@ import {
   fetchDealerSuggestions,
   postDealerProfile,
   postDealerPromotion,
+  putDealerDescription,
   putDealerProfile,
   putDealerPromotion,
   setImage,
@@ -87,6 +88,7 @@ describe("Dealer", () => {
       email: "dealer@gmail.com",
       matelsoPhone: "12-13-65",
       whatsAppNumber: "00000",
+      website: "https://carforyou.ch",
     }
 
     describe("#fetchDealerProfile", () => {
@@ -304,6 +306,36 @@ describe("Dealer", () => {
         const response = await setImage({
           dealerId: dealerIdMock,
           image: null,
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("error")
+      })
+    })
+
+    describe("#putDealerDescription", () => {
+      it("successfully sets dealer description", async () => {
+        fetchMock.mockResponse(JSON.stringify({}))
+
+        const response = await putDealerDescription({
+          dealerId: dealerIdMock,
+          description: "Best deals",
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("success")
+      })
+
+      it("fails to set dealers description", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const response = await putDealerDescription({
+          dealerId: dealerIdMock,
+          description: null,
           options: requestOptionsMock,
         })
 

@@ -37,7 +37,7 @@ export const saveDealerDefaultListingAdditionalServices = async ({
   try {
     const result = await putData({
       path: `dealers/${dealerId}/default-listing/additional-services`,
-      body: { additionalServices },
+      body: additionalServices,
       options: { isAuthorizedRequest: true, ...options },
     })
     return {
@@ -61,7 +61,7 @@ export const saveDealerDefaultListingDescription = async ({
   try {
     const result = await putData({
       path: `dealers/${dealerId}/default-listing/description`,
-      body: { description },
+      body: description,
       options: { isAuthorizedRequest: true, ...options },
     })
     return {
@@ -85,7 +85,7 @@ export const saveDealerDefaultListingWarranty = async ({
   try {
     const result = await putData({
       path: `dealers/${dealerId}/default-listing/warranty`,
-      body: { warranty },
+      body: warranty,
       options: { isAuthorizedRequest: true, ...options },
     })
     return {
