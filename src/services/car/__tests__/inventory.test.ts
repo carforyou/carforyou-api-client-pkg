@@ -1,6 +1,7 @@
 import {
   archiveDealerListing,
   fetchDealerMakes,
+  fetchDealerModels,
   fetchListing,
   getAllDealerFrameNumbers,
   hideListing,
@@ -60,6 +61,20 @@ describe("CAR service", () => {
 
       const data = await fetchDealerMakes({ dealerId: 123 })
       expect(data).toEqual(makes)
+      expect(fetch).toHaveBeenCalled()
+    })
+  })
+
+  describe("#fetchDealerModels", () => {
+    it("fetches data", async () => {
+      const models = [
+        { modelKey: "1er", model: "1er" },
+        { modelKey: "3er", model: "3er" },
+      ]
+      fetchMock.mockResponse(JSON.stringify(models))
+
+      const data = await fetchDealerModels({ dealerId: 123, makeKey: "bmw" })
+      expect(data).toEqual(models)
       expect(fetch).toHaveBeenCalled()
     })
   })

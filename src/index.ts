@@ -162,6 +162,7 @@ export {
 export {
   fetchListing,
   fetchDealerMakes,
+  fetchDealerModels,
   fetchDealerListing,
   publishDealerListing,
   archiveDealerListing,
