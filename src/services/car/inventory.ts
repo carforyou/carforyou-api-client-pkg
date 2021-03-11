@@ -54,7 +54,7 @@ export const fetchDealerModels = async ({
   options?: ApiCallOptions
 }): Promise<Array<{ model: string; modelKey: string }>> => {
   return fetchPath({
-    path: `inventory/dealers/${dealerId}/models?makeKey=${makeKey}`,
+    path: `dealers/${dealerId}/models?makeKey=${makeKey}`,
     options,
   })
 }
