@@ -121,7 +121,6 @@ export interface Listing
   images: ListingImage[]
   interior: string
   kiloWatts: number
-  leasingMonthlyRate: number
   lifecycleState: LifecycleState
   publishingDate: string
   publishingStatus: ListingPublishingStatus
@@ -178,7 +177,6 @@ interface BaseSearchListing {
   makeKey: string
   modelKey: string
   price: number
-  leasingMonthlyRate: number
   type: string
   typeFull: string
   typeSlug: string

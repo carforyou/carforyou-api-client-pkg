@@ -15,7 +15,6 @@ export {
   SavedSearch,
   MessageLead,
   SearchMessageLead,
-  LeasingInterest,
   City,
   PresignedUrl,
   Date,
@@ -205,10 +204,6 @@ export {
   defaultLeadSort as defaultLeadListingsSort,
 } from "./services/car/messageLead"
 export { addPurchaseConfirmation } from "./services/carSaleTracking/buyerFeedback"
-export {
-  fetchLeasingFormUrl,
-  sendLeasingInterest,
-} from "./services/car/leasing"
 
 export {
   fetchListingOptions,

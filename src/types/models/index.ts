@@ -164,14 +164,6 @@ export interface SearchMessageLead extends MessageLead {
   createdDate: string
 }
 
-export interface LeasingInterest {
-  email?: string
-  language?: string
-  message?: string
-  name?: string
-  phone?: string
-}
-
 export interface Date {
   month?: number
   year?: number
