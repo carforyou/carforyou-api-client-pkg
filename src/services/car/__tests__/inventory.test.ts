@@ -333,16 +333,21 @@ describe("CAR service", () => {
   describe("#bulkArchiveDealerListing", () => {
     it("archives listings", async () => {
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
-
+      const listingIds = [123, 124]
       const response = await bulkArchiveDealerListings({
         dealerId: 6,
-        listingIds: [123, 124],
+        listingIds: listingIds,
         options: requestOptionsMock,
       })
       expect(response).toEqual({ tag: "success", result: {} })
       expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining("/dealers/6/listings/archive"),
-        expect.objectContaining({ method: "POST" })
+        expect.objectContaining({
+          method: "POST",
+          body: JSON.stringify({
+            elements: listingIds,
+          }),
+        })
       )
     })
 
