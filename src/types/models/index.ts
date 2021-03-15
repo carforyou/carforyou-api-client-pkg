@@ -158,7 +158,9 @@ export interface SearchMessageLead extends MessageLead {
     externalListingId: string
     image: string
     make: string
+    mileage: number
     model: string
+    price: number
     type: string
   }
   createdDate: string
