@@ -166,6 +166,7 @@ export {
   fetchDealerListing,
   publishDealerListing,
   archiveDealerListing,
+  bulkArchiveDealerListings,
   unpublishDealerListing,
   listingMandatoryFields,
   ListingValidationEndpoint,
