@@ -1,6 +1,8 @@
 import {
   archiveDealerListing,
+  bulkArchiveDealerListings,
   fetchDealerMakes,
+  fetchDealerModels,
   fetchListing,
   getAllDealerFrameNumbers,
   hideListing,
@@ -60,6 +62,20 @@ describe("CAR service", () => {
 
       const data = await fetchDealerMakes({ dealerId: 123 })
       expect(data).toEqual(makes)
+      expect(fetch).toHaveBeenCalled()
+    })
+  })
+
+  describe("#fetchDealerModels", () => {
+    it("fetches data", async () => {
+      const models = [
+        { modelKey: "1er", model: "1er" },
+        { modelKey: "3er", model: "3er" },
+      ]
+      fetchMock.mockResponse(JSON.stringify(models))
+
+      const data = await fetchDealerModels({ dealerId: 123, makeKey: "bmw" })
+      expect(data).toEqual(models)
       expect(fetch).toHaveBeenCalled()
     })
   })
@@ -303,6 +319,49 @@ describe("CAR service", () => {
       const response = await archiveDealerListing({
         dealerId: 6,
         listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#bulkArchiveDealerListing", () => {
+    it("archives listings", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+      const listingIds = [123, 124]
+      const response = await bulkArchiveDealerListings({
+        dealerId: 6,
+        listingIds: listingIds,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/archive"),
+        expect.objectContaining({
+          method: "POST",
+          body: JSON.stringify({
+            elements: listingIds,
+          }),
+        })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await bulkArchiveDealerListings({
+        dealerId: 6,
+        listingIds: [123, 124],
         options: requestOptionsMock,
       })
       expect(response).toEqual({

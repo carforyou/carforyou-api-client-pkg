@@ -44,6 +44,21 @@ export const fetchDealerMakes = async ({
   return fetchPath({ path: `inventory/dealers/${dealerId}/makes`, options })
 }
 
+export const fetchDealerModels = async ({
+  dealerId,
+  makeKey,
+  options = {},
+}: {
+  dealerId: number
+  makeKey: string
+  options?: ApiCallOptions
+}): Promise<Array<{ model: string; modelKey: string }>> => {
+  return fetchPath({
+    path: `dealers/${dealerId}/models?makeKey=${makeKey}`,
+    options,
+  })
+}
+
 export const fetchDealerListing = async ({
   dealerId,
   listingId,
@@ -215,6 +230,36 @@ export const archiveDealerListing = async ({
     await postData({
       path: `dealers/${dealerId}/listings/${listingId}/archive`,
       body: {},
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
+
+  return {
+    tag: "success",
+    result: {},
+  }
+}
+
+export const bulkArchiveDealerListings = async ({
+  dealerId,
+  listingIds,
+  options,
+}: {
+  dealerId: number
+  listingIds: number[]
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `dealers/${dealerId}/listings/archive`,
+      body: {
+        elements: listingIds,
+      },
       options: {
         isAuthorizedRequest: true,
         ...options,

@@ -162,9 +162,11 @@ export {
 export {
   fetchListing,
   fetchDealerMakes,
+  fetchDealerModels,
   fetchDealerListing,
   publishDealerListing,
   archiveDealerListing,
+  bulkArchiveDealerListings,
   unpublishDealerListing,
   listingMandatoryFields,
   ListingValidationEndpoint,
