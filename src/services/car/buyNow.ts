@@ -44,7 +44,7 @@ export const sendBuyNowApplication = async ({
   }
 }
 
-export const markBuyNowApplicationAsPayed = async ({
+export const markBuyNowApplicationAsPaid = async ({
   buyNowApplicationKey,
   options = {},
 }: {

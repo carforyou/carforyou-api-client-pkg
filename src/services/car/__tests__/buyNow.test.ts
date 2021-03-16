@@ -1,6 +1,6 @@
 import {
   fetchBuyNowConfiguration,
-  markBuyNowApplicationAsPayed,
+  markBuyNowApplicationAsPaid,
   sendBuyNowApplication,
 } from "../buyNow"
 
@@ -106,9 +106,9 @@ describe("Car API", () => {
     })
   })
 
-  describe("markBuyNowApplicationAsPayed", () => {
+  describe("markBuyNowApplicationAsPaid", () => {
     it("calls the correct endpoint", async () => {
-      await markBuyNowApplicationAsPayed({ buyNowApplicationKey: "dummy" })
+      await markBuyNowApplicationAsPaid({ buyNowApplicationKey: "dummy" })
       expect(fetch).toHaveBeenCalledWith(
         "test.gateway/listings/buy-now-applications/key/dummy/mark-as-paid",
         expect.any(Object)
