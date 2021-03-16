@@ -1,4 +1,8 @@
-import { fetchBuyNowConfiguration, sendBuyNowApplication } from "../buyNow"
+import {
+  fetchBuyNowConfiguration,
+  markBuyNowApplicationAsPaid,
+  sendBuyNowApplication,
+} from "../buyNow"
 
 describe("Car API", () => {
   beforeEach(fetchMock.resetMocks)
@@ -18,8 +22,9 @@ describe("Car API", () => {
   })
 
   describe("#sendBuyNowApplication", () => {
+    const mockResponse = { paymentUrl: "dummyPaymentUrl" }
     beforeEach(() => {
-      fetchMock.mockResponse("")
+      fetchMock.mockResponse(JSON.stringify(mockResponse))
     })
 
     it("calls submission endpoint", async () => {
@@ -56,7 +61,7 @@ describe("Car API", () => {
           buyNowApplication: buyNowApplication(),
         })
 
-        expect(result).toEqual({ tag: "success", result: buyNowApplication() })
+        expect(result).toEqual({ tag: "success", result: mockResponse })
       })
     })
 
@@ -79,6 +84,7 @@ describe("Car API", () => {
         })
 
         expect(result.tag).toEqual("error")
+
         if (result.tag === "error") {
           expect(result.errors).toEqual(errors)
           expect(result.message).toEqual("validations.not-valid")
@@ -97,6 +103,16 @@ describe("Car API", () => {
       const data = await fetchBuyNowConfiguration({ dealerId: 1 })
       expect(data).toEqual(config)
       expect(fetch).toHaveBeenCalled()
+    })
+  })
+
+  describe("markBuyNowApplicationAsPaid", () => {
+    it("calls the correct endpoint", async () => {
+      await markBuyNowApplicationAsPaid({ buyNowApplicationKey: "dummy" })
+      expect(fetch).toHaveBeenCalledWith(
+        "test.gateway/listings/buy-now-applications/key/dummy/mark-as-paid",
+        expect.any(Object)
+      )
     })
   })
 })

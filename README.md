@@ -251,6 +251,7 @@ Also accompanying modes and param types, as well as default values, are exported
 - [Buy Now](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html)
   - [`sendBuyNowApplication`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Application)
   - [`fetchBuyNowConfiguration`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Configuration)
+  - [`markBuyNowApplicationAsPaid`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Application/markAsPaidUsingPOST)
 
 ## Mocking in tests
 

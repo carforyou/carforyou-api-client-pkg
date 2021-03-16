@@ -199,6 +199,7 @@ export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export {
   sendBuyNowApplication,
   fetchBuyNowConfiguration,
+  markBuyNowApplicationAsPaid,
 } from "./services/car/buyNow"
 export {
   sendMessageLead,
