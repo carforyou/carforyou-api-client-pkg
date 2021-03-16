@@ -1,5 +1,6 @@
 import {
   archiveDealerListing,
+  bulkArchiveDealerListings,
   fetchDealerMakes,
   fetchDealerModels,
   fetchListing,
@@ -318,6 +319,49 @@ describe("CAR service", () => {
       const response = await archiveDealerListing({
         dealerId: 6,
         listingId: 123,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#bulkArchiveDealerListing", () => {
+    it("archives listings", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+      const listingIds = [123, 124]
+      const response = await bulkArchiveDealerListings({
+        dealerId: 6,
+        listingIds: listingIds,
+        options: requestOptionsMock,
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/6/listings/archive"),
+        expect.objectContaining({
+          method: "POST",
+          body: JSON.stringify({
+            elements: listingIds,
+          }),
+        })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await bulkArchiveDealerListings({
+        dealerId: 6,
+        listingIds: [123, 124],
         options: requestOptionsMock,
       })
       expect(response).toEqual({
