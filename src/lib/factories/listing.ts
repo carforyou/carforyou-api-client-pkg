@@ -126,6 +126,9 @@ const defaults: ListingType = {
   buyNowInProgress: false,
   transferredToManual: false,
   hidden: false,
+  useDefaultAdditionalServices: false,
+  useDefaultDescription: false,
+  useDefaultWarranty: false,
 }
 
 export function Listing(attributes = {}): ListingType {
@@ -266,6 +269,9 @@ export function EmptyListing(): ListingType {
     fullTankIncluded: undefined,
     expertInstructionIncluded: undefined,
     otherServices: undefined,
+    useDefaultAdditionalServices: undefined,
+    useDefaultDescription: undefined,
+    useDefaultWarranty: undefined,
   }
 }
 

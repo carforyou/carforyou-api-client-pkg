@@ -143,6 +143,9 @@ export interface Listing
   buyNowInProgress: boolean
   transferredToManual: boolean
   hidden: boolean
+  useDefaultAdditionalServices: boolean
+  useDefaultDescription: boolean
+  useDefaultWarranty: boolean
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
