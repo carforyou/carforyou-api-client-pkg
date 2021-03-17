@@ -21,6 +21,9 @@ export interface TypeFiltersParams {
   productionYear?: number
   imagesCountGroup?: string[]
 }
+export interface LeadTypeFiltersParams {
+  searchQuery?: string
+}
 export interface SearchTypeQueryParams
   extends PaginationParams,
     TypeFiltersParams {

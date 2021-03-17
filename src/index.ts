@@ -97,6 +97,7 @@ export {
 export {
   SearchTypeQueryParams,
   TypeFiltersParams,
+  LeadTypeFiltersParams,
   PowerUnit,
 } from "./types/params/types"
 

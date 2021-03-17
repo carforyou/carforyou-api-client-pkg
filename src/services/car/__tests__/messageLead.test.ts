@@ -185,6 +185,7 @@ describe("Car API", () => {
           page: 2,
           size: 7,
           sort: defaultLeadSort,
+          searchQuery: "test",
         },
         options: {
           accessToken: "DummyTokenString",
@@ -193,7 +194,7 @@ describe("Car API", () => {
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(
-          /\/dealers\/1234\/message-leads\?page=1&size=7&sort=createdDate%2Cdesc$/
+          /\/dealers\/1234\/message-leads\?page=1&size=7&sort=createdDate%2Cdesc&?q=test$/
         ),
         expect.any(Object)
       )
@@ -208,6 +209,7 @@ describe("Car API", () => {
             page: 0,
             size: 7,
             sort: {},
+            searchQuery: "",
           },
         })
       } catch (err) {
@@ -226,6 +228,7 @@ describe("Car API", () => {
           page: 0,
           size: 7,
           sort: {},
+          searchQuery: "",
         },
         options: {
           accessToken: "DummyTokenString",
