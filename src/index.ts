@@ -162,9 +162,11 @@ export {
 export {
   fetchListing,
   fetchDealerMakes,
+  fetchDealerModels,
   fetchDealerListing,
   publishDealerListing,
   archiveDealerListing,
+  bulkArchiveDealerListings,
   unpublishDealerListing,
   listingMandatoryFields,
   ListingValidationEndpoint,
@@ -197,6 +199,7 @@ export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export {
   sendBuyNowApplication,
   fetchBuyNowConfiguration,
+  markBuyNowApplicationAsPaid,
 } from "./services/car/buyNow"
 export {
   sendMessageLead,
