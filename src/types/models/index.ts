@@ -151,35 +151,29 @@ export interface MessageLead {
   }
 }
 
+export interface MessageLeadListing {
+  externalListingId: string
+  firstRegistrationDate?: string
+  id?: number
+  image: string
+  make: string
+  mileage: number
+  model: string
+  price: number
+  type: string
+}
+
 export interface SearchMessageLead extends MessageLead {
   id: number
   listingId: number
-  listing: {
-    externalListingId: string
-    image: string
-    make: string
-    mileage: number
-    model: string
-    price: number
-    type: string
-  }
+  listing: MessageLeadListing
   createdDate: string
 }
 
 export interface SearchCallLead {
   id: number
   listingId: number
-  listing: {
-    externalListingId: string
-    firstRegistrationDate: string
-    id: number
-    image: string
-    make: string
-    mileage: number
-    model: string
-    price: number
-    type: string
-  }
+  listing: MessageLeadListing
   callerNumber: string
   createdDate: string
   duration: number
