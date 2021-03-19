@@ -1,4 +1,5 @@
-import { ApiCallOptions, postData } from "../../base"
+import { WithValidationError } from "../../types/withValidationError"
+import { ApiCallOptions, handleValidationError, postData } from "../../base"
 
 export const postDealerFeedback = async ({
   dealerId,
@@ -9,13 +10,20 @@ export const postDealerFeedback = async ({
   dealerId: number
   listingId: number
   purchaseConfirmed: boolean
-  options?: ApiCallOptions
-}): Promise<void> => {
-  return postData({
-    path: `dealers/${dealerId}/listings/${listingId}/car-sale/dealer-feedback`,
-    body: {
-      purchaseConfirmed,
-    },
-    options,
-  })
+  options?: ApiCallOptions & { validateOnly?: boolean }
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `dealers/${dealerId}/listings/${listingId}/car-sale/dealer-feedback`,
+      body: { purchaseConfirmed },
+      options,
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
+
+  return {
+    tag: "success",
+    result: {},
+  }
 }

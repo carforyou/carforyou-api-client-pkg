@@ -1,53 +1,79 @@
 import { postDealerFeedback } from "../dealerFeedback"
-import { ResponseError } from "../../../responseError"
 
-describe("Car sale tracking API", () => {
-  beforeEach(fetchMock.resetMocks)
+describe("#postDealerFeedback", () => {
+  beforeEach(() => {
+    fetchMock.resetMocks()
+  })
 
-  describe("#postDealerFeedback", () => {
+  describe("valid parameters", () => {
     beforeEach(() => {
       fetchMock.mockResponse("")
     })
 
-    it("calls purchase confirmation", async () => {
-      await postDealerFeedback({
-        dealerId: 1234,
-        listingId: 4567,
-        purchaseConfirmed: true,
+    describe("validate only", () => {
+      it("calls validation endpoint", async () => {
+        await postDealerFeedback({
+          dealerId: 1234,
+          listingId: 4567,
+          purchaseConfirmed: true,
+          options: {
+            validateOnly: true,
+          },
+        })
+
+        expect(fetch).toHaveBeenCalledWith(
+          expect.stringMatching(
+            /\/dealers\/1234\/listings\/4567\/car-sale\/dealer-feedback$/
+          ),
+          expect.any(Object)
+        )
       })
 
-      expect(fetch).toHaveBeenCalledWith(
-        expect.stringMatching(
-          /\/dealers\/1234\/listings\/4567\/car-sale\/dealer-feedback$/
-        ),
-        expect.any(Object)
-      )
+      it("returns a success", async () => {
+        const result = await postDealerFeedback({
+          dealerId: 1234,
+          listingId: 4567,
+          purchaseConfirmed: true,
+          options: {
+            validateOnly: true,
+          },
+        })
+
+        expect(result).toEqual({
+          tag: "success",
+          result: {},
+        })
+      })
     })
 
-    it("throws ResponseError 422", async () => {
-      fetchMock.mockResponse(
-        JSON.stringify({
-          message: "validation.purchase-confirmation-already-added",
-          description: "Purchase confirmation for DealerFeedback already added",
-          errors: [],
-        }),
-        {
-          status: 422,
-        }
-      )
-
-      let error
-      try {
+    describe("submit", () => {
+      it("calls submission endpoint", async () => {
         await postDealerFeedback({
           dealerId: 1234,
           listingId: 4567,
           purchaseConfirmed: true,
         })
-      } catch (err) {
-        error = err
-      }
 
-      expect(error).toEqual(new ResponseError(error.response))
+        expect(fetch).toHaveBeenCalledWith(
+          expect.stringMatching(
+            /\/dealers\/1234\/listings\/4567\/car-sale\/dealer-feedback$/
+          ),
+          expect.any(Object)
+        )
+      })
+
+      it("returns a success", async () => {
+        const result = await postDealerFeedback({
+          dealerId: 1234,
+          listingId: 4567,
+          purchaseConfirmed: true,
+        })
+
+        expect(result).toEqual({
+          tag: "success",
+          result: {},
+        })
+      })
     })
   })
 })
