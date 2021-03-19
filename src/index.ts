@@ -74,6 +74,7 @@ export {
   DealerDefaultListingAdditionalServices,
   DealerDefaultListingData,
   DealerDefaultListingDescription,
+  DealerDefaultListingGeneralExternalNote,
   DealerDefaultListingWarranty,
 } from "./types/models/dealerDefaultListing"
 
@@ -157,6 +158,7 @@ export {
   saveDealerDefaultListingAdditionalServices,
   saveDealerDefaultListingDescription,
   saveDealerDefaultListingWarranty,
+  saveDealerDefaultListingGeneralExternalNote,
 } from "./services/car/defaultListing"
 
 export {
