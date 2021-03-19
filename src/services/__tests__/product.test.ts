@@ -1,4 +1,5 @@
 import {
+  bulkPurchaseAndUseListingsProduct,
   fetchProducts,
   purchaseAndUseDealerProduct,
   purchaseAndUseListingProduct,
@@ -72,6 +73,76 @@ describe("Products service", () => {
         dealerId: 123,
         listingId: 4,
         productId: 2,
+        options: { accessToken: "Token" },
+      })
+
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#bulkPurchaseAndUseListingsProduct", () => {
+    it("returns success data for successful purchases", async () => {
+      const purchaseData = { success: true, description: "premium-listing" }
+      fetchMock.mockResponse(JSON.stringify(purchaseData))
+
+      const response = await bulkPurchaseAndUseListingsProduct({
+        dealerId: 123,
+        elements: [
+          {
+            listingId: 4,
+            productId: 5,
+          },
+        ],
+        options: { accessToken: "Token" },
+      })
+
+      expect(response).toEqual({
+        tag: "success",
+        result: purchaseData,
+      })
+      expect(fetch).toBeCalledWith(
+        expect.stringContaining(
+          "/dealers/123/listings/products/purchase-and-use"
+        ),
+        expect.objectContaining({
+          body: JSON.stringify({
+            elements: [
+              {
+                listingId: 4,
+                productId: 5,
+              },
+            ],
+          }),
+        })
+      )
+    })
+
+    it("handles validation errors", async () => {
+      const message = "not-valid"
+      const errors = [
+        { param: "startDate", message: "validation.field.not-empty" },
+      ]
+      fetchMock.mockResponses([
+        JSON.stringify({
+          message,
+          errors,
+        }),
+        { status: 400 },
+      ])
+
+      const response = await bulkPurchaseAndUseListingsProduct({
+        dealerId: 123,
+        elements: [
+          {
+            listingId: 4,
+            productId: 5,
+          },
+        ],
         options: { accessToken: "Token" },
       })
 

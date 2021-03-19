@@ -278,6 +278,7 @@ export { postCallTrackingEntry } from "./services/reporting/callTracking"
 export {
   fetchProducts,
   purchaseAndUseListingProduct,
+  bulkPurchaseAndUseListingsProduct,
   purchaseAndUseDealerProduct,
 } from "./services/product"
 
