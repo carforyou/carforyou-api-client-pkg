@@ -7,7 +7,7 @@ export const encodeDate = (date: DateType = {}) => {
 
 export const decodeDate = (date: string) => {
   if (!date) {
-    return
+    return null
   }
 
   try {
@@ -18,6 +18,6 @@ export const decodeDate = (date: string) => {
       year: parsedDate.getFullYear(),
     }
   } catch {
-    return
+    return null
   }
 }
