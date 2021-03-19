@@ -2,6 +2,7 @@ import {
   fetchDealerDefaultListingData,
   saveDealerDefaultListingAdditionalServices,
   saveDealerDefaultListingDescription,
+  saveDealerDefaultListingGeneralExternalNote,
   saveDealerDefaultListingWarranty,
 } from "../defaultListing"
 
@@ -23,6 +24,7 @@ describe("Dealer default listing", () => {
       warrantyMileage: 0,
       warrantyStartDate: "2021-03-04",
       warrantyType: "from-date",
+      generalExternalNote: "general description",
     }
 
     beforeEach(() => {
@@ -199,6 +201,58 @@ describe("Dealer default listing", () => {
       const response = await saveDealerDefaultListingAdditionalServices({
         dealerId: 123,
         additionalServices,
+        options: { accessToken: "TOKEN" },
+      })
+
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#saveDealerDefaultListingGeneralExternalNote", () => {
+    it("sends general external note in the body", async () => {
+      const generalExternalNote = {
+        generalExternalNote: "this is the general external note",
+      }
+
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await saveDealerDefaultListingGeneralExternalNote({
+        dealerId: 123,
+        generalExternalNote: generalExternalNote,
+        options: { accessToken: "TOKEN" },
+      })
+      expect(response).toEqual({ tag: "success", result: { ok: true } })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining(
+          "/dealers/123/default-listing/general-external-note"
+        ),
+        expect.objectContaining({
+          body: JSON.stringify(generalExternalNote),
+        })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "description", error: "validations.not-empty" }]
+      const generalExternalNote = {
+        generalExternalNote: "this is the general external note",
+      }
+
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await saveDealerDefaultListingGeneralExternalNote({
+        dealerId: 123,
+        generalExternalNote,
         options: { accessToken: "TOKEN" },
       })
 
