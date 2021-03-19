@@ -261,7 +261,7 @@ describe("Car API", () => {
 
     it("handles validation error", async () => {
       const message = "not-valid"
-      const errors = [{ param: "price", message: "validation.field.not-empty" }]
+      const errors = [{ param: "email", message: "validation.field.not-empty" }]
       fetchMock.mockResponses([
         JSON.stringify({ message, errors }),
         { status: 400 },
