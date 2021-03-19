@@ -292,6 +292,8 @@ export {
   deleteDealerSavedSearch,
 } from "./services/search/autoAlarm"
 
+export { postDealerFeedback } from "./services/carSaleTracking/dealerFeedback"
+
 export {
   Listing as ListingFactory,
   SearchListing as SearchListingFactory,
