@@ -126,7 +126,8 @@ Also accompanying modes and param types, as well as default values, are exported
 
 - [Lead](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Lead)
   - [`sendMessageLead`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Lead/createMessageLeadUsingPOST)
-  - `fetchDealerMessageLeads`
+  - [`fetchDealerMessageLeads`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getAllDealerMessageLeadsUsingGET)
+  - [`fetchDealerCallLeads`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getAllDealerCallLeadsUsingGET)
 - [Leasing](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing)
   - [`fetchLeasingFormUrl`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing/generateLeasingProviderFormUrlUsingPOST)
   - [`sendLeasingInterest`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing/createLeasingInterestUsingPOST)
@@ -301,6 +302,8 @@ Following factories are exported:
 - `SearchListingFactory`
 - `EmptyListing` - builds a listing without any values
 - `ListingFromType` - initializes an empty listing with values from a type
+- `SearchMessageLeadFactory` - builds lead email listing
+- `SearchCallLeadFactory` - builds lead call listing
 
 ## Development
 

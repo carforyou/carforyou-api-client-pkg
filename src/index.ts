@@ -15,6 +15,7 @@ export {
   SavedSearch,
   MessageLead,
   SearchMessageLead,
+  SearchCallLead,
   LeasingInterest,
   City,
   PresignedUrl,
@@ -206,6 +207,7 @@ export {
 export {
   sendMessageLead,
   fetchDealerMessageLeads,
+  fetchDealerCallLeads,
   defaultLeadSort as defaultLeadListingsSort,
 } from "./services/car/messageLead"
 export { addPurchaseConfirmation } from "./services/carSaleTracking/buyerFeedback"
@@ -316,4 +318,7 @@ export {
 export { Options as OptionsFactory } from "./lib/factories/options"
 export { withRetries } from "./lib/withRetries"
 
-export { SearchMessageLead as SearchMessageLeadFactory } from "./lib/factories/leads"
+export {
+  SearchMessageLead as SearchMessageLeadFactory,
+  SearchCallLead as SearchCallLeadFactory,
+} from "./lib/factories/leads"
