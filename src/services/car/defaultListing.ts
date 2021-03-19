@@ -3,6 +3,7 @@ import {
   DealerDefaultListingAdditionalServices,
   DealerDefaultListingData,
   DealerDefaultListingDescription,
+  DealerDefaultListingGeneralExternalNote,
   DealerDefaultListingWarranty,
 } from "../../types/models/dealerDefaultListing"
 import {
@@ -86,6 +87,30 @@ export const saveDealerDefaultListingWarranty = async ({
     const result = await putData({
       path: `dealers/${dealerId}/default-listing/warranty`,
       body: warranty,
+      options: { isAuthorizedRequest: true, ...options },
+    })
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error)
+  }
+}
+
+export const saveDealerDefaultListingGeneralExternalNote = async ({
+  dealerId,
+  generalExternalNote,
+  options = {},
+}: {
+  dealerId: number
+  generalExternalNote: DealerDefaultListingGeneralExternalNote
+  options?: ApiCallOptions
+}): Promise<WithValidationError<DealerDefaultListingGeneralExternalNote>> => {
+  try {
+    const result = await putData({
+      path: `dealers/${dealerId}/default-listing/general-external-note`,
+      body: generalExternalNote,
       options: { isAuthorizedRequest: true, ...options },
     })
     return {
