@@ -209,6 +209,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`setLogo`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setLogoUsingPUT)
   - [`setImage`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setImageUsingPUT)
   - [`putDealerDescription`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setDescriptionUsingPUT)
+  - [`purchaseAndUseListingProduct`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Product/purchaseProductAndUseSubscriptionForListingUsingPOST)
+  - [`bulkPurchaseAndUseListingsProduct`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Product/bulkPurchaseProductAndUseSubscriptionForListingUsingPOST)
 
 ### [Email delivery service](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html)
 
