@@ -19,7 +19,12 @@ export interface DealerDefaultListingDescription {
   description: string
 }
 
+export interface DealerDefaultListingGeneralExternalNote {
+  generalExternalNote: string
+}
+
 export interface DealerDefaultListingData
   extends DealerDefaultListingAdditionalServices,
     DealerDefaultListingWarranty,
+    DealerDefaultListingGeneralExternalNote,
     DealerDefaultListingDescription {}

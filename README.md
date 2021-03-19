@@ -80,6 +80,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`saveDealerDefaultListingAdditionalServices](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setAdditionalServicesUsingPUT)
   - [`saveDealerDefaultListingDescription`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setDescriptionUsingPUT)
   - [`saveDealerDefaultListingWarranty`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setWarrantyUsingPUT)
+  [`saveDealerDefaultListingGeneralExternalNote`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setGeneralExternalNoteUsingPUT)
 - [Good-Bad Deal data](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Good-Bad_Deal_Data)
   - [`featchDealScores`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Good-Bad%20Deal%20Data/getScoresUsingGET)
 - [Image](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Image)
@@ -210,6 +211,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`setLogo`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setLogoUsingPUT)
   - [`setImage`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setImageUsingPUT)
   - [`putDealerDescription`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setDescriptionUsingPUT)
+  - [`purchaseAndUseListingProduct`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Product/purchaseProductAndUseSubscriptionForListingUsingPOST)
+  - [`bulkPurchaseAndUseListingsProduct`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Product/bulkPurchaseProductAndUseSubscriptionForListingUsingPOST)
 
 ### [Email delivery service](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html)
 
