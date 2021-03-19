@@ -166,6 +166,25 @@ export interface SearchMessageLead extends MessageLead {
   createdDate: string
 }
 
+export interface SearchCallLead {
+  id: number
+  listingId: number
+  listing: {
+    externalListingId: string
+    firstRegistrationDate: string
+    id: number
+    image: string
+    make: string
+    mileage: number
+    model: string
+    price: number
+    type: string
+  }
+  callerNumber: string
+  createdDate: string
+  duration: number
+}
+
 export interface LeasingInterest {
   email?: string
   language?: string
