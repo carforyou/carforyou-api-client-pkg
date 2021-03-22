@@ -15,6 +15,7 @@ export {
   SavedSearch,
   MessageLead,
   SearchMessageLead,
+  SearchCallLead,
   LeasingInterest,
   City,
   PresignedUrl,
@@ -74,6 +75,7 @@ export {
   DealerDefaultListingAdditionalServices,
   DealerDefaultListingData,
   DealerDefaultListingDescription,
+  DealerDefaultListingGeneralExternalNote,
   DealerDefaultListingWarranty,
 } from "./types/models/dealerDefaultListing"
 
@@ -157,6 +159,7 @@ export {
   saveDealerDefaultListingAdditionalServices,
   saveDealerDefaultListingDescription,
   saveDealerDefaultListingWarranty,
+  saveDealerDefaultListingGeneralExternalNote,
 } from "./services/car/defaultListing"
 
 export {
@@ -204,6 +207,7 @@ export {
 export {
   sendMessageLead,
   fetchDealerMessageLeads,
+  fetchDealerCallLeads,
   defaultLeadSort as defaultLeadListingsSort,
 } from "./services/car/messageLead"
 export { addPurchaseConfirmation } from "./services/carSaleTracking/buyerFeedback"
@@ -278,6 +282,7 @@ export { postCallTrackingEntry } from "./services/reporting/callTracking"
 export {
   fetchProducts,
   purchaseAndUseListingProduct,
+  bulkPurchaseAndUseListingsProduct,
   purchaseAndUseDealerProduct,
 } from "./services/product"
 
@@ -288,6 +293,8 @@ export {
   postDealerSavedSearch,
   deleteDealerSavedSearch,
 } from "./services/search/autoAlarm"
+
+export { postDealerFeedback } from "./services/carSaleTracking/dealerFeedback"
 
 export {
   Listing as ListingFactory,
@@ -311,4 +318,7 @@ export {
 export { Options as OptionsFactory } from "./lib/factories/options"
 export { withRetries } from "./lib/withRetries"
 
-export { SearchMessageLead as SearchMessageLeadFactory } from "./lib/factories/leads"
+export {
+  SearchMessageLead as SearchMessageLeadFactory,
+  SearchCallLead as SearchCallLeadFactory,
+} from "./lib/factories/leads"
