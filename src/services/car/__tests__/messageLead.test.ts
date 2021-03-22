@@ -1,4 +1,5 @@
 import {
+  fetchDealerCallLeads,
   fetchDealerMessageLeads,
   hideMessageLead,
   sendMessageLead,
@@ -6,7 +7,10 @@ import {
 
 import { defaultLeadSort } from "../messageLead"
 import { PaginatedLeads } from "../../../lib/factories/paginated"
-import { SearchMessageLead as SearchMessageLeadFactory } from "../../../lib/factories/leads"
+import {
+  SearchCallLead as SearchCallLeadFactory,
+  SearchMessageLead as SearchMessageLeadFactory,
+} from "../../../lib/factories/leads"
 
 describe("Car API", () => {
   beforeEach(() => {
@@ -189,6 +193,7 @@ describe("Car API", () => {
           page: 2,
           size: 7,
           sort: defaultLeadSort,
+          searchQuery: "test",
         },
         options: {
           accessToken: "DummyTokenString",
@@ -197,7 +202,7 @@ describe("Car API", () => {
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(
-          /\/dealers\/1234\/message-leads\?page=1&size=7&sort=createdDate%2Cdesc$/
+          /\/dealers\/1234\/message-leads\?page=1&size=7&sort=createdDate%2Cdesc&?q=test$/
         ),
         expect.any(Object)
       )
@@ -212,6 +217,7 @@ describe("Car API", () => {
             page: 0,
             size: 7,
             sort: {},
+            searchQuery: "",
           },
         })
       } catch (err) {
@@ -230,6 +236,7 @@ describe("Car API", () => {
           page: 0,
           size: 7,
           sort: {},
+          searchQuery: "",
         },
         options: {
           accessToken: "DummyTokenString",
@@ -280,6 +287,78 @@ describe("Car API", () => {
         errors,
         globalErrors: [],
       })
+    })
+  })
+
+  describe("#fetchDealerCallLeads", () => {
+    const { content, pagination } = PaginatedLeads([SearchCallLeadFactory()])
+
+    beforeEach(() => {
+      fetchMock.mockClear()
+      fetchMock.mockResponse(
+        JSON.stringify({
+          content: content,
+          ...pagination,
+        })
+      )
+    })
+
+    it("calls correct endpoint", async () => {
+      await fetchDealerCallLeads({
+        dealerId: 1234,
+        query: {
+          page: 2,
+          size: 7,
+          sort: defaultLeadSort,
+        },
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(
+          /\/dealers\/1234\/call-leads\?page=1&size=7&sort=createdDate%2Cdesc$/
+        ),
+        expect.any(Object)
+      )
+    })
+
+    it("should trow error if accessToken is not passed", async () => {
+      let error
+      try {
+        await fetchDealerCallLeads({
+          dealerId: 1234,
+          query: {
+            page: 0,
+            size: 7,
+            sort: {},
+          },
+        })
+      } catch (err) {
+        error = err
+      }
+
+      expect(fetch).not.toHaveBeenCalled()
+      expect(error).toBeDefined()
+      expect(error.message).toBeDefined()
+    })
+
+    it("should return paginated leads calls data", async () => {
+      const result = await fetchDealerCallLeads({
+        dealerId: 1234,
+        query: {
+          page: 0,
+          size: 7,
+          sort: {},
+        },
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+
+      expect(fetch).toHaveBeenCalled()
+      expect(result).toEqual(PaginatedLeads([SearchCallLeadFactory()]))
     })
   })
 })
