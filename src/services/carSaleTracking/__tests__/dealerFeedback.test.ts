@@ -16,9 +16,7 @@ describe("#postDealerFeedback", () => {
           dealerId: 1234,
           listingId: 4567,
           purchaseConfirmed: true,
-          options: {
-            validateOnly: true,
-          },
+          options: { accessToken: "TOKEN" },
         })
 
         expect(fetch).toHaveBeenCalledWith(
@@ -34,9 +32,7 @@ describe("#postDealerFeedback", () => {
           dealerId: 1234,
           listingId: 4567,
           purchaseConfirmed: true,
-          options: {
-            validateOnly: true,
-          },
+          options: { accessToken: "TOKEN" },
         })
 
         expect(result).toEqual({
@@ -52,6 +48,7 @@ describe("#postDealerFeedback", () => {
           dealerId: 1234,
           listingId: 4567,
           purchaseConfirmed: true,
+          options: { accessToken: "TOKEN" },
         })
 
         expect(fetch).toHaveBeenCalledWith(
@@ -67,6 +64,7 @@ describe("#postDealerFeedback", () => {
           dealerId: 1234,
           listingId: 4567,
           purchaseConfirmed: true,
+          options: { accessToken: "TOKEN" },
         })
 
         expect(result).toEqual({
