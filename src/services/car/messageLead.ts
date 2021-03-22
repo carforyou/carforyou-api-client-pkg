@@ -14,6 +14,7 @@ import { pageOrDefault, sizeOrDefault } from "../../lib/pageParams"
 import {
   ApiCallOptions,
   fetchPath,
+  handleValidationError,
   ignoreServerSideErrors,
   postData,
 } from "../../base"
@@ -121,6 +122,34 @@ export const fetchDealerMessageLeads = async ({
       isAuthorizedRequest: true,
     },
   })
+}
+
+export const hideMessageLead = async ({
+  dealerId,
+  messageLeadId,
+  options = {},
+}: {
+  dealerId: number
+  messageLeadId: number
+  options: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `dealers/${dealerId}/message-leads/${messageLeadId}/hide`,
+      body: {},
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
+
+  return {
+    tag: "success",
+    result: {},
+  }
 }
 
 export const fetchDealerCallLeads = async ({
