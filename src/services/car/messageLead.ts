@@ -91,7 +91,7 @@ export const fetchDealerMessageLeads = async ({
   options?: ApiCallOptions & { validateOnly?: boolean }
 }): Promise<Paginated<SearchMessageLead>> => {
   const { validateOnly, ...otherOptions } = options
-  const { page, size, sort = {} } = query
+  const { page, size, sort = {}, searchQuery } = query
 
   const { sortOrder, sortType } = sort
 
@@ -106,6 +106,10 @@ export const fetchDealerMessageLeads = async ({
     sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
       sortOrDefault.sortOrder
     )}`,
+    q:
+      searchQuery && searchQuery.length >= 3
+        ? encodeURIComponent(searchQuery)
+        : "",
   }
 
   const path = `dealers/${dealerId}/message-leads?${toQueryString(queryParams)}`
