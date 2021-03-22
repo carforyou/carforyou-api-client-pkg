@@ -146,6 +146,7 @@ export interface Listing
   useDefaultAdditionalServices: boolean
   useDefaultDescription: boolean
   useDefaultWarranty: boolean
+  useDefaultGeneralExternalNote: boolean
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
