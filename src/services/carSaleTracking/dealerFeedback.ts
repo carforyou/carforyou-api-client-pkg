@@ -10,13 +10,16 @@ export const postDealerFeedback = async ({
   dealerId: number
   listingId: number
   purchaseConfirmed: boolean
-  options?: ApiCallOptions & { validateOnly?: boolean }
+  options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   try {
     await postData({
       path: `dealers/${dealerId}/listings/${listingId}/car-sale/dealer-feedback`,
       body: { purchaseConfirmed },
-      options,
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
     })
   } catch (error) {
     return handleValidationError(error)
