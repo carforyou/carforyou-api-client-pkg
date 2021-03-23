@@ -1,6 +1,7 @@
 import {
   fetchDealerCallLeads,
   fetchDealerMessageLeads,
+  hideCallLead,
   hideMessageLead,
   sendMessageLead,
 } from "../messageLead"
@@ -359,6 +360,48 @@ describe("Car API", () => {
 
       expect(fetch).toHaveBeenCalled()
       expect(result).toEqual(PaginatedLeads([SearchCallLeadFactory()]))
+    })
+  })
+
+  describe("#hideCallLead", () => {
+    it("hides a call lead", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await hideCallLead({
+        dealerId: 1234,
+        callLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("dealers/1234/call-leads/501/hide"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "email", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await hideCallLead({
+        dealerId: 1234,
+        callLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
     })
   })
 })
