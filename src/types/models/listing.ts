@@ -57,6 +57,7 @@ export interface ListingOptionsData {
 export interface ListingDescriptionData {
   description: string
   externalNote: string
+  generalExternalNote: string
 }
 
 export interface ListingExtrasData {
