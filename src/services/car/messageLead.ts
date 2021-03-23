@@ -189,3 +189,31 @@ export const fetchDealerCallLeads = async ({
     },
   })
 }
+
+export const hideCallLead = async ({
+  dealerId,
+  callLeadId,
+  options = {},
+}: {
+  dealerId: number
+  callLeadId: number
+  options: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `dealers/${dealerId}/call-leads/${callLeadId}/hide`,
+      body: {},
+      options: {
+        ...options,
+        isAuthorizedRequest: true,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
+
+  return {
+    tag: "success",
+    result: {},
+  }
+}
