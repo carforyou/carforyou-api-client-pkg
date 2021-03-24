@@ -3,6 +3,7 @@ import {
   fetchDealerMessageLeads,
   hideCallLead,
   hideMessageLead,
+  resendMessageLead,
   sendMessageLead,
 } from "../messageLead"
 
@@ -392,6 +393,48 @@ describe("Car API", () => {
       const response = await hideCallLead({
         dealerId: 1234,
         callLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#resendMessageLead", () => {
+    it("resends a message lead", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await resendMessageLead({
+        dealerId: 1234,
+        messageLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("dealers/1234/message-leads/501/resend"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "email", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await resendMessageLead({
+        dealerId: 1234,
+        messageLeadId: 501,
         options: {
           accessToken: "DummyTokenString",
         },

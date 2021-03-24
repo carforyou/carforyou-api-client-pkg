@@ -217,3 +217,31 @@ export const hideCallLead = async ({
     result: {},
   }
 }
+
+export const resendMessageLead = async ({
+  dealerId,
+  messageLeadId,
+  options = {},
+}: {
+  dealerId: number
+  messageLeadId: number
+  options: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `dealers/${dealerId}/message-leads/${messageLeadId}/resend`,
+      body: {},
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
+
+  return {
+    tag: "success",
+    result: {},
+  }
+}
