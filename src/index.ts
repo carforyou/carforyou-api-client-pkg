@@ -15,6 +15,11 @@ export {
   SavedSearch,
   MessageLead,
   SearchMessageLead,
+<<<<<<< HEAD
+=======
+  SearchCallLead,
+  LeasingInterest,
+>>>>>>> master
   City,
   PresignedUrl,
   Date,
@@ -73,6 +78,7 @@ export {
   DealerDefaultListingAdditionalServices,
   DealerDefaultListingData,
   DealerDefaultListingDescription,
+  DealerDefaultListingGeneralExternalNote,
   DealerDefaultListingWarranty,
 } from "./types/models/dealerDefaultListing"
 
@@ -156,6 +162,7 @@ export {
   saveDealerDefaultListingAdditionalServices,
   saveDealerDefaultListingDescription,
   saveDealerDefaultListingWarranty,
+  saveDealerDefaultListingGeneralExternalNote,
 } from "./services/car/defaultListing"
 
 export {
@@ -165,6 +172,7 @@ export {
   fetchDealerListing,
   publishDealerListing,
   archiveDealerListing,
+  bulkArchiveDealerListings,
   unpublishDealerListing,
   listingMandatoryFields,
   ListingValidationEndpoint,
@@ -197,10 +205,15 @@ export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export {
   sendBuyNowApplication,
   fetchBuyNowConfiguration,
+  markBuyNowApplicationAsPaid,
 } from "./services/car/buyNow"
 export {
   sendMessageLead,
   fetchDealerMessageLeads,
+  fetchDealerCallLeads,
+  hideMessageLead,
+  hideCallLead,
+  resendMessageLead,
   defaultLeadSort as defaultLeadListingsSort,
 } from "./services/car/messageLead"
 export { addPurchaseConfirmation } from "./services/carSaleTracking/buyerFeedback"
@@ -271,6 +284,7 @@ export { postCallTrackingEntry } from "./services/reporting/callTracking"
 export {
   fetchProducts,
   purchaseAndUseListingProduct,
+  bulkPurchaseAndUseListingsProduct,
   purchaseAndUseDealerProduct,
 } from "./services/product"
 
@@ -281,6 +295,8 @@ export {
   postDealerSavedSearch,
   deleteDealerSavedSearch,
 } from "./services/search/autoAlarm"
+
+export { postDealerFeedback } from "./services/carSaleTracking/dealerFeedback"
 
 export {
   Listing as ListingFactory,
@@ -304,4 +320,7 @@ export {
 export { Options as OptionsFactory } from "./lib/factories/options"
 export { withRetries } from "./lib/withRetries"
 
-export { SearchMessageLead as SearchMessageLeadFactory } from "./lib/factories/leads"
+export {
+  SearchMessageLead as SearchMessageLeadFactory,
+  SearchCallLead as SearchCallLeadFactory,
+} from "./lib/factories/leads"

@@ -49,6 +49,40 @@ export const purchaseAndUseListingProduct = async ({
   }
 }
 
+export const bulkPurchaseAndUseListingsProduct = async ({
+  dealerId,
+  elements,
+  options = {},
+}: {
+  dealerId: number
+  elements: {
+    categoryMakeKey?: string
+    categoryModelKey?: string
+    listingId: number
+    productId: number
+  }[]
+  options?: ApiCallOptions
+}): Promise<WithValidationError<PurchaseAndUseProduct>> => {
+  try {
+    const result = await postData({
+      path: `dealers/${dealerId}/listings/products/purchase-and-use`,
+      body: {
+        elements,
+      },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error)
+  }
+}
+
 export const purchaseAndUseDealerProduct = async ({
   dealerId,
   productId,

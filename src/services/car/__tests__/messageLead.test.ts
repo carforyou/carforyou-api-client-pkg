@@ -1,8 +1,18 @@
-import { fetchDealerMessageLeads, sendMessageLead } from "../messageLead"
+import {
+  fetchDealerCallLeads,
+  fetchDealerMessageLeads,
+  hideCallLead,
+  hideMessageLead,
+  resendMessageLead,
+  sendMessageLead,
+} from "../messageLead"
 
 import { defaultLeadSort } from "../messageLead"
 import { PaginatedLeads } from "../../../lib/factories/paginated"
-import { SearchMessageLead as SearchMessageLeadFactory } from "../../../lib/factories/leads"
+import {
+  SearchCallLead as SearchCallLeadFactory,
+  SearchMessageLead as SearchMessageLeadFactory,
+} from "../../../lib/factories/leads"
 
 describe("Car API", () => {
   beforeEach(() => {
@@ -185,6 +195,7 @@ describe("Car API", () => {
           page: 2,
           size: 7,
           sort: defaultLeadSort,
+          searchQuery: "test",
         },
         options: {
           accessToken: "DummyTokenString",
@@ -193,7 +204,7 @@ describe("Car API", () => {
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(
-          /\/dealers\/1234\/message-leads\?page=1&size=7&sort=createdDate%2Cdesc$/
+          /\/dealers\/1234\/message-leads\?page=1&size=7&sort=createdDate%2Cdesc&?q=test$/
         ),
         expect.any(Object)
       )
@@ -208,6 +219,7 @@ describe("Car API", () => {
             page: 0,
             size: 7,
             sort: {},
+            searchQuery: "",
           },
         })
       } catch (err) {
@@ -226,6 +238,7 @@ describe("Car API", () => {
           page: 0,
           size: 7,
           sort: {},
+          searchQuery: "",
         },
         options: {
           accessToken: "DummyTokenString",
@@ -234,6 +247,204 @@ describe("Car API", () => {
 
       expect(fetch).toHaveBeenCalled()
       expect(result).toEqual(PaginatedLeads([SearchMessageLeadFactory()]))
+    })
+  })
+
+  describe("#hideMessageLead", () => {
+    it("hides a message lead", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await hideMessageLead({
+        dealerId: 1234,
+        messageLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("dealers/1234/message-leads/501/hide"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "email", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await hideMessageLead({
+        dealerId: 1234,
+        messageLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#fetchDealerCallLeads", () => {
+    const { content, pagination } = PaginatedLeads([SearchCallLeadFactory()])
+
+    beforeEach(() => {
+      fetchMock.mockClear()
+      fetchMock.mockResponse(
+        JSON.stringify({
+          content: content,
+          ...pagination,
+        })
+      )
+    })
+
+    it("calls correct endpoint", async () => {
+      await fetchDealerCallLeads({
+        dealerId: 1234,
+        query: {
+          page: 2,
+          size: 7,
+          sort: defaultLeadSort,
+        },
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(
+          /\/dealers\/1234\/call-leads\?page=1&size=7&sort=createdDate%2Cdesc$/
+        ),
+        expect.any(Object)
+      )
+    })
+
+    it("should trow error if accessToken is not passed", async () => {
+      let error
+      try {
+        await fetchDealerCallLeads({
+          dealerId: 1234,
+          query: {
+            page: 0,
+            size: 7,
+            sort: {},
+          },
+        })
+      } catch (err) {
+        error = err
+      }
+
+      expect(fetch).not.toHaveBeenCalled()
+      expect(error).toBeDefined()
+      expect(error.message).toBeDefined()
+    })
+
+    it("should return paginated leads calls data", async () => {
+      const result = await fetchDealerCallLeads({
+        dealerId: 1234,
+        query: {
+          page: 0,
+          size: 7,
+          sort: {},
+        },
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+
+      expect(fetch).toHaveBeenCalled()
+      expect(result).toEqual(PaginatedLeads([SearchCallLeadFactory()]))
+    })
+  })
+
+  describe("#hideCallLead", () => {
+    it("hides a call lead", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await hideCallLead({
+        dealerId: 1234,
+        callLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("dealers/1234/call-leads/501/hide"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "email", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await hideCallLead({
+        dealerId: 1234,
+        callLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#resendMessageLead", () => {
+    it("resends a message lead", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await resendMessageLead({
+        dealerId: 1234,
+        messageLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("dealers/1234/message-leads/501/resend"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "email", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await resendMessageLead({
+        dealerId: 1234,
+        messageLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
     })
   })
 })

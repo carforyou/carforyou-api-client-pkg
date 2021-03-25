@@ -57,6 +57,7 @@ export interface ListingOptionsData {
 export interface ListingDescriptionData {
   description: string
   externalNote: string
+  generalExternalNote: string
 }
 
 export interface ListingExtrasData {
@@ -142,6 +143,10 @@ export interface Listing
   buyNowInProgress: boolean
   transferredToManual: boolean
   hidden: boolean
+  useDefaultAdditionalServices: boolean
+  useDefaultDescription: boolean
+  useDefaultWarranty: boolean
+  useDefaultGeneralExternalNote: boolean
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"

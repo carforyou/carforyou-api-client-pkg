@@ -1,4 +1,7 @@
-import { SearchMessageLead as SearchMessageLeadType } from "../../types/models"
+import {
+  SearchCallLead as SearchCallLeadType,
+  SearchMessageLead as SearchMessageLeadType,
+} from "../../types/models"
 
 const searchMessageLeadDefaults: SearchMessageLeadType = {
   id: 501,
@@ -8,7 +11,9 @@ const searchMessageLeadDefaults: SearchMessageLeadType = {
     image:
       "2019/09/17/11/13/13/1-aixam-mac-500-cabriolet-480-261485-7e5hF5fhFUiC.jpg",
     make: "Ford",
+    mileage: 6000,
     model: "Fiesta",
+    price: 20000,
     type: "1.0 EcoB 125 Titanium X",
   },
   phone: "0792222222",
@@ -28,7 +33,32 @@ const searchMessageLeadDefaults: SearchMessageLeadType = {
   },
 }
 
+const searchCallLeadDefaults: SearchCallLeadType = {
+  id: 501,
+  listingId: 501,
+  listing: {
+    externalListingId: "1234567",
+    firstRegistrationDate: "2021-03-18",
+    id: 555,
+    image:
+      "2019/09/17/11/13/13/1-aixam-mac-500-cabriolet-480-261485-7e5hF5fhFUiC.jpg",
+    make: "Ford",
+    mileage: 6000,
+    model: "Fiesta",
+    price: 20000,
+    type: "1.0 EcoB 125 Titanium X",
+  },
+  callerNumber: "123-323",
+  createdDate: "2021-01-01T12:34:56.000Z",
+  duration: 0,
+}
+
 export const SearchMessageLead = (attributes = {}): SearchMessageLeadType => ({
   ...searchMessageLeadDefaults,
+  ...attributes,
+})
+
+export const SearchCallLead = (attributes = {}): SearchCallLeadType => ({
+  ...searchCallLeadDefaults,
   ...attributes,
 })
