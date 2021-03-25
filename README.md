@@ -131,9 +131,6 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`hideMessageLead`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/hideDealerMessageLeadUsingPOST)
   - [`hideCallLead`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/hideDealerCallLeadUsingPOST)
   - [`resendMessageLead`](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html#/Email%20delivery/resendMessageLeadUsingPOST)
-- [Leasing](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing)
-  - [`fetchLeasingFormUrl`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing/generateLeasingProviderFormUrlUsingPOST)
-  - [`sendLeasingInterest`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing/createLeasingInterestUsingPOST)
 - [Money Back Guarantee](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money_Back_Guarantee)
   - [`sendMoneybackApplication`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money%20Back%20Guarantee/createMbgApplicationUsingPOST)
 

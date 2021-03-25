@@ -179,14 +179,6 @@ export interface SearchCallLead {
   duration: number
 }
 
-export interface LeasingInterest {
-  email?: string
-  language?: string
-  message?: string
-  name?: string
-  phone?: string
-}
-
 export interface Date {
   month?: number
   year?: number
