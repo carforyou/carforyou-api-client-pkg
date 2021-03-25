@@ -15,11 +15,7 @@ export {
   SavedSearch,
   MessageLead,
   SearchMessageLead,
-<<<<<<< HEAD
-=======
   SearchCallLead,
-  LeasingInterest,
->>>>>>> master
   City,
   PresignedUrl,
   Date,

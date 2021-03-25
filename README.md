@@ -126,18 +126,11 @@ Also accompanying modes and param types, as well as default values, are exported
 
 - [Lead](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Lead)
   - [`sendMessageLead`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Lead/createMessageLeadUsingPOST)
-<<<<<<< HEAD
-  - `fetchDealerMessageLeads`
-=======
   - [`fetchDealerMessageLeads`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getAllDealerMessageLeadsUsingGET)
   - [`fetchDealerCallLeads`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getAllDealerCallLeadsUsingGET)
   - [`hideMessageLead`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/hideDealerMessageLeadUsingPOST)
   - [`hideCallLead`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/hideDealerCallLeadUsingPOST)
   - [`resendMessageLead`](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html#/Email%20delivery/resendMessageLeadUsingPOST)
-- [Leasing](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing)
-  - [`fetchLeasingFormUrl`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing/generateLeasingProviderFormUrlUsingPOST)
-  - [`sendLeasingInterest`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing/createLeasingInterestUsingPOST)
->>>>>>> master
 - [Money Back Guarantee](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money_Back_Guarantee)
   - [`sendMoneybackApplication`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money%20Back%20Guarantee/createMbgApplicationUsingPOST)
 
