@@ -1,3 +1,5 @@
+import { ResponseError } from "../../responseError"
+import { DealerSourceGroup, DealerType } from "../../types/models/index"
 import {
   fetchDealer,
   fetchDealerEntitlements,
@@ -10,10 +12,8 @@ import {
   putDealerProfile,
   putDealerPromotion,
   setImage,
-  setLogo,
+  setLogo
 } from "../dealer"
-import { DealerSourceGroup, DealerType } from "../../types/models/index"
-import { ResponseError } from "../../responseError"
 
 describe("Dealer", () => {
   const requestOptionsMock = {
@@ -28,6 +28,18 @@ describe("Dealer", () => {
       expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining(
           `dealers/suggestions?q=${encodeURIComponent(query)}`
+        ),
+        expect.any(Object)
+      )
+    })
+
+    it("queries the association", async () => {
+      const association = "association123"
+      await fetchDealerSuggestions({ association })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining(
+          `dealers/suggestions?association=${association}`
         ),
         expect.any(Object)
       )
