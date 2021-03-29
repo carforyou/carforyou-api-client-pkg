@@ -1,4 +1,5 @@
 import { WithValidationError } from "../../types/withValidationError"
+import { Paginated } from "../../types/pagination"
 import { Listing } from "../../types/models/listing"
 import toQueryString from "../../lib/toQueryString"
 import { decodeDate, encodeDate } from "../../lib/dateEncoding"
@@ -67,7 +68,7 @@ export const fetchDealerOrAssociationMakes = async ({
   dealerId?: number
   association?: string
   options?: ApiCallOptions
-}): Promise<Array<{ make: string; makeKey: string }>> => {
+}): Promise<Paginated<{ make: string; makeKey: string }>> => {
   return fetchPath({
     path: `dealers/makes?${toQueryString({ dealerId, association })}`,
     options,
@@ -84,7 +85,7 @@ export const fetchDealerOrAssociationModels = async ({
   association?: string
   makeKey: string
   options?: ApiCallOptions
-}): Promise<Array<{ model: string; modelKey: string }>> => {
+}): Promise<Paginated<{ model: string; modelKey: string }>> => {
   return fetchPath({
     path: `dealers/models?${toQueryString({ dealerId, association, makeKey })}`,
     options,
