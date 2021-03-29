@@ -1,14 +1,14 @@
-import { WithValidationError } from "../../types/withValidationError"
-import { Listing } from "../../types/models/listing"
-import toQueryString from "../../lib/toQueryString"
-import { decodeDate, encodeDate } from "../../lib/dateEncoding"
 import {
   ApiCallOptions,
   fetchPath,
   handleValidationError,
   postData,
-  putData,
+  putData
 } from "../../base"
+import { decodeDate, encodeDate } from "../../lib/dateEncoding"
+import toQueryString from "../../lib/toQueryString"
+import { Listing } from "../../types/models/listing"
+import { WithValidationError } from "../../types/withValidationError"
 
 const sanitizeListing = (json): Listing => {
   const { firstRegistrationDate, lastInspectionDate, ...rest } = json
@@ -81,8 +81,8 @@ export const fetchDealerOrAssociationModels = async ({
   options = {},
 }: {
   dealerId?: number
-  makeKey: string
   association?: string
+  makeKey: string
   options?: ApiCallOptions
 }): Promise<Array<{ model: string; modelKey: string }>> => {
   return fetchPath({
