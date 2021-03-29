@@ -166,6 +166,8 @@ export {
   fetchDealerMakes,
   fetchDealerModels,
   fetchDealerListing,
+  fetchDealerOrAssociationMakes,
+  fetchDealerOrAssociationModels,
   publishDealerListing,
   archiveDealerListing,
   bulkArchiveDealerListings,

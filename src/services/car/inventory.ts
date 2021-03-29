@@ -1,6 +1,6 @@
 import { WithValidationError } from "../../types/withValidationError"
 import { Listing } from "../../types/models/listing"
-
+import toQueryString from "../../lib/toQueryString"
 import { decodeDate, encodeDate } from "../../lib/dateEncoding"
 import {
   ApiCallOptions,
@@ -55,6 +55,38 @@ export const fetchDealerModels = async ({
 }): Promise<Array<{ model: string; modelKey: string }>> => {
   return fetchPath({
     path: `dealers/${dealerId}/models?makeKey=${makeKey}`,
+    options,
+  })
+}
+
+export const fetchDealerOrAssociationMakes = async ({
+  dealerId,
+  association,
+  options = {},
+}: {
+  dealerId?: number
+  association?: string
+  options?: ApiCallOptions
+}): Promise<Array<{ make: string; makeKey: string }>> => {
+  return fetchPath({
+    path: `dealers/makes?${toQueryString({ dealerId, association })}`,
+    options,
+  })
+}
+
+export const fetchDealerOrAssociationModels = async ({
+  dealerId,
+  association,
+  makeKey,
+  options = {},
+}: {
+  dealerId?: number
+  makeKey: string
+  association?: string
+  options?: ApiCallOptions
+}): Promise<Array<{ model: string; modelKey: string }>> => {
+  return fetchPath({
+    path: `dealers/models?${toQueryString({ dealerId, association, makeKey })}`,
     options,
   })
 }

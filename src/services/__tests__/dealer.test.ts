@@ -1,5 +1,3 @@
-import { ResponseError } from "../../responseError"
-import { DealerSourceGroup, DealerType } from "../../types/models/index"
 import {
   fetchDealer,
   fetchDealerEntitlements,
@@ -12,8 +10,10 @@ import {
   putDealerProfile,
   putDealerPromotion,
   setImage,
-  setLogo
+  setLogo,
 } from "../dealer"
+import { DealerSourceGroup, DealerType } from "../../types/models/index"
+import { ResponseError } from "../../responseError"
 
 describe("Dealer", () => {
   const requestOptionsMock = {

@@ -3,6 +3,8 @@ import {
   bulkArchiveDealerListings,
   fetchDealerMakes,
   fetchDealerModels,
+  fetchDealerOrAssociationMakes,
+  fetchDealerOrAssociationModels,
   fetchListing,
   getAllDealerFrameNumbers,
   hideListing,
@@ -17,7 +19,6 @@ import {
   unpublishDealerListing,
   validateDealerListing,
 } from "../inventory"
-
 import { EmptyListing, Listing } from "../../../lib/factories/listing"
 import { encodeDate } from "../../../lib/dateEncoding"
 
@@ -76,6 +77,66 @@ describe("CAR service", () => {
 
       const data = await fetchDealerModels({ dealerId: 123, makeKey: "bmw" })
       expect(data).toEqual(models)
+      expect(fetch).toHaveBeenCalled()
+    })
+  })
+
+  describe("#fetchDealerOrAssociationMakes", () => {
+    it("fetches dealer data", async () => {
+      const makes = [
+        { make: "Audi", makeKey: "audi" },
+        { make: "BMW", makeKey: "bmw" },
+      ]
+      fetchMock.mockResponse(JSON.stringify(makes))
+
+      const data = await fetchDealerOrAssociationMakes({ dealerId: 123 })
+      expect(data).toEqual(makes)
+      expect(fetch).toHaveBeenCalled()
+    })
+
+    it("fetches association data", async () => {
+      const makes = [
+        { make: "Audi", makeKey: "audi" },
+        { make: "BMW", makeKey: "bmw" },
+      ]
+      fetchMock.mockResponse(JSON.stringify(makes))
+
+      const data = await fetchDealerOrAssociationMakes({
+        association: "association123",
+      })
+      expect(data).toEqual(makes)
+      expect(fetch).toHaveBeenCalled()
+    })
+  })
+
+  describe("#fetchDealerOrAssociationModels", () => {
+    it("fetches dealer data", async () => {
+      const makes = [
+        { make: "Audi", makeKey: "audi" },
+        { make: "BMW", makeKey: "bmw" },
+      ]
+      fetchMock.mockResponse(JSON.stringify(makes))
+
+      const data = await fetchDealerOrAssociationModels({
+        dealerId: 123,
+        makeKey: "bmw",
+      })
+      expect(data).toEqual(makes)
+      expect(fetch).toHaveBeenCalled()
+    })
+
+    it("fetches association data", async () => {
+      const makes = [
+        { make: "Audi", makeKey: "audi" },
+        { make: "BMW", makeKey: "bmw" },
+      ]
+      fetchMock.mockResponse(JSON.stringify(makes))
+
+      const data = await fetchDealerOrAssociationModels({
+        association: "association123",
+        makeKey: "bmw",
+      })
+      expect(data).toEqual(makes)
       expect(fetch).toHaveBeenCalled()
     })
   })

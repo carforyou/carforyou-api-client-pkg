@@ -1,17 +1,17 @@
+import { WithValidationError } from "../types/withValidationError"
+import { Language } from "../types/params"
+import { Paginated } from "../types/pagination"
+import { DealerPromotion } from "../types/models/dealerPromotion"
+import { DealerProfile } from "../types/models/dealerProfile"
+import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
+import toQueryString from "../lib/toQueryString"
 import {
   ApiCallOptions,
   fetchPath,
   handleValidationError,
   postData,
-  putData
+  putData,
 } from "../base"
-import toQueryString from "../lib/toQueryString"
-import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
-import { DealerProfile } from "../types/models/dealerProfile"
-import { DealerPromotion } from "../types/models/dealerPromotion"
-import { Paginated } from "../types/pagination"
-import { Language } from "../types/params"
-import { WithValidationError } from "../types/withValidationError"
 
 export const fetchDealer = async ({
   id,
@@ -39,9 +39,7 @@ export const fetchDealerSuggestions = async ({
   options?: ApiCallOptions
 }): Promise<Paginated<DealerSuggestion>> => {
   return fetchPath({
-    path: `dealers/suggestions?${
-      query ? "q=" + encodeURIComponent(query) : ""
-    }${association ? "association=" + association : ""}`,
+    path: `dealers/suggestions?${toQueryString({ association, q: query })}`,
     options,
   })
 }
