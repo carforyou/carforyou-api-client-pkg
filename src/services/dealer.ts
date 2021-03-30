@@ -4,7 +4,6 @@ import { Paginated } from "../types/pagination"
 import { DealerPromotion } from "../types/models/dealerPromotion"
 import { DealerProfile } from "../types/models/dealerProfile"
 import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
-
 import toQueryString from "../lib/toQueryString"
 import {
   ApiCallOptions,
@@ -32,13 +31,15 @@ export const fetchDealer = async ({
 
 export const fetchDealerSuggestions = async ({
   query,
+  association,
   options = {},
 }: {
-  query: string
+  query?: string
+  association?: string
   options?: ApiCallOptions
 }): Promise<Paginated<DealerSuggestion>> => {
   return fetchPath({
-    path: `dealers/suggestions?q=${query ? encodeURIComponent(query) : query}`,
+    path: `dealers/suggestions?${toQueryString({ association, q: query })}`,
     options,
   })
 }

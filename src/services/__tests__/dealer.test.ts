@@ -32,6 +32,18 @@ describe("Dealer", () => {
         expect.any(Object)
       )
     })
+
+    it("queries the association", async () => {
+      const association = "association123"
+      await fetchDealerSuggestions({ association })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining(
+          `dealers/suggestions?association=${association}`
+        ),
+        expect.any(Object)
+      )
+    })
   })
 
   describe("#fetchDealer", () => {

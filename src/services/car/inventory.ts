@@ -1,6 +1,7 @@
 import { WithValidationError } from "../../types/withValidationError"
+import { Paginated } from "../../types/pagination"
 import { Listing } from "../../types/models/listing"
-
+import toQueryString from "../../lib/toQueryString"
 import { decodeDate, encodeDate } from "../../lib/dateEncoding"
 import {
   ApiCallOptions,
@@ -55,6 +56,57 @@ export const fetchDealerModels = async ({
 }): Promise<Array<{ model: string; modelKey: string }>> => {
   return fetchPath({
     path: `dealers/${dealerId}/models?makeKey=${makeKey}`,
+    options,
+  })
+}
+
+export const fetchDealerOrAssociationMakes = async ({
+  dealerId,
+  association,
+  page,
+  size,
+  options = {},
+}: {
+  dealerId?: number
+  association?: string
+  page?: number
+  size?: number
+  options?: ApiCallOptions
+}): Promise<Paginated<{ make: string; makeKey: string }>> => {
+  return fetchPath({
+    path: `dealers/makes?${toQueryString({
+      dealerId,
+      association,
+      page,
+      size,
+    })}`,
+    options,
+  })
+}
+
+export const fetchDealerOrAssociationModels = async ({
+  dealerId,
+  association,
+  makeKey,
+  page,
+  size,
+  options = {},
+}: {
+  dealerId?: number
+  association?: string
+  makeKey: string
+  page?: number
+  size?: number
+  options?: ApiCallOptions
+}): Promise<Paginated<{ model: string; modelKey: string }>> => {
+  return fetchPath({
+    path: `dealers/models?${toQueryString({
+      dealerId,
+      association,
+      makeKey,
+      page,
+      size,
+    })}`,
     options,
   })
 }
