@@ -32,14 +32,23 @@ export const fetchDealer = async ({
 export const fetchDealerSuggestions = async ({
   query,
   association,
+  page,
+  size,
   options = {},
 }: {
   query?: string
   association?: string
+  page?: number
+  size?: number
   options?: ApiCallOptions
 }): Promise<Paginated<DealerSuggestion>> => {
   return fetchPath({
-    path: `dealers/suggestions?${toQueryString({ association, q: query })}`,
+    path: `dealers/suggestions?${toQueryString({
+      association,
+      page,
+      size,
+      q: query,
+    })}`,
     options,
   })
 }
