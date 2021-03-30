@@ -63,14 +63,23 @@ export const fetchDealerModels = async ({
 export const fetchDealerOrAssociationMakes = async ({
   dealerId,
   association,
+  page,
+  size,
   options = {},
 }: {
   dealerId?: number
   association?: string
+  page?: number
+  size?: number
   options?: ApiCallOptions
 }): Promise<Paginated<{ make: string; makeKey: string }>> => {
   return fetchPath({
-    path: `dealers/makes?${toQueryString({ dealerId, association })}`,
+    path: `dealers/makes?${toQueryString({
+      dealerId,
+      association,
+      page,
+      size,
+    })}`,
     options,
   })
 }
@@ -79,15 +88,25 @@ export const fetchDealerOrAssociationModels = async ({
   dealerId,
   association,
   makeKey,
+  page,
+  size,
   options = {},
 }: {
   dealerId?: number
   association?: string
   makeKey: string
+  page?: number
+  size?: number
   options?: ApiCallOptions
 }): Promise<Paginated<{ model: string; modelKey: string }>> => {
   return fetchPath({
-    path: `dealers/models?${toQueryString({ dealerId, association, makeKey })}`,
+    path: `dealers/models?${toQueryString({
+      dealerId,
+      association,
+      makeKey,
+      page,
+      size,
+    })}`,
     options,
   })
 }
