@@ -157,12 +157,10 @@ const searchForListings = ({
 const sanitizeListing = ({
   firstRegistrationDate,
   ...listing
-}: ApiSearchListing): SearchListing => {
-  return {
-    ...listing,
-    firstRegistrationDate: decodeDate(firstRegistrationDate),
-  }
-}
+}: ApiSearchListing): SearchListing => ({
+  ...listing,
+  firstRegistrationDate: decodeDate(firstRegistrationDate),
+})
 
 function sanitizeListingResponse<
   T extends Paginated<ApiSearchListing> & { topListing: ApiSearchListing }
