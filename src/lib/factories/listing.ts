@@ -130,7 +130,7 @@ const defaults: ListingType = {
   useDefaultDescription: false,
   useDefaultWarranty: false,
   useDefaultGeneralExternalNote: false,
-  verified: true, // TODO: set to false
+  verified: false,
 }
 
 export function Listing(attributes = {}): ListingType {
@@ -275,7 +275,7 @@ export function EmptyListing(): ListingType {
     useDefaultDescription: undefined,
     useDefaultWarranty: undefined,
     useDefaultGeneralExternalNote: undefined,
-    verified: true, // TODO: set to false
+    verified: false,
   }
 }
 

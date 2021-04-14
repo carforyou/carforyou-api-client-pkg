@@ -160,7 +160,6 @@ const sanitizeListing = ({
 }: ApiSearchListing): SearchListing => {
   return {
     ...listing,
-    verified: true,
     firstRegistrationDate: decodeDate(firstRegistrationDate),
   }
 }
