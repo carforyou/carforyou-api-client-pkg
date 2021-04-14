@@ -147,6 +147,7 @@ export interface Listing
   useDefaultDescription: boolean
   useDefaultWarranty: boolean
   useDefaultGeneralExternalNote: boolean
+  verified: boolean
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
@@ -214,6 +215,7 @@ interface BaseSearchListing {
   buyNowEligible: boolean
   buyNowInProgress: boolean
   description: string
+  verified: boolean
 }
 
 export interface ApiSearchListing extends BaseSearchListing {
