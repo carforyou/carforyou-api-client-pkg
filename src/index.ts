@@ -164,7 +164,6 @@ export {
 export {
   fetchListing,
   fetchDealerMakes,
-  fetchDealerModels,
   fetchDealerListing,
   fetchDealerOrAssociationMakes,
   fetchDealerOrAssociationModels,
