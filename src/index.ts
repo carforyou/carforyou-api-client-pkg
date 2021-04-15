@@ -140,6 +140,12 @@ export {
 export { WhatsappEntry, CallTrackingEntry } from "./types/models/tracking"
 
 export {
+  BuyerFeedbackDealer,
+  BuyerFeedbackListing,
+  BuyerFeedbackEntries,
+} from "./types/models/buyerFeedbackBatch"
+
+export {
   fetchCarSales,
   rejectCarSales,
   deleteCarSalesRejection,
