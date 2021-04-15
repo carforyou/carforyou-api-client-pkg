@@ -295,6 +295,8 @@ export {
 
 export { postDealerFeedback } from "./services/carSaleTracking/dealerFeedback"
 
+export { fetchBuyerFeedbackBatch } from "./services/reporting/buyerFeedbackBatch"
+
 export {
   Listing as ListingFactory,
   SearchListing as SearchListingFactory,
