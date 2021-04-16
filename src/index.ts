@@ -140,6 +140,12 @@ export {
 export { WhatsappEntry, CallTrackingEntry } from "./types/models/tracking"
 
 export {
+  BuyerFeedbackDealer,
+  BuyerFeedbackListing,
+  BuyerFeedbackEntries,
+} from "./types/models/buyerFeedbackBatch"
+
+export {
   fetchCarSales,
   rejectCarSales,
   deleteCarSalesRejection,
@@ -294,6 +300,8 @@ export {
 } from "./services/search/autoAlarm"
 
 export { postDealerFeedback } from "./services/carSaleTracking/dealerFeedback"
+
+export { fetchBuyerFeedbackBatch } from "./services/reporting/buyerFeedbackBatch"
 
 export {
   Listing as ListingFactory,
