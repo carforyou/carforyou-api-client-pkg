@@ -12,12 +12,18 @@ import {
 } from "../../base"
 
 const sanitizeListing = (json): Listing => {
-  const { firstRegistrationDate, lastInspectionDate, ...rest } = json
+  const {
+    firstRegistrationDate,
+    lastInspectionDate,
+    lastServiceDate,
+    ...rest
+  } = json
 
   return {
     ...rest,
     firstRegistrationDate: decodeDate(firstRegistrationDate),
     lastInspectionDate: decodeDate(lastInspectionDate),
+    lastServiceDate: decodeDate(lastServiceDate),
     additionalOptions: [],
     standardOptions: [],
   }
@@ -117,12 +123,19 @@ export const fetchDealerListing = async ({
 }
 
 export const prepareListingData = (listing) => {
-  const { id, firstRegistrationDate, lastInspectionDate, ...rest } = listing
+  const {
+    id,
+    firstRegistrationDate,
+    lastInspectionDate,
+    lastServiceDate,
+    ...rest
+  } = listing
 
   return {
     ...rest,
     firstRegistrationDate: encodeDate(firstRegistrationDate),
     lastInspectionDate: encodeDate(lastInspectionDate),
+    lastServiceDate: encodeDate(lastServiceDate),
   }
 }
 
