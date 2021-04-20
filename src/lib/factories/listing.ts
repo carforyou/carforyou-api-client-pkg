@@ -130,6 +130,7 @@ const defaults: ListingType = {
   useDefaultDescription: false,
   useDefaultWarranty: false,
   useDefaultGeneralExternalNote: false,
+  firstOwner: false,
 }
 
 export function Listing(attributes = {}): ListingType {
@@ -274,6 +275,7 @@ export function EmptyListing(): ListingType {
     useDefaultDescription: undefined,
     useDefaultWarranty: undefined,
     useDefaultGeneralExternalNote: undefined,
+    firstOwner: undefined,
   }
 }
 

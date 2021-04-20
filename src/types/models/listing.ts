@@ -147,6 +147,7 @@ export interface Listing
   useDefaultDescription: boolean
   useDefaultWarranty: boolean
   useDefaultGeneralExternalNote: boolean
+  firstOwner: boolean
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
