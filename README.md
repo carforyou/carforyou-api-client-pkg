@@ -90,7 +90,6 @@ Also accompanying modes and param types, as well as default values, are exported
 - [Inventory](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory)
   - [`fetchListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getUsingGET_1)
   - [`fetchDealerMakes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getAllDealerMakesUsingGET)
-  - [`fetchDealerModels`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getAllDealerModelsUsingGET)
   - [`fetchDealerOrAssociationMakes`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Inventory/getAllDealerMakesUsingGET)
   - [`fetchDealerOrAssociationModels`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Inventory/getAllDealerMakesUsingGET_1)
   - [`fetchDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getUsingGET)
@@ -244,6 +243,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchCarSales`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getDealerCarSalesUsingGET)
   - [`rejectCarSales`](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Car%20Sale/addCarSaleRejectionUsingPUT)
   - [`deleteCarSalesRejection`](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Car%20Sale/removeCarSaleRejectionUsingDELETE)
+  - [`fetchBuyerFeedbackBatch`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getBuyerFeedbackBatchUsingGET)
 - [Call Tracking](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking)
   - [`postCallTrackingEntry`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking/createCallTrackingEntryUsingPOST)
 
