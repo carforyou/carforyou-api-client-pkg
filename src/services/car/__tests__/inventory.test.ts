@@ -40,6 +40,7 @@ describe("CAR service", () => {
           ...listing,
           firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
           lastInspectionDate: encodeDate(listing.lastInspectionDate),
+          lastServiceDate: encodeDate(listing.lastServiceDate),
         })
       )
     })
