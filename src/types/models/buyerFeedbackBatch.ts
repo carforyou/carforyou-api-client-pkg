@@ -17,7 +17,11 @@ export interface BuyerFeedbackListing
   dealer: BuyerFeedbackDealer
 }
 
-export interface BuyerFeedbackEntries {
+export interface BuyerFeedbackEntry {
   key: string
   listing: BuyerFeedbackListing
+}
+
+export interface BuyerFeedbackEntries {
+  buyerFeedbackEntries: BuyerFeedbackEntry[]
 }
