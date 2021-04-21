@@ -115,6 +115,14 @@ const defaults: ListingType = {
   handicappedAccessible: false,
   tuned: false,
   racingCar: false,
+  lastServiceDate: { month: 2, year: 2020 },
+  hasFullServiceHistory: false,
+  minOneYearFreeServiceIncluded: true,
+  priceNegotiable: false,
+  firstOwner: true,
+  hasRefundPolicy: false,
+  breakdownServiceIncluded: true,
+  damaged: false,
   enabledFeatures: [
     {
       feature: "premium-listing",
@@ -130,6 +138,7 @@ const defaults: ListingType = {
   useDefaultDescription: false,
   useDefaultWarranty: false,
   useDefaultGeneralExternalNote: false,
+  verified: false,
 }
 
 export function Listing(attributes = {}): ListingType {
@@ -222,6 +231,14 @@ export function EmptyListing(): ListingType {
     hadAccident: undefined,
     tuned: undefined,
     racingCar: undefined,
+    lastServiceDate: undefined,
+    hasFullServiceHistory: undefined,
+    minOneYearFreeServiceIncluded: undefined,
+    priceNegotiable: undefined,
+    firstOwner: undefined,
+    hasRefundPolicy: undefined,
+    breakdownServiceIncluded: undefined,
+    damaged: undefined,
     additionalOptions: [],
     standardOptions: [],
     productionStartDate: undefined,
@@ -274,6 +291,7 @@ export function EmptyListing(): ListingType {
     useDefaultDescription: undefined,
     useDefaultWarranty: undefined,
     useDefaultGeneralExternalNote: undefined,
+    verified: false,
   }
 }
 

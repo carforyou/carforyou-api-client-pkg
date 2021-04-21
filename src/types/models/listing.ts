@@ -70,6 +70,14 @@ export interface ListingExtrasData {
   hadAccident: boolean
   tuned: boolean
   racingCar: boolean
+  lastServiceDate: Date
+  hasFullServiceHistory: boolean
+  minOneYearFreeServiceIncluded: boolean
+  priceNegotiable: boolean
+  firstOwner: boolean
+  hasRefundPolicy: boolean
+  breakdownServiceIncluded: boolean
+  damaged: boolean
 }
 
 export interface OtherServices {
@@ -147,6 +155,7 @@ export interface Listing
   useDefaultDescription: boolean
   useDefaultWarranty: boolean
   useDefaultGeneralExternalNote: boolean
+  verified: boolean
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
@@ -214,6 +223,7 @@ interface BaseSearchListing {
   buyNowEligible: boolean
   buyNowInProgress: boolean
   description: string
+  verified: boolean
 }
 
 export interface ApiSearchListing extends BaseSearchListing {
