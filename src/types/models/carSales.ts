@@ -33,4 +33,6 @@ export interface CarSales {
   id: number
   listing: CarSalesListing
   rejection: CarSaleRejection | null
+  dealerFeedbackReceivedDate: string
+  hasDealerFeedback: boolean
 }
