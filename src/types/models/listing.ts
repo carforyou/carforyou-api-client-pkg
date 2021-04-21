@@ -70,6 +70,14 @@ export interface ListingExtrasData {
   hadAccident: boolean
   tuned: boolean
   racingCar: boolean
+  lastServiceDate: Date
+  hasFullServiceHistory: boolean
+  minOneYearFreeServiceIncluded: boolean
+  priceNegotiable: boolean
+  firstOwner: boolean
+  hasRefundPolicy: boolean
+  breakdownServiceIncluded: boolean
+  damaged: boolean
 }
 
 export interface OtherServices {
