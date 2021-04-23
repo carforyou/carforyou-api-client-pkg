@@ -7,7 +7,6 @@ import {
   fetchListing,
   getAllDealerFrameNumbers,
   hideListing,
-  listingMandatoryFields,
   ListingValidationEndpoint,
   prepareListingData,
   publishDealerListing,
@@ -610,23 +609,6 @@ describe("CAR service", () => {
         errors,
         globalErrors: [],
       })
-    })
-  })
-
-  describe("#listingMandatoryFields", () => {
-    it("returns a set of mandatory fields", async () => {
-      const fields = ["makeKey", "modelKey"]
-      fetchMock.mockResponse(
-        JSON.stringify(
-          fields.map((field) => ({ message: "not-empty", param: field }))
-        )
-      )
-
-      const data = await listingMandatoryFields({
-        dealerId: 123,
-        options: requestOptionsMock,
-      })
-      expect(data).toEqual(new Set(fields))
     })
   })
 
