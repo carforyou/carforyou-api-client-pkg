@@ -178,7 +178,6 @@ export {
   archiveDealerListing,
   bulkArchiveDealerListings,
   unpublishDealerListing,
-  listingMandatoryFields,
   ListingValidationEndpoint,
   validateDealerListing,
   saveDealerListing,

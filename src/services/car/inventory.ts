@@ -467,24 +467,6 @@ export const unhideListing = async ({
   }
 }
 
-export const listingMandatoryFields = async ({
-  dealerId,
-  options = {},
-}: {
-  dealerId: number
-  options?: ApiCallOptions
-}): Promise<Set<string>> => {
-  const data = await fetchPath({
-    path: `dealers/${dealerId}/listings/publish/mandatory-fields`,
-    options: {
-      isAuthorizedRequest: true,
-      ...options,
-    },
-  })
-
-  return new Set(data.map((entry) => entry.param))
-}
-
 export const getAllDealerFrameNumbers = async ({
   dealerId,
   query,
