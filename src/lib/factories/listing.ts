@@ -139,6 +139,7 @@ const defaults: ListingType = {
   useDefaultWarranty: false,
   useDefaultGeneralExternalNote: false,
   verified: false,
+  vehicleUniverse: "car",
 }
 
 export function Listing(attributes = {}): ListingType {
@@ -292,6 +293,7 @@ export function EmptyListing(): ListingType {
     useDefaultWarranty: undefined,
     useDefaultGeneralExternalNote: undefined,
     verified: false,
+    vehicleUniverse: "car",
   }
 }
 
