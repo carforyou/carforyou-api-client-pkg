@@ -33,7 +33,7 @@ export const fetchListingCount = async ({
   const json = await postData({
     path: "listings/count",
     body: {
-      query,
+      query: paramsToSearchRequest(query),
       ...(fieldsStats.length > 0 ? { includeFieldsStats: fieldsStats } : {}),
     },
     options: otherOptions,

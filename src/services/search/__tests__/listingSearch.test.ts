@@ -71,6 +71,19 @@ describe("SEARCH service", () => {
           })
         )
       })
+
+      it("converts the location filter", async () => {
+        await fetchListingCount({ query: { cityId: "12345", radius: "20" } })
+
+        expect(fetch).toHaveBeenCalledWith(
+          expect.stringMatching("listings/count"),
+          expect.objectContaining({
+            body: JSON.stringify({
+              query: { location: { cityId: "12345", radius: "20" } },
+            }),
+          })
+        )
+      })
     })
   })
 
@@ -162,6 +175,21 @@ describe("SEARCH service", () => {
       expect(listings.length).toEqual(1)
       expect(listings).toEqual(content)
       expect(fetch).toHaveBeenCalled()
+    })
+
+    it("converts the location filter", async () => {
+      await fetchListings({ query: { cityId: "12345", radius: "20" } })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching("listings/search"),
+        expect.objectContaining({
+          body: JSON.stringify({
+            pagination: { page: 0, size: 24 },
+            sort: [{ order: "ASC", type: "RELEVANCE" }],
+            query: { location: { cityId: "12345", radius: "20" } },
+          }),
+        })
+      )
     })
 
     describe("Pagination", () => {
