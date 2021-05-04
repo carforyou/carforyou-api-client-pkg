@@ -17,6 +17,7 @@ describe("Car sale tracking API", () => {
             purchaseConfirmed: false,
           },
         ],
+        options: { accessToken: "TOKEN" },
       })
 
       expect(fetch).toHaveBeenCalledWith(
