@@ -156,7 +156,7 @@ export interface Listing
   useDefaultWarranty: boolean
   useDefaultGeneralExternalNote: boolean
   verified: boolean
-  vehicleUniverse: string
+  vehicleUniverse: "car"
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
