@@ -17,6 +17,9 @@ export const postBulkDealerFeedback = async ({
     body: {
       elements,
     },
-    options,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
   })
 }
