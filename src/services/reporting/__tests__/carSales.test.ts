@@ -3,6 +3,7 @@ import { CarSaleRejection } from "index"
 import {
   deleteCarSalesRejection,
   fetchCarSales,
+  fetchCarSalesCount,
   rejectCarSales,
 } from "../carSales"
 import PaginatedFactory from "../../../lib/factories/paginated"
@@ -165,6 +166,26 @@ describe("Car Sales", () => {
         tag: "success",
         result: null,
       })
+    })
+  })
+
+  describe("#fetchCarSalesCount", () => {
+    const count = 5
+
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify({ count }))
+    })
+
+    it("fetches car sales count", async () => {
+      const received = await fetchCarSalesCount({
+        dealerId: 123,
+        status: "draft",
+        hasRejection: false,
+        options: { accessToken: "Token" },
+      })
+
+      expect(received.count).toEqual(count)
+      expect(fetch).toHaveBeenCalled()
     })
   })
 })

@@ -1,5 +1,5 @@
 import { Paginated } from "../../types/pagination"
-import { CarSales } from "../../types/models/carSales"
+import { CarSaleCount, CarSales } from "../../types/models/carSales"
 
 import toQueryString from "../../lib/toQueryString"
 import { CarSaleRejection, WithValidationError } from "../../index"
@@ -97,4 +97,22 @@ export const deleteCarSalesRejection = async ({
       },
     })
   )
+}
+
+export const fetchCarSalesCount = async ({
+  dealerId,
+  status,
+  hasRejection,
+  options = {},
+}: {
+  dealerId: number
+  status?: string
+  hasRejection?: boolean
+  options?: ApiCallOptions
+}): Promise<CarSaleCount> => {
+  const query = toQueryString({ status, hasRejection })
+  return fetchPath({
+    path: `dealers/${dealerId}/car-sales/count${query ? `?${query}` : ""}`,
+    options: { isAuthorizedRequest: true, ...options },
+  })
 }

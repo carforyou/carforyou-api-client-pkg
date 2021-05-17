@@ -1,5 +1,9 @@
 import { ApiSearchListing } from "../../types/models/listing"
 
+export interface CarSaleCount {
+  count: number
+}
+
 export interface Buyer {
   email: string
   firstName: string

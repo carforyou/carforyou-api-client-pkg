@@ -135,6 +135,7 @@ export {
   CarSalesListing,
   CarSales,
   CarSaleRejection,
+  CarSaleCount,
 } from "./types/models/carSales"
 
 export { WhatsappEntry, CallTrackingEntry } from "./types/models/tracking"
@@ -150,6 +151,7 @@ export {
   fetchCarSales,
   rejectCarSales,
   deleteCarSalesRejection,
+  fetchCarSalesCount,
 } from "./services/reporting/carSales"
 
 export { fetchDealScores } from "./services/car/goodBadDealData"
