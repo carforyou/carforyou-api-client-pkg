@@ -1,5 +1,17 @@
 import { ApiSearchListing } from "../../types/models/listing"
 
+export interface CarSaleTrackingSubscription {
+  basePrice: number
+  capping: number
+  contingent: number
+  endDate: string
+  numberOfInvoicedCarSales: number
+  pricePerCarSale: number
+  salesContactEmail: string
+  salesContactName: string
+  startDate: string
+}
+
 export interface Buyer {
   email: string
   firstName: string
