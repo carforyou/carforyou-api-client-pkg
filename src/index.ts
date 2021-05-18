@@ -135,7 +135,6 @@ export {
   CarSalesListing,
   CarSales,
   CarSaleRejection,
-  CarSaleCount,
   CarSaleTrackingSubscription,
 } from "./types/models/carSales"
 
