@@ -136,6 +136,7 @@ export {
   CarSales,
   CarSaleRejection,
   CarSaleCount,
+  CarSaleTrackingSubscription,
 } from "./types/models/carSales"
 
 export { WhatsappEntry, CallTrackingEntry } from "./types/models/tracking"
@@ -302,6 +303,8 @@ export {
 } from "./services/search/autoAlarm"
 
 export { postDealerFeedback } from "./services/carSaleTracking/dealerFeedback"
+
+export { fetchCarSaleTrackingSubscription } from "./services/carSaleTracking/subscription"
 
 export { fetchBuyerFeedbackBatch } from "./services/reporting/buyerFeedbackBatch"
 
