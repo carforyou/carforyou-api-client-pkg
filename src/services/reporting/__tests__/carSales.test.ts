@@ -184,7 +184,7 @@ describe("Car Sales", () => {
         options: { accessToken: "Token" },
       })
 
-      expect(received.count).toEqual(count)
+      expect(received).toEqual(count)
       expect(fetch).toHaveBeenCalled()
     })
   })

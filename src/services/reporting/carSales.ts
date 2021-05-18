@@ -1,5 +1,5 @@
 import { Paginated } from "../../types/pagination"
-import { CarSaleCount, CarSales } from "../../types/models/carSales"
+import { CarSales } from "../../types/models/carSales"
 
 import toQueryString from "../../lib/toQueryString"
 import { CarSaleRejection, WithValidationError } from "../../index"
@@ -109,10 +109,11 @@ export const fetchCarSalesCount = async ({
   status?: string
   hasRejection?: boolean
   options?: ApiCallOptions
-}): Promise<CarSaleCount> => {
+}): Promise<number> => {
   const query = toQueryString({ status, hasRejection })
-  return fetchPath({
+  const { count } = await fetchPath({
     path: `dealers/${dealerId}/car-sales/count${query ? `?${query}` : ""}`,
     options: { isAuthorizedRequest: true, ...options },
   })
+  return count
 }
