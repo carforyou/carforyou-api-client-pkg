@@ -387,7 +387,7 @@ describe("CAR service", () => {
       })
       expect(response).toEqual({ tag: "success", result: {} })
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining("/dealers/6/listings/archive"),
+        expect.stringContaining("/dealers/6/listings/bulk-archive"),
         expect.objectContaining({
           method: "POST",
           body: JSON.stringify({
@@ -506,7 +506,7 @@ describe("CAR service", () => {
       })
       expect(response).toEqual({ tag: "success", result: {} })
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining("/dealers/6/listings/transfer-to-manual"),
+        expect.stringContaining("/dealers/6/listings/bulk-transfer-to-manual"),
         expect.objectContaining({
           method: "POST",
           body: JSON.stringify({ elements: listingIds }),

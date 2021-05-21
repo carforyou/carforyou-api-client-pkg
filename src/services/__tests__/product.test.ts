@@ -107,7 +107,7 @@ describe("Products service", () => {
       })
       expect(fetch).toBeCalledWith(
         expect.stringContaining(
-          "/dealers/123/listings/products/purchase-and-use"
+          "/dealers/123/listings/products/bulk-purchase-and-use"
         ),
         expect.objectContaining({
           body: JSON.stringify({
