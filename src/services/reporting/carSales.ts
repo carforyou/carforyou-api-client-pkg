@@ -98,3 +98,22 @@ export const deleteCarSalesRejection = async ({
     })
   )
 }
+
+export const fetchCarSalesCount = async ({
+  dealerId,
+  status,
+  hasRejection,
+  options = {},
+}: {
+  dealerId: number
+  status?: string
+  hasRejection?: boolean
+  options?: ApiCallOptions
+}): Promise<number> => {
+  const query = toQueryString({ status, hasRejection })
+  const { count } = await fetchPath({
+    path: `dealers/${dealerId}/car-sales/count${query ? `?${query}` : ""}`,
+    options: { isAuthorizedRequest: true, ...options },
+  })
+  return count
+}
