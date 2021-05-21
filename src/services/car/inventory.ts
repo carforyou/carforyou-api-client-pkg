@@ -306,7 +306,7 @@ export const bulkArchiveDealerListings = async ({
 }): Promise<WithValidationError> => {
   try {
     await postData({
-      path: `dealers/${dealerId}/listings/archive`,
+      path: `dealers/${dealerId}/listings/bulk-archive`,
       body: {
         elements: listingIds,
       },
@@ -392,7 +392,7 @@ export const transferDealerListingsToManual = async ({
 }): Promise<WithValidationError> => {
   try {
     await postData({
-      path: `dealers/${dealerId}/listings/transfer-to-manual`,
+      path: `dealers/${dealerId}/listings/bulk-transfer-to-manual`,
       body: {
         elements: listingIds,
       },
