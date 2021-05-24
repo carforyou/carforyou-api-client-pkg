@@ -286,6 +286,7 @@ export {
 } from "./services/analytics"
 export { postWhatsappTrackingEntry } from "./services/reporting/whatsapp"
 export { postCallTrackingEntry } from "./services/reporting/callTracking"
+export { fetchReferenceData } from "./services/referenceData"
 export {
   fetchProducts,
   purchaseAndUseListingProduct,

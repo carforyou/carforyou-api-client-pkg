@@ -247,6 +247,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchBuyerFeedbackBatch`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getBuyerFeedbackBatchUsingGET)
 - [Call Tracking](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking)
   - [`postCallTrackingEntry`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking/createCallTrackingEntryUsingPOST)
+- [Reference Data](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reference%20data)
+   - [`fetchReferenceData`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reference%20data/getReferenceDataUsingGET)
 
 ### [Car sale tracking service](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html)
 
