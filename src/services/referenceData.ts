@@ -14,7 +14,7 @@ export const fetchReferenceData = ({
   searchAttributes: string[]
   lifestyleTypes: string[]
   vehicleClasses: string[]
-  imageCountGroups: string[]
+  imagesCountGroups: string[]
   sourceGroups: string[]
   lastPriceModifiedDateAgeGroups: string[]
   firstPublishingDateAgeGroups: string[]
