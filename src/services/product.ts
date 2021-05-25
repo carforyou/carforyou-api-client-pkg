@@ -65,7 +65,7 @@ export const bulkPurchaseAndUseListingsProduct = async ({
 }): Promise<WithValidationError<PurchaseAndUseProduct>> => {
   try {
     const result = await postData({
-      path: `dealers/${dealerId}/listings/products/purchase-and-use`,
+      path: `dealers/${dealerId}/listings/products/bulk-purchase-and-use`,
       body: {
         elements,
       },

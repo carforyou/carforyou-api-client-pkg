@@ -135,6 +135,7 @@ export {
   CarSalesListing,
   CarSales,
   CarSaleRejection,
+  CarSaleTrackingSubscription,
 } from "./types/models/carSales"
 
 export { WhatsappEntry, CallTrackingEntry } from "./types/models/tracking"
@@ -150,6 +151,7 @@ export {
   fetchCarSales,
   rejectCarSales,
   deleteCarSalesRejection,
+  fetchCarSalesCount,
 } from "./services/reporting/carSales"
 
 export { fetchDealScores } from "./services/car/goodBadDealData"
@@ -300,6 +302,8 @@ export {
 } from "./services/search/autoAlarm"
 
 export { postDealerFeedback } from "./services/carSaleTracking/dealerFeedback"
+
+export { fetchCarSaleTrackingSubscription } from "./services/carSaleTracking/subscription"
 
 export { fetchBuyerFeedbackBatch } from "./services/reporting/buyerFeedbackBatch"
 
