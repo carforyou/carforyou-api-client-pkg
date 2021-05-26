@@ -256,6 +256,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`addPurchaseConfirmation`](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Buyer%20Feedback/addPurchaseConfirmationUsingPOST)
 - [Dealer feedback](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Feedback)
   - [`postDealerFeedback`](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Feedback/createDealerFeedbackUsingPOST)
+  - [`postBulkDealerFeedback`](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Feedback/bulkCreateDealerFeedbackUsingPOST)
 - [Car Sale](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Car%20Sale)
   - [`fetchCarSalesCount`](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Car%20Sale/countCarSalesUsingGET)
 

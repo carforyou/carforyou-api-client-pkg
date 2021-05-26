@@ -303,6 +303,7 @@ export {
 } from "./services/search/autoAlarm"
 
 export { postDealerFeedback } from "./services/carSaleTracking/dealerFeedback"
+export { postBulkDealerFeedback } from "./services/carSaleTracking/bulkDealerFeedback"
 
 export { fetchCarSaleTrackingSubscription } from "./services/carSaleTracking/subscription"
 
