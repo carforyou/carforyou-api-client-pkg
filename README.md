@@ -19,9 +19,9 @@ ApiClient.configure(<your_configuration_object>)
 Import the `fetchXYZ` call you need and use in your code:
 
 ```
-import { fetchBodyTypes } from "@carforyou/api-client"
+import { fetchReferenceData } from "@carforyou/api-client"
 
-fetchBodyTypes()
+fetchReferenceData()
 ```
 
 ## Configuration
@@ -108,21 +108,10 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`getAllDealerFrameNumbers`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getAllDealerFrameNumbersUsingGET)
 - [Inventory data](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory_Data)
 
-  - [`fetchBodyTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getBodyTypesUsingGET)
-  - [`fetchColorGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getColorGroupsUsingGET)
-  - [`fetchColors`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getColorsUsingGET)
-  - [`fetchConditionTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getConditionTypesUsingGET)
   - [`fetchDoors`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/findDistinctDoorsUsingGET)
-  - [`fetchDriveTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getDriveTypesUsingGET)
-  - [`fetchFuelTypeGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getFuelTypeGroupsUsingGET)
-  - [`fetchFuelTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getFuelTypesUsingGET)
   - [`fetchMinFirstRegistrationYear`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/findMinRegistrationYearUsingGET)
   - [`fetchOptions`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getOptionsUsingGET)
   - [`fetchSeats`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/findDistinctSeatsUsingGET)
-  - [`fetchTransmissionTypes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getTransmissionTypesUsingGET)
-  - [`fetchImagesCountGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getImagesCountGroupsUsingGET)
-  - [`fetchLastPriceModifiedDateAgeGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getLastPriceModifiedDateAgeGroupsUsingGET)
-  - [`fetchFirstPublishingDateAgeGroups`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getFirstPublishingDateAgeGroupsUsingGET)
 
 - [Lead](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Lead)
   - [`sendMessageLead`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Lead/createMessageLeadUsingPOST)
