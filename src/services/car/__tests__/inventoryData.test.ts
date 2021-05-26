@@ -4,6 +4,7 @@ import {
   fetchOptions,
   fetchSeats,
 } from "../inventoryData"
+import { fetchReferenceData } from "../../referenceData"
 
 describe("CAR service", () => {
   beforeEach(fetchMock.resetMocks)
@@ -28,7 +29,7 @@ describe("CAR service", () => {
       },
       {
         name: "fetchReferenceData",
-        fetchFunction: fetchSeats,
+        fetchFunction: fetchReferenceData,
         response: {
           bodyTypes: ["bus"],
           colorGroups: ["black"],
