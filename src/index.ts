@@ -190,21 +190,10 @@ export {
   getAllDealerFrameNumbers,
 } from "./services/car/inventory"
 export {
-  fetchBodyTypes,
-  fetchColorGroups,
-  fetchColors,
-  fetchConditionTypes,
   fetchDoors,
-  fetchDriveTypes,
-  fetchFuelTypeGroups,
-  fetchFuelTypes,
   fetchMinFirstRegistrationYear,
   fetchOptions,
   fetchSeats,
-  fetchTransmissionTypes,
-  fetchImagesCountGroups,
-  fetchLastPriceModifiedDateAgeGroups,
-  fetchFirstPublishingDateAgeGroups,
 } from "./services/car/inventoryData"
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export {
@@ -286,6 +275,7 @@ export {
 } from "./services/analytics"
 export { postWhatsappTrackingEntry } from "./services/reporting/whatsapp"
 export { postCallTrackingEntry } from "./services/reporting/callTracking"
+export { fetchReferenceData } from "./services/referenceData"
 export {
   fetchProducts,
   purchaseAndUseListingProduct,
@@ -302,6 +292,7 @@ export {
 } from "./services/search/autoAlarm"
 
 export { postDealerFeedback } from "./services/carSaleTracking/dealerFeedback"
+export { postBulkDealerFeedback } from "./services/carSaleTracking/bulkDealerFeedback"
 
 export { fetchCarSaleTrackingSubscription } from "./services/carSaleTracking/subscription"
 

@@ -1,62 +1,17 @@
 import {
-  fetchBodyTypes,
-  fetchColorGroups,
-  fetchColors,
-  fetchConditionTypes,
   fetchDoors,
-  fetchDriveTypes,
-  fetchFirstPublishingDateAgeGroups,
-  fetchFuelTypeGroups,
-  fetchFuelTypes,
-  fetchImagesCountGroups,
-  fetchLastPriceModifiedDateAgeGroups,
   fetchMinFirstRegistrationYear,
   fetchOptions,
   fetchSeats,
-  fetchTransmissionTypes,
 } from "../inventoryData"
+import { fetchReferenceData } from "../../referenceData"
 
 describe("CAR service", () => {
   beforeEach(fetchMock.resetMocks)
 
   describe("inventory data", () => {
     const tests = [
-      {
-        name: "fetchBodyTypes",
-        fetchFunction: fetchBodyTypes,
-        response: ["coupe", "cabrio", "suv"],
-      },
-      {
-        name: "fetchColorGroups",
-        fetchFunction: fetchColorGroups,
-        response: ["black", "red"],
-      },
-      {
-        name: "fetchColors",
-        fetchFunction: fetchColors,
-        response: ["black", "orange", "red"],
-      },
-      {
-        name: "fetchConditionTypes",
-        fetchFunction: fetchConditionTypes,
-        response: ["new", "used"],
-      },
       { name: "fetchDoors", fetchFunction: fetchDoors, response: [1, 2, 3] },
-      {
-        name: "fetchDriveTypes",
-        fetchFunction: fetchDriveTypes,
-        response: ["rear", "front"],
-      },
-      {
-        name: "fetchFuelTypeGroups",
-        fetchFunction: fetchFuelTypeGroups,
-        response: ["petrol", "diesel", "hybrid"],
-      },
-      {
-        name: "fetchFuelTypes",
-        fetchFunction: fetchFuelTypes,
-        response: ["petrol", "diesel", "gas-petrol"],
-      },
       {
         name: "fetchMinFirstRegistrationYear",
         fetchFunction: fetchMinFirstRegistrationYear,
@@ -73,25 +28,25 @@ describe("CAR service", () => {
         response: [2, 4, 5, 7],
       },
       {
-        name: "fetchTransmissionTypes",
-        fetchFunction: fetchTransmissionTypes,
-        response: ["manual", "automatic"],
-      },
-
-      {
-        name: "fetchImagesCountGroups",
-        fetchFunction: fetchImagesCountGroups,
-        response: ["group-0", "group-1-3"],
-      },
-      {
-        name: "fetchFirstPublishingDateAgeGroups",
-        fetchFunction: fetchFirstPublishingDateAgeGroups,
-        response: ["group-0-60", "group-61-90", "group-90-plus"],
-      },
-      {
-        name: "fetchLastPriceModifiedDateAgeGroups",
-        fetchFunction: fetchLastPriceModifiedDateAgeGroups,
-        response: ["group-0-60", "group-61-90", "group-90-plus"],
+        name: "fetchReferenceData",
+        fetchFunction: fetchReferenceData,
+        response: {
+          bodyTypes: ["bus"],
+          colorGroups: ["black"],
+          colors: ["anthracite"],
+          conditionTypes: ["demonstration"],
+          driveTypes: ["all"],
+          firstPublishingDateAgeGroups: ["group-0-60"],
+          fuelTypeGroups: ["diesel"],
+          fuelTypes: ["diesel"],
+          imageCountGroups: ["group-0"],
+          lastPriceModifiedDateAgeGroups: ["group-0-60"],
+          lifestyleTypes: ["city"],
+          searchAttributes: ["360-camera"],
+          sourceGroups: ["imported"],
+          transmissionTypes: ["automatic"],
+          vehicleClasses: ["executive"],
+        },
       },
     ]
 
