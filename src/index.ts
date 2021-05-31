@@ -189,12 +189,7 @@ export {
   unhideListing,
   getAllDealerFrameNumbers,
 } from "./services/car/inventory"
-export {
-  fetchDoors,
-  fetchMinFirstRegistrationYear,
-  fetchOptions,
-  fetchSeats,
-} from "./services/car/inventoryData"
+
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export {
   sendBuyNowApplication,
