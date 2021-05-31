@@ -124,6 +124,7 @@ export interface Listing
   fuelTankCapacity: number
   fuelTypeGroup: string
   gbdScore: string
+  hasBuyerProtection: boolean
   hasMbg: boolean
   hasWarranty: boolean
   id: number
@@ -195,6 +196,7 @@ interface BaseSearchListing {
   type: string
   typeFull: string
   typeSlug: string
+  hasBuyerProtection: boolean
   hasMbg: boolean
   spin360Code: string
   horsePower: number
