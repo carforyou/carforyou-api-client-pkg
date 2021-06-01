@@ -20,6 +20,13 @@ describe("fetchReferenceData", () => {
     minRegistrationYear: 1990,
     seats: [1, 2, 3],
     doors: [1, 2, 3],
+    gbdScores: [
+      "great-deal",
+      "good-deal",
+      "fair-deal",
+      "high-deal",
+      "not-defined",
+    ],
   }
 
   beforeEach(() => {

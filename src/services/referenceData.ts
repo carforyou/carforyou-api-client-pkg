@@ -21,6 +21,7 @@ export const fetchReferenceData = ({
   minRegistrationYear: number
   seats: number[]
   doors: number[]
+  gbdScores: string[]
 }> => {
   return fetchPath({ path: "reference-data", options })
 }

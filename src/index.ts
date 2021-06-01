@@ -154,7 +154,6 @@ export {
   fetchCarSalesCount,
 } from "./services/reporting/carSales"
 
-export { fetchDealScores } from "./services/car/goodBadDealData"
 export {
   fetchImageEnrichment,
   generatePresignedImageUrl,
