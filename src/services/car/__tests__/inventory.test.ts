@@ -128,7 +128,7 @@ describe("CAR service", () => {
   describe("#validateDealerListing", () => {
     const listing = Listing({ id: 123 })
 
-    it("uses the correct endpoint", async () => {
+    it("uses the correct endpoint to validate the listing", async () => {
       await validateDealerListing({
         dealerId,
         listing,
