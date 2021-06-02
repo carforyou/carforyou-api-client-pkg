@@ -180,7 +180,6 @@ export {
   archiveDealerListing,
   bulkArchiveDealerListings,
   unpublishDealerListing,
-  ListingValidationEndpoint,
   validateDealerListing,
   saveDealerListing,
   transferDealerListingToManual,
