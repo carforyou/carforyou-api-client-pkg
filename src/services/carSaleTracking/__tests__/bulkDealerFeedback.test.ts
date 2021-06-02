@@ -22,7 +22,7 @@ describe("Car sale tracking API", () => {
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(
-          /\/dealers\/10\/listings\/car-sale\/dealer-feedback$/
+          /\/dealers\/10\/listings\/car-sale\/bulk-dealer-feedback$/
         ),
         expect.any(Object)
       )

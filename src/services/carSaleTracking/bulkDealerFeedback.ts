@@ -15,7 +15,7 @@ export const postBulkDealerFeedback = async ({
 }): Promise<WithValidationError> => {
   try {
     await postData({
-      path: `dealers/${dealerId}/listings/car-sale/dealer-feedback`,
+      path: `dealers/${dealerId}/listings/car-sale/bulk-dealer-feedback`,
       body: {
         elements,
       },
