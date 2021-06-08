@@ -28,7 +28,7 @@
     "@pika/plugin-ts-standard-pkg": "^0.9.0",
     "@types/jest": "^26.0.10",
     "bundlesize": "^0.18.0",
-    "jest": "^26.4.2",
+    "jest": "^27.0.0",
     "jest-fetch-mock": "^3.0.1",
     "semantic-release": "^17.0.3",
     "ts-jest": "^26.3.0",
