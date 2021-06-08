@@ -80,7 +80,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`saveDealerDefaultListingAdditionalServices](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setAdditionalServicesUsingPUT)
   - [`saveDealerDefaultListingDescription`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setDescriptionUsingPUT)
   - [`saveDealerDefaultListingWarranty`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setWarrantyUsingPUT)
-  [`saveDealerDefaultListingGeneralExternalNote`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setGeneralExternalNoteUsingPUT)
+    [`saveDealerDefaultListingGeneralExternalNote`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Default%20Listing/setGeneralExternalNoteUsingPUT)
 - [Good-Bad Deal data](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Good-Bad_Deal_Data)
   - [`featchDealScores`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Good-Bad%20Deal%20Data/getScoresUsingGET)
 - [Image](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Image)
@@ -88,14 +88,13 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`generatePresignedImageUrl`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Image/generatePresignedUrlUsingPOST)
   - [`saveDealerListingImages`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Image/setListingImagesUsingPUT)
 - [Inventory](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory)
+
   - [`fetchListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getUsingGET_1)
   - [`fetchDealerMakes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getAllDealerMakesUsingGET)
   - [`fetchDealerOrAssociationMakes`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Inventory/getAllDealerMakesUsingGET)
   - [`fetchDealerOrAssociationModels`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Inventory/getAllDealerMakesUsingGET_1)
   - [`fetchDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getUsingGET)
-  - `validateDealerListing`
-    - [for saving as draft](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/validateCreateUsingPOST)
-    - [for publication](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/validatePublishUsingPOST)
+  - [`validateDealerListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/validateCreateUsingPOST)
   - `saveDealerListing`
     - [new listing](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/createUsingPOST)
     - [existing listing](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/updateUsingPUT)
@@ -106,12 +105,6 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`transferDealerListingToManual`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/transferToManualUsingPOST)
   - [`transferDealerListingsToManual`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/bulkTransferToManualUsingPOST)
   - [`getAllDealerFrameNumbers`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getAllDealerFrameNumbersUsingGET)
-- [Inventory data](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory_Data)
-
-  - [`fetchDoors`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/findDistinctDoorsUsingGET)
-  - [`fetchMinFirstRegistrationYear`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/findMinRegistrationYearUsingGET)
-  - [`fetchOptions`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/getOptionsUsingGET)
-  - [`fetchSeats`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory%20Data/findDistinctSeatsUsingGET)
 
 - [Lead](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Lead)
   - [`sendMessageLead`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Lead/createMessageLeadUsingPOST)
@@ -237,7 +230,7 @@ Also accompanying modes and param types, as well as default values, are exported
 - [Call Tracking](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking)
   - [`postCallTrackingEntry`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking/createCallTrackingEntryUsingPOST)
 - [Reference Data](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reference%20data)
-   - [`fetchReferenceData`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reference%20data/getReferenceDataUsingGET)
+  - [`fetchReferenceData`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reference%20data/getReferenceDataUsingGET)
 
 ### [Car sale tracking service](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html)
 

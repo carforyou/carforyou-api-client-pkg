@@ -139,28 +139,6 @@ export const prepareListingData = (listing) => {
   }
 }
 
-export enum ListingValidationEndpoint {
-  draft = "draft",
-  publish = "publish",
-}
-
-const validationPathForListing = (dealerId, listing, validationEndpoint) => {
-  const { id } = listing
-
-  switch (validationEndpoint) {
-    case ListingValidationEndpoint.draft:
-      return `dealers/${dealerId}/listings/validate`
-    case ListingValidationEndpoint.publish:
-      if (id) {
-        return `dealers/${dealerId}/listings/${id}/publish/validate`
-      } else {
-        throw new Error("Only saved listings can be validated for publishing")
-      }
-    default:
-      throw new Error(`Unknown validation endpoint: ${validationEndpoint}`)
-  }
-}
-
 export const validateDealerListing = async ({
   dealerId,
   listing,
@@ -168,18 +146,17 @@ export const validateDealerListing = async ({
 }: {
   dealerId: number
   listing: Listing
-  options: ApiCallOptions & { validationEndpoint: ListingValidationEndpoint }
+  options: ApiCallOptions
 }): Promise<WithValidationError<Listing>> => {
-  const { validationEndpoint, ...otherOptions } = options
   const data = prepareListingData(listing)
 
   try {
     await postData({
-      path: validationPathForListing(dealerId, listing, validationEndpoint),
+      path: `dealers/${dealerId}/listings/validate`,
       body: data,
       options: {
         isAuthorizedRequest: true,
-        ...otherOptions,
+        ...options,
       },
     })
   } catch (error) {

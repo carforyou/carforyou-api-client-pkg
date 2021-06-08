@@ -18,6 +18,10 @@ export const fetchReferenceData = ({
   sourceGroups: string[]
   lastPriceModifiedDateAgeGroups: string[]
   firstPublishingDateAgeGroups: string[]
+  minRegistrationYear: number
+  seats: number[]
+  doors: number[]
+  gbdScores: string[]
 }> => {
   return fetchPath({ path: "reference-data", options })
 }

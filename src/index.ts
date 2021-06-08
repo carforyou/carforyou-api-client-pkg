@@ -154,7 +154,6 @@ export {
   fetchCarSalesCount,
 } from "./services/reporting/carSales"
 
-export { fetchDealScores } from "./services/car/goodBadDealData"
 export {
   fetchImageEnrichment,
   generatePresignedImageUrl,
@@ -180,7 +179,6 @@ export {
   archiveDealerListing,
   bulkArchiveDealerListings,
   unpublishDealerListing,
-  ListingValidationEndpoint,
   validateDealerListing,
   saveDealerListing,
   transferDealerListingToManual,
@@ -189,12 +187,7 @@ export {
   unhideListing,
   getAllDealerFrameNumbers,
 } from "./services/car/inventory"
-export {
-  fetchDoors,
-  fetchMinFirstRegistrationYear,
-  fetchOptions,
-  fetchSeats,
-} from "./services/car/inventoryData"
+
 export { sendMoneybackApplication } from "./services/car/moneybackApplication"
 export {
   sendBuyNowApplication,
