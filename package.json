@@ -49,5 +49,8 @@
         "@pika/plugin-build-node"
       ]
     ]
+  },
+  "dependencies": {
+    "@types/node": "^14.14.31"
   }
 }
