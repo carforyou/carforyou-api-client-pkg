@@ -105,8 +105,8 @@ export interface Option {
 }
 
 export interface Options {
-  standardOptions: Option[]
-  additionalOptions: Option[]
+  standard: Option[]
+  optional: Option[]
 }
 
 export interface ImageEnrichment {

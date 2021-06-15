@@ -123,7 +123,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchDealerListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/getDealerListingEquipmentUsingGET)
   - [`saveDealerListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/setListingEquipmentUsingPUT)
 - [Type](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Type)
-  - [`fetchTypeOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Type/getTypeOptionsUsingGET)
+  - [`fetchTypeOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Type/getTypeEquipmentUsingGET)
 
 ### [Inventory search service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html)
 

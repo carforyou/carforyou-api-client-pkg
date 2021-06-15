@@ -16,7 +16,7 @@ export const fetchTypeOptions = async ({
   options?: ApiCallOptions
 }): Promise<Options> => {
   return fetchPath({
-    path: `types/${typeId}/options?${toQueryString(query)}`,
+    path: `types/${typeId}/equipment?${toQueryString(query)}`,
     options,
   })
 }
