@@ -34,7 +34,7 @@ export const fetchDealerListingOptions = async ({
   options?: ApiCallOptions
 }): Promise<Options> => {
   return fetchPath({
-    path: `dealers/${dealerId}/listings/${listingId}/options`,
+    path: `dealers/${dealerId}/listings/${listingId}/equipment`,
     options: {
       isAuthorizedRequest: true,
       ...options,
