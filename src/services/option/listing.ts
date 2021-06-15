@@ -51,18 +51,14 @@ export const saveDealerListingOptions = async ({
   listing: Listing
   options?: ApiCallOptions
 }): Promise<WithValidationError<Listing>> => {
-  const { standardOptions, additionalOptions, id } = listing
+  const { standard, optional, id } = listing
 
   try {
     await putData({
-      path: `dealers/${dealerId}/listings/${id}/options`,
+      path: `dealers/${dealerId}/listings/${id}/equipment`,
       body: {
-        standardOptions: standardOptions.map((optionId) => ({
-          id: optionId,
-        })),
-        additionalOptions: additionalOptions.map((optionId) => ({
-          id: optionId,
-        })),
+        standard,
+        optional,
       },
       options: {
         isAuthorizedRequest: true,
