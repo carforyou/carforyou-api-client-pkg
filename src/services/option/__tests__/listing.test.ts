@@ -3,15 +3,16 @@ import {
   fetchListingOptions,
   saveDealerListingOptions,
 } from "../listing"
+import { Options } from "../../../types/models"
 import { Listing } from "../../../lib/factories/listing"
 
 describe("OPTION service", () => {
   beforeEach(fetchMock.resetMocks)
 
   describe("fetchListingOptions", () => {
-    const options = {
-      standard: [{ de: "option a DE", fr: "option a EN", it: "option a IT" }],
-      optional: [{ de: "option a DE", fr: "option a EN", it: "option a IT" }],
+    const options: Options = {
+      standard: [{ id: 1, name: "option 1", packageItems: [] }],
+      optional: [{ id: 2, name: "option 2", packageItems: [] }],
     }
 
     beforeEach(() => {
@@ -30,9 +31,9 @@ describe("OPTION service", () => {
   })
 
   describe("fetchDealerListingOptions", () => {
-    const options = {
-      standard: [{ de: "option a DE", fr: "option a EN", it: "option a IT" }],
-      optional: [{ de: "option a DE", fr: "option a EN", it: "option a IT" }],
+    const options: Options = {
+      standard: [{ id: 1, name: "option 1", packageItems: [] }],
+      optional: [{ id: 2, name: "option 2", packageItems: [] }],
     }
 
     beforeEach(() => {
