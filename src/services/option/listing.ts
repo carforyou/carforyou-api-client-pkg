@@ -19,7 +19,7 @@ export const fetchListingOptions = async ({
   options?: ApiCallOptions
 }): Promise<Options> => {
   return fetchPath({
-    path: `listings/${listingId}/options?language=${language}`,
+    path: `listings/${listingId}/equipment?language=${language}`,
     options,
   })
 }
