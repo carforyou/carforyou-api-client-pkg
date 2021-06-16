@@ -2,7 +2,7 @@ import { Options as OptionsType } from "../../types/models"
 
 export function Options(): OptionsType {
   return {
-    standardOptions: [
+    standard: [
       {
         id: 1,
         name: "ABS (de)",
@@ -47,7 +47,7 @@ export function Options(): OptionsType {
         packageItems: [],
       },
     ],
-    additionalOptions: [
+    optional: [
       {
         id: 10,
         name: "Bluetooth (de)",
