@@ -76,6 +76,7 @@ describe("#fetchFrameNumberOptions", () => {
     it("returns options", async () => {
       const response = await fetchFrameNumberOptions({
         query: { frameNumber: "frameNumber", language: "de" },
+        options: requestOptionsMock,
       })
 
       expect(response.tag).toBe("success")
@@ -100,6 +101,7 @@ describe("#fetchFrameNumberOptions", () => {
     it("returns error messages", async () => {
       const response = await fetchFrameNumberOptions({
         query: { frameNumber: "", language: "de" },
+        options: requestOptionsMock,
       })
 
       expect(response.tag).toBe("error")
