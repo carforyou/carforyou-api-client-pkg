@@ -17,7 +17,7 @@ describe("#fetchFrameNumberTypes", () => {
           JSON.stringify({
             frameNumber: "frameNumber",
             productionYear: 2020,
-            typeIds,
+            types: typeIds,
           })
         )
         .once(JSON.stringify({ content, ...pagination }))
