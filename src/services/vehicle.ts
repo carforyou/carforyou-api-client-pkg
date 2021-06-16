@@ -25,7 +25,10 @@ export const fetchFrameNumberTypes = async ({
       },
     })
 
-    return fetchTypes({ query: { id: typeIds, page, size }, options })
+    return fetchTypes({
+      query: { id: typeIds.map(({ id }) => id), page, size },
+      options,
+    })
   } catch (error) {
     return handleValidationError(error)
   }
