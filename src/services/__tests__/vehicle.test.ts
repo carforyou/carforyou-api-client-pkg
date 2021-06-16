@@ -1,23 +1,27 @@
 import { fetchFrameNumberTypes } from "../vehicle"
 
 import { SearchType } from "../../lib/factories/type"
+import { PaginatedFactory } from "../../index"
 
 const requestOptionsMock = { accessToken: "DUMMY" }
 
 describe("#fetchTypes", () => {
-  const types = SearchType()
-
-  beforeEach(() => {
-    fetchMock.mockResponse(
-      JSON.stringify({
-        frameNumber: "frameNumber",
-        productionYear: 2020,
-        types,
-      })
-    )
-  })
-
   describe("when successful", () => {
+    const typeIds = [{ id: 12345 }]
+    const { content, pagination } = PaginatedFactory([typeIds.map(SearchType)])
+
+    beforeEach(() => {
+      fetchMock
+        .once(
+          JSON.stringify({
+            frameNumber: "frameNumber",
+            productionYear: 2020,
+            typeIds,
+          })
+        )
+        .once(JSON.stringify({ content, ...pagination }))
+    })
+
     it("returns types", async () => {
       const response = await fetchFrameNumberTypes({
         query: { frameNumber: "frameNumber", dealerId: 1316 },
@@ -27,12 +31,7 @@ describe("#fetchTypes", () => {
       expect(response.tag).toBe("success")
 
       if (response.tag === "success") {
-        expect(response.result).toEqual({
-          content: {
-            ...types,
-          },
-          pagination: null,
-        })
+        expect(response.result).toEqual({ content, pagination })
       }
     })
   })

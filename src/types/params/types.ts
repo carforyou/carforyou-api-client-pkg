@@ -24,6 +24,7 @@ export interface TypeFiltersParams {
 export interface SearchTypeQueryParams
   extends PaginationParams,
     TypeFiltersParams {
+  id?: number[]
   conditionType?: string
   firstRegistrationDate?: Date
 }
