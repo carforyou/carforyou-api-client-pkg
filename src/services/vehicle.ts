@@ -1,8 +1,11 @@
 import { fetchTypes } from "./search/typeSearch"
 
+import { WithValidationError } from "../types/withValidationError"
+import { Language } from "../types/params"
 import { Paginated } from "../types/pagination"
 import { SearchType } from "../types/models/type"
-import { WithValidationError } from "../index"
+import { Options } from "../types/models"
+import toQueryString from "../lib/toQueryString"
 import { ApiCallOptions, fetchPath, handleValidationError } from "../base"
 
 export const fetchFrameNumberTypes = async ({
@@ -23,6 +26,33 @@ export const fetchFrameNumberTypes = async ({
     })
 
     return fetchTypes({ query: { id: typeIds, page, size }, options })
+  } catch (error) {
+    return handleValidationError(error)
+  }
+}
+
+export const fetchFrameNumberOptions = async ({
+  query: { frameNumber, ...query },
+  options = {},
+}: {
+  query: {
+    frameNumber: string
+    language: Language
+  }
+  options?: ApiCallOptions
+}): Promise<WithValidationError<Options>> => {
+  try {
+    const result = await fetchPath({
+      path: `vehicles/frame-number/${frameNumber}/equipment?${toQueryString(
+        query
+      )}`,
+      options,
+    })
+
+    return {
+      tag: "success",
+      result,
+    }
   } catch (error) {
     return handleValidationError(error)
   }
