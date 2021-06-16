@@ -25,10 +25,12 @@ export const fetchFrameNumberTypes = async ({
       },
     })
 
-    return fetchTypes({
+    const types = await fetchTypes({
       query: { id: typeIds.map(({ id }) => id), page, size },
       options,
     })
+
+    return types
   } catch (error) {
     return handleValidationError(error)
   }
@@ -49,7 +51,10 @@ export const fetchFrameNumberOptions = async ({
       path: `vehicles/frame-number/${frameNumber}/equipment?${toQueryString(
         query
       )}`,
-      options,
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
     })
 
     return {
