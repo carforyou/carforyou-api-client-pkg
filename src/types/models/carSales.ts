@@ -21,7 +21,7 @@ export interface Buyer {
 
 export interface CarSaleRejection {
   comment?: string
-  reason: "car-not-sold" | "wrong-buyer"
+  reason: "car-not-sold" | "wrong-buyer" | "other"
 }
 
 export interface CarSalesListing
