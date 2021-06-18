@@ -241,7 +241,10 @@ export {
 } from "./services/search/facets"
 
 export { fetchMakes, fetchModels, fetchType } from "./services/catalogue"
-export { fetchFrameNumberTypes } from "./services/vehicle"
+export {
+  fetchFrameNumberTypes,
+  fetchFrameNumberOptions,
+} from "./services/vehicle"
 export {
   fetchDealer,
   fetchDealerSuggestions,

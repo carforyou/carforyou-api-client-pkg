@@ -119,11 +119,16 @@ Also accompanying modes and param types, as well as default values, are exported
 ### [Options service](https://option-service.preprod.carforyou.ch/swagger-ui/index.html)
 
 - [Listing](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing)
-  - [`fetchListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/getListingOptionsUsingGET_1)
-  - [`fetchDealerListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/getListingOptionsUsingGET)
-  - [`saveDealerListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Option/setListingOptionsUsingPUT)
+  - [`fetchListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/getListingEquipmentUsingGET)
+  - [`fetchDealerListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/getDealerListingEquipmentUsingGET)
+  - [`saveDealerListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/setListingEquipmentUsingPUT)
 - [Type](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Type)
-  - [`fetchTypeOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Type/getTypeOptionsUsingGET)
+  - [`fetchTypeOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Type/getTypeEquipmentUsingGET)
+- [Vehicle](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Vehicle)
+  - `fetchFrameNumberTypes`
+    - it will get type Ids from [vin search](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Vehicle/getVehicleUsingGET)
+    - and then return they types from [type search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type%20Search/searchUsingPOST_3)
+  - [`fetchFrameNumberOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Vehicle/getEquipmentUsingGET)
 
 ### [Inventory search service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html)
 
@@ -152,7 +157,7 @@ Also accompanying modes and param types, as well as default values, are exported
 
 * [Type Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type_Search)
 
-  - [`fetchTypes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type%20Search/searchUsingPOST_2)
+  - [`fetchTypes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type%20Search/searchUsingPOST_3)
   - [`fetchTypeFacets`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type%20Search/getFacetsUsingPOST_1)
 
 * [Needs Assessment](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Needs_Assessment)
@@ -177,8 +182,6 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchMakes`](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product%20Catalogue/getAllMakesUsingGET)
   - [`fetchModels`](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product%20Catalogue/getModelsUsingGET)
   - [`fetchType`](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product%20Catalogue/getTypeUsingGET)
-- [Vehicle](https://catalogue-service.preprod.carforyou.ch/swagger-ui/index.html#/Product_Catalogue)
-  - [`fetchFrameNumberTypes`](https://catalogue-service.preprod.carforyou.ch/swagger-ui/#/Vehicle/getVehicleUsingGET)
 
 ### [Dealer service](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html)
 

@@ -24,8 +24,8 @@ const sanitizeListing = (json): Listing => {
     firstRegistrationDate: decodeDate(firstRegistrationDate),
     lastInspectionDate: decodeDate(lastInspectionDate),
     lastServiceDate: decodeDate(lastServiceDate),
-    additionalOptions: [],
-    standardOptions: [],
+    standard: [],
+    optional: [],
   }
 }
 

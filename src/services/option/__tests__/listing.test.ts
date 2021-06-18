@@ -3,19 +3,16 @@ import {
   fetchListingOptions,
   saveDealerListingOptions,
 } from "../listing"
+import { Options } from "../../../types/models"
 import { Listing } from "../../../lib/factories/listing"
 
 describe("OPTION service", () => {
   beforeEach(fetchMock.resetMocks)
 
   describe("fetchListingOptions", () => {
-    const options = {
-      standardOptions: [
-        { de: "option a DE", fr: "option a EN", it: "option a IT" },
-      ],
-      additionalOptions: [
-        { de: "option a DE", fr: "option a EN", it: "option a IT" },
-      ],
+    const options: Options = {
+      standard: [{ id: 1, name: "option 1", packageItems: [] }],
+      optional: [{ id: 2, name: "option 2", packageItems: [] }],
     }
 
     beforeEach(() => {
@@ -34,13 +31,9 @@ describe("OPTION service", () => {
   })
 
   describe("fetchDealerListingOptions", () => {
-    const options = {
-      standardOptions: [
-        { de: "option a DE", fr: "option a EN", it: "option a IT" },
-      ],
-      additionalOptions: [
-        { de: "option a DE", fr: "option a EN", it: "option a IT" },
-      ],
+    const options: Options = {
+      standard: [{ id: 1, name: "option 1", packageItems: [] }],
+      optional: [{ id: 2, name: "option 2", packageItems: [] }],
     }
 
     beforeEach(() => {
@@ -61,9 +54,9 @@ describe("OPTION service", () => {
 
   describe("#saveDealerListingOptions", () => {
     it("sends options in the body", async () => {
-      const standardOptions = [1000001, 1000002]
-      const additionalOptions = [1000003, 1000004]
-      const listing = Listing({ standardOptions, additionalOptions, id: 5 })
+      const standard = [1000001, 1000002]
+      const optional = [1000003, 1000004]
+      const listing = Listing({ standard, optional, id: 5 })
 
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
 
@@ -74,11 +67,11 @@ describe("OPTION service", () => {
       })
       expect(response).toEqual({ tag: "success", result: listing })
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining("/dealers/123/listings/5/options"),
+        expect.stringContaining("/dealers/123/listings/5/equipment"),
         expect.objectContaining({
           body: JSON.stringify({
-            standardOptions: standardOptions.map((id) => ({ id })),
-            additionalOptions: additionalOptions.map((id) => ({ id })),
+            standard,
+            optional,
           }),
         })
       )

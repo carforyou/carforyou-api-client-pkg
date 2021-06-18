@@ -50,8 +50,8 @@ export type ListingEnergyData = EnergyListingTypeCommons
 export type ListingDriveData = DriveListingTypeCommons
 
 export interface ListingOptionsData {
-  additionalOptions: number[]
-  standardOptions: number[]
+  standard: number[]
+  optional: number[]
 }
 
 export interface ListingDescriptionData {

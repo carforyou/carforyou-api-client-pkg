@@ -19,7 +19,7 @@ export const fetchListingOptions = async ({
   options?: ApiCallOptions
 }): Promise<Options> => {
   return fetchPath({
-    path: `listings/${listingId}/options?language=${language}`,
+    path: `listings/${listingId}/equipment?language=${language}`,
     options,
   })
 }
@@ -34,7 +34,7 @@ export const fetchDealerListingOptions = async ({
   options?: ApiCallOptions
 }): Promise<Options> => {
   return fetchPath({
-    path: `dealers/${dealerId}/listings/${listingId}/options`,
+    path: `dealers/${dealerId}/listings/${listingId}/equipment`,
     options: {
       isAuthorizedRequest: true,
       ...options,
@@ -51,18 +51,14 @@ export const saveDealerListingOptions = async ({
   listing: Listing
   options?: ApiCallOptions
 }): Promise<WithValidationError<Listing>> => {
-  const { standardOptions, additionalOptions, id } = listing
+  const { standard, optional, id } = listing
 
   try {
     await putData({
-      path: `dealers/${dealerId}/listings/${id}/options`,
+      path: `dealers/${dealerId}/listings/${id}/equipment`,
       body: {
-        standardOptions: standardOptions.map((optionId) => ({
-          id: optionId,
-        })),
-        additionalOptions: additionalOptions.map((optionId) => ({
-          id: optionId,
-        })),
+        standard,
+        optional,
       },
       options: {
         isAuthorizedRequest: true,
