@@ -34,12 +34,12 @@ export const fetchCarSales = async ({
 const envelopeRequest = async (handler): Promise<WithValidationError<null>> => {
   try {
     await handler
+    return {
+      tag: "success",
+      result: null,
+    }
   } catch (error) {
     return handleValidationError(error)
-  }
-  return {
-    tag: "success",
-    result: null,
   }
 }
 
