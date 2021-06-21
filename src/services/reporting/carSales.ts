@@ -65,8 +65,8 @@ export const rejectCarSales = async ({
   body: CarSaleRejection
   options?: ApiCallOptions
 }): Promise<WithValidationError<null>> => {
-  return envelopeRequest(
-    putData({
+  try {
+    await putData({
       path: getRejectionPath({ dealerId, carSaleId }),
       body,
       options: {
@@ -75,7 +75,13 @@ export const rejectCarSales = async ({
         apiVersion: "v1",
       },
     })
-  )
+  } catch (error) {
+    return handleValidationError(error)
+  }
+  return {
+    tag: "success",
+    result: null,
+  }
 }
 
 export const deleteCarSalesRejection = async ({
