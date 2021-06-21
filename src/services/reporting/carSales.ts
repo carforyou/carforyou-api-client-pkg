@@ -39,7 +39,7 @@ const envelopeRequest = async (handler): Promise<WithValidationError<null>> => {
       result: null,
     }
   } catch (error) {
-    return handleValidationError(error)
+    return handleValidationError(error, { swallowErrors: true })
   }
 }
 
