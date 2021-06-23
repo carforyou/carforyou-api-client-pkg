@@ -82,7 +82,10 @@ export const fetchProductionYearByFrameNumber = async ({
         ...options,
       },
     })
-    return productionYear
+    return {
+      tag: "success",
+      result: productionYear,
+    }
   } catch (error) {
     return handleValidationError(error)
   }
