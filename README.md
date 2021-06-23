@@ -129,6 +129,7 @@ Also accompanying modes and param types, as well as default values, are exported
     - it will get type Ids from [vin search](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Vehicle/getVehicleUsingGET)
     - and then return they types from [type search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type%20Search/searchUsingPOST_3)
   - [`fetchFrameNumberOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Vehicle/getEquipmentUsingGET)
+  - [`fetchProductionYearByFrameNumber`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Vehicle/getVehicleUsingGET)
 
 ### [Inventory search service](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html)
 
