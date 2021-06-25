@@ -65,3 +65,28 @@ export const fetchFrameNumberOptions = async ({
     return handleValidationError(error)
   }
 }
+
+export const fetchProductionYearByFrameNumber = async ({
+  query,
+  options = {},
+}: {
+  query: { dealerId: number; frameNumber: string }
+  options?: ApiCallOptions
+}): Promise<WithValidationError<number>> => {
+  try {
+    const { dealerId, frameNumber } = query
+    const { productionYear } = await fetchPath({
+      path: `dealers/${dealerId}/vehicles/frame-number/${frameNumber}`,
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+    return {
+      tag: "success",
+      result: productionYear,
+    }
+  } catch (error) {
+    return handleValidationError(error)
+  }
+}
