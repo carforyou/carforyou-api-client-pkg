@@ -25,6 +25,16 @@ export const fetchFrameNumberTypes = async ({
       },
     })
 
+    if (!typeIds.length) {
+      return {
+        tag: "success",
+        result: {
+          content: [],
+          pagination: null,
+        },
+      }
+    }
+
     const types = await fetchTypes({
       query: { id: typeIds.map(({ id }) => id), page, size },
       options,
