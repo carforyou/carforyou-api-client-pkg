@@ -8,6 +8,7 @@ const searchMessageLeadDefaults: SearchMessageLeadType = {
   listingId: 501,
   listing: {
     externalListingId: "1234567",
+    referenceId: "123",
     image:
       "2019/09/17/11/13/13/1-aixam-mac-500-cabriolet-480-261485-7e5hF5fhFUiC.jpg",
     make: "Ford",
@@ -38,6 +39,7 @@ const searchCallLeadDefaults: SearchCallLeadType = {
   listingId: 501,
   listing: {
     externalListingId: "1234567",
+    referenceId: "123",
     firstRegistrationDate: "2021-03-18",
     id: 555,
     image:
