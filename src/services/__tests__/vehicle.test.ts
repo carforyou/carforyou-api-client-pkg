@@ -114,3 +114,30 @@ describe("#fetchFrameNumberOptions", () => {
     })
   })
 })
+
+describe("Query empty type ids", () => {
+  beforeEach(() => {
+    fetchMock
+      .once(
+        JSON.stringify({
+          frameNumber: "frameNumber",
+          productionYear: 2020,
+          types: [],
+        })
+      )
+      .once(JSON.stringify({ content: [] }))
+  })
+
+  it("returns empty result", async () => {
+    const response = await fetchFrameNumberTypes({
+      query: { frameNumber: "frameNumber", dealerId: 1316 },
+      options: requestOptionsMock,
+    })
+
+    expect(response.tag).toBe("success")
+
+    if (response.tag === "success") {
+      expect(response.result).toEqual({ content: [], pagination: null })
+    }
+  })
+})
