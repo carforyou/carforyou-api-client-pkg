@@ -161,6 +161,7 @@ export interface MessageLeadListing {
   model: string
   price: number
   type: string
+  referenceId: string
 }
 
 export interface SearchMessageLead extends MessageLead {
