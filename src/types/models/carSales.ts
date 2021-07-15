@@ -36,6 +36,7 @@ export interface CarSalesListing
     | "mileage"
   > {
   externalListingId: string
+  referenceId: string
   image: string
 }
 

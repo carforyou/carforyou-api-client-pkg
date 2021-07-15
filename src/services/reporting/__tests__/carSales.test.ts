@@ -19,6 +19,7 @@ const carSales = (attributes = {}) => ({
   id: 1234,
   listing: {
     externalListingId: "456",
+    referencedId: "910",
     firstRegistrationDate: "2021-02-16",
     id: 897,
     image: "s3/image.jpg",
