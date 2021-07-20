@@ -24,6 +24,11 @@ export interface EnergyListingTypeCommons {
   consumptionUrban: number
 
   systemPerformanceKiloWatts: number
+  batteryCapacity: number
+  powerConsumption: number
+  range: number
+  rangeExtraUrban: number
+  rangeUrban: number
 }
 
 export interface DriveListingTypeCommons {
