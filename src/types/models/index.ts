@@ -180,6 +180,13 @@ export interface SearchCallLead {
   duration: number
 }
 
+export interface SearchWhatsAppLead {
+  id: number
+  listingId: number
+  listing: MessageLeadListing
+  createdDate: string
+}
+
 export interface Date {
   month?: number
   year?: number
