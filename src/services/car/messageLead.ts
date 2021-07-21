@@ -6,6 +6,7 @@ import {
   MessageLead,
   SearchCallLead,
   SearchMessageLead,
+  SearchWhatsAppLead,
 } from "../../types/models"
 import toQueryString from "../../lib/toQueryString"
 import toCamelCase from "../../lib/toCamelCase"
@@ -245,3 +246,47 @@ export const resendMessageLead = async ({
     result: {},
   }
 }
+
+export const fetchDealerWhatsAppLeads = async ({
+  dealerId,
+  query,
+  options = {},
+}: {
+  dealerId: number
+  query: LeadQueryParams
+  options?: ApiCallOptions & { validateOnly?: boolean }
+}): Promise<Paginated<SearchWhatsAppLead>> => {
+  const { validateOnly, ...otherOptions } = options
+  const { page, size, sort = {}, searchQuery } = query
+
+  const { sortOrder, sortType } = sort
+
+  const sortOrDefault = {
+    sortType: sortType || defaultLeadSort.sortType,
+    sortOrder: sortOrder || defaultLeadSort.sortOrder,
+  }
+
+  const queryParams = {
+    page: pageOrDefault(page, defaultDealerMessageLeadsPagination),
+    size: sizeOrDefault(size, defaultDealerMessageLeadsPagination),
+    sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
+      sortOrDefault.sortOrder
+    )}`,
+    q:
+      searchQuery && searchQuery.length >= 3
+        ? encodeURIComponent(searchQuery)
+        : "",
+  }
+
+  const path = `dealers/${dealerId}/whats-app-leads${toQueryString(queryParams)}`
+
+  return await fetchPath({
+    path,
+    options: {
+      ...otherOptions,
+      isAuthorizedRequest: true,
+    },
+  })
+}
+
+
