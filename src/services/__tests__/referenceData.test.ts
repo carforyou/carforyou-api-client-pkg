@@ -27,6 +27,8 @@ describe("fetchReferenceData", () => {
       "high-deal",
       "not-defined",
     ],
+    chargePorts: ["type-1"],
+    fastChargePorts: ["ccs"],
   }
 
   beforeEach(() => {
