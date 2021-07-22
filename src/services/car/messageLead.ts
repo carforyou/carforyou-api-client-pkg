@@ -278,7 +278,7 @@ export const fetchDealerWhatsAppLeads = async ({
         : "",
   }
 
-  const path = `dealers/${dealerId}/whats-app-leads${toQueryString(
+  const path = `dealers/${dealerId}/whats-app-leads?${toQueryString(
     queryParams
   )}`
 
