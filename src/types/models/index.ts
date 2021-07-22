@@ -184,7 +184,9 @@ export interface SearchWhatsAppLead {
   id: number
   listingId: number
   listing: MessageLeadListing
+  callerNumber: string
   createdDate: string
+  duration: number
 }
 
 export interface Date {
