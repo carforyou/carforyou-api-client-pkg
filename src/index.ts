@@ -322,4 +322,5 @@ export { withRetries } from "./lib/withRetries"
 export {
   SearchMessageLead as SearchMessageLeadFactory,
   SearchCallLead as SearchCallLeadFactory,
+  SearchWhatsAppLead as SearchWhatsAppLeadFactory,
 } from "./lib/factories/leads"
