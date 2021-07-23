@@ -29,10 +29,10 @@ export interface EnergyListingTypeCommons {
   range: number
   rangeExtraUrban: number
   rangeUrban: number
-  chargePort: string[]
+  chargePort: string
   chargePower: number
   chargeSpeed: number
-  fastChargePort: string[]
+  fastChargePort: string
   fastChargePower: number
   fastChargeSpeed: number
 }
