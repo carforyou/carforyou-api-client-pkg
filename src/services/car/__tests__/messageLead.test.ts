@@ -1,6 +1,7 @@
 import {
   fetchDealerCallLeads,
   fetchDealerMessageLeads,
+  fetchDealerWhatsAppLeads,
   hideCallLead,
   hideMessageLead,
   resendMessageLead,
@@ -12,6 +13,7 @@ import { PaginatedLeads } from "../../../lib/factories/paginated"
 import {
   SearchCallLead as SearchCallLeadFactory,
   SearchMessageLead as SearchMessageLeadFactory,
+  SearchWhatsAppLead as SearchWhatsAppLeadFactory,
 } from "../../../lib/factories/leads"
 
 describe("Car API", () => {
@@ -361,6 +363,80 @@ describe("Car API", () => {
 
       expect(fetch).toHaveBeenCalled()
       expect(result).toEqual(PaginatedLeads([SearchCallLeadFactory()]))
+    })
+  })
+
+  describe("#fetchDealerWhatsAppLeads", () => {
+    const { content, pagination } = PaginatedLeads([
+      SearchWhatsAppLeadFactory(),
+    ])
+
+    beforeEach(() => {
+      fetchMock.mockClear()
+      fetchMock.mockResponse(
+        JSON.stringify({
+          content: content,
+          ...pagination,
+        })
+      )
+    })
+
+    it("calls correct endpoint", async () => {
+      await fetchDealerWhatsAppLeads({
+        dealerId: 1234,
+        query: {
+          page: 2,
+          size: 7,
+          sort: defaultLeadSort,
+        },
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(
+          /\/dealers\/1234\/whats-app-tracking-entries\?page=1&size=7&sort=createdDate%2Cdesc$/
+        ),
+        expect.any(Object)
+      )
+    })
+
+    it("should trow error if accessToken is not passed", async () => {
+      let error
+      try {
+        await fetchDealerWhatsAppLeads({
+          dealerId: 1234,
+          query: {
+            page: 0,
+            size: 7,
+            sort: {},
+          },
+        })
+      } catch (err) {
+        error = err
+      }
+
+      expect(fetch).not.toHaveBeenCalled()
+      expect(error).toBeDefined()
+      expect(error.message).toBeDefined()
+    })
+
+    it("should return paginated leads calls data", async () => {
+      const result = await fetchDealerWhatsAppLeads({
+        dealerId: 1234,
+        query: {
+          page: 0,
+          size: 7,
+          sort: {},
+        },
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+
+      expect(fetch).toHaveBeenCalled()
+      expect(result).toEqual(PaginatedLeads([SearchWhatsAppLeadFactory()]))
     })
   })
 
