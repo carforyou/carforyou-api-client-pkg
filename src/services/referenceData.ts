@@ -22,6 +22,8 @@ export const fetchReferenceData = ({
   seats: number[]
   doors: number[]
   gbdScores: string[]
+  chargePorts: string[]
+  fastChargePorts: string[]
 }> => {
   return fetchPath({ path: "reference-data", options })
 }

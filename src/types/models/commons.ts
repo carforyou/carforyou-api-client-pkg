@@ -29,6 +29,12 @@ export interface EnergyListingTypeCommons {
   range: number
   rangeExtraUrban: number
   rangeUrban: number
+  chargePort: string
+  chargePower: number
+  chargeSpeed: number
+  fastChargePort: string
+  fastChargePower: number
+  fastChargeSpeed: number
 }
 
 export interface DriveListingTypeCommons {
