@@ -202,6 +202,7 @@ export {
   fetchDealerWhatsAppLeads,
   hideMessageLead,
   hideCallLead,
+  hideWhatsAppLead,
   resendMessageLead,
   defaultLeadSort as defaultLeadListingsSort,
 } from "./services/car/messageLead"
