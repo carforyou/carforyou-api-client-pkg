@@ -290,3 +290,31 @@ export const fetchDealerWhatsAppLeads = async ({
     },
   })
 }
+
+export const hideWhatsAppLead = async ({
+  dealerId,
+  whatsAppTrackingEntryId,
+  options = {},
+}: {
+  dealerId: number
+  whatsAppTrackingEntryId: number
+  options: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `dealers/${dealerId}/whats-app-tracking-entries/${whatsAppTrackingEntryId}/hide`,
+      body: {},
+      options: {
+        ...options,
+        isAuthorizedRequest: true,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
+
+  return {
+    tag: "success",
+    result: {},
+  }
+}

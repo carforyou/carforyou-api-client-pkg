@@ -4,6 +4,7 @@ import {
   fetchDealerWhatsAppLeads,
   hideCallLead,
   hideMessageLead,
+  hideWhatsAppLead,
   resendMessageLead,
   sendMessageLead,
 } from "../messageLead"
@@ -511,6 +512,50 @@ describe("Car API", () => {
       const response = await resendMessageLead({
         dealerId: 1234,
         messageLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#hideWhatsAppLead", () => {
+    it("hides a whatsapp lead", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await hideWhatsAppLead({
+        dealerId: 1234,
+        whatsAppTrackingEntryId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining(
+          "dealers/1234/whats-app-tracking-entries/501/hide"
+        ),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "email", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await hideWhatsAppLead({
+        dealerId: 1234,
+        whatsAppTrackingEntryId: 501,
         options: {
           accessToken: "DummyTokenString",
         },
