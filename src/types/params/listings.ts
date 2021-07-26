@@ -80,6 +80,7 @@ export interface ListingFilterParams {
   buyNowEligibleOnly?: boolean
   searchAttributes?: string[]
   imagesCountGroup?: string[]
+  hasBuyerProtectionOnly?: boolean
 
   [key: string]:
     | number
