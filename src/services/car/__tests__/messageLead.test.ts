@@ -1,10 +1,10 @@
 import {
   fetchDealerCallLeads,
   fetchDealerMessageLeads,
-  fetchDealerWhatsAppLeads,
+  fetchDealerWhatsappLeads,
   hideCallLead,
   hideMessageLead,
-  hideWhatsAppLead,
+  hideWhatsappLead,
   resendMessageLead,
   sendMessageLead,
 } from "../messageLead"
@@ -14,7 +14,7 @@ import { PaginatedLeads } from "../../../lib/factories/paginated"
 import {
   SearchCallLead as SearchCallLeadFactory,
   SearchMessageLead as SearchMessageLeadFactory,
-  SearchWhatsAppLead as SearchWhatsAppLeadFactory,
+  SearchWhatsappLead as SearchWhatsappLeadFactory,
 } from "../../../lib/factories/leads"
 
 describe("Car API", () => {
@@ -367,9 +367,9 @@ describe("Car API", () => {
     })
   })
 
-  describe("#fetchDealerWhatsAppLeads", () => {
+  describe("#fetchDealerWhatsappLeads", () => {
     const { content, pagination } = PaginatedLeads([
-      SearchWhatsAppLeadFactory(),
+      SearchWhatsappLeadFactory(),
     ])
 
     beforeEach(() => {
@@ -383,7 +383,7 @@ describe("Car API", () => {
     })
 
     it("calls correct endpoint", async () => {
-      await fetchDealerWhatsAppLeads({
+      await fetchDealerWhatsappLeads({
         dealerId: 1234,
         query: {
           page: 2,
@@ -406,7 +406,7 @@ describe("Car API", () => {
     it("should trow error if accessToken is not passed", async () => {
       let error
       try {
-        await fetchDealerWhatsAppLeads({
+        await fetchDealerWhatsappLeads({
           dealerId: 1234,
           query: {
             page: 0,
@@ -424,7 +424,7 @@ describe("Car API", () => {
     })
 
     it("should return paginated leads calls data", async () => {
-      const result = await fetchDealerWhatsAppLeads({
+      const result = await fetchDealerWhatsappLeads({
         dealerId: 1234,
         query: {
           page: 0,
@@ -437,7 +437,7 @@ describe("Car API", () => {
       })
 
       expect(fetch).toHaveBeenCalled()
-      expect(result).toEqual(PaginatedLeads([SearchWhatsAppLeadFactory()]))
+      expect(result).toEqual(PaginatedLeads([SearchWhatsappLeadFactory()]))
     })
   })
 
@@ -525,11 +525,11 @@ describe("Car API", () => {
     })
   })
 
-  describe("#hideWhatsAppLead", () => {
+  describe("#hideWhatsappLead", () => {
     it("hides a whatsapp lead", async () => {
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
 
-      const response = await hideWhatsAppLead({
+      const response = await hideWhatsappLead({
         dealerId: 1234,
         whatsAppTrackingEntryId: 501,
         options: {
@@ -553,7 +553,7 @@ describe("Car API", () => {
         { status: 400 },
       ])
 
-      const response = await hideWhatsAppLead({
+      const response = await hideWhatsappLead({
         dealerId: 1234,
         whatsAppTrackingEntryId: 501,
         options: {

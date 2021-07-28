@@ -6,7 +6,7 @@ import {
   MessageLead,
   SearchCallLead,
   SearchMessageLead,
-  SearchWhatsAppLead,
+  SearchWhatsappLead,
 } from "../../types/models"
 import toQueryString from "../../lib/toQueryString"
 import toCamelCase from "../../lib/toCamelCase"
@@ -247,7 +247,7 @@ export const resendMessageLead = async ({
   }
 }
 
-export const fetchDealerWhatsAppLeads = async ({
+export const fetchDealerWhatsappLeads = async ({
   dealerId,
   query,
   options = {},
@@ -255,7 +255,7 @@ export const fetchDealerWhatsAppLeads = async ({
   dealerId: number
   query: LeadQueryParams
   options?: ApiCallOptions & { validateOnly?: boolean }
-}): Promise<Paginated<SearchWhatsAppLead>> => {
+}): Promise<Paginated<SearchWhatsappLead>> => {
   const { validateOnly, ...otherOptions } = options
   const { page, size, sort = {}, searchQuery } = query
 
@@ -291,7 +291,7 @@ export const fetchDealerWhatsAppLeads = async ({
   })
 }
 
-export const hideWhatsAppLead = async ({
+export const hideWhatsappLead = async ({
   dealerId,
   whatsAppTrackingEntryId,
   options = {},

@@ -110,10 +110,10 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`sendMessageLead`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Lead/createMessageLeadUsingPOST)
   - [`fetchDealerMessageLeads`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getAllDealerMessageLeadsUsingGET)
   - [`fetchDealerCallLeads`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getAllDealerCallLeadsUsingGET)
-  - [`fetchDealerWhatsAppLeads`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getAllDealerWhatsAppLeadsUsingGET)
+  - [`fetchDealerWhatsappLeads`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getAllDealerWhatsappLeadsUsingGET)
   - [`hideMessageLead`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/hideDealerMessageLeadUsingPOST)
   - [`hideCallLead`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/hideDealerCallLeadUsingPOST)
-  - [`hideWhatsAppLead`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/hideDealerWhatsAppLeadUsingPOST)
+  - [`hideWhatsappLead`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/hideDealerWhatsappLeadUsingPOST)
   - [`resendMessageLead`](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html#/Email%20delivery/resendMessageLeadUsingPOST)
 - [Money Back Guarantee](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money_Back_Guarantee)
   - [`sendMoneybackApplication`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money%20Back%20Guarantee/createMbgApplicationUsingPOST)
@@ -226,8 +226,8 @@ Also accompanying modes and param types, as well as default values, are exported
 
 ### [Reporting service](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html)
 
-- [Whatsapp Tracking](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/WhatsApp%20Tracking)
-  - [`postWhatsappTrackingEntry`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/WhatsApp%20Tracking/createWhatsAppTrackingEntryUsingPOST)
+- [Whatsapp Tracking](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Whatsapp%20Tracking)
+  - [`postWhatsappTrackingEntry`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Whatsapp%20Tracking/createWhatsappTrackingEntryUsingPOST)
 - [Reporting](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting)
   - [`fetchCarSales`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getDealerCarSalesUsingGET)
   - [`rejectCarSales`](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Car%20Sale/addCarSaleRejectionUsingPUT)

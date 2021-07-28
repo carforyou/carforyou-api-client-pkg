@@ -1,7 +1,7 @@
 import {
   SearchCallLead as SearchCallLeadType,
   SearchMessageLead as SearchMessageLeadType,
-  SearchWhatsAppLead as SearchWhatsAppLeadType,
+  SearchWhatsappLead as SearchWhatsappLeadType,
 } from "../../types/models"
 
 const searchMessageLeadDefaults: SearchMessageLeadType = {
@@ -56,7 +56,7 @@ const searchCallLeadDefaults: SearchCallLeadType = {
   duration: 0,
 }
 
-const searchWhatsAppLeadDefaults: SearchWhatsAppLeadType = {
+const searchWhatsappLeadDefaults: SearchWhatsappLeadType = {
   createdDate: "2021-01-01T12:34:56.000Z",
   firstName: "Birra",
   id: 501,
@@ -87,9 +87,9 @@ export const SearchCallLead = (attributes = {}): SearchCallLeadType => ({
   ...attributes,
 })
 
-export const SearchWhatsAppLead = (
+export const SearchWhatsappLead = (
   attributes = {}
-): SearchWhatsAppLeadType => ({
-  ...searchWhatsAppLeadDefaults,
+): SearchWhatsappLeadType => ({
+  ...searchWhatsappLeadDefaults,
   ...attributes,
 })

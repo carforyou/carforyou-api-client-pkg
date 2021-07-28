@@ -180,7 +180,7 @@ export interface SearchCallLead {
   duration: number
 }
 
-export interface SearchWhatsAppLead {
+export interface SearchWhatsappLead {
   id: number
   listingId: number
   listing: MessageLeadListing

@@ -16,7 +16,7 @@ export {
   MessageLead,
   SearchMessageLead,
   SearchCallLead,
-  SearchWhatsAppLead,
+  SearchWhatsappLead,
   City,
   PresignedUrl,
   Date,
@@ -199,10 +199,10 @@ export {
   sendMessageLead,
   fetchDealerMessageLeads,
   fetchDealerCallLeads,
-  fetchDealerWhatsAppLeads,
+  fetchDealerWhatsappLeads,
   hideMessageLead,
   hideCallLead,
-  hideWhatsAppLead,
+  hideWhatsappLead,
   resendMessageLead,
   defaultLeadSort as defaultLeadListingsSort,
 } from "./services/car/messageLead"
@@ -323,5 +323,5 @@ export { withRetries } from "./lib/withRetries"
 export {
   SearchMessageLead as SearchMessageLeadFactory,
   SearchCallLead as SearchCallLeadFactory,
-  SearchWhatsAppLead as SearchWhatsAppLeadFactory,
+  SearchWhatsappLead as SearchWhatsappLeadFactory,
 } from "./lib/factories/leads"
