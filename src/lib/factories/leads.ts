@@ -88,7 +88,7 @@ export const SearchCallLead = (attributes = {}): SearchCallLeadType => ({
 })
 
 export const SearchWhatsappLead = (
-  attributes = {}
+  attributes: Partial<SearchWhatsappLeadType> = {}
 ): SearchWhatsappLeadType => ({
   ...searchWhatsappLeadDefaults,
   ...attributes,
