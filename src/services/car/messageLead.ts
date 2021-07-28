@@ -282,7 +282,7 @@ export const fetchDealerWhatsappLeads = async ({
     queryParams
   )}`
 
-  return fetchPath({
+  return await fetchPath({
     path,
     options: {
       ...otherOptions,
