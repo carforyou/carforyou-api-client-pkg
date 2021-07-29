@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-try-expect */
 import {
   fetchDealerCallLeads,
   fetchDealerMessageLeads,
@@ -405,21 +404,23 @@ describe("Car API", () => {
     })
 
     it("should trow error if accessToken is not passed", async () => {
+      let error
       try {
-        await fetchDealerMessageLeads({
+        await fetchDealerCallLeads({
           dealerId: 1234,
           query: {
             page: 0,
             size: 7,
             sort: {},
-            searchQuery: "",
           },
         })
-        expect(fetch).not.toHaveBeenCalled()
       } catch (err) {
-        expect(err).toBeDefined()
-        expect(err.message).toBeDefined()
+        error = err
       }
+
+      expect(fetch).not.toHaveBeenCalled()
+      expect(error).toBeDefined()
+      expect(error.message).toBeDefined()
     })
 
     it("should return paginated leads calls data", async () => {
@@ -530,7 +531,7 @@ describe("Car API", () => {
 
       const response = await hideWhatsappLead({
         dealerId: 1234,
-        whatsAppTrackingEntryId: 501,
+        id: 501,
         options: {
           accessToken: "DummyTokenString",
         },
@@ -554,7 +555,7 @@ describe("Car API", () => {
 
       const response = await hideWhatsappLead({
         dealerId: 1234,
-        whatsAppTrackingEntryId: 501,
+        id: 501,
         options: {
           accessToken: "DummyTokenString",
         },

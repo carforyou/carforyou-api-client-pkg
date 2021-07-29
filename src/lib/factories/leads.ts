@@ -4,20 +4,22 @@ import {
   SearchWhatsappLead as SearchWhatsappLeadType,
 } from "../../types/models"
 
+const listing = {
+  externalListingId: "1234567",
+  referenceId: "123",
+  image:
+    "2019/09/17/11/13/13/1-aixam-mac-500-cabriolet-480-261485-7e5hF5fhFUiC.jpg",
+  make: "Ford",
+  mileage: 6000,
+  model: "Fiesta",
+  price: 20000,
+  type: "1.0 EcoB 125 Titanium X",
+}
+
 const searchMessageLeadDefaults: SearchMessageLeadType = {
   id: 501,
   listingId: 501,
-  listing: {
-    externalListingId: "1234567",
-    referenceId: "123",
-    image:
-      "2019/09/17/11/13/13/1-aixam-mac-500-cabriolet-480-261485-7e5hF5fhFUiC.jpg",
-    make: "Ford",
-    mileage: 6000,
-    model: "Fiesta",
-    price: 20000,
-    type: "1.0 EcoB 125 Titanium X",
-  },
+  listing: listing,
   phone: "0792222222",
   email: "person@email.com",
   firstName: "Birra",
@@ -39,17 +41,9 @@ const searchCallLeadDefaults: SearchCallLeadType = {
   id: 501,
   listingId: 501,
   listing: {
-    externalListingId: "1234567",
-    referenceId: "123",
+    ...listing,
     firstRegistrationDate: "2021-03-18",
     id: 555,
-    image:
-      "2019/09/17/11/13/13/1-aixam-mac-500-cabriolet-480-261485-7e5hF5fhFUiC.jpg",
-    make: "Ford",
-    mileage: 6000,
-    model: "Fiesta",
-    price: 20000,
-    type: "1.0 EcoB 125 Titanium X",
   },
   callerNumber: "123-323",
   createdDate: "2021-01-01T12:34:56.000Z",
@@ -61,18 +55,7 @@ const searchWhatsappLeadDefaults: SearchWhatsappLeadType = {
   firstName: "Birra",
   id: 501,
   lastName: "Peroni",
-  listing: {
-    externalListingId: "1234567",
-    image:
-      "2019/09/17/11/13/13/1-aixam-mac-500-cabriolet-480-261485-7e5hF5fhFUiC.jpg",
-    id: 555,
-    make: "Ford",
-    mileage: 6000,
-    model: "Fiesta",
-    price: 20000,
-    referenceId: "123",
-    type: "1.0 EcoB 125 Titanium X",
-  },
+  listing: { ...listing, id: 555 },
   listingId: 501,
   phone: "0792222222",
 }

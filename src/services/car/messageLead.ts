@@ -20,7 +20,7 @@ import {
   postData,
 } from "../../base"
 
-export const defaultDealerMessageLeadsPagination = {
+export const defaultLeadsPagination = {
   page: 0,
   size: 10,
 }
@@ -103,8 +103,8 @@ export const fetchDealerMessageLeads = async ({
   }
 
   const queryParams = {
-    page: pageOrDefault(page, defaultDealerMessageLeadsPagination),
-    size: sizeOrDefault(size, defaultDealerMessageLeadsPagination),
+    page: pageOrDefault(page, defaultLeadsPagination),
+    size: sizeOrDefault(size, defaultLeadsPagination),
     sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
       sortOrDefault.sortOrder
     )}`,
@@ -173,8 +173,8 @@ export const fetchDealerCallLeads = async ({
   }
 
   const queryParams = {
-    page: pageOrDefault(page, defaultDealerMessageLeadsPagination),
-    size: sizeOrDefault(size, defaultDealerMessageLeadsPagination),
+    page: pageOrDefault(page, defaultLeadsPagination),
+    size: sizeOrDefault(size, defaultLeadsPagination),
     sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
       sortOrDefault.sortOrder
     )}`,
@@ -254,9 +254,9 @@ export const fetchDealerWhatsappLeads = async ({
 }: {
   dealerId: number
   query: LeadQueryParams
-  options?: ApiCallOptions & { validateOnly?: boolean }
+  options?: ApiCallOptions
 }): Promise<Paginated<SearchWhatsappLead>> => {
-  const { validateOnly, ...otherOptions } = options
+  const { ...otherOptions } = options
   const { page, size, sort = {}, searchQuery } = query
 
   const { sortOrder, sortType } = sort
@@ -267,8 +267,8 @@ export const fetchDealerWhatsappLeads = async ({
   }
 
   const queryParams = {
-    page: pageOrDefault(page, defaultDealerMessageLeadsPagination),
-    size: sizeOrDefault(size, defaultDealerMessageLeadsPagination),
+    page: pageOrDefault(page, defaultLeadsPagination),
+    size: sizeOrDefault(size, defaultLeadsPagination),
     sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
       sortOrDefault.sortOrder
     )}`,
@@ -293,16 +293,16 @@ export const fetchDealerWhatsappLeads = async ({
 
 export const hideWhatsappLead = async ({
   dealerId,
-  whatsAppTrackingEntryId,
+  id,
   options = {},
 }: {
   dealerId: number
-  whatsAppTrackingEntryId: number
+  id: number
   options: ApiCallOptions
 }): Promise<WithValidationError> => {
   try {
     await postData({
-      path: `dealers/${dealerId}/whats-app-tracking-entries/${whatsAppTrackingEntryId}/hide`,
+      path: `dealers/${dealerId}/whats-app-tracking-entries/${id}/hide`,
       body: {},
       options: {
         ...options,
