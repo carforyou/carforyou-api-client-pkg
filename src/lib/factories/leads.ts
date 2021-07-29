@@ -19,7 +19,7 @@ const listing = {
 const searchMessageLeadDefaults: SearchMessageLeadType = {
   id: 501,
   listingId: 501,
-  listing: listing,
+  listing,
   phone: "0792222222",
   email: "person@email.com",
   firstName: "Birra",

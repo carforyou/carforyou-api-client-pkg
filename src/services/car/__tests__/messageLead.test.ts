@@ -404,9 +404,8 @@ describe("Car API", () => {
     })
 
     it("should trow error if accessToken is not passed", async () => {
-      let error
-      try {
-        await fetchDealerCallLeads({
+      await expect(
+        fetchDealerWhatsappLeads({
           dealerId: 1234,
           query: {
             page: 0,
@@ -414,13 +413,8 @@ describe("Car API", () => {
             sort: {},
           },
         })
-      } catch (err) {
-        error = err
-      }
-
+      ).rejects.toBeDefined()
       expect(fetch).not.toHaveBeenCalled()
-      expect(error).toBeDefined()
-      expect(error.message).toBeDefined()
     })
 
     it("should return paginated leads calls data", async () => {
