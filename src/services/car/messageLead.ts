@@ -6,6 +6,7 @@ import {
   MessageLead,
   SearchCallLead,
   SearchMessageLead,
+  SearchWhatsappLead,
 } from "../../types/models"
 import toQueryString from "../../lib/toQueryString"
 import toCamelCase from "../../lib/toCamelCase"
@@ -19,7 +20,7 @@ import {
   postData,
 } from "../../base"
 
-export const defaultDealerMessageLeadsPagination = {
+export const defaultLeadsPagination = {
   page: 0,
   size: 10,
 }
@@ -102,8 +103,8 @@ export const fetchDealerMessageLeads = async ({
   }
 
   const queryParams = {
-    page: pageOrDefault(page, defaultDealerMessageLeadsPagination),
-    size: sizeOrDefault(size, defaultDealerMessageLeadsPagination),
+    page: pageOrDefault(page, defaultLeadsPagination),
+    size: sizeOrDefault(size, defaultLeadsPagination),
     sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
       sortOrDefault.sortOrder
     )}`,
@@ -172,8 +173,8 @@ export const fetchDealerCallLeads = async ({
   }
 
   const queryParams = {
-    page: pageOrDefault(page, defaultDealerMessageLeadsPagination),
-    size: sizeOrDefault(size, defaultDealerMessageLeadsPagination),
+    page: pageOrDefault(page, defaultLeadsPagination),
+    size: sizeOrDefault(size, defaultLeadsPagination),
     sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
       sortOrDefault.sortOrder
     )}`,
@@ -234,6 +235,78 @@ export const resendMessageLead = async ({
       options: {
         isAuthorizedRequest: true,
         ...options,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
+
+  return {
+    tag: "success",
+    result: {},
+  }
+}
+
+export const fetchDealerWhatsappLeads = async ({
+  dealerId,
+  query,
+  options = {},
+}: {
+  dealerId: number
+  query: LeadQueryParams
+  options?: ApiCallOptions
+}): Promise<Paginated<SearchWhatsappLead>> => {
+  const { ...otherOptions } = options
+  const { page, size, sort = {}, searchQuery } = query
+
+  const { sortOrder, sortType } = sort
+
+  const sortOrDefault = {
+    sortType: sortType || defaultLeadSort.sortType,
+    sortOrder: sortOrder || defaultLeadSort.sortOrder,
+  }
+
+  const queryParams = {
+    page: pageOrDefault(page, defaultLeadsPagination),
+    size: sizeOrDefault(size, defaultLeadsPagination),
+    sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
+      sortOrDefault.sortOrder
+    )}`,
+    q:
+      searchQuery && searchQuery.length >= 3
+        ? encodeURIComponent(searchQuery)
+        : "",
+  }
+
+  const path = `dealers/${dealerId}/whats-app-tracking-entries?${toQueryString(
+    queryParams
+  )}`
+
+  return fetchPath({
+    path,
+    options: {
+      ...otherOptions,
+      isAuthorizedRequest: true,
+    },
+  })
+}
+
+export const hideWhatsappLead = async ({
+  dealerId,
+  id,
+  options = {},
+}: {
+  dealerId: number
+  id: number
+  options: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `dealers/${dealerId}/whats-app-tracking-entries/${id}/hide`,
+      body: {},
+      options: {
+        ...options,
+        isAuthorizedRequest: true,
       },
     })
   } catch (error) {

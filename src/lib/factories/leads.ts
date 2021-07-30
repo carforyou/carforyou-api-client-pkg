@@ -1,22 +1,25 @@
 import {
   SearchCallLead as SearchCallLeadType,
   SearchMessageLead as SearchMessageLeadType,
+  SearchWhatsappLead as SearchWhatsappLeadType,
 } from "../../types/models"
+
+const listing = {
+  externalListingId: "1234567",
+  referenceId: "123",
+  image:
+    "2019/09/17/11/13/13/1-aixam-mac-500-cabriolet-480-261485-7e5hF5fhFUiC.jpg",
+  make: "Ford",
+  mileage: 6000,
+  model: "Fiesta",
+  price: 20000,
+  type: "1.0 EcoB 125 Titanium X",
+}
 
 const searchMessageLeadDefaults: SearchMessageLeadType = {
   id: 501,
   listingId: 501,
-  listing: {
-    externalListingId: "1234567",
-    referenceId: "123",
-    image:
-      "2019/09/17/11/13/13/1-aixam-mac-500-cabriolet-480-261485-7e5hF5fhFUiC.jpg",
-    make: "Ford",
-    mileage: 6000,
-    model: "Fiesta",
-    price: 20000,
-    type: "1.0 EcoB 125 Titanium X",
-  },
+  listing,
   phone: "0792222222",
   email: "person@email.com",
   firstName: "Birra",
@@ -38,21 +41,23 @@ const searchCallLeadDefaults: SearchCallLeadType = {
   id: 501,
   listingId: 501,
   listing: {
-    externalListingId: "1234567",
-    referenceId: "123",
+    ...listing,
     firstRegistrationDate: "2021-03-18",
     id: 555,
-    image:
-      "2019/09/17/11/13/13/1-aixam-mac-500-cabriolet-480-261485-7e5hF5fhFUiC.jpg",
-    make: "Ford",
-    mileage: 6000,
-    model: "Fiesta",
-    price: 20000,
-    type: "1.0 EcoB 125 Titanium X",
   },
   callerNumber: "123-323",
   createdDate: "2021-01-01T12:34:56.000Z",
   duration: 0,
+}
+
+const searchWhatsappLeadDefaults: SearchWhatsappLeadType = {
+  createdDate: "2021-01-01T12:34:56.000Z",
+  firstName: "Birra",
+  id: 501,
+  lastName: "Peroni",
+  listing: { ...listing, id: 555 },
+  listingId: 501,
+  phone: "0792222222",
 }
 
 export const SearchMessageLead = (attributes = {}): SearchMessageLeadType => ({
@@ -62,5 +67,12 @@ export const SearchMessageLead = (attributes = {}): SearchMessageLeadType => ({
 
 export const SearchCallLead = (attributes = {}): SearchCallLeadType => ({
   ...searchCallLeadDefaults,
+  ...attributes,
+})
+
+export const SearchWhatsappLead = (
+  attributes: Partial<SearchWhatsappLeadType> = {}
+): SearchWhatsappLeadType => ({
+  ...searchWhatsappLeadDefaults,
   ...attributes,
 })

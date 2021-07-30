@@ -1,8 +1,10 @@
 import {
   fetchDealerCallLeads,
   fetchDealerMessageLeads,
+  fetchDealerWhatsappLeads,
   hideCallLead,
   hideMessageLead,
+  hideWhatsappLead,
   resendMessageLead,
   sendMessageLead,
 } from "../messageLead"
@@ -12,6 +14,7 @@ import { PaginatedLeads } from "../../../lib/factories/paginated"
 import {
   SearchCallLead as SearchCallLeadFactory,
   SearchMessageLead as SearchMessageLeadFactory,
+  SearchWhatsappLead as SearchWhatsappLeadFactory,
 } from "../../../lib/factories/leads"
 
 describe("Car API", () => {
@@ -364,6 +367,78 @@ describe("Car API", () => {
     })
   })
 
+  describe("#fetchDealerWhatsappLeads", () => {
+    const { content, pagination } = PaginatedLeads([
+      SearchWhatsappLeadFactory(),
+    ])
+
+    beforeEach(() => {
+      fetchMock.mockClear()
+      fetchMock.mockResponse(
+        JSON.stringify({
+          content: content,
+          ...pagination,
+        })
+      )
+    })
+
+    it("calls correct endpoint", async () => {
+      await fetchDealerWhatsappLeads({
+        dealerId: 1234,
+        query: {
+          page: 2,
+          size: 7,
+          sort: defaultLeadSort,
+        },
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(
+          /\/dealers\/1234\/whats-app-tracking-entries\?page=1&size=7&sort=createdDate%2Cdesc$/
+        ),
+        expect.any(Object)
+      )
+    })
+
+    it("should trow error if accessToken is not passed", async () => {
+      await expect(
+        fetchDealerWhatsappLeads({
+          dealerId: 1234,
+          query: {
+            page: 0,
+            size: 7,
+            sort: {},
+          },
+        })
+      ).rejects.toEqual(
+        new Error(
+          "You tried to make an authenticated requests without providing an access token!\n Please pass a valid token as a request option."
+        )
+      )
+      expect(fetch).not.toHaveBeenCalled()
+    })
+
+    it("should return paginated leads calls data", async () => {
+      const result = await fetchDealerWhatsappLeads({
+        dealerId: 1234,
+        query: {
+          page: 0,
+          size: 7,
+          sort: {},
+        },
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+
+      expect(fetch).toHaveBeenCalled()
+      expect(result).toEqual(PaginatedLeads([SearchWhatsappLeadFactory()]))
+    })
+  })
+
   describe("#hideCallLead", () => {
     it("hides a call lead", async () => {
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
@@ -435,6 +510,50 @@ describe("Car API", () => {
       const response = await resendMessageLead({
         dealerId: 1234,
         messageLeadId: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
+    })
+  })
+
+  describe("#hideWhatsappLead", () => {
+    it("hides a whatsapp lead", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await hideWhatsappLead({
+        dealerId: 1234,
+        id: 501,
+        options: {
+          accessToken: "DummyTokenString",
+        },
+      })
+      expect(response).toEqual({ tag: "success", result: {} })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining(
+          "dealers/1234/whats-app-tracking-entries/501/hide"
+        ),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [{ param: "email", message: "validation.field.not-empty" }]
+      fetchMock.mockResponses([
+        JSON.stringify({ message, errors }),
+        { status: 400 },
+      ])
+
+      const response = await hideWhatsappLead({
+        dealerId: 1234,
+        id: 501,
         options: {
           accessToken: "DummyTokenString",
         },

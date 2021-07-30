@@ -164,20 +164,23 @@ export interface MessageLeadListing {
   referenceId: string
 }
 
-export interface SearchMessageLead extends MessageLead {
+export interface SearchLeads {
   id: number
   listingId: number
   listing: MessageLeadListing
   createdDate: string
 }
 
-export interface SearchCallLead {
-  id: number
-  listingId: number
-  listing: MessageLeadListing
+export interface SearchMessageLead extends SearchLeads, MessageLead {}
+
+export interface SearchCallLead extends SearchLeads {
   callerNumber: string
-  createdDate: string
   duration: number
+}
+export interface SearchWhatsappLead extends SearchLeads {
+  firstName: string
+  lastName: string
+  phone: string
 }
 
 export interface Date {
