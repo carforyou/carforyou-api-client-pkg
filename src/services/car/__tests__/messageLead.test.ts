@@ -413,7 +413,11 @@ describe("Car API", () => {
             sort: {},
           },
         })
-      ).rejects.toBeDefined()
+      ).rejects.toEqual(
+        new Error(
+          "You tried to make an authenticated requests without providing an access token!\n Please pass a valid token as a request option."
+        )
+      )
       expect(fetch).not.toHaveBeenCalled()
     })
 
