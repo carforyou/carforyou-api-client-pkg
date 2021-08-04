@@ -230,6 +230,7 @@ interface BaseSearchListing {
   buyNowInProgress: boolean
   description: string
   verified: boolean
+  referenceId: string
 }
 
 export interface ApiSearchListing extends BaseSearchListing {
