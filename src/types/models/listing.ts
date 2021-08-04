@@ -159,6 +159,7 @@ export interface Listing
   useDefaultGeneralExternalNote: boolean
   verified: boolean
   vehicleUniverse: "car"
+  referenceId: string
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
