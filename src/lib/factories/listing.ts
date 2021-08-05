@@ -163,7 +163,6 @@ export function SearchListing(attributes = {}): SearchListingType {
   const { typeSlug } = { typeSlug: "test-slug", ...attributes }
   return {
     typeSlug,
-    referencedId: "0099",
     dealer: {
       id: 1,
       name: "emil frey",

@@ -221,6 +221,7 @@ interface BaseSearchListing {
   hidden: boolean
   publishingDate: string
   externalListingId: string
+  referenceId: string
   enabledFeatures: Feature[]
   driveType: string
   bodyColorGroup: string
@@ -230,7 +231,6 @@ interface BaseSearchListing {
   buyNowInProgress: boolean
   description: string
   verified: boolean
-  referencedId: string
 }
 
 export interface ApiSearchListing extends BaseSearchListing {
