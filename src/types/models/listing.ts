@@ -221,6 +221,7 @@ interface BaseSearchListing {
   hidden: boolean
   publishingDate: string
   externalListingId: string
+  referenceId: string
   enabledFeatures: Feature[]
   driveType: string
   bodyColorGroup: string
