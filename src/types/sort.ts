@@ -25,9 +25,12 @@ export enum ListingSortTypeParams {
   PRODUCTION_YEAR = "PRODUCTION_YEAR",
 }
 
+type VariantParams = "A" | "B" | "C" | "D" | "E"
+
 export interface ListingSortParams {
   sortOrder?: SortOrderParams
   sortType?: ListingSortTypeParams
+  variant?: VariantParams
 }
 
 export enum DealerSortTypeParams {
