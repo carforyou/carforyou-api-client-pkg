@@ -1,5 +1,6 @@
 import { WithTopListing } from "../../types/topListing"
 import {
+  ListingSortParams,
   ListingSortTypeParams,
   SortOrderParams,
   SortParams,
@@ -110,7 +111,7 @@ const searchForListings = ({
   path,
   query = {},
   options = {},
-  defaultSort,
+  defaultSort = {},
   defaultPagination,
 }: {
   path: string
@@ -123,7 +124,7 @@ const searchForListings = ({
   defaultSort: SortParams<ListingSortTypeParams>
   defaultPagination: PaginationParams
 }) => {
-  const { page, size, sortOrder, sortType, ...rest } = query
+  const { page, size, sortOrder, sortType, variant, ...rest } = query
   const {
     includeFieldsStats = [],
     includeTopListing = false,
@@ -142,6 +143,7 @@ const searchForListings = ({
       {
         order: sortOrder || defaultSort.sortOrder,
         type: sortType || defaultSort.sortType,
+        variant: variant || null,
       },
     ],
     ...(includeFieldsStats && includeFieldsStats.length > 0
@@ -181,18 +183,20 @@ function sanitizeListingResponse<
 export const fetchListings = async ({
   query = {},
   options = {},
+  defaultSort = {},
 }: {
   query?: ListingQueryParams
   options?: ApiCallOptions & {
     includeFieldsStats?: string[]
     includeTopListing?: boolean
   }
+  defaultSort?: ListingSortParams
 } = {}): Promise<WithFieldStats<WithTopListing<Paginated<SearchListing>>>> => {
   const response = await searchForListings({
     path: "listings/search",
     query,
     options,
-    defaultSort: defaultUserSort,
+    defaultSort: defaultSort || defaultUserSort,
     defaultPagination: defaultUserPagination,
   })
 
