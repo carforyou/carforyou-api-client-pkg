@@ -13,9 +13,11 @@ export interface LocationFilter {
   radius?: string
 }
 
+type VariantParams = "A" | "B" | "C" | "D" | "E"
 export interface ListingQueryParams extends PaginationParams {
   lng?: string
   radius?: string
+  variant?: VariantParams
   cityId?: string
   [key: string]:
     | string
