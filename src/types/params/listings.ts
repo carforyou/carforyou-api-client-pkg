@@ -1,8 +1,4 @@
-import {
-  ListingSortTypeParams,
-  SortParams,
-  VariantParams,
-} from "../../types/sort"
+import { ListingSortTypeParams, SortParams } from "../../types/sort"
 
 import { PaginationParams } from "./index"
 
@@ -17,6 +13,7 @@ export interface LocationFilter {
   radius?: string
 }
 
+type VariantParams = "A" | "B" | "C" | "D" | "E"
 export interface ListingQueryParams extends PaginationParams {
   lng?: string
   radius?: string

@@ -85,7 +85,8 @@ export function Options(): OptionsType {
           },
           {
             id: 18,
-            name: "Kindersitzvorrichtung ISOFIX mit Deaktivierungsschalter für Beifahrer- Airbag",
+            name:
+              "Kindersitzvorrichtung ISOFIX mit Deaktivierungsschalter für Beifahrer- Airbag",
           },
           {
             id: 19,

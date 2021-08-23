@@ -132,7 +132,7 @@ const searchForListings = ({
 
   const paginationSize = sizeOrDefault(size, defaultPagination)
   const paginationPage = pageOrDefault(page, defaultPagination)
-
+  const type = sortType || defaultSort.sortType
   const body = {
     pagination: {
       page: paginationPage,
@@ -141,8 +141,8 @@ const searchForListings = ({
     sort: [
       {
         order: sortOrder || defaultSort.sortOrder,
-        type: sortType || defaultSort.sortType,
-        ...(variant && { variant }),
+        type,
+        ...(variant && type === ListingSortTypeParams.RELEVANCE && { variant }),
       },
     ],
     ...(includeFieldsStats && includeFieldsStats.length > 0
