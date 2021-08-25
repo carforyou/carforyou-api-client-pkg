@@ -139,6 +139,24 @@ describe("SEARCH service", () => {
           options: {},
         })
       })
+
+      it("provides a default sort with B variant", async () => {
+        await fetchListings({ query: { variant: "B" } })
+
+        expect(postData).toHaveBeenCalledWith({
+          path: "listings/search",
+          body: expect.objectContaining({
+            sort: [
+              {
+                type: "RELEVANCE",
+                order: "ASC",
+                variant: "B",
+              },
+            ],
+          }),
+          options: {},
+        })
+      })
     })
   })
 
