@@ -1,4 +1,9 @@
-import { deleteSavedSearch, sendSavedSearch } from "../userNotification"
+import {
+  deleteSavedSearch,
+  enableSavedSearch,
+  fetchSavedSearch,
+  sendSavedSearch,
+} from "../userNotification"
 
 describe("USER_NOTIFICATION service", () => {
   beforeEach(fetchMock.resetMocks)
@@ -81,6 +86,53 @@ describe("USER_NOTIFICATION service", () => {
 
       const response = await deleteSavedSearch({ key: "qwertyuiop" })
       expect(response.tag).toEqual("error")
+    })
+  })
+
+  describe("#enableSavedSearch", () => {
+    it("enables saved search", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await enableSavedSearch({ key: "qwertyuiop" })
+      expect(response.tag).toEqual("success")
+      expect(fetch).toBeCalledWith(
+        expect.stringContaining("/saved-searches/key/qwertyuiop"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles response errors", async () => {
+      fetchMock.mockResponses([null, { status: 404 }])
+
+      const response = await enableSavedSearch({ key: "qwertyuiop" })
+      expect(response.tag).toEqual("error")
+    })
+  })
+
+  describe("#fetchSavedSearch", () => {
+    const savedSearch = {
+      email: "save@thesear.ch",
+      language: "de",
+      uiMetadata: {
+        searchPath: "?makeKeys=bmw",
+      },
+      searchQuery: {
+        makeKey: ["bmw"],
+      },
+    }
+
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify(savedSearch))
+    })
+
+    it("returns data", async () => {
+      const fetched = await fetchSavedSearch({ key: "qwertyuiop" })
+
+      expect(fetched).toEqual(savedSearch)
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching("saved-searches/key/qwertyuiop"),
+        expect.any(Object)
+      )
     })
   })
 })

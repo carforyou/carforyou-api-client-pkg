@@ -4,6 +4,7 @@ import paramsToSearchRequest from "../lib/paramsToSearchRequest"
 import {
   ApiCallOptions,
   deletePath,
+  fetchPath,
   handleValidationError,
   postData,
 } from "../base"
@@ -54,3 +55,38 @@ export const deleteSavedSearch = async ({
     return handleValidationError(error, { swallowErrors: true })
   }
 }
+
+export const enableSavedSearch = async ({
+  key,
+  options = {},
+}: {
+  key: string
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `saved-searches/key/${key}/enable`,
+      body: {},
+      options,
+    })
+
+    return {
+      tag: "success",
+      result: {},
+    }
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
+}
+
+export const fetchSavedSearch = async ({
+  key,
+  options = {},
+}: {
+  key: string
+  options?: ApiCallOptions
+}): Promise<SavedSearch> =>
+  fetchPath({
+    path: `saved-searches/key/${key}`,
+    options,
+  })
