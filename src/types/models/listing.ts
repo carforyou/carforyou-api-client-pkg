@@ -160,6 +160,9 @@ export interface Listing
   verified: boolean
   vehicleUniverse: "car"
   referenceId: string
+  firstStablePrice: number
+  priceReductionPercentage: number
+  hasReducedPrice: boolean
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
@@ -231,6 +234,9 @@ interface BaseSearchListing {
   buyNowInProgress: boolean
   description: string
   verified: boolean
+  firstStablePrice: number
+  priceReductionPercentage: number
+  hasReducedPrice: boolean
 }
 
 export interface ApiSearchListing extends BaseSearchListing {
