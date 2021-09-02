@@ -162,6 +162,7 @@ export interface Listing
   referenceId: string
   firstStablePrice: number
   priceReductionPercentage: number
+  hasReducedPrice: boolean
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
@@ -235,6 +236,7 @@ interface BaseSearchListing {
   verified: boolean
   firstStablePrice: number
   priceReductionPercentage: number
+  hasReducedPrice: boolean
 }
 
 export interface ApiSearchListing extends BaseSearchListing {
