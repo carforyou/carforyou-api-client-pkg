@@ -3,5 +3,5 @@ export interface Facet {
 }
 
 export interface Facets {
-  [key: string]: Facet
+  [key: string]: Facet | Facets
 }
