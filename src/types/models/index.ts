@@ -15,6 +15,10 @@ export interface Model extends MappedValue {
   currentBodyTypes?: string[]
 }
 
+export interface MakeWithModels extends MappedValue {
+  models?: MappedValue[]
+}
+
 export interface Region {
   name: string
   key: string

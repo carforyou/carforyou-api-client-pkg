@@ -6,6 +6,7 @@ export { ApiCallOptions } from "./base"
 export {
   Make,
   Model,
+  MakeWithModels,
   Dealer,
   DealerSourceGroup,
   DealerType,
@@ -218,6 +219,7 @@ export { fetchTypeOptions } from "./services/option/type"
 export {
   fetchCurrentMakes,
   fetchCurrentModels,
+  fetchMakesSuggestions,
 } from "./services/search/currentMakeModels"
 export {
   fetchListingCount,

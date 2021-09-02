@@ -1,4 +1,4 @@
-import { Make, Model } from "../../types/models"
+import { Make, MakeWithModels, Model } from "../../types/models"
 import { ApiCallOptions, fetchPath } from "../../base"
 
 export const fetchCurrentMakes = async ({
@@ -19,3 +19,15 @@ export const fetchCurrentModels = async ({
     options,
   })
 }
+
+export const fetchMakesSuggestions = async ({
+  query,
+  options = {},
+}: {
+  query: string
+  options?: ApiCallOptions
+}): Promise<MakeWithModels[]> =>
+  await fetchPath({
+    path: `current-makes/suggestions?q=${query}`,
+    options,
+  })
