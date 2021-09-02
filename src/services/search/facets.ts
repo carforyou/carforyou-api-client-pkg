@@ -13,7 +13,7 @@ export const fetchFacets = async ({
   fields?: string[]
   options?: ApiCallOptions
 } = {}): Promise<Facets> => {
-  return postData({
+  const { facets, topFacets } = await postData({
     path: "/listings/facets",
     body: {
       query: paramsToSearchRequest(query),
@@ -21,6 +21,8 @@ export const fetchFacets = async ({
     },
     options,
   })
+
+  return { ...facets, topFacets }
 }
 
 export const fetchDealerListingsFacets = async ({

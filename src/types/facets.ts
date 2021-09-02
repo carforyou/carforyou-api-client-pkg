@@ -2,6 +2,4 @@ export interface Facet {
   [key: string]: number
 }
 
-export interface Facets {
-  [key: string]: Facet | Facets
-}
+export type Facets = { [key: string]: Facet } & { topFacets: Facets }

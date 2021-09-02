@@ -11,7 +11,7 @@ describe("fetchFacets", () => {
 
     const fetched = await fetchFacets()
 
-    expect(fetched).toEqual(facets)
+    expect(fetched).toEqual({ ...facets.facets, topFacets: facets.topFacets })
     expect(fetch).toHaveBeenCalled()
   })
 })
