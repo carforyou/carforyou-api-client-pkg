@@ -160,7 +160,7 @@ export interface Listing
   verified: boolean
   vehicleUniverse: "car"
   referenceId: string
-  initialPrice: number
+  firstStablePrice: number
   priceReductionPercentage: number
 }
 
@@ -233,7 +233,7 @@ interface BaseSearchListing {
   buyNowInProgress: boolean
   description: string
   verified: boolean
-  initialPrice: number
+  firstStablePrice: number
   priceReductionPercentage: number
 }
 
