@@ -5,13 +5,13 @@ describe("fetchFacets", () => {
     fetchMock.resetMocks()
   })
 
-  it("unwraps facets from json", async () => {
-    const facets = { makeKey: 312 }
-    fetchMock.mockResponse(JSON.stringify({ facets }))
+  it("returns the response form the api", async () => {
+    const facets = { facets: { makeKey: 312 }, topFacets: { makeKey: 312 } }
+    fetchMock.mockResponse(JSON.stringify(facets))
 
     const fetched = await fetchFacets()
 
-    expect(fetched).toEqual(facets)
+    expect(fetched).toEqual({ ...facets.facets, topFacets: facets.topFacets })
     expect(fetch).toHaveBeenCalled()
   })
 })
