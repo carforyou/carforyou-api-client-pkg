@@ -5,6 +5,7 @@ export interface WhatsappEntry {
   lastName: string
   language: string
   phone: string
+  type: "default" | "request-video"
 }
 
 export interface CallTrackingEntry {
