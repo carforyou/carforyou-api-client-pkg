@@ -186,6 +186,7 @@ describe("SEARCH service", () => {
           body: JSON.stringify({
             pagination: { page: 0, size: 24 },
             sort: [{ order: "ASC", type: "RELEVANCE" }],
+            userInfo: {},
             query: { location: { cityId: "12345", radius: "20" } },
           }),
         })

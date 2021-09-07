@@ -7,6 +7,7 @@ describe("Whatsapp API", () => {
     language: "de",
     lastName: "Test lastname",
     phone: "+41781234567",
+    type: "default",
   }
 
   it("should call api v1", async () => {
