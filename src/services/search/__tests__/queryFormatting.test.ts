@@ -59,7 +59,7 @@ describe("SEARCH service", () => {
 
       it("defaults `page` to 0 when it's not a number", async () => {
         await fetchListings({
-          query: { page: ("qwerty" as unknown) as number, size: 10 },
+          query: { page: "qwerty" as unknown as number, size: 10 },
         })
 
         expect(postData).toHaveBeenCalledWith({
@@ -76,7 +76,7 @@ describe("SEARCH service", () => {
 
       it("defaults `size` to 24 when it's not a number", async () => {
         await fetchListings({
-          query: { page: 5, size: ("qwerty" as unknown) as number },
+          query: { page: 5, size: "qwerty" as unknown as number },
         })
 
         expect(postData).toHaveBeenCalledWith({
@@ -133,6 +133,24 @@ describe("SEARCH service", () => {
               {
                 type: "RELEVANCE",
                 order: "ASC",
+              },
+            ],
+          }),
+          options: {},
+        })
+      })
+
+      it("provides a default sort with B variant", async () => {
+        await fetchListings({ query: { variant: "B" } })
+
+        expect(postData).toHaveBeenCalledWith({
+          path: "listings/search",
+          body: expect.objectContaining({
+            sort: [
+              {
+                type: "RELEVANCE",
+                order: "ASC",
+                variant: "B",
               },
             ],
           }),

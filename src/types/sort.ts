@@ -24,7 +24,6 @@ export enum ListingSortTypeParams {
   EXTERNAL_LISTING_ID = "EXTERNAL_LISTING_ID",
   PRODUCTION_YEAR = "PRODUCTION_YEAR",
 }
-
 export interface ListingSortParams {
   sortOrder?: SortOrderParams
   sortType?: ListingSortTypeParams

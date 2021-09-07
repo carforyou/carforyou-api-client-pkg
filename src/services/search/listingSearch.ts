@@ -123,7 +123,15 @@ const searchForListings = ({
   defaultSort: SortParams<ListingSortTypeParams>
   defaultPagination: PaginationParams
 }) => {
-  const { page, size, sortOrder, sortType, ...rest } = query
+  const {
+    page,
+    size,
+    sortOrder,
+    sortType,
+    variant,
+    userInfo = {},
+    ...rest
+  } = query
   const {
     includeFieldsStats = [],
     includeTopListing = false,
@@ -132,7 +140,7 @@ const searchForListings = ({
 
   const paginationSize = sizeOrDefault(size, defaultPagination)
   const paginationPage = pageOrDefault(page, defaultPagination)
-
+  const type = sortType || defaultSort.sortType
   const body = {
     pagination: {
       page: paginationPage,
@@ -141,13 +149,15 @@ const searchForListings = ({
     sort: [
       {
         order: sortOrder || defaultSort.sortOrder,
-        type: sortType || defaultSort.sortType,
+        type,
+        ...(variant && type === ListingSortTypeParams.RELEVANCE && { variant }),
       },
     ],
     ...(includeFieldsStats && includeFieldsStats.length > 0
       ? { includeFieldsStats }
       : {}),
     ...(includeTopListing ? { includeTopListing: true } : {}),
+    userInfo,
     query: paramsToSearchRequest(rest),
   }
 
