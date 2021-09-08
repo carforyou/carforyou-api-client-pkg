@@ -26,8 +26,9 @@ export const fetchMakesSuggestions = async ({
 }: {
   query: string
   options?: ApiCallOptions
-}): Promise<MakeWithModels[]> =>
-  await fetchPath({
+}): Promise<MakeWithModels[]> => {
+  return fetchPath({
     path: `current-makes/suggestions?q=${query}`,
     options,
   })
+}
