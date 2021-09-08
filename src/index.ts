@@ -30,6 +30,7 @@ export {
   CockpitAnalytics,
   DealerAnalytics,
   BuyNowConfiguration,
+  MessageLeadListing,
 } from "./types/models/index"
 
 export {

@@ -123,7 +123,15 @@ const searchForListings = ({
   defaultSort: SortParams<ListingSortTypeParams>
   defaultPagination: PaginationParams
 }) => {
-  const { page, size, sortOrder, sortType, variant, ...rest } = query
+  const {
+    page,
+    size,
+    sortOrder,
+    sortType,
+    variant,
+    userInfo = {},
+    ...rest
+  } = query
   const {
     includeFieldsStats = [],
     includeTopListing = false,
@@ -149,6 +157,7 @@ const searchForListings = ({
       ? { includeFieldsStats }
       : {}),
     ...(includeTopListing ? { includeTopListing: true } : {}),
+    userInfo,
     query: paramsToSearchRequest(rest),
   }
 
