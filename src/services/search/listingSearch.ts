@@ -268,27 +268,6 @@ export const fetchDealerArchivedListings = async ({
   }
 }
 
-export const fetchNeedsAssessmentListings = async ({
-  query = {},
-  options = {},
-}: {
-  query?: ListingQueryParams
-  options?: ApiCallOptions & {
-    includeFieldsStats?: string[]
-    includeTopListing?: boolean
-  }
-} = {}): Promise<WithFieldStats<Paginated<SearchListing>>> => {
-  const response = await searchForListings({
-    path: "listings/needs-assessment/search",
-    query,
-    options,
-    defaultSort: defaultUserSort,
-    defaultPagination: defaultUserPagination,
-  })
-
-  return sanitizeListingResponse(response)
-}
-
 export const fetchMoneybackListings = async ({
   dealerId,
   query = {},

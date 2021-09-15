@@ -229,7 +229,6 @@ export {
   fetchListings,
   fetchDealerListings,
   fetchDealerArchivedListings,
-  fetchNeedsAssessmentListings,
   defaultUserSort as defaultListingsSort,
   defaultUserPagination as defaultListingsPagination,
   defaultDealerSort as defaultDealerListingsSort,
