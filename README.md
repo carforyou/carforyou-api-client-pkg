@@ -164,10 +164,6 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchTypes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type%20Search/searchUsingPOST_3)
   - [`fetchTypeFacets`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type%20Search/getFacetsUsingPOST_1)
 
-* [Needs Assessment](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Needs_Assessment)
-
-  - [`fetchNeedsAssesmentListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Needs%20Assessment/searchUsingPOST_1)
-
 * [Saved Searches (Auto-Alarm)](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches)
 
   - [`fetchSavedSearches`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches/getAllAutoAlarmsUsingGET)
