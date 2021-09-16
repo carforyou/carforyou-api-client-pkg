@@ -90,3 +90,28 @@ export const fetchSavedSearch = async ({
     path: `saved-searches/key/${key}`,
     options,
   })
+
+export const sendSavedSearchFeedback = async ({
+  reason,
+  key,
+  options = {},
+}: {
+  reason: string
+  key: string
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `saved-searches/key/${key}/unsubscribe-feedback`,
+      body: { reason },
+      options,
+    })
+
+    return {
+      tag: "success",
+      result: {},
+    }
+  } catch (error) {
+    return handleValidationError(error)
+  }
+}

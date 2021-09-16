@@ -3,6 +3,7 @@ import {
   enableSavedSearch,
   fetchSavedSearch,
   sendSavedSearch,
+  sendSavedSearchFeedback,
 } from "../userNotification"
 
 describe("USER_NOTIFICATION service", () => {
@@ -133,6 +134,53 @@ describe("USER_NOTIFICATION service", () => {
         expect.stringMatching("saved-searches/key/qwertyuiop"),
         expect.any(Object)
       )
+    })
+  })
+
+  describe("#sendSavedSearchFeedback", () => {
+    const savedSearchFeedback = {
+      reason: "found-car-on-cfy",
+      key: "qwertyuiop",
+    }
+
+    it("sends saved search feedback", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await sendSavedSearchFeedback(savedSearchFeedback)
+      expect(response.tag).toEqual("success")
+
+      expect(fetch).toBeCalledWith(
+        expect.stringContaining(
+          "/saved-searches/key/qwertyuiop/unsubscribe-feedback"
+        ),
+        expect.objectContaining({
+          body: JSON.stringify({ reason: "found-car-on-cfy" }),
+          method: "POST",
+        })
+      )
+    })
+
+    it("handles validation error", async () => {
+      const message = "not-valid"
+      const errors = [
+        { message: "validation.unsubscribe-feedback-already-exists" },
+      ]
+      fetchMock.mockResponses([
+        JSON.stringify({
+          message,
+          errors,
+        }),
+        { status: 422 },
+      ])
+
+      const response = await sendSavedSearchFeedback(savedSearchFeedback)
+
+      expect(response).toEqual({
+        tag: "error",
+        message,
+        errors,
+        globalErrors: [],
+      })
     })
   })
 })

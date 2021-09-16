@@ -272,6 +272,7 @@ export {
   deleteSavedSearch,
   fetchSavedSearch,
   enableSavedSearch,
+  sendSavedSearchFeedback,
 } from "./services/userNotification"
 export {
   fetchAnalyticsData,
