@@ -79,6 +79,29 @@ export const enableSavedSearch = async ({
   }
 }
 
+export const extendSavedSearch = async ({
+  key,
+  options = {},
+}: {
+  key: string
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `saved-searches/key/${key}/extend`,
+      body: {},
+      options,
+    })
+
+    return {
+      tag: "success",
+      result: {},
+    }
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
+}
+
 export const fetchSavedSearch = async ({
   key,
   options = {},

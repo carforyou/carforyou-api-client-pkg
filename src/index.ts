@@ -272,6 +272,7 @@ export {
   deleteSavedSearch,
   fetchSavedSearch,
   enableSavedSearch,
+  extendSavedSearch,
   sendSavedSearchFeedback,
 } from "./services/userNotification"
 export {

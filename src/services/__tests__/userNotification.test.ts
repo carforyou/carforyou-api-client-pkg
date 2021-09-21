@@ -1,6 +1,7 @@
 import {
   deleteSavedSearch,
   enableSavedSearch,
+  extendSavedSearch,
   fetchSavedSearch,
   sendSavedSearch,
   sendSavedSearchFeedback,
@@ -86,6 +87,26 @@ describe("USER_NOTIFICATION service", () => {
       fetchMock.mockResponses([null, { status: 404 }])
 
       const response = await deleteSavedSearch({ key: "qwertyuiop" })
+      expect(response.tag).toEqual("error")
+    })
+  })
+
+  describe("#extendSavedSearch", () => {
+    it("extend saved search", async () => {
+      fetchMock.mockResponse(JSON.stringify({ ok: true }))
+
+      const response = await extendSavedSearch({ key: "qwertyuiop" })
+      expect(response.tag).toEqual("success")
+      expect(fetch).toBeCalledWith(
+        expect.stringContaining("/saved-searches/key/qwertyuiop"),
+        expect.objectContaining({ method: "POST" })
+      )
+    })
+
+    it("handles response errors", async () => {
+      fetchMock.mockResponses([null, { status: 404 }])
+
+      const response = await extendSavedSearch({ key: "qwertyuiop" })
       expect(response.tag).toEqual("error")
     })
   })

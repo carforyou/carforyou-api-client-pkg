@@ -213,6 +213,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`deleteSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html#/Saved%20Search/deleteSavedSearchUsingDELETE)
   - [`fetchSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html#/Saved%20Search/getSavedSearchByKeyUsingGET)
   - [`enableSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html#/Saved%20Search/enableSavedSearchUsingPOST)
+  - [`extendSavedSearch`](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html#/Saved%20Search/extendSavedSearchUsingPOST)
   - [`sendSavedSearchFeedback`](https://user-notification-service.preprod.carforyou.ch/swagger-ui/index.html#/Saved%20Search/createUnsubscribeFeedbackUsingPOST)
 
 ### [Analytics service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui/index.html)
