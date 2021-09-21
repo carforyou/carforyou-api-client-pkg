@@ -141,6 +141,7 @@ describe("USER_NOTIFICATION service", () => {
       searchQuery: {
         makeKey: ["bmw"],
       },
+      enabledUntil: "2021-12-17T09:03:45.756493Z",
     }
 
     beforeEach(() => {
