@@ -95,18 +95,14 @@ describe("USER_NOTIFICATION service", () => {
     it("extend saved search", async () => {
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
 
-      const response = await extendSavedSearch({ key: "qwertyuiop" })
+      const response = await extendSavedSearch({ key: "extend" })
       expect(response.tag).toEqual("success")
-      expect(fetch).toBeCalledWith(
-        expect.stringContaining("/saved-searches/key/qwertyuiop"),
-        expect.objectContaining({ method: "POST" })
-      )
     })
 
     it("handles response errors", async () => {
       fetchMock.mockResponses([null, { status: 404 }])
 
-      const response = await extendSavedSearch({ key: "qwertyuiop" })
+      const response = await extendSavedSearch({ key: "extend" })
       expect(response.tag).toEqual("error")
     })
   })
