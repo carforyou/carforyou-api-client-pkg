@@ -26,6 +26,7 @@ describe("USER_NOTIFICATION service", () => {
           searchQuery: {
             makeKey: ["bmw"],
           },
+          enabledUntil: "2021-01-05T01:00:00Z",
         },
       })
 
@@ -38,6 +39,7 @@ describe("USER_NOTIFICATION service", () => {
     it("wraps location params", async () => {
       await sendSavedSearch({
         savedSearch: {
+          enabledUntil: "2021-01-05T01:00:00Z",
           email: "save@thesear.ch",
           language: "de",
           uiMetadata: {
@@ -54,6 +56,7 @@ describe("USER_NOTIFICATION service", () => {
         expect.stringMatching(/saved-searches$/),
         expect.objectContaining({
           body: JSON.stringify({
+            enabledUntil: "2021-01-05T01:00:00Z",
             email: "save@thesear.ch",
             language: "de",
             uiMetadata: {

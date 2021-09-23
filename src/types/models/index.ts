@@ -137,7 +137,7 @@ export interface SavedSearch {
   language: string
   searchQuery: ListingFilterParams
   uiMetadata: Record<string, unknown>
-  enabledUntil?: string
+  enabledUntil: string
 }
 
 export interface MessageLead {
