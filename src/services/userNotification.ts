@@ -13,9 +13,9 @@ export const sendSavedSearch = async ({
   savedSearch,
   options = {},
 }: {
-  savedSearch: SavedSearch
+  savedSearch: Omit<SavedSearch, "enabledUntil">
   options?: ApiCallOptions
-}): Promise<WithValidationError<SavedSearch>> => {
+}): Promise<WithValidationError<Omit<SavedSearch, "enabledUntil">>> => {
   const { searchQuery, ...rest } = savedSearch
 
   try {
@@ -85,21 +85,12 @@ export const extendSavedSearch = async ({
 }: {
   key: string
   options?: ApiCallOptions
-}): Promise<WithValidationError> => {
-  try {
-    await postData({
-      path: `saved-searches/key/${key}/extend`,
-      body: {},
-      options,
-    })
-
-    return {
-      tag: "success",
-      result: {},
-    }
-  } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
-  }
+}): Promise<Response> => {
+  return postData({
+    path: `saved-searches/key/${key}/extend`,
+    body: {},
+    options,
+  })
 }
 
 export const fetchSavedSearch = async ({

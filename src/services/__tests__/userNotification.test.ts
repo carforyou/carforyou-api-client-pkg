@@ -26,7 +26,6 @@ describe("USER_NOTIFICATION service", () => {
           searchQuery: {
             makeKey: ["bmw"],
           },
-          enabledUntil: "2021-01-05T01:00:00Z",
         },
       })
 
@@ -39,7 +38,6 @@ describe("USER_NOTIFICATION service", () => {
     it("wraps location params", async () => {
       await sendSavedSearch({
         savedSearch: {
-          enabledUntil: "2021-01-05T01:00:00Z",
           email: "save@thesear.ch",
           language: "de",
           uiMetadata: {
@@ -56,7 +54,6 @@ describe("USER_NOTIFICATION service", () => {
         expect.stringMatching(/saved-searches$/),
         expect.objectContaining({
           body: JSON.stringify({
-            enabledUntil: "2021-01-05T01:00:00Z",
             email: "save@thesear.ch",
             language: "de",
             uiMetadata: {
@@ -95,18 +92,12 @@ describe("USER_NOTIFICATION service", () => {
   })
 
   describe("#extendSavedSearch", () => {
-    it("extend saved search", async () => {
-      fetchMock.mockResponse(JSON.stringify({ ok: true }))
-
-      const response = await extendSavedSearch({ key: "extend" })
-      expect(response.tag).toEqual("success")
-    })
-
-    it("handles response errors", async () => {
-      fetchMock.mockResponses([null, { status: 404 }])
-
-      const response = await extendSavedSearch({ key: "extend" })
-      expect(response.tag).toEqual("error")
+    it("calls the correct endpoint", async () => {
+      await extendSavedSearch({ key: "extend" })
+      expect(fetch).toHaveBeenCalledWith(
+        "test.gateway/saved-searches/key/extend/extend",
+        expect.any(Object)
+      )
     })
   })
 
