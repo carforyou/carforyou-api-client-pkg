@@ -1,6 +1,7 @@
 import {
   deleteSavedSearch,
   enableSavedSearch,
+  extendSavedSearch,
   fetchSavedSearch,
   sendSavedSearch,
   sendSavedSearchFeedback,
@@ -90,6 +91,16 @@ describe("USER_NOTIFICATION service", () => {
     })
   })
 
+  describe("#extendSavedSearch", () => {
+    it("calls the correct endpoint", async () => {
+      await extendSavedSearch({ key: "extend" })
+      expect(fetch).toHaveBeenCalledWith(
+        "test.gateway/saved-searches/key/extend/extend",
+        expect.any(Object)
+      )
+    })
+  })
+
   describe("#enableSavedSearch", () => {
     it("enables saved search", async () => {
       fetchMock.mockResponse(JSON.stringify({ ok: true }))
@@ -120,6 +131,7 @@ describe("USER_NOTIFICATION service", () => {
       searchQuery: {
         makeKey: ["bmw"],
       },
+      enabledUntil: "2021-12-17T09:03:45.756493Z",
     }
 
     beforeEach(() => {
