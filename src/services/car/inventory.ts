@@ -16,6 +16,7 @@ const sanitizeListing = (json): Listing => {
     firstRegistrationDate,
     lastInspectionDate,
     lastServiceDate,
+    gbdScore,
     ...rest
   } = json
 
@@ -24,6 +25,7 @@ const sanitizeListing = (json): Listing => {
     firstRegistrationDate: decodeDate(firstRegistrationDate),
     lastInspectionDate: decodeDate(lastInspectionDate),
     lastServiceDate: decodeDate(lastServiceDate),
+    gbdScore: gbdScore ? gbdScore : "not-defined",
     standard: [],
     optional: [],
   }
