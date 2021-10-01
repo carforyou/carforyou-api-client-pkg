@@ -334,3 +334,5 @@ export {
   SearchCallLead as SearchCallLeadFactory,
   SearchWhatsappLead as SearchWhatsappLeadFactory,
 } from "./lib/factories/leads"
+
+export { deleteUser } from "./services/user"
