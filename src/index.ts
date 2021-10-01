@@ -1,3 +1,4 @@
+import { format } from "path"
 import apiClient from "./apiClient"
 export { apiClient as ApiClient }
 
@@ -150,6 +151,8 @@ export {
   BuyerFeedbackEntries,
 } from "./types/models/buyerFeedbackBatch"
 
+export { UserAccount, Salutation } from "./types/models/account"
+
 export {
   fetchCarSales,
   rejectCarSales,
@@ -264,6 +267,7 @@ export {
   setLogo,
   setImage,
   putDealerDescription,
+  putUserAccount,
 } from "./services/dealer"
 
 export { sendSupportCase } from "./services/emailDelivery"
