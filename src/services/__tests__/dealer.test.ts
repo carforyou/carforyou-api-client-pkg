@@ -9,11 +9,13 @@ import {
   putDealerDescription,
   putDealerProfile,
   putDealerPromotion,
+  putUserAccount,
   setImage,
   setLogo,
 } from "../dealer"
 import { DealerSourceGroup, DealerType } from "../../types/models/index"
 import { ResponseError } from "../../responseError"
+import { UserAccount } from "index"
 
 describe("Dealer", () => {
   const requestOptionsMock = {
@@ -102,6 +104,7 @@ describe("Dealer", () => {
       whatsAppNumber: "00000",
       website: "https://carforyou.ch",
     }
+
 
     describe("#fetchDealerProfile", () => {
       beforeEach(() => {
@@ -348,6 +351,46 @@ describe("Dealer", () => {
         const response = await putDealerDescription({
           dealerId: dealerIdMock,
           description: null,
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("error")
+      })
+    })
+  })
+
+
+    describe("#putUserAccount", () => {
+      const accountMock: UserAccount = {
+        firstName: "accountMock firstName",
+        lastName:  "accountMock lastName",
+        address: "accountMock address",
+        zipCode: 1234,
+        city: "accountMock city",
+        phone: "079 hetisi gseit",
+        salutation: "other"
+      }
+      
+      it("successfully updates account data", async () => {
+        fetchMock.mockResponse(JSON.stringify({}))
+
+        const response = await putUserAccount({
+          userAccount: accountMock,
+          options: requestOptionsMock,
+        })
+
+        expect(response.tag).toBe("success")
+      })
+
+      it("fails to set dealers description", async () => {
+        fetchMock.mockResponse(() => {
+          throw new ResponseError({
+            status: 500,
+          })
+        })
+
+        const response = await putUserAccount({
+          userAccount: accountMock,
           options: requestOptionsMock,
         })
 
