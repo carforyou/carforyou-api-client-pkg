@@ -8,7 +8,7 @@ import { ListingSortTypeParams, SortOrderParams } from "../../../types/sort"
 import { fetchPath, postData } from "../../../base"
 
 jest.mock("../../../base", () => ({
-  ...jest.requireActual("../../../base"),
+  ...(jest.requireActual("../../../base") as Record<string, unknown>),
   postData: jest.fn(() => ({
     content: [],
   })),
@@ -59,7 +59,7 @@ describe("SEARCH service", () => {
 
       it("defaults `page` to 0 when it's not a number", async () => {
         await fetchListings({
-          query: { page: "qwerty" as unknown as number, size: 10 },
+          query: { page: ("qwerty" as unknown) as number, size: 10 },
         })
 
         expect(postData).toHaveBeenCalledWith({
@@ -76,7 +76,7 @@ describe("SEARCH service", () => {
 
       it("defaults `size` to 24 when it's not a number", async () => {
         await fetchListings({
-          query: { page: 5, size: "qwerty" as unknown as number },
+          query: { page: 5, size: ("qwerty" as unknown) as number },
         })
 
         expect(postData).toHaveBeenCalledWith({

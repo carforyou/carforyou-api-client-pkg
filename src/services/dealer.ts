@@ -3,8 +3,8 @@ import { Language } from "../types/params"
 import { Paginated } from "../types/pagination"
 import { DealerPromotion } from "../types/models/dealerPromotion"
 import { DealerProfile } from "../types/models/dealerProfile"
-import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 import { UserAccount } from "../types/models/account"
+import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 import toQueryString from "../lib/toQueryString"
 import {
   ApiCallOptions,
