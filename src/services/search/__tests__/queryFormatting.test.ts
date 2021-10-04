@@ -8,7 +8,7 @@ import { ListingSortTypeParams, SortOrderParams } from "../../../types/sort"
 import { fetchPath, postData } from "../../../base"
 
 jest.mock("../../../base", () => ({
-  ...jest.requireActual("../../../base"),
+  ...(jest.requireActual("../../../base") as Record<string, string>),
   postData: jest.fn(() => ({
     content: [],
   })),
