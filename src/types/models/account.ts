@@ -4,7 +4,7 @@ export interface UserAccount {
   firstName: string
   lastName: string
   address: string
-  zipCode: number
+  zipCode: string
   city: string
   phone: string
   salutation: Salutation
