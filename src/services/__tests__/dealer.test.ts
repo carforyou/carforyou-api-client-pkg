@@ -363,7 +363,7 @@ describe("Dealer", () => {
       firstName: "accountMock firstName",
       lastName: "accountMock lastName",
       address: "accountMock address",
-      zipCode: 1234,
+      zipCode: "1234",
       city: "accountMock city",
       phone: "079 hetisi gseit",
       salutation: "other",
