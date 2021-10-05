@@ -200,7 +200,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`bulkPurchaseAndUseListingsProduct`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Product/bulkPurchaseProductAndUseSubscriptionForListingUsingPOST)
 - [Product](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Product)
   - [`fetchCarSaleTrackingSubscription`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Product/getValidCarSaleTrackingSubscriptionUsingGET)
--[User](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/User)
+- [User](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/User) (Planned to be migrated to a separate service)
+  - [putUserAccount](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/User/updateAccountUsingPUT)
   - [`deleteUser`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/User/deleteUserUsingDELETE)
 
 ### [Email delivery service](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html)

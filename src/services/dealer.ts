@@ -3,6 +3,7 @@ import { Language } from "../types/params"
 import { Paginated } from "../types/pagination"
 import { DealerPromotion } from "../types/models/dealerPromotion"
 import { DealerProfile } from "../types/models/dealerProfile"
+import { UserAccount } from "../types/models/account"
 import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 import toQueryString from "../lib/toQueryString"
 import {
@@ -277,6 +278,32 @@ export const putDealerDescription = async ({
     const result = await putData({
       path: `dealers/${dealerId}/description`,
       body: { description },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error, { swallowErrors: true })
+  }
+}
+
+export const putUserAccount = async ({
+  userAccount,
+  options = {},
+}: {
+  userAccount: UserAccount
+  options?: ApiCallOptions
+}): Promise<WithValidationError<UserAccount>> => {
+  try {
+    const result = await putData({
+      path: `users/me/account`,
+      body: userAccount,
       options: {
         isAuthorizedRequest: true,
         ...options,

@@ -143,7 +143,7 @@ describe("SEARCH service", () => {
 
   describe("#fetchListings", () => {
     const { content, pagination, fieldsStats, topListing } = PaginatedFactory([
-      SearchListing({ id: 1 }),
+      SearchListing({ id: 1, gbdScore: null }),
     ])
 
     beforeEach(() => {
@@ -172,7 +172,8 @@ describe("SEARCH service", () => {
       const listings = paginatedListings.content
 
       expect(listings.length).toEqual(1)
-      expect(listings).toEqual(content)
+      expect(content.length).toEqual(1)
+      expect(content[0].id).toEqual(listings[0].id)
       expect(fetch).toHaveBeenCalled()
     })
 
@@ -190,6 +191,12 @@ describe("SEARCH service", () => {
           }),
         })
       )
+    })
+
+    it("falls back to gbdScore not-defined when field is null", async () => {
+      const paginatedListings = await fetchListings()
+
+      expect(paginatedListings.content[0].gbdScore).toEqual("not-defined")
     })
 
     describe("Pagination", () => {
