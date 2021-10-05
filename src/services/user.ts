@@ -17,6 +17,6 @@ export const deleteUser = async ({
       result: {},
     }
   } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
+    return handleValidationError(error)
   }
 }
