@@ -267,6 +267,7 @@ export {
   setImage,
   putDealerDescription,
   putUserAccount,
+  deleteUser,
 } from "./services/dealer"
 
 export { sendSupportCase } from "./services/emailDelivery"
@@ -337,5 +338,3 @@ export {
   SearchCallLead as SearchCallLeadFactory,
   SearchWhatsappLead as SearchWhatsappLeadFactory,
 } from "./lib/factories/leads"
-
-export { deleteUser } from "./services/user"
