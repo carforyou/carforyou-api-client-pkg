@@ -1,4 +1,5 @@
 import {
+  deleteUser,
   fetchDealer,
   fetchDealerEntitlements,
   fetchDealerProfile,
@@ -393,6 +394,28 @@ describe("Dealer", () => {
       })
 
       expect(response.tag).toBe("error")
+    })
+  })
+
+  describe("#deleteUser", () => {
+    beforeEach(() => {
+      fetchMock.mockResponse(JSON.stringify({}))
+    })
+
+    it("makes a DELETE request", async () => {
+      await deleteUser({
+        options: { accessToken: "TOKEN" },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        "test.gateway/users/me",
+        expect.objectContaining({
+          method: "DELETE",
+          headers: expect.objectContaining({
+            Authorization: "Bearer TOKEN",
+          }),
+        })
+      )
     })
   })
 })

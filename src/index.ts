@@ -267,6 +267,7 @@ export {
   setImage,
   putDealerDescription,
   putUserAccount,
+  deleteUser,
 } from "./services/dealer"
 
 export { sendSupportCase } from "./services/emailDelivery"
