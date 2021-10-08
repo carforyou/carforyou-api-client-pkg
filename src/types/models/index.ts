@@ -3,7 +3,6 @@ import { DealerPromotionContent } from "./dealerPromotion"
 import { ListingFilterParams } from "../params/listings"
 
 export interface MappedValue {
-  id: number
   name: string
   key: string
 }
