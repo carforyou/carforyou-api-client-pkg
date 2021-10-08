@@ -137,6 +137,7 @@ export interface Listing
   publishingStatus: ListingPublishingStatus
   range: number
   source: ListingSource
+  sourceGroup: ListingSourceGroup
   spin360Code: string
   type: string
   vehicleClass: string
@@ -166,6 +167,7 @@ export interface Listing
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
+export type ListingSourceGroup = "manual" | "imported"
 
 type ListingPublishingStatus =
   | "unpublished"
@@ -219,6 +221,7 @@ interface BaseSearchListing {
   gbdScore: string
   createdDate: string
   source: ListingSource
+  sourceGroup: ListingSourceGroup
   publishingStatus: ListingPublishingStatus
   active: boolean
   hidden: boolean
