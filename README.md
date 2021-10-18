@@ -254,6 +254,8 @@ Also accompanying modes and param types, as well as default values, are exported
 
 ### [Buyer service](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html)
 
+- [Buyer Protection](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buyer%20Protection)
+  - [`sendBuyerProtectionApplication`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buyer%20Protection/createBuyerProtectionApplicationUsingPOST)
 - [Buy Now](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html)
   - [`sendBuyNowApplication`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Application)
   - [`fetchBuyNowConfiguration`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Configuration)

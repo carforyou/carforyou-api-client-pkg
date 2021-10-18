@@ -150,6 +150,8 @@ export {
   BuyerFeedbackEntries,
 } from "./types/models/buyerFeedbackBatch"
 
+export { BuyerProtectionApplication } from "./types/models/buyerProtection"
+
 export { UserAccount, Salutation } from "./types/models/account"
 
 export {
@@ -173,6 +175,8 @@ export {
   saveDealerDefaultListingWarranty,
   saveDealerDefaultListingGeneralExternalNote,
 } from "./services/car/defaultListing"
+
+export { sendBuyerProtectionApplication } from "./services/car/buyerProtection"
 
 export {
   fetchListing,
