@@ -11,13 +11,11 @@ export const sendBuyerProtectionApplication = async ({
   buyerProtectionApplication: BuyerProtectionApplication
   options?: ApiCallOptions & { validateOnly?: boolean }
 }): Promise<WithValidationError<BuyerProtectionApplication>> => {
-  const { ...otherOptions } = options
-
   try {
     const response = await postData({
       path: `listings/${listingId}/buyer-protection-applications`,
       body: buyerProtectionApplication,
-      options: otherOptions,
+      options,
     })
     return {
       tag: "success",
