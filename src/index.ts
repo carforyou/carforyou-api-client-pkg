@@ -12,7 +12,6 @@ export {
   DealerType,
   Option,
   Options,
-  ImageEnrichment,
   SavedSearch,
   MessageLead,
   SearchMessageLead,
@@ -160,7 +159,6 @@ export {
 } from "./services/reporting/carSales"
 
 export {
-  fetchImageEnrichment,
   generatePresignedImageUrl,
   saveDealerListingImages,
   fetchDealerListingImages,

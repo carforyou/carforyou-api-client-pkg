@@ -84,7 +84,6 @@ Also accompanying modes and param types, as well as default values, are exported
 - [Good-Bad Deal data](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Good-Bad_Deal_Data)
   - [`featchDealScores`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Good-Bad%20Deal%20Data/getScoresUsingGET)
 - [Image](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Image)
-  - [`fetchImageEnrichment`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Image/getByImageIdUsingGET)
   - [`generatePresignedImageUrl`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Image/generatePresignedUrlUsingPOST)
   - [`saveDealerListingImages`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Image/setListingImagesUsingPUT)
 - [Inventory](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory)
