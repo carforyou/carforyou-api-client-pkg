@@ -1,6 +1,5 @@
 import { WithValidationError } from "../../types/withValidationError"
 import { BuyerProtectionApplication } from "../../types/models/buyerProtection"
-import { createApiPathWithValidate } from "../../lib/path"
 import { ApiCallOptions, handleValidationError, postData } from "../../base"
 
 export const sendBuyerProtectionApplication = async ({
@@ -12,16 +11,11 @@ export const sendBuyerProtectionApplication = async ({
   buyerProtectionApplication: BuyerProtectionApplication
   options?: ApiCallOptions & { validateOnly?: boolean }
 }): Promise<WithValidationError<BuyerProtectionApplication>> => {
-  const { validateOnly = false, ...otherOptions } = options
-
-  const path = createApiPathWithValidate(
-    `listings/${listingId}/buyer-protection-applications`,
-    validateOnly
-  )
+  const { ...otherOptions } = options
 
   try {
     const response = await postData({
-      path,
+      path: `listings/${listingId}/buyer-protection-applications`,
       body: buyerProtectionApplication,
       options: otherOptions,
     })
