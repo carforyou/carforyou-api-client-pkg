@@ -50,6 +50,7 @@ export {
   ListingExtrasData,
   Listing,
   ListingImage,
+  ListingSourceGroup,
   DealerListingImages,
   ListingSource,
   OtherServices,
