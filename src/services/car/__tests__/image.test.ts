@@ -1,6 +1,5 @@
 import {
   fetchDealerListingImages,
-  fetchImageEnrichment,
   generatePresignedImageUrl,
   saveDealerListingImages,
 } from "../image"
@@ -127,17 +126,6 @@ describe("Dealer listing images", () => {
           body: JSON.stringify(imageData),
         })
       )
-    })
-  })
-
-  describe("#fetchImageEnrichment", () => {
-    it("fetches the data", async () => {
-      const enrichment = { imageId: 1, enrichment: { car: "97%" } }
-      fetchMock.mockResponse(JSON.stringify(enrichment))
-
-      const data = await fetchImageEnrichment({ imageId: 1 })
-      expect(data).toEqual(enrichment)
-      expect(fetch).toHaveBeenCalled()
     })
   })
 })

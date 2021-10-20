@@ -1,6 +1,6 @@
 import { WithValidationError } from "../../types/withValidationError"
 import { DealerListingImages, Listing } from "../../types/models/listing"
-import { ImageEnrichment, PresignedUrl } from "../../types/models"
+import { PresignedUrl } from "../../types/models"
 import {
   ApiCallOptions,
   fetchPath,
@@ -8,16 +8,6 @@ import {
   postData,
   putData,
 } from "../../base"
-
-export const fetchImageEnrichment = async ({
-  imageId,
-  options = {},
-}: {
-  imageId: number
-  options?: ApiCallOptions
-}): Promise<ImageEnrichment> => {
-  return fetchPath({ path: `images/${imageId}/enrichment`, options })
-}
 
 export const generatePresignedImageUrl = ({
   imageData,
