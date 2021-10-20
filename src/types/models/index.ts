@@ -114,11 +114,6 @@ export interface Options {
   optional: Option[]
 }
 
-export interface ImageEnrichment {
-  imageId: number
-  enrichment: Record<string, unknown>
-}
-
 export interface DealerSuggestion {
   id: number
   name: string
