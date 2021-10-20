@@ -9,7 +9,7 @@ export const sendBuyerProtectionApplication = async ({
 }: {
   listingId: number
   buyerProtectionApplication: BuyerProtectionApplication
-  options?: ApiCallOptions & { validateOnly?: boolean }
+  options?: ApiCallOptions & { validateFields?: string[] }
 }): Promise<WithValidationError<BuyerProtectionApplication>> => {
   try {
     const response = await postData({
