@@ -31,6 +31,21 @@ describe("#sendBuyerProtectionApplication", () => {
     )
   })
 
+  it("calls validation endpoint when requested", async () => {
+    await sendBuyerProtectionApplication({
+      listingId: 12345,
+      buyerProtectionApplication: buyerProtectionEntry(),
+      options: { validateOnly: true },
+    })
+
+    expect(fetch).toHaveBeenCalledWith(
+      expect.stringMatching(
+        /\/listings\/12345\/buyer-protection-applications\/validate$/
+      ),
+      expect.any(Object)
+    )
+  })
+
   describe("valid parameters", () => {
     it("returns a success", async () => {
       const result = await sendBuyerProtectionApplication({
