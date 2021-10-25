@@ -28,7 +28,7 @@ export const fetchFacets = async ({
     path: "/listings/facets",
     body: {
       query: paramsToSearchRequest(query),
-      fields,
+      facets: fields,
     },
     options,
   })
@@ -44,14 +44,14 @@ export const fetchDealerListingsFacets = async ({
 }: {
   dealerId: number
   query?: ListingSearchParams
-  fields?: string[]
+  fields?: Field[]
   options?: ApiCallOptions
 }): Promise<Facets> => {
   const json = await postData({
     path: `/dealers/${dealerId}/listings/facets`,
     body: {
       query: paramsToSearchRequest(query),
-      fields,
+      facets: fields,
     },
     options: {
       ...options,
