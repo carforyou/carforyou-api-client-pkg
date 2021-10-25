@@ -4,13 +4,24 @@ import { Facets } from "../../types/facets"
 import paramsToSearchRequest from "../../lib/paramsToSearchRequest"
 import { ApiCallOptions, postData } from "../../base"
 
+type Range = {
+  key: string
+  from: number
+  to: number
+}
+
+type Field = {
+  name: string
+  ranges?: Range[]
+}
+
 export const fetchFacets = async ({
   query = {},
   fields = [],
   options = {},
 }: {
   query?: ListingSearchParams
-  fields?: string[]
+  fields?: Field[]
   options?: ApiCallOptions
 } = {}): Promise<Facets> => {
   const { facets, topFacets } = await postData({
