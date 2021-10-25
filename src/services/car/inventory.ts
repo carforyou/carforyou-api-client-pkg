@@ -330,6 +330,36 @@ export const unpublishDealerListing = async ({
   }
 }
 
+export const bulkUnpublishDealerListings = async ({
+  dealerId,
+  listingIds,
+  options,
+}: {
+  dealerId: number
+  listingIds: number[]
+  options?: ApiCallOptions
+}): Promise<WithValidationError> => {
+  try {
+    await postData({
+      path: `dealers/${dealerId}/listings/bulk-unpublish`,
+      body: {
+        elements: listingIds,
+      },
+      options: {
+        isAuthorizedRequest: true,
+        ...options,
+      },
+    })
+  } catch (error) {
+    return handleValidationError(error)
+  }
+
+  return {
+    tag: "success",
+    result: {},
+  }
+}
+
 export const transferDealerListingToManual = async ({
   listingId,
   dealerId,

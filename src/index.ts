@@ -187,6 +187,7 @@ export {
   archiveDealerListing,
   bulkArchiveDealerListings,
   unpublishDealerListing,
+  bulkUnpublishDealerListings,
   validateDealerListing,
   saveDealerListing,
   transferDealerListingToManual,
