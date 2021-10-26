@@ -10,7 +10,7 @@ type Range = {
   to: number
 }
 
-type Field = {
+type Facet = {
   name: string
   ranges?: Range[]
 }
@@ -18,40 +18,46 @@ type Field = {
 export const fetchFacets = async ({
   query = {},
   fields = [],
+  facets = [],
   options = {},
 }: {
   query?: ListingSearchParams
-  fields?: Field[]
+  fields?: string[]
+  facets?: Facet[]
   options?: ApiCallOptions
 } = {}): Promise<Facets> => {
-  const { facets, topFacets } = await postData({
+  const { facets: fetchedFacets, topFacets } = await postData({
     path: "/listings/facets",
     body: {
       query: paramsToSearchRequest(query),
-      facets: fields,
+      fields,
+      facets,
     },
     options,
   })
 
-  return { ...facets, topFacets }
+  return { ...fetchedFacets, topFacets }
 }
 
 export const fetchDealerListingsFacets = async ({
   dealerId,
   query = {},
   fields = [],
+  facets = [],
   options = {},
 }: {
   dealerId: number
   query?: ListingSearchParams
-  fields?: Field[]
+  fields?: string[]
+  facets?: Facet[]
   options?: ApiCallOptions
 }): Promise<Facets> => {
   const json = await postData({
     path: `/dealers/${dealerId}/listings/facets`,
     body: {
       query: paramsToSearchRequest(query),
-      facets: fields,
+      fields,
+      facets,
     },
     options: {
       ...options,
