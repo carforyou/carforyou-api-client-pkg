@@ -33,9 +33,7 @@ export {
   MessageLeadListing,
 } from "./types/models/index"
 
-export {
-  BuyNowApplication,
-} from "./types/models/applications"
+export { BuyNowApplication } from "./types/models/applications"
 
 export {
   LifecycleState,
