@@ -116,8 +116,6 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`hideCallLead`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/hideDealerCallLeadUsingPOST)
   - [`hideWhatsappLead`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/hideDealerWhatsappLeadUsingPOST)
   - [`resendMessageLead`](https://email-delivery-service.preprod.carforyou.ch/swagger-ui/index.html#/Email%20delivery/resendMessageLeadUsingPOST)
-- [Money Back Guarantee](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money_Back_Guarantee)
-  - [`sendMoneybackApplication`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Money%20Back%20Guarantee/createMbgApplicationUsingPOST)
 
 ### [Options service](https://option-service.preprod.carforyou.ch/swagger-ui/index.html)
 
@@ -154,7 +152,6 @@ Also accompanying modes and param types, as well as default values, are exported
 
   - [`fetchListingCount`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/countUsingPOST)
   - [`fetchListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/searchUsingPOST)
-  - [`fetchMoneybackListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/findAllMbgListingsUsingGET)
   - [`fetchFacets`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/getFacetsUsingPOST)
   - [`fetchDealerListingsCount`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/dealerListingCountUsingPOST)
   - [`fetchDealerListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/dealerListingSearchUsingPOST)
