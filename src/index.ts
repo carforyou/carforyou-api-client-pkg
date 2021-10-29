@@ -181,8 +181,6 @@ export {
   fetchDealerOrAssociationMakes,
   fetchDealerOrAssociationModels,
   publishDealerListing,
-  archiveDealerListing,
-  bulkArchiveDealerListings,
   unpublishDealerListing,
   bulkUnpublishDealerListings,
   validateDealerListing,
