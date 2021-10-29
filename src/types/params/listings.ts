@@ -66,7 +66,6 @@ export interface ListingFilterParams {
   firstRegistrationYearFrom?: number
   firstRegistrationYearTo?: number
   gbdScore?: string[]
-  hasMbgOnly?: boolean
   consumptionCategory?: ConsumptionCategory[]
   mileageFrom?: number
   mileageTo?: number
