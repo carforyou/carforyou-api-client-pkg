@@ -244,64 +244,6 @@ export const publishDealerListing = async ({
   }
 }
 
-export const archiveDealerListing = async ({
-  dealerId,
-  listingId,
-  options,
-}: {
-  dealerId: number
-  listingId: number
-  options?: ApiCallOptions
-}): Promise<WithValidationError> => {
-  try {
-    await postData({
-      path: `dealers/${dealerId}/listings/${listingId}/archive`,
-      body: {},
-      options: {
-        isAuthorizedRequest: true,
-        ...options,
-      },
-    })
-  } catch (error) {
-    return handleValidationError(error)
-  }
-
-  return {
-    tag: "success",
-    result: {},
-  }
-}
-
-export const bulkArchiveDealerListings = async ({
-  dealerId,
-  listingIds,
-  options,
-}: {
-  dealerId: number
-  listingIds: number[]
-  options?: ApiCallOptions
-}): Promise<WithValidationError> => {
-  try {
-    await postData({
-      path: `dealers/${dealerId}/listings/bulk-archive`,
-      body: {
-        elements: listingIds,
-      },
-      options: {
-        isAuthorizedRequest: true,
-        ...options,
-      },
-    })
-  } catch (error) {
-    return handleValidationError(error)
-  }
-
-  return {
-    tag: "success",
-    result: {},
-  }
-}
-
 export const unpublishDealerListing = async ({
   listingId,
   dealerId,
@@ -403,62 +345,6 @@ export const transferDealerListingsToManual = async ({
       body: {
         elements: listingIds,
       },
-      options: {
-        isAuthorizedRequest: true,
-        ...options,
-      },
-    })
-  } catch (error) {
-    return handleValidationError(error)
-  }
-
-  return {
-    tag: "success",
-    result: {},
-  }
-}
-
-export const hideListing = async ({
-  listingId,
-  dealerId,
-  options = {},
-}: {
-  listingId: number
-  dealerId: number
-  options: ApiCallOptions
-}): Promise<WithValidationError> => {
-  try {
-    await postData({
-      path: `dealers/${dealerId}/listings/${listingId}/hide`,
-      body: {},
-      options: {
-        isAuthorizedRequest: true,
-        ...options,
-      },
-    })
-  } catch (error) {
-    return handleValidationError(error)
-  }
-
-  return {
-    tag: "success",
-    result: {},
-  }
-}
-
-export const unhideListing = async ({
-  listingId,
-  dealerId,
-  options = {},
-}: {
-  listingId: number
-  dealerId: number
-  options: ApiCallOptions
-}): Promise<WithValidationError> => {
-  try {
-    await postData({
-      path: `dealers/${dealerId}/listings/${listingId}/unhide`,
-      body: {},
       options: {
         isAuthorizedRequest: true,
         ...options,

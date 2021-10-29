@@ -181,16 +181,12 @@ export {
   fetchDealerOrAssociationMakes,
   fetchDealerOrAssociationModels,
   publishDealerListing,
-  archiveDealerListing,
-  bulkArchiveDealerListings,
   unpublishDealerListing,
   bulkUnpublishDealerListings,
   validateDealerListing,
   saveDealerListing,
   transferDealerListingToManual,
   transferDealerListingsToManual,
-  hideListing,
-  unhideListing,
   getAllDealerFrameNumbers,
 } from "./services/car/inventory"
 
