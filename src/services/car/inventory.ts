@@ -360,62 +360,6 @@ export const transferDealerListingsToManual = async ({
   }
 }
 
-export const hideListing = async ({
-  listingId,
-  dealerId,
-  options = {},
-}: {
-  listingId: number
-  dealerId: number
-  options: ApiCallOptions
-}): Promise<WithValidationError> => {
-  try {
-    await postData({
-      path: `dealers/${dealerId}/listings/${listingId}/hide`,
-      body: {},
-      options: {
-        isAuthorizedRequest: true,
-        ...options,
-      },
-    })
-  } catch (error) {
-    return handleValidationError(error)
-  }
-
-  return {
-    tag: "success",
-    result: {},
-  }
-}
-
-export const unhideListing = async ({
-  listingId,
-  dealerId,
-  options = {},
-}: {
-  listingId: number
-  dealerId: number
-  options: ApiCallOptions
-}): Promise<WithValidationError> => {
-  try {
-    await postData({
-      path: `dealers/${dealerId}/listings/${listingId}/unhide`,
-      body: {},
-      options: {
-        isAuthorizedRequest: true,
-        ...options,
-      },
-    })
-  } catch (error) {
-    return handleValidationError(error)
-  }
-
-  return {
-    tag: "success",
-    result: {},
-  }
-}
-
 export const getAllDealerFrameNumbers = async ({
   dealerId,
   query,

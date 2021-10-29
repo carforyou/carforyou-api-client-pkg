@@ -187,8 +187,6 @@ export {
   saveDealerListing,
   transferDealerListingToManual,
   transferDealerListingsToManual,
-  hideListing,
-  unhideListing,
   getAllDealerFrameNumbers,
 } from "./services/car/inventory"
 
