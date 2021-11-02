@@ -271,24 +271,3 @@ export const fetchDealerArchivedListings = async ({
     content: content.map(sanitizeListing),
   }
 }
-
-export const fetchMoneybackListings = async ({
-  dealerId,
-  query = {},
-  options = {},
-}: {
-  dealerId: number
-  query?: {
-    makeKey?: string
-    size?: number
-    page?: number
-  }
-  options?: ApiCallOptions
-}): Promise<Paginated<SearchListing>> => {
-  const response = await fetchPath({
-    path: `dealers/${dealerId}/mbg-listings?${toQueryString(query)}`,
-    options,
-  })
-
-  return sanitizeListingResponse(response)
-}
