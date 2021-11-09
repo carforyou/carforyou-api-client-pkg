@@ -37,6 +37,7 @@ export interface ListingBasicData extends BasicListingTypeCommons {
   mileage: number
   lastInspectionDate: Date
   inspected: boolean
+  inspectedEffective: boolean
   price: number
   listPrice: number
 
