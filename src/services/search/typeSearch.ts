@@ -1,3 +1,4 @@
+import { Facet } from "./facets"
 import { WithValidationError } from "../../types/withValidationError"
 import { SearchTypeQueryParams } from "../../types/params/types"
 import { Paginated } from "../../types/pagination"
@@ -73,11 +74,11 @@ export const fetchTypes = async ({
 
 export const fetchTypeFacets = async ({
   query = {},
-  fields = [],
+  facets = [],
   options = {},
 }: {
   query?: SearchTypeQueryParams
-  fields?: string[]
+  facets?: Facet[]
   options?: ApiCallOptions
 } = {}): Promise<WithValidationError<Facets>> => {
   try {
@@ -85,7 +86,7 @@ export const fetchTypeFacets = async ({
       path: "types/facets",
       body: {
         query: sanitizeQuery(query),
-        fields,
+        facets,
       },
       options: {
         isAuthorizedRequest: true,
