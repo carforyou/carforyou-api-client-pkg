@@ -235,6 +235,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchBuyerFeedbackBatch`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getBuyerFeedbackBatchUsingGET)
 - [Call Tracking](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking)
   - [`postCallTrackingEntry`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking/createCallTrackingEntryUsingPOST)
+- [Countries](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Country)
+  - [`fetchCountries`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Country/getAllUsingGET)
 - [Reference Data](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reference%20data)
   - [`fetchReferenceData`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reference%20data/getReferenceDataUsingGET)
 
@@ -256,6 +258,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`sendBuyNowApplication`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Application)
   - [`fetchBuyNowConfiguration`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Configuration)
   - [`markBuyNowApplicationAsPaid`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Application/markAsPaidUsingPOST)
+- [Loan](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Loan%20Interest)
+  - [`createLoanInterest`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Loan%20Interest/createUsingPOST)
 
 ## Mocking in tests
 
