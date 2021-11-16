@@ -13,6 +13,7 @@ type Range = {
 export type Facet = {
   name: string
   ranges?: Range[]
+  dateRanges?: Range[]
 }
 
 export const fetchFacets = async ({
