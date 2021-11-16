@@ -19,3 +19,13 @@ export interface LoanInterest {
   phone: string
   zipCode: string
 }
+
+export interface LoanCalculation {
+  downPayment: number
+  interestMonthlyCost: number
+  interestRate: number
+  loanMonthlyRate: number
+  loanTotalCost: number
+  totalCostOfPurchase: number
+  totalInterestCost: number
+}

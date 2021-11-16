@@ -1,5 +1,5 @@
 import { WithValidationError } from "../../types/withValidationError"
-import { LoanInterest } from "../../types/models/loan"
+import { LoanCalculation, LoanInterest } from "../../types/models/loan"
 import { createApiPathWithValidate } from "../../lib/path"
 import { ApiCallOptions, handleValidationError, postData } from "../../base"
 
@@ -32,4 +32,24 @@ export const createLoanInterest = async ({
   } catch (error) {
     return handleValidationError(error)
   }
+}
+
+interface LoanData {
+  amount: number
+  duration: number
+  price: number
+}
+
+export const calculateMonthlyRate = async ({
+  loanData,
+  options = {},
+}: {
+  loanData: LoanData
+  options?: ApiCallOptions
+}): Promise<LoanCalculation> => {
+  return postData({
+    path: "/listings/calculate-loan",
+    body: loanData,
+    options,
+  })
 }

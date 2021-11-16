@@ -38,7 +38,7 @@ export {
 
 export { BuyNowApplication } from "./types/models/applications"
 
-export { LoanInterest } from "./types/models/loan"
+export { LoanInterest, LoanCalculation } from "./types/models/loan"
 
 export {
   LifecycleState,
@@ -181,7 +181,7 @@ export {
 
 export { sendBuyerProtectionApplication } from "./services/car/buyerProtection"
 
-export { createLoanInterest } from "./services/car/loan"
+export { createLoanInterest, calculateMonthlyRate } from "./services/car/loan"
 
 export {
   fetchListing,
