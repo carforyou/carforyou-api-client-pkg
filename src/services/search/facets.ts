@@ -10,10 +10,16 @@ type Range = {
   to: number
 }
 
+type DateRange = {
+  key: string
+  from: string
+  to: string
+}
+
 export type Facet = {
   name: string
   ranges?: Range[]
-  dateRanges?: Range[]
+  dateRanges?: DateRange[]
 }
 
 export const fetchFacets = async ({
