@@ -260,6 +260,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`markBuyNowApplicationAsPaid`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Application/markAsPaidUsingPOST)
 - [Loan](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Loan%20Interest)
   - [`createLoanInterest`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Loan%20Interest/createUsingPOST)
+  - [`calculateMonthlyRate`](https://listing-enrichment-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/calculateLoanUsingPOST)
 
 ## Mocking in tests
 
