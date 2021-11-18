@@ -26,6 +26,6 @@ export interface LoanCalculation {
   interestRate: number
   loanMonthlyRate: number
   loanTotalCost: number
-  totalCostOfPurchase: number
-  totalInterestCost: number
+  purchaseTotalCost: number
+  interestTotalCost: number
 }
