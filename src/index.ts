@@ -31,9 +31,14 @@ export {
   DealerAnalytics,
   BuyNowConfiguration,
   MessageLeadListing,
+  EmploymentType,
+  Gender,
+  Country,
 } from "./types/models/index"
 
 export { BuyNowApplication } from "./types/models/applications"
+
+export { LoanInterest, LoanCalculation } from "./types/models/loan"
 
 export {
   LifecycleState,
@@ -158,6 +163,8 @@ export {
   fetchCarSalesCount,
 } from "./services/reporting/carSales"
 
+export { fetchCountries } from "./services/reporting/countries"
+
 export {
   generatePresignedImageUrl,
   saveDealerListingImages,
@@ -173,6 +180,8 @@ export {
 } from "./services/car/defaultListing"
 
 export { sendBuyerProtectionApplication } from "./services/car/buyerProtection"
+
+export { createLoanInterest, calculateMonthlyRate } from "./services/car/loan"
 
 export {
   fetchListing,

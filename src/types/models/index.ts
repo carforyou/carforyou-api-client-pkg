@@ -51,6 +51,21 @@ export enum DealerEntitlements {
   PRINTCENTER = "print-center",
 }
 
+export enum EmploymentType {
+  UNEMPLOYED = "unemployed",
+  TEMPORARY = "temporary",
+  SELF = "self-employed",
+  PERMANENT = "permanent",
+  PENSIONER = "pensioner",
+  HOURLY = "hourly-basis",
+  FIXED = "fixed-term",
+}
+
+export enum Gender {
+  FEMALE = "female",
+  MALE = "male",
+}
+
 export interface GoogleReviewSummary {
   count: number
   rating: number
@@ -62,6 +77,11 @@ export interface Location {
   lon: number
   region: string
   regionFull: string
+}
+
+export interface Country {
+  code: string
+  name: string
 }
 
 export interface Dealer {
