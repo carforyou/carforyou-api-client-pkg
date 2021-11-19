@@ -91,6 +91,7 @@ export interface ListingFilterParams {
     | MakeModelFilter[]
     | LocationFilter
     | boolean
+    | Array<{ from: string; to: string }>
 }
 
 export interface DealerListingQueryParams
