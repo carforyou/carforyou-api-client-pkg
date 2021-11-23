@@ -27,6 +27,7 @@ export interface ListingQueryParams extends PaginationParams {
     | MakeModelFilter[]
     | LocationFilter
     | boolean
+    | Array<{ from: string; to: string }>
 }
 
 export interface ListingSearchParams extends ListingQueryParams {
@@ -90,6 +91,7 @@ export interface ListingFilterParams {
     | MakeModelFilter[]
     | LocationFilter
     | boolean
+    | Array<{ from: string; to: string }>
 }
 
 export interface DealerListingQueryParams
