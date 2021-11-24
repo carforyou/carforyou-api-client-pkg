@@ -157,6 +157,11 @@ export { BuyerProtectionApplication } from "./types/models/buyerProtection"
 export { UserAccount, Salutation } from "./types/models/account"
 
 export {
+  UserMessageLead,
+  UserMessageLeadListing,
+} from "./types/models/reporting"
+
+export {
   fetchCarSales,
   rejectCarSales,
   deleteCarSalesRejection,
@@ -342,3 +347,6 @@ export {
   SearchCallLead as SearchCallLeadFactory,
   SearchWhatsappLead as SearchWhatsappLeadFactory,
 } from "./lib/factories/leads"
+
+export { fetchMessageLeads } from "./services/reporting/messageLeads"
+export { userMessageLeadFactory } from "./lib/factories/reporting"
