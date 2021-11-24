@@ -13,8 +13,6 @@ export const fetchMessageLeads = async ({
   size?: number
   options?: ApiCallOptions
 } = {}): Promise<Paginated<UserMessageLead>> => {
-  console.log("accces", options)
-
   const query = toQueryString({ offset, page, size })
   return fetchPath({
     path: `users/me/message-leads${query ? "?" + query : ""}`,
