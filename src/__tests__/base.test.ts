@@ -96,7 +96,7 @@ describe("Base", () => {
         expect(response).toEqual({ ok: true })
       })
 
-      it("does not add the access token as a header when the request is not marked as authorized", async () => {
+      it("does the access token as a header when the request is not marked as authorized", async () => {
         await fetchPath({
           path: "api/path",
           options: {
@@ -106,7 +106,7 @@ describe("Base", () => {
         expect(fetch).toHaveBeenCalledWith(
           expect.any(String),
           expect.objectContaining({
-            headers: expect.not.objectContaining({
+            headers: expect.objectContaining({
               Authorization: "Bearer GIMME ACCESS!",
             }),
           })
