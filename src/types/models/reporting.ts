@@ -7,7 +7,6 @@ export type UserMessageLeadListing = Pick<
   | "make"
   | "model"
   | "type"
-  | "firstRegistrationDate"
   | "firstRegistrationYear"
   | "mileage"
   | "transmissionType"
@@ -20,10 +19,16 @@ export type UserMessageLeadListing = Pick<
   | "gbdScore"
 > & {
   image: string
+  firstRegistrationDate: string
   dealer: Pick<
     SearchListingDealer,
-    "id" | "name" | "location" | "dealerSourceGroup" | "dealerType"
-  >
+    "id" | "name" | "dealerSourceGroup" | "dealerType"
+  > & {
+    location: {
+      zipCode: string
+      city: string
+    }
+  }
 }
 
 export interface UserMessageLead {
