@@ -1,15 +1,30 @@
+import { SearchListingDealer } from "./listing"
 import { Listing } from "../../index"
 
 export type UserMessageLeadListing = Pick<
   Listing,
-  | "externalListingId"
+  | "id"
   | "make"
-  | "mileage"
   | "model"
-  | "price"
-  | "referenceId"
   | "type"
-> & { image: string }
+  | "firstRegistrationDate"
+  | "firstRegistrationYear"
+  | "mileage"
+  | "transmissionType"
+  | "fuelType"
+  | "price"
+  | "buyNowEligible"
+  | "verified"
+  | "hasBuyerProtection"
+  | "leasingMonthlyRate"
+  | "gbdScore"
+> & {
+  image: string
+  dealer: Pick<
+    SearchListingDealer,
+    "id" | "name" | "location" | "dealerSourceGroup" | "dealerType"
+  >
+}
 
 export interface UserMessageLead {
   createdDate: string
