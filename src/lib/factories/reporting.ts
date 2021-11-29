@@ -1,4 +1,4 @@
-import { DealerSourceGroup, DealerType } from "../../types/models"
+import { DealerSourceGroup, DealerType } from "../../types/models/index"
 
 import { UserMessageLead, UserMessageLeadListing } from "../../index"
 
