@@ -6,13 +6,15 @@ interface SearchSuggestion {
 
 export const fetchSearchSuggestions = async ({
   query,
+  size,
   options = {},
 }: {
   query: string
+  size: number
   options?: ApiCallOptions
 }): Promise<SearchSuggestion> => {
   return fetchPath({
-    path: `listings/search-suggestions?q=${query}`,
+    path: `listings/search-suggestions?q=${query}&size=${size}`,
     options,
   })
 }
