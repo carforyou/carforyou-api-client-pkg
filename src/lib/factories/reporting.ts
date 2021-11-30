@@ -22,16 +22,16 @@ export const defaultUserMessageLead: UserMessageLead = {
     leasingMonthlyRate: 220.55,
     gbdScore: "good-deal",
     image: "image2.jpg",
-    dealer: {
-      id: 502,
-      name: "Dealer name 2",
-      location: {
-        zipCode: "8000",
-        city: "Zurich",
-      },
-      dealerSourceGroup: DealerSourceGroup.carforyou,
-      dealerType: DealerType.private,
+  },
+  dealer: {
+    id: 502,
+    name: "Dealer name 2",
+    location: {
+      zipCode: "8000",
+      city: "Zurich",
     },
+    dealerSourceGroup: DealerSourceGroup.carforyou,
+    dealerType: DealerType.private,
   },
 }
 

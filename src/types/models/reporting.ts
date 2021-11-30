@@ -20,6 +20,12 @@ export type UserMessageLeadListing = Pick<
 > & {
   image: string
   firstRegistrationDate: string
+}
+
+export interface UserMessageLead {
+  createdDate: string
+  id: number
+  listing: UserMessageLeadListing
   dealer: Pick<
     SearchListingDealer,
     "id" | "name" | "dealerSourceGroup" | "dealerType"
@@ -29,10 +35,4 @@ export type UserMessageLeadListing = Pick<
       city: string
     }
   }
-}
-
-export interface UserMessageLead {
-  createdDate: string
-  id: number
-  listing: UserMessageLeadListing
 }
