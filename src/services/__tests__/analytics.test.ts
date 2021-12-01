@@ -1,4 +1,4 @@
-import { DealerAnalytics } from "types/models"
+import { DealerAnalytics } from "../../types/models"
 import fetchMock from "jest-fetch-mock"
 
 import {
