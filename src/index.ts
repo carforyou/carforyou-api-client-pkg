@@ -232,7 +232,6 @@ export { fetchTypeOptions } from "./services/option/type"
 export {
   fetchCurrentMakes,
   fetchCurrentModels,
-  fetchMakesSuggestions,
 } from "./services/search/currentMakeModels"
 export {
   fetchListingCount,
@@ -246,6 +245,7 @@ export {
   defaultDealerSort as defaultDealerListingsSort,
   defaultDealerPagination as defaultDealerListingsPagination,
 } from "./services/search/listingSearch"
+export { fetchSearchSuggestions } from "./services/search/fullTextSearch"
 export { fetchDealers } from "./services/search/dealerSearch"
 
 export { fetchTypes, fetchTypeFacets } from "./services/search/typeSearch"
