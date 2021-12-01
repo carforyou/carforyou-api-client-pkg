@@ -32,8 +32,8 @@
     "typescript": "4.0.2"
   },
   "type": "module",
-  "module": "./pkg/index.js",
+  "module": "pkg/index.js",
   "files": [
-    "./pkg"
+    "pkg"
   ]
 }
