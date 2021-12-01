@@ -5,11 +5,10 @@
     "outDir": "./pkg",
     "rootDirs": ["./src"],
     "declaration": true,
-    "baseUrl": "src",
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
   "typeRoots": [ "./node_modules/@types" ],
-  "include": ["src", "__tests__"],
+  "include": ["src/index.ts"],
   "exclude": ["node_modules", "pkg"]
 }
