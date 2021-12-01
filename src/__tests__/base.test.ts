@@ -1,3 +1,5 @@
+import fetchMock from "jest-fetch-mock"
+
 import { deletePath, fetchPath, getHost, postData, putData } from "../base"
 import apiClient from "../apiClient"
 

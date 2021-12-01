@@ -1,5 +1,6 @@
-import { fetchTypeFacets, fetchTypes } from "../typeSearch"
+import fetchMock from "jest-fetch-mock"
 
+import { fetchTypeFacets, fetchTypes } from "../typeSearch"
 import { PowerUnit } from "../../../types/params/types"
 import { SearchType } from "../../../lib/factories/type"
 import Paginated from "../../../lib/factories/paginated"

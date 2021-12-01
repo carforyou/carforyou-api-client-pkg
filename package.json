@@ -1,10 +1,10 @@
 {
   "name": "@carforyou/api-client",
-  "version": "9.1.0",
+  "version": "0.0.0",
   "description": "Api client to connect with our APIs",
   "scripts": {
     "version": "npm run build",
-    "build": "pika build",
+    "build": "tsc",
     "bundlesize": "bundlesize",
     "lint": "eslint --ext ts,js,tsx,jsx,json .",
     "format": "npm run lint -- --fix",
@@ -22,10 +22,6 @@
   "homepage": "https://github.com/autoricardo/carforyou-api-client-pkg#readme",
   "devDependencies": {
     "@carforyou/eslint-config": "3.1.18",
-    "@pika/pack": "0.5.0",
-    "@pika/plugin-build-node": "0.9.2",
-    "@pika/plugin-build-web": "0.9.2",
-    "@pika/plugin-ts-standard-pkg": "0.9.2",
     "@types/jest": "27.0.3",
     "@types/node": "16.11.10",
     "bundlesize": "0.18.1",
@@ -35,20 +31,8 @@
     "ts-jest": "27.0.7",
     "typescript": "4.0.2"
   },
-  "@pika/pack": {
-    "pipeline": [
-      [
-        "@pika/plugin-ts-standard-pkg",
-        {
-          "tsconfig": "tsconfig.pika.json"
-        }
-      ],
-      [
-        "@pika/plugin-build-web"
-      ],
-      [
-        "@pika/plugin-build-node"
-      ]
-    ]
-  }
+  "module": "./pkg/index.js",
+  "files": [
+    "./pkg"
+  ]
 }
