@@ -1,4 +1,3 @@
-import { DealerAnalytics } from "../../types/models"
 import fetchMock from "jest-fetch-mock"
 
 import {
@@ -8,6 +7,7 @@ import {
   fetchLeadsInteractionsAnalytics,
   fetchListingsAnalytics,
 } from "../analytics"
+import { DealerAnalytics } from "../../types/models"
 
 describe("Analytics service", () => {
   beforeEach(fetchMock.resetMocks)
