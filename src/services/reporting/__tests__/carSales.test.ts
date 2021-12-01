@@ -1,4 +1,4 @@
-import { CarSaleRejection } from "index"
+import { CarSaleRejection } from "../../../types/models/carSales"
 
 import {
   deleteCarSalesRejection,
