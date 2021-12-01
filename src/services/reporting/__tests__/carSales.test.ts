@@ -1,11 +1,11 @@
-import { CarSaleRejection } from "../../../types/models/carSales"
-
 import {
   deleteCarSalesRejection,
   fetchCarSales,
   fetchCarSalesCount,
   rejectCarSales,
 } from "../carSales"
+import { CarSaleRejection } from "../../../types/models/carSales"
+
 import PaginatedFactory from "../../../lib/factories/paginated"
 
 const carSales = (attributes = {}) => ({
