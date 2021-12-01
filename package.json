@@ -32,7 +32,6 @@
     "typescript": "4.0.2"
   },
   "type": "module",
-  "module": "./pkg/index.js",
   "main": "./pkg/index.js",
   "exports": {
     "default": "./pkg/index.js"
