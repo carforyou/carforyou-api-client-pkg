@@ -74,7 +74,9 @@ const buildHeaders = ({
   return {
     "Content-Type": "application/json",
     Accept: `application/vnd.carforyou.${version}+json`,
-    ...(isAuthorizedRequest ? getAuthorizationHeader(accessToken) : {}),
+    ...(isAuthorizedRequest || accessToken
+      ? getAuthorizationHeader(accessToken)
+      : {}),
     ...headers,
   }
 }
