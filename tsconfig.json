@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "target": "esnext",
     "outDir": "./pkg",
     "rootDirs": ["./src"],
+    "module": "esnext",
+    "target": "es2020",
+    "lib": ["es2020", "dom"],
     "declaration": true,
     "esModuleInterop": true,
     "moduleResolution": "node"
