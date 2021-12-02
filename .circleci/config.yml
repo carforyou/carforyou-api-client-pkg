@@ -108,8 +108,8 @@ workflows:
 
       - release:
           requires:
-            - lint
-            - unit
+            # - lint
+            # - unit
             - build
           filters:
             branches:
