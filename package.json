@@ -35,7 +35,7 @@
   "main": "./pkg/index.js",
   "exports": "./pkg/index.js",
   "files": [
-    "./pkg"
+    "pkg"
   ],
   "engines": {
     "node": ">=16.0.0"
