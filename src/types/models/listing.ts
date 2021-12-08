@@ -132,7 +132,8 @@ export interface Listing
   interior: string
   kiloWatts: number
   leasingMonthlyRate: number
-  loanMonthlyRate: number
+  loanMonthlyRateFrom: number
+  loanMonthlyRateTo: number
   lifecycleState: LifecycleState
   publishingDate: string
   publishingStatus: ListingPublishingStatus
@@ -202,7 +203,8 @@ interface BaseSearchListing {
   modelKey: string
   price: number
   leasingMonthlyRate: number
-  loanMonthlyRate: number
+  loanMonthlyRateFrom: number
+  loanMonthlyRateTo: number
   type: string
   typeFull: string
   typeSlug: string
