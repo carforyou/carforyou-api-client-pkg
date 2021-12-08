@@ -9,6 +9,6 @@ export interface FieldsStats {
   [key: string]: FieldStat
 }
 
-export type WithFieldStats<T extends unknown> = T & {
+export type WithFieldStats<T> = T & {
   fieldsStats?: FieldsStats
 }
