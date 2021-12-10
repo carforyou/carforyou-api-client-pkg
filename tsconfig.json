@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "rootDirs": ["./src"],
     "module": "esnext",
-    "target": "es2020",
-    "lib": ["es2020", "dom"],
+    "target": "esnext",
+    "moduleResolution": "node",
+    "lib": ["esnext", "dom"],
     "declaration": true,
     "declarationDir": "types",
     "esModuleInterop": true,
-    "moduleResolution": "node",
     "sourceMap": true
   },
   "include": ["src"],
