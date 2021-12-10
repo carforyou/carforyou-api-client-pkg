@@ -69,6 +69,18 @@ jobs:
       - slack/notify-on-failure:
           only_for_branches: master
 
+  typecheck:
+    <<: *DOCKER_NODE
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          command: npm run typecheck
+          no_output_timeout: 1m
+      - slack/notify-on-failure:
+          only_for_branches: master
+
   release:
     <<: *DOCKER_NODE
     steps:
@@ -106,11 +118,16 @@ workflows:
           requires:
             - install
 
+      - typecheck:
+          requires:
+            - install
+
       - release:
           requires:
-            # - lint
-            # - unit
+            - lint
+            - unit
             - build
+            - typecheck
           filters:
             branches:
               only: master
