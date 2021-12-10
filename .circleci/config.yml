@@ -137,6 +137,7 @@ workflows:
             - lint
             - unit
             - build
+            - typecheck
           filters:
             branches:
               ignore: master

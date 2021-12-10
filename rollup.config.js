@@ -2,7 +2,7 @@ import dts from "rollup-plugin-dts"
 import typescript from "@rollup/plugin-typescript"
 import commonjs from "@rollup/plugin-commonjs"
 
-import packageJson from "./package.json")
+import packageJson from "./package.json"
 
 export default [
   {
