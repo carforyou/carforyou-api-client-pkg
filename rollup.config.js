@@ -20,7 +20,7 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [commonjs(), typescript()],
+    plugins: [commonjs(), typescript({ tsconfig: "./tsconfig.json" })],
   },
   {
     input: "./pkg/esm/types/index.d.ts",
