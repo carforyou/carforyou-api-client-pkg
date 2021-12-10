@@ -4,7 +4,7 @@
   "description": "Api client to connect with our APIs",
   "scripts": {
     "version": "npm run build",
-    "build": "tsc",
+    "build": "rimraf pkg && node esbuild.js && tsc --emitDeclarationOnly --outDir pkg",
     "bundlesize": "bundlesize",
     "lint": "eslint --ext ts,js,tsx,jsx,json .",
     "format": "npm run lint -- --fix",
@@ -25,8 +25,10 @@
     "@types/jest": "27.0.3",
     "@types/node": "16.11.10",
     "bundlesize": "0.18.1",
+    "esbuild": "0.14.2",
     "jest": "27.3.1",
     "jest-fetch-mock": "3.0.3",
+    "rimraf": "3.0.2",
     "semantic-release": "17.4.7",
     "ts-jest": "27.0.7",
     "typescript": "4.5.2"
