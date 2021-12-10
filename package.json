@@ -40,8 +40,5 @@
   "types": "pkg/index.d.ts",
   "files": [
     "pkg/**/*"
-  ],
-  "engines": {
-    "node": ">=16.0.0"
-  }
+  ]
 }
