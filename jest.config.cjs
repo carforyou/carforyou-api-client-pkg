@@ -9,7 +9,7 @@ module.exports = {
     "<rootDir>/__tests__/factories/",
     "<rootDir>/pkg/",
   ],
-  setupFiles: ["<rootDir>/src/__tests__/setup/jestFetchMock.ts"],
+  setupFiles: ["<rootDir>/src/__tests__/setup/fetchMock.ts"],
   setupFilesAfterEnv: ["<rootDir>/src/__tests__/setup/apiClient.ts"],
   moduleFileExtensions: ["ts", "js", "json", "node"],
   testMatch: ["**/__tests__/**/*.test.(t|j)s"],
