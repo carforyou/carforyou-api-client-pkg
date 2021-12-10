@@ -1,7 +1,11 @@
 {
   "files": [
     {
-      "path": "pkg/index.js",
+      "path": "pkg/cjs/index.js",
+      "maxSize": "18 kB"
+    },
+    {
+      "path": "pkg/esm/index.js",
       "maxSize": "18 kB"
     }
   ]
