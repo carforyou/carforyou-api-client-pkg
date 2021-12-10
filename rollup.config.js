@@ -12,7 +12,6 @@ export default [
         file: packageJson.main,
         format: "cjs",
         sourcemap: true,
-        name: "react-lib",
       },
       {
         file: packageJson.module,
