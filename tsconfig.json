@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "./pkg",
     "rootDirs": ["./src"],
     "module": "esnext",
     "target": "es2020",
     "lib": ["es2020", "dom"],
     "declaration": true,
+    "declarationDir": "types",
     "esModuleInterop": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "sourceMap": true
   },
-  "typeRoots": ["./node_modules/@types"],
   "include": ["src"],
   "exclude": ["node_modules", "pkg"]
 }
