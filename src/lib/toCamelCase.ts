@@ -1,11 +1,10 @@
-const toCamelCase = (snakeCase) => {
-  const [w, ...ws] = snakeCase.split("_").map((word) => {
-    const [l, ...ls] = word.toLowerCase()
+const capitalize = (string: string): string =>
+  string[0].toUpperCase() + string.slice(1)
 
-    return [l.toUpperCase(), ...ls].join("")
-  })
+const unCapitalize = (string: string): string =>
+  string[0].toLowerCase() + string.slice(1)
 
-  return [w.toLowerCase(), ...ws].join("")
-}
+const toCamelCase = (snakeCase: string): string =>
+  unCapitalize(snakeCase.toLowerCase().split("_").map(capitalize).join(""))
 
 export default toCamelCase
