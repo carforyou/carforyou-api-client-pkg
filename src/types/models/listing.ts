@@ -113,7 +113,6 @@ export interface Listing
   typeSlug: string
   active: boolean
   bodyColorGroup: string
-  bodyColor: string
   co2Emission: number
   conditionType: string
   consumptionCombined: number
@@ -235,7 +234,6 @@ interface BaseSearchListing {
   enabledFeatures: Feature[]
   driveType: string
   bodyColorGroup: string
-  bodyColor: string
   conditionType: string
   consumptionCategory: string
   buyNowEligible: boolean
