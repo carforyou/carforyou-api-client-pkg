@@ -20,6 +20,8 @@ describe("#createLoanInterest", () => {
     lastName: "Muster",
     monthlyIncome: 8000,
     phone: "0627771144",
+    workPermit: null,
+    workPermitIssueDate: null,
     zipCode: "4600",
     ...attributes,
   })
