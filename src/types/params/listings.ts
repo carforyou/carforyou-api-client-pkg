@@ -70,7 +70,6 @@ export interface ListingFilterParams {
   consumptionCategory?: ConsumptionCategory[]
   mileageFrom?: number
   mileageTo?: number
-  bodyColorGroup?: string[]
   bodyColor?: string[]
   horsePowerFrom?: number
   horsePowerTo?: number

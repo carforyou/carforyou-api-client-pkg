@@ -112,7 +112,6 @@ export interface Listing
     ListingExtrasData {
   typeSlug: string
   active: boolean
-  bodyColorGroup: string
   bodyColor: string
   co2Emission: number
   conditionType: string
@@ -234,7 +233,6 @@ interface BaseSearchListing {
   referenceId: string
   enabledFeatures: Feature[]
   driveType: string
-  bodyColorGroup: string
   bodyColor: string
   conditionType: string
   consumptionCategory: string
