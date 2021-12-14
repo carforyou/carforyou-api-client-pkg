@@ -34,7 +34,7 @@ export const createLeasingInterest = async ({
   }
 }
 
-interface LeasingData {
+export interface LeasingData {
   downPayment: number
   duration: number
   estimatedKmPerYear: number
@@ -49,10 +49,18 @@ export const calculateLeasing = async ({
 }: {
   leasingData: LeasingData
   options?: ApiCallOptions
-}): Promise<LeasingCalculation> => {
-  return postData({
-    path: "/listings/calculate-leasing",
-    body: leasingData,
-    options,
-  })
+}): Promise<WithValidationError<LeasingCalculation>> => {
+  try {
+    const response = await postData({
+      path: "/listings/calculate-leasing",
+      body: leasingData,
+      options,
+    })
+    return {
+      tag: "success",
+      result: response,
+    }
+  } catch (error) {
+    return handleValidationError(error)
+  }
 }

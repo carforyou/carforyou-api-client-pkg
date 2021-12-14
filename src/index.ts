@@ -188,7 +188,11 @@ export {
 export { sendBuyerProtectionApplication } from "./services/car/buyerProtection"
 
 export { createLoanInterest, calculateMonthlyRate } from "./services/car/loan"
-export { createLeasingInterest, calculateLeasing } from "./services/car/leasing"
+export {
+  createLeasingInterest,
+  calculateLeasing,
+  LeasingData,
+} from "./services/car/leasing"
 
 export {
   fetchListing,
