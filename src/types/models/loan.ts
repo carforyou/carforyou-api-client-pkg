@@ -24,10 +24,16 @@ export interface LoanInterest {
 
 export interface LoanCalculation {
   downPayment: number
-  interestMonthlyCost: number
-  interestRate: number
-  loanMonthlyRate: number
-  loanTotalCost: number
-  purchaseTotalCost: number
-  interestTotalCost: number
+  interestMonthlyCostFrom: number
+  interestMonthlyCostTo: number
+  interestRateFrom: number
+  interestRateTo: number
+  loanMonthlyRateFrom: number
+  loanMonthlyRateTo: number
+  loanTotalCostFrom: number
+  loanTotalCostTo: number
+  purchaseTotalCostFrom: number
+  purchaseTotalCostTo: number
+  interestTotalCostFrom: number
+  interestTotalCostTo: number
 }
