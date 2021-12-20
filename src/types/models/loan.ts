@@ -17,6 +17,8 @@ export interface LoanInterest {
   lastName: string
   monthlyIncome: number
   phone: string
+  workPermit?: "l" | "b" | "c" | "g"
+  workPermitIssueDate?: string
   zipCode: string
 }
 
