@@ -154,7 +154,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchDealerListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/dealerListingSearchUsingPOST)
   - [`fetchDealerListingsFacets`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/getDealerListingFacetsUsingPOST)
   - [`fetchSearchSuggestions`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/getSearchSuggestionsUsingGET)
-  
+
 * [Type Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type_Search)
 
   - [`fetchTypes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type%20Search/searchUsingPOST_3)
@@ -234,13 +234,13 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`deleteCarSalesRejection`](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Car%20Sale/removeCarSaleRejectionUsingDELETE)
   - [`fetchBuyerFeedbackBatch`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getBuyerFeedbackBatchUsingGET)
   - [`fetchMessageLeads`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting/getAllUserMessageLeadsUsingGET)
+  - [`fetchFavourites`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/getUserFavoriteListings)
 - [Call Tracking](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking)
   - [`postCallTrackingEntry`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Call%20Tracking/createCallTrackingEntryUsingPOST)
 - [Countries](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Country)
   - [`fetchCountries`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Country/getAllUsingGET)
 - [Reference Data](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reference%20data)
   - [`fetchReferenceData`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reference%20data/getReferenceDataUsingGET)
-
 ### [Car sale tracking service](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html)
 
 - [Buyer feedback](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html#/Buyer%20Feedback)
@@ -262,6 +262,10 @@ Also accompanying modes and param types, as well as default values, are exported
 - [Loan](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Loan%20Interest)
   - [`createLoanInterest`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Loan%20Interest/createUsingPOST)
   - [`calculateMonthlyRate`](https://listing-enrichment-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/calculateLoanUsingPOST)
+- [Favourites](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing)
+  - [`saveFavourite`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing/create)
+  - [`saveFavourites`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing/bulkCreate)
+  - [`deleteFavourite](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing/delete)
 
 ## Mocking in tests
 
