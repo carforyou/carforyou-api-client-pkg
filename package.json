@@ -4,7 +4,7 @@
   "description": "Api client to connect with our APIs",
   "scripts": {
     "version": "npm run build",
-    "build": "rimraf pkg && rollup -c",
+    "build": "rimraf pkg && tsc --outDir pkg/esm && tsc --module commonjs --target es5 --outDir pkg/cjs",
     "bundlesize": "bundlesize",
     "lint": "eslint --ext ts,js,tsx,jsx,json .",
     "format": "npm run lint -- --fix",
@@ -22,14 +22,11 @@
   "homepage": "https://github.com/autoricardo/carforyou-api-client-pkg#readme",
   "devDependencies": {
     "@carforyou/eslint-config": "4.0.0",
-    "@rollup/plugin-commonjs": "21.0.1",
-    "@rollup/plugin-typescript": "8.3.0",
     "@types/jest": "27.0.3",
     "@types/node": "16.11.11",
     "bundlesize": "0.18.1",
     "jest": "27.3.1",
     "jest-fetch-mock": "3.0.3",
-    "rollup-plugin-dts": "4.0.1",
     "rimraf": "3.0.2",
     "semantic-release": "17.4.7",
     "ts-jest": "27.0.7",
@@ -37,7 +34,6 @@
   },
   "main": "pkg/cjs/index.js",
   "module": "pkg/esm/index.js",
-  "types": "pkg/index.d.ts",
   "files": [
     "pkg/**/*"
   ]

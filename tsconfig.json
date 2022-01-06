@@ -5,7 +5,6 @@
     "moduleResolution": "node",
     "lib": ["esnext", "dom"],
     "declaration": true,
-    "declarationDir": "types",
     "esModuleInterop": true,
     "sourceMap": true
   },
