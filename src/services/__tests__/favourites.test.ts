@@ -62,12 +62,12 @@ describe("Favourites", () => {
   describe("deleteFavourite", () => {
     it("calls the api", async () => {
       await deleteFavourite({
-        favouriteId: 123,
+        listingId: 123,
         options: { accessToken: "Let me in, please." },
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        "test.gateway/users/me/favorite-listings/123",
+        "test.gateway/users/me/favorite-listings/listing-id/123",
         expect.objectContaining({
           method: "DELETE",
         })

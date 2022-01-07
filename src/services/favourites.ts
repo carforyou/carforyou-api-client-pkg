@@ -12,7 +12,7 @@ export const fetchFavourites = async ({
   page?: number
   size?: number
   options?: ApiCallOptions
-} = {}): Promise<Paginated<{ id: number; listing: SearchListing }>> => {
+} = {}): Promise<Paginated<SearchListing>> => {
   const query = toQueryString({ offset, page, size })
   return fetchPath({
     path: `users/me/favorite-listings${query ? "?" + query : ""}`,
@@ -54,14 +54,14 @@ export const saveFavourites = async ({
 }
 
 export const deleteFavourite = async ({
-  favouriteId,
+  listingId,
   options = {},
 }: {
-  favouriteId: number
+  listingId: number
   options: ApiCallOptions
 }): Promise<Response> => {
   return deletePath({
-    path: `users/me/favorite-listings/${favouriteId}`,
+    path: `users/me/favorite-listings/listing-id/${listingId}`,
     options: { isAuthorizedRequest: true, ...options },
   })
 }
