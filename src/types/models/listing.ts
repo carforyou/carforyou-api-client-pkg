@@ -112,7 +112,7 @@ export interface Listing
     ListingExtrasData {
   typeSlug: string
   active: boolean
-  bodyColorGroup: string
+  bodyColor: string
   co2Emission: number
   conditionType: string
   consumptionCombined: number
@@ -132,7 +132,8 @@ export interface Listing
   interior: string
   kiloWatts: number
   leasingMonthlyRate: number
-  loanMonthlyRate: number
+  loanMonthlyRateFrom: number
+  loanMonthlyRateTo: number
   lifecycleState: LifecycleState
   publishingDate: string
   publishingStatus: ListingPublishingStatus
@@ -202,7 +203,8 @@ interface BaseSearchListing {
   modelKey: string
   price: number
   leasingMonthlyRate: number
-  loanMonthlyRate: number
+  loanMonthlyRateFrom: number
+  loanMonthlyRateTo: number
   type: string
   typeFull: string
   typeSlug: string
@@ -231,7 +233,7 @@ interface BaseSearchListing {
   referenceId: string
   enabledFeatures: Feature[]
   driveType: string
-  bodyColorGroup: string
+  bodyColor: string
   conditionType: string
   consumptionCategory: string
   buyNowEligible: boolean

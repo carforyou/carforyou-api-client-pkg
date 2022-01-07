@@ -21,16 +21,16 @@
   "license": "MIT",
   "homepage": "https://github.com/autoricardo/carforyou-api-client-pkg#readme",
   "devDependencies": {
-    "@carforyou/eslint-config": "4.0.0",
-    "@types/jest": "27.0.3",
-    "@types/node": "16.11.11",
+    "@carforyou/eslint-config": "4.0.3",
+    "@types/jest": "27.4.0",
+    "@types/node": "16.11.17",
     "bundlesize": "0.18.1",
-    "jest": "27.3.1",
+    "jest": "27.4.5",
     "jest-fetch-mock": "3.0.3",
     "rimraf": "3.0.2",
     "semantic-release": "17.4.7",
-    "ts-jest": "27.0.7",
-    "typescript": "4.5.2"
+    "ts-jest": "27.1.2",
+    "typescript": "4.5.4"
   },
   "main": "pkg/cjs/index.js",
   "module": "pkg/esm/index.js",
