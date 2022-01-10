@@ -1,5 +1,6 @@
 import {
   SearchCallLead as SearchCallLeadType,
+  SearchComment as SearchCommentType,
   SearchMessageLead as SearchMessageLeadType,
   SearchWhatsappLead as SearchWhatsappLeadType,
 } from "../../types/models"
@@ -37,6 +38,14 @@ const searchMessageLeadDefaults: SearchMessageLeadType = {
   },
 }
 
+const searchCommentDefaults: SearchCommentType = {
+  id: 501,
+  listingId: 501,
+  name: "CT",
+  listing,
+  createdDate: "2021-01-01T12:34:56.000Z",
+}
+
 const searchCallLeadDefaults: SearchCallLeadType = {
   id: 501,
   listingId: 501,
@@ -67,6 +76,11 @@ export const SearchMessageLead = (attributes = {}): SearchMessageLeadType => ({
 
 export const SearchCallLead = (attributes = {}): SearchCallLeadType => ({
   ...searchCallLeadDefaults,
+  ...attributes,
+})
+
+export const SearchComment = (attributes = {}): SearchCommentType => ({
+  ...searchCommentDefaults,
   ...attributes,
 })
 

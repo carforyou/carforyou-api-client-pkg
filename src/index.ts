@@ -16,6 +16,7 @@ export {
   MessageLead,
   SearchMessageLead,
   SearchCallLead,
+  SearchComment,
   SearchWhatsappLead,
   City,
   PresignedUrl,
@@ -345,6 +346,7 @@ export { withRetries } from "./lib/withRetries"
 export {
   SearchMessageLead as SearchMessageLeadFactory,
   SearchCallLead as SearchCallLeadFactory,
+  SearchComment as SearchCommentFactory,
   SearchWhatsappLead as SearchWhatsappLeadFactory,
 } from "./lib/factories/leads"
 

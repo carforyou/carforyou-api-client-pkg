@@ -198,6 +198,11 @@ export interface SearchCallLead extends SearchLeads {
   callerNumber: string
   duration: number
 }
+
+export interface SearchComment extends SearchLeads {
+  name: string
+}
+
 export interface SearchWhatsappLead extends SearchLeads {
   firstName: string
   lastName: string
