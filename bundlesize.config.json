@@ -1,8 +1,0 @@
-{
-  "files": [
-    {
-      "path": "pkg/cjs/index.js", // todo
-      "maxSize": "5 kB"
-    }
-  ]
-}
