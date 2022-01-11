@@ -1,8 +1,8 @@
 {
   "files": [
     {
-      "path": "pkg/cjs/*.js",
-      "maxSize": "15 kB"
+      "path": "pkg/cjs/index.js",
+      "maxSize": "5 kB"
     }
   ]
 }
