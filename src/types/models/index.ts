@@ -199,13 +199,16 @@ export interface SearchCallLead extends SearchLeads {
   duration: number
 }
 
-export interface SearchQuestionLead {
+export interface Question {
   id: number
   question: string
+  createdDate: string
   answer: string
   answerDate: string
+}
+
+export interface SearchQuestionLead extends Question {
   listing: MessageLeadListing
-  createdDate: string
 }
 
 export interface SearchWhatsappLead extends SearchLeads {

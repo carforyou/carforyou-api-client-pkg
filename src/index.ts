@@ -35,6 +35,7 @@ export {
   EmploymentType,
   Gender,
   Country,
+  Question,
 } from "./types/models/index"
 
 export { BuyNowApplication } from "./types/models/applications"
@@ -188,6 +189,8 @@ export {
 export { sendBuyerProtectionApplication } from "./services/car/buyerProtection"
 
 export { createLoanInterest, calculateMonthlyRate } from "./services/car/loan"
+
+export { fetchListingQuestions, createQuestion } from "./services/car/questions"
 
 export {
   fetchListing,

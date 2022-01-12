@@ -39,3 +39,7 @@ export interface DealerSortParams {
   seed?: number
   previewId?: number
 }
+
+export enum ListingQuestionsSortParams {
+  CREATED_DATE = "CREATED_DATE",
+}
