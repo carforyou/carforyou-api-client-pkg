@@ -342,6 +342,7 @@ export const fetchDealerPreferences = async ({
   return fetchPath({
     path: `dealers/${dealerId}/preferences`,
     options: {
+      isAuthorizedRequest: true,
       ...options,
     },
   })
