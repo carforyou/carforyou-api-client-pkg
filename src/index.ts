@@ -221,6 +221,7 @@ export {
   hideWhatsappLead,
   resendMessageLead,
   saveAnswerToQuestion,
+  deleteQuestion,
   defaultLeadSort as defaultLeadListingsSort,
 } from "./services/car/messageLead"
 export { addPurchaseConfirmation } from "./services/carSaleTracking/buyerFeedback"
