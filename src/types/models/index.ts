@@ -199,8 +199,13 @@ export interface SearchCallLead extends SearchLeads {
   duration: number
 }
 
-export interface SearchComment extends SearchLeads {
-  name: string
+export interface SearchQuestionLead {
+  id: number
+  question: string
+  answer: string
+  answerDate: string
+  listing: MessageLeadListing
+  createdDate: string
 }
 
 export interface SearchWhatsappLead extends SearchLeads {

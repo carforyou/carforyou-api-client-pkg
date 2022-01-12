@@ -16,7 +16,7 @@ export {
   MessageLead,
   SearchMessageLead,
   SearchCallLead,
-  SearchComment,
+  SearchQuestionLead,
   SearchWhatsappLead,
   City,
   PresignedUrl,
@@ -214,11 +214,13 @@ export {
   sendMessageLead,
   fetchDealerMessageLeads,
   fetchDealerCallLeads,
+  fetchDealerQuestionLeads,
   fetchDealerWhatsappLeads,
   hideMessageLead,
   hideCallLead,
   hideWhatsappLead,
   resendMessageLead,
+  saveAnswerToQuestion,
   defaultLeadSort as defaultLeadListingsSort,
 } from "./services/car/messageLead"
 export { addPurchaseConfirmation } from "./services/carSaleTracking/buyerFeedback"
@@ -346,7 +348,7 @@ export { withRetries } from "./lib/withRetries"
 export {
   SearchMessageLead as SearchMessageLeadFactory,
   SearchCallLead as SearchCallLeadFactory,
-  SearchComment as SearchCommentFactory,
+  SearchQuestionLead as SearchQuestionLeadFactory,
   SearchWhatsappLead as SearchWhatsappLeadFactory,
 } from "./lib/factories/leads"
 
