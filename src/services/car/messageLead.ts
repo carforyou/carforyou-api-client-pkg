@@ -332,7 +332,7 @@ export const fetchDealerQuestionLeads = async ({
   options?: ApiCallOptions
 }): Promise<Paginated<SearchQuestionLead>> => {
   const { ...otherOptions } = options
-  const { page, size, sort = {}, searchQuery } = query
+  const { page, size, sort = {} } = query
 
   const { sortOrder, sortType } = sort
 
@@ -347,10 +347,6 @@ export const fetchDealerQuestionLeads = async ({
     sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
       sortOrDefault.sortOrder
     )}`,
-    q:
-      searchQuery && searchQuery.length >= 3
-        ? encodeURIComponent(searchQuery)
-        : "",
   }
 
   const path = `dealers/${dealerId}/listings/questions?${toQueryString(
@@ -418,6 +414,6 @@ export const deleteQuestion = async ({
       result: {},
     }
   } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
+    return handleValidationError(error)
   }
 }
