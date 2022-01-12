@@ -154,7 +154,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchDealerListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/dealerListingSearchUsingPOST)
   - [`fetchDealerListingsFacets`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/getDealerListingFacetsUsingPOST)
   - [`fetchSearchSuggestions`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/getSearchSuggestionsUsingGET)
-  
+
 * [Type Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type_Search)
 
   - [`fetchTypes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type%20Search/searchUsingPOST_3)
@@ -322,7 +322,7 @@ cd carforyou-api-client-pkg
 npm run build
 
 cd carforyou-listings-web
-npm link ../carforyou-api-client-pkg/pkg
+npm link ../carforyou-api-client-pkg
 ```
 
 ## Release a new version

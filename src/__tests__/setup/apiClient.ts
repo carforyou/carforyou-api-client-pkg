@@ -1,4 +1,4 @@
-import ApiClient from "../../src/apiClient"
+import ApiClient from "../../apiClient"
 
 beforeAll(() => {
   ApiClient.configure({
