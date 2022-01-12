@@ -1,8 +1,0 @@
-{
-  "files": [
-    {
-      "path": "pkg/dist-web/index.js",
-      "maxSize": "15 kB"
-    }
-  ]
-}

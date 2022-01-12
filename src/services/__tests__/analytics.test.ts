@@ -1,5 +1,3 @@
-import { DealerAnalytics } from "types/models"
-
 import {
   fetchAnalyticsData,
   fetchDealerAnalytics,
@@ -7,6 +5,7 @@ import {
   fetchLeadsInteractionsAnalytics,
   fetchListingsAnalytics,
 } from "../analytics"
+import { DealerAnalytics } from "../../types/models"
 
 describe("Analytics service", () => {
   beforeEach(fetchMock.resetMocks)
