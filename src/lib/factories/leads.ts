@@ -1,7 +1,6 @@
 import {
   SearchCallLead as SearchCallLeadType,
   SearchMessageLead as SearchMessageLeadType,
-  SearchQuestionLead as SearchQuestionLeadType,
   SearchWhatsappLead as SearchWhatsappLeadType,
 } from "../../types/models"
 
@@ -38,15 +37,6 @@ const searchMessageLeadDefaults: SearchMessageLeadType = {
   },
 }
 
-const SearchQuestionLeadDefaults: SearchQuestionLeadType = {
-  id: 501,
-  question: "Hello, can you let me know something about the car ?",
-  answer: null,
-  answerDate: null,
-  listing,
-  createdDate: "2022-01-11T05:00Z",
-}
-
 const searchCallLeadDefaults: SearchCallLeadType = {
   id: 501,
   listingId: 501,
@@ -77,13 +67,6 @@ export const SearchMessageLead = (attributes = {}): SearchMessageLeadType => ({
 
 export const SearchCallLead = (attributes = {}): SearchCallLeadType => ({
   ...searchCallLeadDefaults,
-  ...attributes,
-})
-
-export const SearchQuestionLead = (
-  attributes = {}
-): SearchQuestionLeadType => ({
-  ...SearchQuestionLeadDefaults,
   ...attributes,
 })
 

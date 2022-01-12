@@ -190,7 +190,13 @@ export { sendBuyerProtectionApplication } from "./services/car/buyerProtection"
 
 export { createLoanInterest, calculateMonthlyRate } from "./services/car/loan"
 
-export { fetchListingQuestions, createQuestion } from "./services/car/questions"
+export {
+  fetchListingQuestions,
+  createQuestion,
+  fetchDealerQuestionLeads,
+  saveAnswerToQuestion,
+  deleteQuestion,
+} from "./services/car/questions"
 
 export {
   fetchListing,
@@ -217,14 +223,11 @@ export {
   sendMessageLead,
   fetchDealerMessageLeads,
   fetchDealerCallLeads,
-  fetchDealerQuestionLeads,
   fetchDealerWhatsappLeads,
   hideMessageLead,
   hideCallLead,
   hideWhatsappLead,
   resendMessageLead,
-  saveAnswerToQuestion,
-  deleteQuestion,
   defaultLeadSort as defaultLeadListingsSort,
 } from "./services/car/messageLead"
 export { addPurchaseConfirmation } from "./services/carSaleTracking/buyerFeedback"
@@ -352,9 +355,10 @@ export { withRetries } from "./lib/withRetries"
 export {
   SearchMessageLead as SearchMessageLeadFactory,
   SearchCallLead as SearchCallLeadFactory,
-  SearchQuestionLead as SearchQuestionLeadFactory,
   SearchWhatsappLead as SearchWhatsappLeadFactory,
 } from "./lib/factories/leads"
+
+export { SearchQuestionLead as SearchQuestionLeadFactory } from "./lib/factories/questions"
 
 export { fetchMessageLeads } from "./services/reporting/messageLeads"
 export { userMessageLeadFactory } from "./lib/factories/reporting"

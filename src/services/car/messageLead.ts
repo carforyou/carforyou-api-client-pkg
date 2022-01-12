@@ -6,7 +6,6 @@ import {
   MessageLead,
   SearchCallLead,
   SearchMessageLead,
-  SearchQuestionLead,
   SearchWhatsappLead,
 } from "../../types/models"
 import toQueryString from "../../lib/toQueryString"
@@ -15,7 +14,6 @@ import { createApiPathWithValidate } from "../../lib/path"
 import { pageOrDefault, sizeOrDefault } from "../../lib/pageParams"
 import {
   ApiCallOptions,
-  deletePath,
   fetchPath,
   handleValidationError,
   ignoreServerSideErrors,
@@ -318,102 +316,5 @@ export const hideWhatsappLead = async ({
   return {
     tag: "success",
     result: {},
-  }
-}
-
-// To be confirmed, updated
-export const fetchDealerQuestionLeads = async ({
-  dealerId,
-  query,
-  options = {},
-}: {
-  dealerId: number
-  query: LeadQueryParams
-  options?: ApiCallOptions
-}): Promise<Paginated<SearchQuestionLead>> => {
-  const { ...otherOptions } = options
-  const { page, size, sort = {} } = query
-
-  const { sortOrder, sortType } = sort
-
-  const sortOrDefault = {
-    sortType: sortType || defaultLeadSort.sortType,
-    sortOrder: sortOrder || defaultLeadSort.sortOrder,
-  }
-
-  const queryParams = {
-    page: pageOrDefault(page, defaultLeadsPagination),
-    size: sizeOrDefault(size, defaultLeadsPagination),
-    sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
-      sortOrDefault.sortOrder
-    )}`,
-  }
-
-  const path = `dealers/${dealerId}/listings/questions?${toQueryString(
-    queryParams
-  )}`
-
-  return fetchPath({
-    path,
-    options: {
-      ...otherOptions,
-      isAuthorizedRequest: true,
-    },
-  })
-}
-
-// To be confirmed, updated
-export const saveAnswerToQuestion = async ({
-  dealerId,
-  listingId,
-  questionId,
-  answer,
-  options = {},
-}: {
-  dealerId: number
-  listingId: number
-  questionId: number
-  answer: Array<string>
-  options?: ApiCallOptions
-}): Promise<WithValidationError> => {
-  try {
-    const result = await postData({
-      path: `dealers/${dealerId}/listings/${listingId}/questions/${questionId}/answer`,
-      body: answer,
-      options: { isAuthorizedRequest: true, ...options },
-    })
-    return {
-      tag: "success",
-      result,
-    }
-  } catch (error) {
-    return handleValidationError(error)
-  }
-}
-
-// To be confirmed, updated
-export const deleteQuestion = async ({
-  dealerId,
-  listingId,
-  questionId,
-  options = {},
-}: {
-  dealerId: number
-  listingId: number
-  questionId: number
-  options?: ApiCallOptions
-}): Promise<WithValidationError> => {
-  try {
-    await deletePath({
-      path: `dealers/${dealerId}/listings/${listingId}/questions/${questionId}`,
-      options,
-    })
-
-    return {
-      tag: "success",
-      result: {},
-    }
-  } catch (error) {
-    return handleValidationError(error)
   }
 }
