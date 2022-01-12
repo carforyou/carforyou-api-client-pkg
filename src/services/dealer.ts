@@ -14,6 +14,7 @@ import {
   postData,
   putData,
 } from "../base"
+import { DealerPreferences } from ".."
 
 export const fetchDealer = async ({
   id,
@@ -324,8 +325,44 @@ export const deleteUser = async ({
   options = {},
 }: {
   options?: ApiCallOptions
-}): Promise<Response> =>
-  deletePath({
+}): Promise<Response> => {
+  return deletePath({
     path: `users/me`,
     options: { isAuthorizedRequest: true, ...options },
   })
+}
+
+export const fetchDealerPreferences = async ({
+  dealerId,
+  options = {},
+}: {
+  dealerId: number
+  options?: ApiCallOptions
+}): Promise<DealerPreferences> => {
+  return fetchPath({
+    path: `dealers/${dealerId}/preferences`,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
+}
+
+export const putDealerPreferences = async ({
+  dealerId,
+  preferences,
+  options = {},
+}: {
+  dealerId: number
+  preferences: DealerPreferences
+  options?: ApiCallOptions
+}): Promise<void> => {
+  return putData({
+    path: `dealers/${dealerId}/preferences`,
+    body: preferences,
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
+}
