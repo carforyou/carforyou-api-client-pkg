@@ -109,6 +109,7 @@ export interface Dealer {
   googlePlaceId?: number
   image?: string
   description?: string
+  listingQuestionsEnabled: boolean
 }
 
 export interface ZipCode {
