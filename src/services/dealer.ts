@@ -3,6 +3,7 @@ import { Language } from "../types/params"
 import { Paginated } from "../types/pagination"
 import { DealerPromotion } from "../types/models/dealerPromotion"
 import { DealerProfile } from "../types/models/dealerProfile"
+import { DealerPreferences } from "../types/models/dealerPreferences"
 import { UserAccount } from "../types/models/account"
 import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
 import toQueryString from "../lib/toQueryString"
@@ -14,7 +15,6 @@ import {
   postData,
   putData,
 } from "../base"
-import { DealerPreferences } from ".."
 
 export const fetchDealer = async ({
   id,
