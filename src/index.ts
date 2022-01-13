@@ -163,6 +163,8 @@ export {
   UserMessageLeadListing,
 } from "./types/models/reporting"
 
+export { DealerPreferences } from "./types/models/dealerPreferences"
+
 export {
   fetchCarSales,
   rejectCarSales,
@@ -287,6 +289,8 @@ export {
   putDealerDescription,
   putUserAccount,
   deleteUser,
+  fetchDealerPreferences,
+  putDealerPreferences,
 } from "./services/dealer"
 
 export { sendSupportCase } from "./services/emailDelivery"
