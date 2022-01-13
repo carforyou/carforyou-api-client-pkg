@@ -14,6 +14,7 @@ const listing = {
 
 const SearchQuestionLeadDefaults: SearchQuestionLeadType = {
   id: 501,
+  listingId: 101,
   question: "Hello, can you let me know something about the car ?",
   answer: null,
   answerDate: null,

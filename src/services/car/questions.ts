@@ -18,6 +18,7 @@ import {
   fetchPath,
   handleValidationError,
   postData,
+  putData,
 } from "../../base"
 
 interface ListingQuestionsQueryParams extends PaginationParams {
@@ -78,7 +79,6 @@ export const createQuestion = async ({
   }
 }
 
-// To be confirmed, updated
 export const fetchDealerQuestionLeads = async ({
   dealerId,
   query,
@@ -123,7 +123,6 @@ export const fetchDealerQuestionLeads = async ({
   })
 }
 
-// To be confirmed, updated
 export const saveAnswerToQuestion = async ({
   dealerId,
   listingId,
@@ -138,7 +137,7 @@ export const saveAnswerToQuestion = async ({
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   try {
-    const result = await postData({
+    const result = await putData({
       path: `dealers/${dealerId}/listings/${listingId}/questions/${questionId}/answer`,
       body: answer,
       options: { isAuthorizedRequest: true, ...options },
@@ -152,7 +151,6 @@ export const saveAnswerToQuestion = async ({
   }
 }
 
-// To be confirmed, updated
 export const deleteQuestion = async ({
   dealerId,
   listingId,

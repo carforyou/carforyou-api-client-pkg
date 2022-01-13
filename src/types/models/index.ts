@@ -202,6 +202,7 @@ export interface SearchCallLead extends SearchLeads {
 
 export interface Question {
   id: number
+  listingId: number
   question: string
   createdDate: string
   answer: string
