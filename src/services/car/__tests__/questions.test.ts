@@ -1,5 +1,6 @@
 import * as queryStringHelper from "./../../../lib/toQueryString"
 import {
+  deleteQuestion,
   fetchDealerQuestionLeads,
   fetchListingQuestions,
   saveAnswerToQuestion,
@@ -79,6 +80,22 @@ describe("questions", () => {
         expect.stringMatching(
           /\/dealers\/1234\/listings\/12\/questions\/1\/answer/
         ),
+        expect.any(Object)
+      )
+    })
+  })
+
+  describe("#deleteQuestion", () => {
+    it("deletes the question", async () => {
+      await deleteQuestion({
+        dealerId: 1234,
+        listingId: 12,
+        questionId: 1,
+        options: { accessToken: "some token" },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(/\/dealers\/1234\/listings\/12\/questions\/1/),
         expect.any(Object)
       )
     })

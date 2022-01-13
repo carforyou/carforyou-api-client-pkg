@@ -154,18 +154,9 @@ export const deleteQuestion = async ({
   listingId: number
   questionId: number
   options?: ApiCallOptions
-}): Promise<WithValidationError> => {
-  try {
-    await deletePath({
-      path: `dealers/${dealerId}/listings/${listingId}/questions/${questionId}`,
-      options,
-    })
-
-    return {
-      tag: "success",
-      result: {},
-    }
-  } catch (error) {
-    return handleValidationError(error)
-  }
+}): Promise<Response> => {
+  return deletePath({
+    path: `dealers/${dealerId}/listings/${listingId}/questions/${questionId}`,
+    options,
+  })
 }
