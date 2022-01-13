@@ -13,7 +13,7 @@ describe("questions", () => {
 
       expect(fetch).toHaveBeenCalledWith(
         expect.stringMatching(
-          /\/listings\/12\/questions\?page=0&size=2&sort=createdDate%2Cdesc/
+          /\/listings\/12\/questions\?page=0&size=2&sort=auditMetadata.createdDate%2Cdesc/
         ),
         expect.any(Object)
       )
@@ -26,7 +26,7 @@ describe("questions", () => {
       expect(queryStringHelper.default).toHaveBeenCalledWith({
         page: 0,
         size: 2,
-        sort: "createdDate,desc",
+        sort: "auditMetadata.createdDate,desc",
       })
     })
 
@@ -40,7 +40,7 @@ describe("questions", () => {
       expect(queryStringHelper.default).toHaveBeenCalledWith({
         page: 2,
         size: 10,
-        sort: "createdDate,desc",
+        sort: "auditMetadata.createdDate,desc",
       })
     })
   })
