@@ -9,7 +9,6 @@ import {
   Question,
   SearchQuestionLead,
   SortOrderParams,
-  SortParams,
   WithValidationError,
 } from "../../index"
 import {
@@ -20,23 +19,15 @@ import {
   postData,
 } from "../../base"
 
-interface ListingQuestionsQueryParams extends PaginationParams {
-  sort?: SortParams<ListingQuestionsSortParams>
-}
-
 export const fetchListingQuestions = async ({
   listingId,
   query,
   options = {},
 }: {
   listingId: number
-  query?: ListingQuestionsQueryParams
+  query?: PaginationParams
   options?: ApiCallOptions
 }): Promise<Paginated<Question>> => {
-  const sortOrDefault = {
-    sortType: query?.sort?.sortType || ListingQuestionsSortParams.CREATED_DATE,
-    sortOrder: query?.sort?.sortOrder || SortOrderParams.DESC,
-  }
   const defaultPagination = {
     page: 0,
     size: 2,
@@ -44,9 +35,7 @@ export const fetchListingQuestions = async ({
   const queryParams = {
     page: pageOrDefault(query?.page, defaultPagination),
     size: sizeOrDefault(query?.size, defaultPagination),
-    sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
-      sortOrDefault.sortOrder
-    )}`,
+    sort: `auditMetadata.createdDate,${toCamelCase(SortOrderParams.DESC)}`,
   }
   return fetchPath({
     path: `listings/${listingId}/questions?${toQueryString(queryParams)}`,
@@ -60,7 +49,9 @@ export const createQuestion = async ({
   options = {},
 }: {
   listingId: number
-  question: { question: string }
+  question: {
+    question: string
+  }
   options?: ApiCallOptions
 }): Promise<WithValidationError<Question>> => {
   try {
