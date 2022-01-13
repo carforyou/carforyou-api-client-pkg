@@ -36,7 +36,9 @@ export const fetchListingQuestions = async ({
   const queryParams = {
     page: pageOrDefault(query?.page, defaultPagination),
     size: sizeOrDefault(query?.size, defaultPagination),
-    sort: `auditMetadata.createdDate,${toCamelCase(SortOrderParams.DESC)}`,
+    sort: `${toCamelCase(
+      ListingQuestionsSortParams.CREATED_DATE
+    )},${toCamelCase(SortOrderParams.DESC)}`,
   }
   return fetchPath({
     path: `listings/${listingId}/questions?${toQueryString(queryParams)}`,
@@ -72,11 +74,11 @@ export const createQuestion = async ({
 
 export const fetchDealerQuestionLeads = async ({
   dealerId,
-  query,
+  query = {},
   options = {},
 }: {
   dealerId: number
-  query: LeadQueryParams
+  query?: LeadQueryParams
   options?: ApiCallOptions
 }): Promise<Paginated<SearchQuestionLead>> => {
   const defaultPagination = {
@@ -124,7 +126,7 @@ export const saveAnswerToQuestion = async ({
   dealerId: number
   listingId: number
   questionId: number
-  answer: Array<string>
+  answer: { answer: string }
   options?: ApiCallOptions
 }): Promise<WithValidationError> => {
   try {

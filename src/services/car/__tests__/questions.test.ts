@@ -1,13 +1,17 @@
 import * as queryStringHelper from "./../../../lib/toQueryString"
-import { fetchListingQuestions } from "../questions"
+import {
+  fetchDealerQuestionLeads,
+  fetchListingQuestions,
+  saveAnswerToQuestion,
+} from "../questions"
 
 describe("questions", () => {
-  describe("#fetchListingQuestions", () => {
-    beforeEach(() => {
-      fetchMock.resetMocks()
-      jest.clearAllMocks()
-    })
+  beforeEach(() => {
+    fetchMock.resetMocks()
+    jest.clearAllMocks()
+  })
 
+  describe("#fetchListingQuestions", () => {
     it("fetches the listing questions", async () => {
       await fetchListingQuestions({ listingId: 12 })
 
@@ -42,6 +46,41 @@ describe("questions", () => {
         size: 10,
         sort: "auditMetadata.createdDate,desc",
       })
+    })
+  })
+
+  describe("#fetchDealerQuestionLeads", () => {
+    it("fetches the listing questions for a dealer", async () => {
+      await fetchDealerQuestionLeads({
+        dealerId: 1234,
+        options: { accessToken: "some token" },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(
+          /\/dealers\/1234\/listings\/questions\?page=0&size=10&sort=auditMetadata.createdDate%2Cdesc/
+        ),
+        expect.any(Object)
+      )
+    })
+  })
+
+  describe("#saveAnswerToQuestion", () => {
+    it("updates the question", async () => {
+      await saveAnswerToQuestion({
+        dealerId: 1234,
+        listingId: 12,
+        questionId: 1,
+        answer: { answer: "Diese hat Klima, ja" },
+        options: { accessToken: "some token" },
+      })
+
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringMatching(
+          /\/dealers\/1234\/listings\/12\/questions\/1\/answer/
+        ),
+        expect.any(Object)
+      )
     })
   })
 })

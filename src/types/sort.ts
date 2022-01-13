@@ -41,5 +41,5 @@ export interface DealerSortParams {
 }
 
 export enum ListingQuestionsSortParams {
-  CREATED_DATE = "CREATED_DATE",
+  CREATED_DATE = "AUDIT_METADATA.CREATED_DATE",
 }
