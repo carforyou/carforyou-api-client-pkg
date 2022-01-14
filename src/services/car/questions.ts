@@ -1,5 +1,6 @@
 import { ListingQuestionsSortParams } from "../../types/sort"
 import { LeadQueryParams } from "../../types/params/leads"
+import { Language } from "../../types/params"
 import { Paginated } from "../../types/pagination"
 import toQueryString from "../../lib/toQueryString"
 import toCamelCase from "../../lib/toCamelCase"
@@ -52,9 +53,7 @@ export const createQuestion = async ({
   options = {},
 }: {
   listingId: number
-  question: {
-    question: string
-  }
+  question: { question: string; language: Language }
   options?: ApiCallOptions
 }): Promise<WithValidationError<Question>> => {
   try {
