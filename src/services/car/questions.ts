@@ -74,7 +74,7 @@ export const createQuestion = async ({
 
 export const fetchDealerQuestionLeads = async ({
   dealerId,
-  query = {},
+  query,
   options = {},
 }: {
   dealerId: number
@@ -85,34 +85,19 @@ export const fetchDealerQuestionLeads = async ({
     page: 0,
     size: 10,
   }
-  const { ...otherOptions } = options
-  const { page, size, sort = {} } = query
-
-  const { sortOrder, sortType } = sort
-
-  const sortOrDefault = {
-    sortType: sortType || ListingQuestionsSortParams.CREATED_DATE,
-    sortOrder: sortOrder || SortOrderParams.DESC,
-  }
-
   const queryParams = {
-    page: pageOrDefault(page, defaultPagination),
-    size: sizeOrDefault(size, defaultPagination),
-    sort: `${toCamelCase(sortOrDefault.sortType)},${toCamelCase(
-      sortOrDefault.sortOrder
-    )}`,
+    page: pageOrDefault(query?.page, defaultPagination),
+    size: sizeOrDefault(query?.size, defaultPagination),
+    sort: `${toCamelCase(
+      ListingQuestionsSortParams.CREATED_DATE
+    )},${toCamelCase(SortOrderParams.DESC)}`,
   }
-
   const path = `dealers/${dealerId}/listings/questions?${toQueryString(
     queryParams
   )}`
-
   return fetchPath({
     path,
-    options: {
-      ...otherOptions,
-      isAuthorizedRequest: true,
-    },
+    options: options,
   })
 }
 
@@ -154,9 +139,17 @@ export const deleteQuestion = async ({
   listingId: number
   questionId: number
   options?: ApiCallOptions
-}): Promise<Response> => {
-  return deletePath({
-    path: `dealers/${dealerId}/listings/${listingId}/questions/${questionId}`,
-    options,
-  })
+}): Promise<WithValidationError> => {
+  try {
+    const result = await deletePath({
+      path: `dealers/${dealerId}/listings/${listingId}/questions/${questionId}`,
+      options,
+    })
+    return {
+      tag: "success",
+      result,
+    }
+  } catch (error) {
+    return handleValidationError(error)
+  }
 }
