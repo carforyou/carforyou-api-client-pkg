@@ -16,6 +16,7 @@ export {
   MessageLead,
   SearchMessageLead,
   SearchCallLead,
+  SearchQuestionLead,
   SearchWhatsappLead,
   City,
   PresignedUrl,
@@ -34,6 +35,7 @@ export {
   EmploymentType,
   Gender,
   Country,
+  Question,
 } from "./types/models/index"
 
 export { BuyNowApplication } from "./types/models/applications"
@@ -162,6 +164,8 @@ export {
   UserMessageLeadListing,
 } from "./types/models/reporting"
 
+export { DealerPreferences } from "./types/models/dealerPreferences"
+
 export {
   fetchCarSales,
   rejectCarSales,
@@ -193,6 +197,14 @@ export {
   calculateLeasing,
   LeasingData,
 } from "./services/car/leasing"
+
+export {
+  fetchListingQuestions,
+  createQuestion,
+  fetchDealerQuestionLeads,
+  saveAnswerToQuestion,
+  deleteQuestion,
+} from "./services/car/questions"
 
 export {
   fetchListing,
@@ -283,6 +295,8 @@ export {
   putDealerDescription,
   putUserAccount,
   deleteUser,
+  fetchDealerPreferences,
+  putDealerPreferences,
 } from "./services/dealer"
 
 export { sendSupportCase } from "./services/emailDelivery"
@@ -353,6 +367,8 @@ export {
   SearchCallLead as SearchCallLeadFactory,
   SearchWhatsappLead as SearchWhatsappLeadFactory,
 } from "./lib/factories/leads"
+
+export { SearchQuestionLead as SearchQuestionLeadFactory } from "./lib/factories/questions"
 
 export { fetchMessageLeads } from "./services/reporting/messageLeads"
 export { userMessageLeadFactory } from "./lib/factories/reporting"

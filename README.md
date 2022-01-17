@@ -154,7 +154,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchDealerListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/dealerListingSearchUsingPOST)
   - [`fetchDealerListingsFacets`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/getDealerListingFacetsUsingPOST)
   - [`fetchSearchSuggestions`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/getSearchSuggestionsUsingGET)
-  
+
 * [Type Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type_Search)
 
   - [`fetchTypes`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type%20Search/searchUsingPOST_3)
@@ -192,6 +192,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`setLogo`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setLogoUsingPUT)
   - [`setImage`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setImageUsingPUT)
   - [`putDealerDescription`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/setDescriptionUsingPUT)
+  - [`fetchDealerPreferences`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=dealer-service#/Dealer/getPreferences)
+  - [`putDealerPreferences`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=dealer-service#/Dealer/updatePreferences)
   - [`purchaseAndUseListingProduct`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Product/purchaseProductAndUseSubscriptionForListingUsingPOST)
   - [`bulkPurchaseAndUseListingsProduct`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Product/bulkPurchaseProductAndUseSubscriptionForListingUsingPOST)
 - [Product](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Product)
@@ -240,6 +242,12 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchCountries`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Country/getAllUsingGET)
 - [Reference Data](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reference%20data)
   - [`fetchReferenceData`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reference%20data/getReferenceDataUsingGET)
+- [Listing questions](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Listing%20question)
+  - [`fetchListingQuestions`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Listing%20question/getAllByListingId)
+  - [`createQuestion`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Listing%20question/create_1)
+  - [`fetchDealerQuestionLeads`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Listing%20question/getAllByDealerId)
+  - [`saveAnswerToQuestion`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Listing%20question/answer)
+  - [`deleteQuestion`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Listing%20question/delete_1)
 
 ### [Car sale tracking service](https://car-sale-tracking-service.preprod.carforyou.ch/swagger-ui/index.html)
 
@@ -325,7 +333,7 @@ cd carforyou-api-client-pkg
 npm run build
 
 cd carforyou-listings-web
-npm link ../carforyou-api-client-pkg/pkg
+npm link ../carforyou-api-client-pkg
 ```
 
 ## Release a new version
