@@ -8,5 +8,4 @@ module.exports = {
       prerelease: "${ name }" + `-${process.env.CIRCLE_SHA1}`,
     },
   ],
-  pkgRoot: "pkg",
 }

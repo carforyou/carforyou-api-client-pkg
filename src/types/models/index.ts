@@ -109,6 +109,7 @@ export interface Dealer {
   googlePlaceId?: number
   image?: string
   description?: string
+  listingQuestionsEnabled: boolean
 }
 
 export interface ZipCode {
@@ -198,6 +199,20 @@ export interface SearchCallLead extends SearchLeads {
   callerNumber: string
   duration: number
 }
+
+export interface Question {
+  id: number
+  listingId: number
+  question: string
+  createdDate: string
+  answer: string
+  answerDate: string
+}
+
+export interface SearchQuestionLead extends Question {
+  listing: MessageLeadListing
+}
+
 export interface SearchWhatsappLead extends SearchLeads {
   firstName: string
   lastName: string
