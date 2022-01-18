@@ -32,8 +32,7 @@ export const saveFavourite = async ({
 }: {
   listingId: number
   options?: ApiCallOptions
-  // eslint-disable-next-line @typescript-eslint/ban-types
-}): Promise<{}> => {
+}): Promise<Response> => {
   return postData({
     path: "users/me/favorite-listings",
     body: {
