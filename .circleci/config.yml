@@ -37,7 +37,6 @@ jobs:
       - run:
           command: npm run build
           no_output_timeout: 2m
-      - run: npm run bundlesize
       - persist_to_workspace:
           root: ~/
           paths:
