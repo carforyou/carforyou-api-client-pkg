@@ -51,7 +51,7 @@ export const saveFavourites = async ({
 }): Promise<WithValidationError> => {
   try {
     await postData({
-      path: "users/me/favorite-listings",
+      path: "users/me/favorite-listings/bulk-create",
       body: {
         elements: listingIds.map((listingId) => ({ listingId })),
       },

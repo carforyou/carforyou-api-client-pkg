@@ -48,7 +48,7 @@ describe("Favourites", () => {
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        "test.gateway/users/me/favorite-listings",
+        "test.gateway/users/me/favorite-listings/bulk-create",
         expect.objectContaining({
           method: "POST",
           body: JSON.stringify({
