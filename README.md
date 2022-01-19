@@ -275,6 +275,9 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`saveFavourite`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing/create)
   - [`saveFavourites`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing/bulkCreate)
   - [`deleteFavourite](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing/delete)
+- [Leasing](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing%20Interest)
+  - [`createLeasingInterest`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Leasing%20Interest/createUsingPOST)
+  - [`calculateLeasing`](https://listing-enrichment-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/calculateLeasingUsingPOST)
 
 ## Mocking in tests
 
