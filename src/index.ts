@@ -372,3 +372,10 @@ export { SearchQuestionLead as SearchQuestionLeadFactory } from "./lib/factories
 
 export { fetchMessageLeads } from "./services/reporting/messageLeads"
 export { userMessageLeadFactory } from "./lib/factories/reporting"
+
+export {
+  fetchFavourites,
+  saveFavourite,
+  saveFavourites,
+  deleteFavourite,
+} from "./services/favourites"
