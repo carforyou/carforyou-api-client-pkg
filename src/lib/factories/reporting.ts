@@ -1,28 +1,12 @@
+import { SimpleSearchListing as SimpleSearchListingFactory } from "./listing"
 import { DealerSourceGroup, DealerType } from "../../types/models/index"
 
-import { UserMessageLead, UserMessageLeadListing } from "../../index"
+import { SimpleSearchListing, UserMessageLead } from "../../index"
 
 export const defaultUserMessageLead: UserMessageLead = {
   createdDate: "2021-11-24T12:04:11.540Z",
   id: 123,
-  listing: {
-    id: 1002,
-    make: "Audi",
-    model: "A3",
-    type: "1.8 TFSI",
-    firstRegistrationDate: "2019-10-01",
-    firstRegistrationYear: 2019,
-    mileage: 45000,
-    transmissionType: "automatic",
-    fuelType: "diesel",
-    price: 22000,
-    buyNowEligible: true,
-    verified: true,
-    hasBuyerProtection: false,
-    leasingMonthlyRate: 220.55,
-    gbdScore: "good-deal",
-    image: "image2.jpg",
-  },
+  listing: SimpleSearchListingFactory(),
   dealer: {
     id: 502,
     name: "Dealer name 2",
@@ -38,13 +22,13 @@ export const defaultUserMessageLead: UserMessageLead = {
 export const userMessageLeadFactory = (
   props: Partial<
     Pick<UserMessageLead, "createdDate" | "id"> & {
-      listing: Partial<UserMessageLeadListing>
+      listing: Partial<SimpleSearchListing>
     }
   > = { listing: {} }
 ): UserMessageLead => {
   return {
     ...defaultUserMessageLead,
     ...props,
-    listing: { ...defaultUserMessageLead.listing, ...props.listing },
+    listing: SimpleSearchListingFactory(props.listing),
   }
 }

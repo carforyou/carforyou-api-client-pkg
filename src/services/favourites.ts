@@ -1,5 +1,5 @@
 import toQueryString from "../lib/toQueryString"
-import { Paginated, SearchListing, WithValidationError } from "../index"
+import { Paginated, SimpleSearchListing, WithValidationError } from "../index"
 import {
   ApiCallOptions,
   deletePath,
@@ -18,7 +18,7 @@ export const fetchFavourites = async ({
   page?: number
   size?: number
   options?: ApiCallOptions
-} = {}): Promise<Paginated<SearchListing>> => {
+} = {}): Promise<Paginated<SimpleSearchListing>> => {
   const query = toQueryString({ offset, page, size })
   return fetchPath({
     path: `users/me/favorite-listings${query ? "?" + query : ""}`,

@@ -10,10 +10,10 @@ export interface BuyerFeedbackDealer {
 }
 
 export interface BuyerFeedbackListing
-  extends Pick<ApiSearchListing, "id" | "make" | "model" | "price" | "type"> {
-  image: {
-    s3Key: string
-  }
+  extends Pick<
+    ApiSearchListing,
+    "id" | "make" | "model" | "price" | "type" | "images"
+  > {
   dealer: BuyerFeedbackDealer
 }
 

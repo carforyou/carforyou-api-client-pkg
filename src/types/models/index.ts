@@ -1,4 +1,5 @@
 import { FeatureBooking } from "./product"
+import { SimpleSearchListing } from "./listing"
 import { DealerPromotionContent } from "./dealerPromotion"
 import { ListingFilterParams } from "../params/listings"
 
@@ -173,23 +174,10 @@ export interface MessageLead {
   }
 }
 
-export interface MessageLeadListing {
-  externalListingId: string
-  firstRegistrationDate?: string
-  id?: number
-  image: string
-  make: string
-  mileage: number
-  model: string
-  price: number
-  type: string
-  referenceId: string
-}
-
 export interface SearchLeads {
   id: number
   listingId: number
-  listing: MessageLeadListing
+  listing: SimpleSearchListing
   createdDate: string
 }
 
@@ -210,7 +198,7 @@ export interface Question {
 }
 
 export interface SearchQuestionLead extends Question {
-  listing: MessageLeadListing
+  listing: SimpleSearchListing
 }
 
 export interface SearchWhatsappLead extends SearchLeads {
