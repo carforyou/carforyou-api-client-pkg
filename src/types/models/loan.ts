@@ -3,7 +3,6 @@ import { Language } from "../params"
 import { EmploymentType, Gender } from "./index"
 
 export interface LoanInterest {
-  address: string
   amount: number
   birthdate: string
   citizenshipCountryCode: string
@@ -20,6 +19,7 @@ export interface LoanInterest {
   workPermit?: "l" | "b" | "c" | "g"
   workPermitIssueDate?: string
   zipCode: string
+  city: string
 }
 
 export interface LoanCalculation {
