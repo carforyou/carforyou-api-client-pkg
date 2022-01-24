@@ -22,7 +22,7 @@ describe("#createLoanInterest", () => {
     workPermit: null,
     workPermitIssueDate: null,
     zipCode: "4600",
-    city: "Olte",
+    city: "Olten",
     ...attributes,
   })
 
