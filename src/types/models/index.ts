@@ -52,13 +52,13 @@ export enum DealerEntitlements {
 }
 
 export enum EmploymentType {
-  UNEMPLOYED = "unemployed",
+  PERMANENT = "permanent",
   TEMPORARY = "temporary",
   SELF = "self-employed",
-  PERMANENT = "permanent",
-  PENSIONER = "pensioner",
-  HOURLY = "hourly-basis",
   FIXED = "fixed-term",
+  HOURLY = "hourly-basis",
+  PENSIONER = "pensioner",
+  UNEMPLOYED = "unemployed",
 }
 
 export enum Gender {
