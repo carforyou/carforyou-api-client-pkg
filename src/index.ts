@@ -149,7 +149,6 @@ export { WhatsappEntry, CallTrackingEntry } from "./types/models/tracking"
 
 export {
   BuyerFeedbackDealer,
-  BuyerFeedbackListing,
   BuyerFeedbackEntry,
   BuyerFeedbackEntries,
 } from "./types/models/buyerFeedbackBatch"
