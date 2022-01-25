@@ -269,7 +269,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchBuyNowConfiguration`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Configuration)
   - [`markBuyNowApplicationAsPaid`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Buy%20Now%20Application/markAsPaidUsingPOST)
 - [Loan](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Loan%20Interest)
-  - [`createLoanInterest`](https://buyer-service.preprod.carforyou.ch/swagger-ui/index.html#/Loan%20Interest/createUsingPOST)
+  - [`createLoanInterest`](https://internal.carforyou.dev/api-docs/swagger-ui/#/Loan%20Interest/create_2)
   - [`calculateMonthlyRate`](https://listing-enrichment-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/calculateLoanUsingPOST)
 - [Favourites](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing)
   - [`saveFavourite`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing/create)

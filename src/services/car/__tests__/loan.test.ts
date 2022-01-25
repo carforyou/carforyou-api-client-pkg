@@ -6,7 +6,6 @@ describe("#createLoanInterest", () => {
   const loanInterest = (
     attributes: Partial<LoanInterest> = {}
   ): LoanInterest => ({
-    address: "address",
     amount: 4000,
     birthdate: "2011-04-04",
     citizenshipCountryCode: "CH",
@@ -23,6 +22,7 @@ describe("#createLoanInterest", () => {
     workPermit: null,
     workPermitIssueDate: null,
     zipCode: "4600",
+    city: "Olten",
     ...attributes,
   })
 
