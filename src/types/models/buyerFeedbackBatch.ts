@@ -1,4 +1,4 @@
-import { ApiSearchListing } from "../../types/models/listing"
+import { PartialSearchListing } from "../../types/models/listing"
 
 export interface BuyerFeedbackDealer {
   id: number
@@ -9,17 +9,9 @@ export interface BuyerFeedbackDealer {
   }
 }
 
-export interface BuyerFeedbackListing
-  extends Pick<
-    ApiSearchListing,
-    "id" | "make" | "model" | "price" | "type" | "images"
-  > {
-  dealer: BuyerFeedbackDealer
-}
-
 export interface BuyerFeedbackEntry {
   key: string
-  listing: BuyerFeedbackListing
+  listing: PartialSearchListing
 }
 
 export interface BuyerFeedbackEntries {
