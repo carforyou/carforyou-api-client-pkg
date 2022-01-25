@@ -1,4 +1,4 @@
-import { SimpleSearchListing } from "../../types/models/listing"
+import { PartialSearchListing } from "../../types/models/listing"
 
 export interface CarSaleTrackingSubscription {
   basePrice: number
@@ -27,7 +27,7 @@ export interface CarSales {
   buyer: Buyer
   carSaleDate: string
   id: number
-  listing: SimpleSearchListing
+  listing: PartialSearchListing
   rejection: CarSaleRejection | null
   dealerFeedbackReceivedDate: string
   hasDealerFeedback: boolean

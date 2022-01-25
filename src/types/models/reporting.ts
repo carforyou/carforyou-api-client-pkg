@@ -1,8 +1,8 @@
-import { SearchListingDealer, SimpleSearchListing } from "./listing"
+import { PartialSearchListing, SearchListingDealer } from "./listing"
 export interface UserMessageLead {
   createdDate: string
   id: number
-  listing: SimpleSearchListing
+  listing: PartialSearchListing
   dealer: Pick<
     SearchListingDealer,
     "id" | "name" | "dealerSourceGroup" | "dealerType"

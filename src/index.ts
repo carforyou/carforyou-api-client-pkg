@@ -58,7 +58,7 @@ export {
   DealerListingImages,
   ListingSource,
   OtherServices,
-  SimpleSearchListing,
+  PartialSearchListing,
   WarrantyTypes,
 } from "./types/models/listing"
 
@@ -341,7 +341,7 @@ export {
   SearchListing as SearchListingFactory,
   EmptyListing,
   ListingFromType,
-  SimpleSearchListing as SimpleSearchListingFactory,
+  PartialSearchListing as PartialSearchListingFactory,
 } from "./lib/factories/listing"
 
 export { DealerPromotion as DealerPromotionFactory } from "./lib/factories/dealer"

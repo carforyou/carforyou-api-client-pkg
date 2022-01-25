@@ -1,12 +1,12 @@
-import { SimpleSearchListing as SimpleSearchListingFactory } from "./listing"
+import { PartialSearchListing as PartialSearchListingFactory } from "./listing"
 import { DealerSourceGroup, DealerType } from "../../types/models/index"
 
-import { SimpleSearchListing, UserMessageLead } from "../../index"
+import { PartialSearchListing, UserMessageLead } from "../../index"
 
 export const defaultUserMessageLead: UserMessageLead = {
   createdDate: "2021-11-24T12:04:11.540Z",
   id: 123,
-  listing: SimpleSearchListingFactory(),
+  listing: PartialSearchListingFactory(),
   dealer: {
     id: 502,
     name: "Dealer name 2",
@@ -22,13 +22,13 @@ export const defaultUserMessageLead: UserMessageLead = {
 export const userMessageLeadFactory = (
   props: Partial<
     Pick<UserMessageLead, "createdDate" | "id"> & {
-      listing: Partial<SimpleSearchListing>
+      listing: Partial<PartialSearchListing>
     }
   > = { listing: {} }
 ): UserMessageLead => {
   return {
     ...defaultUserMessageLead,
     ...props,
-    listing: SimpleSearchListingFactory(props.listing),
+    listing: PartialSearchListingFactory(props.listing),
   }
 }

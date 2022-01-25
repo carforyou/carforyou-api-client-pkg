@@ -1,4 +1,4 @@
-import { SimpleSearchListing } from "./listing"
+import { PartialSearchListing } from "./listing"
 import {
   SearchCallLead as SearchCallLeadType,
   SearchMessageLead as SearchMessageLeadType,
@@ -8,7 +8,7 @@ import {
 const searchMessageLeadDefaults: SearchMessageLeadType = {
   id: 501,
   listingId: 501,
-  listing: SimpleSearchListing(),
+  listing: PartialSearchListing(),
   phone: "0792222222",
   email: "person@email.com",
   firstName: "Birra",
@@ -29,7 +29,7 @@ const searchMessageLeadDefaults: SearchMessageLeadType = {
 const searchCallLeadDefaults: SearchCallLeadType = {
   id: 501,
   listingId: 501,
-  listing: SimpleSearchListing({
+  listing: PartialSearchListing({
     firstRegistrationDate: "2021-03-18",
     id: 555,
   }),
@@ -43,7 +43,7 @@ const searchWhatsappLeadDefaults: SearchWhatsappLeadType = {
   firstName: "Birra",
   id: 501,
   lastName: "Peroni",
-  listing: SimpleSearchListing({ id: 555 }),
+  listing: PartialSearchListing({ id: 555 }),
   listingId: 501,
   phone: "0792222222",
 }

@@ -1,8 +1,8 @@
 import { Type } from "../../types/models/type"
 import {
   Listing as ListingType,
+  PartialSearchListing as PartialSearchListingType,
   SearchListing as SearchListingType,
-  SimpleSearchListing as SimpleSearchListingType,
 } from "../../types/models/listing"
 import { DealerSourceGroup, DealerType } from "../../types/models/index"
 
@@ -419,7 +419,9 @@ export function ListingFromType({
   }
 }
 
-export function SimpleSearchListing(attributes = {}): SimpleSearchListingType {
+export function PartialSearchListing(
+  attributes = {}
+): PartialSearchListingType {
   return {
     id: 1002,
     make: "Audi",

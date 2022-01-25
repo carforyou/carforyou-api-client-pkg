@@ -1,5 +1,5 @@
 import { FeatureBooking } from "./product"
-import { SimpleSearchListing } from "./listing"
+import { PartialSearchListing } from "./listing"
 import { DealerPromotionContent } from "./dealerPromotion"
 import { ListingFilterParams } from "../params/listings"
 
@@ -177,7 +177,7 @@ export interface MessageLead {
 export interface SearchLeads {
   id: number
   listingId: number
-  listing: SimpleSearchListing
+  listing: PartialSearchListing
   createdDate: string
 }
 
@@ -198,7 +198,7 @@ export interface Question {
 }
 
 export interface SearchQuestionLead extends Question {
-  listing: SimpleSearchListing
+  listing: PartialSearchListing
 }
 
 export interface SearchWhatsappLead extends SearchLeads {

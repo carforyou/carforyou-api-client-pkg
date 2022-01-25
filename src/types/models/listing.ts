@@ -252,7 +252,7 @@ export interface SearchListing extends BaseSearchListing {
   firstRegistrationDate: Date
 }
 
-export interface SimpleSearchListing
+export interface PartialSearchListing
   extends Pick<
     ApiSearchListing,
     | "id"
