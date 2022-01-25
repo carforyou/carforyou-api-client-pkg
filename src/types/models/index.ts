@@ -52,14 +52,15 @@ export enum DealerEntitlements {
   PRINTCENTER = "print-center",
 }
 
+// the order was given by Credaris, please do not change without confirmation
 export enum EmploymentType {
-  UNEMPLOYED = "unemployed",
+  PERMANENT = "permanent",
   TEMPORARY = "temporary",
   SELF = "self-employed",
-  PERMANENT = "permanent",
-  PENSIONER = "pensioner",
-  HOURLY = "hourly-basis",
   FIXED = "fixed-term",
+  HOURLY = "hourly-basis",
+  PENSIONER = "pensioner",
+  UNEMPLOYED = "unemployed",
 }
 
 export enum Gender {
