@@ -51,6 +51,7 @@ export enum DealerEntitlements {
   PRINTCENTER = "print-center",
 }
 
+// the order was given by Credaris, please do not change without confirmation
 export enum EmploymentType {
   PERMANENT = "permanent",
   TEMPORARY = "temporary",
