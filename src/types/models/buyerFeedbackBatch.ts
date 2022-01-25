@@ -9,9 +9,13 @@ export interface BuyerFeedbackDealer {
   }
 }
 
+export interface BuyerFeedbackListing extends PartialSearchListing {
+  dealer: BuyerFeedbackDealer
+}
+
 export interface BuyerFeedbackEntry {
   key: string
-  listing: PartialSearchListing
+  listing: BuyerFeedbackListing
 }
 
 export interface BuyerFeedbackEntries {
