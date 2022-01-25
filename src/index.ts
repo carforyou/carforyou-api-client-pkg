@@ -31,7 +31,6 @@ export {
   CockpitAnalytics,
   DealerAnalytics,
   BuyNowConfiguration,
-  MessageLeadListing,
   EmploymentType,
   Gender,
   Country,
@@ -59,6 +58,7 @@ export {
   DealerListingImages,
   ListingSource,
   OtherServices,
+  PartialSearchListing,
   WarrantyTypes,
 } from "./types/models/listing"
 
@@ -140,7 +140,6 @@ export { ResponseError } from "./responseError"
 
 export {
   Buyer,
-  CarSalesListing,
   CarSales,
   CarSaleRejection,
   CarSaleTrackingSubscription,
@@ -159,10 +158,7 @@ export { BuyerProtectionApplication } from "./types/models/buyerProtection"
 
 export { UserAccount, Salutation } from "./types/models/account"
 
-export {
-  UserMessageLead,
-  UserMessageLeadListing,
-} from "./types/models/reporting"
+export { UserMessageLead } from "./types/models/reporting"
 
 export { DealerPreferences } from "./types/models/dealerPreferences"
 
@@ -345,6 +341,7 @@ export {
   SearchListing as SearchListingFactory,
   EmptyListing,
   ListingFromType,
+  PartialSearchListing as PartialSearchListingFactory,
 } from "./lib/factories/listing"
 
 export { DealerPromotion as DealerPromotionFactory } from "./lib/factories/dealer"

@@ -251,3 +251,26 @@ export interface ApiSearchListing extends BaseSearchListing {
 export interface SearchListing extends BaseSearchListing {
   firstRegistrationDate: Date
 }
+
+export interface PartialSearchListing
+  extends Pick<
+    ApiSearchListing,
+    | "id"
+    | "make"
+    | "model"
+    | "type"
+    | "firstRegistrationDate"
+    | "firstRegistrationYear"
+    | "mileage"
+    | "transmissionType"
+    | "fuelType"
+    | "price"
+    | "buyNowEligible"
+    | "verified"
+    | "hasBuyerProtection"
+    | "leasingMonthlyRate"
+    | "gbdScore"
+    | "referenceId"
+  > {
+  images: Array<{ s3Key: string }>
+}
