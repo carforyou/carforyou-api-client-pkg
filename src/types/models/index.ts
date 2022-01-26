@@ -20,11 +20,6 @@ export interface MakeWithModels {
   models?: { count?: number; name: string }[]
 }
 
-export interface Region {
-  name: string
-  key: string
-}
-
 interface OpeningHour {
   dayOfWeek: string
   time: string
