@@ -2,7 +2,7 @@ import { fetchDealers } from "../dealerSearch"
 import { DealerSortTypeParams } from "../../../types/sort"
 import { Feature } from "../../../types/models/product"
 import PaginatedFactory from "../../../lib/factories/paginated"
-import { DealerPromotion } from "../../../lib/factories/dealer"
+import { SearchDealer } from "../../../lib/factories/dealer"
 
 describe("SEARCH service", () => {
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe("SEARCH service", () => {
   const query = { feature: [Feature.garagePromotion] }
 
   describe("#fetchDealers", () => {
-    const { content, pagination } = PaginatedFactory([DealerPromotion()])
+    const { content, pagination } = PaginatedFactory([SearchDealer()])
 
     beforeEach(() => {
       fetchMock.mockResponse(

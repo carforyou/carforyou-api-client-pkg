@@ -65,12 +65,7 @@ export {
 export { SearchType, Type } from "./types/models/type"
 export { Facets, Facet } from "./types/facets"
 export { DealerProfile } from "./types/models/dealerProfile"
-export {
-  DealerPromotion,
-  DealerPromotionContent,
-  DealerLocation,
-  SearchDealer,
-} from "./types/models/dealerPromotion"
+export { SearchDealer } from "./types/models/dealer"
 
 export {
   DealerSavedSearch,
@@ -283,9 +278,6 @@ export {
   putDealerProfile,
   postDealerProfile,
   fetchDealerEntitlements,
-  fetchDealerPromotion,
-  postDealerPromotion,
-  putDealerPromotion,
   setLogo,
   setImage,
   putDealerDescription,
@@ -344,7 +336,7 @@ export {
   PartialSearchListing as PartialSearchListingFactory,
 } from "./lib/factories/listing"
 
-export { DealerPromotion as DealerPromotionFactory } from "./lib/factories/dealer"
+export { SearchDealer as SearchDealerFactory } from "./lib/factories/dealer"
 
 export { DealerSavedSearchFactory } from "./lib/factories/dealerSavedSearch"
 

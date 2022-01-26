@@ -2,7 +2,7 @@ import { DealerSortTypeParams } from "../../types/sort"
 import { DealerParams } from "../../types/params/dealer"
 import { Paginated } from "../../types/pagination"
 
-import { SearchDealer } from "../../types/models/dealerPromotion"
+import { SearchDealer } from "../../types/models/dealer"
 import { pageOrDefault, sizeOrDefault } from "../../lib/pageParams"
 import { ApiCallOptions, postData } from "../../base"
 
