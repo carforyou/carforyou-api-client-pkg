@@ -1,7 +1,6 @@
 import { WithValidationError } from "../types/withValidationError"
 import { Language } from "../types/params"
 import { Paginated } from "../types/pagination"
-import { DealerPromotion } from "../types/models/dealerPromotion"
 import { DealerProfile } from "../types/models/dealerProfile"
 import { DealerPreferences } from "../types/models/dealerPreferences"
 import { UserAccount } from "../types/models/account"
@@ -139,77 +138,6 @@ export const fetchDealerEntitlements = async ({
       ...options,
     },
   })
-
-export const fetchDealerPromotion = async ({
-  dealerId,
-  options = {},
-}: {
-  dealerId: number
-  options?: ApiCallOptions
-}): Promise<DealerPromotion> =>
-  fetchPath({
-    path: `dealers/${dealerId}/promotion`,
-    options: {
-      isAuthorizedRequest: true,
-      ...options,
-    },
-  })
-
-export const postDealerPromotion = async ({
-  dealerId,
-  promotion,
-  options = {},
-}: {
-  dealerId: number
-  promotion: DealerPromotion
-  options?: ApiCallOptions
-}): Promise<WithValidationError<DealerPromotion>> => {
-  try {
-    const result = await postData({
-      path: `dealers/${dealerId}/promotion`,
-      body: promotion,
-      options: {
-        isAuthorizedRequest: true,
-        ...options,
-      },
-    })
-
-    return {
-      tag: "success",
-      result: { ...promotion, ...result },
-    }
-  } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
-  }
-}
-
-export const putDealerPromotion = async ({
-  dealerId,
-  promotion,
-  options = {},
-}: {
-  dealerId: number
-  promotion: DealerPromotion
-  options?: ApiCallOptions
-}): Promise<WithValidationError<DealerPromotion>> => {
-  try {
-    const result = await putData({
-      path: `dealers/${dealerId}/promotion`,
-      body: promotion,
-      options: {
-        isAuthorizedRequest: true,
-        ...options,
-      },
-    })
-
-    return {
-      tag: "success",
-      result: { ...promotion, ...result },
-    }
-  } catch (error) {
-    return handleValidationError(error, { swallowErrors: true })
-  }
-}
 
 export const setLogo = async ({
   dealerId,

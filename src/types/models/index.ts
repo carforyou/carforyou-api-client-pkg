@@ -1,6 +1,5 @@
 import { FeatureBooking } from "./product"
 import { PartialSearchListing } from "./listing"
-import { DealerPromotionContent } from "./dealerPromotion"
 import { ListingFilterParams } from "../params/listings"
 
 export interface MappedValue {
@@ -105,7 +104,6 @@ export interface Dealer {
   whatsAppNumber?: string
   openingHours?: OpeningHours[]
   badges: string[]
-  promotion?: DealerPromotionContent
   logo?: string
   googleReviewSummary?: GoogleReviewSummary
   googlePlaceId?: number
