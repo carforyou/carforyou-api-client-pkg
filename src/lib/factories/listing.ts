@@ -1,6 +1,7 @@
 import { Type } from "../../types/models/type"
 import {
   Listing as ListingType,
+  PartialSearchListing as PartialSearchListingType,
   SearchListing as SearchListingType,
 } from "../../types/models/listing"
 import { DealerSourceGroup, DealerType } from "../../types/models/index"
@@ -415,5 +416,30 @@ export function ListingFromType({
     towingCapacity: towingCapacity || undefined,
     productionEndDate: productionEndDate || undefined,
     productionStartDate: productionStartDate || undefined,
+  }
+}
+
+export function PartialSearchListing(
+  attributes = {}
+): PartialSearchListingType {
+  return {
+    id: 1002,
+    make: "Audi",
+    model: "A3",
+    type: "1.8 TFSI",
+    firstRegistrationDate: "2019-10-01",
+    firstRegistrationYear: 2019,
+    mileage: 45000,
+    transmissionType: "automatic",
+    fuelType: "diesel",
+    price: 22000,
+    buyNowEligible: true,
+    verified: true,
+    hasBuyerProtection: false,
+    leasingMonthlyRate: 220.55,
+    gbdScore: "good-deal",
+    referenceId: "qwerty",
+    images: [{ s3Key: "image2.jpg" }],
+    ...attributes,
   }
 }

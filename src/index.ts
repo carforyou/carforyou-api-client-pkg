@@ -30,7 +30,6 @@ export {
   CockpitAnalytics,
   DealerAnalytics,
   BuyNowConfiguration,
-  MessageLeadListing,
   EmploymentType,
   Gender,
   Country,
@@ -58,18 +57,14 @@ export {
   DealerListingImages,
   ListingSource,
   OtherServices,
+  PartialSearchListing,
   WarrantyTypes,
 } from "./types/models/listing"
 
 export { SearchType, Type } from "./types/models/type"
 export { Facets, Facet } from "./types/facets"
 export { DealerProfile } from "./types/models/dealerProfile"
-export {
-  DealerPromotion,
-  DealerPromotionContent,
-  DealerLocation,
-  SearchDealer,
-} from "./types/models/dealerPromotion"
+export { SearchDealer } from "./types/models/dealer"
 
 export {
   DealerSavedSearch,
@@ -139,7 +134,6 @@ export { ResponseError } from "./responseError"
 
 export {
   Buyer,
-  CarSalesListing,
   CarSales,
   CarSaleRejection,
   CarSaleTrackingSubscription,
@@ -158,10 +152,7 @@ export { BuyerProtectionApplication } from "./types/models/buyerProtection"
 
 export { UserAccount, Salutation } from "./types/models/account"
 
-export {
-  UserMessageLead,
-  UserMessageLeadListing,
-} from "./types/models/reporting"
+export { UserMessageLead } from "./types/models/reporting"
 
 export { DealerPreferences } from "./types/models/dealerPreferences"
 
@@ -285,9 +276,6 @@ export {
   putDealerProfile,
   postDealerProfile,
   fetchDealerEntitlements,
-  fetchDealerPromotion,
-  postDealerPromotion,
-  putDealerPromotion,
   setLogo,
   setImage,
   putDealerDescription,
@@ -343,9 +331,10 @@ export {
   SearchListing as SearchListingFactory,
   EmptyListing,
   ListingFromType,
+  PartialSearchListing as PartialSearchListingFactory,
 } from "./lib/factories/listing"
 
-export { DealerPromotion as DealerPromotionFactory } from "./lib/factories/dealer"
+export { SearchDealer as SearchDealerFactory } from "./lib/factories/dealer"
 
 export { DealerSavedSearchFactory } from "./lib/factories/dealerSavedSearch"
 

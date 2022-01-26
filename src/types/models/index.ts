@@ -1,5 +1,5 @@
 import { FeatureBooking } from "./product"
-import { DealerPromotionContent } from "./dealerPromotion"
+import { PartialSearchListing } from "./listing"
 import { ListingFilterParams } from "../params/listings"
 
 export interface MappedValue {
@@ -46,14 +46,15 @@ export enum DealerEntitlements {
   PRINTCENTER = "print-center",
 }
 
+// the order was given by Credaris, please do not change without confirmation
 export enum EmploymentType {
-  UNEMPLOYED = "unemployed",
+  PERMANENT = "permanent",
   TEMPORARY = "temporary",
   SELF = "self-employed",
-  PERMANENT = "permanent",
-  PENSIONER = "pensioner",
-  HOURLY = "hourly-basis",
   FIXED = "fixed-term",
+  HOURLY = "hourly-basis",
+  PENSIONER = "pensioner",
+  UNEMPLOYED = "unemployed",
 }
 
 export enum Gender {
@@ -98,7 +99,6 @@ export interface Dealer {
   whatsAppNumber?: string
   openingHours?: OpeningHours[]
   badges: string[]
-  promotion?: DealerPromotionContent
   logo?: string
   googleReviewSummary?: GoogleReviewSummary
   googlePlaceId?: number
@@ -168,23 +168,10 @@ export interface MessageLead {
   }
 }
 
-export interface MessageLeadListing {
-  externalListingId: string
-  firstRegistrationDate?: string
-  id?: number
-  image: string
-  make: string
-  mileage: number
-  model: string
-  price: number
-  type: string
-  referenceId: string
-}
-
 export interface SearchLeads {
   id: number
   listingId: number
-  listing: MessageLeadListing
+  listing: PartialSearchListing
   createdDate: string
 }
 
@@ -205,7 +192,7 @@ export interface Question {
 }
 
 export interface SearchQuestionLead extends Question {
-  listing: MessageLeadListing
+  listing: PartialSearchListing
 }
 
 export interface SearchWhatsappLead extends SearchLeads {

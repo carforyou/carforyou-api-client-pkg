@@ -1,6 +1,6 @@
-import { SearchDealer } from "../../types/models/dealerPromotion"
+import { SearchDealer as SearchDealerType } from "../../types/models/dealer"
 
-export function DealerPromotion(attributes = {}): SearchDealer {
+export function SearchDealer(attributes = {}): SearchDealerType {
   return {
     id: 0,
     location: {
@@ -9,11 +9,6 @@ export function DealerPromotion(attributes = {}): SearchDealer {
       zipCode: "8008",
     },
     name: "Emil Frey",
-    promotion: {
-      image: "http://carforyou.ch/imageURL",
-      logo: "http://carforyou.ch/logoURL",
-      title: "Emil frey photo",
-    },
     ...attributes,
   }
 }
