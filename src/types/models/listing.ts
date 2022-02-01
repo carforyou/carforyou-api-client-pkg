@@ -16,7 +16,6 @@ export interface DealerListingImages {
   detectedCarImageId: number
   images: ListingImage[]
   listingId: number
-  spinCode: string
 }
 
 export type LifecycleState = "active" | "inactive" | "gone"
