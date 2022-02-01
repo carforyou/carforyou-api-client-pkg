@@ -22,7 +22,6 @@ export {
   PresignedUrl,
   Date,
   OpeningHours,
-  Region,
   ListingAnalyticsStats,
   ListingAnalyticsData,
   DealerListingsAnalyticsData,
@@ -259,7 +258,6 @@ export { fetchDealers } from "./services/search/dealerSearch"
 
 export { fetchTypes, fetchTypeFacets } from "./services/search/typeSearch"
 export { fetchCity, fetchCitySuggestions } from "./services/search/city"
-export { fetchRegions } from "./services/search/regions"
 export {
   fetchFacets,
   fetchDealerListingsFacets,
