@@ -280,7 +280,7 @@ export const fetchAggregations = async ({
   query?: ListingQueryParams
   aggregations: Array<{ name: string }>
   options?: ApiCallOptions
-}): Promise<SearchListing> => {
+}): Promise<{ [key: string]: number }> => {
   const response = await postData({
     path: `listings/aggregations`,
     body: {
