@@ -287,10 +287,7 @@ export const fetchAggregations = async ({
       query,
       aggregations,
     },
-    options: {
-      isAuthorizedRequest: true,
-      ...options,
-    },
+    options,
   })
 
   return response
