@@ -8,9 +8,23 @@ export interface MakeModelFilter {
   type?: string
 }
 
+interface Box {
+  topLeftLat: number
+  topLeftLon: number
+  bottomRightLat: number
+  bottomRightLon: number
+}
+
+interface GeoPoint {
+  lat: number
+  lon: number
+}
+
 export interface LocationFilter {
   cityId?: string
   radius?: string
+  box?: Box
+  geoPoint?: GeoPoint
 }
 
 type VariantParams = "A" | "B" | "C" | "D" | "E"
