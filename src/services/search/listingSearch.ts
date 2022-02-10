@@ -271,3 +271,27 @@ export const fetchDealerArchivedListings = async ({
     content: content.map(sanitizeListing),
   }
 }
+
+export const fetchAggregations = async ({
+  query = {},
+  aggregations,
+  options = {},
+}: {
+  query?: ListingQueryParams
+  aggregations: Array<{ name: string }>
+  options?: ApiCallOptions
+}): Promise<SearchListing> => {
+  const response = await postData({
+    path: `dealers/listings/aggregations`,
+    body: {
+      query,
+      aggregations,
+    },
+    options: {
+      isAuthorizedRequest: true,
+      ...options,
+    },
+  })
+
+  return response
+}
