@@ -274,18 +274,18 @@ export const fetchDealerArchivedListings = async ({
 
 export const fetchAggregations = async ({
   query = {},
-  aggregations,
   options = {},
 }: {
   query?: ListingQueryParams
-  aggregations: Array<{ name: string }>
   options?: ApiCallOptions
-}): Promise<{ [key: string]: number }> => {
+}): Promise<{
+  aggregations: { locationSimple: { [key: string]: number } }
+}> => {
   const response = await postData({
     path: `listings/aggregations`,
     body: {
       query,
-      aggregations,
+      aggregations: [{ name: "locationSimple" }],
     },
     options,
   })
