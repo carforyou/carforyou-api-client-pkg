@@ -11,16 +11,6 @@ export interface MakeModelFilter {
 export interface LocationFilter {
   cityId?: string
   radius?: string
-  box?: {
-    topLeftLat?: number
-    topLeftLon?: number
-    bottomRightLat?: number
-    bottomRightLon?: number
-  }
-  geoPoint?: {
-    lat?: number
-    lon?: number
-  }
 }
 
 type VariantParams = "A" | "B" | "C" | "D" | "E"
