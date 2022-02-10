@@ -252,6 +252,7 @@ export {
   defaultUserPagination as defaultListingsPagination,
   defaultDealerSort as defaultDealerListingsSort,
   defaultDealerPagination as defaultDealerListingsPagination,
+  fetchAggregations,
 } from "./services/search/listingSearch"
 export { fetchSearchSuggestions } from "./services/search/fullTextSearch"
 export { fetchDealers } from "./services/search/dealerSearch"
