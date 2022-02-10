@@ -12,14 +12,14 @@ export interface LocationFilter {
   cityId?: string
   radius?: string
   box?: {
-    topLeftLat: number
-    topLeftLon: number
-    bottomRightLat: number
-    bottomRightLon: number
+    topLeftLat?: number
+    topLeftLon?: number
+    bottomRightLat?: number
+    bottomRightLon?: number
   }
   geoPoint?: {
-    lat: number
-    lon: number
+    lat?: number
+    lon?: number
   }
 }
 
