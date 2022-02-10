@@ -151,6 +151,7 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchDealerListings`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/dealerListingSearchUsingPOST)
   - [`fetchDealerListingsFacets`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/getDealerListingFacetsUsingPOST)
   - [`fetchSearchSuggestions`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20Search/getSearchSuggestionsUsingGET)
+  - [`fetchAggregations`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search/getAggregations)
 
 * [Type Search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type_Search)
 
