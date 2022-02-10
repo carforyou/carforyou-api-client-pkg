@@ -282,7 +282,7 @@ export const fetchAggregations = async ({
   options?: ApiCallOptions
 }): Promise<SearchListing> => {
   const response = await postData({
-    path: `dealers/listings/aggregations`,
+    path: `listings/aggregations`,
     body: {
       query,
       aggregations,
