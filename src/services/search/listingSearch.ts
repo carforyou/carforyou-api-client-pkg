@@ -282,7 +282,7 @@ export const fetchAggregations = async ({
   aggregations: { locationSimple: { [key: string]: number } }
 }> => {
   const response = await postData({
-    path: `listings/aggregations`,
+    path: "listings/aggregations",
     body: {
       query,
       aggregations: [{ name: "locationSimple" }],
