@@ -1,4 +1,5 @@
 import {
+  fetchAggregations,
   fetchDealerArchivedListings,
   fetchDealerArchivedListingsCount,
   fetchDealerListings,
@@ -310,6 +311,24 @@ describe("SEARCH service", () => {
         expect(paginatedListings.pagination).toEqual(pagination)
         expect(fetch).toHaveBeenCalled()
       })
+    })
+  })
+
+  describe("fetchAggregations", () => {
+    beforeEach(() => {
+      fetchMock.resetMocks()
+    })
+
+    it("returns the response form the api", async () => {
+      const response = { aggregations: { locationSimple: { "1234/456": 10 } } }
+      fetchMock.mockResponse(JSON.stringify(response))
+
+      const fetched = await fetchAggregations({
+        query: bodyTypeQuery,
+      })
+
+      expect(fetched).toEqual(response)
+      expect(fetch).toHaveBeenCalled()
     })
   })
 })
