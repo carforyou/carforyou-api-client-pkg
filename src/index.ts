@@ -34,6 +34,7 @@ export {
   Gender,
   Country,
   Question,
+  BulkFetchResponse,
 } from "./types/models/index"
 
 export { BuyNowApplication } from "./types/models/applications"
