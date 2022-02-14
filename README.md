@@ -89,6 +89,7 @@ Also accompanying modes and param types, as well as default values, are exported
 - [Inventory](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory)
 
   - [`fetchListing`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getUsingGET_1)
+  - [`bulkFetchListing`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search/bulkGet)
   - [`fetchDealerMakes`](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory/getAllDealerMakesUsingGET)
   - [`fetchDealerOrAssociationMakes`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Inventory/getAllDealerMakesUsingGET)
   - [`fetchDealerOrAssociationModels`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer%20Inventory/getAllDealerMakesUsingGET_1)
@@ -119,6 +120,7 @@ Also accompanying modes and param types, as well as default values, are exported
 
 - [Listing](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing)
   - [`fetchListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/getListingEquipmentUsingGET)
+  - [`bulkFetchListingOptions`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Option/bulkGetListingEquipment)
   - [`fetchDealerListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/getDealerListingEquipmentUsingGET)
   - [`saveDealerListingOptions`](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/setListingEquipmentUsingPUT)
 - [Type](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Type)
@@ -181,6 +183,7 @@ Also accompanying modes and param types, as well as default values, are exported
 
 - [Dealer](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer)
   - [`fetchDealer`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/getUsingGET)
+  - [`bulkFetchDealer`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=dealer-service#/Dealer/bulkGet)
   - [`fetchDealerSuggestions`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/getSuggestionsUsingGET)
   - [`fetchDealerProfile`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/getProfileUsingGET)
   - [`putDealerProfile`](https://dealer-service.preprod.carforyou.ch/swagger-ui/index.html#/Dealer/updateProfileUsingPUT)

@@ -33,7 +33,7 @@ export const bulkFetchListingOptions = async ({
   listingIds: number[]
   language: Language
   options?: ApiCallOptions
-}): Promise<BulkFetchResponse<Options>> => {
+}): Promise<BulkFetchResponse<Options>[]> => {
   return postData({
     path: `listings/equipment/bulk-get?language=${language}`,
     body: { elements: listingIds },
