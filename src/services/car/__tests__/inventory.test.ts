@@ -1,4 +1,5 @@
 import {
+  bulkFetchListing,
   bulkUnpublishDealerListings,
   fetchDealerMakes,
   fetchDealerOrAssociationMakes,
@@ -15,6 +16,7 @@ import {
 } from "../inventory"
 import { EmptyListing, Listing } from "../../../lib/factories/listing"
 import { encodeDate } from "../../../lib/dateEncoding"
+import { ListingFactory } from "../../../index"
 
 const dealerId = 123
 const requestOptionsMock = {
@@ -45,6 +47,27 @@ describe("CAR service", () => {
 
       expect(fetch).toHaveBeenCalled()
       expect(fetchedListing).toEqual(listing)
+    })
+  })
+
+  describe("#bulkFetchListing", () => {
+    beforeEach(() => {
+      fetchMock.mockResponse(
+        JSON.stringify([
+          { id: 123, payload: ListingFactory({ id: 123 }) },
+          { id: 321, payload: ListingFactory({ id: 321 }) },
+        ])
+      )
+    })
+
+    it("fetches the data", async () => {
+      await bulkFetchListing({ listingIds: [123, 321] })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/listings/bulk-get"),
+        expect.objectContaining({
+          body: expect.stringContaining('{"elements":[123,321]}'),
+        })
+      )
     })
   })
 

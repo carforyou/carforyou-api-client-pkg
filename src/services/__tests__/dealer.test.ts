@@ -1,4 +1,5 @@
 import {
+  bulkFetchDealer,
   deleteUser,
   fetchDealer,
   fetchDealerEntitlements,
@@ -62,6 +63,18 @@ describe("Dealer", () => {
       expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining("dealers/123"),
         expect.any(Object)
+      )
+    })
+  })
+
+  describe("#bulkFetchDealer", () => {
+    it("fetches the data", async () => {
+      await bulkFetchDealer({ dealerIds: [123, 321] })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/dealers/bulk-get"),
+        expect.objectContaining({
+          body: expect.stringContaining('{"elements":[123,321]}'),
+        })
       )
     })
   })
