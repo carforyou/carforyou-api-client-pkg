@@ -1,3 +1,4 @@
+import { BulkFetchResponse } from "../../types/models"
 import { WithValidationError } from "../../types/withValidationError"
 import { Paginated } from "../../types/pagination"
 import { Listing } from "../../types/models/listing"
@@ -39,6 +40,25 @@ export const fetchListing = async ({
   const listing = await fetchPath({ path: `listings/${id}`, options })
 
   return sanitizeListing(listing)
+}
+
+export const bulkFetchListing = async ({
+  listingIds,
+  options = {},
+}: {
+  listingIds: number[]
+  options?: ApiCallOptions
+}): Promise<BulkFetchResponse<Listing>[]> => {
+  const listings = await postData({
+    path: "listings/bulk-get",
+    body: { elements: listingIds },
+    options,
+  })
+
+  return listings.map((listing) => ({
+    id: listing.id,
+    payload: sanitizeListing(listing.payload),
+  }))
 }
 
 export const fetchDealerMakes = async ({

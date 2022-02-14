@@ -251,3 +251,8 @@ export interface DealerAnalytics {
 export interface BuyNowConfiguration {
   paymentAvailable: boolean
 }
+
+export interface BulkFetchResponse<T> {
+  id: number
+  payload: T
+}
