@@ -1,7 +1,7 @@
-import { BulkFetchResponse } from "../../types/models"
 import { WithValidationError } from "../../types/withValidationError"
 import { Paginated } from "../../types/pagination"
 import { Listing } from "../../types/models/listing"
+import { BulkFetchResponse } from "../../types/models"
 import toQueryString from "../../lib/toQueryString"
 import { decodeDate, encodeDate } from "../../lib/dateEncoding"
 import {
