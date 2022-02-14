@@ -6,7 +6,7 @@ import {
 
 import { Date, DealerSourceGroup, DealerType, Location } from "./index"
 
-interface DealerListingImage {
+export interface DealerListingImage {
   id: number
   externalUrl: string
   s3Key: string
