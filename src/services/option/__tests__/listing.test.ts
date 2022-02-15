@@ -1,4 +1,5 @@
 import {
+  bulkFetchListingOptions,
   fetchDealerListingOptions,
   fetchListingOptions,
   saveDealerListingOptions,
@@ -27,6 +28,18 @@ describe("OPTION service", () => {
 
       expect(fetch).toHaveBeenCalled()
       expect(fetchedOptions).toEqual(options)
+    })
+  })
+
+  describe("#bulkFetchListingOptions", () => {
+    it("fetches the data", async () => {
+      await bulkFetchListingOptions({ listingIds: [123, 321], language: "de" })
+      expect(fetch).toHaveBeenCalledWith(
+        expect.stringContaining("/listings/equipment/bulk-get?language=de"),
+        expect.objectContaining({
+          body: expect.stringContaining('{"elements":[123,321]}'),
+        })
+      )
     })
   })
 

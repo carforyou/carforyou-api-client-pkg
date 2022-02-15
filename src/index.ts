@@ -34,6 +34,7 @@ export {
   Gender,
   Country,
   Question,
+  BulkFetchResponse,
 } from "./types/models/index"
 
 export { BuyNowApplication } from "./types/models/applications"
@@ -199,6 +200,7 @@ export {
 
 export {
   fetchListing,
+  bulkFetchListing,
   fetchDealerMakes,
   fetchDealerListing,
   fetchDealerOrAssociationMakes,
@@ -233,6 +235,7 @@ export { addPurchaseConfirmation } from "./services/carSaleTracking/buyerFeedbac
 
 export {
   fetchListingOptions,
+  bulkFetchListingOptions,
   fetchDealerListingOptions,
   saveDealerListingOptions,
 } from "./services/option/listing"
@@ -273,6 +276,7 @@ export {
 } from "./services/vehicle"
 export {
   fetchDealer,
+  bulkFetchDealer,
   fetchDealerSuggestions,
   fetchDealerProfile,
   putDealerProfile,
