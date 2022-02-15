@@ -6,15 +6,15 @@ import {
 
 import { Date, DealerSourceGroup, DealerType, Location } from "./index"
 
-export interface ListingImage {
+export interface DealerListingImage {
   id: number
   externalUrl: string
   s3Key: string
 }
+export type ListingImage = Omit<DealerListingImage, "id">
 
 export interface DealerListingImages {
-  detectedCarImageId: number
-  images: ListingImage[]
+  images: DealerListingImage[]
   listingId: number
 }
 
