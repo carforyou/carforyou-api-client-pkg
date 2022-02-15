@@ -7,13 +7,13 @@ import {
   postData,
   putData,
 } from "../base"
-import { WithValidationError } from ".."
+import { Paginated, WithValidationError } from ".."
 
 export const fetchListingComparisons = async ({
   options = {},
 }: {
   options: ApiCallOptions
-}): Promise<ListingComparison[]> => {
+}): Promise<Paginated<ListingComparison>> => {
   return fetchPath({
     path: "users/me/listing-comparisons",
     options: { isAuthorizedRequest: true, ...options },
