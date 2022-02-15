@@ -55,6 +55,7 @@ export {
   Listing,
   ListingImage,
   ListingSourceGroup,
+  DealerListingImage,
   DealerListingImages,
   ListingSource,
   OtherServices,
