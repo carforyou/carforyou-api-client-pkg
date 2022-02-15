@@ -15,7 +15,7 @@ import {
   validateDealerListing,
 } from "../inventory"
 import { EmptyListing, Listing } from "../../../lib/factories/listing"
-import { encodeDate } from "../../../lib/dateEncoding"
+import * as dateEncoding from "../../../lib/dateEncoding"
 import { ListingFactory } from "../../../index"
 
 const dealerId = 123
@@ -35,9 +35,13 @@ describe("CAR service", () => {
       fetchMock.mockResponse(
         JSON.stringify({
           ...listing,
-          firstRegistrationDate: encodeDate(listing.firstRegistrationDate),
-          lastInspectionDate: encodeDate(listing.lastInspectionDate),
-          lastServiceDate: encodeDate(listing.lastServiceDate),
+          firstRegistrationDate: dateEncoding.encodeDate(
+            listing.firstRegistrationDate
+          ),
+          lastInspectionDate: dateEncoding.encodeDate(
+            listing.lastInspectionDate
+          ),
+          lastServiceDate: dateEncoding.encodeDate(listing.lastServiceDate),
         })
       )
     })
@@ -68,6 +72,40 @@ describe("CAR service", () => {
           body: expect.stringContaining('{"elements":[123,321]}'),
         })
       )
+    })
+
+    it("sanitizes the listing", async () => {
+      jest.spyOn(dateEncoding, "decodeDate")
+      fetchMock.mockResponse(
+        JSON.stringify([
+          {
+            id: 123,
+            payload: ListingFactory({
+              id: 123,
+              firstRegistrationDate: "2020-10-05",
+              lastInspectionDate: "2020-05-05",
+              lastServiceDate: "2018-06-05",
+            }),
+          },
+        ])
+      )
+      const listings = await bulkFetchListing({ listingIds: [123, 321] })
+      expect(listings[0].payload.firstRegistrationDate).toEqual({
+        month: 10,
+        year: 2020,
+      })
+      expect(listings[0].payload.lastInspectionDate).toEqual({
+        month: 5,
+        year: 2020,
+      })
+      expect(listings[0].payload.lastServiceDate).toEqual({
+        month: 6,
+        year: 2018,
+      })
+      expect(dateEncoding.decodeDate).toHaveBeenCalledTimes(3)
+      expect(dateEncoding.decodeDate).toHaveBeenNthCalledWith(1, "2020-10-05")
+      expect(dateEncoding.decodeDate).toHaveBeenNthCalledWith(2, "2020-05-05")
+      expect(dateEncoding.decodeDate).toHaveBeenNthCalledWith(3, "2018-06-05")
     })
   })
 
