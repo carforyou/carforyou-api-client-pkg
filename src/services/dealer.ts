@@ -4,7 +4,12 @@ import { Paginated } from "../types/pagination"
 import { DealerProfile } from "../types/models/dealerProfile"
 import { DealerPreferences } from "../types/models/dealerPreferences"
 import { UserAccount } from "../types/models/account"
-import { Dealer, DealerSuggestion, Entitlements } from "../types/models"
+import {
+  BulkFetchResponse,
+  Dealer,
+  DealerSuggestion,
+  Entitlements,
+} from "../types/models"
 import toQueryString from "../lib/toQueryString"
 import {
   ApiCallOptions,
@@ -27,6 +32,20 @@ export const fetchDealer = async ({
   const query = toQueryString({ language })
   return fetchPath({
     path: `dealers/${id}${query ? `?${query}` : ""}`,
+    options,
+  })
+}
+
+export const bulkFetchDealer = async ({
+  dealerIds,
+  options = {},
+}: {
+  dealerIds: number[]
+  options?: ApiCallOptions
+}): Promise<BulkFetchResponse<Dealer>[]> => {
+  return postData({
+    path: "dealers/bulk-get",
+    body: { elements: dealerIds },
     options,
   })
 }
