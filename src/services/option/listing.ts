@@ -1,11 +1,12 @@
 import { WithValidationError } from "../../types/withValidationError"
 import { Language } from "../../types/params"
 import { Listing } from "../../types/models/listing"
-import { Options } from "../../types/models"
+import { BulkFetchResponse, Options } from "../../types/models"
 import {
   ApiCallOptions,
   fetchPath,
   handleValidationError,
+  postData,
   putData,
 } from "../../base"
 
@@ -20,6 +21,22 @@ export const fetchListingOptions = async ({
 }): Promise<Options> => {
   return fetchPath({
     path: `listings/${listingId}/equipment?language=${language}`,
+    options,
+  })
+}
+
+export const bulkFetchListingOptions = async ({
+  listingIds,
+  language,
+  options = {},
+}: {
+  listingIds: number[]
+  language: Language
+  options?: ApiCallOptions
+}): Promise<BulkFetchResponse<Options>[]> => {
+  return postData({
+    path: `listings/equipment/bulk-get?language=${language}`,
+    body: { elements: listingIds },
     options,
   })
 }

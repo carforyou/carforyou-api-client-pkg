@@ -39,12 +39,10 @@ const defaults: ListingType = {
   dealerId: 1,
   images: [
     {
-      id: 1000001,
       externalUrl: "../../static/images/placeholder.png",
       s3Key: "2018/09/04/12/24/28/mercedes-benz-c-180-kompressor.jpg",
     },
     {
-      id: 1000002,
       externalUrl: "../../static/images/placeholder.png",
       s3Key: "2018/09/04/12/24/28/mercedes-benz-c-180-kompressor-1.jpg",
     },
