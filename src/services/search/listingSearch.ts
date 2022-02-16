@@ -279,7 +279,7 @@ export const fetchAggregations = async ({
   query?: ListingQueryParams
   options?: ApiCallOptions
 }): Promise<{
-  aggregations: { location: { [key: string]: number } }
+  aggregations: { locationSimple: { [key: string]: number } }
 }> => {
   const response = await postData({
     path: "listings/aggregations",
