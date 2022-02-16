@@ -274,11 +274,9 @@ export const fetchDealerArchivedListings = async ({
 
 export const fetchAggregations = async ({
   query = {},
-  aggregations,
   options = {},
 }: {
   query?: ListingQueryParams
-  aggregations: Array<{ name: string; geohashPrecision: number }>
   options?: ApiCallOptions
 }): Promise<{
   aggregations: { location: { [key: string]: number } }
@@ -287,7 +285,7 @@ export const fetchAggregations = async ({
     path: "listings/aggregations",
     body: {
       query: paramsToSearchRequest(query),
-      aggregations,
+      aggregations: [{ name: "locationSimple" }],
     },
     options,
   })

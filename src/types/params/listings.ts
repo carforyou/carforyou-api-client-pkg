@@ -25,7 +25,6 @@ export interface LocationFilter {
   radius?: string
   box?: Box
   geoPoint?: GeoPoint
-  geohash?: string
 }
 
 type VariantParams = "A" | "B" | "C" | "D" | "E"
