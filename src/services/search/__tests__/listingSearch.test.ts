@@ -325,6 +325,12 @@ describe("SEARCH service", () => {
 
       const fetched = await fetchAggregations({
         query: bodyTypeQuery,
+        aggregations: [
+          {
+            name: "location",
+            geohashPrecision: 12,
+          },
+        ],
       })
 
       expect(fetched).toEqual(response)
