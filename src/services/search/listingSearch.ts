@@ -284,8 +284,8 @@ export const fetchAggregations = async ({
   const response = await postData({
     path: "listings/aggregations",
     body: {
-      query,
-      aggregations: [{ name: "locationSimple" }],
+      query: paramsToSearchRequest(query),
+      aggregations: [{ name: "LOCATION" }],
     },
     options,
   })
