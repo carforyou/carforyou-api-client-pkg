@@ -285,7 +285,7 @@ export const fetchAggregations = async ({
     path: "listings/aggregations",
     body: {
       query: paramsToSearchRequest(query),
-      aggregations: [{ name: "location" }],
+      aggregations: [{ name: "location", geohashPrecision: 12 }],
     },
     options,
   })
