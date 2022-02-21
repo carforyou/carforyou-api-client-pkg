@@ -117,6 +117,7 @@ export interface ListingFilterParams {
     | LocationFilter
     | boolean
     | Array<{ from: string; to: string }>
+    | SimilarTo
 }
 
 export interface DealerListingQueryParams
