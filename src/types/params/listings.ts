@@ -111,6 +111,7 @@ export interface ListingFilterParams {
 
   [key: string]:
     | number
+    | number[]
     | string[]
     | string
     | MakeModelFilter[]
