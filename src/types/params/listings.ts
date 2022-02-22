@@ -32,7 +32,7 @@ export interface SimilarTo {
   modelKey: string
   fuelType: string
   bodyType: string
-  bodyColorGroup: string
+  bodyColor: string
   conditionType: string
   price: number
 }
