@@ -157,6 +157,7 @@ const defaults: ListingType = {
   useDefaultGeneralExternalNote: false,
   verified: false,
   vehicleUniverse: "car",
+  searchAttributes: [],
 }
 
 export function Listing(attributes = {}): ListingType {
@@ -329,6 +330,7 @@ export function EmptyListing(): ListingType {
     useDefaultGeneralExternalNote: undefined,
     verified: false,
     vehicleUniverse: "car",
+    searchAttributes: [],
   }
 }
 
