@@ -165,6 +165,7 @@ export interface Listing
   firstStablePrice: number
   priceReductionPercentage: number
   hasReducedPrice: boolean
+  searchAttributes: string[]
 }
 
 export type ListingSource = "DEALER_PLATFORM" | "MANUAL" | "TUTTI" | "TDA"
