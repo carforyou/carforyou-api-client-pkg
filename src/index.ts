@@ -91,6 +91,7 @@ export {
   ListingQueryParams,
   ListingSearchParams,
   DealerListingQueryParams,
+  SimilarTo,
 } from "./types/params/listings"
 
 export {
