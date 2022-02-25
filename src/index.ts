@@ -37,6 +37,8 @@ export {
   BulkFetchResponse,
 } from "./types/models/index"
 
+export { ListingComparison } from "./types/models/listingComparison"
+
 export { BuyNowApplication } from "./types/models/applications"
 
 export { LoanInterest, LoanCalculation } from "./types/models/loan"
@@ -372,3 +374,11 @@ export {
   saveFavourites,
   deleteFavourite,
 } from "./services/favourites"
+
+export {
+  createListingComparison,
+  deleteListingComparison,
+  fetchListingComparison,
+  fetchListingComparisons,
+  updateListingComparison,
+} from "./services/listingComparisons"
