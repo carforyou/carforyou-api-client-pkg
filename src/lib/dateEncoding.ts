@@ -1,6 +1,6 @@
 import { Date as DateType } from "../types/models"
 
-export const encodeDate = (date: DateType = {}) => {
+export const encodeDate = (date: DateType) => {
   if (!date) {
     return null
   }
