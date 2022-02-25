@@ -7,7 +7,7 @@ describe("dateEncoding", () => {
     })
 
     it("defaults month to january if only year is provided", () => {
-      expect(encodeDate({ year: 1988, month: 1 })).toEqual("1988-01-01")
+      expect(encodeDate({ year: 1988, month: null })).toEqual("1988-01-01")
     })
 
     it("converts date to YYYY-MM-DD format", () => {
