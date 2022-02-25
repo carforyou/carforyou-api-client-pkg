@@ -15,7 +15,7 @@ export const fetchListingComparisons = async ({
   options: ApiCallOptions
 }): Promise<Paginated<ListingComparison>> => {
   return fetchPath({
-    path: "users/me/listing-comparisons",
+    path: "users/me/listing-comparisons?sort=auditMetadata.createdDate,desc",
     options: { isAuthorizedRequest: true, ...options },
   })
 }

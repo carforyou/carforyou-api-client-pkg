@@ -18,7 +18,7 @@ describe("Listing comparisons", () => {
       })
 
       expect(fetch).toHaveBeenCalledWith(
-        "test.gateway/users/me/listing-comparisons",
+        "test.gateway/users/me/listing-comparisons?sort=auditMetadata.createdDate,desc",
         expect.any(Object)
       )
     })
@@ -59,8 +59,6 @@ describe("Listing comparisons", () => {
         })
       )
     })
-
-    it.todo("handles validation error")
   })
 
   describe("updateListingComparison", () => {
@@ -85,8 +83,6 @@ describe("Listing comparisons", () => {
         })
       )
     })
-
-    it.todo("handles validation error")
   })
 
   describe("deleteListingComparison", () => {
