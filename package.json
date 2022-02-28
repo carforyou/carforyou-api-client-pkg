@@ -21,7 +21,7 @@
   "homepage": "https://github.com/autoricardo/carforyou-api-client-pkg#readme",
   "devDependencies": {
     "@carforyou/eslint-config": "4.0.12",
-    "@types/jest": "27.4.0",
+    "@types/jest": "27.4.1",
     "@types/node": "16.11.25",
     "jest": "27.5.1",
     "jest-fetch-mock": "3.0.3",
