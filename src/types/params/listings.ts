@@ -27,6 +27,16 @@ export interface LocationFilter {
   geoPoint?: GeoPoint
 }
 
+export interface SimilarTo {
+  makeKey: string
+  modelKey: string
+  fuelType: string
+  bodyType: string
+  bodyColor: string
+  conditionType: string
+  price: number
+}
+
 type VariantParams = "A" | "B" | "C" | "D" | "E"
 export interface ListingQueryParams extends PaginationParams {
   lng?: string
@@ -42,6 +52,7 @@ export interface ListingQueryParams extends PaginationParams {
     | LocationFilter
     | boolean
     | Array<{ from: string; to: string }>
+    | SimilarTo
 }
 
 export interface ListingSearchParams extends ListingQueryParams {
@@ -100,12 +111,14 @@ export interface ListingFilterParams {
 
   [key: string]:
     | number
+    | number[]
     | string[]
     | string
     | MakeModelFilter[]
     | LocationFilter
     | boolean
     | Array<{ from: string; to: string }>
+    | SimilarTo
 }
 
 export interface DealerListingQueryParams
