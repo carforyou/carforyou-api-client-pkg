@@ -202,8 +202,8 @@ export interface SearchWhatsappLead extends SearchLeads {
 }
 
 export interface Date {
-  month?: number
-  year?: number
+  month: number
+  year: number
 }
 
 export interface PresignedUrl {

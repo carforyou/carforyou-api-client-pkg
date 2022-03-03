@@ -20,9 +20,9 @@
   "license": "MIT",
   "homepage": "https://github.com/autoricardo/carforyou-api-client-pkg#readme",
   "devDependencies": {
-    "@carforyou/eslint-config": "4.0.12",
-    "@types/jest": "27.4.0",
-    "@types/node": "16.11.25",
+    "@carforyou/eslint-config": "4.0.14",
+    "@types/jest": "27.4.1",
+    "@types/node": "16.11.26",
     "jest": "27.5.1",
     "jest-fetch-mock": "3.0.3",
     "rimraf": "3.0.2",

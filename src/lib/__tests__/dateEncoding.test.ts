@@ -3,11 +3,11 @@ import { decodeDate, encodeDate } from "../dateEncoding"
 describe("dateEncoding", () => {
   describe("#encodeDate", () => {
     it("returs null without a year", () => {
-      expect(encodeDate({})).toBe(null)
+      expect(encodeDate({ year: null, month: null })).toBe(null)
     })
 
     it("defaults month to january if only year is provided", () => {
-      expect(encodeDate({ year: 1988 })).toEqual("1988-01-01")
+      expect(encodeDate({ year: 1988, month: null })).toEqual("1988-01-01")
     })
 
     it("converts date to YYYY-MM-DD format", () => {
