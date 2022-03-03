@@ -23,7 +23,6 @@ export interface EnergyListingTypeCommons {
   consumptionExtraUrban: number
   consumptionUrban: number
 
-  systemPerformanceKiloWatts: number
   batteryCapacity: number
   powerConsumption: number
   range: number

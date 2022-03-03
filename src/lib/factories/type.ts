@@ -40,7 +40,6 @@ const detailsDefaults: TypeType = {
   consumptionCombined: 8.4,
   consumptionExtraUrban: 6.6,
   consumptionUrban: 11.6,
-  systemPerformanceKiloWatts: 13.4,
   batteryCapacity: 100,
   powerConsumption: 90,
   range: 153,
