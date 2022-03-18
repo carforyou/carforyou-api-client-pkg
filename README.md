@@ -73,7 +73,7 @@ The consumer is responsible to ensure a valid token is passed to the request. Th
 
 Also accompanying modes and param types, as well as default values, are exported.
 
-### [CarForYou service](carforyou-service.preprod.carforyou.ch)
+### [CarForYou service](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service)
 
 - [Dealer Default Listing](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Dealer%20Default%20Listing)
   - [`fetchDealerDefaultListingData`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Dealer%20Default%20Listing/get_1)
@@ -81,69 +81,57 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`saveDealerDefaultListingDescription`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Dealer%20Default%20Listing/setDescription)
   - [`saveDealerDefaultListingWarranty`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Dealer%20Default%20Listing/setWarranty)
   - [`saveDealerDefaultListingGeneralExternalNote`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Dealer%20Default%20Listing/setGeneralExternalNote)
+
 - [Image](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Image)
   - [`generatePresignedImageUrl`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Image/generatePresignedUrl)
   - [`saveDealerListingImages`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Image/setListingImages)
-- [Inventory](https://carforyou-service.preprod.carforyou.ch/swagger-ui/index.html#/Inventory)
 
-  - [`fetchListing`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search/get)
-  - [`bulkFetchListing`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search/bulkGet)
-  - [`fetchDealerMakes`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Dealer%20Inventory/getDealerMakes)
-  - [`fetchDealerOrAssociationMakes`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Dealer%20Inventory/getAllDealerMakes)
-  - [`fetchDealerOrAssociationModels`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Dealer%20Inventory/getAllDealerModels)
+- [Listing](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Listing)
   - [`fetchDealerListing`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Listing/getDealerListing)
   - [`validateDealerListing`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Listing/validateCreate)
-  - [`saveDealerListing`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Inventory/update)
   - [`publishDealerListing`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Listing/publish_1)
   - [`unpublishDealerListing`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Listing/unpublish_2)
   - [`bulkUnpublishDealerListings`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Listing/bulkUnpublish_1)
-
   - [`transferDealerListingToManual`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Listing/transferToManual)
   - [`transferDealerListingsToManual`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Listing/bulkTransferToManual)
   - [`getAllDealerFrameNumbers`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Listing/getAllDealerFrameNumbers)
 
-- [Message Lead](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Message%20Lead)
-  - [`sendMessageLead`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Message%20Lead/createMessageLead)
-  - [`fetchDealerMessageLeads`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Message%20Lead/getListingMessageLeads)
-  - [`hideMessageLead`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/hideDealerMessageLead)
-  - [`resendMessageLead`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=email-delivery-service#/Email%20delivery/resendMessageLead)
-  - [Reporting](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting)
-  - [`hideCallLead`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/hideDealerCallLead)
-  - [`fetchDealerCallLeads`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/getAllDealerCallLeads)
-  - [Whatsapp Lead](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Message%20Lead)
-  - [`fetchDealerWhatsappLeads`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/WhatsApp%20Tracking/getAllDealerWhatsAppTrackingEntries)
-  - [`hideWhatsappLead`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/WhatsApp%20Tracking/hideDealerWhatsAppTrackingEntry)
+- [Inventory](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Inventory)
+  - [`saveDealerListing`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=carforyou-service#/Inventory/update)
+
 
 ### [Options service](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service)
 
-- [Listing](https://option-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing)
+- [Options](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Option)
   - [`fetchListingOptions`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Option/getListingEquipment_1)
   - [`bulkFetchListingOptions`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Option/bulkGetListingEquipment)
   - [`fetchDealerListingOptions`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Option/getDealerListingEquipment)
   - [`saveDealerListingOptions`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Option/setListingEquipment_1)
+
 - [Type](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Type)
   - [`fetchTypeOptions`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Type/getEquipment_1)
+
 - [Vehicle](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Vehicle)
   - `fetchFrameNumberTypes`
     - it will get type Ids from [vin search](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Vehicle/getVehicle)
-    - and then return they types from [type search](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Type%20Search/searchUsingPOST_3)
   - [`fetchFrameNumberOptions`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Vehicle/getEquipment)
   - [`fetchProductionYearByFrameNumber`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=option-service#/Vehicle/getVehicle)
 
 ### [Inventory search service](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service)
 
-- [Cities](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Cities)
+- [Listing Search](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search)
+  - [`fetchListing`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search/get)
+  - [`bulkFetchListing`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search/bulkGet)
 
+- [Cities](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Cities)
   - [`fetchCity`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Cities/get_2)
   - [`fetchCitySuggestions`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Cities/getSuggestions)
 
 * [Current Makes/Models](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Current%20Makes%2FModels)
-
   - [`fetchCurrentMakes`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Current%20Makes%2FModels/getCurrentMakes)
   - [`fetchCurrentModels`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Current%20Makes%2FModels/getCurrentModels)
 
 * [Listing Search](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search)
-
   - [`fetchListingCount`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search/count_1)
   - [`fetchListings`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search/search_1)
   - [`fetchFacets`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search/getFacets_1)
@@ -154,20 +142,16 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`fetchAggregations`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20Search/getAggregations)
 
 * [Type Search](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Type%20Search)
-
   - [`fetchTypes`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Type%20Search/search)
   - [`fetchTypeFacets`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Type%20Search/getFacets)
 
 * [Saved Searches (Auto-Alarm)](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20saved%20searches)
-
   - [`fetchSavedSearches`](https://inventory-search-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing%20saved%20searches/getAllAutoAlarmsUsingGET)
-  - [`fetchSavedSearch`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=user-notification-service#/Saved%20Search/getSavedSearchByKey)
   - [`putDealerSavedSearch`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20saved%20searches/updateAutoAlarm)
   - [`postDealerSavedSearch`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20saved%20searches/createAutoAlarm)
   - [`deleteDealerSavedSearch`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Listing%20saved%20searches/deleteAutoAlarm)
 
 * [Dealer Search](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Dealer%20Search)
-
   - [`fetchDealers`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=inventory-search-service#/Dealer%20Search/search_2)
 
 ### [Catalogue service](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=catalogue-service)
@@ -199,8 +183,8 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`deleteUser`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=dealer-service#/User/deleteUser)
 
 ### [Email delivery service](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=email-delivery-service)
-
   - [`sendSupportCase`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=email-delivery-service#/Support%20Case/create)
+  - [`resendMessageLead`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=email-delivery-service#/Email%20delivery/resendMessageLead)
 
 ### [User notification service](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=user-notification-service)
 
@@ -212,73 +196,97 @@ Also accompanying modes and param types, as well as default values, are exported
   - [`extendSavedSearch`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=user-notification-service#/Saved%20Search/extendSavedSearch)
   - [`sendSavedSearchFeedback`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=user-notification-service#/Saved%20Search/createUnsubscribeFeedback)
 
-### [Analytics service](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui/index.html)
+### [Reporting service](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service)
 
-- [Analytics](https://carforyou-analytics-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics)
+- [Dealer Inventory](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Dealer%20Inventory)
+  - [`fetchDealerMakes`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Dealer%20Inventory/getDealerMakes)
+  - [`fetchDealerOrAssociationMakes`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Dealer%20Inventory/getAllDealerMakes)
+  - [`fetchDealerOrAssociationModels`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Dealer%20Inventory/getAllDealerModels)
+
+- [Countries](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Country)
+  - [`fetchCountries`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Country/getAll)
+
+- [Reference Data](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reference%20data)
+  - [`fetchReferenceData`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reference%20data/getReferenceData)
+
+- [Call Tracking](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Call%20Tracking)
+  - [`postCallTrackingEntry`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Call%20Tracking/createCallTrackingEntry)
+
+- [Whatsapp Tracking](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/WhatsApp%20Tracking)
+  - [`postWhatsappTrackingEntry`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/WhatsApp%20Tracking/createWhatsAppTrackingEntry)
+
+- [Reporting](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting)
+  - [`hideMessageLead`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/hideDealerMessageLead)
+  - [`hideCallLead`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/hideDealerCallLead)
+  - [`fetchDealerCallLeads`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/getAllDealerCallLeads)
+  - [`fetchDealerWhatsappLeads`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/WhatsApp%20Tracking/getAllDealerWhatsAppTrackingEntries)
+  - [`hideWhatsappLead`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/WhatsApp%20Tracking/hideDealerWhatsAppTrackingEntry)
+  - [`fetchCarSales`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/getDealerCarSales)
+  - [`fetchBuyerFeedbackBatch`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/getBuyerFeedbackBatch)
+  - [`fetchMessageLeads`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/getAllUserMessageLeads)
+  - [`fetchFavourites`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/getUserFavoriteListings)
+
+- [Analytics](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Analytics)
   - [`fetchAnalyticsData`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Analytics/getDealerListingsMetrics)
   - [`fetchLeadsAnalytics`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics/getDealerLeadsAnalyticsUsingPOST)
   - [`fetchListingsAnalytics`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics/getDealerListingsAnalyticsUsingPOST),
   - [`fetchLeadsInteractionsAnalytics`](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Analytics/getDealerLeadsInteractionsUsingPOST)
   - [`fetchDealerAnalytics`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Analytics/getDealerAnalytics)
 
-### [Reporting service](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html)
 
-- [Whatsapp Tracking](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Whatsapp%20Tracking)
-  - [`postWhatsappTrackingEntry`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/WhatsApp%20Tracking/createWhatsAppTrackingEntry)
-- [Reporting](https://reporting-service.preprod.carforyou.ch/swagger-ui/index.html#/Reporting)
-  - [`fetchCarSales`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/getDealerCarSales)
+### [Car sale tracking service](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service)
+
+- [Buyer feedback](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buyer%20Feedback)
+  - [`addPurchaseConfirmation`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buyer%20Feedback/addPurchaseConfirmation)
+
+- [Dealer feedback](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Dealer%20Feedback)
+  - [`postDealerFeedback`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Dealer%20Feedback/createDealerFeedback)
+  - [`postBulkDealerFeedback`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Dealer%20Feedback/bulkCreateDealerFeedback)
+
+- [Car Sale](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Car%20Sale)
+  - [`fetchCarSalesCount`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Car%20Sale/countCarSales)
   - [`rejectCarSales`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Car%20Sale/addCarSaleRejection)
   - [`deleteCarSalesRejection`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Car%20Sale/removeCarSaleRejection)
-  - [`fetchBuyerFeedbackBatch`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/getBuyerFeedbackBatch)
-  - [`fetchMessageLeads`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/getAllUserMessageLeads)
-  - [`fetchFavourites`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reporting/getUserFavoriteListings)
-- [Call Tracking](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Call%20Tracking)
-  - [`postCallTrackingEntry`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Call%20Tracking/createCallTrackingEntry)
-- [Countries](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Country)
-  - [`fetchCountries`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Country/getAll)
-- [Reference Data](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reference%20data)
-  - [`fetchReferenceData`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Reference%20data/getReferenceData)
-- [Listing questions](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=reporting-service#/Listing%20question)
+
+- [Buy Now](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buy%20Now%20Application)
+  - [`sendBuyNowApplication`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buy%20Now%20Application/createBuyNowApplication)
+  - [`fetchBuyNowConfiguration`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buy%20Now%20Dealer/getConfiguration)
+  - [`markBuyNowApplicationAsPaid`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buy%20Now%20Application/markAsPaid)
+
+### [Buyer service](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service)
+
+- [Message Lead](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Message%20Lead)
+  - [`sendMessageLead`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Message%20Lead/createMessageLead)
+  - [`fetchDealerMessageLeads`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Message%20Lead/getListingMessageLeads)
+
+- [Listing questions](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Listing%20question)
   - [`fetchListingQuestions`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Listing%20question/getAllByListingId)
   - [`createQuestion`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Listing%20question/create_2)
   - [`fetchDealerQuestionLeads`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Listing%20question/getAllByDealerId)
   - [`saveAnswerToQuestion`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Listing%20question/answer)
   - [`deleteQuestion`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Listing%20question/delete_2)
 
-### [Car sale tracking service](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service)
-
-- [Buyer feedback](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buyer%20Feedback)
-  - [`addPurchaseConfirmation`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buyer%20Feedback/addPurchaseConfirmation)
-- [Dealer feedback](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Dealer%20Feedback)
-  - [`postDealerFeedback`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Dealer%20Feedback/createDealerFeedback)
-  - [`postBulkDealerFeedback`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Dealer%20Feedback/bulkCreateDealerFeedback)
-- [Car Sale](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Car%20Sale)
-  - [`fetchCarSalesCount`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Car%20Sale/countCarSales)
-
-### [Buyer service](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service)
-
 - [Buyer Protection](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Buyer%20Protection)
   - [`sendBuyerProtectionApplication`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Buyer%20Protection/createBuyerProtectionApplication)
-- [Buy Now](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buy%20Now%20Application)
-  - [`sendBuyNowApplication`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buy%20Now%20Application/createBuyNowApplication)
-  - [`fetchBuyNowConfiguration`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buy%20Now%20Dealer/getConfiguration)
-  - [`markBuyNowApplicationAsPaid`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=car-sale-tracking-service#/Buy%20Now%20Application/markAsPaid)
+
 - [Loan](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Loan%20Interest)
   - [`createLoanInterest`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/Loan%20Interest/create_3)
   - [`calculateMonthlyRate`](https://listing-enrichment-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/calculateLoanUsingPOST)
+
 - [Favourites](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing)
   - [`saveFavourite`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing/create_1)
   - [`saveFavourites`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing/bulkCreate_1)
   - [`deleteFavourite`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Favorite%20Listing/delete_1)
+
 - [Listing comparisons](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Listing%20Comparison)
-  - [`fetchListingComparisons`](https://internal.carforyou.dev/api-docs/swagger-ui/#/User%20Listing%20Comparison/getAll)
-  - [`fetchListingComparison`](https://internal.carforyou.dev/api-docs/swagger-ui/#/User%20Listing%20Comparison/get)
-  - [`createListingComparison`](https://internal.carforyou.dev/api-docs/swagger-ui/#/User%20Listing%20Comparison/create)
-  - [`updateListingComparison`](https://internal.carforyou.dev/api-docs/swagger-ui/#/User%20Listing%20Comparison/update)
-  - [`deleteListingComparison`](https://internal.carforyou.dev/api-docs/swagger-ui/#/User%20Listing%20Comparison/delete)
+  - [`fetchListingComparisons`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Listing%20Comparison/getAll)
+  - [`fetchListingComparison`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Listing%20Comparison/get)
+  - [`createListingComparison`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Listing%20Comparison/create)
+  - [`updateListingComparison`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Listing%20Comparison/update)
+  - [`deleteListingComparison`](https://internal.carforyou.dev/api-docs/swagger-ui/?urls.primaryName=buyer-service#/User%20Listing%20Comparison/delete)
+
 - [Leasing](https://internal.carforyou.dev/api-docs/swagger-ui/#/Leasing%20Interest)
   - [`createLeasingInterest`](https://internal.carforyou.dev/api-docs/swagger-ui/#/Leasing%20Interest/create_4)
-  - [`calculateLeasing`](https://listing-enrichment-service.preprod.carforyou.ch/swagger-ui/index.html#/Listing/calculateLeasingUsingPOST)
 
 ## Mocking in tests
 
