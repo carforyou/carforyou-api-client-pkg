@@ -303,13 +303,7 @@ export {
   extendSavedSearch,
   sendSavedSearchFeedback,
 } from "./services/userNotification"
-export {
-  fetchAnalyticsData,
-  fetchLeadsAnalytics,
-  fetchListingsAnalytics,
-  fetchLeadsInteractionsAnalytics,
-  fetchDealerAnalytics,
-} from "./services/analytics"
+export { fetchAnalyticsData, fetchDealerAnalytics } from "./services/analytics"
 export { postWhatsappTrackingEntry } from "./services/reporting/whatsapp"
 export { postCallTrackingEntry } from "./services/reporting/callTracking"
 export { fetchReferenceData } from "./services/referenceData"
