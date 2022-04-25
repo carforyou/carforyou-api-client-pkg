@@ -22,7 +22,7 @@
   "devDependencies": {
     "@carforyou/eslint-config": "4.0.17",
     "@types/jest": "27.4.1",
-    "@types/node": "16.11.27",
+    "@types/node": "16.11.28",
     "jest": "27.5.1",
     "jest-fetch-mock": "3.0.3",
     "rimraf": "3.0.2",
