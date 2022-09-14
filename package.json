@@ -4,7 +4,7 @@
   "description": "Api client to connect with our APIs",
   "scripts": {
     "version": "npm run build",
-    "build": "rimraf pkg && tsc --outDir pkg/esm && tsc --module commonjs --target es5 --outDir pkg/cjs",
+    "build": "rimraf pkg && tsc --outDir pkg/esm --project tsconfig.build.json && tsc --module commonjs --target es5 --outDir pkg/cjs --project tsconfig.build.json",
     "lint": "eslint --ext ts,js,tsx,jsx,json .",
     "format": "npm run lint -- --fix",
     "typecheck": "tsc --noEmit",
