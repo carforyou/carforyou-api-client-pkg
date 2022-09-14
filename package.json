@@ -22,13 +22,13 @@
   "devDependencies": {
     "@carforyou/eslint-config": "4.0.27",
     "@types/jest": "29.0.0",
-    "@types/node": "16.11.56",
+    "@types/node": "16.11.58",
     "jest": "29.0.2",
     "jest-fetch-mock": "3.0.3",
     "rimraf": "3.0.2",
     "semantic-release": "19.0.5",
     "ts-jest": "29.0.0-next.1",
-    "typescript": "4.8.2"
+    "typescript": "4.8.3"
   },
   "main": "pkg/cjs/index.js",
   "module": "pkg/esm/index.js",
