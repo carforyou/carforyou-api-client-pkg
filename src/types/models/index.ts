@@ -1,6 +1,6 @@
+import { ListingFilterParams } from "../params/listings"
 import { FeatureBooking } from "./product"
 import { PartialSearchListing } from "./listing"
-import { ListingFilterParams } from "../params/listings"
 
 export interface MappedValue {
   name: string

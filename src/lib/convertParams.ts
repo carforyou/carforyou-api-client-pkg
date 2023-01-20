@@ -1,10 +1,9 @@
-import toCamelCase from "./toCamelCase"
-
 import {
   ListingSortTypeParams,
   SortOrderParams,
   SortParams,
 } from "../types/sort"
+import toCamelCase from "./toCamelCase"
 
 const reverseSortOrder = (sortOrder: SortOrderParams) => {
   switch (sortOrder) {

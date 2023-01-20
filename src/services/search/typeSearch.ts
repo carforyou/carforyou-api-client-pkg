@@ -1,4 +1,3 @@
-import { Facet } from "./facets"
 import { WithValidationError } from "../../types/withValidationError"
 import { SearchTypeQueryParams } from "../../types/params/types"
 import { Paginated } from "../../types/pagination"
@@ -6,6 +5,7 @@ import { Paginated } from "../../types/pagination"
 import { SearchType } from "../../types/models/type"
 import { Facets } from "../../types/facets"
 import { ApiCallOptions, handleValidationError, postData } from "../../base"
+import { Facet } from "./facets"
 
 const defaultPagination = {
   page: 0,
