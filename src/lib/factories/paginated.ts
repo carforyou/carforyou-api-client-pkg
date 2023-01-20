@@ -1,7 +1,7 @@
-import { SearchListing } from "./listing"
 import { WithTopListing } from "../../types/topListing"
 import { Paginated } from "../../types/pagination"
 import { WithFieldStats } from "../../types/fieldStats"
+import { SearchListing } from "./listing"
 
 export const PaginatedLeads = <T>(
   content: T[],

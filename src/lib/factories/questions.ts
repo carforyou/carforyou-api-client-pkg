@@ -1,5 +1,5 @@
-import { PartialSearchListing } from "./listing"
 import { SearchQuestionLead as SearchQuestionLeadType } from "../../types/models"
+import { PartialSearchListing } from "./listing"
 
 const SearchQuestionLeadDefaults: SearchQuestionLeadType = {
   id: 501,

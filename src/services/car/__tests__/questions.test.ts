@@ -1,10 +1,10 @@
-import * as queryStringHelper from "./../../../lib/toQueryString"
 import {
   deleteQuestion,
   fetchDealerQuestionLeads,
   fetchListingQuestions,
   saveAnswerToQuestion,
 } from "../questions"
+import * as queryStringHelper from "./../../../lib/toQueryString"
 
 describe("questions", () => {
   beforeEach(() => {

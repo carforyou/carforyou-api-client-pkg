@@ -1,5 +1,3 @@
-import { fetchTypes } from "./search/typeSearch"
-
 import { WithValidationError } from "../types/withValidationError"
 import { Language } from "../types/params"
 import { Paginated } from "../types/pagination"
@@ -7,6 +5,7 @@ import { SearchType } from "../types/models/type"
 import { Options } from "../types/models"
 import toQueryString from "../lib/toQueryString"
 import { ApiCallOptions, fetchPath, handleValidationError } from "../base"
+import { fetchTypes } from "./search/typeSearch"
 
 export const fetchFrameNumberTypes = async ({
   query,

@@ -1,9 +1,9 @@
-import { PartialSearchListing } from "./listing"
 import {
   SearchCallLead as SearchCallLeadType,
   SearchMessageLead as SearchMessageLeadType,
   SearchWhatsappLead as SearchWhatsappLeadType,
 } from "../../types/models"
+import { PartialSearchListing } from "./listing"
 
 const searchMessageLeadDefaults: SearchMessageLeadType = {
   id: 501,
