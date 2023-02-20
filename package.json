@@ -28,7 +28,7 @@
     "rimraf": "4.1.2",
     "semantic-release": "20.0.3",
     "ts-jest": "29.0.5",
-    "typescript": "4.9.4"
+    "typescript": "4.9.5"
   },
   "main": "pkg/cjs/index.js",
   "module": "pkg/esm/index.js",
