@@ -14,7 +14,7 @@ describe("Base", () => {
 
       expect(() => {
         getHost("test.service")
-      }).toThrowError(/ApiClient not configured/)
+      }).toThrow(/ApiClient not configured/)
     })
 
     it("returns gateway url by default", () => {

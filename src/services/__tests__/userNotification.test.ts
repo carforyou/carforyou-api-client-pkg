@@ -77,7 +77,7 @@ describe("USER_NOTIFICATION service", () => {
 
       const response = await deleteSavedSearch({ key: "qwertyuiop" })
       expect(response.tag).toEqual("success")
-      expect(fetch).toBeCalledWith(
+      expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining("/saved-searches/key/qwertyuiop"),
         expect.objectContaining({ method: "DELETE" })
       )
@@ -107,7 +107,7 @@ describe("USER_NOTIFICATION service", () => {
 
       const response = await enableSavedSearch({ key: "qwertyuiop" })
       expect(response.tag).toEqual("success")
-      expect(fetch).toBeCalledWith(
+      expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining("/saved-searches/key/qwertyuiop"),
         expect.objectContaining({ method: "POST" })
       )
@@ -161,7 +161,7 @@ describe("USER_NOTIFICATION service", () => {
       const response = await sendSavedSearchFeedback(savedSearchFeedback)
       expect(response.tag).toEqual("success")
 
-      expect(fetch).toBeCalledWith(
+      expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining(
           "/saved-searches/key/qwertyuiop/unsubscribe-feedback"
         ),
