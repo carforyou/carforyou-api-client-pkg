@@ -28,7 +28,7 @@ describe("ApiClient", () => {
       expect(() => {
         ApiClient.configure({ host: "api.gateway.test1" })
         ApiClient.configure({ host: "api.gateway.test2" })
-      }).toThrowError("Overwriting API client configuration")
+      }).toThrow("Overwriting API client configuration")
     })
   })
 

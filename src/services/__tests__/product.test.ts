@@ -46,7 +46,7 @@ describe("Products service", () => {
         tag: "success",
         result: purchaseData,
       })
-      expect(fetch).toBeCalledWith(
+      expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining(
           "/dealers/123/listings/4/products/purchase-and-use"
         ),
@@ -105,7 +105,7 @@ describe("Products service", () => {
         tag: "success",
         result: purchaseData,
       })
-      expect(fetch).toBeCalledWith(
+      expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining(
           "/dealers/123/listings/products/bulk-purchase-and-use"
         ),
@@ -171,7 +171,7 @@ describe("Products service", () => {
         tag: "success",
         result: purchaseData,
       })
-      expect(fetch).toBeCalledWith(
+      expect(fetch).toHaveBeenCalledWith(
         expect.stringContaining("/dealers/123/products/purchase-and-use"),
         expect.objectContaining({
           body: JSON.stringify({ productId: 2, startDate: "2020-10-11" }),
