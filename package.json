@@ -20,7 +20,7 @@
   "license": "MIT",
   "homepage": "https://github.com/autoricardo/carforyou-api-client-pkg#readme",
   "devDependencies": {
-    "@carforyou/eslint-config": "4.0.72",
+    "@carforyou/eslint-config": "4.0.75",
     "@types/jest": "29.5.5",
     "@types/node": "18.17.17",
     "jest": "29.7.0",
